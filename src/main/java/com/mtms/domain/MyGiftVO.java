@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 public class MyGiftVO {
-	private String memberId;
-	private int giftNo;
-	private int myGiftNo;
-	private Date buyingDate;
-	private Date expireDate;
-	private Date expireChk;
-	private int status;
+	private String memberId;			// 회원 아이디
+	private int giftNo;					// 기프티콘 번호
+	private int myGiftNo;				// 내 기프티콘 번호
+	private Date buyingDate;			// 구입 일자
+	private Date expireDate;			// 만료 일자
+	private boolean expireChk;			// 만료 여부?
+	private int status;					// 현재 상태
 }
