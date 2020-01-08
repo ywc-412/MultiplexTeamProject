@@ -23,29 +23,34 @@ public class CommentReportServiceImpl implements CommentReportService{
 	private MemberMapper memberMapper;
 	
 	//등록
+	@Override
 	public void register(CommentReportVO ReportComment) {
 		
 	}
 	
 	//제거
+	@Override
 	public boolean remove(int CommentReportNo) {
 		
 		return false;
 	}
 	
 	//상세보기
+	@Override
 	public CommentReportVO get(int CommentReportNo) {
 		
 		return null;
 	}
 	
 	//전체목록 조회(페이징)
+	@Override
 	public List<CommentReportVO> getList(Criteria cri){
 		
 		return null;
 	}
 	
 	//페이지 총 갯수
+	@Override
 	public int getTotal(Criteria cri) {
 		
 		return 0;
