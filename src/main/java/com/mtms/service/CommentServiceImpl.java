@@ -8,6 +8,7 @@ import com.mtms.domain.CommentPageDTO;
 import com.mtms.domain.CommentVO;
 import com.mtms.domain.Criteria;
 import com.mtms.mapper.CommentMapper;
+import com.mtms.mapper.MemberMapper;
 import com.mtms.mapper.MovieMapper;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class CommentServiceImpl implements CommentService{
 	
 	private CommentMapper commentMapper;
 	private MovieMapper movieMapper;
+	private MemberMapper memberMapper;
 	
 	//한줄평 조회
 	public List<CommentVO> getList(Criteria cri, int movieNo){
