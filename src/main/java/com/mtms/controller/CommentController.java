@@ -49,7 +49,7 @@ public class CommentController {
 	//한줄평 조회 - AJAX
 	@GetMapping(value = "{CommentNo}", produces = { MediaType.APPLICATION_XML_VALUE,
 											  MediaType.APPLICATION_JSON_UTF8_VALUE} )		
-	public ResponseEntity<CommentVO> get(@PathVariable("CommentNo") Long CommentNo){
+	public ResponseEntity<CommentVO> get(@PathVariable("commentNo") Long commentNo){
 		
 		return null;
 	}
@@ -57,7 +57,7 @@ public class CommentController {
 	//한줄평 삭제 - AJAX
 //	@PreAuthorize("principal.username == #rvo.replyer") //수정필요
 	@DeleteMapping(value = "{CommentNo}", produces = { MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> remove(@RequestBody CommentVO cvo, @PathVariable("CommentNo") Long CommentNo){
+	public ResponseEntity<String> remove(@RequestBody CommentVO cvo, @PathVariable("commentNo") Long commentNo){
 		
 		return null;
 	}
@@ -67,7 +67,7 @@ public class CommentController {
 					value = "{CommentNo}",
 					consumes = "application/json",
 					produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> modify(@RequestBody CommentVO cvo, @PathVariable("CommentNo") Long CommentNo){
+	public ResponseEntity<String> modify(@RequestBody CommentVO cvo, @PathVariable("commentNo") Long commentNo){
 		
 		return null;
 	}

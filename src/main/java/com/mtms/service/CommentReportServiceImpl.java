@@ -27,12 +27,6 @@ public class CommentReportServiceImpl implements CommentReportService{
 		
 	}
 	
-	//수정
-	public boolean modify(CommentReportVO ReportComment) {
-		
-		return false;
-	}
-	
 	//제거
 	public boolean remove(int CommentReportNo) {
 		

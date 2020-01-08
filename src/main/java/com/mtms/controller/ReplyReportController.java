@@ -10,7 +10,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.ReplyReportVO;
+<<<<<<< HEAD
 import com.mtms.service.ReviewReplyReportServiceImpl;
+=======
+import com.mtms.service.ReviewReplyServiceImpl;
+>>>>>>> d2103b576c38080f55a7338ff59bdf8c1838ad09
 import com.mtms.service.ReviewReportServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -21,9 +25,13 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/report/reply/*")
 public class ReplyReportController {
+<<<<<<< HEAD
 	
 	private ReviewReplyReportServiceImpl reviewReplyReportService;
 	
+=======
+	private ReviewReplyServiceImpl replyReportService;
+>>>>>>> d2103b576c38080f55a7338ff59bdf8c1838ad09
 	@PostMapping("remove")
 	 public String remove(int ReplyReportNo,RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		return null;

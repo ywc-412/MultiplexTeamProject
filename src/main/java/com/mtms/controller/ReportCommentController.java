@@ -26,17 +26,9 @@ public class ReportCommentController {
 	private CommentReportService commentReportService;
 	
 	//한줄평 신고 상세보기(보여주기) 
-	@GetMapping( { "get", "modify"} )
+	@GetMapping("get")
 	public void get(Model model, @RequestParam("commentReport") int commentReport, @ModelAttribute("cri") Criteria cri) {
 		
-	}
-	
-	//한줄평 신고 수정 처리
-//	@PreAuthorize("principal.username == #memo.id") //수정필요
-	@PostMapping("modify")
-	public String modify(CommentReportVO commentReport, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		
-		return null;
 	}
 	
 	//한줄평 신고 삭제 처리
@@ -47,14 +39,14 @@ public class ReportCommentController {
 		return id;
 	}
 	
-	//한줄평 등록 창 보여주기
+	//한줄평 신고 등록 창 보여주기
 	@GetMapping("register")
 //	@PreAuthorize("isAuthenticated()")
 	public void register(Model model) {
 		
 	}
 	
-	//한줄평 등록 처리
+	//한줄평 신고 등록 처리
 	@PostMapping("register")
 //	@PreAuthorize("isAuthenticated()")
 	public String register(CommentReportVO commentReport, RedirectAttributes rttr) {
@@ -62,7 +54,7 @@ public class ReportCommentController {
 		return null;
 	}
 	
-	//한줄평 전체 조회
+	//한줄평 신고 전체 조회
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
 		

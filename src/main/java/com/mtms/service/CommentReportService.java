@@ -7,9 +7,6 @@ import com.mtms.domain.Criteria;
 
 public interface CommentReportService {
 	
-	//수정
-	public boolean modify(CommentReportVO ReportComment);
-	
 	//삭제
 	public boolean remove(int CommentReportNo); 
 	
