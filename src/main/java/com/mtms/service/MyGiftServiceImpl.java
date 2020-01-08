@@ -1,9 +1,17 @@
 package com.mtms.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import com.mtms.mapper.MyGiftMapper;
+=======
+import com.mtms.domain.Criteria;
+import com.mtms.domain.MyGiftVO;
+import com.mtms.persistence.MyGiftMapper;
+>>>>>>> d47745afa78514a48ab8d8d27ff650741a180262
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -15,4 +23,34 @@ import lombok.extern.log4j.Log4j;
 public class MyGiftServiceImpl implements MyGiftService{
 	@Setter(onMethod_ = @Autowired)
 	private MyGiftMapper myGiftMapper;
+
+	@Override
+	public List<MyGiftVO> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MyGiftVO read(int myGiftNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modify(MyGiftVO myGift) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean remove(int myGiftNo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
