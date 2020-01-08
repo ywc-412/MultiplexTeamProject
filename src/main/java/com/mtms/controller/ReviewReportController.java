@@ -22,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 public class ReviewReportController {
 	private ReviewReportServiceImpl reviweReportService;
 	@PostMapping("remove")
-	 public String remove(int reportNo,RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+	 public String remove(int reviewReportNo,RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		return null;
 		
 	}
@@ -32,7 +32,7 @@ public class ReviewReportController {
 		
 	}
 	@GetMapping({"get", "modify"})
-	public void get(int reportNo, Model model, @ModelAttribute("cri") Criteria cri) {
+	public void get(int reviewReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
 		
 	}
 	@GetMapping("list")

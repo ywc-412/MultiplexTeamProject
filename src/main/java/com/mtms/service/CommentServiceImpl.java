@@ -20,7 +20,7 @@ public class CommentServiceImpl implements CommentService{
 	
 	private CommentMapper commentMapper;
 	private MovieMapper movieMapper;
-	
+	 
 	//한줄평 조회
 	public List<CommentVO> getList(Criteria cri, int movieNo){
 		
