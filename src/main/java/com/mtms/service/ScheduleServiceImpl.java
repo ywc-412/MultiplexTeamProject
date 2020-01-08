@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.mapper.MovieMapper;
 import com.mtms.mapper.ScheduleMapper;
+import com.mtms.mapper.ScreenMapper;
 import com.mtms.domain.ScheduleVO;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -18,6 +20,8 @@ import lombok.extern.log4j.Log4j;
 public class ScheduleServiceImpl implements ScheduleService{
 	@Setter(onMethod_ = @Autowired)
 	private ScheduleMapper scheduleMapper;
+	private ScreenMapper screenMapper;
+	private MovieMapper movieMapper;
 
 	@Override
 	public void register(ScheduleVO rvo) {
