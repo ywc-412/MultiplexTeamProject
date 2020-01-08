@@ -15,6 +15,6 @@ public interface ReviewMapper {
 	public void insert(ReviewVO rvo);
 	public int update(ReviewVO rvo);
 	public int delete(Long reviewNo);
-	public ReviewVo read(Long reviewNo);
+	public ReviewVO read(Long reviewNo);
 
 }
