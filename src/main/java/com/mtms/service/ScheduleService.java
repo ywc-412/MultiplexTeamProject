@@ -7,8 +7,6 @@ import com.mtms.domain.ScheduleVO;
 
 public interface ScheduleService {
 	
-	// SCHEDULE BRANCH
-	
 	// 상영스케줄 등록
 	public void register(ScheduleVO rvo);
 	

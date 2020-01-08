@@ -17,4 +17,5 @@ public class MovieVO {
 	private String summary;						// 줄거리
 	private Date openDate;						// 개봉일
 	private List<MovieAttachVO> attachList;		// 몰라 이건 뭐야..
+	private int todayNum;				// 오늘 예매수 -> @Schedule 사용해서 매일 0으로 초기화시켜주기
 }
