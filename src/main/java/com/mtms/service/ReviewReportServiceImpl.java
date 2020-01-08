@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.ReviewReportVO;
+import com.mtms.mapper.MemberMapper;
+import com.mtms.mapper.ReviewMapper;
 import com.mtms.mapper.ReviewReportMapper;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +21,8 @@ import lombok.extern.log4j.Log4j;
 public class ReviewReportServiceImpl implements ReviewReportService{
 	@Setter(onMethod_ = @Autowired)
 	private ReviewReportMapper reviewReportMapper;
+	private ReviewMapper reviewMapper;
+	private MemberMapper memberMapper;
 
 	@Override
 	public int getTotalCount(Criteria cri) {

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.mapper.MemberMapper;
 import com.mtms.mapper.ReviewMapper;
 import com.mtms.mapper.ReviewReplyMapper;
 import com.mtms.domain.Criteria;
@@ -21,6 +22,7 @@ public class ReviewReplyServiceImpl implements ReviewReplyService{
 	@Setter(onMethod_ = @Autowired)
 	private ReviewReplyMapper reviewReplyMapper;
 	private ReviewMapper reviewMapper;
+	private MemberMapper memberMapper;
 
 	@Override
 	public ReplyPageDTO getListPage(Criteria cri, int reviewNo) {

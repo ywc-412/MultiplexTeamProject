@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.mtms.domain.CommentReportVO;
 import com.mtms.domain.Criteria;
+import com.mtms.mapper.CommentMapper;
 import com.mtms.mapper.CommentReportMapper;
+import com.mtms.mapper.MemberMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -17,6 +19,8 @@ import lombok.extern.log4j.Log4j;
 public class CommentReportServiceImpl implements CommentReportService{
 	
 	private CommentReportMapper commentReportMapper;
+	private CommentMapper commentMapper;
+	private MemberMapper memberMapper;
 	
 	//등록
 	public void register(CommentReportVO ReportComment) {
