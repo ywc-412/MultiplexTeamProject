@@ -41,13 +41,13 @@ public class CommentReportServiceImpl implements CommentReportService{
 		return null;
 	}
 	
-	//전체 조회하기
+	//전체목록 조회(페이징)
 	public List<CommentReportVO> getList(Criteria cri){
 		
 		return null;
 	}
 	
-	//
+	//페이지 총 갯수
 	public int getTotal(Criteria cri) {
 		
 		return 0;

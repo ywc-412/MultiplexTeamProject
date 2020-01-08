@@ -1,20 +1,48 @@
 package com.mtms.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.mtms.domain.CommentVO;
+import com.mtms.domain.Criteria;
+import com.mtms.domain.PageDTO;
 import com.mtms.persistence.CommentMapper;
+import com.mtms.persistence.MovieMapper;
 
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
 @AllArgsConstructor
 @Log4j
 public class CommentServiceImpl implements CommentService{
-	@Setter(onMethod_=@Autowired)
+	
 	private CommentMapper commentMapper;
-	// yeongjoo'a'
-	// yeongjoo'b'
+	private MovieMapper movieMapper;
+	
+	public List<CommentVO> getList(Criteria cri, int movieNo){
+		
+		return null;
+	}
+	public int modify(CommentVO cvo) {
+		
+		return 0;
+	}
+	public int remove(int CommentNo) {
+		
+		return CommentNo;
+	}
+	public CommentVO get(int CommentNo) {
+		
+		return null;
+	}
+	public int register(CommentVO cvo) {
+		
+		return 0;
+	}
+	public PageDTO getListPage(Criteria cri, int movieNo) {
+		
+		return null;
+	}
 }
