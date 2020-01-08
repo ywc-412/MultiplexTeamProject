@@ -16,4 +16,5 @@ public class CommentServiceImpl implements CommentService{
 	@Setter(onMethod_=@Autowired)
 	private CommentMapper commentMapper;
 	// yeongjoo'a'
+	// yeongjoo'b'
 }
