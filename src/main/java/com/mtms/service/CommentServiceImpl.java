@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.mtms.domain.CommentVO;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.PageDTO;
-import com.mtms.persistence.CommentMapper;
-import com.mtms.persistence.MovieMapper;
+import com.mtms.mapper.CommentMapper;
+import com.mtms.mapper.MovieMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;

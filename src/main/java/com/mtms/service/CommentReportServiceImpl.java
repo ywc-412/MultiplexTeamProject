@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.mtms.domain.CommentReportVO;
 import com.mtms.domain.Criteria;
-import com.mtms.persistence.CommentReportMapper;
+import com.mtms.mapper.CommentReportMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;

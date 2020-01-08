@@ -3,7 +3,7 @@ package com.mtms.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mtms.persistence.NoticeMapper;
+import com.mtms.mapper.NoticeMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
