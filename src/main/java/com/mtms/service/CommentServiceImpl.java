@@ -15,4 +15,5 @@ import lombok.extern.log4j.Log4j;
 public class CommentServiceImpl implements CommentService{
 	@Setter(onMethod_=@Autowired)
 	private CommentMapper commentMapper;
+	// yeongjoo'a'
 }
