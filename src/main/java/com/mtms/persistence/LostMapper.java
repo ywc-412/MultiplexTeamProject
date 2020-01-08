@@ -12,5 +12,5 @@ public interface LostMapper {
 	public void insert(LostVO lvo);
 	public int update(LostVO lvo);
 	public int delete(int lostNo);
-	public ReviewVo read(int lostNo)
+	public LostVO read(int lostNo);
 }
