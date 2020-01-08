@@ -5,13 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import com.mtms.domain.Criteria;
 import com.mtms.domain.LostVO;
-import com.mtms.persistence.LostMapper;
-=======
 import com.mtms.mapper.LostMapper;
->>>>>>> 73ca32040d3a453aedf362b28c130b17afc58b54
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
