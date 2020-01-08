@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mtms.persistence.ScreenMapper;
+import com.mtms.mapper.ScreenMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;

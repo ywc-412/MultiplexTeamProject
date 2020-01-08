@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.mapper.NoticeMapper;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.NoticeVO;
-import com.mtms.persistence.NoticeMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;

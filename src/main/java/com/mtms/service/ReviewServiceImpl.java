@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.mapper.ReviewMapper;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.ReviewVO;
-import com.mtms.persistence.ReviewMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
