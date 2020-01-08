@@ -6,14 +6,14 @@ import lombok.Data;
 
 @Data
 public class ReserveVO {
-	private int reserveNo;
-	private String memberId;
-	private Date scheduleDate;
-	private String scheduleTime;
-	private int screenNo;
-	private int movieNo;
-	private String seat;
-	private int adultNo;
-	private int teenNum;
-	private int status;
+	private int reserveNo;			// 예약 번호
+	private String memberId;		// 회원 아이디
+	private Date scheduleDate;		// 상영 날짜
+	private String scheduleTime;	// 상영 시간
+	private int screenNo;			// 상영관
+	private int movieNo;			// 영화 번호
+	private String seat;			// 좌석 번호
+	private int adultNo;			// 성인수
+	private int teenNo;				// 청소년 수
+	private int status;				// 환불 여부?
 }
