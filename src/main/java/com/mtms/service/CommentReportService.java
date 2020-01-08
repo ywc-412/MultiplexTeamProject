@@ -1,5 +1,27 @@
 package com.mtms.service;
 
-public interface CommentReportService {
+import java.util.List;
 
+import com.mtms.domain.CommentReportVO;
+import com.mtms.domain.Criteria;
+
+public interface CommentReportService {
+	
+	//수정
+	public boolean modify(CommentReportVO ReportComment);
+	
+	//삭제
+	public boolean remove(int CommentReportNo); 
+	
+	//상세보기
+	public CommentReportVO get(int CommentReportNo); 
+	
+	//등록
+	public void register(CommentReportVO ReportComment); 
+	
+	//전체목록 조회(페이징)
+	public List<CommentReportVO > getList(Criteria cri); 
+	
+	//페이지 총 갯수
+	public int getTotal(Criteria cri);
 }
