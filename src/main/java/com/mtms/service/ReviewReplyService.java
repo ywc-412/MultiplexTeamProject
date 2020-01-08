@@ -8,7 +8,7 @@ import com.mtms.domain.ReplyVO;
 
 public interface ReviewReplyService {
 	public ReplyPageDTO getListPage(Criteria cri, int reviewNo);
-	public List<ReplyVO> getList(Criteria cri, Long reviewNo);	//댓글 전체 조회
+	public List<ReplyVO> getList(Criteria cri, int reviewNo);	//댓글 전체 조회
 	public int modify(ReplyVO revo);	//댓글 수정
 	public int remove(int replyNo);	//댓글 삭제
 	public ReplyVO get(int replyNo);	//댓글 조회 
