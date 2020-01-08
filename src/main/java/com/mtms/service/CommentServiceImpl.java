@@ -21,36 +21,52 @@ public class CommentServiceImpl implements CommentService{
 	
 	private CommentMapper commentMapper;
 	private MovieMapper movieMapper;
+<<<<<<< HEAD
 
 	private MemberMapper memberMapper;
 	
+=======
+	private MemberMapper memberMapper;
+>>>>>>> 51af540105b73a5dfed84cd26c64f848fc8029b1
 
 	//한줄평 조회
+	@Override
 	public List<CommentVO> getList(Criteria cri, int movieNo){
 		
 		return null;
 	}
 	
 	//한줄평 수정
+	@Override
 	public int modify(CommentVO cvo) {
 		
 		return 0;
 	}
 	
 	//한줄평 삭제
+	@Override
 	public int remove(int CommentNo) {
 		
 		return CommentNo;
 	}
 	
 	//한줄평 등록
+	@Override
 	public int register(CommentVO cvo) {
 		
 		return 0;
 	}
 	
 	//한줄평 페이징
+	@Override
 	public CommentPageDTO getListPage(Criteria cri, int movieNo) {
+		
+		return null;
+	}
+	
+	//내 한줄평 조회
+	@Override
+	public List<CommentVO> getList(Criteria cri, String memberId) {
 		
 		return null;
 	}
