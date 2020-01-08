@@ -27,19 +27,19 @@ public class MyGiftServiceImpl implements MyGiftService{
 	}
 
 	@Override
-	public MyGiftVO read(int myGiftNo) {
+	public MyGiftVO get(int myGiftNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean modify(MyGiftVO myGift) {
+	public boolean extend(MyGiftVO myGift) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remove(int myGiftNo) {
+	public boolean refund(int myGiftNo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
