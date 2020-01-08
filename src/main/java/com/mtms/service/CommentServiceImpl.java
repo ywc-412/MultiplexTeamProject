@@ -21,13 +21,10 @@ public class CommentServiceImpl implements CommentService{
 	
 	private CommentMapper commentMapper;
 	private MovieMapper movieMapper;
-<<<<<<< HEAD
+
 
 	private MemberMapper memberMapper;
 	
-=======
-	private MemberMapper memberMapper;
->>>>>>> 51af540105b73a5dfed84cd26c64f848fc8029b1
 
 	//한줄평 조회
 	@Override
