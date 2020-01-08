@@ -1,7 +1,5 @@
 package com.mtms.controller;
 
-import java.util.Date;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,50 +15,56 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mtms.domain.ScheduleVO;
-import com.mtms.service.ScheduleServiceImpl;
+import com.mtms.domain.Criteria;
+import com.mtms.domain.SuggestVO;
+import com.mtms.service.ScreenServiceImpl;
+import com.mtms.service.SuggestServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+
 @Controller
 @Log4j
 @AllArgsConstructor
-@RequestMapping("/schedule/")
-public class ScheduleController {
+@RequestMapping("/suggest/")
+public class SuggestController {
 	
-	private ScheduleServiceImpl scheduleService;
-
+	private SuggestServiceImpl suggestService;
+	
 	@GetMapping("register")
 	public void register() {
-		// 상영스케줄 등록 화면으로 이동
+		// 건의사항 등록 화면으로 이동
 	}
 	
 	@PostMapping("register")
-	public String register(ScheduleVO svo, RedirectAttributes re) {
-		// 상영스케줄 등록 화면에서 상영스케줄 insert
+	public String register(SuggestVO svo, RedirectAttributes re) {
+		// 건의사항 등록
 		return null;
-	}
-	
-	@GetMapping("modify")
-	public void modify() {
-		// 상영스케줄 수정 화면으로 이동		
 	}
 	
 	@PostMapping("modify")
-	public String modify(ScheduleVO svo, RedirectAttributes re) {
-		// 상영스케줄 수정 화면에서 상영스케줄 update
-		return null;
-	}
-	
-	@PostMapping("remove")
-	public String remove(int scheduleNo, RedirectAttributes re) {
-		//  상영스케줄 삭제
+	public String modify(SuggestVO svo, RedirectAttributes re) {
+		// 건의사항 수정
 		return null;
 	}
 	
 	@GetMapping("list")
-	public void list(Date scheduleDate) {
-		// 날짜별 상영스케줄 조회		
+	public void list(Criteria cri, Model model) {
+		// 건의사항 게시글 전체 조회
 	}
+	
+	@GetMapping({"get", "modify"})
+	public void get(int suggestNo, @ModelAttribute("cri") Criteria cri, Model model) {
+		// 건의사항 게시글 상세보기 화면으로 이동
+	}
+	
+	@PostMapping("remove")
+	public String remove(int suggestNo, RedirectAttributes re) {
+		// 건의사항 게시글 삭제
+		return null;
+	}
+	
+	
+
 }

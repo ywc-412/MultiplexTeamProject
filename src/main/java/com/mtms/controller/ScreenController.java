@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mtms.service.ScreenServiceImpl;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -24,14 +26,16 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/screen/")
 public class ScreenController {
 	
+	private ScreenServiceImpl screenService;
+	
 	@GetMapping("seat")
 	public void getSeat(int screenNo) {
-		
+		// 상영관별 좌석번호 가져오기
 	}
 	
 	@GetMapping("num")
 	public void num(Model model, int screenNo) {
-		
+		// 상영관별 총 좌석수 가져오기
 	}
 
 }
