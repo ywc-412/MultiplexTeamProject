@@ -23,7 +23,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 @RequestMapping("/replies/*")
-public class ReviewReply {
+public class ReviewReplyController {
 	private ReviewReplyServiceImpl replyService;
 	
 	@GetMapping(value = "pages/{reviewNo}/{page}")
