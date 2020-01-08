@@ -13,9 +13,6 @@ public interface CommentReportMapper {
 	//한줄평 신고 전체 조회 페이징
 	public List<CommentReportVO> getListWithPaging(Criteria cri);
 	
-	//한줄평 신고 수정
-	public int update(CommentReportVO ReportComment);
-	
 	//한줄평 신고 삭제
 	public int delete(int CommentReportNo);
 	

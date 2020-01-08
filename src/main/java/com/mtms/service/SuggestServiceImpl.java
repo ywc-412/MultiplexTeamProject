@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mtms.domain.SuggestVO;
+import com.mtms.mapper.MemberMapper;
 import com.mtms.mapper.SuggestMapper;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.extern.log4j.Log4j;
 public class SuggestServiceImpl implements SuggestService{
 	@Setter(onMethod_ = @Autowired)
 	private SuggestMapper suggestMapper;
+	private MemberMapper memberMapper;
 
 	@Override
 	public void registerSuggest(SuggestVO svo) {

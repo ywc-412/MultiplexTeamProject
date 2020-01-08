@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.ReserveVO;
+import com.mtms.domain.ScheduleVO;
 import com.mtms.service.MemberServiceImpl;
 import com.mtms.service.ReserveServiceImpl;
+import com.mtms.service.ScheduleServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -31,6 +33,7 @@ import lombok.extern.log4j.Log4j;
 public class ReserveController {
 	
 	private ReserveServiceImpl reserveService;
+	private ScheduleServiceImpl scheduleService;
 	
 	@GetMapping("get")
 	public String get(String reserveNo, RedirectAttributes re) {
@@ -60,7 +63,7 @@ public class ReserveController {
 	}
 
 	@GetMapping("seat")
-	public void seat() {
+	public void seat(ScheduleVO svo) {
 		// 예매하기 (좌석) 화면으로 이동
 	}
 	
