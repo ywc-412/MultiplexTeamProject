@@ -58,9 +58,9 @@ public class MovieController {
 	//영화  삭제 처리
 //	@PreAuthorize("principal.username == #id") //수정필요
 	@GetMapping("remove")
-	public String remove(String id, @RequestParam("movieNo") int movieNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
+	public String remove(String memberId, @RequestParam("movieNo") int movieNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
 		
-		return id;
+		return memberId;
 	}
 	
 	//영화 등록 창 보여주기
