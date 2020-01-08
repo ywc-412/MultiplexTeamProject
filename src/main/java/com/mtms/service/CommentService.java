@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.mtms.domain.CommentPageDTO;
 import com.mtms.domain.CommentVO;
 import com.mtms.domain.Criteria;
+import com.mtms.domain.ReserveVO;
 
 public interface CommentService {
 	
@@ -15,6 +16,9 @@ public interface CommentService {
 	
 	//한줄평 조회
 	public List<CommentVO> getList(@Param("cri") Criteria cri, @Param("movieNo") int movieNo);
+	
+	//회원별 한줄평 조회
+	public List<CommentVO> getList(Criteria cri, String memberId);
 	
 	//한줄평 수정
 	public int modify(CommentVO cvo);

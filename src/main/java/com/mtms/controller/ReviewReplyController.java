@@ -22,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @AllArgsConstructor
-@RequestMapping("/replies/*")
+@RequestMapping("/reply/*")
 public class ReviewReplyController {
 	private ReviewReplyServiceImpl replyService;
 	

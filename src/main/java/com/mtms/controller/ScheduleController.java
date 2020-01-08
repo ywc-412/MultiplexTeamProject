@@ -42,10 +42,10 @@ public class ScheduleController {
 		return null;
 	}
 	
-	@GetMapping("modify")
-	public void modify() {
-		// 상영스케줄 수정 화면으로 이동		
-	}
+//	@GetMapping("modify")
+//	public void modify() {
+//		// 상영스케줄 수정 화면으로 이동		
+//	}
 	
 	@PostMapping("modify")
 	public String modify(ScheduleVO svo, RedirectAttributes re) {
@@ -59,7 +59,7 @@ public class ScheduleController {
 		return null;
 	}
 	
-	@GetMapping("list")
+	@GetMapping({"list", "modify"})
 	public void list(Date scheduleDate) {
 		// 날짜별 상영스케줄 조회		
 	}
