@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.NoticeVO;
+import com.mtms.service.NoticeService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -20,6 +21,9 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/notice/")
 public class NoticeController {
+	
+	private NoticeService noticeService;
+	
 	@GetMapping("list")//공지사항 목록조회
 	public void list(Criteria cri, Model model) {
 		

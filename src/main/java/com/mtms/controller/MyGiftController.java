@@ -11,6 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MyGiftVO;
+import com.mtms.service.MyGiftService;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -19,6 +21,9 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/mygift/")
 public class MyGiftController {
+	
+	private MyGiftService myGiftService;
+	
 	@GetMapping("list")//내 기프티콘 목록조회
 	public void list(Criteria cri, Model model) {
 		
