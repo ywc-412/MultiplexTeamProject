@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.mapper.GiftAttachMapper;
 import com.mtms.mapper.MyGiftMapper;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MyGiftVO;
@@ -19,7 +20,10 @@ import lombok.extern.log4j.Log4j;
 public class MyGiftServiceImpl implements MyGiftService{
 	@Setter(onMethod_ = @Autowired)
 	private MyGiftMapper myGiftMapper;
-
+	
+	@Setter(onMethod_ = @Autowired)
+	private GiftAttachMapper giftAttachMapper;
+	
 	@Override
 	public List<MyGiftVO> getList() {
 		// TODO Auto-generated method stub
@@ -27,19 +31,19 @@ public class MyGiftServiceImpl implements MyGiftService{
 	}
 
 	@Override
-	public MyGiftVO read(int myGiftNo) {
+	public MyGiftVO get(int myGiftNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean modify(MyGiftVO myGift) {
+	public boolean extend(MyGiftVO myGift) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remove(int myGiftNo) {
+	public boolean refund(int myGiftNo) {
 		// TODO Auto-generated method stub
 		return false;
 	}

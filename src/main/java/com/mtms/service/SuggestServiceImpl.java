@@ -1,8 +1,11 @@
 package com.mtms.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.domain.SuggestVO;
 import com.mtms.mapper.SuggestMapper;
 
 import lombok.AllArgsConstructor;
@@ -15,4 +18,34 @@ import lombok.extern.log4j.Log4j;
 public class SuggestServiceImpl implements SuggestService{
 	@Setter(onMethod_ = @Autowired)
 	private SuggestMapper suggestMapper;
+
+	@Override
+	public void registerSuggest(SuggestVO svo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<SuggestVO> getSuggestList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SuggestVO getSuggest(int suggestNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int removeSuggest(int suggestNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int modifySuggest(SuggestVO svo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
