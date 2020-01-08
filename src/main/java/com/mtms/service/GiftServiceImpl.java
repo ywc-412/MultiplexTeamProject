@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.mtms.mapper.GiftAttachMapper;
 import com.mtms.mapper.GiftMapper;
-import com.mtms.domain.Criteria;
 import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
 
@@ -32,7 +31,7 @@ public class GiftServiceImpl implements GiftService{
 	}
 
 	@Override
-	public List<GiftVO> getList(Criteria cri) {
+	public List<GiftVO> getList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -55,14 +54,15 @@ public class GiftServiceImpl implements GiftService{
 		return false;
 	}
 
-	@Override
-	public int getTotalCount(Criteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public List<GiftAttachVO> getAttachList(int giftNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GiftVO pay(int giftNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

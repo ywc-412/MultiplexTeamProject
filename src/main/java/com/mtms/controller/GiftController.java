@@ -27,12 +27,17 @@ public class GiftController {
 	private GiftService giftService;
 	
 	@GetMapping("list")	//기프티콘 목록
-	public void list(Criteria cri, Model model) {
+	public void list(Model model) {
 		
 	}
 	
 	@GetMapping("get")	//기프티콘 상세보기
-	public void get(@RequestParam("giftNo") int giftNo, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("giftNo") int giftNo, Model model) {
+		
+	}
+	
+	@GetMapping("pay")	//기프티콘 결제
+	public void pay(@RequestParam("giftNo") int giftNo, Model model) {
 		
 	}
 	
@@ -48,7 +53,7 @@ public class GiftController {
 	}
 	
 	@PostMapping("modify")	//기프티콘 수정(P)
-	public String modify(GiftVO gvo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(GiftVO gvo, RedirectAttributes rttr) {
 		return null;
 	}
 	
@@ -58,7 +63,7 @@ public class GiftController {
 	}
 	
 	@PostMapping("remove")	//기프티콘 삭제
-	public String remove(@RequestParam("giftNo") int giftNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("giftNo") int giftNo, RedirectAttributes rttr) {
 		return null;
 		
 	}
