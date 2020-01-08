@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.mtms.mapper.GiftAttachMapper;
 import com.mtms.mapper.GiftMapper;
-import com.mtms.mapper.MyGiftMapper;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
@@ -24,7 +23,7 @@ public class GiftServiceImpl implements GiftService{
 	private GiftMapper giftMapper;
 
 	@Setter(onMethod_ = @Autowired)
-	private MyGiftMapper myGiftMapper;
+	private GiftAttachMapper giftAttachMapper;
 	
 	@Override
 	public void register(GiftVO gift) {
