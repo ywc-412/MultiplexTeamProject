@@ -5,16 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
+import com.mtms.mapper.ReviewMapper;
 import com.mtms.mapper.ReviewReplyMapper;
-=======
 import com.mtms.domain.Criteria;
 import com.mtms.domain.ReplyPageDTO;
 import com.mtms.domain.ReplyVO;
-import com.mtms.persistence.ReviewMapper;
-import com.mtms.persistence.ReviewReplyMapper;
->>>>>>> d47745afa78514a48ab8d8d27ff650741a180262
-
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

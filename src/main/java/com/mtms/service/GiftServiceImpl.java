@@ -5,15 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
+
 import com.mtms.mapper.GiftMapper;
-=======
+import com.mtms.mapper.MyGiftMapper;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
-import com.mtms.persistence.GiftMapper;
-import com.mtms.persistence.MyGiftMapper;
->>>>>>> d47745afa78514a48ab8d8d27ff650741a180262
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;

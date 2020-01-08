@@ -5,13 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import com.mtms.mapper.NoticeMapper;
-=======
 import com.mtms.domain.Criteria;
 import com.mtms.domain.NoticeVO;
-import com.mtms.persistence.NoticeMapper;
->>>>>>> d47745afa78514a48ab8d8d27ff650741a180262
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
