@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MovieAttachVO;
 import com.mtms.domain.MovieVO;
-import com.mtms.persistence.MovieAttachMapper;
-import com.mtms.persistence.MovieMapper;
+import com.mtms.mapper.MovieAttachMapper;
+import com.mtms.mapper.MovieMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
