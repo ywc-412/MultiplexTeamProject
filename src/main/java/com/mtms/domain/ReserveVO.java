@@ -13,7 +13,7 @@ public class ReserveVO {
 	private int screenNo;			// 상영관
 	private int movieNo;			// 영화 번호
 	private String seat;			// 좌석 번호
-	private int adultNo;			// 성인수
-	private int teenNo;				// 청소년 수
+	private int adultNum;			// 성인 수
+	private int teenNum;			// 청소년 수
 	private int status;				// 환불 여부?
 }
