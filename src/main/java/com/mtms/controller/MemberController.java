@@ -1,5 +1,7 @@
 package com.mtms.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,8 @@ public class MemberController {
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, Model model) {
 		// 입력 화면에서 form action /member/join
+		log.info("join");
+		memberService.join(memberVO);
 		return "redirect:/";
 	}
 	
@@ -53,6 +57,28 @@ public class MemberController {
 		
 		return "redirect:/customLogin";		// 비밀번호 찾고 customLogin 페이지로 이동
 	}
+	
+	@GetMapping("/list")
+	public String getMemberList(MemberVO memberVO, Model model){
+		// 멤버 리스트 조회 컨트롤러 // 전체 회원 목록 조회
+		
+		return "redirect:/member/list";
+	}
+	
+	@GetMapping("/get")
+	public String getMember(int memberId, Model model) {
+		//회원 상세보기 컨틀롤러	
+		
+		return "redirect:/member/get";
+	}
+	
+	@PostMapping("/remove")
+	public String removeMember(int memberId, Model model) {
+		// 회원 강퇴, 삭제 컨틀ㄹ로러
+		
+		return "redirect:/member/list";
+	}
+	
 }
 
 
