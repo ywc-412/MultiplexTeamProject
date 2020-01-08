@@ -7,14 +7,14 @@ import lombok.Data;
 
 @Data
 public class MovieVO {
-	private int movieNo;
-	private String movieTitle;
-	private String movieManager;
-	private String movieMainActor;
-	private String movieSupportActor;
-	private String movieGenre;
-	private int runningTime;
-	private String summary;
-	private Date openDate;
-	private List<MovieAttachVO> attachList;
+	private int movieNo;						// 영화 번호
+	private String movieTitle;					// 영화 제목
+	private String movieManager;				// 영화 감독
+	private String movieMainActor;				// 주연
+	private String movieSupportActor;			// 조연
+	private String movieGenre;					// 장르
+	private int runningTime;					// 러닝 타임, 총 상영시간
+	private String summary;						// 줄거리
+	private Date openDate;						// 개봉일
+	private List<MovieAttachVO> attachList;		// 몰라 이건 뭐야..
 }
