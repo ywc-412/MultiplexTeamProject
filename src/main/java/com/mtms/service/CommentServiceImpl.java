@@ -21,8 +21,6 @@ public class CommentServiceImpl implements CommentService{
 	
 	private CommentMapper commentMapper;
 	private MovieMapper movieMapper;
-
-
 	private MemberMapper memberMapper;
 	
 
