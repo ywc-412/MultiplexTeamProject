@@ -8,16 +8,16 @@ import com.mtms.domain.Criteria;
 public interface CommentReportService {
 	
 	//삭제
-	public boolean remove(int CommentReportNo); 
+	public boolean remove(int commentReportNo); 
 	
 	//상세보기
-	public CommentReportVO get(int CommentReportNo); 
+	public CommentReportVO get(int commentReportNo); 
 	
 	//등록
-	public void register(CommentReportVO ReportComment); 
+	public void register(CommentReportVO commentReport); 
 	
 	//전체목록 조회(페이징)
-	public List<CommentReportVO > getList(Criteria cri); 
+	public List<CommentReportVO> getList(Criteria cri); 
 	
 	//페이지 총 갯수
 	public int getTotal(Criteria cri);

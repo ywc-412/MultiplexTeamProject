@@ -1,6 +1,7 @@
 package com.mtms.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,30 +39,34 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("register")
-	public String register(ScheduleVO svo, RedirectAttributes re) {
+	public void register(ScheduleVO svo) {
 		// 상영스케줄 등록 화면에서 상영스케줄 insert
-		return null;
+		// 모달창에서 '추가' 버튼 누르는 순간에 등록하는 거라서 VO 하나씩 가지고 감
+		// 모달창 뜰 때, hidden으로 날짜 값 모달 창에 보내야해
 	}
 	
 //	@GetMapping("modify")
-//	public void modify() {
+//	public void modify(Date scheduleDate) {
 //		// 상영스케줄 수정 화면으로 이동		
 //	}
 	
 	@PostMapping("modify")
-	public String modify(ScheduleVO svo, RedirectAttributes re) {
+	public void modify(ScheduleVO svo) {
 		// 상영스케줄 수정 화면에서 상영스케줄 update
-		return null;
+		// 모달창에서 '수정'버튼 누르는 순간에 수정 VO
+		// 모달창 뜰 때, hidden으로 날짜 값 모달 창에 보내야해
 	}
 	
 	@PostMapping("remove")
-	public String remove(int scheduleNo, RedirectAttributes re) {
+	public String remove(Date scheduleDate, RedirectAttributes re) {
 		//  상영스케줄 삭제
+		// scheduleDate 같은 게 여러 개니까 한번에 삭제~
 		return null;
 	}
 	
-	@GetMapping({"list", "modify"})
-	public void list(Date scheduleDate) {
-		// 날짜별 상영스케줄 조회		
+	@GetMapping({"get", "modify"})
+	public void get(Model model, Date scheduleDate) {
+		// 날짜별 상영스케줄 조회
 	}
+	
 }

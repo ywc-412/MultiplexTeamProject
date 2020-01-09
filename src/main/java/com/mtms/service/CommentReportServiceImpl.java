@@ -24,20 +24,20 @@ public class CommentReportServiceImpl implements CommentReportService{
 	
 	//등록
 	@Override
-	public void register(CommentReportVO ReportComment) {
+	public void register(CommentReportVO commentReport) {
 		
 	}
 	
 	//제거
 	@Override
-	public boolean remove(int CommentReportNo) {
+	public boolean remove(int commentReportNo) {
 		
 		return false;
 	}
 	
 	//상세보기
 	@Override
-	public CommentReportVO get(int CommentReportNo) {
+	public CommentReportVO get(int commentReportNo) {
 		
 		return null;
 	}

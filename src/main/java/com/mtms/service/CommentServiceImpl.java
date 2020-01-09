@@ -33,21 +33,21 @@ public class CommentServiceImpl implements CommentService{
 	
 	//한줄평 수정
 	@Override
-	public int modify(CommentVO cvo) {
+	public int modify(CommentVO comment) {
 		
 		return 0;
 	}
 	
 	//한줄평 삭제
 	@Override
-	public int remove(int CommentNo) {
+	public int remove(int commentNo) {
 		
-		return CommentNo;
+		return commentNo;
 	}
 	
 	//한줄평 등록
 	@Override
-	public int register(CommentVO cvo) {
+	public int register(CommentVO comment) {
 		
 		return 0;
 	}

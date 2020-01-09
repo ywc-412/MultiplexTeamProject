@@ -12,21 +12,21 @@ import com.mtms.domain.ReserveVO;
 public interface CommentService {
 	
 	//한줄평 페이징
-	public CommentPageDTO getListPage(Criteria cri, int no);
+	public CommentPageDTO getListPage(Criteria cri, int movieNo);
 	
 	//한줄평 조회
 	public List<CommentVO> getList(@Param("cri") Criteria cri, @Param("movieNo") int movieNo);
 	
 	//회원별 한줄평 조회
-	public List<CommentVO> getList(Criteria cri, String memberId);
+	public List<CommentVO> getList(@Param("cri") Criteria cri, @Param("memberId") String memberId);
 	
 	//한줄평 수정
-	public int modify(CommentVO cvo);
+	public int modify(CommentVO comment);
 	
 	//한줄평 삭제
 	public int remove(int CommentNo);
 	
 	//한줄평 등록
-	public int register(CommentVO cvo);
+	public int register(CommentVO comment);
 	
 }
