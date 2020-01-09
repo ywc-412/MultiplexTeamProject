@@ -20,8 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mtms.domain.ReserveVO;
 import com.mtms.domain.ScheduleVO;
 import com.mtms.service.MemberServiceImpl;
+import com.mtms.service.MovieService;
 import com.mtms.service.MovieServiceImpl;
+import com.mtms.service.ReserveService;
 import com.mtms.service.ReserveServiceImpl;
+import com.mtms.service.ScheduleService;
 import com.mtms.service.ScheduleServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -33,9 +36,9 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/reserve/")
 public class ReserveController {
 	
-	private ReserveServiceImpl reserveService;
-	private ScheduleServiceImpl scheduleService;
-	private MovieServiceImpl movieService;
+	private ReserveService reserveService;
+	private ScheduleService scheduleService;
+	private MovieService movieService;
 	// movieServiceImpl에 예매수(todayNum) +1 하는 update 구현해야함..
 	
 	@GetMapping("get")

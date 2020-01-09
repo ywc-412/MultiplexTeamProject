@@ -49,13 +49,13 @@ public class ReviewReplyReportServiceImpl implements ReviewReplyReportService{
 	}
 
 	@Override
-	public boolean remove(long reportVo) {
+	public boolean remove(int replyReportNo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public ReplyReportVO get(int reportNo) {
+	public ReplyReportVO get(int replyReportNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
