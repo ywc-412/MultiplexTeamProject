@@ -13,7 +13,7 @@ public class MovieVO {
 	private String movieMainActor;				// 주연
 	private String movieSupportActor;			// 조연
 	private String movieGenre;					// 장르
-	private String movieGrade;					// 등급
+	private int movieGrade;						// 등급
 	private int runningTime;					// 러닝 타임, 총 상영시간
 	private String summary;						// 줄거리
 	private Date openDate;						// 개봉일
