@@ -10,7 +10,7 @@ public interface ReviewReplyReportService {
 	public List<ReplyReportVO> getList(Criteria cri);
 	public List<ReplyReportVO> getList();
 	public boolean modify(ReplyReportVO rpvo);
-	public boolean remove(long reportVo);
-	public ReplyReportVO get(int reportNo);
+	public boolean remove(int replyReportNo);
+	public ReplyReportVO get(int replyReportNo);
 	public void register(ReplyReportVO rpvo);
 }

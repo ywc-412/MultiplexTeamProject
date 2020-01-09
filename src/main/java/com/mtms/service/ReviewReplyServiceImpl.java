@@ -31,7 +31,7 @@ public class ReviewReplyServiceImpl implements ReviewReplyService{
 	}
 
 	@Override
-	public List<ReplyVO> getList(Criteria cri, int reviewNo) {
+	public List<ReplyVO> getList(Criteria cri, int replyReportNo) {
 //		public List<ReplyVO> getList(Criteria cri, Long reviewNo) 
 		return null;
 	}
@@ -43,7 +43,7 @@ public class ReviewReplyServiceImpl implements ReviewReplyService{
 	}
 
 	@Override
-	public int remove(int replyNo) {
+	public int remove(int replyReportNo) {
 //		public int remove(Long replyNo)
 		return 0;
 	}
