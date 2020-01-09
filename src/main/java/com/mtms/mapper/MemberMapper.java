@@ -16,7 +16,9 @@ public interface MemberMapper {
 	// 회원 목록 조회 하기
 	public List<MemberVO> getMemberList();
 	// 회원 상세 보기
-	public MemberVO getMember(int memberId);
+	public MemberVO getMember(String memberId);
 	// 회원 삭제 하기
-	public int deleteMember(int memberId);
+	public int deleteMember(String memberId);
+	// 회원 정보 수정하기
+	public int updateMember(MemberVO memberVO);
 }

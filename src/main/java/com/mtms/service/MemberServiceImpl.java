@@ -16,7 +16,6 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class MemberServiceImpl implements MemberService{
-	@Setter(onMethod_ = @Autowired)
 	private MemberMapper memberMapper;
 
 	@Override
@@ -40,12 +39,17 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO getMember(int memberId) {
+	public MemberVO getMember(String memberId) {
 		return memberMapper.getMember(memberId);
 	}
 
 	@Override
-	public int removeMember(int memberId) {
+	public int removeMember(String memberId) {
 		return memberMapper.deleteMember(memberId);
+	}
+
+	@Override
+	public int modifyMember(MemberVO memberVO) {
+		return 0;
 	}
 }

@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
 import com.mtms.service.MemberService;
-import com.mtms.service.MemberServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -34,7 +35,7 @@ public class MemberController {
 		// 입력 화면에서 form action /member/join
 		log.info("join");
 		memberService.join(memberVO);
-		return "redirect:/";
+		return null;
 	}
 	
 	@GetMapping("/findId")
@@ -43,9 +44,9 @@ public class MemberController {
 	}
 	
 	@PostMapping("/findId")
-	public String findId(MemberVO memberVO, RedirectAttributes rttr) {
+	public String findId(MemberVO memberVO, Model model) {
 		// 아이디 찾기 화면에서 form action /member/findId
-		return "redirect:/customLogin";		// 아이디 찾고 customLogin 페이지로 이동
+		return null;		// 아이디 찾고 customLogin 페이지로 이동
 	}
 	
 	@GetMapping("/findPw")
@@ -54,31 +55,38 @@ public class MemberController {
 	}
 	
 	@PostMapping("/findPw")
-	public String findPw(MemberVO memberVO, RedirectAttributes rttr) {
+	public String findPw(MemberVO memberVO, Model model) {
 		// 비밀번호 찾기화면에서 포스트 매핑
 		
-		return "redirect:/customLogin";		// 비밀번호 찾고 customLogin 페이지로 이동
+		return null;		// 비밀번호 찾고 customLogin 페이지로 이동
 	}
 	
 	@GetMapping("/list")
-	public String getMemberList(MemberVO memberVO, RedirectAttributes rttr){
+	public String getMemberList(Criteria cri, Model model){
 		// 멤버 리스트 조회 컨트롤러 // 전체 회원 목록 조회
 		
-		return "redirect:/member/list";
+		return null;
 	}
 	
 	@GetMapping("/get")
-	public String getMember(int memberId, RedirectAttributes rttr) {
-		//회원 상세보기 컨틀롤러	
+	public String getMember(String memberId, Model model) {
+		//회원 상세보기 컨트롤러	
 		
-		return "redirect:/member/get";
+		return null;
 	}
 	
 	@PostMapping("/remove")
-	public String removeMember(int memberId, RedirectAttributes rttr) {
-		// 회원 강퇴, 삭제 컨틀ㄹ로러
+	public String removeMember(String memberId, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+		// 회원 강퇴, 삭제 컨트롤러
 		
-		return "redirect:/member/list";
+		return null;
+	}
+	
+	@PostMapping("/modify")
+	public String modifyMember(String memberId, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+		// 회원 수정 , 컨트롤러
+		
+		return null;
 	}
 	
 }
