@@ -1,116 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.mtms.controller.LostController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/LostController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="762" y="1160"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="com.mtms.controller.UploadMovieFileController" project="sCinema" 
+  <class id="1" language="java" name="com.mtms.controller.UploadMovieFileController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/UploadMovieFileController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3914" y="1120"/>    
+    <position height="-1" width="-1" x="3636" y="1098"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.mtms.controller.GiftUploadController" project="sCinema" 
+  <class id="2" language="java" name="com.mtms.controller.GiftUploadController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/GiftUploadController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4878" y="2692"/>    
+    <position height="-1" width="-1" x="4892" y="2975"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.mtms.controller.ReviewReportController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/ReviewReportController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="677" y="2246"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="com.mtms.controller.ScreenController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/ScreenController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1534" y="436"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="com.mtms.controller.ReviewController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/ReviewController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1634" y="1440"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="com.mtms.controller.ReportCommentController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/ReportCommentController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3482" y="1231"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="com.mtms.controller.SuggestController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/SuggestController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2889" y="2816"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="com.mtms.controller.CommentController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/CommentController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4136" y="545"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="com.mtms.controller.MovieController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/MovieController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3845" y="290"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="com.mtms.controller.ReviewReplyController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/ReviewReplyController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1299" y="2660"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="com.mtms.controller.MemberController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3834" y="2529"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="13" language="java" name="com.mtms.mapper.ReviewReplyMapper" project="sCinema" 
+  <interface id="3" language="java" name="com.mtms.mapper.ReviewReplyMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/ReviewReplyMapper.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1638" y="2534"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -119,97 +29,43 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="14" language="java" name="com.mtms.mapper.ReserveMapper" project="sCinema" 
+  <interface id="4" language="java" name="com.mtms.mapper.ReserveMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/ReserveMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1798" y="1157"/>    
+    <position height="-1" width="-1" x="1992" y="1315"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="15" language="java" name="com.mtms.mapper.CommentReportMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/CommentReportMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2854" y="1125"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="16" language="java" name="com.mtms.mapper.ScreenMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/ScreenMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1959" y="306"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="17" language="java" name="com.mtms.mapper.MovieAttachMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/MovieAttachMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3255" y="160"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="18" language="java" name="com.mtms.mapper.LostMapper" project="sCinema" 
+  <interface id="5" language="java" name="com.mtms.mapper.LostMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/LostMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1356" y="1163"/>    
+    <position height="-1" width="-1" x="1127" y="1130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="19" language="java" name="com.mtms.mapper.MovieMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/MovieMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2895" y="812"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="20" language="java" name="com.mtms.mapper.ScheduleMapper" project="sCinema" 
+  <interface id="6" language="java" name="com.mtms.mapper.ScheduleMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/ScheduleMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2054" y="736"/>    
+    <position height="-1" width="-1" x="1998" y="874"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="21" language="java" name="com.mtms.mapper.ReviewReplyReportMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/ReviewReplyReportMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1916" y="2836"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="22" language="java" name="com.mtms.mapper.CommentMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/CommentMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3207" y="1001"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="23" language="java" name="com.mtms.mapper.SuggestMapper" project="sCinema" 
+  <interface id="7" language="java" name="com.mtms.mapper.SuggestMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/SuggestMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2866" y="3048"/>    
+    <position height="-1" width="-1" x="2870" y="2823"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="24" language="java" name="com.mtms.mapper.MemberMapper" project="sCinema" 
+  <interface id="8" language="java" name="com.mtms.mapper.MemberMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/MemberMapper.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2406" y="1970"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -218,61 +74,61 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="25" language="java" name="com.mtms.mapper.ReviewReportMapper" project="sCinema" 
+  <interface id="9" language="java" name="com.mtms.mapper.ReviewReportMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/ReviewReportMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="399" y="1986"/>    
+    <position height="-1" width="-1" x="679" y="2113"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="26" language="java" name="com.mtms.mapper.MyGiftMapper" project="sCinema" 
+  <interface id="10" language="java" name="com.mtms.mapper.MyGiftMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/MyGiftMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4072" y="1794"/>    
+    <position height="-1" width="-1" x="4096" y="2406"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="27" language="java" name="com.mtms.mapper.NoticeMapper" project="sCinema" 
+  <interface id="11" language="java" name="com.mtms.mapper.NoticeMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/NoticeMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1245" y="604"/>    
+    <position height="-1" width="-1" x="1298" y="594"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="28" language="java" name="com.mtms.mapper.GiftAttachMapper" project="sCinema" 
+  <interface id="12" language="java" name="com.mtms.mapper.GiftAttachMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/GiftAttachMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4311" y="1781"/>    
+    <position height="-1" width="-1" x="4328" y="2399"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="29" language="java" name="com.mtms.mapper.GiftMapper" project="sCinema" 
+  <interface id="13" language="java" name="com.mtms.mapper.GiftMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/GiftMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4620" y="2016"/>    
+    <position height="-1" width="-1" x="4659" y="2672"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="30" language="java" name="com.mtms.mapper.ReviewMapper" project="sCinema" 
+  <interface id="14" language="java" name="com.mtms.mapper.ReviewMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/ReviewMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1794" y="1857"/>    
+    <position height="-1" width="-1" x="1634" y="1859"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="31" language="java" name="com.mtms.service.ReviewReplyService" project="sCinema" 
+  <interface id="15" language="java" name="com.mtms.service.ReviewReplyService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReviewReplyService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1235" y="2377"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -281,7 +137,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="32" language="java" name="com.mtms.service.ReviewReplyReportService" project="sCinema" 
+  <interface id="16" language="java" name="com.mtms.service.ReviewReplyReportService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReviewReplyReportService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2238" y="2789"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -290,25 +146,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="33" language="java" name="com.mtms.service.ScheduleService" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/ScheduleService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2265" y="164"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="34" language="java" name="com.mtms.service.NoticeService" project="sCinema" 
+  <interface id="17" language="java" name="com.mtms.service.NoticeService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/NoticeService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="983" y="840"/>    
+    <position height="-1" width="-1" x="983" y="853"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="35" language="java" name="com.mtms.service.NoticeServiceImpl" project="sCinema" 
+  <class id="18" language="java" name="com.mtms.service.NoticeServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/NoticeServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="979" y="612"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -317,25 +164,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="36" language="java" name="com.mtms.service.MemberService" project="sCinema" 
+  <interface id="19" language="java" name="com.mtms.service.MemberService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4075" y="2268"/>    
+    <position height="-1" width="-1" x="2970" y="2299"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="37" language="java" name="com.mtms.service.ScreenServiceImpl" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/ScreenServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1855" y="539"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="38" language="java" name="com.mtms.service.SuggestService" project="sCinema" 
+  <interface id="20" language="java" name="com.mtms.service.SuggestService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/SuggestService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2543" y="3050"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -344,61 +182,25 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="39" language="java" name="com.mtms.service.CommentReportService" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/CommentReportService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3306" y="1519"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="40" language="java" name="com.mtms.service.MovieServiceImpl" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/MovieServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3042" y="416"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="41" language="java" name="com.mtms.service.CommentService" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/CommentService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4075" y="789"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="42" language="java" name="com.mtms.service.GiftService" project="sCinema" 
+  <interface id="21" language="java" name="com.mtms.service.GiftService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/GiftService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4818" y="2364"/>    
+    <position height="-1" width="-1" x="4931" y="2350"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="43" language="java" name="com.mtms.service.ScreenService" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/ScreenService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1704" y="280"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="44" language="java" name="com.mtms.service.LostServiceImpl" project="sCinema" 
+  <class id="22" language="java" name="com.mtms.service.LostServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/LostServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1072" y="1224"/>    
+    <position height="-1" width="-1" x="829" y="1128"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="45" language="java" name="com.mtms.service.ReviewService" project="sCinema" 
+  <interface id="23" language="java" name="com.mtms.service.ReviewService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReviewService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1415" y="1649"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -407,124 +209,70 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="46" language="java" name="com.mtms.service.MemberServiceImpl" project="sCinema" 
+  <class id="24" language="java" name="com.mtms.service.MemberServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/MemberServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3829" y="2252"/>    
+    <position height="-1" width="-1" x="2662" y="2326"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="47" language="java" name="com.mtms.service.MovieService" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/MovieService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3478" y="364"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="48" language="java" name="com.mtms.service.ReserveService" project="sCinema" 
+  <interface id="25" language="java" name="com.mtms.service.ReserveService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReserveService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1754" y="887"/>    
+    <position height="-1" width="-1" x="1997" y="1092"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="49" language="java" name="com.mtms.service.LostService" project="sCinema" 
+  <interface id="26" language="java" name="com.mtms.service.LostService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/LostService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1063" y="1498"/>    
+    <position height="-1" width="-1" x="829" y="1401"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="50" language="java" name="com.mtms.service.GiftServiceImpl" project="sCinema" 
+  <class id="27" language="java" name="com.mtms.service.GiftServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/GiftServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4937" y="2053"/>    
+    <position height="-1" width="-1" x="5020" y="2674"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="51" language="java" name="com.mtms.service.MyGiftService" project="sCinema" 
+  <interface id="28" language="java" name="com.mtms.service.MyGiftService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/MyGiftService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4405" y="2248"/>    
+    <position height="-1" width="-1" x="4173" y="2921"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="52" language="java" name="com.mtms.service.ReviewReportService" project="sCinema" 
+  <interface id="29" language="java" name="com.mtms.service.ReviewReportService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReviewReportService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="709" y="1808"/>    
+    <position height="-1" width="-1" x="1008" y="1745"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="53" language="java" name="com.mtms.controller.MyGiftController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/MyGiftController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4435" y="2490"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="54" language="java" name="com.mtms.controller.GiftController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/GiftController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="5161" y="2360"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="55" language="java" name="com.mtms.controller.NoticeController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/NoticeController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="690" y="696"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="56" language="java" name="com.mtms.controller.ReplyReportController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/ReplyReportController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2084" y="3041"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="57" language="java" name="com.mtms.service.MyGiftServiceImpl" project="sCinema" 
+  <class id="30" language="java" name="com.mtms.service.MyGiftServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/MyGiftServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4185" y="2011"/>    
+    <position height="-1" width="-1" x="4215" y="2678"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="58" language="java" name="com.mtms.service.CommentServiceImpl" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/CommentServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3580" y="744"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="59" language="java" name="com.mtms.service.SuggestServiceImpl" project="sCinema" 
+  <class id="31" language="java" name="com.mtms.service.SuggestServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/SuggestServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2529" y="2815"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -533,16 +281,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="60" language="java" name="com.mtms.service.ReviewServiceImpl" project="sCinema" 
+  <class id="32" language="java" name="com.mtms.service.ReviewServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReviewServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2017" y="1579"/>    
+    <position height="-1" width="-1" x="1955" y="1662"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="61" language="java" name="com.mtms.service.ReviewReplyServiceImpl" project="sCinema" 
+  <class id="33" language="java" name="com.mtms.service.ReviewReplyServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReviewReplyServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1746" y="2191"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -551,7 +299,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="62" language="java" name="com.mtms.service.ReviewReportServiceImpl" project="sCinema" 
+  <class id="34" language="java" name="com.mtms.service.ReviewReportServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReviewReportServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1145" y="2012"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -560,7 +308,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="63" language="java" name="com.mtms.service.ReviewReplyReportServiceImpl" project="sCinema" 
+  <class id="35" language="java" name="com.mtms.service.ReviewReplyReportServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReviewReplyReportServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2092" y="2496"/>    
@@ -570,25 +318,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="64" language="java" name="com.mtms.controller.ScheduleController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/ScheduleController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2694" y="208"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="65" language="java" name="com.mtms.service.ScheduleServiceImpl" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/ScheduleServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2345" y="410"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="66" language="java" name="com.mtms.service.ReserveServiceImpl" project="sCinema" 
+  <class id="36" language="java" name="com.mtms.service.ReserveServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ReserveServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2379" y="1298"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -597,158 +327,420 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="67" language="java" name="com.mtms.service.CommentReportServiceImpl" project="sCinema" 
+  <interface id="37" language="java" name="com.mtms.mapper.MovieMapper" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/mapper/MovieMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2784" y="897"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="38" language="java" name="com.mtms.mapper.MovieAttachMapper" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/mapper/MovieAttachMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2728" y="327"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="39" language="java" name="com.mtms.mapper.CommentMapper" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/mapper/CommentMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3038" y="1471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="40" language="java" name="com.mtms.mapper.CommentReportMapper" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/mapper/CommentReportMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3463" y="1533"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="41" language="java" name="com.mtms.service.CommentReportServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/CommentReportServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2846" y="1496"/>    
+    <position height="-1" width="-1" x="2886" y="1788"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="68" language="java" name="com.mtms.controller.ReserveController" project="sCinema" 
+  <interface id="42" language="java" name="com.mtms.service.CommentReportService" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/CommentReportService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3300" y="1794"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="43" language="java" name="com.mtms.service.CommentServiceImpl" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/CommentServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2854" y="1203"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="44" language="java" name="com.mtms.service.CommentService" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/CommentService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3216" y="1237"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="45" language="java" name="com.mtms.service.MovieService" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/MovieService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3058" y="560"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="46" language="java" name="com.mtms.service.MovieServiceImpl" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/MovieServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2743" y="544"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="com.mtms.service.ScheduleServiceImpl" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/ScheduleServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2356" y="355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="48" language="java" name="com.mtms.service.ScheduleService" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/ScheduleService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2348" y="729"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="49" language="java" name="com.mtms.mapper.ScreenMapper" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/mapper/ScreenMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2048" y="424"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="50" language="java" name="com.mtms.service.ScreenService" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/ScreenService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1891" y="276"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="51" language="java" name="com.mtms.service.ScreenServiceImpl" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/ScreenServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1809" y="468"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="com.mtms.controller.CommentController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/CommentController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3217" y="959"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="com.mtms.controller.MovieController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/MovieController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3057" y="301"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="com.mtms.controller.ScheduleController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/ScheduleController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1837" y="674"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="com.mtms.controller.ScreenController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/ScreenController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1657" y="322"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="com.mtms.controller.ReserveController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/ReserveController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2438" y="770"/>    
+    <position height="-1" width="-1" x="2380" y="935"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <class id="57" language="java" name="com.mtms.controller.ReviewController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/ReviewController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1680" y="1432"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="com.mtms.controller.LostController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/LostController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1134" y="1405"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="com.mtms.controller.NoticeController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/NoticeController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="270" x="1158" y="719"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="com.mtms.controller.ReviewReportController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/ReviewReportController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="655" y="1854"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="com.mtms.controller.ReviewReplyController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/ReviewReplyController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1192" y="2644"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="com.mtms.controller.ReplyReportController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/ReplyReportController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1590" y="2801"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="com.mtms.controller.SuggestController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/SuggestController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2895" y="3071"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="com.mtms.controller.MemberController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3035" y="2586"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="com.mtms.controller.CommentReportController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/CommentReportController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3660" y="1778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="com.mtms.controller.MyGiftController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/MyGiftController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4484" y="2937"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="com.mtms.controller.GiftController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/GiftController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4618" y="2360"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="68" language="java" name="com.mtms.mapper.ReviewReplyReportMapper" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/mapper/ReviewReplyReportMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1938" y="2915"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
   <association id="69">    
-    <end type="SOURCE" refId="57" navigable="false">      
-      <attribute id="70" name="giftMapper">        
-        <position height="0" width="0" x="-938" y="-132"/>      
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="70" name="memberMapper">        
+        <position height="0" width="0" x="-1400" y="40"/>      
       </attribute>      
       <multiplicity id="71" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-938" y="-132"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="29" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="72">    
-    <end type="SOURCE" refId="66" navigable="false">      
-      <attribute id="73" name="memberMapper"/>      
-      <multiplicity id="74" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="75">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="76" name="screenService">        
-        <position height="0" width="0" x="-1529" y="53"/>      
-      </attribute>      
-      <multiplicity id="77" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1529" y="53"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="37" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="78">    
-    <end type="SOURCE" refId="60" navigable="false">      
-      <attribute id="79" name="memberMapper">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </attribute>      
-      <multiplicity id="80" minimum="0" maximum="1">        
         <position height="0" width="0" x="-1400" y="40"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="81">    
-    <end type="SOURCE" refId="56" navigable="false">      
-      <attribute id="82" name="reviewReplyReportService">        
-        <position height="0" width="0" x="-970" y="-190"/>      
+  <realization id="72">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="50"/>  
+  </realization>  
+  <association id="73">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="74" name="memberService"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="76">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="77" name="suggestMapper">        
+        <position height="0" width="0" x="-1710" y="-287"/>      
       </attribute>      
-      <multiplicity id="83" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-970" y="-190"/>      
+      <multiplicity id="78" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1710" y="-287"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="63" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="84">    
-    <end type="SOURCE" refId="65" navigable="false">      
-      <attribute id="85" name="scheduleMapper"/>      
-      <multiplicity id="86" minimum="0" maximum="1"/>    
+  <association id="79">    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="80" name="replyService"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="82">    
+    <end type="SOURCE" refId="63" navigable="false">      
+      <attribute id="83" name="suggestService"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="87">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="88" name="suggestService">        
-        <position height="0" width="0" x="-1524" y="-186"/>      
-      </attribute>      
-      <multiplicity id="89" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1524" y="-186"/>      
-      </multiplicity>    
+  <realization id="85">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <association id="86">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="87" name="movieMapper"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="59" navigable="true"/>    
+    <end type="TARGET" refId="37" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="90">    
-    <end type="SOURCE" refId="58"/>    
-    <end type="TARGET" refId="41"/>  
-  </realization>  
-  <realization id="91">    
-    <end type="SOURCE" refId="62"/>    
-    <end type="TARGET" refId="52"/>  
-  </realization>  
-  <association id="92">    
-    <end type="SOURCE" refId="62" navigable="false">      
-      <attribute id="93" name="memberMapper">        
+  <association id="89">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="90" name="memberMapper">        
         <position height="0" width="0" x="-1400" y="40"/>      
       </attribute>      
-      <multiplicity id="94" minimum="0" maximum="1">        
+      <multiplicity id="91" minimum="0" maximum="1">        
         <position height="0" width="0" x="-1400" y="40"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="95">    
-    <end type="SOURCE" refId="65" navigable="false">      
-      <attribute id="96" name="screenMapper"/>      
-      <multiplicity id="97" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="98">    
-    <end type="SOURCE" refId="67" navigable="false">      
-      <attribute id="99" name="memberMapper"/>      
-      <multiplicity id="100" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="101">    
-    <end type="SOURCE" refId="37"/>    
-    <end type="TARGET" refId="43"/>  
+  <realization id="92">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="20"/>  
   </realization>  
+  <association id="93">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="94" name="giftAttachMapper">        
+        <position height="0" width="0" x="-1153" y="564"/>      
+      </attribute>      
+      <multiplicity id="95" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1153" y="564"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="97" name="screenMapper"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="100" name="scheduleMapper">        
+        <position height="0" width="0" x="-56" y="138"/>      
+      </attribute>      
+      <multiplicity id="101" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-56" y="138"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <realization id="102">    
-    <end type="SOURCE" refId="67"/>    
-    <end type="TARGET" refId="39"/>  
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="28"/>  
   </realization>  
   <association id="103">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="104" name="movieService">        
-        <position height="0" width="0" x="-1110" y="-1039"/>      
-      </attribute>      
-      <multiplicity id="105" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1110" y="-1039"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="104" name="scheduleMapper"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="47" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="106">    
-    <end type="SOURCE" refId="63" navigable="false">      
+    <end type="SOURCE" refId="32" navigable="false">      
       <attribute id="107" name="memberMapper">        
         <position height="0" width="0" x="-1400" y="40"/>      
       </attribute>      
@@ -756,521 +748,477 @@
         <position height="0" width="0" x="-1400" y="40"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="109">    
-    <end type="SOURCE" refId="67" navigable="false">      
-      <attribute id="110" name="commentMapper"/>      
+    <end type="SOURCE" refId="52" navigable="false">      
+      <attribute id="110" name="commentService"/>      
       <multiplicity id="111" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="112">    
-    <end type="SOURCE" refId="55" navigable="false">      
-      <attribute id="113" name="noticeService">        
-        <position height="0" width="0" x="420" y="384"/>      
-      </attribute>      
-      <multiplicity id="114" minimum="0" maximum="1">        
-        <position height="0" width="0" x="420" y="384"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="34" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="115">    
-    <end type="SOURCE" refId="65" navigable="false">      
-      <attribute id="116" name="movieMapper"/>      
-      <multiplicity id="117" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="118">    
-    <end type="SOURCE" refId="46"/>    
-    <end type="TARGET" refId="36"/>  
-  </realization>  
-  <realization id="119">    
-    <end type="SOURCE" refId="40"/>    
-    <end type="TARGET" refId="47"/>  
-  </realization>  
-  <association id="120">    
-    <end type="SOURCE" refId="57" navigable="false">      
-      <attribute id="121" name="myGiftMapper">        
-        <position height="0" width="0" x="-1052" y="-84"/>      
-      </attribute>      
-      <multiplicity id="122" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1052" y="-84"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="26" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="123">    
-    <end type="SOURCE" refId="62" navigable="false">      
-      <attribute id="124" name="reviewMapper">        
-        <position height="0" width="0" x="-1162" y="152"/>      
-      </attribute>      
-      <multiplicity id="125" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1162" y="152"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="30" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="126">    
-    <end type="SOURCE" refId="59"/>    
-    <end type="TARGET" refId="38"/>  
-  </realization>  
-  <association id="127">    
-    <end type="SOURCE" refId="59" navigable="false">      
-      <attribute id="128" name="memberMapper">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </attribute>      
-      <multiplicity id="129" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="130">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="131" name="lostService">        
-        <position height="0" width="0" x="-428" y="980"/>      
-      </attribute>      
-      <multiplicity id="132" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-428" y="980"/>      
-      </multiplicity>    
     </end>    
     <end type="TARGET" refId="44" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="133">    
-    <end type="SOURCE" refId="40" navigable="false">      
-      <attribute id="134" name="movieAttachMapper">        
-        <position height="0" width="0" x="-1340" y="-979"/>      
+  <association id="112">    
+    <end type="SOURCE" refId="41" navigable="false">      
+      <attribute id="113" name="memberMapper"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="115">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="116" name="lostMapper">        
+        <position height="0" width="0" x="-621" y="961"/>      
       </attribute>      
-      <multiplicity id="135" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1340" y="-979"/>      
+      <multiplicity id="117" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-621" y="961"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="136">    
-    <end type="SOURCE" refId="67" navigable="false">      
-      <attribute id="137" name="commentReportMapper"/>      
-      <multiplicity id="138" minimum="0" maximum="1"/>    
+  <association id="118">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="119" name="movieService"/>      
+      <multiplicity id="120" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="45" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="139">    
-    <end type="SOURCE" refId="61" navigable="false">      
-      <attribute id="140" name="reviewMapper">        
-        <position height="0" width="0" x="-1162" y="152"/>      
-      </attribute>      
-      <multiplicity id="141" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1162" y="152"/>      
-      </multiplicity>    
+  <association id="121">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="122" name="screenMapper"/>      
+      <multiplicity id="123" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="30" navigable="true"/>    
+    <end type="TARGET" refId="49" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="142">    
-    <end type="SOURCE" refId="65"/>    
-    <end type="TARGET" refId="33"/>  
-  </realization>  
-  <association id="143">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="144" name="reviewService">        
-        <position height="0" width="0" x="-716" y="326"/>      
-      </attribute>      
-      <multiplicity id="145" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-716" y="326"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="60" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="146">    
-    <end type="SOURCE" refId="46" navigable="false">      
-      <attribute id="147" name="memberMapper">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </attribute>      
-      <multiplicity id="148" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="149">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="150" name="reviweReportService">        
-        <position height="0" width="0" x="-1322" y="-40"/>      
-      </attribute>      
-      <multiplicity id="151" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1322" y="-40"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="62" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="152">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="153" name="commentService">        
-        <position height="0" width="0" x="-1724" y="-632"/>      
-      </attribute>      
-      <multiplicity id="154" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1724" y="-632"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="41" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="155">    
-    <end type="SOURCE" refId="44"/>    
-    <end type="TARGET" refId="49"/>  
-  </realization>  
-  <association id="156">    
-    <end type="SOURCE" refId="44" navigable="false">      
-      <attribute id="157" name="lostMapper">        
-        <position height="0" width="0" x="-392" y="994"/>      
-      </attribute>      
-      <multiplicity id="158" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-392" y="994"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="159">    
-    <end type="SOURCE" refId="53" navigable="false">      
-      <attribute id="160" name="myGiftService">        
-        <position height="0" width="0" x="-768" y="-224"/>      
-      </attribute>      
-      <multiplicity id="161" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-768" y="-224"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="51" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="162">    
-    <end type="SOURCE" refId="58" navigable="false">      
-      <attribute id="163" name="movieMapper">        
-        <position height="0" width="0" x="-2060" y="46"/>      
-      </attribute>      
-      <multiplicity id="164" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-2060" y="46"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="165">    
-    <end type="SOURCE" refId="50" navigable="false">      
-      <attribute id="166" name="giftMapper">        
-        <position height="0" width="0" x="-938" y="-132"/>      
-      </attribute>      
-      <multiplicity id="167" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-938" y="-132"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="29" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="168">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="169" name="commentReportService">        
-        <position height="0" width="0" x="-2671" y="533"/>      
-      </attribute>      
-      <multiplicity id="170" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-2671" y="533"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="39" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="171">    
+  <association id="124">    
     <end type="SOURCE" refId="35" navigable="false">      
-      <attribute id="172" name="noticeMapper">        
-        <position height="0" width="0" x="420" y="384"/>      
+      <attribute id="125" name="reviewReplyMapper">        
+        <position height="0" width="0" x="-964" y="-232"/>      
       </attribute>      
-      <multiplicity id="173" minimum="0" maximum="1">        
-        <position height="0" width="0" x="420" y="384"/>      
+      <multiplicity id="126" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-964" y="-232"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="27" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="174">    
-    <end type="SOURCE" refId="50"/>    
-    <end type="TARGET" refId="42"/>  
+  <realization id="127">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="26"/>  
   </realization>  
-  <association id="175">    
-    <end type="SOURCE" refId="64" navigable="false">      
-      <attribute id="176" name="scheduleService"/>      
-      <multiplicity id="177" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="65" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="178">    
-    <end type="SOURCE" refId="61" navigable="false">      
-      <attribute id="179" name="reviewReplyMapper">        
-        <position height="0" width="0" x="-964" y="-232"/>      
+  <association id="128">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="129" name="reviewMapper">        
+        <position height="0" width="0" x="-1322" y="154"/>      
       </attribute>      
-      <multiplicity id="180" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-964" y="-232"/>      
+      <multiplicity id="130" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1322" y="154"/>      
       </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="181">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="182" name="memberService">        
-        <position height="0" width="0" x="-288" y="76"/>      
-      </attribute>      
-      <multiplicity id="183" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-288" y="76"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="46" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="184">    
-    <end type="SOURCE" refId="68" navigable="false">      
-      <attribute id="185" name="reserveService"/>      
-      <multiplicity id="186" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="66" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="187">    
-    <end type="SOURCE" refId="66" navigable="false">      
-      <attribute id="188" name="movieMapper"/>      
-      <multiplicity id="189" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="190">    
-    <end type="SOURCE" refId="57" navigable="false">      
-      <attribute id="191" name="memberMapper">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </attribute>      
-      <multiplicity id="192" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="193">    
-    <end type="SOURCE" refId="54" navigable="false">      
-      <attribute id="194" name="giftService">        
-        <position height="0" width="0" x="-1110" y="-76"/>      
-      </attribute>      
-      <multiplicity id="195" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1110" y="-76"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="42" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="196">    
-    <end type="SOURCE" refId="68" navigable="false">      
-      <attribute id="197" name="scheduleService"/>      
-      <multiplicity id="198" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="65" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="199">    
-    <end type="SOURCE" refId="37" navigable="false">      
-      <attribute id="200" name="screenMapper">        
-        <position height="0" width="0" x="-1935" y="-169"/>      
-      </attribute>      
-      <multiplicity id="201" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1935" y="-169"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="202">    
-    <end type="SOURCE" refId="61" navigable="false">      
-      <attribute id="203" name="memberMapper">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </attribute>      
-      <multiplicity id="204" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1400" y="40"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="205">    
-    <end type="SOURCE" refId="63" navigable="false">      
-      <attribute id="206" name="reviewReplyMapper">        
-        <position height="0" width="0" x="-964" y="-232"/>      
-      </attribute>      
-      <multiplicity id="207" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-964" y="-232"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="208">    
-    <end type="SOURCE" refId="58" navigable="false">      
-      <attribute id="209" name="commentMapper">        
-        <position height="0" width="0" x="-2151" y="286"/>      
-      </attribute>      
-      <multiplicity id="210" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-2151" y="286"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="211">    
-    <end type="SOURCE" refId="57" navigable="false">      
-      <attribute id="212" name="giftAttachMapper">        
-        <position height="0" width="0" x="-1170" y="-54"/>      
-      </attribute>      
-      <multiplicity id="213" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1170" y="-54"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="28" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="214">    
-    <end type="SOURCE" refId="66" navigable="false">      
-      <attribute id="215" name="scheduleMapper"/>      
-      <multiplicity id="216" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="217">    
-    <end type="SOURCE" refId="63" navigable="false">      
-      <attribute id="218" name="reviewReplyReportMapper">        
-        <position height="0" width="0" x="-1002" y="-128"/>      
-      </attribute>      
-      <multiplicity id="219" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1002" y="-128"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="220">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="221" name="replyService">        
-        <position height="0" width="0" x="-1178" y="-144"/>      
-      </attribute>      
-      <multiplicity id="222" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1178" y="-144"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="61" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="223">    
-    <end type="SOURCE" refId="59" navigable="false">      
-      <attribute id="224" name="suggestMapper">        
-        <position height="0" width="0" x="-1714" y="-62"/>      
-      </attribute>      
-      <multiplicity id="225" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1714" y="-62"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="226">    
-    <end type="SOURCE" refId="66" navigable="false">      
-      <attribute id="227" name="reserveMapper"/>      
-      <multiplicity id="228" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="229">    
-    <end type="SOURCE" refId="66"/>    
+  <association id="131">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="132" name="reviewMapper">        
+        <position height="0" width="0" x="-1322" y="154"/>      
+      </attribute>      
+      <multiplicity id="133" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1322" y="154"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="134">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="135" name="movieMapper"/>      
+      <multiplicity id="136" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="137">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="42"/>  
+  </realization>  
+  <realization id="138">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <realization id="139">    
+    <end type="SOURCE" refId="47"/>    
     <end type="TARGET" refId="48"/>  
   </realization>  
-  <realization id="230">    
-    <end type="SOURCE" refId="63"/>    
-    <end type="TARGET" refId="32"/>  
-  </realization>  
-  <association id="231">    
-    <end type="SOURCE" refId="40" navigable="false">      
-      <attribute id="232" name="movieMapper">        
-        <position height="0" width="0" x="-2060" y="46"/>      
-      </attribute>      
-      <multiplicity id="233" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-2060" y="46"/>      
-      </multiplicity>    
+  <association id="140">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="141" name="noticeService"/>      
+      <multiplicity id="142" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="234">    
+  <association id="143">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="144" name="reviewReportMapper">        
+        <position height="0" width="0" x="-760" y="47"/>      
+      </attribute>      
+      <multiplicity id="145" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-760" y="47"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="146">    
+    <end type="SOURCE" refId="53" navigable="false">      
+      <attribute id="147" name="movieService"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="149">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="150">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <association id="151">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="152" name="memberMapper"/>      
+      <multiplicity id="153" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="154">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="155" name="reviewMapper">        
+        <position height="0" width="0" x="-1322" y="154"/>      
+      </attribute>      
+      <multiplicity id="156" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1322" y="154"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="157">    
     <end type="SOURCE" refId="60" navigable="false">      
-      <attribute id="235" name="reviewMapper">        
-        <position height="0" width="0" x="-1162" y="152"/>      
-      </attribute>      
-      <multiplicity id="236" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1162" y="152"/>      
-      </multiplicity>    
+      <attribute id="158" name="reviweReportService"/>      
+      <multiplicity id="159" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="30" navigable="true"/>    
+    <end type="TARGET" refId="29" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="237">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="34"/>  
+  <association id="160">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="161" name="movieMapper"/>      
+      <multiplicity id="162" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="163">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="21"/>  
   </realization>  
-  <association id="238">    
-    <end type="SOURCE" refId="68" navigable="false">      
-      <attribute id="239" name="movieService"/>      
-      <multiplicity id="240" minimum="0" maximum="1"/>    
+  <association id="164">    
+    <end type="SOURCE" refId="58" navigable="false">      
+      <attribute id="165" name="lostService"/>      
+      <multiplicity id="166" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="167">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="168" name="commentMapper"/>      
+      <multiplicity id="169" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="170">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="171" name="memberMapper">        
+        <position height="0" width="0" x="-1400" y="40"/>      
+      </attribute>      
+      <multiplicity id="172" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1400" y="40"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="173">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="174" name="noticeMapper">        
+        <position height="0" width="0" x="473" y="374"/>      
+      </attribute>      
+      <multiplicity id="175" minimum="0" maximum="1">        
+        <position height="0" width="0" x="473" y="374"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="176">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="177" name="commentReportService"/>      
+      <multiplicity id="178" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="179">    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="180" name="scheduleService"/>      
+      <multiplicity id="181" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="48" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="182">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="183" name="movieMapper"/>      
+      <multiplicity id="184" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="185">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="186" name="memberMapper">        
+        <position height="0" width="0" x="-1400" y="40"/>      
+      </attribute>      
+      <multiplicity id="187" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1400" y="40"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="188">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="189" name="reserveMapper">        
+        <position height="0" width="0" x="194" y="158"/>      
+      </attribute>      
+      <multiplicity id="190" minimum="0" maximum="1">        
+        <position height="0" width="0" x="194" y="158"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="191">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="192" name="giftMapper">        
+        <position height="0" width="0" x="-899" y="524"/>      
+      </attribute>      
+      <multiplicity id="193" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-899" y="524"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="194">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="29"/>  
+  </realization>  
+  <association id="195">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="196" name="giftMapper">        
+        <position height="0" width="0" x="-899" y="524"/>      
+      </attribute>      
+      <multiplicity id="197" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-899" y="524"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="198">    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="199" name="replyReportService"/>      
+      <multiplicity id="200" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="201">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="202" name="scheduleService"/>      
+      <multiplicity id="203" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="48" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="204">    
+    <end type="SOURCE" refId="41" navigable="false">      
+      <attribute id="205" name="commentReportMapper"/>      
+      <multiplicity id="206" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="40" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="241">    
-    <end type="SOURCE" refId="62" navigable="false">      
-      <attribute id="242" name="reviewReportMapper">        
-        <position height="0" width="0" x="-1040" y="-80"/>      
+  <realization id="207">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="44"/>  
+  </realization>  
+  <association id="208">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="209" name="myGiftMapper">        
+        <position height="0" width="0" x="-1028" y="528"/>      
       </attribute>      
-      <multiplicity id="243" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1040" y="-80"/>      
+      <multiplicity id="210" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1028" y="528"/>      
       </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="211">    
+    <end type="SOURCE" refId="57" navigable="false">      
+      <attribute id="212" name="reviewService"/>      
+      <multiplicity id="213" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="214">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="215" name="reviewReplyMapper">        
+        <position height="0" width="0" x="-964" y="-232"/>      
+      </attribute>      
+      <multiplicity id="216" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-964" y="-232"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="217">    
+    <end type="SOURCE" refId="66" navigable="false">      
+      <attribute id="218" name="myGiftService"/>      
+      <multiplicity id="219" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="220">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="221" name="movieAttachMapper"/>      
+      <multiplicity id="222" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="223">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <realization id="224">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="45"/>  
+  </realization>  
+  <association id="225">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="226" name="memberMapper">        
+        <position height="0" width="0" x="-1400" y="40"/>      
+      </attribute>      
+      <multiplicity id="227" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1400" y="40"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="228">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="229" name="memberMapper">        
+        <position height="0" width="0" x="-1400" y="40"/>      
+      </attribute>      
+      <multiplicity id="230" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1400" y="40"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="231">    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="232" name="reviewReplyReportService"/>      
+      <multiplicity id="233" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="234">    
+    <end type="SOURCE" refId="67" navigable="false">      
+      <attribute id="235" name="giftService"/>      
+      <multiplicity id="236" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="237">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="238">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="239" name="reserveService"/>      
+      <multiplicity id="240" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="244">    
-    <end type="SOURCE" refId="61"/>    
-    <end type="TARGET" refId="31"/>  
-  </realization>  
-  <realization id="245">    
-    <end type="SOURCE" refId="60"/>    
-    <end type="TARGET" refId="45"/>  
-  </realization>  
-  <realization id="246">    
-    <end type="SOURCE" refId="57"/>    
-    <end type="TARGET" refId="51"/>  
-  </realization>  
+  <association id="241">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="242" name="reviewReplyReportMapper"/>      
+      <multiplicity id="243" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="68" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="244">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="245" name="memberMapper">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="246" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="247">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="248" name="screenService"/>      
+      <multiplicity id="249" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="250">    
+    <end type="SOURCE" refId="41" navigable="false">      
+      <attribute id="251" name="commentMapper"/>      
+      <multiplicity id="252" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

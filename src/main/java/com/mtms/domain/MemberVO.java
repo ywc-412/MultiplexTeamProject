@@ -1,6 +1,7 @@
 package com.mtms.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -13,4 +14,5 @@ public class MemberVO {
 	private String memberPhone;		// 회원 전화번호
 	private Date memberBirth;		// 회원 생년월일
 	private String memberEmail;		// 회원 이메일
+	private List<AuthVO> authVO;
 }

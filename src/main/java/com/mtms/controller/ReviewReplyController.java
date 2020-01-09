@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mtms.domain.ReplyPageDTO;
 import com.mtms.domain.ReplyVO;
+import com.mtms.service.ReviewReplyService;
 import com.mtms.service.ReviewReplyServiceImpl;
 import com.mtms.service.ReviewServiceImpl;
 
@@ -24,7 +25,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/reply/*")
 public class ReviewReplyController {
-	private ReviewReplyServiceImpl replyService;
+	
+	private ReviewReplyService replyService;
 	
 	@GetMapping(value = "pages/{reviewNo}/{page}")
 	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("reviewNo") int reviewNo, 

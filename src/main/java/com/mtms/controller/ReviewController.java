@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.ReviewVO;
+import com.mtms.service.ReviewService;
 import com.mtms.service.ReviewServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +21,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/review/*")
 public class ReviewController {
-	private ReviewServiceImpl reviewService;
+	
+	private ReviewService reviewService;
 	
 	@PostMapping("remove")	
 	 public String remove(int reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
