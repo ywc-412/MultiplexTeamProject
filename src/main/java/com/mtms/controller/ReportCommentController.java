@@ -27,14 +27,14 @@ public class ReportCommentController {
 	
 	//한줄평 신고 상세보기(보여주기) 
 	@GetMapping("get")
-	public void get(Model model, @RequestParam("commentReport") int commentReport, @ModelAttribute("cri") Criteria cri) {
+	public void get(Model model, @RequestParam("commentReportNo") int commentReportNo, @ModelAttribute("cri") Criteria cri) {
 		
 	}
 	
 	//한줄평 신고 삭제 처리
 //	@PreAuthorize("principal.username == #id") //수정필요
 	@GetMapping("remove")
-	public String remove(String memberId, @RequestParam("commentReport") int commentReport, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
+	public String remove(String memberId, @RequestParam("commentReportNo") int commentReportNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
 		
 		return memberId;
 	}
