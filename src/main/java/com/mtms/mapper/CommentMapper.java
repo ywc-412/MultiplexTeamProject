@@ -24,9 +24,6 @@ public interface CommentMapper {
 	//한줄평 삭제
 	public int delete(int CommentNo);
 	
-	//한줄평 상세보기
-	public CommentVO read(int CommentNo);
-	
 	//한줄평 등록
 	public int insert(CommentVO cvo);
 	

@@ -55,14 +55,6 @@ public class CommentController {
     	return null;
     }
 	
-	//한줄평 조회 - AJAX
-	@GetMapping(value = "{CommentNo}", produces = { MediaType.APPLICATION_XML_VALUE,
-											  MediaType.APPLICATION_JSON_UTF8_VALUE} )		
-	public ResponseEntity<CommentVO> get(@PathVariable("commentNo") int commentNo){
-		
-		return null;
-	}
-	
 	//한줄평 삭제 - AJAX
 //	@PreAuthorize("principal.username == #rvo.replyer") //수정필요
 	@DeleteMapping(value = "{CommentNo}", produces = { MediaType.TEXT_PLAIN_VALUE})

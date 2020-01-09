@@ -61,7 +61,7 @@ public class ReviewReplyController {
 			
 
 	@DeleteMapping(value = "{replyNo}", produces = MediaType.TEXT_PLAIN_VALUE)
-		public ResponseEntity<String> remove(@PathVariable("rno") int replyNo){
+		public ResponseEntity<String> remove(@PathVariable("replyNo") int replyNo){
 			return null;
 		
 	}
