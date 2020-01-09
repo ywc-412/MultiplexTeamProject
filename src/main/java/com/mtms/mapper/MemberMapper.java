@@ -5,6 +5,8 @@ import java.util.List;
 import com.mtms.domain.MemberVO;
 
 public interface MemberMapper {
+	// 권한을 찾기 위한 read 메서드
+	public MemberVO read(String memberId);
 	// 회원 가입 매퍼
 	public void insert(MemberVO memberVO);
 	// 회원 아이디 찾기

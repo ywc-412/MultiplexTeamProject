@@ -1,4 +1,4 @@
-package com.mtms.service;
+package com.mtms.security.domain;
 
 import java.util.Collection;
 

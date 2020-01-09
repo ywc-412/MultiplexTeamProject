@@ -16,4 +16,9 @@ public class CommonController {
 		
 		model.addAttribute("msg", "Access Denied");
 	}
+	
+	@GetMapping("/customLogin")
+	public void loginInput(String error, String logout, Model model) {
+		
+	}
 }
