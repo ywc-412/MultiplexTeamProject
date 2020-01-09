@@ -33,7 +33,7 @@ public class CommentController {
 	
 	//회원 별 한줄평 조회
 	@GetMapping("mylist")
-	public void list(Criteria cri, Model model, String memberId) {
+	public void mylist(Criteria cri, Model model, String memberId) {
 		
 	}
 	
