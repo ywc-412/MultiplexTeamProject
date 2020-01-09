@@ -10,6 +10,6 @@ public class ReplyReportVO {
 	private String memberId;			// 회원 아이디
 	private int replyNo;				// 댓글 번호
 	private String replyReportContent;	// 댓글신고 내용
-	private boolean replyReportResult;	// 댓글 신고 처리 여부
+	private int replyReportResult;	// 댓글 신고 처리 여부
 	private Date replyReportDate;		// 댓글신고날짜
 }
