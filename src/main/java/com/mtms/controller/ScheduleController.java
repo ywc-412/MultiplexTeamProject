@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.ScheduleVO;
+import com.mtms.service.ScheduleService;
 import com.mtms.service.ScheduleServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +30,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/schedule/")
 public class ScheduleController {
 	
-	private ScheduleServiceImpl scheduleService;
+	private ScheduleService scheduleService;
 
 	@GetMapping("register")
 	public void register() {

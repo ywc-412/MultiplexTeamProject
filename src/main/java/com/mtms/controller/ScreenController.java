@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mtms.service.ScreenService;
 import com.mtms.service.ScreenServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/screen/")
 public class ScreenController {
 	
-	private ScreenServiceImpl screenService;
+	private ScreenService screenService;
 	
 	@GetMapping("seat")
 	public void getSeat(int screenNo) {

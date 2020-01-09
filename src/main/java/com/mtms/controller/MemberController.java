@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.MemberVO;
+import com.mtms.service.MemberService;
 import com.mtms.service.MemberServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/member")
 public class MemberController {
 	
-	private MemberServiceImpl memberService;
+	private MemberService memberService;
 	
 	@GetMapping("/join")
 	public void join() {
