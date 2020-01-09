@@ -40,7 +40,7 @@ public class CommentController {
 	//한줄평 등록 - AJAX
 	@PostMapping(value = "new", consumes = "application/json"				
 							  , produces = { MediaType.TEXT_PLAIN_VALUE })	
-	public ResponseEntity<String> create(@RequestBody CommentVO cvo){
+	public ResponseEntity<String> register(@RequestBody CommentVO cvo){
 		
 		return null;
 	}
@@ -50,7 +50,7 @@ public class CommentController {
     @GetMapping(value = "pages/{movieNo}/{pageNum}", produces = { MediaType.APPLICATION_XML_VALUE,
                           								  MediaType.APPLICATION_JSON_UTF8_VALUE } )
     											// URL의 일부를 파라미터로 사용하는 PathVariable
-    public ResponseEntity<CommentPageDTO> getList( @PathVariable("pageNum") int pageNum, @PathVariable("movieNo") int movieNo ) {
+    public ResponseEntity<CommentPageDTO> getList(@PathVariable("pageNum") int pageNum, @PathVariable("movieNo") int movieNo ) {
 		
     	return null;
     }

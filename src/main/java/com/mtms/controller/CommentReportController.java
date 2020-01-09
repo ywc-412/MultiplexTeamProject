@@ -32,17 +32,16 @@ public class CommentReportController {
 	}
 	
 	//한줄평 신고 삭제 처리
-//	@PreAuthorize("principal.username == #id") //수정필요 
 	@GetMapping("remove")
-	public String remove(String memberId, @RequestParam("commentReportNo") int commentReportNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
+	public String remove(@RequestParam("commentReportNo") int commentReportNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
 		
-		return memberId;
+		return null;
 	}
 	
 	//한줄평 신고 등록 창 보여주기
 	@GetMapping("register")
 //	@PreAuthorize("isAuthenticated()")
-	public void register(Model model) {
+	public void register() {
 		
 	}
 	

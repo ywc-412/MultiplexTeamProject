@@ -14,7 +14,6 @@ public class ReserveVO {
 	
 	private int screenNo;			// 상영관
 	private String seat;			// 좌석 번호
-	// -> ScreenVO 로 해도 될듯
 	
 	private int adultNum;			// 성인 수
 	private int teenNum;			// 청소년 수

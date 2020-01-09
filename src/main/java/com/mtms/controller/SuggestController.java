@@ -39,13 +39,13 @@ public class SuggestController {
 	}
 	
 	@PostMapping("register")
-	public String register(SuggestVO svo, RedirectAttributes re) {
+	public String register(SuggestVO sugeestVO, RedirectAttributes rttr) {
 		// 건의사항 등록
 		return null;
 	}
 	
 	@PostMapping("modify")
-	public String modify(SuggestVO svo, RedirectAttributes re) {
+	public String modify(SuggestVO sugeestVO, RedirectAttributes rttr) {
 		// 건의사항 수정
 		return null;
 	}
@@ -61,7 +61,7 @@ public class SuggestController {
 	}
 	
 	@PostMapping("remove")
-	public String remove(int suggestNo, RedirectAttributes re) {
+	public String remove(int suggestNo, RedirectAttributes rttr) {
 		// 건의사항 게시글 삭제
 		return null;
 	}

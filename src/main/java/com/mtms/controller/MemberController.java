@@ -62,14 +62,14 @@ public class MemberController {
 	}
 	
 	@GetMapping("/list")
-	public String getMemberList(Criteria cri, Model model){
+	public String list(Criteria cri, Model model){
 		// 멤버 리스트 조회 컨트롤러 // 전체 회원 목록 조회
 		
 		return null;
 	}
 	
 	@GetMapping("/get")
-	public String getMember(String memberId, Model model) {
+	public String get(String memberId, Model model) {
 		//회원 상세보기 컨트롤러	
 		
 		return null;
