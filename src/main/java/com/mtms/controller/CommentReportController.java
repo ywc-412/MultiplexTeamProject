@@ -32,7 +32,7 @@ public class CommentReportController {
 	}
 	
 	//한줄평 신고 삭제 처리
-//	@PreAuthorize("principal.username == #id") //수정필요
+//	@PreAuthorize("principal.username == #id") //수정필요 
 	@GetMapping("remove")
 	public String remove(String memberId, @RequestParam("commentReportNo") int commentReportNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
 		
