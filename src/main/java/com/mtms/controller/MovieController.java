@@ -42,8 +42,14 @@ public class MovieController {
 	}
 	
 	//영화 상세보기(보여주기)
-	@GetMapping( { "get", "modify"} )
+	@GetMapping("get")
 	public void get(Model model, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
+		
+	}
+	
+	//영화 수정 보여주기
+	@GetMapping("modify")
+	public void modify(Model model, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
 		
 	}
 	
@@ -56,7 +62,6 @@ public class MovieController {
 	}
 	
 	//영화  삭제 처리
-//	@PreAuthorize("principal.username == #id") //수정필요
 	@GetMapping("remove")
 	public String remove(@RequestParam("movieNo") int movieNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
 		

@@ -14,13 +14,13 @@ public interface CommentReportMapper {
 	public List<CommentReportVO> getListWithPaging(Criteria cri);
 	
 	//한줄평 신고 삭제
-	public int delete(int CommentReportNo);
+	public int delete(int commentReportNo);
 	
 	//한줄평 신고 상세보기
-	public CommentReportVO read(int CommentReportNo);
+	public CommentReportVO read(int commentReportNo);
 	
 	//한줄평 신고 등록
-	public void insert(CommentReportVO ReportComment);
+	public void insert(CommentReportVO commentReport);
 	
 	
 }
