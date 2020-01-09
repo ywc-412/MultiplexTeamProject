@@ -18,7 +18,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class ScheduleServiceImpl implements ScheduleService{
-	@Setter(onMethod_ = @Autowired)
+	
+//	@Setter(onMethod_ = @Autowired)
 	private ScheduleMapper scheduleMapper;
 	private ScreenMapper screenMapper;
 	private MovieMapper movieMapper;

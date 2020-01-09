@@ -15,7 +15,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class ScreenServiceImpl implements ScreenService{
-	@Setter(onMethod_ = @Autowired)
+	
+//	@Setter(onMethod_ = @Autowired)
 	private ScreenMapper screenMapper;
 
 	@Override
@@ -24,9 +25,9 @@ public class ScreenServiceImpl implements ScreenService{
 		return null;
 	}
 
-	@Override
-	public int getNum(int screenNo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	@Override
+//	public int getNum(int screenNo) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 }
