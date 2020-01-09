@@ -47,10 +47,10 @@ public class CommentController {
 	
 	//한줄평 전체 조회 - AJAX
     // page와 {page} 차이 알아야함
-    @GetMapping(value = "pages/{movieNo}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(value = "pages/{movieNo}/{pageNum}", produces = { MediaType.APPLICATION_XML_VALUE,
                           								  MediaType.APPLICATION_JSON_UTF8_VALUE } )
     											// URL의 일부를 파라미터로 사용하는 PathVariable
-    public ResponseEntity<CommentPageDTO> getList( @PathVariable("page") int page, @PathVariable("movieNo") int movieNo ) {
+    public ResponseEntity<CommentPageDTO> getList( @PathVariable("pageNum") int pageNum, @PathVariable("movieNo") int movieNo ) {
 		
     	return null;
     }
