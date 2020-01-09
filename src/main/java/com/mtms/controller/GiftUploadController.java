@@ -60,14 +60,14 @@ public class GiftUploadController {
 		
 	}
 	
-	@GetMapping(value = "/download")	//다운로드
+	@GetMapping(value = "/download")	//파일 다운로드
 	@ResponseBody
 	public ResponseEntity<Resource> downloadFile(String fileName, @RequestHeader("User-Agent") String userAgent) {
 		return null;
 		
 	}
 	
-	@PreAuthorize("isAuthenticated()")	//삭제
+	@PreAuthorize("isAuthenticated()")	//파일삭제
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type) {
