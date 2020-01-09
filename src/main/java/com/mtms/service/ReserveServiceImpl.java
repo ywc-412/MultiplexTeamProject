@@ -19,6 +19,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class ReserveServiceImpl implements ReserveService{
+	
 	@Setter(onMethod_ = @Autowired)
 	private ReserveMapper reserveMapper;
 	private MovieMapper movieMapper;
