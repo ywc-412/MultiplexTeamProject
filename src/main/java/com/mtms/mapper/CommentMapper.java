@@ -16,15 +16,15 @@ public interface CommentMapper {
 	public List<CommentVO> getListWithPaging(@Param("cri") Criteria cri, @Param("movieNo") int movieNo);
 	
 	//내 한줄평 조회
-	public List<CommentVO> getListWithPaging(Criteria cri, String memberId);
+	public List<CommentVO> getListWithPaging(@Param("cri") Criteria cri, @Param("memberId") String memberId);
 	
 	//한줄평 수정
-	public int update(CommentVO cvo);
+	public int update(CommentVO comment);
 	
 	//한줄평 삭제
-	public int delete(int CommentNo);
+	public int delete(int commentNo);
 	
 	//한줄평 등록
-	public int insert(CommentVO cvo);
+	public int insert(CommentVO comment);
 	
 }
