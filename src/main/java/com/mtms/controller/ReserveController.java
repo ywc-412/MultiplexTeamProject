@@ -26,6 +26,9 @@ import com.mtms.service.ReserveService;
 import com.mtms.service.ReserveServiceImpl;
 import com.mtms.service.ScheduleService;
 import com.mtms.service.ScheduleServiceImpl;
+import com.mtms.service.ScreenService;
+import com.mtms.service.SeatService;
+import com.mtms.service.SeatServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -38,6 +41,8 @@ public class ReserveController {
 	
 	private ReserveService reserveService;
 	private ScheduleService scheduleService;
+	private SeatService seatService;
+	private ScreenService screenService;
 	private MovieService movieService;
 	// movieServiceImpl에 예매수(todayNum) +1 하는 update 구현해야함..
 	
@@ -52,9 +57,9 @@ public class ReserveController {
 		// 회원 별 예매내역 조회
 	}
 	
-	@PostMapping("modify")
-	public void modify(String reserveNum, Model model) {
-		// 예매 수정하기 (환불 등)
+	@PostMapping("refund")
+	public void refund(String reserveNo, Model model) {
+		// 예매 수정하기 (환불)
 	}
 	
 	@GetMapping("register")
@@ -73,15 +78,10 @@ public class ReserveController {
 //		// 예매하기 (시간) -> 예매하기 (좌석)
 //	}
 	
-	@PostMapping("seat")
-	public void seat(Model model, int screenNo, Date scheduleDate, String scheduleTime) {
+	@PostMapping("reserve")
+	public void reserve(Model model, ReserveVO rvo) {
 		// 예매하기 (좌석)
 		// 예매 완료되면 영화 정보에 예매+1 해주기
 	}
-
-//	@GetMapping("num")
-//	public void num(Model model, int screenNo, Date scheduleDate, String scheduleTime) {
-//		// 예매할 때 예매된 좌석 수 가져오기
-//	}
 
 }
