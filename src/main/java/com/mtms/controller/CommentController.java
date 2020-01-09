@@ -18,6 +18,7 @@ import com.mtms.domain.CommentPageDTO;
 import com.mtms.domain.CommentVO;
 import com.mtms.domain.Criteria;
 import com.mtms.service.CommentService;
+import com.mtms.service.CommentServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;

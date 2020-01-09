@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.GiftVO;
 import com.mtms.service.GiftService;
+import com.mtms.service.GiftServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;

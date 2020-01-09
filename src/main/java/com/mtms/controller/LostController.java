@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.LostVO;
+import com.mtms.service.LostService;
 import com.mtms.service.LostServiceImpl;
 import com.mtms.service.ReviewReplyServiceImpl;
 
@@ -21,7 +22,9 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/lost/*")
 public class LostController {
-	private LostServiceImpl lostService;
+	
+	private LostService lostService;
+	
 	@PostMapping("remove") 
 	 public String remove(int lostNo,RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		return null;
