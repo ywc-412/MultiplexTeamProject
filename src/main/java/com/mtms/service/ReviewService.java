@@ -13,4 +13,5 @@ public interface ReviewService {
 	public boolean remove(int reviewNo);
 	public ReviewVO get(int reviewNo);
 	public void register(ReviewVO rvo);
+	
 }

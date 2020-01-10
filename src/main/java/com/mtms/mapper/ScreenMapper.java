@@ -2,12 +2,11 @@ package com.mtms.mapper;
 
 import java.util.List;
 
+import com.mtms.domain.ScreenVO;
+
 public interface ScreenMapper {
 
-	// 상영관별 좌석 목록
-	public List<String> getSeat(int screenNo);
-	
-//	// 상영관별 총 좌석수
-//	public int getNum(int screenNo);
+	// 스크린 가져오기
+	public List<ScreenVO> getList();
 	
 }

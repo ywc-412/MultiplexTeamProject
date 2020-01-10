@@ -18,52 +18,49 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class GiftServiceImpl implements GiftService{
-	@Setter(onMethod_= @Autowired)
 	private GiftMapper giftMapper;
-
-	@Setter(onMethod_ = @Autowired)
 	private GiftAttachMapper giftAttachMapper;
 	
 	@Override
-	public void register(GiftVO gift) {
-		// TODO Auto-generated method stub
-		
+	public void register(GiftVO gift) {		//기프티콘 등록
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
-	public List<GiftVO> getList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public GiftVO get(int giftNo) {
+	public List<GiftVO> getList() {		//기프티콘 조회
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean modify(GiftVO gift) {
+	public GiftVO pay(int giftNo) {		//기프티콘 결제완료
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public GiftVO get(int giftNo) {		//기프티콘 상세보기
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modify(GiftVO gift) {	//기프티콘 수정
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remove(int giftNo) {
+	public boolean remove(int giftNo) {		//기프티콘 삭제
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
 	@Override
-	public List<GiftAttachVO> getAttachList(int giftNo) {
+	public List<GiftAttachVO> getAttachList(int giftNo) {	//기프티콘 사진 등록
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public GiftVO pay(int giftNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

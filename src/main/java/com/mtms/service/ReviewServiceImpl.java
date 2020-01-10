@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mtms.mapper.MemberMapper;
 import com.mtms.mapper.ReviewMapper;
@@ -53,9 +54,10 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
+	@Transactional
 	public ReviewVO get(int reviewNo) {
-//		public boolean remove(Review rvo) 
-		return null;
+		reviewMapper.updateView(reviewNo);
+		return reviewMapper.read(reviewNo);
 	}
 
 	@Override
@@ -63,6 +65,7 @@ public class ReviewServiceImpl implements ReviewService{
 //		public void register(ReviewVo rvo)
 		
 	}
+
 	
 
 

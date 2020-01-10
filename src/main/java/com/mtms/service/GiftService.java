@@ -7,17 +7,17 @@ import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
 
 public interface GiftService {
-public void register(GiftVO gift); //등록
+	public void register(GiftVO gift); //기프티콘 등록
 	
-	public List<GiftVO> getList(); //조회
+	public List<GiftVO> getList(); //기프티콘 조회
 	
-	public GiftVO pay(int giftNo);	//결제완료
+	public GiftVO pay(int giftNo);	//기프티콘 결제완료
 	
-	public GiftVO get(int giftNo); //상세보기
+	public GiftVO get(int giftNo); //기프티콘 상세보기
 	
-	public boolean modify(GiftVO gift); //수정
+	public boolean modify(GiftVO gift); //기프티콘 수정
 	
-	public boolean remove(int giftNo); //삭제
+	public boolean remove(int giftNo); //기프티콘 삭제
 	
-	public List<GiftAttachVO> getAttachList(int giftNo);
+	public List<GiftAttachVO> getAttachList(int giftNo);	//기프티콘 사진 등록
 }

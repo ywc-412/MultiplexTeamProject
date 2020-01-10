@@ -18,11 +18,4 @@ public interface ReserveMapper {
 	
 	// 예매 수정하기 (환불한다던가)
 	public int update(String reserveNum);
-	
-	// 예매된 좌석들 가져오기
-	public List<String> getSeat(int screenNo, Date scheduleDate, String scheduleTime);
-	
-	// 예매된 좌석 수 가져오기
-	public int getNum(int screenNo, Date scheduleDate, String scheduleTime);
-	
 }
