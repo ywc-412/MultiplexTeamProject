@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<MemberVO> getMemberList(Criteria cri) {
-		return memberMapper.getMemberList();
+		return memberMapper.getMemberList(cri);
 	}
 
 	@Override
