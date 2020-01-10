@@ -17,13 +17,11 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class NoticeServiceImpl implements NoticeService{
-	@Setter(onMethod_ = @Autowired)
 	private NoticeMapper noticeMapper;
 
 	@Override
 	public void register(NoticeVO notice) {			//공지사항 등록
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	@Override

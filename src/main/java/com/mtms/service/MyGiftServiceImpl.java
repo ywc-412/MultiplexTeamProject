@@ -20,12 +20,9 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class MyGiftServiceImpl implements MyGiftService{
-	@Setter(onMethod_ = @Autowired)
-	private MyGiftMapper myGiftMapper;
-	
-	@Setter(onMethod_ = @Autowired)
-	private GiftAttachMapper giftAttachMapper;
-	
+
+	private MyGiftMapper myGiftMapper;	
+	private GiftAttachMapper giftAttachMapper;	
 	private MemberMapper memberMapper;
 	private GiftMapper giftMapper;
 	
