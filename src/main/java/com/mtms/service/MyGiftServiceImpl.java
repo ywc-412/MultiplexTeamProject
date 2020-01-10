@@ -30,32 +30,34 @@ public class MyGiftServiceImpl implements MyGiftService{
 	private GiftMapper giftMapper;
 	
 	@Override
-	public List<MyGiftVO> getList() {
+	public List<MyGiftVO> getListWithPaging(Criteria cri) {	//내 기프티콘 조회
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public MyGiftVO get(int myGiftNo) {
+	public MyGiftVO get(int myGiftNo) {			//내 기프티콘 상세보기
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean extend(MyGiftVO myGift) {
+	public boolean extend(MyGiftVO myGift) {	//내 기프티콘 연장
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean refund(int myGiftNo) {
+	public boolean refund(int myGiftNo) {		//내 기프티콘 환불
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public int getTotalCount(Criteria cri) {
+	public int getTotalCount(Criteria cri) {	//내 기프티콘 총 갯수
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 }
