@@ -43,7 +43,7 @@ public class ReviewReplyServiceImpl implements ReviewReplyService{
 	}
 
 	@Override
-	public int remove(int replyReportNo) {
+	public int remove(int replyNo) {
 //		public int remove(Long replyNo)
 		return 0;
 	}
