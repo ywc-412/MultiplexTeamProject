@@ -2,6 +2,7 @@ package com.mtms.mapper;
 
 import java.util.List;
 
+import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
 
 public interface MemberMapper {
@@ -14,7 +15,7 @@ public interface MemberMapper {
 	// 회원 비밀번호 찾기 -> 비밀번호 재설정
 	public int updatePw(MemberVO memberVO);
 	// 회원 목록 조회 하기
-	public List<MemberVO> getMemberList();
+	public List<MemberVO> getMemberList(Criteria cri);
 	// 회원 상세 보기
 	public MemberVO getMember(String memberId);
 	// 회원 삭제 하기

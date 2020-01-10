@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
 import com.mtms.mapper.MemberMapper;
 
@@ -34,7 +35,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> getMemberList() {
+	public List<MemberVO> getMemberList(Criteria cri) {
 		return memberMapper.getMemberList();
 	}
 
