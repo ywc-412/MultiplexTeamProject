@@ -76,13 +76,13 @@ public class UploadMovieFileController {
 	}
 	
 	//파일 섬네일 보여주기
-	@GetMapping("/display")
-	@ResponseBody
-	//파일을 받아야해서 바이트로 써준다
-	public ResponseEntity<byte[]> getFile(String fileName){
-		
-		return null;
-	}
+//	@GetMapping("/display")
+//	@ResponseBody
+//	//파일을 받아야해서 바이트로 써준다
+//	public ResponseEntity<byte[]> getFile(String fileName){
+//		
+//		return null;
+//	}
 	
 	//파일다운로드 처리
 //	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
