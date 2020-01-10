@@ -49,7 +49,7 @@ public class ReviewReplyReportServiceImpl implements ReviewReplyReportService{
 	}
 
 	@Override
-	public boolean remove(int replyReportNo) {
+	public boolean remove(int replyNo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
