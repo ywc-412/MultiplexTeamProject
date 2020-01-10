@@ -12,6 +12,4 @@ public interface GiftAttachMapper {
 	public void delete(String uuid);
 	
 	public void deleteAll(int giftNo);
-	
-	public List<GiftAttachVO> getOldFiles();
 }
