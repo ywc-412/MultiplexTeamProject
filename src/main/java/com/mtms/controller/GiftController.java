@@ -38,11 +38,6 @@ public class GiftController {
 		
 	}
 	
-	@GetMapping("pay")	//기프티콘 결제
-	public void pay(@RequestParam("giftNo") int giftNo, Model model) {
-		
-	}
-	
 	@PostMapping("register")	//기프티콘 등록(P)
 	public String register(GiftVO gvo, RedirectAttributes rttr) {
 		return null;
