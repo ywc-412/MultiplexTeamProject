@@ -27,6 +27,11 @@ public class MyGiftServiceImpl implements MyGiftService{
 	private GiftMapper giftMapper;
 	
 	@Override
+	public void register(MyGiftVO gift) {	//내 기프티콘 등록
+		// TODO Auto-generated method stub	
+	}
+	
+	@Override
 	public List<MyGiftVO> getListWithPaging(Criteria cri) {	//내 기프티콘 조회
 		// TODO Auto-generated method stub
 		return null;
@@ -55,6 +60,4 @@ public class MyGiftServiceImpl implements MyGiftService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
 }
