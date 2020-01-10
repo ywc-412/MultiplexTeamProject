@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.ScheduleVO;
 import com.mtms.service.ScheduleService;
-import com.mtms.service.ScreenService;
 import com.mtms.service.SeatService;
 
 import lombok.AllArgsConstructor;
@@ -34,7 +33,6 @@ public class ScheduleController {
 	
 	private ScheduleService scheduleService;
 	private SeatService seatService;
-	private ScreenService screenService;
 
 	@GetMapping("register")
 	public void register() {
@@ -76,6 +74,9 @@ public class ScheduleController {
 	public void get(Model model, Date scheduleDate) {
 		// 날짜별 상영스케줄 조회
 		// service.getList
+		// service.getList(scheduleDate, screenNo);
+		// service.getList(scheduleDate, screenNo);
+		// service.getList(scheduleDate, screenNo);
 	}
 	
 }

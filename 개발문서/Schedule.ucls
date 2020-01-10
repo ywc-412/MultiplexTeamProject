@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <interface id="1" language="java" name="com.mtms.mapper.ScheduleMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/ScheduleMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="148" x="825" y="601"/>    
+    <position height="-1" width="-1" x="879" y="504"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </interface>  
   <class id="2" language="java" name="com.mtms.controller.ScheduleController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/ScheduleController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="213" x="365" y="138"/>    
+    <position height="-1" width="-1" x="599" y="282"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.mtms.domain.ScheduleVO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/ScheduleVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="423" width="167" x="618" y="138"/>    
+    <position height="-1" width="-1" x="357" y="390"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <interface id="4" language="java" name="com.mtms.service.ScheduleService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ScheduleService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="155" x="595" y="601"/>    
+    <position height="-1" width="-1" x="624" y="504"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </interface>  
   <class id="5" language="java" name="com.mtms.service.ScheduleServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ScheduleServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="354" x="825" y="138"/>    
+    <position height="189" width="281" x="754" y="180"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

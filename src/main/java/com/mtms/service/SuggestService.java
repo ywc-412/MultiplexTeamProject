@@ -10,8 +10,6 @@ public interface SuggestService {
 	public void registerSuggest(SuggestVO svo);
 
 	// 건의사항 조회
-//	public List<SuggestVO> getSuggestList(Criteria cri);
-	
 	public List<SuggestVO> getSuggestListWithPaging(Criteria cri);
 	
 	// 건의사항 상세 보기

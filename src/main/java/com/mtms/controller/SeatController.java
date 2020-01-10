@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mtms.domain.ScheduleVO;
 import com.mtms.domain.SeatVO;
-import com.mtms.service.ScreenService;
 import com.mtms.service.SeatService;
 
 import lombok.AllArgsConstructor;
