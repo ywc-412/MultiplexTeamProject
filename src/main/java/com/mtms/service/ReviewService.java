@@ -11,7 +11,7 @@ public interface ReviewService {
 	public List<ReviewVO> getList();
 	public boolean modify(ReviewVO rvo);
 	public boolean remove(int reviewNo);
-	public ReviewVO get(int reviewNo,int reviewView);
+	public ReviewVO get(int reviewNo);
 	public void register(ReviewVO rvo);
 	
 }
