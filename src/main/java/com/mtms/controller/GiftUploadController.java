@@ -23,18 +23,15 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class GiftUploadController {
-//	@GetMapping("uploadForm")	//첨부파일을 업로드할 수 있는 화면을 처리
-//	public void uploadForm() {
-//		
-//	}
 	
-	@PostMapping("/uploadFormAction")	//첨부파일 업로드를 처리
-	public void uploadFormAction(MultipartFile[] uploadFile, Model model) {
+	@GetMapping("/uploadAjax")		//첨부파일 업로드 화면을 처리
+	public void uploadAjax() {
 		
 	}
 	
-	@PreAuthorize("isAuthenticated()")
-	@PostMapping(value = "/uploadAjaxAction")
+	
+	@PreAuthorize("isAuthenticated()")		
+	@PostMapping(value = "/uploadAjaxAction")		//첨부파일 업로드를 처리
 	@ResponseBody
 	public ResponseEntity<List<GiftAttachVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		return null;
@@ -46,12 +43,12 @@ public class GiftUploadController {
 		
 	}
 	
-	@GetMapping("/display")	//표시
-	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName) {
-		return null;
-		
-	}
+//	@GetMapping("/display")	//표시
+//	@ResponseBody
+//	public ResponseEntity<byte[]> getFile(String fileName) {
+//		return null;
+//		
+//	}
 	
 	@PreAuthorize("isAuthenticated()")	//파일삭제
 	@PostMapping("/deleteFile")
