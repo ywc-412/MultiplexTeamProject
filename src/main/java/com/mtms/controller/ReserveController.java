@@ -23,7 +23,6 @@ import com.mtms.domain.ScheduleVO;
 import com.mtms.service.MovieService;
 import com.mtms.service.ReserveService;
 import com.mtms.service.ScheduleService;
-import com.mtms.service.ScreenService;
 import com.mtms.service.SeatService;
 
 import lombok.AllArgsConstructor;
@@ -38,7 +37,6 @@ public class ReserveController {
 	private ReserveService reserveService;
 	private ScheduleService scheduleService;
 	private SeatService seatService;
-	private ScreenService screenService;
 	private MovieService movieService;
 	// movieServiceImpl에 예매수(todayNum) +1 하는 update 구현해야함..
 	
@@ -70,7 +68,7 @@ public class ReserveController {
 	@PostMapping("register")
 	public String register(ScheduleVO svo, RedirectAttributes rttr) {
 		// 예매하기 (시간) -> 예매하기 (좌석)
-		// -> /seat/getList
+		// -> seatService.
 		return null;
 	}
 
