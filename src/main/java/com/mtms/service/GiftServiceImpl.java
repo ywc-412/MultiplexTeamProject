@@ -18,16 +18,12 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class GiftServiceImpl implements GiftService{
-	@Setter(onMethod_= @Autowired)
 	private GiftMapper giftMapper;
-
-	@Setter(onMethod_ = @Autowired)
 	private GiftAttachMapper giftAttachMapper;
 	
 	@Override
 	public void register(GiftVO gift) {		//기프티콘 등록
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
@@ -59,7 +55,6 @@ public class GiftServiceImpl implements GiftService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 	@Override
 	public List<GiftAttachVO> getAttachList(int giftNo) {	//기프티콘 사진 등록
