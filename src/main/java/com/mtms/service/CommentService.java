@@ -18,7 +18,7 @@ public interface CommentService {
 	public List<CommentVO> getList(@Param("cri") Criteria cri, @Param("movieNo") int movieNo);
 	
 	//회원별 한줄평 조회
-	public List<CommentVO> getList(@Param("cri") Criteria cri, @Param("memberId") String memberId);
+	public List<CommentVO> myList(@Param("cri") Criteria cri, @Param("memberId") String memberId);
 	
 	//한줄평 수정
 	public int modify(CommentVO comment);

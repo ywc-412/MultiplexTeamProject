@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mtms.domain.CommentReportVO;
 import com.mtms.domain.Criteria;
 import com.mtms.service.CommentReportService;
+import com.mtms.service.CommentService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -24,6 +25,7 @@ import lombok.extern.log4j.Log4j;
 public class CommentReportController {
 	
 	private CommentReportService commentReportService;
+	private CommentService commentService;
 	
 	//한줄평 신고 상세보기(보여주기) 
 	@GetMapping("get")
@@ -33,7 +35,7 @@ public class CommentReportController {
 	
 	//한줄평 신고 삭제 처리
 	@GetMapping("remove")
-	public String remove(@RequestParam("commentReportNo") int commentReportNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
+	public String remove(@RequestParam("commentNo") int commentNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
 		
 		return null;
 	}

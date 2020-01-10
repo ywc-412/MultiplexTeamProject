@@ -31,6 +31,13 @@ public class CommentServiceImpl implements CommentService{
 		return null;
 	}
 	
+	//내 한줄평 조회
+	@Override
+	public List<CommentVO> myList(Criteria cri, String memberId) {
+		
+		return null;
+	}
+	
 	//한줄평 수정
 	@Override
 	public int modify(CommentVO comment) {
@@ -59,11 +66,6 @@ public class CommentServiceImpl implements CommentService{
 		return null;
 	}
 	
-	//내 한줄평 조회
-	@Override
-	public List<CommentVO> getList(Criteria cri, String memberId) {
-		
-		return null;
-	}
+	
 	
 }

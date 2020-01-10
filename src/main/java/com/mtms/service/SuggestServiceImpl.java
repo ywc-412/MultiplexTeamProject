@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class SuggestServiceImpl implements SuggestService{
-	@Setter(onMethod_ = @Autowired)
+
 	private SuggestMapper suggestMapper;
 	private MemberMapper memberMapper;
 
@@ -46,11 +46,11 @@ public class SuggestServiceImpl implements SuggestService{
 		return 0;
 	}
 
-	@Override
-	public List<SuggestVO> getSuggestList(Criteria cri) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<SuggestVO> getSuggestList(Criteria cri) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public List<SuggestVO> getSuggestListWithPaging(Criteria cri) {

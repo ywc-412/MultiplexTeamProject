@@ -36,17 +36,17 @@ public class ReviewReplyReportServiceImpl implements ReviewReplyReportService{
 		return null;
 	}
 
-	@Override
-	public List<ReplyReportVO> getList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<ReplyReportVO> getList() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
-	@Override
-	public boolean modify(ReplyReportVO rpvo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public boolean modify(ReplyReportVO rpvo) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
 	@Override
 	public boolean remove(int replyNo) {

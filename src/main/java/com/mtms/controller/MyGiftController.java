@@ -47,13 +47,13 @@ public class MyGiftController {
 	
 	@PostMapping("extend")	//내 기프티콘 기간연장(P)
 	public String extend(MyGiftVO mvo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		return null;	
+		return null;
 	}
 	
-	@GetMapping("extend")	//내 기프티콘 기간연장(G)
-	public void extend() {
-		
-	}
+//	@GetMapping("extend")	//내 기프티콘 기간연장(G)
+//	public void extend() {
+//		
+//	}
 	
 	@PostMapping("refund")	//내 기프티콘 환불
 	public String refund(int myGiftNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {

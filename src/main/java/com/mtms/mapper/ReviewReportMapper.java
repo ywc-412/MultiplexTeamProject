@@ -10,9 +10,9 @@ import com.mtms.domain.ReviewReportVO;
 public interface ReviewReportMapper {
 	public int getTotalCount(Criteria cri);
 	public List<ReviewReportVO> getListWithPaging(Criteria cri);
-	public void insertSelectKey(ReviewReportVO rrvo);							
+//	public void insertSelectKey(ReviewReportVO rrvo);							
 	public void insert(ReviewReportVO rrvo);
-	public int update(ReviewReportVO rrvo);
+//	public int update(ReviewReportVO rrvo);
 	public int delete(int reviewNo);
 	public ReviewReportVO read(int reviewReportNo);
 

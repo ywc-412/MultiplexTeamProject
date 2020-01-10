@@ -17,18 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mtms.domain.Criteria;
 import com.mtms.domain.ReserveVO;
 import com.mtms.domain.ScheduleVO;
-import com.mtms.service.MemberServiceImpl;
 import com.mtms.service.MovieService;
-import com.mtms.service.MovieServiceImpl;
 import com.mtms.service.ReserveService;
-import com.mtms.service.ReserveServiceImpl;
 import com.mtms.service.ScheduleService;
-import com.mtms.service.ScheduleServiceImpl;
 import com.mtms.service.ScreenService;
 import com.mtms.service.SeatService;
-import com.mtms.service.SeatServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -40,10 +36,10 @@ import lombok.extern.log4j.Log4j;
 public class ReserveController {
 	
 	private ReserveService reserveService;
-//	private ScheduleService scheduleService;
-//	private SeatService seatService;
-//	private ScreenService screenService;
-//	private MovieService movieService;
+	private ScheduleService scheduleService;
+	private SeatService seatService;
+	private ScreenService screenService;
+	private MovieService movieService;
 	// movieServiceImpl에 예매수(todayNum) +1 하는 update 구현해야함..
 	
 	@GetMapping("get")
@@ -54,15 +50,16 @@ public class ReserveController {
 	}
 
 	@GetMapping("list")
-	public void list(Model model, String memberId) {
+	public void list(Model model, String memberId, Criteria cri) {
 		// 회원 별 예매내역 조회
 		// service.getList
 	}
 	
 	@PostMapping("refund")
-	public void refund(String reserveNo, Model model, RedirectAttributes rttr ) {
+	public String refund(String reserveNo, Model model, RedirectAttributes rttr ) {
 		// 예매 수정하기 (환불)
 		// service.refund
+		return reserveNo;
 	}
 	
 	@GetMapping("register")
