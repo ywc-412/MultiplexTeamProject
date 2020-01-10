@@ -7,6 +7,7 @@ import com.mtms.domain.MyGiftVO;
 import com.mtms.domain.NoticeVO;
 
 public interface MyGiftMapper {
+	
 	public List<MyGiftVO> getListWithPaging(Criteria cri);	//내 기프티콘 조회
 	
 	public MyGiftVO read(int mygiftNo); 					//내 기프티콘 상세보기

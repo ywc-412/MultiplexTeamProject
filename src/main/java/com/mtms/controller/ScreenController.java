@@ -29,9 +29,9 @@ public class ScreenController {
 	
 	private ScreenService screenService;
 	
-	@GetMapping("seat")
-	public void getSeat(int screenNo) {
-		// 상영관별 좌석번호 가져오기
+	@GetMapping("list")
+	public void list() {
+		// service.getList();
 	}
-
+	
 }

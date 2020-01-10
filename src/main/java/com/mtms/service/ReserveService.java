@@ -17,12 +17,6 @@ public interface ReserveService {
 	public void register(ReserveVO rvo);
 	
 	// 예매 수정하기 (환불완료라던가..)
-	public boolean modify(String reserveNum);
-	
-	// 예매된 좌석 리스트 가져오기
-	public List<String> getSeat(int screenNo, Date scheduleDate, String scheduleTime);
-	
-	// 예매된 총 좌석 수 가져오기
-	public int getNum(int screenNo, Date scheduleDate, String scheduleTime);
+	public boolean refund(String reserveNum);
 
 }
