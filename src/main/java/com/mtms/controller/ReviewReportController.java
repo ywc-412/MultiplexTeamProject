@@ -23,11 +23,11 @@ import lombok.extern.log4j.Log4j;
 public class ReviewReportController {
 	
 	private ReviewReportService reviweReportService;
-	
+
 	@PostMapping("remove")
-	 public String remove(int reviewReportNo,RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+	public String remove(int reviewReportNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		return null;
-		
+
 	}
 	@PostMapping("modify")
 	public String modify(ReviewReportVO rrvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
