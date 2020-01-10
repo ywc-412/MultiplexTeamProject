@@ -2,19 +2,20 @@ package com.mtms.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mtms.domain.Criteria;
+import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
 import com.mtms.service.GiftService;
-import com.mtms.service.GiftServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -67,6 +68,12 @@ public class GiftController {
 	public String remove(@RequestParam("giftNo") int giftNo, RedirectAttributes rttr) {
 		return null;
 		
+	}
+	
+	@GetMapping("getAttachList")	//기프티콘 사진 등록
+	@ResponseBody
+	public ResponseEntity<List<GiftAttachVO>> getAttachList(int giftNo) {		
+		return new ResponseEntity<>(giftService.getAttachList(giftNo), HttpStatus.OK);
 	}
 	
 }
