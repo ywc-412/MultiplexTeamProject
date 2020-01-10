@@ -38,7 +38,7 @@ public class ReviewController {
 		
 	}
 	@GetMapping({"get", "modify"})
-	public void get(Long reviewNo, Model model, @ModelAttribute("cri") Criteria cri) {
+	public void get(int reviewNo, Model model, @ModelAttribute("cri") Criteria cri) {
 		//게시물 수정 처리
 	}
 	@GetMapping("list")
