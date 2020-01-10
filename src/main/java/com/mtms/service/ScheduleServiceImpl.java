@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.mtms.mapper.MovieMapper;
 import com.mtms.mapper.ScheduleMapper;
-import com.mtms.mapper.ScreenMapper;
 import com.mtms.domain.ScheduleVO;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -19,9 +18,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ScheduleServiceImpl implements ScheduleService{
 	
-//	@Setter(onMethod_ = @Autowired)
 	private ScheduleMapper scheduleMapper;
-	private ScreenMapper screenMapper;
 	private MovieMapper movieMapper;
 
 	@Override
@@ -45,7 +42,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public List<String> getList(Date scheduleDate) {
+	public List<String> getList(Date scheduleDate){//, int screenNo) {
 		// TODO Auto-generated method stub
 		// mapper.getList
 		return null;

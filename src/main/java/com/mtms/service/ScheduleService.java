@@ -7,6 +7,12 @@ import com.mtms.domain.ScheduleVO;
 
 public interface ScheduleService {
 	
+	/*				 __
+	 * 		   .___(  .)<  duck
+	 * 			\____)
+	 * ~~~~~~~~~~~~~~
+	 */
+	
 	// 상영스케줄 등록
 	public void register(ScheduleVO rvo);
 	
@@ -17,6 +23,6 @@ public interface ScheduleService {
 	public boolean remove(int scheduleNo);
 	
 	// 날짜별 상영스케줄 조회
-	public List<String> getList(Date scheduleDate);
+	public List<String> getList(Date scheduleDate);//, int screenNo);
 
 }
