@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	
 	private MemberService memberService;
-	
+
 	@GetMapping("/join")
 	public void join() {
 		// 회원가입 화면 들어가기 위한 컨트롤러
