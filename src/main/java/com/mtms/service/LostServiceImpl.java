@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.LostVO;
@@ -45,6 +46,7 @@ public class LostServiceImpl implements LostService{
 	}
 
 	@Override
+	@Transactional
 	public boolean remove(int lostNo) {
 //		public boolean remove(LostVo lvo) 
 		return false;
@@ -52,8 +54,8 @@ public class LostServiceImpl implements LostService{
 
 	@Override
 	public LostVO get(int lostNo) {
-//		public LosstVO get(Long lostNo) 
-		return null;
+			lostMapper.updateView(lostNo);
+		return lostMapper.read(lostNo);
 	}
 
 	@Override
