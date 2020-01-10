@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class LostServiceImpl implements LostService{
-	@Setter(onMethod_= @Autowired)
+
 	private LostMapper lostMapper;
 
 	@Override

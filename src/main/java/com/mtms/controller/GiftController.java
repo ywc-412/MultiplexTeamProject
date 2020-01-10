@@ -55,7 +55,7 @@ public class GiftController {
 	}
 	
 	@GetMapping("modify")	//기프티콘 수정(G)
-	public void modify() {
+	public void modify(int giftNo, Model model) {
 		
 	}
 	

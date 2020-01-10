@@ -12,6 +12,7 @@ import com.mtms.domain.Criteria;
 import com.mtms.domain.ReviewReportVO;
 import com.mtms.service.ReviewReportService;
 import com.mtms.service.ReviewReportServiceImpl;
+import com.mtms.service.ReviewService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -23,25 +24,35 @@ import lombok.extern.log4j.Log4j;
 public class ReviewReportController {
 	
 	private ReviewReportService reviweReportService;
-
+	
 	@PostMapping("remove")
-	public String remove(int reviewReportNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		return null;
+	 public String remove(int reviewNo,RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 
-	}
-	@PostMapping("modify")
-	public String modify(ReviewReportVO rrvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		return null;
-		
 	}
-	@GetMapping({"get", "modify"})
+	
+//	@PostMapping("modify")
+//	public String modify(ReviewReportVO rrvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+//		return null;
+//		
+//	}
+	
+//	@GetMapping({"get", "modify"})
+	@GetMapping("get")
 	public void get(int reviewReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
 		
 	}
+	
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
 		
 	}
+	
+	@GetMapping("register")
+	public void register() {
+		
+	}
+	
 	@PostMapping("register")
 	public String register(ReviewReportVO rrvo, RedirectAttributes rttr) {
 		return null;

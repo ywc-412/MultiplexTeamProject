@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.mtms.domain.ReplyPageDTO;
 import com.mtms.domain.ReplyVO;
 import com.mtms.service.ReviewReplyService;
-import com.mtms.service.ReviewReplyServiceImpl;
-import com.mtms.service.ReviewServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -38,7 +36,7 @@ public class ReviewReplyController {
 	@PostMapping(value = "new",
 					 consumes = "application/json",
 					 produces = MediaType.TEXT_PLAIN_VALUE)
-		public ResponseEntity<String> register(@RequestBody ReplyVO revo){
+	public ResponseEntity<String> register(@RequestBody ReplyVO revo){
 		//등록하기위한 메소드
 			return null;
 		

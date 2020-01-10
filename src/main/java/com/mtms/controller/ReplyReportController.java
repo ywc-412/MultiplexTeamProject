@@ -28,21 +28,26 @@ public class ReplyReportController {
 	private ReviewReplyService replyReportService;
 	
 	@PostMapping("remove")
-	 public String remove(int ReplyReportNo,RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+	 public String remove(int ReplyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		return null;
 		
 	}
-	@PostMapping("modify")
-	public String modify(ReplyReportVO rpvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		return null;
-		
-	}
-	@GetMapping({"get", "modify"})
+//	@PostMapping("modify")
+//	public String modify(ReplyReportVO rpvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+//		return null;
+//		
+//	}
+//	@GetMapping({"get", "modify"})
+	@GetMapping("get")
 	public void get(int ReplyReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
 		
 	}
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
+		
+	}
+	@GetMapping("register")
+	public void register() {
 		
 	}
 	@PostMapping("register")

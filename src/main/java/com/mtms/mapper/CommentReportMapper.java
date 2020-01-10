@@ -14,7 +14,7 @@ public interface CommentReportMapper {
 	public List<CommentReportVO> getListWithPaging(Criteria cri);
 	
 	//한줄평 신고 삭제
-	public int delete(int commentReportNo);
+	public int delete(int commentNo);
 	
 	//한줄평 신고 상세보기
 	public CommentReportVO read(int commentReportNo);

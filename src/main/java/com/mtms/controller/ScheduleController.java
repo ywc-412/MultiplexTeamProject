@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.ScheduleVO;
 import com.mtms.service.ScheduleService;
-import com.mtms.service.ScheduleServiceImpl;
+import com.mtms.service.ScreenService;
 import com.mtms.service.SeatService;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +33,8 @@ import lombok.extern.log4j.Log4j;
 public class ScheduleController {
 	
 	private ScheduleService scheduleService;
+	private SeatService seatService;
+	private ScreenService screenService;
 
 	@GetMapping("register")
 	public void register() {

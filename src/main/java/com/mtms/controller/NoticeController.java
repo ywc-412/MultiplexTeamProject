@@ -51,7 +51,7 @@ public class NoticeController {
 	}
 	
 	@GetMapping("modify")	//공지사항 수정(G)
-	public void modify() {
+	public void modify(Model model, int noticeNo) {
 		
 	}
 	

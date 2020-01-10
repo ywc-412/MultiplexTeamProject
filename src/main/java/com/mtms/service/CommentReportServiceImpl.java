@@ -30,7 +30,7 @@ public class CommentReportServiceImpl implements CommentReportService{
 	
 	//제거
 	@Override
-	public boolean remove(int commentReportNo) {
+	public boolean remove(int commentNo) {
 		
 		return false;
 	}

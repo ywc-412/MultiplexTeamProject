@@ -47,7 +47,7 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 
 	@Override
-	public boolean refund(String reserveNum) {
+	public boolean refund(String reserveNo) {
 		// TODO Auto-generated method stub
 		//mapper.update
 		return false;
