@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.domain.ScreenVO;
 import com.mtms.mapper.ScreenMapper;
 
 import lombok.AllArgsConstructor;
@@ -19,14 +20,8 @@ public class ScreenServiceImpl implements ScreenService{
 	private ScreenMapper screenMapper;
 
 	@Override
-	public List<String> getSeat(int screenNo) {
+	public List<ScreenVO> getList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-//	@Override
-//	public int getNum(int screenNo) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
 }

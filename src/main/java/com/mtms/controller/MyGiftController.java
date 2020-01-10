@@ -24,6 +24,17 @@ public class MyGiftController {
 	
 	private MyGiftService myGiftService;
 	
+	@PostMapping("register")	//내 기프티콘 등록(P)
+	public String register(MyGiftVO mvo, RedirectAttributes rttr) {
+		return null;
+		
+	}
+	
+	@GetMapping("register")	//내 기프티콘 등록(G)
+	public void register() {
+	
+	}
+	
 	@GetMapping("list")//내 기프티콘 목록조회
 	public void list(Criteria cri, Model model) {
 		

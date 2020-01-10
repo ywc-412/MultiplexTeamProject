@@ -29,36 +29,27 @@ public class ReserveServiceImpl implements ReserveService{
 	@Override
 	public ReserveVO get(String reserveNo) {
 		// TODO Auto-generated method stub
+		// mapper.read
 		return null;
 	}
 
 	@Override
 	public List<ReserveVO> getList(String memberId) {
 		// TODO Auto-generated method stub
+		//mapper.getList
 		return null;
 	}
 
 	@Override
 	public void register(ReserveVO rvo) {
 		// TODO Auto-generated method stub
-		
+		// mapper.insert
 	}
 
 	@Override
-	public boolean modify(String reserveNum) {
+	public boolean refund(String reserveNum) {
 		// TODO Auto-generated method stub
+		//mapper.update
 		return false;
-	}
-
-	@Override
-	public List<String> getSeat(int screenNo, Date scheduleDate, String scheduleTime) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getNum(int screenNo, Date scheduleDate, String scheduleTime) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

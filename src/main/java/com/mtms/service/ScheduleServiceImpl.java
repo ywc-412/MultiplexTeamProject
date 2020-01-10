@@ -26,24 +26,28 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	@Override
 	public void register(ScheduleVO rvo) {
-		// 상영스케줄 등록 화면으로 이동
+		// 상영스케줄 등록
+		// mapper.insert
 	}
 
 	@Override
 	public boolean modify(int scheduleNo) {
 		// TODO Auto-generated method stub
+		// mapper.update
 		return false;
 	}
 
 	@Override
 	public boolean remove(int scheduleNo) {
 		// TODO Auto-generated method stub
+		// mapper.delete
 		return false;
 	}
 
 	@Override
 	public List<String> getList(Date scheduleDate) {
 		// TODO Auto-generated method stub
+		// mapper.getList
 		return null;
 	}
 }

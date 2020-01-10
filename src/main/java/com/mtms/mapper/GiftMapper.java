@@ -10,8 +10,6 @@ public interface GiftMapper {
 	
 	public List<GiftVO> getList(); //기프티콘 조회
 	
-	public GiftVO pay(int giftNo);	//기프티콘 결제완료
-	
 	public GiftVO read(int giftNo); //기프티콘 상세보기
 	
 	public int update(GiftVO gift); //기프티콘 수정
