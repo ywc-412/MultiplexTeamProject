@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <interface id="1" language="java" name="com.mtms.mapper.ScheduleMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/ScheduleMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="727" y="555"/>    
+    <position height="135" width="148" x="825" y="601"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </interface>  
   <class id="2" language="java" name="com.mtms.controller.ScheduleController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/ScheduleController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="535" y="304"/>    
+    <position height="189" width="213" x="365" y="138"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.mtms.domain.ScheduleVO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/ScheduleVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="276" y="421"/>    
+    <position height="423" width="167" x="618" y="138"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <interface id="4" language="java" name="com.mtms.service.ScheduleService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ScheduleService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="495" y="538"/>    
+    <position height="135" width="155" x="595" y="601"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,65 +39,31 @@
   </interface>  
   <class id="5" language="java" name="com.mtms.service.ScheduleServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/ScheduleServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="417" x="713" y="186"/>    
+    <position height="207" width="354" x="825" y="138"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="6" language="java" name="com.mtms.mapper.MovieMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/MovieMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="995" y="567"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="7" language="java" name="com.mtms.mapper.ScreenMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/ScreenMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1249" y="519"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <association id="8">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="9" name="movieMapper"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="11">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="12" name="scheduleMapper"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="14">    
+  <realization id="6">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <association id="15">    
+  <association id="7">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="16" name="scheduleService"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+      <attribute id="8" name="scheduleService"/>      
+      <multiplicity id="9" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="18">    
+  <association id="10">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="19" name="screenMapper"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
+      <attribute id="11" name="scheduleMapper"/>      
+      <multiplicity id="12" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

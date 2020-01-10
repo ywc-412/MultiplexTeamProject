@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mtms.domain.ScheduleVO;
 import com.mtms.service.ScheduleService;
 import com.mtms.service.ScheduleServiceImpl;
+import com.mtms.service.SeatService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -36,13 +37,16 @@ public class ScheduleController {
 	@GetMapping("register")
 	public void register() {
 		// 상영스케줄 등록 화면으로 이동
+		
 	}
 	
 	@PostMapping("register")
-	public void register(ScheduleVO svo) {
+	public void register(ScheduleVO scheduleVO) {
 		// 상영스케줄 등록 화면에서 상영스케줄 insert
 		// 모달창에서 '추가' 버튼 누르는 순간에 등록하는 거라서 VO 하나씩 가지고 감
 		// 모달창 뜰 때, hidden으로 날짜 값 모달 창에 보내야해
+		
+		// service.register
 	}
 	
 //	@GetMapping("modify")
@@ -51,22 +55,25 @@ public class ScheduleController {
 //	}
 	
 	@PostMapping("modify")
-	public void modify(ScheduleVO svo) {
+	public void modify(ScheduleVO scheduleVO) {
 		// 상영스케줄 수정 화면에서 상영스케줄 update
 		// 모달창에서 '수정'버튼 누르는 순간에 수정 VO
 		// 모달창 뜰 때, hidden으로 날짜 값 모달 창에 보내야해
+		// service.modify
 	}
 	
 	@PostMapping("remove")
-	public String remove(Date scheduleDate, RedirectAttributes re) {
+	public String remove(Date scheduleDate, RedirectAttributes rttr) {
 		//  상영스케줄 삭제
 		// scheduleDate 같은 게 여러 개니까 한번에 삭제~
+		// service.remove
 		return null;
 	}
 	
 	@GetMapping({"get", "modify"})
 	public void get(Model model, Date scheduleDate) {
 		// 날짜별 상영스케줄 조회
+		// service.getList
 	}
 	
 }
