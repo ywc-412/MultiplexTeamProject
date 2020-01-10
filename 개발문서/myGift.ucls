@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <interface id="1" language="java" name="com.mtms.service.MyGiftService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/MyGiftService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="744" y="746"/>    
+    <position height="-1" width="-1" x="779" y="731"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="com.mtms.mapper.MyGiftMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/MyGiftMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="927" y="500"/>    
+    <position height="-1" width="-1" x="1082" y="466"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,32 +30,23 @@
   </interface>  
   <interface id="4" language="java" name="com.mtms.mapper.GiftMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/GiftMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="999" y="310"/>    
+    <position height="-1" width="-1" x="1069" y="284"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="5" language="java" name="com.mtms.mapper.GiftAttachMapper" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/mapper/GiftAttachMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="375" y="111"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="6" language="java" name="com.mtms.controller.MyGiftController" project="sCinema" 
+  <class id="5" language="java" name="com.mtms.controller.MyGiftController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/MyGiftController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1026" y="709"/>    
+    <position height="-1" width="-1" x="1089" y="669"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="com.mtms.domain.MyGiftVO" project="sCinema" 
+  <class id="6" language="java" name="com.mtms.domain.MyGiftVO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/MyGiftVO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="503" y="554"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -64,112 +55,122 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <class id="7" language="java" name="com.mtms.domain.GiftVO" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/domain/GiftVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="191" y="310"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <class id="8" language="java" name="com.mtms.controller.GiftUploadController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/GiftUploadController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="187" y="652"/>    
+    <position height="-1" width="-1" x="274" y="643"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="com.mtms.domain.GiftAttachVO" project="sCinema" 
+  <interface id="9" language="java" name="com.mtms.mapper.GiftAttachMapper" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/mapper/GiftAttachMapper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="787" y="370"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" name="com.mtms.domain.GiftAttachVO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/GiftAttachVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="182" y="247"/>    
+    <position height="-1" width="-1" x="305" y="349"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="10">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="11" name="giftAttachMapper">        
-        <position height="0" width="0" x="-354" y="-404"/>      
-      </attribute>      
-      <multiplicity id="12" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-354" y="-404"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="7"/>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
   </dependency>  
-  <association id="14">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="15" name="attachList">        
-        <position height="0" width="0" x="-181" y="10"/>      
-      </attribute>      
-      <multiplicity id="16" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-181" y="10"/>      
-      </multiplicity>    
+  <association id="12">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="13" name="giftAttachMapper"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
+  <association id="15">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="16" name="attachList"/>      
+      <multiplicity id="17" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="18">    
-    <end type="SOURCE" refId="6" navigable="false">      
+    <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="19" name="myGiftService">        
-        <position height="0" width="0" x="-376" y="585"/>      
+        <position height="0" width="0" x="-341" y="570"/>      
       </attribute>      
       <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-376" y="585"/>      
+        <position height="0" width="0" x="-341" y="570"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="21">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <association id="23">    
+  <association id="21">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="24" name="giftMapper">        
-        <position height="0" width="0" x="51" y="-101"/>      
+      <attribute id="22" name="myGiftMapper">        
+        <position height="0" width="0" x="617" y="-89"/>      
       </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="51" y="-101"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="27">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <realization id="28">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
-  <association id="29">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="30" name="myGiftMapper">        
-        <position height="0" width="0" x="462" y="-55"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="462" y="-55"/>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="617" y="-89"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="25">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="26" name="attachList"/>      
+      <multiplicity id="27" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="28">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <dependency id="29">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="30">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="31" name="giftMapper">        
+        <position height="0" width="0" x="121" y="-127"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="121" y="-127"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
