@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.14" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.mtms.service.SuggestServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/SuggestServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="776" y="280"/>    
+    <position height="-1" width="-1" x="760" y="193"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <interface id="2" language="java" name="com.mtms.service.SuggestService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/SuggestService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="441" y="264"/>    
+    <position height="-1" width="-1" x="373" y="196"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </interface>  
   <interface id="3" language="java" name="com.mtms.mapper.SuggestMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/SuggestMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="780" y="501"/>    
+    <position height="-1" width="-1" x="847" y="522"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <class id="4" language="java" name="com.mtms.controller.SuggestController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/SuggestController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="437" y="489"/>    
+    <position height="-1" width="-1" x="292" y="497"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <interface id="5" language="java" name="com.mtms.mapper.MemberMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/MemberMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1081" y="279"/>    
+    <position height="-1" width="-1" x="1068" y="307"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </interface>  
   <class id="6" language="java" name="com.mtms.domain.SuggestVO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/SuggestVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="181" y="416"/>    
+    <position height="-1" width="-1" x="577" y="568"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,43 +58,59 @@
   <association id="7">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="8" name="suggestMapper">        
-        <position height="0" width="0" x="-199" y="279"/>      
+        <position height="0" width="0" x="-132" y="300"/>      
       </attribute>      
       <multiplicity id="9" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-199" y="279"/>      
+        <position height="0" width="0" x="-132" y="300"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="10">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
+  <dependency id="10">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
   <association id="11">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="12" name="suggestService">        
-        <position height="0" width="0" x="24" y="42"/>      
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="12" name="memberMapper">        
+        <position height="0" width="0" x="373" y="-205"/>      
       </attribute>      
       <multiplicity id="13" minimum="0" maximum="1">        
-        <position height="0" width="0" x="24" y="42"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="14">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="15" name="memberMapper">        
-        <position height="0" width="0" x="386" y="-233"/>      
-      </attribute>      
-      <multiplicity id="16" minimum="0" maximum="1">        
-        <position height="0" width="0" x="386" y="-233"/>      
+        <position height="0" width="0" x="373" y="-205"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="15">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="16" name="suggestService">        
+        <position height="0" width="0" x="-44" y="-26"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-44" y="-26"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="18">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

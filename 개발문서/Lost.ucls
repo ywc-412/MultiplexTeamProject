@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.mtms.controller.LostController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/LostController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="463" y="343"/>    
+    <position height="-1" width="-1" x="373" y="503"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.mtms.domain.LostVO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/LostVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="965" y="456"/>    
+    <position height="-1" width="-1" x="609" y="467"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="com.mtms.service.LostService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/LostService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="169" x="405" y="590"/>    
+    <position height="-1" width="-1" x="379" y="242"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <class id="4" language="java" name="com.mtms.service.LostServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/LostServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="243" width="186" x="655" y="127"/>    
+    <position height="-1" width="-1" x="813" y="244"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,33 +39,57 @@
   </class>  
   <interface id="5" language="java" name="com.mtms.mapper.LostMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/LostMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="222" x="619" y="590"/>    
+    <position height="-1" width="-1" x="825" y="498"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <realization id="6">    
+  <dependency id="6">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="7">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <association id="7">    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="8">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="8" name="lostMapper"/>      
-      <multiplicity id="9" minimum="0" maximum="1"/>    
+      <attribute id="9" name="lostMapper">        
+        <position height="0" width="0" x="95" y="-186"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="95" y="-186"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="10">    
+  <dependency id="11">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="12">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="11" name="lostService"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="13" name="lostService">        
+        <position height="0" width="0" x="-110" y="-442"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-110" y="-442"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="15">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

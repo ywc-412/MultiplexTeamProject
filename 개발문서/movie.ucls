@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.mtms.domain.Criteria" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/Criteria.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1580" y="345"/>    
+    <position height="-1" width="-1" x="1307" y="307"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.mtms.domain.PageDTO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/PageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1396" y="359"/>    
+    <position height="-1" width="-1" x="1123" y="321"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +22,7 @@
   <class id="3" language="java" name="com.mtms.controller.UploadMovieFileController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/UploadMovieFileController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="877" y="696"/>    
+    <position height="-1" width="-1" x="957" y="726"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +31,7 @@
   </class>  
   <class id="4" language="java" name="com.mtms.domain.MovieVO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/MovieVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1192" y="435"/>    
+    <position height="-1" width="-1" x="320" y="461"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +40,7 @@
   </class>  
   <class id="5" language="java" name="com.mtms.controller.MovieController" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/controller/MovieController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="478" y="374"/>    
+    <position height="-1" width="-1" x="600" y="729"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
   </class>  
   <interface id="6" language="java" name="com.mtms.service.MovieService" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/MovieService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="504" y="661"/>    
+    <position height="-1" width="-1" x="575" y="478"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   </interface>  
   <class id="7" language="java" name="com.mtms.service.MovieServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/MovieServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="852" y="397"/>    
+    <position height="-1" width="-1" x="871" y="236"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -67,7 +67,7 @@
   </class>  
   <interface id="8" language="java" name="com.mtms.mapper.MovieMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/MovieMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="904" y="118"/>    
+    <position height="-1" width="-1" x="576" y="150"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -76,51 +76,79 @@
   </interface>  
   <interface id="9" language="java" name="com.mtms.mapper.MovieAttachMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/MovieAttachMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="570" y="109"/>    
+    <position height="-1" width="-1" x="873" y="503"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <association id="10">    
+  <dependency id="10">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <realization id="13">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="14">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="15" name="movieService">        
+        <position height="0" width="0" x="71" y="-183"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="71" y="-183"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="11" name="movieAttachMapper"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="18" name="movieAttachMapper">        
+        <position height="0" width="0" x="303" y="394"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="303" y="394"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="13">    
+  <dependency id="20">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="21">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="14" name="movieMapper"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
+      <attribute id="22" name="movieMapper">        
+        <position height="0" width="0" x="-328" y="32"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-328" y="32"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="16">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <association id="17">    
+  <association id="24">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="18" name="cri">        
-        <position height="0" width="0" x="248" y="-360"/>      
+      <attribute id="25" name="cri">        
+        <position height="0" width="0" x="-25" y="-398"/>      
       </attribute>      
-      <multiplicity id="19" minimum="0" maximum="1">        
-        <position height="0" width="0" x="248" y="-360"/>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-25" y="-398"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="21" name="movieService"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
