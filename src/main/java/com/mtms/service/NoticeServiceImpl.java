@@ -21,37 +21,37 @@ public class NoticeServiceImpl implements NoticeService{
 	private NoticeMapper noticeMapper;
 
 	@Override
-	public void register(NoticeVO notice) {
+	public void register(NoticeVO notice) {			//공지사항 등록
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<NoticeVO> getList(Criteria cri) {
+	public List<NoticeVO> getList(Criteria cri) {	//공지사항 조회
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public NoticeVO get(int noticeNo) {				//공지사항 상세보기
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public NoticeVO get(int noticeNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean modify(NoticeVO notice) {
+	public boolean modify(NoticeVO notice) {		//공지사항 수정
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remove(int noticeNo) {
+	public boolean remove(int noticeNo) {			//공지사항 삭제	
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public int getTotalCount(Criteria cri) {
+	public int getTotalCount(Criteria cri) {	//공지사항 총 갯수
 		// TODO Auto-generated method stub
 		return 0;
 	}
