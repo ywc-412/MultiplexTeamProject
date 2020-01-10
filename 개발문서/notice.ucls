@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.mtms.controller.NoticeController" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/controller/NoticeController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="319" x="336" y="37"/>    
+  <interface id="1" language="java" name="com.mtms.service.NoticeService" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/NoticeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="410" y="397"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="com.mtms.service.NoticeServiceImpl" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/service/NoticeServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="710" y="130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="com.mtms.mapper.NoticeMapper" project="sCinema" 
+  <interface id="3" language="java" name="com.mtms.mapper.NoticeMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/NoticeMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="278" x="47" y="309"/>    
+    <position height="-1" width="-1" x="682" y="404"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="3" language="java" name="com.mtms.service.NoticeService" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/NoticeService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="211" x="365" y="309"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="4" language="java" name="com.mtms.service.NoticeServiceImpl" project="sCinema" 
-    file="/sCinema/src/main/java/com/mtms/service/NoticeServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="238" x="58" y="37"/>    
+  <class id="4" language="java" name="com.mtms.controller.NoticeController" project="sCinema" 
+    file="/sCinema/src/main/java/com/mtms/controller/NoticeController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="394" y="139"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,41 +39,33 @@
   </class>  
   <class id="5" language="java" name="com.mtms.domain.NoticeVO" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/domain/NoticeVO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="423" width="167" x="649" y="45"/>    
+    <position height="-1" width="-1" x="122" y="240"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="6">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="7" name="noticeService">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="8" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <realization id="6">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="7">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="8" name="noticeService"/>      
+      <multiplicity id="9" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="10">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="11" name="noticeMapper"/>      
+      <multiplicity id="12" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="9">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="10" name="noticeMapper">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="11" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="12">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
