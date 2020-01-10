@@ -13,7 +13,7 @@ public interface ReviewReportMapper {
 	public void insertSelectKey(ReviewReportVO rrvo);							
 	public void insert(ReviewReportVO rrvo);
 	public int update(ReviewReportVO rrvo);
-	public int delete(int reviewReportNo);
+	public int delete(int reviewNo);
 	public ReviewReportVO read(int reviewReportNo);
 
 }

@@ -11,6 +11,6 @@ public interface ReviewReplyReportMapper {
 	public void insertSelectKey( ReplyReportVO rpvo);							
 	public void insert(ReplyReportVO rpvo);
 	public int update(ReplyReportVO rpvo);
-	public int delete(int replyReportNo);
+	public int delete(int replyNo);
 	public ReplyReportVO read(int replyReportNo);
 }
