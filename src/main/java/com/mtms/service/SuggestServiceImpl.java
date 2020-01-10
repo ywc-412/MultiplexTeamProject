@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mtms.domain.Criteria;
 import com.mtms.domain.SuggestVO;
 import com.mtms.mapper.MemberMapper;
 import com.mtms.mapper.SuggestMapper;
@@ -28,12 +29,6 @@ public class SuggestServiceImpl implements SuggestService{
 	}
 
 	@Override
-	public List<SuggestVO> getSuggestList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public SuggestVO getSuggest(int suggestNo) {
 		// TODO Auto-generated method stub
 		return null;
@@ -47,6 +42,24 @@ public class SuggestServiceImpl implements SuggestService{
 
 	@Override
 	public int modifySuggest(SuggestVO svo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<SuggestVO> getSuggestList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<SuggestVO> getSuggestListWithPaging(Criteria cri) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
