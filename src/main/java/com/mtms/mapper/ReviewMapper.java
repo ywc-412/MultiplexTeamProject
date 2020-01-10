@@ -16,5 +16,6 @@ public interface ReviewMapper {
 	public int update(ReviewVO rvo);
 	public int delete(int reviewNo);
 	public ReviewVO read(int reviewNo);
+	public int updateView(int reviewView);
 
 }
