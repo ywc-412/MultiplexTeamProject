@@ -3,5 +3,27 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.commentMapper">
-
+	<select id="getCountByBno" resultType="int">
+	
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.mtms.domain.CommentVO">
+	
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.mtms.domain.CommentVO">
+	
+	</select>
+	
+	<update id="update">
+	
+	</update>
+	
+	<delete id="delete">
+	
+	</delete>
+	
+	<insert id="insert">
+	
+	</insert>
 </mapper>
