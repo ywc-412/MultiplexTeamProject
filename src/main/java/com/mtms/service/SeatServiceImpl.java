@@ -2,9 +2,12 @@ package com.mtms.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.mtms.domain.SeatVO;
 import com.mtms.mapper.SeatMapper;
 
+@Service
 public class SeatServiceImpl implements SeatService {
 	
 	private SeatMapper seatMapper;

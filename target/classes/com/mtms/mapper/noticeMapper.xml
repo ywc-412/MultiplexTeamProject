@@ -1,1 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mtms.mapper.NoticeMapper">
+	<select id="insertSelectKey" resultType="com.mtms.domain.NoticeVO">
+	
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.mtms.domain.NoticeVO">
+	
+	</select>
+	
+	<select id="read" resultType="com.mtms.domain.NoticeVO">
+	
+	</select>
+	
+	<update id="update">
+	
+	</update>
+	
+	<delete id="delete">
+	
+	</delete>
+	
+	<select id="getTotalCount" resultType="int">
+		
+	</select>
+	
+	<update id="viewUpdate">
+	
+	</update>
+</mapper>

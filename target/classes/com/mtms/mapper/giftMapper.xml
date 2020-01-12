@@ -10,4 +10,16 @@
 	<select id="getList" resultType="com.mtms.domain.GiftVO">
 	
 	</select>
+	
+	<select id="read" resultType="com.mtms.domain.GiftVO">
+	
+	</select>
+	
+	<update id="update">
+	
+	</update>
+	
+	<delete id="delete">
+	
+	</delete>
 </mapper>

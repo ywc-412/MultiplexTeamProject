@@ -2,7 +2,11 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mtms.mapper.MovieAttachMapper">
+<mapper namespace="com.mtms.mapper.SeatMapper">
+	<select id="getStatus" resultType="com.mtms.domain.SeatVO">
+	
+	</select>
+	
 	<insert id="insert">
 	
 	</insert>
@@ -11,11 +15,7 @@
 	
 	</delete>
 	
-	<select id="findByNo" resultType="com.mtms.domain.MovieAttachVO">
+	<update id="update">
 	
-	</select>
-	
-	<delete id="deleteAll">
-	
-	</delete>	
+	</update>
 </mapper>
