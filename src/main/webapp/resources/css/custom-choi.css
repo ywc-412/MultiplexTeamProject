@@ -1,0 +1,119 @@
+.custom-text-right {
+	float: right;
+}
+
+.custom-text-left {
+	float: left;
+}
+
+.custom-red-font {
+	color: red;
+}
+
+.custom-input {
+	height: 11px;
+	margin-bottom: 10%;
+}
+
+.custom-margin {
+	margin: 20px;
+}
+
+.custom-border-bottom {
+	border-bottom: 1px solid gray;
+}
+
+.custom-font-color {
+	color: white;
+}
+
+.custom-movie-title-font {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.custom-input-size {
+	width: 30%;
+}
+
+.custom-input-size-phone {
+	width: 20%;
+}
+
+.custom-my-auto {
+	position: relative;
+	top: 7px;
+}
+
+.custom-input-size-login {
+	height: 11px;
+	margin-bottom: 15%;
+	width: 90%;
+}
+
+.custom-input-color {
+	background-color: #F6F6F6;
+}
+
+
+.custom-border-left {
+	padding-left: 5%;
+	border-left: 2px solid gray;
+}
+
+.custom-login-button {
+	width: 100%;
+	height: 80%;
+}
+
+
+
+.custom-button {
+	width: 23%;
+}
+
+.custom-mypage-menu {
+	margin-top: 10px;
+	padding-left: 30px;
+	width: 50%;
+}
+
+.custom-mypage-menu-position {
+	position: relative;
+	right: 25px;
+}
+
+.unorderd-list
+li {
+	margin: 7px;
+}
+
+.unorderd-list
+li:hover {
+	margin: 7px;
+	text-decoration: underline;
+	text-underline-position: under;
+}
+
+.custom-active {
+	text-decoration: underline;
+	text-underline-position: under;
+}
+
+.custom-col-md {
+	width: 100%;
+	margin-left: 90%;
+	margin-top: 40%;
+}
+
+.custom-container {}
+
+.modal-backdrop {
+
+	z-index: -1;
+
+}
+
+.custom-input-color{
+	background-color: beige;
+}
