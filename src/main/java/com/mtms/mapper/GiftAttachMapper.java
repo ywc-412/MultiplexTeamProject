@@ -9,7 +9,7 @@ public interface GiftAttachMapper {
 	
 	public List<GiftAttachVO> findBygiftNo(int giftNo);
 	
-	public void delete(String uuid);
+	public void delete(String giftUuid);
 	
 	public void deleteAll(int giftNo);
 }

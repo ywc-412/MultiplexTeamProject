@@ -51,7 +51,7 @@ public class GiftUploadController {
 	@PreAuthorize("isAuthenticated()")	//파일삭제
 	@PostMapping("/deleteFile")
 	@ResponseBody
-	public ResponseEntity<String> deleteFile(String fileName, String type) {
+	public ResponseEntity<String> deleteFile(String giftFileName) {
 		return null;
 		
 	}

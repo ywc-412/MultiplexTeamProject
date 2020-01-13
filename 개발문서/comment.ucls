@@ -39,7 +39,7 @@
   </interface>  
   <class id="5" language="java" name="com.mtms.service.CommentServiceImpl" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/service/CommentServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="921" y="566"/>    
+    <position height="-1" width="-1" x="918" y="552"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <interface id="6" language="java" name="com.mtms.mapper.MemberMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/MemberMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1213" y="691"/>    
+    <position height="-1" width="-1" x="1223" y="690"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </interface>  
   <interface id="7" language="java" name="com.mtms.mapper.MovieMapper" project="sCinema" 
     file="/sCinema/src/main/java/com/mtms/mapper/MovieMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="847" y="778"/>    
+    <position height="-1" width="-1" x="921" y="771"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -85,10 +85,10 @@
   <association id="10">    
     <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="11" name="memberMapper">        
-        <position height="0" width="0" x="764" y="36"/>      
+        <position height="0" width="0" x="774" y="35"/>      
       </attribute>      
       <multiplicity id="12" minimum="0" maximum="1">        
-        <position height="0" width="0" x="764" y="36"/>      
+        <position height="0" width="0" x="774" y="35"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
@@ -117,10 +117,10 @@
   <association id="18">    
     <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="19" name="movieMapper">        
-        <position height="0" width="0" x="90" y="138"/>      
+        <position height="0" width="0" x="164" y="131"/>      
       </attribute>      
       <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="0" width="0" x="90" y="138"/>      
+        <position height="0" width="0" x="164" y="131"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
