@@ -18,6 +18,4 @@ public interface SeatMapper {
 	// 좌석 수정
 	public int update(List<SeatVO> seatList);
 	
-	
-
 }

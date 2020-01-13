@@ -16,7 +16,7 @@ public interface CommentMapper {
 	public List<CommentVO> getListWithPaging(@Param("cri") Criteria cri, @Param("movieNo") int movieNo);
 	
 	//내 한줄평 조회
-	public List<CommentVO> getListWithPaging(@Param("cri") Criteria cri, @Param("memberId") String memberId);
+	public List<CommentVO> myGetListWithPaging(@Param("cri") Criteria cri, @Param("memberId") String memberId);
 	
 	//한줄평 수정
 	public int update(CommentVO comment);
