@@ -70,49 +70,58 @@ CREATE SEQUENCE seq_schedule;
 -- 한나 ALTER END
 -- 한나 SQL END
 
-CREATE table notice (
- noticeNo number(10),
- noticeTitle varchar2(100) NOT NULL,
- noticeContent varchar2(1000) NOT NULL,
- noticeView number(10) default 0,
- noticeDate DATE default SYSDATE
+CREATE TABLE notice (
+ noticeNo NUMBER(10),
+ noticeTitle VARCHAR2(100) NOT NULL,
+ noticeContent VARCHAR2(1000) NOT NULL,
+ noticeView NUMBER(10) DEFAULT 0,
+ noticeDate DATE DEFAULT SYSDATE
 );
 
 -- 진주 SQL START
 CREATE TABLE gift(
-    giftNo number(10),
-    giftName varchar2(100) NOT NULL,
-    giftPrice number(10) NOT NULL,
-    giftSet varchar2(200) NOT NULL
+    giftNo NUMBER(10),
+    giftName VARCHAR2(100) NOT NULL,
+    giftPrice NUMBER(10) NOT NULL,
+    giftSet VARCHAR2(200) NOT NULL
 );
 
 CREATE TABLE myGift(
-    memberId varchar2(20) NOT NULL,
-    giftNo number(10) NOT NULL,
-    myGiftNo number(10),
-    status number(10) NOT NULL,
-    buyingDate Date default SYSDATE,
-    expireDate Date default SYSDATE + (INTERVAL '1' MONTH),
-    extendChk char(1) NOT NULL
+    memberId VARCHAR2(20) NOT NULL,
+    giftNo NUMBER(10) NOT NULL,
+    myGiftNo NUMBER(10),
+    status NUMBER(10) NOT NULL,
+    buyingDate DATE DEFAULT SYSDATE,
+    expireDate DATE DEFAULT SYSDATE + (INTERVAL '1' MONTH),
+    extendChk CHAR(1) NOT NULL
 );
 
 CREATE TABLE giftAttach(
-    giftUuid varchar2(100),
-    giftUploadPath varchar2(200) NOT NULL,
-    giftFileName varchar2(100) NOT NULL,
-    giftNo number(10) NOT NULL
+    giftUuid VARCHAR2(100),
+    giftUploadPath VARCHAR2(200) NOT NULL,
+    giftFileName VARCHAR2(100) NOT NULL,
+    giftNo NUMBER(10) NOT NULL
 );
 
 -- 진주 알터 START
-alter table notice add constraint NOTICE_PK primary key(noticeNo);
-alter table gift add constraint GIFT_PK primary key(giftNo);
-alter table myGift add constraint MYGIFT_PK primary key(myGiftNo);
-alter table myGift add constraint MYGIFT_FK1 foreign key (giftNo) references gift (giftNo);
-alter table myGift add constraint MYGIFT_FK2 foreign key (memberId) references member (memberId) ON DELETE SET NULL;
-alter table giftAttach constraint GIFTATTACH_PK primary key(giftUuid);
-alter table giftAttach constraint GIFTATTACH_FK foreign key(giftNo) references gift (giftNo) ON DELETE CASCADE;
+ALTER TABLE notice ADD CONSTRAINT NOTICE_PK PRIMARY KEY(noticeNo);
+ALTER TABLE gift ADD CONSTRAINT GIFT_PK PRIMARY KEY(giftNo);
+ALTER TABLE myGift ADD CONSTRAINT MYGIFT_PK PRIMARY KEY(myGiftNo);
+ALTER TABLE myGift ADD CONSTRAINT MYGIFT_FK1 FOREIGN KEY (giftNo) REFERENCES gift (giftNo);
+ALTER TABLE myGift ADD CONSTRAINT MYGIFT_FK2 FOREIGN KEY (memberId) REFERENCES member (memberId) ON DELETE SET NULL;
+ALTER TABLE giftAttach ADD CONSTRAINT GIFTATTACH_PK PRIMARY KEY(giftUuid);
+ALTER TABLE giftAttach ADD CONSTRAINT GIFTATTACH_FK FOREIGN KEY(giftNo) REFERENCES gift (giftNo) ON DELETE CASCADE;
 -- 진주 알터 END
 -- 진주 SQL END
 
-
+--DROP TABLE MEMBER;
+--DROP TABLE AUTH;
+--DROP TABLE GIFT;
+--DROP TABLE GIFTATTACH;
+--DROP TABLE MYGIFT;
+--DROP TABLE NOTICE;
+--DROP TABLE RESERVE;
+--DROP TABLE SCHEDULE;
+--DROP TABLE SEAT;
+--DROP TABLE SUGGEST;
 

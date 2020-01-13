@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: ywc41
 Build-Jdk: 1.8.0_231
-=======
-Built-By: sist
-Build-Jdk: 1.8.0_221
->>>>>>> fcfb807b5630a7e632a2be76b36906b0741c2753
 Created-By: Maven Integration for Eclipse
 
