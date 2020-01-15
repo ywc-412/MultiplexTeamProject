@@ -5,10 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 
 <%@ include file="../include/header.jsp" %>
-
-
-
-	list
+상영시간표 조회화면
 	
 	
 	
