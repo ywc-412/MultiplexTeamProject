@@ -15,7 +15,7 @@
 	
 	</select>
 	
-	<select id="insertSelectKey" resultType="com.mtms.ReviewVO">
+	<select id="insertSelectKey" resultType="com.mtms.domain.ReviewVO">
 	
 	</select>
 	
