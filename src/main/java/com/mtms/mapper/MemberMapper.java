@@ -10,6 +10,7 @@ public interface MemberMapper {
 	public MemberVO read(String memberId);
 	// 회원 가입 매퍼
 	public int insert(MemberVO memberVO);
+	public int insertAuth(String memberId);
 	// 회원 아이디 찾기
 	public String selectId(MemberVO memberVO);
 	// 회원 비밀번호 찾기 -> 비밀번호 재설정

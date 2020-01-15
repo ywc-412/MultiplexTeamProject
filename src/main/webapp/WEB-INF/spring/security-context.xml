@@ -9,7 +9,7 @@
 	<bean id="customAccessDenied" class="com.mtms.security.CustomAccessDeniedHandler"></bean>
 	<bean id="customLoginSuccess" class="com.mtms.security.CustomLoginSuccessHandler"></bean>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-	
+	<bean id="customUserDetailsService" class="com.mtms.security.CustomUserDetailsService"></bean>
 	
 	<security:http>
 		<security:intercept-url pattern="/sample/all"
@@ -20,18 +20,15 @@
 
 		<security:intercept-url pattern="/sample/admin"
 			access="hasRole('ROLE_ADMIN')" />
-		<security:form-login />
+		<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
 		<security:access-denied-handler
 			ref="customAccessDenied" />
 	</security:http>
 
 	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:jdbc-user-service data-source-ref="datasource" 
-			users-by-username-query="select memberId, memberPw from member where memberId = ?"
-			authorities-by-username-query="select memberId, memeberauth, from auth where memberId = ?"/>
-			
+		<security:authentication-provider user-service-ref="customUserDetailsService">
 			<security:password-encoder ref="bcryptPasswordEncoder"/>
+			
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>

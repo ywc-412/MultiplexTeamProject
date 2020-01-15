@@ -79,7 +79,7 @@
 								<button class="btn btn-primary pull-right" id="joinBtn">회원가입</button>
 							</div>
 							<div class="custom-margin">
-								<button class="btn btn-primary pull-right">로그인</button>
+								<button class="btn btn-primary pull-right" id="loginBtn">로그인</button>
 							</div>
 						</div>
 						<div class="col-12">
@@ -93,7 +93,15 @@
 	</header>
 	
 	<script>
-		$('joinBtn').on("click", function(){
-			location.href="/member/join";
-		});
+	
+		$(function(){
+			$('#joinBtn').on("click", function(){
+				location.href="/member/join";
+			});
+			
+			$('#loginBtn').on("click", function(){
+				location.href="/customLogin";
+			});
+		})
+		
 	</script>
