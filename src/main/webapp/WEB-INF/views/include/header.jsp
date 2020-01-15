@@ -27,6 +27,9 @@
 	<link rel="stylesheet" href="css/slicknav.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/custom-choi.css">
+	<link rel="stylesheet" href="css/custom-hanna.css">
+	<link rel="stylesheet" href="css/custom-hong.css">
+	<link rel="stylesheet" href="css/custom-lee.css">
 	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
