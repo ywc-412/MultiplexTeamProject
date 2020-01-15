@@ -15,19 +15,13 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-<!-- 		<property name="driverClassName" -->
-<!-- 			value="oracle.jdbc.OracleDriver"></property> -->
-<!-- 		<property name="jdbcUrl" -->
-<!-- 			value="jdbc:oracle:thin:@localhost:1521:XE"></property> -->
-
-		<!-- log4jdbc 설정 : PreparedStatement 할 때 ? 로 전달되는 내용 확인하기 위해 라이브러리 설정 -->
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
 			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
-		<property name="username" value="dev"></property>
+		<property name="username" value="team2"></property>
 		<property name="password" value="1111"></property>
 	</bean>	
 	
