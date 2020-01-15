@@ -21,23 +21,22 @@ import lombok.extern.log4j.Log4j;
 public class ReviewServiceImpl implements ReviewService{
 	@Setter(onMethod_ = @Autowired)
 	private ReviewMapper reviewMapper;
-	private MemberMapper memberMapper;
+//	private MemberMapper memberMapper;
 
 	@Override
 	public int getTotalCount(Criteria cri) {
-//		public int getTotalCount(Criteria cri) {}
+
 		return 0;
 	}
 
 	@Override
 	public List<ReviewVO> getList(Criteria cri) {
-//		public List<Review> getList(Criteria cri)
 		return null;
 	}
 
 	@Override
 	public List<ReviewVO> getList() {
-//		public List<Review> getList() 
+
 		return null;
 	}
 
@@ -49,20 +48,19 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public boolean remove(int reviewNo) {
-//		public boolean modify(Review rvo)
+
 		return false;
 	}
 
 	@Override
-	@Transactional
+//	@Transactional
 	public ReviewVO get(int reviewNo) {
 //		reviewMapper.updateView(reviewNo);
-		return reviewMapper.read(reviewNo);
+//		return reviewMapper.read(reviewNo);
 	}
 
 	@Override
 	public void register(ReviewVO rvo) {
-//		public void register(ReviewVo rvo)
 		
 	}
 

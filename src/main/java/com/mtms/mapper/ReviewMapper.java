@@ -8,7 +8,7 @@ import com.mtms.domain.Criteria;
 import com.mtms.domain.ReviewVO;
 
 public interface ReviewMapper {
-	public void updateReplyCnt(@Param("reviewNo ") int ReviewNo,@Param("amount") int amount);
+//	public void updateReplyCnt(@Param("reviewNo ") int ReviewNo,@Param("amount") int amount);
 	public int getTotalCount(Criteria cri);
 	public List<ReviewVO> getListWithPaging(Criteria cri);
 	public void insertSelectKey(ReviewVO rvo);							
