@@ -258,11 +258,7 @@ CREATE SEQUENCE seq_replyReport;
 CREATE SEQUENCE seq_lost;
 CREATE SEQUENCE seq_reply;
 CREATE SEQUENCE seq_review;
-<<<<<<< HEAD
 CREATE SEQUENCE SEQ_SUGGEST;
-
-COMMIT;
-=======
 
 --DROP TABLE AND DROP SEQUENCE--------------------------------------------------------------------------
 DROP TABLE AUTH;
@@ -296,4 +292,3 @@ DROP SEQUENCE SEQ_NOTICE;
 DROP SEQUENCE SEQ_SCHEDULE;
 
 
->>>>>>> c18da15250a6ce4fd0f7bc0d3d02ef430fb6ee8f
