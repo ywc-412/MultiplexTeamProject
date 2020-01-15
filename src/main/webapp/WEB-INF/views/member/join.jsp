@@ -16,32 +16,32 @@
 					<form action="#">
 						<div class="mt-10 custom-input">
 							<div>아이디</div>
-							<input type="text" name="first_name" class="single-input custom-text-right">
+							<input type="text" name="memberId" class="single-input custom-text-right">
 							<p class="custom-red-font custom-text-right">이미 사용 중인 id 입니다.</p>
 						</div><br>
 						<div class="mt-10 custom-input">
 							<div class="">이름</div>
-							<input type="text" name="first_name" class="single-input custom-text-right">
+							<input type="text" name="memberName" class="single-input custom-text-right">
 							<p class="custom-red-font custom-text-right">필수 입력 항목입니다.</p>
 						</div><br>
 						<div class="mt-10 custom-input">
 							<div>비밀번호</div>
-							<input type="password" name="first_name" class="single-input custom-text-right">
+							<input type="password" name="memberPw" class="single-input custom-text-right">
 							<p class="custom-red-font custom-text-right">영어 대소문자/ 숫자/ 특수문자의 조합으로 8자리 이상 입력해주세요</p>
 						</div><br>
 						<div class="mt-10 custom-input">
 							<div>비밀번호 확인</div>
-							<input type="password" name="first_name" class="single-input custom-text-right">
+							<input type="password" name="memberPwChk" class="single-input custom-text-right">
 							<p class="custom-red-font custom-text-right">비밀번호와 비밀번호 확인이 일치하지 않습니다.</p>
 						</div><br>
 						<div class="mt-10 custom-input">
 							<div>이메일</div>
-							<input type="text" name="first_name" class="single-input custom-text-left custom-input-size">
+							<input type="text" name="memberEmailFirst" class="single-input custom-text-left custom-input-size">
 							<div class="custom-text-left custom-my-auto">
 								@
 							</div>
 							<div class="default-select custom-text-left" id="default-select">
-								<select>
+								<select name="memberEmailSecond">
 									<option value="1">-직접 입력-</option>
 									<option value="1">naver.com</option>
 									<option value="1">gmail.com</option>
@@ -52,7 +52,7 @@
 						</div><br>
 						<div class="mt-10 custom-input">
 							<div>주소</div>
-							<input type="text" name="first_name" class="single-input custom-text-right">
+							<input type="text" name="memberAddress" class="single-input custom-text-right">
 							<p class="custom-red-font custom-text-right">필수 입력 항목입니다.</p>
 						</div><br>
 						<div class="mt-10 custom-input  align-middle">
