@@ -5,11 +5,11 @@ CREATE TABLE member (
     memberName VARCHAR2(15) NOT NULL,
     memberAddress VARCHAR2(100) NOT NULL,
     memberPhoneFirst VARCHAR2(20) NOT NULL,
-    memberPhoneSecond varhchar2(20) not null,
+    memberPhoneSecond varchar2(20) not null,
     memberPhoneThird varchar2(20) not null,
     memberBirth DATE NOT NULL,
     memberEmail VARCHAR2(100) NOT NULL,
-    memberEmailSecond varhcar2(100) not null
+    memberEmailSecond varchar2(100) not null
 );
 
 CREATE TABLE auth(
