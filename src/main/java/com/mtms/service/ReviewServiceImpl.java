@@ -56,7 +56,8 @@ public class ReviewServiceImpl implements ReviewService{
 //	@Transactional
 	public ReviewVO get(int reviewNo) {
 //		reviewMapper.updateView(reviewNo);
-//		return reviewMapper.read(reviewNo);
+		return reviewMapper.read(reviewNo);
+		
 	}
 
 	@Override
