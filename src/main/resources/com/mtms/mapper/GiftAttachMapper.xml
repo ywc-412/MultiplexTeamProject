@@ -3,13 +3,15 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.GiftAttachMapper">
+		<!-- 사진 파일 등록하기 -->
 	<insert id="insert">
-	
+		insert into giftAttach(giftUuid, giftUploadPath, giftFileName, giftNo)
+		values(#{giftUuid}, #{giftUploadPath}, #{giftFileName}, #{giftNo});
 	</insert>
 	
-	<select id="findBygiftNo" resultType="com.mtms.domain.GiftAttachVO">
-	
-	</select>
+	 <select id="findBygiftNo" resultType="com.mtms.domain.GiftAttachVO">
+	 	select * from giftAttach where giftNo = #{giftNo}
+	 </select>
 	
 	<delete id="delete">
 	

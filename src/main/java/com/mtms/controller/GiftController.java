@@ -30,7 +30,8 @@ public class GiftController {
 	
 	@GetMapping("list")	//기프티콘 목록
 	public void list(Model model) {
-		
+		log.info("GiftController list()");
+		model.addAttribute("list", giftService.getList());
 	}
 	
 	@GetMapping("get")	//기프티콘 상세보기
@@ -40,7 +41,9 @@ public class GiftController {
 	
 	@PostMapping("register")	//기프티콘 등록(P)
 	public String register(GiftVO gvo, RedirectAttributes rttr) {
-		return null;
+		giftService.register(gvo);
+		rttr.addAttribute("result", gvo.getGiftNo());	//추가적으로 새롭게 등록된 기프티콘 번호를 함께 전달
+		return "redirect:/gift/list";	
 		
 	}
 	
