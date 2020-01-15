@@ -22,7 +22,7 @@ public interface ScheduleService {
 	public boolean remove(int scheduleNo);
 	
 	// 날짜별 상영스케줄 조회
-//	public List<ScheduleVO> get(String scheduleDate);
-	public List<ScheduleVO> get(String scheduleDate, String screen);
+	public List<ScheduleVO> get(String scheduleDate);
+//	public List<ScheduleVO> get(String schedule, String screen);
 
 }

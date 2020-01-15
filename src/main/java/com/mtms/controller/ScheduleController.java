@@ -84,12 +84,17 @@ public class ScheduleController {
 			Date today = new Date();
 			SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
 			String formatToday = date.format(today);
-			
-			System.out.println(scheduleService.get(formatToday, "1관 3층").size());
+			scheduleDate = formatToday;
 
-			String screena = "1관 3층";
-//			model.addAttribute("schedule1", scheduleService.get(formatToday));
-			model.addAttribute("schedule1", scheduleService.get(formatToday, screena));
+//			String screena = "1관 3층";
+			System.out.println("schedule : " + scheduleDate);
+//			System.out.println("screena : " + screena);
+
+//			System.out.println(scheduleService.get(scheduleDate, screena).size());
+			System.out.println(scheduleService.get(scheduleDate).size());
+
+			model.addAttribute("schedule", scheduleService.get(scheduleDate));
+//			model.addAttribute("schedule1", scheduleService.get(scheduleDate, screena));
 //			model.addAttribute("schedule2", scheduleService.get(date.format(today), "2관 3층"));
 //			model.addAttribute("schedule3", scheduleService.get(date.format(today), "3관 3층"));
 			
