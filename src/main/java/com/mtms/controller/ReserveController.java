@@ -55,8 +55,8 @@ public class ReserveController {
 		// 초기화면 -> 예매하기 (시간) 화면으로 이동
 	}
 
-	@PostMapping("register")
-	public String register(ScheduleVO svo, RedirectAttributes rttr) {
+	@PostMapping("seat")
+	public String seat(ScheduleVO svo, RedirectAttributes rttr) {
 		// 예매하기 (시간) -> 예매하기 (좌석)
 		// -> seatService.
 		return null;
