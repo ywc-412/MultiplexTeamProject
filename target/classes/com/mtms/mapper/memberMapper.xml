@@ -7,7 +7,12 @@
 	
 	</select>
 	<insert id="insert">
-	
+		<!-- INSERT INTO 
+			member 
+		VALUES(#{memberId}, #{memberPw},#{memberName},
+				#{memberAddress},#{memberPhoneFirst},#{memberPhoneSecond},
+				#{memberPhoneThird}, #{memberBirth}, #{memberEmail},
+				#{memberEmailSecond}) -->
 	</insert>
 	
 	<select id="selectId" resultType="com.mtms.domain.MemberVO">

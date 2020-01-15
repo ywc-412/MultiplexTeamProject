@@ -40,6 +40,26 @@
 	width: 20%;
 }
 
+
+.custom-sg-title{
+	background: lightgray;
+	display: flow-root;
+    padding-left: -10px;
+	padding-top : 10px;
+    padding-bottom : 10px;
+}
+
+.custom-sg-font{
+	font-size: 20px;
+	font-weight: 800;
+}
+
+.custom-sg-font2{
+	margin-right: 20px;
+	font-size: 15px;
+	font-weight: 700;
+}
+
 .custom-my-auto {
 	position: relative;
 	top: 7px;
@@ -116,4 +136,80 @@ li:hover {
 
 .custom-input-color{
 	background-color: beige;
+}
+
+.custom-table-align{
+	text-align: center;
+}
+
+.custom-table-size table tr th{
+	width: 250px;
+}
+
+.custom-table-size2 {
+	width: 0px;
+	position: relative;
+	right: 50px;
+}
+
+.custom-table-margin{
+	margin-top: 30px;
+	margin-left: 30px;
+}
+
+.custom-table-margin2{
+	margin-top: 30px;
+	margin-left: 100px;
+}
+
+.custom-margin-suggest{
+	margin-right: 5%;
+}
+
+ 
+@media (max-width: 767px) {
+	.custom-mobile{
+		width: 400px;
+		position: relative;
+		right: 60px;
+	}
+	
+	.custom-th-size4{
+		width: 400px;
+		font-size: 0.9em;
+		position: relative;
+		right: 70px;
+	}
+	
+	.custom-th-size3{
+		width: 550px;
+		font-size: 0.9em;
+		position: relative;
+		right: 45%;
+	}
+}
+
+.custom-margin-sg-reg{
+	margin-right: 1%;
+}
+
+.custom-sg-pw-input{
+	height: 30px;
+}
+
+.custom-sg-get-left{
+	float: left;
+}
+
+.custom-sg-get-right{
+	margin-right: 10px;
+	float: right;
+}
+
+.custom-notice2{
+	width: 100%;
+}
+
+.custom-pagination{
+	width: 300px;
 }
