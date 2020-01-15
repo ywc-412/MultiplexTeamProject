@@ -39,13 +39,13 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public List<ScheduleVO> get(String scheduleDate){
-//	public List<ScheduleVO> get(String schedule, String screen){
+//	public List<ScheduleVO> get(String scheduleDate){
+	public List<ScheduleVO> get(String scheduleDate, String screen){
 		System.out.println("★ScheduleServiceImpl - get");
 		System.out.println("schedule : " + scheduleDate);
 //		System.out.println("screen : " + screen);
-//		List<ScheduleVO> list = scheduleMapper.get(schedule, screen);
-		List<ScheduleVO> list = scheduleMapper.get(scheduleDate);
+		List<ScheduleVO> list = scheduleMapper.get(scheduleDate, screen);
+//		List<ScheduleVO> list = scheduleMapper.get(scheduleDate);
 		return list;
 	}
 }

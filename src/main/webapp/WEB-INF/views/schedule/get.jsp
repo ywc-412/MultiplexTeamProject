@@ -12,8 +12,6 @@
 	
 
 	<jsp:useBean id="date" class="java.util.Date"/>
-<%-- 	<fmt:formatDate value="${today }" pattern="MM" var="month"/> --%>
-<%-- 	<fmt:formatDate value="${today }" pattern="dd" var="day"/> --%>
 	<c:set var="to" value="<%=new Date(new Date().getTime())%>"/>
 	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
 	<c:set var="tonext" value="<%=new Date(new Date().getTime() + 60*60*48*1000)%>"/>
@@ -37,8 +35,7 @@
 	
 	<!-- 상영시간표  -->
 	<c:set var="loop_flag" value="false"/>
-	<c:set var="loop_flag2" value="false"/>
-	<c:forEach items="${schedule }" var="s">
+	<c:forEach items="${schedule1 }" var="s">
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
@@ -47,53 +44,51 @@
 				<c:set var="loop_flag" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule }" var="s" varStatus="status">
-						<c:if test="${not loop_flag2 }">
-							<c:if test="${status.count == 6}">
-								<c:set var="loop_flag2" value="true"/>
-							</c:if>
+					<c:forEach items="${schedule1 }" var="s" >
 							<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
-						</c:if>
 					</c:forEach>
 				</div>
 			</div>
 		</c:if>
 	</c:forEach>
 	
+	<c:set var="loop_flag" value="false"/>
+	<c:set var="loop_flag2" value="false"/>
+	<c:forEach items="${schedule2 }" var="s">
+		<c:if test="${not loop_flag }">
+			<div class="hanna_container">
+				<br>
+				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
+				<div class="hanna_schedule_screen"> 2관 3층 </div><br>
+				<c:set var="loop_flag" value="true"/>
+				<hr>
+				<div class="hanna_schedule_time_wrap">
+					<c:forEach items="${schedule2 }" var="s">
+						<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+					</c:forEach>
+				</div>
+			</div>
+		</c:if>
+	</c:forEach>
 	
-	
-	
-	
-	
-	<div class="hanna_container">
-		<br>
-		<div class="hanna_schedule_movie"> 미드웨이 </div>
-		<div class="hanna_schedule_screen"> 2관 3층 </div>
-		<hr>
-		<div class="hanna_schedule_time_wrap">
-			<div class="hanna_schedule_time"> 09:00 </div>
-			<div class="hanna_schedule_time"> 11:00 </div>
-			<div class="hanna_schedule_time"> 13:00 </div>
-			<div class="hanna_schedule_time"> 15:00 </div>
-			<div class="hanna_schedule_time"> 17:00 </div>
-			<div class="hanna_schedule_time"> 19:00 </div>
-		</div>
-	</div>
-	
-<!-- 	<div class="hanna_container"> -->
-<!-- 		<br> -->
-<!-- 		<div class="hanna_schedule_movie"> 백두산 </div> -->
-<!-- 		<div class="hanna_schedule_screen"> 3관 3층 </div> -->
-<!-- 		<hr> -->
-<!-- 		<div class="hanna_schedule_time_wrap"> -->
-<!-- 			<div class="hanna_schedule_time"> 09:30 </div> -->
-<!-- 			<div class="hanna_schedule_time"> 11:30 </div> -->
-<!-- 			<div class="hanna_schedule_time"> 13:30 </div> -->
-<!-- 			<div class="hanna_schedule_time"> 15:30 </div> -->
-<!-- 			<div class="hanna_schedule_time"> 17:30 </div> -->
-<!-- 			<div class="hanna_schedule_time"> 19:30 </div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
+	<c:set var="loop_flag" value="false"/>
+	<c:set var="loop_flag2" value="false"/>
+	<c:forEach items="${schedule3 }" var="s">
+		<c:if test="${not loop_flag }">
+			<div class="hanna_container">
+				<br>
+				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
+				<div class="hanna_schedule_screen"> 3관 3층 </div><br>
+				<c:set var="loop_flag" value="true"/>
+				<hr>
+				<div class="hanna_schedule_time_wrap">
+					<c:forEach items="${schedule3 }" var="s">
+						<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+					</c:forEach>
+				</div>
+			</div>
+		</c:if>
+	</c:forEach>
 	<!-- 상영시간표 END -->
 
 	<!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->

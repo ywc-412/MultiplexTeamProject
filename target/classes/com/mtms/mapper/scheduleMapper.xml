@@ -31,7 +31,7 @@
 	
 	<select id="get" resultMap="scheduleMap">
 		SELECT s.scheduleTime, m.movieTitle FROM schedule s, movie m
-		WHERE to_char(s.scheduleDate, 'yyyymmdd') = '20200115' and s.screen = '1관 3층' and s.movieNo = m.movieNo
+		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo
 	</select>
 	
 	
