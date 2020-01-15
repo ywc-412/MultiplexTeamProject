@@ -25,44 +25,41 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public int getTotalCount(Criteria cri) {
-
-		return 0;
+		log.info("SerImpl getTotalCount.....");
+		return reviewMapper.getTotalCount(cri);
 	}
 
 	@Override
 	public List<ReviewVO> getList(Criteria cri) {
-		return null;
-	}
-
-	@Override
-	public List<ReviewVO> getList() {
-
-		return null;
+		log.info("SerImpl getList.....");
+		return reviewMapper.getListWithPaging(cri);
 	}
 
 	@Override
 	public boolean modify(ReviewVO rvo) {
- 
-		return false;
+		log.info("SerImpl modify.....");
+		return reviewMapper.update(rvo) == 1;
 	}
 
 	@Override
 	public boolean remove(int reviewNo) {
-
-		return false;
+		log.info("SerImpl remove.....");
+		return reviewMapper.delete(reviewNo) == 1;
 	}
 
 	@Override
-//	@Transactional
+	@Transactional
 	public ReviewVO get(int reviewNo) {
-//		reviewMapper.updateView(reviewNo);
+		log.info("SerImpl viewUpdate + get.....");
+		reviewMapper.updateView(reviewNo);
 		return reviewMapper.read(reviewNo);
 		
 	}
 
 	@Override
 	public void register(ReviewVO rvo) {
-		
+		log.info("SerImpl register.....");
+		reviewMapper.insertSelectKey(rvo);
 	}
 
 	
