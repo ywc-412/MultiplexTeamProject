@@ -7,8 +7,8 @@
 <%@ include file="../include/header.jsp" %>
 
 
-
-	list
+agewewgewgew
+영주바보^^
 	
 	
 	
