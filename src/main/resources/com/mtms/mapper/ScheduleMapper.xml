@@ -5,20 +5,35 @@
 <mapper namespace="com.mtms.mapper.ScheduleMapper">
 
 	<insert id="insert">
-	
 	</insert>
 	
 	<update id="update">
-	
 	</update>
 	
 	<delete id="delete">
-	
 	</delete>
 	
-	<select id="get" resultType="com.mtms.domain.ScheduleVO">
-		SELECT * FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} and screen = #{screen}
-<!-- 		SELECT * FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = '20200115' -->
-<!-- 		#{scheduleDate} --> 
+	<resultMap type="com.mtms.domain.ScheduleVO" id="scheduleMap">
+		<!-- property VO에 있는 이름 column 디비에 있는 이름 -->
+		<id property="movieNo" column="movieNo"/> <!-- 조인 칼럼 -->
+		<result property="scheduleNo" column="scheduleNo"/>
+		<result property="scheduleDate" column="scheduleDate"/>
+		<result property="scheduleTime" column="scheduleTime"/>
+		<result property="screen" column="screen"/>
+		<result property="movieNo" column="movieNo"/>
+		<collection property="movieVO" resultMap="movieMap"/>
+	</resultMap>
+	
+	<resultMap type="com.mtms.domain.MovieVO" id="movieMap">
+		<result property="movieNo" column="movieNo"/>
+		<result property="movieTitle" column="movieTitle"/>
+	</resultMap>
+	
+	<select id="get" resultMap="scheduleMap">
+		SELECT s.scheduleTime, m.movieTitle FROM schedule s, movie m
+		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = '1관 3층' and s.movieNo = m.movieNo
 	</select>
+	
+	
+	
 </mapper>
