@@ -2,24 +2,28 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mtms.mapper.ReviewReportMapper">
+<mapper namespace="com.mtms.mapper.MovieMapper">
 	<select id="getTotalCount" resultType="int">
 	
 	</select>
 	
-	<select id="getListWithPaging" resultType="com.mtms.ReviewReportVO">
+	<select id="getListWithPaging" resultType="com.mtms.domain.MovieVO">
+		
+	</select>
+	
+	<update id="update">
+	
+	</update>
+	
+	<delete id="delete">
+	
+	</delete>
+	
+	<select id="read" resultType="com.mtms.domain.MovieVO">
 	
 	</select>
 	
 	<insert id="insert">
 	
 	</insert>
-	
-	<delete id="delete">
-	
-	</delete>
-	
-	<select id="read" resultType="ReviewReportVO">
-	
-	</select>
 </mapper>

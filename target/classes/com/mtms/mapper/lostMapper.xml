@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mtms.mapper.lostMapper">
+<mapper namespace="com.mtms.mapper.LostMapper">
 	<select id="getTotalCount" resultType="int">
 	
 	</select>
@@ -27,7 +27,7 @@
 	
 	</delete>
 	
-	<select id="read" resultType="com.mtms.domina.lostVO">
+	<select id="read" resultType="com.mtms.domain.LostVO">
 	
 	</select>
 	
