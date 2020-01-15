@@ -16,6 +16,6 @@
 	</delete>
 	
 	<select id="getList" resultType="com.mtms.domain.ScheduleVO">
-		SELECT * FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = to_char(#{scheduleDate}, 'yyyymmdd');
+		SELECT * FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
 	</select>
 </mapper>

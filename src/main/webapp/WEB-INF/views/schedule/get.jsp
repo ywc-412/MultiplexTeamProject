@@ -6,8 +6,6 @@
 
 <%@ include file="../include/header.jsp" %>
 
-
-
 	<div class="hanna_head">
 		<h3>TIME TABLE</h3>
 	</div>
@@ -33,34 +31,34 @@
 	<c:forEach items="${schedule }" var="s">
 		<div class="hanna_container">
 			<br>
-			<div class="hanna_schedule_movie"> 겨울왕국2 </div>
-			<div class="hanna_schedule_screen"> 1관 3층 </div>
+			<div class="hanna_schedule_movie"> "${s.movieNo }" </div>
+			<div class="hanna_schedule_screen"> "${s.screen }" </div>
 			<hr>	
 			<div class="hanna_schedule_time_wrap">
-				<div class="hanna_schedule_time"> 10:00 </div>
-				<div class="hanna_schedule_time"> 12:00 </div>
-				<div class="hanna_schedule_time"> 14:00 </div>
-				<div class="hanna_schedule_time"> 16:00 </div>
-				<div class="hanna_schedule_time"> 18:00 </div>
-				<div class="hanna_schedule_time"> 20:00 </div>
+<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
+<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
+<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
+<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
+<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
+<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
 			</div>
 		</div>
 	</c:forEach>
 	
-					<c:forEach items="${list }" var="l">
-                        <tr class="odd gradeX">
-                            <td>${l.bno}</td>
-                            <td><a href="${l.bno }" class="move">${l.title} 
-								<c:choose>
-									<c:when test="${l.replyCnt == 0}"> </c:when>
-									<c:when test="${l.replyCnt != 0}"> <b>[<c:out value="${l.replyCnt}"/>]</b></c:when>   
-								</c:choose>
-                            	</a>  </td>
-                            <td>${l.writer}</td>
-                            <td class="center"><fmt:formatDate pattern="yyyy-MM-dd" value = "${l.regdate}"/></td>
-                            <td class="center"><fmt:formatDate pattern="yyyy-MM-dd" value = "${l.updateDate}"/></td>
-                        </tr>
-                      </c:forEach>
+<%-- 					<c:forEach items="${list }" var="l"> --%>
+<!--                         <tr class="odd gradeX"> -->
+<%--                             <td>${l.bno}</td> --%>
+<%--                             <td><a href="${l.bno }" class="move">${l.title}  --%>
+<%-- 								<c:choose> --%>
+<%-- 									<c:when test="${l.replyCnt == 0}"> </c:when> --%>
+<%-- 									<c:when test="${l.replyCnt != 0}"> <b>[<c:out value="${l.replyCnt}"/>]</b></c:when>    --%>
+<%-- 								</c:choose> --%>
+<!--                             	</a>  </td> -->
+<%--                             <td>${l.writer}</td> --%>
+<%--                             <td class="center"><fmt:formatDate pattern="yyyy-MM-dd" value = "${l.regdate}"/></td> --%>
+<%--                             <td class="center"><fmt:formatDate pattern="yyyy-MM-dd" value = "${l.updateDate}"/></td> --%>
+<!--                         </tr> -->
+<%--                       </c:forEach> --%>
 	
 	<div class="hanna_container">
 		<br>

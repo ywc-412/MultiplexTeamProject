@@ -74,31 +74,27 @@ public class ScheduleController {
 	
 	@GetMapping({"get", "modify"})
 	public void get(Model model, String scheduleDate) {
+		// 날짜별 상영스케줄 조회
 		System.out.println("SCHEDULE CONTROLLER - GET");
 		// scheduleDate 값이 null로 들어오면 -> 오늘 날짜의 상영시간표 가져오기
 		if(scheduleDate == null) {
 			System.out.println("schedule controller - today");
 			
 			// 오늘 날짜 구하기
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-	        Calendar c1 = Calendar.getInstance();
-	        String strToday = sdf.format(c1.getTime());
-	        
-//	        scheduleService.getList(strToday);
-			model.addAttribute("schedule", scheduleService.getList(strToday));
+			Date today = new Date();
+			SimpleDateFormat date = new SimpleDateFormat("yyyymmdd");
+
+			model.addAttribute("schedule", scheduleService.getList(date.format(today)));
+			
 		} else {
-			System.out.println();
+			System.out.println("else");
 		}
-		
-		// model.addAttribute("schedule", scheduleService.getList(scheduleDate));
 		
 //		@GetMapping({"get", "modify"})
 //		public void get(long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 //			model.addAttribute("getOne", service.get(bno));
 //		}
 		
-		// 날짜별 상영스케줄 조회
-		// service.getList
 	}
 	
 }
