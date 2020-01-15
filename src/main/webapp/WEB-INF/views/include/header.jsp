@@ -15,22 +15,22 @@
 	<!-- Place favicon.ico in the root directory -->
 
 	<!-- CSS here -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/themify-icons.css">
-	<link rel="stylesheet" href="css/nice-select.css">
-	<link rel="stylesheet" href="css/flaticon.css">
-	<link rel="stylesheet" href="css/gijgo.css">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/slicknav.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/custom-choi.css">
-	<link rel="stylesheet" href="css/custom-jj.css">
-	<link rel="stylesheet" href="css/custom-hanna.css">
-	<link rel="stylesheet" href="css/custom-hong.css">
-	<link rel="stylesheet" href="css/custom-lee.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/resources/css/magnific-popup.css">
+	<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/resources/css/themify-icons.css">
+	<link rel="stylesheet" href="/resources/css/nice-select.css">
+	<link rel="stylesheet" href="/resources/css/flaticon.css">
+	<link rel="stylesheet" href="/resources/css/gijgo.css">
+	<link rel="stylesheet" href="/resources/css/animate.css">
+	<link rel="stylesheet" href="/resources/css/slicknav.css">
+	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="/resources/css/custom-choi.css">
+	<link rel="stylesheet" href="/resources/css/custom-jj.css">
+	<link rel="stylesheet" href="/resources/css/custom-hanna.css">
+	<link rel="stylesheet" href="/resources/css/custom-hong.css">
+	<link rel="stylesheet" href="/resources/css/custom-lee.css">
 	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -48,7 +48,7 @@
 						<div class="col-xl-2 col-lg-2">
 							<div class="logo-img">
 								<a href="index.html">
-									<img src="img/sCineLogo3.png" alt="">
+									<img src="/resources/img/sCineLogo3.png" alt="">
 								</a>
 							</div>
 						</div>
