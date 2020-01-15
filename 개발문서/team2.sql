@@ -185,7 +185,7 @@ CREATE TABLE lost(
 
 --ALTER-------------------------------------------------------------------------------
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY(memberId);
-ALTER TABLE auth ADD CONSTRAINT PK_AUTH PRIMARY KEY(memberId);
+
 ALTER TABLE movieAttach ADD CONSTRAINT pk_movieAttach PRIMARY KEY (movieUuid) ;
 ALTER TABLE movie ADD CONSTRAINT pk_movie PRIMARY KEY (movieNo);
 ALTER TABLE commentReply ADD CONSTRAINT pk_commentReply PRIMARY KEY (commentNo);
