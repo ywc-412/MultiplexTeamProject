@@ -2,22 +2,26 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mtms.mapper.lostMapper">
+<mapper namespace="com.mtms.mapper.ReviewMapper">
+	<select id="updateReplyCnt" resultType="int">
+		
+	</select>
+	
 	<select id="getTotalCount" resultType="int">
 	
 	</select>
 	
-	<select id="getListWithPaging" resultType="com.mtms.domain.LostVO">
+	<select id="getListWithPaging" resultType="int">
 	
 	</select>
 	
-	<select id="insertSelectKey" resultType="com.mtms.domain.LostVO">
+	<select id="insertSelectKey" resultType="com.mtms.domain.ReviewVO">
 	
 	</select>
 	
-	<select id="insert" resultType="com.mtms.domain.LostVO">
+	<insert id="insert">
 	
-	</select>
+	</insert>
 	
 	<update id="update">
 	
@@ -27,7 +31,7 @@
 	
 	</delete>
 	
-	<select id="read" resultType="com.mtms.domina.lostVO">
+	<select id="read">
 	
 	</select>
 	

@@ -17,5 +17,5 @@ public class MemberVO {
 	private Date memberBirth;		// 회원 생년월일
 	private String memberEmail;		// 회원 이메일
 	private String memberEmailSecond;
-	private List<AuthVO> authVO;
+//	private List<AuthVO> authVO;
 }

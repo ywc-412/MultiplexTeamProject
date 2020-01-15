@@ -13,7 +13,7 @@
 			</div>
 			<div class="row justify-content-lg-center">
 				<div class="col-lg-8 col-md-8">
-					<form method="post" action="/member/join" role="form">
+					<form method="post" action="/member/join" role="form" id="regForm">
 						<div class="mt-10 custom-input">
 							<div>아이디</div>
 							<input type="text" name="memberId" class="single-input custom-text-right">
@@ -36,16 +36,16 @@
 						</div><br>
 						<div class="mt-10 custom-input">
 							<div>이메일</div>
-							<input type="text" name="memberEmailFirst" class="single-input custom-text-left custom-input-size">
+							<input type="text" name="memberEmail" class="single-input custom-text-left custom-input-size">
 							<div class="custom-text-left custom-my-auto">
 								@
 							</div>
 							<div class="default-select custom-text-left" id="default-select">
 								<select name="memberEmailSecond">
-									<option value="1">-직접 입력-</option>
-									<option value="1">naver.com</option>
-									<option value="1">gmail.com</option>
-									<option value="1">hanmail.net</option>
+									<option value="">-직접 입력-</option>
+									<option value="naver.com">naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hamail.net">hanmail.net</option>
 								</select>
 							</div><br>
 							<p class="custom-red-font custom-text-right">이미 사용 중인 email 입니다.</p>
@@ -55,13 +55,13 @@
 							<input type="text" name="memberAddress" class="single-input custom-text-right">
 							<p class="custom-red-font custom-text-right">필수 입력 항목입니다.</p>
 						</div><br>
-						<div class="mt-10 custom-input  align-middle">
+						<div class="mt-10 custom-input align-middle">
 							<div>핸드폰</div>
 							<div class="default-select custom-text-left">
 								<select name="memberPhoneFirst">
-									<option value="1">010</option>
-									<option value="1">011</option>
-									<option value="1">018</option>
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="018">018</option>
 								</select>
 							</div>
 							<div class="custom-text-left custom-my-auto">
@@ -91,5 +91,36 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$(function(){
+			$('.boxed-btn3').on("click",function(e){
+				
+				e.preventDefault();
+				
+				var formData = $('#regForm').val();
+				
+				console.log(formData.memberAddress);
+				
+			});
+		});
+	</script>
 
 <%@ include file="../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
