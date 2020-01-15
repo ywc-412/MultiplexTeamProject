@@ -82,10 +82,14 @@ public class ScheduleController {
 			
 			// 오늘 날짜 구하기
 			Date today = new Date();
-			SimpleDateFormat date = new SimpleDateFormat("yyyymmdd");
+			SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
 			String formatToday = date.format(today);
+			
+			System.out.println(scheduleService.get(formatToday, "1관 3층").size());
 
-			model.addAttribute("schedule1", scheduleService.get(formatToday));
+			String screena = "1관 3층";
+//			model.addAttribute("schedule1", scheduleService.get(formatToday));
+			model.addAttribute("schedule1", scheduleService.get(formatToday, screena));
 //			model.addAttribute("schedule2", scheduleService.get(date.format(today), "2관 3층"));
 //			model.addAttribute("schedule3", scheduleService.get(date.format(today), "3관 3층"));
 			

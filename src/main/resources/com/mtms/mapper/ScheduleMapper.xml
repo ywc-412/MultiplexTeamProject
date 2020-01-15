@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ScheduleMapper">
+
 	<insert id="insert">
 	
 	</insert>
@@ -16,6 +17,8 @@
 	</delete>
 	
 	<select id="get" resultType="com.mtms.domain.ScheduleVO">
-		SELECT * FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} and scheduleNo = 1
+		SELECT * FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} and screen = #{screen}
+<!-- 		SELECT * FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = '20200115' -->
+<!-- 		#{scheduleDate} --> 
 	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.mtms.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -11,4 +12,6 @@ public class ScheduleVO {
 	private String scheduleTime;	// 상영 시간 ( 9:00, 10:00, ... ) -> 하나하나 넣기
 	private String screen;			// 상영관
 	private int movieNo;			// 영화번호 // FK
+	
+	private List<String> movieTitleList; // member - auth 부분 참고해서 영화이름 가져오기
 }

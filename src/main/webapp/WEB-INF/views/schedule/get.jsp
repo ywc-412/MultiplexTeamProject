@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ include file="../include/header.jsp" %>
 
 	<div class="hanna_head">
@@ -24,6 +26,12 @@
 		</a>
 	</div> <!-- 상영 날짜 선택 탭 END -->
 	
+	<c:out value="hi"></c:out>
+	
+	<c:if test="${schedule1 == null}">
+		목록없음
+	</c:if>
+	
 	<!-- 상영시간표  -->
 	<c:forEach items="${schedule1 }" var="s">
 		<div class="hanna_container">
@@ -32,7 +40,7 @@
 			<div class="hanna_schedule_screen"> ${s.screen } </div>
 			<hr>
 			<div class="hanna_schedule_time_wrap">
-					<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+				<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
 			</div>
 		</div>
 	</c:forEach>
