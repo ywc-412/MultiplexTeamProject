@@ -3,39 +3,83 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ReviewMapper">
+	<sql id="criteria">
+	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix = "OR">
+				<choose>
+					<when test="type == 'T'.toString()">
+						title like '%' ||#{keyword}||'%'
+					</when>
+					<when test="type == 'C'.toString()">
+						content like '%' ||#{keyword}||'%'
+					</when>
+					<when test="type == 'W'.toString()">
+						writer like '%' ||#{keyword}||'%'
+					</when>
+				</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	<select id="updateReplyCnt" resultType="int">
 		
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-	
+	<![CDATA[
+    SELECT count(*) FROM review WHERE
+     ]]>
+     <include refid="criteria"></include>
+      <![CDATA[
+     bno > 0
+  ]]>
 	</select>
 	
 	<select id="getListWithPaging" resultType="int">
-	
+	<![CDATA[
+	select * from 
+	(
+		select /*+index_desc (review pk_review)*/
+		rownum rn,reviewNo,movieNo,reviewTitle,memberId,
+		reviewContent,reviewDate,reviewView
+		from 
+		review
+		where 
+		]]>
+		<include refid="criteria"></include>
+		<![CDATA[
+		rownum <=#{pageNum}*#{amount})
+		where rn>(#{pageNum}-1)*#{amount}
+		]]>
 	</select>
 	
-	<select id="insertSelectKey" resultType="com.mtms.ReviewVO">
-	
-	</select>
-	
-	<insert id="insert">
-	
-	</insert>
+	<insert id="insertSelectKey">
+  	<selectKey keyProperty="reviewNo" order="BEFORE" resultType="int">
+  		SELECT seq_review.NEXTVAL FROM dual
+  	</selectKey>
+  
+  	INSERT INTO review(reviewNo, movieNo,memberId,reviewTitle,reviewContent)
+	VALUES(#{reviewNo}, #{movieNo}, #{memberId}, #{reviewTitle},#{reviewContent})
+  </insert>
 	
 	<update id="update">
-	
+	 UPDATE 	review 
+    SET		title = #{title}, 	content = #{content}
+    WHERE 	reviewNo = #{reviewNo}
 	</update>
 	
 	<delete id="delete">
-	
+	  DELETE review WHERE reviewNo = #{reviewNo}
 	</delete>
 	
 	<select id="read">
-	
+	   SELECT * FROM review WHERE reviewNo = #{reviewNo}
 	</select>
 	
 	<update id="updateView">
-	
+	UPDATE review
+	SET reviewView = reviewView+1
+	where reviewNo = #{reviewNo}
 	</update>
 </mapper>

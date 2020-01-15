@@ -1,0 +1,214 @@
+.side_margin{margin: 10%;}
+.title_under{border: 1px solid black;
+			margin-top: 5px;
+}
+.title_under2{border: 1px solid black;
+margin-bottom: 20px;
+}
+.review_title{
+	font-size: 30px;
+}
+#select_box{
+margin-top: 30px;
+height: 40px;
+width: 100px;}
+#keyword{height: 40px;
+width: 250px;}
+.table custom-th-size{text-align: center;}
+.table_position{margin-top: 100px;}
+.pagination{
+	margin-top: 5%;
+	margin-left: 22%;
+/* 	width: 15%; */
+}
+.page-item{
+/* 	width: 15%; */
+}
+.get_title_style{
+	1px solid white;
+	width: 100%;
+	height: 100px;
+	background-color: rgb(216,216,216,0.8);
+}
+.get_title{
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+	margin-top: 50px;
+	padding-top: 15px;
+}
+
+.title_under_div
+{
+	float: right;
+	vertical-align:bottom;
+	padding-top:20px;
+}
+
+.title_under_ex2{
+	font-size: 10px;
+}
+.movie_title_style{
+	1px solid white;
+	width: 100%;
+	height: 50px;
+	background-color: rgb(216,216,216,0.8);
+}
+.movie_get_title{
+	width: 100%;
+	text-align: center;
+	font-size: 25px;
+	padding-top: 10px;
+	margin-top: 10px;
+}
+.review_textarea{
+	width: 100%;
+	padding-top: 20px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.buttln_style{width: 100%;}
+.button_position{
+	float: right;
+}
+#reviewList{width: 80px;}
+#reviewRemove{width: 80px;}
+#reviewReport{width: 80px;}
+#reviewModify{width: 80px;}
+
+#replyInput{
+	margin-top: 70px;
+	margin-left: 25%;
+	width: 40%;
+	height: 50px;
+}
+#reviewReply{
+	margin-left:10px;
+	width: 100px;
+	height: 50px;
+}
+.replySize{
+	background-color: white;
+}
+
+#title_register{
+	width: 100%;
+	height: 70px;
+	margin-top: 5%;
+	margin-bottom: 2%;
+	font-size: 30px;
+	color: rgb(216,216,216);
+}
+#movie_register{
+	width: 100%;
+	height: 70px;
+	margin-bottom: 2%;
+	font-size: 30px;
+	color: rgb(216,216,216);
+}
+#content_register{
+	width: 100%;
+	height: 300px;
+	margin-bottom: 2%;
+}
+#censle{background: gray;
+width: 80px;
+margin-left: 0.5%;}
+#movie_register1{
+	width: 100%;
+	height: 70px;
+	margin-top: 5%;
+	margin-bottom: 2%;
+	font-size: 30px;
+	color: rgb(216,216,216);
+}
+##movie_register1{
+	width: 100%;
+	height: 70px;
+	margin-top: 5%;
+	margin-bottom: 2%;
+	font-size: 30px;
+	color: rgb(216,216,216);
+}
+#lost_register{
+	width: 100%;
+	height: 70px;
+	margin-top: 5%;
+	margin-bottom: 2%;
+	font-size: 30px;
+	color: rgb(216,216,216);
+}
+
+.table_position1{
+	margin-top: 5%;
+	width: 75%;
+	float: right;
+}
+.page_position{
+	width: 100%;
+	clear: both;
+	margin-top: 5%;
+	margin-left: 20%;
+}
+.high_margin{margin-top: 5%;}
+.left_menu {
+	width: 20%;
+	float: left;
+}
+.left_menu_position{
+	margin-top: 13%;;
+	margin-left: 10%;
+}
+.left_menu_title{
+	font-size: 200%;
+	margin-bottom: 30%;
+	font-weight: bold;
+}
+.user_manager{
+	font-size: 150%;
+	margin-left: 30%;
+}
+
+.unser_ma{
+	font-size: 15px;
+	margin-left: 10%;
+}
+#reportRemove {
+	width: 80px;
+	margin-bottom: 10%;
+}
+.reply_title_style{
+	1px solid white;
+	width: 77%;
+	height: 50px;
+	background-color: rgb(216,216,216,0.8);
+	float: left;
+	margin-bottom: 3%;
+}
+.reply_report_get_title{
+	width: 100%;
+	text-align: center;
+	font-size: 25px;
+	padding-top: 10px;
+	margin-top: 10px;
+}
+.reply_title_style2{
+	1px solid white;
+	width: 20%;
+	height: 50px;
+	background-color: rgb(216,216,216,0.8);
+	float: right;
+	margin-bottom: 3%;
+}
+border: 2px solid black;}
+.margin3{
+width: 65%;
+float: right;
+}
+.nav-tabContent {
+    background: #007b5e;
+    color: #eee;
+}
+.table table-striped table-bordered table-hover {
+	text-align: center;
+}
