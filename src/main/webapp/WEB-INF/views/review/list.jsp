@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>
@@ -51,18 +53,18 @@
 							<div class="main-menu d-none d-lg-block">
 								<nav>
 									<ul id="navigation">
-										<li><a class="active" href="index.html">ì˜í™”</a></li>
-										<li><a href="#">ì˜ˆë§¤ <i class="ti-angle-down"></i></a>
+										<li><a class="active" href="index.html">¿µÈ­</a></li>
+										<li><a href="#">¿¹¸Å <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="#">ì˜í™” ì˜ˆë§¤</a></li>
-												<li><a href="#">ìƒì˜ì‹œê°„í‘œ</a></li>
+												<li><a href="#">¿µÈ­ ¿¹¸Å</a></li>
+												<li><a href="#">»ó¿µ½Ã°£Ç¥</a></li>
 											</ul>
 										</li>
-										<li><a href="#">ë¦¬ë·°</a></li>
-										<li><a href="#">ê¸°í”„í‹°ì½˜</a></li>
-										<li><a href="#">ê±´ì˜ì‚¬í•­</a></li>
-										<li><a href="#">ê³µì§€ì‚¬í•­</a></li>
-										<li><a href="#">ìŠµë“ë¬¼</a></li>
+										<li><a href="#">¸®ºä</a></li>
+										<li><a href="#">±âÇÁÆ¼ÄÜ</a></li>
+										<li><a href="#">°ÇÀÇ»çÇ×</a></li>
+										<li><a href="#">°øÁö»çÇ×</a></li>
+										<li><a href="#">½Àµæ¹°</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -71,10 +73,10 @@
 						<!--						<div class="col-xl-4 col-lg-4 d-none d-lg-block">-->
 						<div class="col-xl-4 col-lg-4 d-lg-block">
 							<div class="custom-margin">
-								<button class="btn btn-primary pull-right">íšŒì›ê°€ìž…</button>
+								<button class="btn btn-primary pull-right">È¸¿ø°¡ÀÔ</button>
 							</div>
 							<div class="custom-margin">
-								<button class="btn btn-primary pull-right">ë¡œê·¸ì¸</button>
+								<button class="btn btn-primary pull-right">·Î±×ÀÎ</button>
 							</div>
 						</div>
 						<div class="col-12">
@@ -89,26 +91,26 @@
 	<!-- header-end -->
 <div class="side_margin">
 	<div class="row">
-		<div class="review_title">ë¦¬ë·°</div>
+		<div class="review_title">¸®ºä</div>
 		
 	</div>
 	<div class="title_under"></div>
-	<!-- ê²€ìƒ‰ ì¡°ê±´ ë° í‚¤ì›Œë“œ ìž…ë ¥ ë¶€ë¶„ -->
+	<!-- °Ë»ö Á¶°Ç ¹× Å°¿öµå ÀÔ·Â ºÎºÐ -->
 	<div class="row">
 		<div class="col-lg-12">
 			<!--                 		<form id="searchForm" action="/board/list"> -->
 			<select name='type' id="select_box">
 				<%--                 				<c:set var="type" value="${pageMaker.cri.type}"/> --%>
-				<option value="">ì œëª©</option>
-				<option value="">ë‚´ìš©</option>
-				<option value="">ì•„ì´ë””</option>
-<%-- 				<option value="T" <c:out value="${type == 'T'?'selected':''}"/>ì œëª©</option> --%>
-<%-- 				<option value="C" <c:out value="${type == 'C'?'selected':''}"/>ë‚´ìš©</option> --%>
-<%-- 				<option value="W" <c:out value="${type == 'W'?'selected':''}"/>ìž‘ì„±ìž</option> --%>
+				<option value="">Á¦¸ñ</option>
+				<option value="">³»¿ë</option>
+				<option value="">¾ÆÀÌµð</option>
+<%-- 				<option value="T" <c:out value="${type == 'T'?'selected':''}"/>Á¦¸ñ</option> --%>
+<%-- 				<option value="C" <c:out value="${type == 'C'?'selected':''}"/>³»¿ë</option> --%>
+<%-- 				<option value="W" <c:out value="${type == 'W'?'selected':''}"/>ÀÛ¼ºÀÚ</option> --%>
 			</select> 
 			<input type="text" name="keyword" id="keyword"
 				value="${pageMaker.cri.keyword}">
-			 <button id="modalRegisterBtn" class="btn btn-primary">ê²€ìƒ‰</button>
+			 <button id="modalRegisterBtn" class="btn btn-primary">°Ë»ö</button>
 		</div>
 		       </div>
 		       
@@ -118,30 +120,30 @@
 		  <table class="table custom-th-size">	   
                     <thead>
                         <tr>
-                            <th>ì˜í™”ëª…<!-- Rendering engine --></th>
-                            <th>ì œëª©<!-- Browser --></th>
-                            <th>ìž‘ì„±ìž<!-- Platform(s) --></th>
-                            <th>ì¡°íšŒìˆ˜<!-- Engine version --></th>
-                            <th>ë“±ë¡ì¼<!-- CSS grade --></th>
+                            <th>¿µÈ­¸í<!-- Rendering engine --></th>
+                            <th>Á¦¸ñ<!-- Browser --></th>
+                            <th>ÀÛ¼ºÀÚ<!-- Platform(s) --></th>
+                            <th>Á¶È¸¼ö<!-- Engine version --></th>
+                            <th>µî·ÏÀÏ<!-- CSS grade --></th>
                         </tr>
                     </thead>
                     <tbody>
-                         <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
-                      	 <tr class="odd gradeX">  <td>ì˜í™”ëª…</td> <td>ì˜í™”ì œëª©</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                         <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
+                      	 <tr class="odd gradeX">  <td>¿µÈ­¸í</td> <td>¿µÈ­Á¦¸ñ</td> <td>ID</td> <td>10</td> <td>2020.1.12</td>  </tr>
                     </tbody>
-                </table><!-- END ê²Œì‹œë¬¼ ì¶œë ¥ í…Œì´ë¸” -->
+                </table><!-- END °Ô½Ã¹° Ãâ·Â Å×ÀÌºí -->
           </div>
           </div>
 <!--           table_position -->
-<!-- íŽ˜ì´ì§• ë¶€ë¶„ -->
+<!-- ÆäÀÌÂ¡ ºÎºÐ -->
 	<ul class="pagination">
 		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 		<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -156,9 +158,9 @@
 		<li class="page-item"><a class="page-link" href="#">10</a></li>
 		<li class="page-item"><a class="page-link" href="#">Next</a></li>
 	</ul>
-	<!-- íŽ˜ì´ì§• end -->
+	<!-- ÆäÀÌÂ¡ end -->
     </div>
-		<!-- ì „ì²´ë§ˆì§„ END -->
+		<!-- ÀüÃ¼¸¶Áø END -->
 
 		
 	<!-- footer -->
