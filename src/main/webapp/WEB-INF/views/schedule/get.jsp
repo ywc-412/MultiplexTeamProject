@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상영시간표 조회 화면</title>
+</head>
+<body>
 
-<%@ include file="../include/header.jsp" %>
-
-
-
-	list
-	
-	
-	
-	
-<%@ include file="../include/footer.jsp" %>
+</body>
+</html>

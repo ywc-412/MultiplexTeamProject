@@ -4,9 +4,12 @@ CREATE TABLE member (
     memberPw VARCHAR2(30) NOT NULL,
     memberName VARCHAR2(15) NOT NULL,
     memberAddress VARCHAR2(100) NOT NULL,
-    memberPhone VARCHAR2(20) NOT NULL,
+    memberPhoneFirst VARCHAR2(20) NOT NULL,
+    memberPhoneSecond varchar2(20) not null,
+    memberPhoneThird varchar2(20) not null,
     memberBirth DATE NOT NULL,
-    memberEmail VARCHAR2(100) NOT NULL
+    memberEmail VARCHAR2(100) NOT NULL,
+    memberEmailSecond varchar2(100) not null
 );
 
 CREATE TABLE auth(
@@ -256,3 +259,4 @@ CREATE SEQUENCE seq_lost;
 CREATE SEQUENCE seq_reply;
 CREATE SEQUENCE seq_review;
 CREATE SEQUENCE SEQ_SUGGEST;
+
