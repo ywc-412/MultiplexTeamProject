@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.pageDTO;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.PageDTO;
@@ -53,13 +52,18 @@ public class ReviewController {
 		model.addAttribute("board", reviewService.get(reviewNo));
 	}
 	
+//	@GetMapping("list")
+//	public void list(Criteria cri, Model model) {
+//		//게시물 리스트처리
+//		log.info("controller GET list()");
+//		model.addAttribute("list", reviewService.getList(cri));
+//		model.addAttribute("pageMaker", 
+//							new PageDTO(cri, reviewService.getTotalCount(cri)));
+//	}
 	@GetMapping("list")
-	public void list(Criteria cri, Model model) {
-		//게시물 리스트처리
-		log.info("controller GET list()");
-		model.addAttribute("list", reviewService.getList(cri));
-		model.addAttribute("pageMaker", 
-							new PageDTO(cri, reviewService.getTotalCount(cri)));
+	public void list(Model model) {
+		log.info("제발좀 되라 list()");
+		model.addAttribute("list", reviewService.getList());
 	}
 	
 	@GetMapping("register")

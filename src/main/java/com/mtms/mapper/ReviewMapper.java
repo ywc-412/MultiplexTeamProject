@@ -11,6 +11,9 @@ public interface ReviewMapper {
 //	public void updateReplyCnt(@Param("reviewNo ") int ReviewNo,@Param("amount") int amount);
 	public int getTotalCount(Criteria cri);
 	public List<ReviewVO> getListWithPaging(Criteria cri);
+	
+	public List<ReviewVO> getList();
+	
 	public void insertSelectKey(ReviewVO rvo);							
 	public void insert(ReviewVO rvo);
 	public int update(ReviewVO rvo);

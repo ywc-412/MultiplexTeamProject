@@ -8,7 +8,9 @@ import com.mtms.domain.ReviewVO;
 public interface ReviewService {
 	public int getTotalCount(Criteria cri);
 	public List<ReviewVO> getList(Criteria cri);
-//	public List<ReviewVO> getList();
+	
+	public List<ReviewVO> getList();
+	
 	public boolean modify(ReviewVO rvo);
 	public boolean remove(int reviewNo);
 	public ReviewVO get(int reviewNo);

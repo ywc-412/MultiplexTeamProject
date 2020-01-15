@@ -62,6 +62,12 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewMapper.insertSelectKey(rvo);
 	}
 
+	@Override
+	public List<ReviewVO> getList() {
+		// TODO Auto-generated method stub
+		return reviewMapper.getList();
+	}
+
 	
 
 

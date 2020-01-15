@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ReviewMapper">
 	<sql id="criteria">
 	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
@@ -22,9 +22,7 @@
 			</foreach>
 		</trim>
 	</sql>
-	<select id="updateReplyCnt" resultType="int">
-		
-	</select>
+
 	
 	<select id="getTotalCount" resultType="int">
 	<![CDATA[
@@ -32,11 +30,11 @@
      ]]>
      <include refid="criteria"></include>
       <![CDATA[
-     bno > 0
+     reviewNo > 0
   ]]>
 	</select>
 	
-	<select id="getListWithPaging" resultType="int">
+	<select id="getListWithPaging" resultType="com.mtms.domain.ReviewVO">
 	<![CDATA[
 	select * from 
 	(
@@ -53,7 +51,11 @@
 		where rn>(#{pageNum}-1)*#{amount}
 		]]>
 	</select>
-	
+	<select id="getList" resultType="com.mtms.domain.ReviewVO">
+  <![CDATA[
+    SELECT * FROM review WHERE reviewNo > 0
+  ]]>
+  </select>
 	<insert id="insertSelectKey">
   	<selectKey keyProperty="reviewNo" order="BEFORE" resultType="int">
   		SELECT seq_review.NEXTVAL FROM dual
@@ -65,7 +67,7 @@
 	
 	<update id="update">
 	 UPDATE 	review 
-    SET		title = #{title}, 	content = #{content}
+    SET		reviewTitle = #{reviewTitle}, 	reviewContent = #{reviewContent}
     WHERE 	reviewNo = #{reviewNo}
 	</update>
 	
