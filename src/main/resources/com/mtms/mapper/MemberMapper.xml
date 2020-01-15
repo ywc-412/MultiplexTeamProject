@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.mtms.mapper.MemberMapper">
 	<select id="read" resultType="com.mtms.domain.MemberVO">
 	
 	</select>
+	
 	<insert id="insert">
-		<!-- INSERT INTO 
+		INSERT INTO 
 			member 
-		VALUES(#{memberId}, #{memberPw},#{memberName},
+		VALUES(#{memberId}, #{memberPw}, #{memberName},
 				#{memberAddress},#{memberPhoneFirst},#{memberPhoneSecond},
 				#{memberPhoneThird}, #{memberBirth}, #{memberEmail},
-				#{memberEmailSecond}) -->
+				#{memberEmailSecond})
 	</insert>
 	
 	<select id="selectId" resultType="com.mtms.domain.MemberVO">

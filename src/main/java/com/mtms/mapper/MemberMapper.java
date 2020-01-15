@@ -9,7 +9,7 @@ public interface MemberMapper {
 	// 권한을 찾기 위한 read 메서드
 	public MemberVO read(String memberId);
 	// 회원 가입 매퍼
-	public void insert(MemberVO memberVO);
+	public int insert(MemberVO memberVO);
 	// 회원 아이디 찾기
 	public String selectId(MemberVO memberVO);
 	// 회원 비밀번호 찾기 -> 비밀번호 재설정
