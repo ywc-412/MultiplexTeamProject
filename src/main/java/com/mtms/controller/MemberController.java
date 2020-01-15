@@ -34,8 +34,13 @@ public class MemberController {
 	public String join(MemberVO memberVO, RedirectAttributes rttr) {
 		// 입력 화면에서 form action /member/join
 		log.info("join");
-		memberService.join(memberVO);
-		return null;
+		
+		int result = memberService.join(memberVO);
+		
+		rttr.addFlashAttribute("regMsg", "환영합니다!");
+		
+		return "redirect:/";
+		
 	}
 	
 	@GetMapping("/findId")

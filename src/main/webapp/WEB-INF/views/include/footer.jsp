@@ -30,7 +30,7 @@
 
 	<!-- JS here -->
 	<script src="/resources/js/vendor/modernizr-3.5.0.min.js"></script>
-	<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+	
 	<script src="/resources/js/popper.min.js"></script>
 	<script src="/resources/js/bootstrap.min.js"></script>
 	<script src="/resources/js/owl.carousel.min.js"></script>

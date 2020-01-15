@@ -13,7 +13,7 @@
 	<!-- <link rel="manifest" href="site.webmanifest"> -->
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon2.png">
 	<!-- Place favicon.ico in the root directory -->
-
+	<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
 	<!-- CSS here -->
 	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/resources/css/owl.carousel.min.css">

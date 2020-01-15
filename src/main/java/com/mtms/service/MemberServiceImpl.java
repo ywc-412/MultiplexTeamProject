@@ -20,8 +20,9 @@ public class MemberServiceImpl implements MemberService{
 	private MemberMapper memberMapper;
 
 	@Override
-	public void join(MemberVO memberVO) {
-		memberMapper.insert(memberVO);
+	public int join(MemberVO memberVO) {
+		
+		return memberMapper.insert(memberVO);
 	}
 
 	@Override
