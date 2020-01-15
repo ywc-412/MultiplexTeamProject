@@ -76,7 +76,7 @@
 						<!--						<div class="col-xl-4 col-lg-4 d-none d-lg-block">-->
 						<div class="col-xl-4 col-lg-4 d-lg-block">
 							<div class="custom-margin">
-								<button class="btn btn-primary pull-right">회원가입</button>
+								<button class="btn btn-primary pull-right" id="joinBtn">회원가입</button>
 							</div>
 							<div class="custom-margin">
 								<button class="btn btn-primary pull-right">로그인</button>
@@ -91,3 +91,9 @@
 			</div>
 		</div>
 	</header>
+	
+	<script>
+		$('joinBtn').on("click", function(){
+			location.href="/member/join";
+		});
+	</script>
