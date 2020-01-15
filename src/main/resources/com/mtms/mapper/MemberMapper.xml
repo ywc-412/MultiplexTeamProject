@@ -39,6 +39,16 @@
 		INSERT INTO auth VALUES(#{memberId}, 'ROLE_MEMBER')
 	</insert>
 	
+	<select id="duplicatedId" resultType="com.mtms.domain.MemberVO">
+		SELECT memberId FROM member WHERE memberId=#{memberId}
+	</select>
+	
+	<select id="duplicatedEmail" resultType="com.mtms.domain.MemberVO">
+		SELECT memberEmail, memberEmailSecond 
+		FROM member 
+		WHERE memberEmail=#{memberEmail} and memberEmailSecond = #{memberEmailSecond}
+	</select>
+	
 	<insert id="insert">
 		INSERT INTO 
 			member 

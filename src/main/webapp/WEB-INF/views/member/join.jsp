@@ -110,11 +110,42 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="/resources/js/memberFind.js"></script>
+<script>
+	$(function(){
+		//id 중복 처리..
+		$('input#memberId').blur(function(){
+			var memberId = $('input#memberId').val();
+			memberDuplicatedService.getId(memberId, function(result){
+				if(result.memberId != memberId){
+					$('#memberIdErrorMsg').html('사용 가능한 아이디 입니다');
+				}else{
+					$('#memberIdErrorMsg').html('중복된 아이디 입니다');	
+				}
+			});
+		});
+		
+		// email 중복 처리 해야함
+		$('select#memberEmailSecond').on('change', function(){
+			var memberEmail = $('input#memberEmail').val()
+			var memberEmailSecond = $('select#memberEmailSecond').val();
+			console.log(memberEmail);
+			console.log(memberEmailSecond);
+			memberDuplicatedService.getEmail(param, function(result){
+				if(result.memberEmail != param.memberEmail && result.memberEmailSecond != param.memberEmailSecond){
+					$('#memberEmailErrorMsg').html('사용 가능한 이메일 입니다');
+				}else{
+					$('#memberEmailErrorMsg').html('중복된 이메일 입니다');
+				}
+			});
+		});
+	})
+</script>
 <script>
 	$(function() {
 		var registerResult = false;
 		
-		var regex = /^[A-Za-z0-9]{6,12}$/;
+		var regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 
 		$('input#memberPw').keyup(function(e) {
 			
@@ -124,21 +155,20 @@
 				$('#memberPwErrorMsg').html('사용 가능합니다!');
 				$(this).focus();
 			}else{
-				$('#memberPwErrorMsg').html('비밀번호는 영어 숫자로 조합된 6~12글자 입니다.');
+				$('#memberPwErrorMsg').html('영어 대소문자/숫자/특수문자의 조합으로 8자리 이상으로 입력해주세요');
 			}
 			
 		});
 
 		
 		$('input#memberPwChk').keyup(function(e) {
-
 			if($(this).val() != $('input#memberPw').val()){
-				$('#memberPwChkErrorMsg').html('비밀번호 항목과 일치하지 않습니다.');	
+				$('#memberPwChkErrorMsg').html('비밀번호 항목과 일치하지 않습니다.');
 			}else {
 				$('#memberPwChkErrorMsg').html('비밀번호 확인 되었습니다.');
 			}
-			
 		});
+		
 		
 
 		$('.boxed-btn3').on("click", function(e) {
@@ -174,90 +204,75 @@
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberName) {
+			}else if (!memberName) {
 				$('#memberNameErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberIdNav").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberPw) {
+			}else if (!memberPw) {
 				$('#memberPwErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberIdNav").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberPwChk) {
+			}else if(!memberPwChk) {
 				$('#memberPwChkErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberId").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberEmail) {
+			}else if(!memberEmail) {
 				$('#memberEmailErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberId").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberEmailSecond) {
+			}else if(!memberEmailSecond) {
 				$('#memberEmailErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberId").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberAddress) {
+			}else if(!memberAddress) {
 				$('#memberAddressErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberId").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberPhoneFirst) {
+			}else if(!memberPhoneFirst) {
 				$('#memberPhoneErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberId").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberPhoneSecond) {
+			}else if(!memberPhoneSecond) {
 				$('#memberPhoneErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberId").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-
-			if (!memberPhoneThird) {
+			}else if(!memberPhoneThird) {
 				$('#memberPhoneErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberId").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
-			}
-			
-			if (!memberBirth) {
+			}else if(!memberBirth) {
 				$('#memberBirthErrorMsg').html('필수 항목입니다');
 				var offset = $("#memberId").offset();
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
+			}else{
+				registerResult = true;
 			}
 			
 			
-			$('#joinForm').submit();
+			if(registerResult){
+				$('#joinForm').submit();
+			}
+			
 			
 		});
 	});

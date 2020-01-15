@@ -2,7 +2,6 @@ package com.mtms.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +24,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	@Transactional
 	public int join(MemberVO memberVO) {
-		
 		// password 인코딩을 위한 bcryptpwEncoder;;;
 		String password = memberVO.getMemberPw();
 		String encodedPassword = bcryptpwEncoder.encode(password);
@@ -66,5 +64,16 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int modifyMember(MemberVO memberVO) {
 		return 0;
+	}
+
+	@Override
+	public MemberVO duplicatedId(String memberId) {
+		return memberMapper.duplicatedId(memberId);
+	}
+
+	@Override
+	public MemberVO duplicatedEmail(String memberEmail, String memberEmailSecond) {
+		
+		return memberMapper.duplicatedEmail(memberEmail, memberEmailSecond);
 	}
 }
