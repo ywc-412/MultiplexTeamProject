@@ -24,6 +24,7 @@
 	</select>
 	
 	<insert id="insert">
-	
+		insert into movie(movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary)
+		values(seq_movie.nextval, #{movieTitle}, #{movieManager}, #{movieMainActor}, #{movieSupportActor}, #{movieGenre}, #{movieGrade}, #{runningTime}, #{openDate}, #{summary})
 	</insert>
 </mapper>

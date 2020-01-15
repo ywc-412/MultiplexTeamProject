@@ -24,7 +24,9 @@ public class MovieServiceImpl implements MovieService{
 	//영화 등록
 	@Override
 	public void register(MovieVO movie) {
+		log.info("영화 register " + movie);
 		
+		movieMapper.insert(movie);
 	}
 	
 	//영화 수정

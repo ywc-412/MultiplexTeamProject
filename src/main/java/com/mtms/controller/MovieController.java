@@ -79,8 +79,11 @@ public class MovieController {
 	@PostMapping("register")
 //	@PreAuthorize("isAuthenticated()")
 	public String register(MovieVO movie, RedirectAttributes rttr) {
+		log.info("controller 영화 register");
 		
-		return null;
+		movieService.register(movie);
+		
+		return "redirect:/movie/list";
 	}
 	
 	//영화 전체 조회

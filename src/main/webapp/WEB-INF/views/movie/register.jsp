@@ -20,17 +20,48 @@
 	  		var movieGenre = $('#movieGenre').val();
 	  		var runningTime = $('#runningTime').val();
 	  		var poster = $('#poster').val();
-// 	  		var movieTitle = document.frm.movieTitle;
 		    
-		    if( movieTitle == ""){
-		    	alert("영화 제목을 입력해주세요");
+		    if( movieTitle == "" || movieTitle.length < 0){
 		 	    $('#title').text('영화 제목을 입력해주세요');
 		 	    $('#movieTitle').focus();
+		    } else if( movieManager == "" || movieManager.length < 0){
+		 	    $('#manager').text('영화 감독을 입력해주세요');
+		 	    $('#mainActor').focus();
+		    } else if( movieMainActor == "" || movieMainActor.length < 0){
+		 	    $('#mainActor').text('영화 주연배우를 입력해주세요');
+		 	    $('#movieMainActor').focus();
+		    } else if( movieGenre == "영화 장르"){
+		 	    $('#genre').text('영화 장르를 선택해주세요');
+		 	    $('#movieGenre').focus();
+		    } else if( runningTime == "" || runningTime.length < 0){
+		 	    $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
+		 	    $('#runningTime').focus();
+		    } else {
+		    	formObj.submit();
 		    }
+		    
+// 		    else if( poster == "" || poster.length < 0){
+// 		 	    $('#picture').text('포스터를 선택해주세요');
+// 		 	    $('#poster').focus();
+// 		    }
+
 	    });
-// 			  else {
-// 				  document.frm.submit();
-// 		      }
+		
+		//러닝타임 숫자로만 입력
+	    $('#runningTime').on("keyup", function() {
+	        $(this).val($(this).val().replace(/[^0-9]/g,""));
+	    });
+		
+	    $('#cancel').on("click", function() {
+	        var result = confirm(" 취소하시겠습니까? ");
+	        
+	        if(result) {
+	        	location.href="/movie/list";
+	        }else{
+	        	return;
+	        }
+	    });
+		
 	});
 	
 	</script>
@@ -68,6 +99,7 @@
 					<div class="form-group">
 					<label for="movieGenre">장르</label>
 					<select class="form-control yeong-form-control" name="movieGenre" id="movieGenre">
+					    <option class="form-control">영화 장르</option>
 					    <option class="form-control">액션/드라마</option>
 					    <option class="form-control">멜로/로맨스</option>
 					    <option class="form-control">공포</option>
@@ -77,15 +109,15 @@
 					    <option class="form-control">뮤지컬</option>
 					    <option class="form-control">코미디</option>
 					</select>
-						<small id="date" class="yeong-small">숫자만 입력해주세요.</small>
+						<small id="genre" class="yeong-small"></small>
 					</div>
 					<div class="form-group">
 						<label for="movieGrade">등급</label>
 						<select class="form-control yeong-form-control" name="movieGenre" id="movieGenre">
-					    <option class="form-control">전체 관람가</option>
-					    <option class="form-control">12세 관람가</option>
-					    <option class="form-control">15세 관람가</option>
-					    <option class="form-control">청소년 관람불가</option>
+					    <option class="form-control">0</option>
+					    <option class="form-control">12</option>
+					    <option class="form-control">15</option>
+					    <option class="form-control">19</option>
 					</select>
 					</div>
 					<div class="form-group">
@@ -96,7 +128,6 @@
 					<div class="form-group">
 						<label for="openDate">개봉일</label>
 						<input id="datepicker" placeholder="개봉일" name="openDate">
-						<small id="date" class="yeong-small">숫자만 입력해주세요.</small>
 					</div>
 					
 					<div class="form-group">
@@ -104,25 +135,18 @@
 					    <textarea class="form-control" id="summary" name="summary" rows="3" placeholder="줄거리를 입력해주세요"></textarea>
 					</div>
 					
-<!-- 					<div class="form-group"> -->
-<!-- 							<label for="poster">포스터</label> -->
-<!-- 						<div class="custom-file"> -->
-<!-- 						    <input type="file" class="custom-file-input" id="customFile"> -->
-<!-- 						    <label class="custom-file-label" for="customFile">Choose file</label> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-					
 					<div class="form-group">
 						<label for="poster">포스터</label><br>
 						<div class="custom-file">
 					    <input class="yeong-input" type="file" id="poster" name="poster">
+					    <small id="picture" class="yeong-small"></small>
 					    </div>
 					</div>
 					
 					<div class="col-xl-12">
 			            <div class="section_title text-center">
-					   		<button type="submit" class="btn btn-primary yeong-margin">영화 등록</button>
-					   		<button class="btn btn-secondary yeong-margin">등록 취소</button>
+					   		<button type="submit" id="submit" class="btn btn-primary yeong-margin">영화 등록</button>
+					   		<button type="button" id="cancel" class="btn btn-secondary yeong-margin">등록 취소</button>
 			    		</div>
 			    	</div>
 			    	
