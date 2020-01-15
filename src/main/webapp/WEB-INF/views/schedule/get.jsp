@@ -1,4 +1,3 @@
-<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,60 +9,41 @@
 		<h3>TIME TABLE</h3>
 	</div>
 	
-
-	<jsp:useBean id="date" class="java.util.Date"/>
-<%-- 	<fmt:formatDate value="${today }" pattern="MM" var="month"/> --%>
-<%-- 	<fmt:formatDate value="${today }" pattern="dd" var="day"/> --%>
-	<c:set var="to" value="<%=new Date(new Date().getTime())%>"/>
-	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
-	<c:set var="tonext" value="<%=new Date(new Date().getTime() + 60*60*48*1000)%>"/>
-
 	<!-- 상영 날짜 선택 탭 -->
 	<hr>
 	<div class="schedule_item">
 		<a href="#" class="schedule_item_date">
-			<h3><fmt:formatDate value="${to }" pattern="dd"/></h3>
-			<p><fmt:formatDate value="${to }" pattern="MM"/></p>
+			<h3>15</h3>
+			<p>Jan</p>
 		</a>
 		<a href="#" class="schedule_item_date">
-			<h3><fmt:formatDate value="${tomorrow }" pattern="dd"/></h3>
-			<p><fmt:formatDate value="${tomorrow }" pattern="MM"/></p>
+			<h3>16</h3>
+			<p>Jan</p>
 		</a>
 		<a href="#" class="schedule_item_date">
-			<h3><fmt:formatDate value="${tonext }" pattern="dd"/></h3>
-			<p><fmt:formatDate value="${tonext }" pattern="MM"/></p>
+			<h3>17</h3>
+			<p>Jan</p>
 		</a>
 	</div> <!-- 상영 날짜 선택 탭 END -->
 	
+	<c:out value="hi"></c:out>
+	
+	<c:if test="${schedule1 == null}">
+		목록없음
+	</c:if>
+	
 	<!-- 상영시간표  -->
-	<c:set var="loop_flag" value="false"/>
-	<c:set var="loop_flag2" value="false"/>
-	<c:forEach items="${schedule }" var="s">
-		<c:if test="${not loop_flag }">
-			<div class="hanna_container">
-				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
-				<div class="hanna_schedule_screen"> 1관 3층 </div><br>
-				<c:set var="loop_flag" value="true"/>
-				<hr>
-				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule }" var="s" varStatus="status">
-						<c:if test="${not loop_flag2 }">
-							<c:if test="${status.count == 6}">
-								<c:set var="loop_flag2" value="true"/>
-							</c:if>
-							<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
-						</c:if>
-					</c:forEach>
-				</div>
+	<c:forEach items="${schedule1 }" var="s">
+		<div class="hanna_container">
+			<br>
+			<div class="hanna_schedule_movie"> ${s.movieNo } </div>
+			<div class="hanna_schedule_screen"> ${s.screen } </div>
+			<hr>
+			<div class="hanna_schedule_time_wrap">
+				<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
 			</div>
-		</c:if>
+		</div>
 	</c:forEach>
-	
-	
-	
-	
-	
 	
 	<div class="hanna_container">
 		<br>

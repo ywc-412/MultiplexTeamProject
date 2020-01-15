@@ -15,7 +15,7 @@ public interface ScheduleMapper {
 	public int delete(int scheduleNo);
 	
 	// 날짜별 상영스케줄 조회
-	public List<ScheduleVO> get(String scheduleDate);
-//	public List<ScheduleVO> get(String schedule, String screen);
+//	public List<ScheduleVO> get(String scheduleDate);
+	public List<ScheduleVO> get(String scheduleDate, String screen);
 
 }
