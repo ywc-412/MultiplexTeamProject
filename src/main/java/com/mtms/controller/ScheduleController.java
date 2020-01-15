@@ -1,5 +1,7 @@
 package com.mtms.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -63,7 +65,7 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("remove")
-	public String remove(Date scheduleDate, RedirectAttributes rttr) {
+	public String remove(String scheduleDate, RedirectAttributes rttr) {
 		//  상영스케줄 삭제
 		// scheduleDate 같은 게 여러 개니까 한번에 삭제~
 		// service.remove
@@ -71,12 +73,32 @@ public class ScheduleController {
 	}
 	
 	@GetMapping({"get", "modify"})
-	public void get(Model model, Date scheduleDate) {
+	public void get(Model model, String scheduleDate) {
+		System.out.println("SCHEDULE CONTROLLER - GET");
+		// scheduleDate 값이 null로 들어오면 -> 오늘 날짜의 상영시간표 가져오기
+		if(scheduleDate == null) {
+			System.out.println("schedule controller - today");
+			
+			// 오늘 날짜 구하기
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	        Calendar c1 = Calendar.getInstance();
+	        String strToday = sdf.format(c1.getTime());
+	        
+//	        scheduleService.getList(strToday);
+			model.addAttribute("schedule", scheduleService.getList(strToday));
+		} else {
+			System.out.println();
+		}
+		
+		// model.addAttribute("schedule", scheduleService.getList(scheduleDate));
+		
+//		@GetMapping({"get", "modify"})
+//		public void get(long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+//			model.addAttribute("getOne", service.get(bno));
+//		}
+		
 		// 날짜별 상영스케줄 조회
 		// service.getList
-		// service.getList(scheduleDate, screenNo);
-		// service.getList(scheduleDate, screenNo);
-		// service.getList(scheduleDate, screenNo);
 	}
 	
 }

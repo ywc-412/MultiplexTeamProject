@@ -42,9 +42,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public List<String> getList(Date scheduleDate){//, int screenNo) {
-		// TODO Auto-generated method stub
-		// mapper.getList
-		return null;
+	public List<ScheduleVO> getList(String scheduleDate){
+		System.out.println("★ScheduleServiceImpl - getList");
+		return scheduleMapper.getList(scheduleDate);
+//		return null;
 	}
 }
