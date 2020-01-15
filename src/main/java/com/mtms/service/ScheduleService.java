@@ -1,6 +1,5 @@
 package com.mtms.service;
 
-import java.util.Date;
 import java.util.List;
 
 import com.mtms.domain.ScheduleVO;
@@ -23,6 +22,6 @@ public interface ScheduleService {
 	public boolean remove(int scheduleNo);
 	
 	// 날짜별 상영스케줄 조회
-	public List<ScheduleVO> getList(String scheduleDate);
+	public List<ScheduleVO> get(String scheduleDate);
 
 }

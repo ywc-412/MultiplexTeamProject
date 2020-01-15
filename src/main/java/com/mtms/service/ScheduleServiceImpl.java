@@ -1,16 +1,13 @@
 package com.mtms.service;
 
-import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mtms.mapper.MovieMapper;
 import com.mtms.mapper.ScheduleMapper;
 import com.mtms.domain.ScheduleVO;
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
@@ -42,9 +39,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public List<ScheduleVO> getList(String scheduleDate){
-		System.out.println("★ScheduleServiceImpl - getList");
-		return scheduleMapper.getList(scheduleDate);
-//		return null;
+	public List<ScheduleVO> get(String scheduleDate){
+		System.out.println("★ScheduleServiceImpl - get");
+		List<ScheduleVO> list = scheduleMapper.get(scheduleDate);
+		return list;
 	}
 }

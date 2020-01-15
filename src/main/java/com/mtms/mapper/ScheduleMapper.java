@@ -1,8 +1,6 @@
 package com.mtms.mapper;
 
-import java.util.Date;
 import java.util.List;
-
 import com.mtms.domain.ScheduleVO;
 
 public interface ScheduleMapper {
@@ -17,6 +15,6 @@ public interface ScheduleMapper {
 	public int delete(int scheduleNo);
 	
 	// 날짜별 상영스케줄 조회
-	public List<ScheduleVO> getList(String scheduleDate);
+	public List<ScheduleVO> get(String scheduleDate);
 
 }

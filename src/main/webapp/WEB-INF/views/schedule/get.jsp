@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 
 <%@ include file="../include/header.jsp" %>
 
@@ -28,37 +25,17 @@
 	</div> <!-- 상영 날짜 선택 탭 END -->
 	
 	<!-- 상영시간표  -->
-	<c:forEach items="${schedule }" var="s">
+	<c:forEach items="${schedule1 }" var="s">
 		<div class="hanna_container">
 			<br>
-			<div class="hanna_schedule_movie"> "${s.movieNo }" </div>
-			<div class="hanna_schedule_screen"> "${s.screen }" </div>
-			<hr>	
+			<div class="hanna_schedule_movie"> ${s.movieNo } </div>
+			<div class="hanna_schedule_screen"> ${s.screen } </div>
+			<hr>
 			<div class="hanna_schedule_time_wrap">
-<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
-<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
-<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
-<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
-<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
-<%-- 				<div class="hanna_schedule_time"> "${s.scheduleTime }" </div> --%>
+					<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
 			</div>
 		</div>
 	</c:forEach>
-	
-<%-- 					<c:forEach items="${list }" var="l"> --%>
-<!--                         <tr class="odd gradeX"> -->
-<%--                             <td>${l.bno}</td> --%>
-<%--                             <td><a href="${l.bno }" class="move">${l.title}  --%>
-<%-- 								<c:choose> --%>
-<%-- 									<c:when test="${l.replyCnt == 0}"> </c:when> --%>
-<%-- 									<c:when test="${l.replyCnt != 0}"> <b>[<c:out value="${l.replyCnt}"/>]</b></c:when>    --%>
-<%-- 								</c:choose> --%>
-<!--                             	</a>  </td> -->
-<%--                             <td>${l.writer}</td> --%>
-<%--                             <td class="center"><fmt:formatDate pattern="yyyy-MM-dd" value = "${l.regdate}"/></td> --%>
-<%--                             <td class="center"><fmt:formatDate pattern="yyyy-MM-dd" value = "${l.updateDate}"/></td> --%>
-<!--                         </tr> -->
-<%--                       </c:forEach> --%>
 	
 	<div class="hanna_container">
 		<br>
@@ -75,20 +52,20 @@
 		</div>
 	</div>
 	
-	<div class="hanna_container">
-		<br>
-		<div class="hanna_schedule_movie"> 백두산 </div>
-		<div class="hanna_schedule_screen"> 3관 3층 </div>
-		<hr>
-		<div class="hanna_schedule_time_wrap">
-			<div class="hanna_schedule_time"> 09:30 </div>
-			<div class="hanna_schedule_time"> 11:30 </div>
-			<div class="hanna_schedule_time"> 13:30 </div>
-			<div class="hanna_schedule_time"> 15:30 </div>
-			<div class="hanna_schedule_time"> 17:30 </div>
-			<div class="hanna_schedule_time"> 19:30 </div>
-		</div>
-	</div>
+<!-- 	<div class="hanna_container"> -->
+<!-- 		<br> -->
+<!-- 		<div class="hanna_schedule_movie"> 백두산 </div> -->
+<!-- 		<div class="hanna_schedule_screen"> 3관 3층 </div> -->
+<!-- 		<hr> -->
+<!-- 		<div class="hanna_schedule_time_wrap"> -->
+<!-- 			<div class="hanna_schedule_time"> 09:30 </div> -->
+<!-- 			<div class="hanna_schedule_time"> 11:30 </div> -->
+<!-- 			<div class="hanna_schedule_time"> 13:30 </div> -->
+<!-- 			<div class="hanna_schedule_time"> 15:30 </div> -->
+<!-- 			<div class="hanna_schedule_time"> 17:30 </div> -->
+<!-- 			<div class="hanna_schedule_time"> 19:30 </div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	<!-- 상영시간표 END -->
 
 	<!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
