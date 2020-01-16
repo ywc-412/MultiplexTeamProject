@@ -86,26 +86,35 @@ public class ScheduleController {
 			String formatToday = date.format(today);
 			scheduleDate = formatToday;
 
-//			String screena = "1관 3층";
-			System.out.println("schedule : " + scheduleDate);
-//			System.out.println("screena : " + screena);
+			System.out.println("오늘 날짜 : " + scheduleDate);
+			List<ScheduleVO> list1 = scheduleService.get(scheduleDate, "1관 3층");
+			List<ScheduleVO> list2 = scheduleService.get(scheduleDate, "2관 3층");
+			List<ScheduleVO> list3 = scheduleService.get(scheduleDate, "3관 3층");
 
-//			System.out.println(scheduleService.get(scheduleDate, screena).size());
-			System.out.println(scheduleService.get(scheduleDate, "1관 3층").size());
+			System.out.println("controller - list1 : " + list1.size());
+			System.out.println("controller - list2 : " + list2.size());
+			System.out.println("controller - list3 : " + list3.size());
 
-			model.addAttribute("schedule1", scheduleService.get(scheduleDate, "1관 3층"));
-			model.addAttribute("schedule2", scheduleService.get(scheduleDate, "2관 3층"));
-			model.addAttribute("schedule3", scheduleService.get(scheduleDate, "3관 3층"));
+			model.addAttribute("schedule1", list1);
+			model.addAttribute("schedule2", list2);
+			model.addAttribute("schedule3", list3);
 			
 		} else {
-			System.out.println("else");
+			System.out.println("schedule controller - otherday");
+			
+			// 내일 날짜
+			List<ScheduleVO> list1 = scheduleService.get(scheduleDate, "1관 3층");
+			List<ScheduleVO> list2 = scheduleService.get(scheduleDate, "2관 3층");
+			List<ScheduleVO> list3 = scheduleService.get(scheduleDate, "3관 3층");
+			
+			System.out.println("controller - list1 : " + list1.size());
+			System.out.println("controller - list2 : " + list2.size());
+			System.out.println("controller - list3 : " + list3.size());
+
+			model.addAttribute("schedule1", list1);
+			model.addAttribute("schedule2", list2);
+			model.addAttribute("schedule3", list3);
 		}
-		
-//		@GetMapping({"get", "modify"})
-//		public void get(long bno, @ModelAttribute("cri") Criteria cri, Model model) {
-//			model.addAttribute("getOne", service.get(bno));
-//		}
-		
 	}
 	
 }

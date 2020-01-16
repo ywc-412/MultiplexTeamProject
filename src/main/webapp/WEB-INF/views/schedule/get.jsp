@@ -19,19 +19,29 @@
 	<!-- 상영 날짜 선택 탭 -->
 	<hr>
 	<div class="schedule_item">
-		<a href="#" class="schedule_item_date">
+		<a href='/schedule/get?scheduleDate=<fmt:formatDate value="${to }" pattern="yyyyMMdd"/>' class="schedule_item_date">
 			<h3><fmt:formatDate value="${to }" pattern="dd"/></h3>
 			<p><fmt:formatDate value="${to }" pattern="MM"/></p>
 		</a>
-		<a href="#" class="schedule_item_date">
+		<a href='/schedule/get?scheduleDate=<fmt:formatDate value="${tomorrow }" pattern="yyyyMMdd"/>' class="schedule_item_date">
 			<h3><fmt:formatDate value="${tomorrow }" pattern="dd"/></h3>
 			<p><fmt:formatDate value="${tomorrow }" pattern="MM"/></p>
 		</a>
-		<a href="#" class="schedule_item_date">
+		<a href='/schedule/get?scheduleDate=<fmt:formatDate value="${tonext }" pattern="yyyyMMdd"/>' class="schedule_item_date">
 			<h3><fmt:formatDate value="${tonext }" pattern="dd"/></h3>
 			<p><fmt:formatDate value="${tonext }" pattern="MM"/></p>
 		</a>
 	</div> <!-- 상영 날짜 선택 탭 END -->
+	
+	<script>
+// 		$(function(){
+// 			$(".schedule_item_date").on("click", function(e){
+// 				// 상영 날짜를 선택했을 때!
+// 				e.preventDefault();
+// 			});
+// 		});
+	
+	</script>
 	
 	<!-- 상영시간표  -->
 	<c:set var="loop_flag" value="false"/>
