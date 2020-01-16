@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -76,10 +79,23 @@
 						<!--						<div class="col-xl-4 col-lg-4 d-none d-lg-block">-->
 						<div class="col-xl-4 col-lg-4 d-lg-block">
 							<div class="custom-margin">
-								<button class="btn btn-primary pull-right">회원가입</button>
+								
 							</div>
 							<div class="custom-margin">
-								<button class="btn btn-primary pull-right">로그인</button>
+								<sec:authorize access="!isAuthenticated()">
+									<button class="btn btn-primary pull-right" id="joinBtn">회원가입</button>
+									<button class="btn btn-primary pull-right" id="loginBtn">로그인</button>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+									<button class="btn btn-primary pull-right" id="logoutBtn">로그아웃</button>
+								
+									<sec:authorize access="hasRole('ROLE_MEMBER')">
+										<button class="btn btn-primary pull-right" id="myPageBtn">마이페이지</button>
+									</sec:authorize>
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<button class="btn btn-primary pull-right" id="adminPageBtn">관리자페이지</button>
+									</sec:authorize>
+								</sec:authorize>
 							</div>
 						</div>
 						<div class="col-12">
@@ -91,3 +107,21 @@
 			</div>
 		</div>
 	</header>
+										
+										
+	<script>
+		$(function(){
+			$('#joinBtn').on("click", function(){
+				location.href="/member/join";
+			});
+			
+			$('#loginBtn').on("click", function(){
+				location.href="/customLogin";
+			});
+			
+			$('#logoutBtn').on("click", function(){
+				location.href="/logout";
+			});
+		})
+		
+	</script>
