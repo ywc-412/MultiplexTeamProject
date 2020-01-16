@@ -21,6 +21,9 @@ public interface ScheduleService {
 	// 상영스케줄 삭제
 	public boolean remove(int scheduleNo);
 	
+	// 날짜별 상영스케줄 삭제
+	public boolean removeDay(String scheduleDate);
+	
 	// 날짜별 상영스케줄 조회
 //	public List<ScheduleVO> get(String scheduleDate);
 	public List<ScheduleVO> get(String scheduleDate, String screen);

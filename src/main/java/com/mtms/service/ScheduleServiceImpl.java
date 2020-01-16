@@ -39,13 +39,23 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-//	public List<ScheduleVO> get(String scheduleDate){
 	public List<ScheduleVO> get(String scheduleDate, String screen){
 		System.out.println("★ScheduleServiceImpl - get");
 		System.out.println("schedule : " + scheduleDate);
-//		System.out.println("screen : " + screen);
 		List<ScheduleVO> list = scheduleMapper.get(scheduleDate, screen);
-//		List<ScheduleVO> list = scheduleMapper.get(scheduleDate);
 		return list;
+	}
+
+	@Override
+	public boolean removeDay(String scheduleDate) {
+		// 날짜별 상영스케줄 전체 삭제
+		System.out.println("★ScheduleServiceImpl - removeDay");
+		System.out.println("schedule : " + scheduleDate);
+		if(scheduleMapper.deleteAll(scheduleDate) > 0) {
+			// deleteAll이 성공하면 true 보냄
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

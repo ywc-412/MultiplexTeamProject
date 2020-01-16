@@ -12,6 +12,10 @@
 	
 <!-- 	<delete id="delete"> -->
 <!-- 	</delete> -->
+
+	<delete id="deleteAll">
+		DELETE FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
+	</delete>
 	
 	<resultMap type="com.mtms.domain.ScheduleVO" id="scheduleMap">
 		<!-- property VO에 있는 이름 column 디비에 있는 이름 -->
@@ -30,10 +34,8 @@
 	</resultMap>
 	
 	<select id="get" resultMap="scheduleMap">
-		SELECT s.scheduleTime, m.movieTitle FROM schedule s, movie m
+		SELECT s.scheduleDate, s.scheduleTime, m.movieTitle FROM schedule s, movie m
 		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo
 	</select>
-	
-	
-	
+
 </mapper>
