@@ -72,10 +72,8 @@
 	<div class="hanna_container" style="padding-bottom : 0px;">
 		<div class="mt-10 custom-input">
 			<div>영화선택</div>
-			<form id="actionForm" method="post">
-				<input type="text" name="movieName" id="movieName" class="hanna_input">
-				<button type="submit" class="hanna_button" onclick="movieSearch()" style="cursor : pointer;"> 검색 </button>
-			</form>
+			<input type="text" name="movieName" id="movieName" class="hanna_input">
+			<button class="hanna_button" onclick="movieSearch()" style="cursor : pointer;"> 검색 </button>
 		</div>
 	</div>
 	<div class="hanna_container" style="padding-top : 0px;">
@@ -196,6 +194,7 @@
 	<script>
 		
 		function movieChoice(movieName, movieNo){
+			alert('moviechoice');
 			// 검색된 영화명을 클릭했을 때 영화명, 영화번호, 날짜 모달에 넣고 모달창 띄움
 			$('#scheduleAddModal').find("input[name='movieTitle']").val(movieName);
 			$('#scheduleAddModal').find("input[name='movieNo']").val(movieNo);
@@ -212,10 +211,10 @@
 					function(data){ // 결과값 받기
 						for(mvo of data){
 							str += "<li class='hanna_li'>";
-							str += "<a href='javascript:movieChoice(\'"+ mvo.movieTitle +"', '" + mvo.movieNo +"\')>";
+							str += "<a href='movieChoice(\'"+ mvo.movieTitle +"', '" + mvo.movieNo +"\')>";
 							str += mvo.movieTitle + "</a></li>";
 						}
-					
+						alert(str);
 						$(".hanna_ul_list").html(str);
 					}).fail(function(xhr, status, error){
 						if(error){

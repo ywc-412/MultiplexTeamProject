@@ -106,9 +106,7 @@ public class MovieController {
 								MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<MovieVO>> getName(@PathVariable("movieName") String movieName){
 		System.out.println("MOVIE CONTROLLER - GETNAME");
-		ResponseEntity<List<MovieVO>> entity = new ResponseEntity<>(movieService.getMovieName(movieName), HttpStatus.OK);
-		System.out.println("after service - code : " + entity.getStatusCode());
-		return entity;
+		return new ResponseEntity<>(movieService.getMovieName(movieName), HttpStatus.OK);
 	}
 	
 //	@PostMapping("getName")
