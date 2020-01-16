@@ -3,6 +3,7 @@ package com.mtms.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,20 +37,27 @@ public class GiftController {
 	
 	@GetMapping("get")	//기프티콘 상세보기
 	public void get(@RequestParam("giftNo") int giftNo, Model model) {
-		
+		log.info("GiftController get()");
+		model.addAttribute("gift", giftService.get(giftNo));
 	}
 	
 	@PostMapping("register")	//기프티콘 등록(P)
-	public String register(GiftVO gvo, RedirectAttributes rttr) {
-		giftService.register(gvo);
-		rttr.addAttribute("result", gvo.getGiftNo());	//추가적으로 새롭게 등록된 기프티콘 번호를 함께 전달
-		return "redirect:/gift/list";	
+	public String register(GiftVO gift, RedirectAttributes rttr) {
+		log.warn("===========================");
+		log.warn("register : " + gift);
+		if(gift.getAttachList() != null) {
+			gift.getAttachList().forEach(attach -> log.warn(attach));
+		}
+		
+		giftService.register(gift);
+		rttr.addFlashAttribute("result", gift.getGiftNo());	//추가적으로 새롭게 등록된 기프티콘 번호를 함께 전달
+		return "redirect:/gift/list";
 		
 	}
 	
 	@GetMapping("register")	//기프티콘 등록(G)
 	public void register() {
-	
+		log.warn("Gift Controller register get");
 	}
 	
 	@PostMapping("modify")	//기프티콘 수정(P)
@@ -68,9 +76,9 @@ public class GiftController {
 		
 	}
 	
-	@GetMapping("getAttachList")	//기프티콘 사진 등록
-	@ResponseBody
+	@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)	//기프티콘 사진 조회	
 	public ResponseEntity<List<GiftAttachVO>> getAttachList(int giftNo) {		
+		log.warn("Gift Attach List,,,," + giftNo);
 		return new ResponseEntity<>(giftService.getAttachList(giftNo), HttpStatus.OK);
 	}
 	

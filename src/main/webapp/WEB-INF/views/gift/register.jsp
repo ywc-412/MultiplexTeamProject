@@ -56,10 +56,11 @@ $(function(e){
 			var tags = "";			
 			$('.uploadResult ul li').each(function(i,obj){
 				var o = $(obj);
-				tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("giftFileName") + "'>";
-				tags += "<input type='hidden' name='attachList["+i+"].giftUuid' value='" + o.data("giftUuid") + "'>";
-				tags += "<input type='hidden' name='attachList["+i+"].giftUploadPath' value='" + o.data("giftUploadPath") + "'>";
+				tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("filename") + "'>";
+				tags += "<input type='hidden' name='attachList["+i+"].giftUuid' value='" + o.data("uuid") + "'>";
+				tags += "<input type='hidden' name='attachList["+i+"].giftUploadPath' value='" + o.data("path") + "'>";
 			});	
+			alert(tags);
 			console.log(tags);
 			$("form[role='form']").append(tags).submit();
 		});
@@ -108,10 +109,10 @@ $(function(e){
 							dataType : 'json',	//반환된 정보를 처리하도록 추가
 							success : function(result) {	
 								alert("upload ok");
-								console.log(result);						
+								console.log(result);
+								showUpLoadedFile(result)
 							},error : function(error) {
-								alert("upload not ok");
-								console.log(error);
+								alert("upload not ok");								
 							}		
 						});//END ajax
 						});//END click
@@ -120,6 +121,40 @@ $(function(e){
 					e.preventDefault();
 					console.log('submit clicked!');
 				});
+						
+				function showUpLoadedFile(result) {
+					var li = "";
+					$(result).each(function(index, obj){						
+						//$('.uploadResult ul').append('<li>' + obj.fileName + '</li>');
+						
+						
+						//if(obj.image) {
+							//이미지이면 그대로 표시
+							//li += ('<li>' + obj.fileName + '</li>');
+							var filePath = encodeURIComponent(obj.giftUploadPath +  obj.giftUuid + "_" + obj.giftFileName);
+							//var originPath = obj.uploadPath + "\\" + obj.uuid + "_" + obj.fileName;
+							//originPath = originPath.replace(new RegExp(/\\/g),"/");		// \를 /로 바꾸라는 정규표현식
+							
+							//li +ㄴ= "<li><img src='/display?fileName=" + filePath + "'></li>";
+							//li += "<li><a href=\"javascript:showImage(\'" + originPath + "\')\"><img src='/display?fileName=" + filePath + "'></a>"
+							//	  + "<span data-file=\'" + filePath + "\' data-type='image'>x</span>"+"</li>";
+							li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"'><div><span>" + obj.giftFileName + "</span>" +
+								  "<button data-file=\'" + filePath + "\' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"
+								  + "<img src='/giftUpload/display?giftFileName="+filePath+"'></div></li>";	
+						/* } else {
+							//이미지가 아니면 attach.png 표시
+							var filePath = encodeURIComponent(obj.giftUploadPath + "/" + obj.giftUuid + "_" + obj.giftFileName);
+							var fileLink = filePath.replace(new RegExp(/\\/g),"/");		// \를 /로 바꾸라는 정규표현식
+							//li += "<li><img src='/resources/img/attach.png'>" + obj.fileName + "</li>";
+							//li += "<li><div><a href='/download?fileName="+filePath+"'>"+"<img src='/resources/img/attach.png'>" + obj.fileName + "</a>"
+							//	   + "<span data-file=\'" + filePath + "\' data-type='image'>x</span>"+"</div></li>";
+							li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"' data-type='" + obj.image+ "'><div><span>" + obj.giftFileName + "</span>" + 
+								  "<button data-file=\'" + filePath + "\' data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"
+									+ "<img src='/resources/img/attach.png'></div></li>"; 
+						}	*/
+					});	
+					$('.uploadResult ul').append(li);
+				}
 });
 </script>
 <%@include file="../include/footer.jsp"%>

@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -36,20 +37,21 @@ public class GiftUploadController {
 	
 	@GetMapping("/uploadAjax")		//첨부파일 업로드 화면을 처리
 	public void uploadAjax() {
-		
+		log.info("uploadAjax()");
 	}
 	
 	
 	//@PreAuthorize("isAuthenticated()")		
-	@PostMapping(value = "/uploadAjaxAction")		//첨부파일 업로드를 처리
+	@PostMapping(value = "/uploadAjaxAction" , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)		//첨부파일 업로드를 처리
 	@ResponseBody
 	public ResponseEntity<List<GiftAttachVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
-		List<GiftAttachVO> list = new ArrayList<GiftAttachVO>();
-		log.info("update ajax post.........");
+		List<GiftAttachVO> list = new ArrayList<>();
+		log.info("update ajax post.........");		
 		
 		String uploadFolder = "C:\\upload";
 		
-		File giftUploadPath = new File(uploadFolder, getFolder());
+		//폴더 생성
+		File giftUploadPath = new File(uploadFolder, "\\gift\\");
 		log.info("upload path" + giftUploadPath);
 		
 		if(giftUploadPath.exists() == false) {
@@ -59,23 +61,23 @@ public class GiftUploadController {
 		for(MultipartFile multiF : uploadFile) {
 			GiftAttachVO gav = new GiftAttachVO();
 			gav.setGiftFileName(multiF.getOriginalFilename());
-			gav.setGiftUploadPath(getFolder());
+			gav.setGiftUploadPath("\\gift\\");
 			
-			
-			
+			log.warn("Upload File Name : " + multiF.getOriginalFilename());
+			log.warn("Upload File Size : " + multiF.getSize());
+
 			//file path
 			String uploadFileName = multiF.getOriginalFilename();
 			uploadFileName = multiF.getOriginalFilename().substring(multiF.getOriginalFilename().lastIndexOf("\\") + 1);
 			
-			gav.setGiftFileName(uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1));
-			
 			//중복 방지위한 random uuid 생성
-			UUID giftUuid = UUID.randomUUID();
-			gav.setGiftUuid(giftUuid.toString());
-			uploadFileName = giftUuid.toString() + "_" + uploadFileName;
+			UUID uuid = UUID.randomUUID();
+			gav.setGiftUuid(uuid.toString());
+			
+			uploadFileName = uuid.toString() + "_" + uploadFileName;
 			
 			File saveFile = new File(giftUploadPath, uploadFileName);
-			
+			log.warn(saveFile);
 			//io는 예외 꼭 해야함
 			try {
 				multiF.transferTo(saveFile);
@@ -93,14 +95,16 @@ public class GiftUploadController {
 		
 	}
 	
-	private String getFolder() {	//현재 시점의 연\\월\\일 폴더 경로 문자열 생성
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		String str = sdf.format(date);
-		
-		return str.replace("-", File.separator);
-		
-	}
+	/*
+	 * private String getFolder() { //현재 시점의 연\\월\\일 폴더 경로 문자열 생성 SimpleDateFormat
+	 * sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+	 * Date date = new Date(); 
+	 * String str = sdf.format(date);
+	 * 
+	 * return str.replace("-", File.separator);
+	 * 
+	 * }
+	 */
 	
 	@GetMapping("/display")	//표시
 	@ResponseBody

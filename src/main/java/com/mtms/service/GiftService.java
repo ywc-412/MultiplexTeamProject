@@ -19,5 +19,5 @@ public interface GiftService {
 	
 	public boolean remove(int giftNo); //기프티콘 삭제
 	
-	public List<GiftAttachVO> getAttachList(int giftNo);	//기프티콘 사진 등록
+	public List<GiftAttachVO> getAttachList(int giftNo);	//기프티콘 사진 목록
 }

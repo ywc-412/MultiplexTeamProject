@@ -400,3 +400,8 @@ input:disabled {
 .custom-gift-pagination {
     padding-left: 10%;
 }
+
+
+.product-content {
+	float: left;
+}

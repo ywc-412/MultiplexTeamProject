@@ -27,64 +27,70 @@
 						<h4 class="custom-divide">팝콘</h4>
 					</div>
 					<div class="row">
+
 						<!-- data-start -->
 						<div class="col-md-3 col-sm-6">
-							<div class="product-grid9">
-								<div class="product-image9">
-									<!-- 아마도 사진 start -->
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="panel panel-default">
-												<div class="panel-body">
 
-													<!-- 업로드 결과 출력 -->
-													<div class="uploadResult">
-														<ul>
-
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
+							<!-- 아마도 사진 end -->
+							<div class="product-content">
+								<c:forEach items="${list}" var="gift">
+									<h3 class="title">
+										<a class="move" href="/gift/get?giftNo=${gift.giftNo}"><c:out value="${gift.giftNo}"/></a>
+										
+									</h3>
+									<div class="price">
+										<c:out value="${gift.giftPrice}" />
 									</div>
-									<div class='bigPictureWrapper'>
-										<div class="bigPicture"></div>
-									</div>
-								</div>
-								<!-- 아마도 사진 end -->
-								<div class="product-content">
-									<c:forEach items="${list}" var="gift">
-										<h3 class="title">
-											<c:out value="${gift.giftNo}" />
-										</h3>
-										<div class="price">
-											<c:out value="${gift.giftPrice}" />
-										</div>
-									</c:forEach>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
-						<!-- data-end -->
-					</div>
-				</div>
-				<!--first-line-e-->
 
+						<!-- data-end -->
+
+					</div>
+					<!--first-line-e-->
+
+				</div>
 			</div>
 		</div>
-	</div>
 </section>
 <!--board-end-->
 <script>
-function showImage(filePath) {
-	alert(filePath);		
-	$(".bigPictureWrapper").css("display","flex").show();
-	$(".bigPicture").html("<img src='/display?fileName="+filePath+"'>").animate({width: '100%', height: '100%'}, 1000);	
-	$(".bigPictureWrapper").click(function(e){
-		$(".bigPicture").animate({width: '0%', height: '0%'}, 1000);
-		setTimeout(function(){
-			$('.bigPictureWrapper').hide();
-		}, 1000);
+
+
+//즉시 실행함수 - 첨부파일 목록 가져오기
+$(document).ready(function(){
+	(function(){
+	//var giftNo = "${gift.giftNo}";
+	var giftNo = 98;
+	console.log(giftNo);
+	$.getJSON("/gift/getAttachList", {giftNo : giftNo}, function(data) {
+		console.log(data);
+						
+		var li = "";
+		$(data).each(function(index, obj){								
+			//이미지이면 그대로 표시				
+				var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);				
+				li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"' ><div><span>" + obj.giftFileName + "</span>" + 
+					  "<img src='/giftUpload/display?giftFileName="+filePath+"'></div></li>";
+		});		
+		
+				$('.uploadResult ul').append(li);		
+			
+	});//END JSON	
+	})();
+})
+
+$('.move').click(
+	function(e) {
+		e.preventDefault();
+		//actionForm에 hidden으로 name 속성 추가 값은 giftNo 지정, value 속성 추가 값은 ~~ 지정한 후 append
+		$('#actionForm').append(
+				"<input type='hidden' name='giftNo' value='"
+						+ $(this).attr("href") + "'>");
+		$('#actionForm').attr("action", "/gift/get");
+
+		$('#actionForm').submit();
 	});
-}
 </script>
 <%@include file="../include/footer.jsp"%>
