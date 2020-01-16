@@ -13,7 +13,7 @@
 				<div class="custom-board-title">
 					<h3 class="custom-font-bold">기프티콘</h3>
 				</div>
-				<a href="/mtms/giftReg.html" class="btn btn-primary btn-sm">등록</a>
+				<a id="regGift" class="btn btn-primary btn-sm">등록</a>
 				<!--search-start-->
 				<div class="pull-right">
 					<input type="text" placeholder="검색어를 입력하세요"
@@ -35,7 +35,7 @@
 							<div class="product-content">
 								<c:forEach items="${list}" var="gift">
 									<h3 class="title">
-										<a class="move" href="/gift/get?giftNo=${gift.giftNo}"><c:out value="${gift.giftNo}"/></a>
+										<a class="move" href="${gift.giftNo}"><c:out value="${gift.giftNo}"/></a>
 										
 									</h3>
 									<div class="price">
@@ -92,5 +92,9 @@ $('.move').click(
 
 		$('#actionForm').submit();
 	});
+	
+$('#regGift').click(function() {
+	self.location = "/gift/register";
+});
 </script>
 <%@include file="../include/footer.jsp"%>
