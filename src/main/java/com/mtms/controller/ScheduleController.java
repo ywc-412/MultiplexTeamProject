@@ -72,7 +72,7 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("remove")
-	public String remove(String scheduleDate, RedirectAttributes rttr, Model model) {
+	public String remove(String scheduleDate, RedirectAttributes rttr) {
 		// 상영스케줄 삭제
 		// scheduleDate 같은 게 여러 개니까 한번에 삭제~
 		// service.remove
@@ -120,9 +120,9 @@ public class ScheduleController {
 			List<ScheduleVO> list2 = scheduleService.get(scheduleDate, "2관 3층");
 			List<ScheduleVO> list3 = scheduleService.get(scheduleDate, "3관 3층");
 
-//			System.out.println("controller - list1 : " + list1.size());
-//			System.out.println("controller - list2 : " + list2.size());
-//			System.out.println("controller - list3 : " + list3.size());
+			System.out.println("controller - list1 : " + list1.size());
+			System.out.println("controller - list2 : " + list2.size());
+			System.out.println("controller - list3 : " + list3.size());
 
 			model.addAttribute("schedule1", list1);
 			model.addAttribute("schedule2", list2);

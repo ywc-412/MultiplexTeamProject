@@ -128,6 +128,7 @@
 				</div>
 				<div class="modal-body">
 				<form id="addForm" action="/schedule/register" method="post">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<div>영화명&nbsp&nbsp
 						<input type="text" name="movieTitle" readOnly="readonly">
 						<input type="hidden" name="movieNo">

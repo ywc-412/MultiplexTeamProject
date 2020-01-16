@@ -103,6 +103,7 @@
 		<c:forEach items="${schedule1 }" var ="s">
 			<c:if test="${not loop_flag }">
 				<input type="hidden" name="scheduleDate" value='<fmt:formatDate value="${s.scheduleDate }" pattern="yyyyMMdd"/>' />
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				<c:set var="loop_flag" value="true"/>
 			</c:if>
 		</c:forEach>
