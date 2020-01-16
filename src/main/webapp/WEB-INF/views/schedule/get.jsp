@@ -48,7 +48,7 @@
 			<div class="hanna_container">
 				<br>
 				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
-				<div class="hanna_schedule_screen"> 1관 3층 </div><br>
+				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
 				<c:set var="loop_flag" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
@@ -66,7 +66,7 @@
 			<div class="hanna_container">
 				<br>
 				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
-				<div class="hanna_schedule_screen"> 2관 3층 </div><br>
+				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
 				<c:set var="loop_flag" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
@@ -84,7 +84,7 @@
 			<div class="hanna_container">
 				<br>
 				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
-				<div class="hanna_schedule_screen"> 3관 3층 </div><br>
+				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
 				<c:set var="loop_flag" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">

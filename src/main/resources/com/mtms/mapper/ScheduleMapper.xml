@@ -20,7 +20,7 @@
 	
 	<resultMap type="com.mtms.domain.ScheduleVO" id="scheduleMap">
 		<!-- property VO에 있는 이름 column 디비에 있는 이름 -->
-		<id property="movieNo" column="movieNo"/> <!-- 조인 칼럼 -->
+		<id property="movieNo" column="movieNo"/> 조인 칼럼
 		<result property="scheduleNo" column="scheduleNo"/>
 		<result property="scheduleDate" column="scheduleDate"/>
 		<result property="scheduleTime" column="scheduleTime"/>
@@ -35,8 +35,13 @@
 	</resultMap>
 	
 	<select id="get" resultMap="scheduleMap">
-		SELECT to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, s.screen, s.movieNo, m.movieTitle FROM schedule s, movie m
+		SELECT m.*, to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, s.screen FROM schedule s, movie m
 		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo
 	</select>
+	
+<!-- 	<select id="get" resultType="com.mtms.domain.ScheduleMovieVO"> -->
+<!-- 		SELECT m.*, to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, s.screen FROM schedule s, movie m -->
+<!-- 		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo -->
+<!-- 	</select> -->
 
 </mapper>

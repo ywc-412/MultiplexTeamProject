@@ -98,7 +98,6 @@
 				<br>
 				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle">${o.movieVO.movieTitle }</div>
 				<div class="hanna_schedule_screen" id="screen">${o.screen }</div>
-				<!-- 여기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! screen 안나와!!!!!!!!!!! -->
 				<c:set var="loop_flag" value="true"/>
 				<hr>	
 				<div class="hanna_schedule_time_wrap">

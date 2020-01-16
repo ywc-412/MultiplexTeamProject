@@ -43,6 +43,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		System.out.println("★ScheduleServiceImpl - get");
 		System.out.println("schedule : " + scheduleDate);
 		List<ScheduleVO> list = scheduleMapper.get(scheduleDate, screen);
+		System.out.println("service list size : " + list.size());
 		return list;
 	}
 
