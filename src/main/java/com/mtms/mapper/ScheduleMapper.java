@@ -9,7 +9,7 @@ import com.mtms.domain.ScheduleVO;
 public interface ScheduleMapper {
 	
 	// 상영스케줄 등록
-//	public void insert(ScheduleVO rvo);
+	public int insert(ScheduleVO rvo);
 
 //	// 상영스케줄 수정
 //	public int update(int scheduleNo);

@@ -73,7 +73,7 @@
 		<div class="mt-10 custom-input">
 			<div>영화선택</div>
 			<input type="text" name="movieName" id="movieName" class="hanna_input">
-			<button class="hanna_button" onclick="movieSearch()" style="cursor : pointer;"> 검색 </button>
+			<button class="hanna_button" id = "searchMovie" style="cursor : pointer;"> 검색 </button>
 		</div>
 	</div>
 	<div class="hanna_container" style="padding-top : 0px;">
@@ -90,20 +90,25 @@
 	</div>
 	
 	<!-- 등록된 상영시간표 표시 - 여러 개 생겨야함 -->
-<!-- 	<div class="hanna_container"> -->
-<!-- 		<br> -->
-<!-- 		<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle">겨울왕국2</div> -->
-<!-- 		<div class="hanna_schedule_screen" id="screenNo">2관 3층</div> -->
-<!-- 		<hr>	 -->
-<!-- 		<div class="hanna_schedule_time_wrap"> -->
-<!-- 			<div class="hanna_schedule_time" id="time1">10:00</div> -->
-<!-- 			<div class="hanna_schedule_time" id="time2">12:00</div> -->
-<!-- 			<div class="hanna_schedule_time" id="time3">14:00</div> -->
-<!-- 			<div class="hanna_schedule_time" id="time4">16:00</div> -->
-<!-- 			<div class="hanna_schedule_time" id="time5">18:00</div> -->
-<!-- 			<div class="hanna_schedule_time" id="time6">20:00</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
+	
+	<c:set var="loop_flag" value="false"/>
+	<c:forEach items="${oneSchedule }" var="o">
+		<c:if test="${not loop_flag }">
+			<div class="hanna_container">
+				<br>
+				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle">${o.movieVO.movieTitle }</div>
+				<div class="hanna_schedule_screen" id="screen">${o.screen }</div>
+				<!-- 여기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! screen 안나와!!!!!!!!!!! -->
+				<c:set var="loop_flag" value="true"/>
+				<hr>	
+				<div class="hanna_schedule_time_wrap">
+					<c:forEach items="${oneSchedule }" var="os">
+						<div class="hanna_schedule_time" id="time">${os.scheduleTime }</div>
+					</c:forEach>
+				</div>
+			</div>
+	</c:if>
+	</c:forEach>
 	<!-- 등록된 상영시간표 표시 END -->
 	
 	<div class="hanna_container">
@@ -122,30 +127,31 @@
 					</button>
 				</div>
 				<div class="modal-body">
+				<form id="addForm" action="/schedule/register" method="post">
 					<div>영화명&nbsp&nbsp
 						<input type="text" name="movieTitle" readOnly="readonly">
 						<input type="hidden" name="movieNo">
-						<input type="hidden" name="month">
-						<input type="hidden" name="day">
+						<input type="hidden" name="scheduleDate">
 					</div> <br>
 					<div>상영관&nbsp&nbsp
 						<select name="screen">
-							<option value="1"> 1관 3층 </option>
-							<option value="2"> 2관 3층 </option>
-							<option value="3"> 3관 3층 </option>
+							<option value="1관 3층"> 1관 3층 </option>
+							<option value="2관 3층"> 2관 3층 </option>
+							<option value="3관 3층"> 3관 3층 </option>
 						</select>
 					</div> <br>
 					<div>상영시간</div>
-						<input type="text" class="hanna_add_time" name="time1">
-						<input type="text" class="hanna_add_time" name="time2">
-						<input type="text" class="hanna_add_time" name="time3">
-						<input type="text" class="hanna_add_time" name="time4">
-						<input type="text" class="hanna_add_time" name="time5">
-						<input type="text" class="hanna_add_time" name="time6">
+						<input type="text" class="hanna_add_time" name="time">
+						<input type="text" class="hanna_add_time" name="time">
+						<input type="text" class="hanna_add_time" name="time">
+						<input type="text" class="hanna_add_time" name="time">
+						<input type="text" class="hanna_add_time" name="time">
+						<input type="text" class="hanna_add_time" name="time">
+				</form>
 				</div>
 				<div class="modal-footer justify-content-center">
-					<button type="submit" class="hanna_button">추가</button>
-					<button type="button" class="hanna_button" data-dismiss="modal">취소</button>
+					<button id ="modalAddBtn" class="hanna_button">추가</button>
+					<button id ="modalCanBtn" class="hanna_button" data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>
@@ -174,13 +180,15 @@
 						</select>
 					</div> <br>
 					<div>상영시간</div>
-						<input type="text" class="hanna_add_time" name="time1">
-						<input type="text" class="hanna_add_time" name="time2">
-						<input type="text" class="hanna_add_time" name="time3">
-						<input type="text" class="hanna_add_time" name="time4">
-						<input type="text" class="hanna_add_time" name="time5">
-						<input type="text" class="hanna_add_time" name="time6">
+						<input type="text" class="hanna_add_time" name="scheduleTime">
+<!-- 						<input type="text" class="hanna_add_time" name="time2"> -->
+<!-- 						<input type="text" class="hanna_add_time" name="time3"> -->
+<!-- 						<input type="text" class="hanna_add_time" name="time4"> -->
+<!-- 						<input type="text" class="hanna_add_time" name="time5"> -->
+<!-- 						<input type="text" class="hanna_add_time" name="time6"> -->
 				</div>
+				<form id="modifyForm" method="post">
+				</form>
 				<div class="modal-footer justify-content-center">
 					<button type="submit" class="hanna_button">수정</button>
 					<button type="button" class="hanna_button delete_button">삭제</button>
@@ -192,40 +200,108 @@
 
 	
 	<script>
-		
 		function movieChoice(movieName, movieNo){
-			alert('moviechoice');
 			// 검색된 영화명을 클릭했을 때 영화명, 영화번호, 날짜 모달에 넣고 모달창 띄움
 			$('#scheduleAddModal').find("input[name='movieTitle']").val(movieName);
 			$('#scheduleAddModal').find("input[name='movieNo']").val(movieNo);
-			$('#scheduleAddModal').find("input[name='month']").val($('#selectMon').val());
-			$('#scheduleAddModal').find("input[name='day']").val($('#selectDay').val());
+			
+			var today = new Date();
+			var yyyy = today.getFullYear();
+			alert(yyyy+$('#selectMon').val()+$('#selectDay').val());
+			
+			$('#scheduleAddModal').find("input[name='scheduleDate']").val(yyyy+$('#selectMon').val()+$('#selectDay').val());
 			$('#scheduleAddModal').modal('show');
 		}
 		
-		function movieSearch(){
-			var movieName = $("#movieName").val();
-			var str="";
-			if(movieName != null){
-				$.getJSON("/movie/getName/"+movieName+".json",
-					function(data){ // 결과값 받기
-						for(mvo of data){
-							str += "<li class='hanna_li'>";
-							str += "<a href='movieChoice(\'"+ mvo.movieTitle +"', '" + mvo.movieNo +"\')>";
-							str += mvo.movieTitle + "</a></li>";
-						}
-						alert(str);
-						$(".hanna_ul_list").html(str);
-					}).fail(function(xhr, status, error){
-						if(error){
-							error();
-						}
-					});
-			}
-		}
+// 		function movieSearch(){
+// 			// 검색 버튼 클릭 시 ajax로 영화명 받아오기
+// 			var movieName = $("#movieName").val();
+// 			var str="";
+// 			if(movieName != null){
+// 				$.getJSON("/movie/getName/"+movieName+".json",
+// 					function(data){ // 결과값 받기
+// 						for(mvo of data){
+// 							str += "<li class='hanna_li'>";
+// 							str += "<a href=\"javascript:movieChoice(\'"+ mvo.movieTitle +"', '" + mvo.movieNo +"\')\">";
+// 							str += mvo.movieTitle + "</a></li>";
+// 						}
+// 						$(".hanna_ul_list").html(str);
+// 					}).fail(function(xhr, status, error){
+// 						if(error){
+// 							error();
+// 						}
+// 					});
+// 			}
+// 		}
 		
 	
 		$(function() {
+			
+			$("#searchMovie").on("click", function(){
+				// 검색 버튼 클릭 시 ajax로 영화명 받아오기
+				var movieName = $("#movieName").val();
+				var str="";
+				if(movieName != null){
+					$.getJSON("/movie/getName/"+movieName+".json",
+						function(data){ // 결과값 받기
+							for(mvo of data){
+								str += "<li class='hanna_li'>";
+								str += "<a href=\"javascript:movieChoice(\'"+ mvo.movieTitle +"', '" + mvo.movieNo +"\')\">";
+								str += mvo.movieTitle + "</a></li>";
+							}
+							$(".hanna_ul_list").html(str);
+						}).fail(function(xhr, status, error){
+							if(error){
+								error();
+							}
+						});
+				}
+			});
+			
+			// ADD 모달창 관련 처리
+			var addModal = $("#scheduleAddModal");
+			var inputTitle = addModal.find("input[name='movieTitle']"); // 영화제목
+			var inputNo = addModal.find("input[name='movieNo']"); // 영화번호
+			var inputDate = addModal.find("input[name='scheduleDate']"); // 상영날짜
+			var inputScreen = addModal.find("input[name='screen']"); // 상영관
+			var inputTime1 = addModal.find("input[name='scheduleTime']"); // 상영시간1
+// 			var inputTime2 = addModal.find("input[name='time2']"); // 상영시간2
+// 			var inputTime3 = addModal.find("input[name='time3']"); // 상영시간3
+// 			var inputTime4 = addModal.find("input[name='time4']"); // 상영시간4
+// 			var inputTime5 = addModal.find("input[name='time5']"); // 상영시간5
+// 			var inputTime6 = addModal.find("input[name='time6']"); // 상영시간6
+
+			var addScheduleBtn = $("#modalAddBtn");
+			var canScheduleBtn = $("#modalCanBtn");
+			
+			addScheduleBtn.on("click", function(){
+				$("#addForm").submit();
+			}); // 스케줄 추가 버튼 클릭 END
+			
+// 			addScheduleBtn.on("click", function(e){
+// 				var schedule = {
+// 						movieNo : inputNo.val(),
+// 						scheduleDate : inputDate.val(),
+// 						screen : inputScreen.val(),
+// // 						scheduleTime = inputTime1.val()
+// 				};
+// 				$.ajax({
+// 					type : 'post',
+// 					url : '/scheduleA/add',
+// 					data : JSON.stringify(schedule),
+// 					contentType : "application/json; charset=utf-8",
+// 					success : function(result, status, xhr){
+// 						// 성공 시 할 것
+// 						alert(result.scheduleDate);
+// 					},
+// 					error : function(xhr, status, er){
+// 						if(error){
+// 							error(er);
+// 						}
+// 					}
+// 				}) // END ajax
+// 			}) // 추가 버튼 클릭 시 END
+			
 			
 			// 수정모달창에 값 넘기기
 			var modifyModal = $("#scheduleModifyModal");

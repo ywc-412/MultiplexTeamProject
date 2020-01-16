@@ -42,12 +42,20 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("register")
-	public void register(ScheduleVO scheduleVO) {
+	public void register(ScheduleVO scheduleVO, String[] time, Model model) {
 		// 상영스케줄 등록 화면에서 상영스케줄 insert
 		// 모달창에서 '추가' 버튼 누르는 순간에 등록하는 거라서 VO 하나씩 가지고 감
-		// 모달창 뜰 때, hidden으로 날짜 값 모달 창에 보내야해
-		
-		// service.register
+		for(int i=0; i<time.length; i++) {
+			
+			ScheduleVO svo = new ScheduleVO();
+			svo.setScheduleDate(scheduleVO.getScheduleDate());
+			svo.setMovieNo(scheduleVO.getMovieNo());
+			svo.setScreen(scheduleVO.getScreen());
+			svo.setScheduleTime(time[i]);
+			
+			scheduleService.register(svo);
+		}
+		model.addAttribute("oneSchedule", scheduleService.get(scheduleVO.getScheduleDate(), scheduleVO.getScreen()));
 	}
 	
 //	@GetMapping("modify")

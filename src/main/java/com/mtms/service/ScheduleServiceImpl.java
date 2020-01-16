@@ -19,9 +19,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 	private MovieMapper movieMapper;
 
 	@Override
-	public void register(ScheduleVO rvo) {
-		// 상영스케줄 등록
-		// mapper.insert
+	public int register(ScheduleVO rvo) {
+		// 상영스케줄 등록 ( 영화 하나 / 관 하나 / 시간 6개 )
+		return scheduleMapper.insert(rvo);
 	}
 
 	@Override

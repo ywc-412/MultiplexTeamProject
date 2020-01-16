@@ -13,7 +13,7 @@ public interface ScheduleService {
 	 */
 	
 	// 상영스케줄 등록
-	public void register(ScheduleVO rvo);
+	public int register(ScheduleVO rvo);
 	
 	// 상영스케줄 수정
 	public boolean modify(int scheduleNo);

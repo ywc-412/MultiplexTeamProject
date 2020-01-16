@@ -61,7 +61,6 @@
 	</c:forEach>
 	
 	<c:set var="loop_flag" value="false"/>
-	<c:set var="loop_flag2" value="false"/>
 	<c:forEach items="${schedule2 }" var="s">
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
@@ -80,7 +79,6 @@
 	</c:forEach>
 	
 	<c:set var="loop_flag" value="false"/>
-	<c:set var="loop_flag2" value="false"/>
 	<c:forEach items="${schedule3 }" var="s">
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
