@@ -39,7 +39,6 @@ public class ScheduleController {
 	@GetMapping("register")
 	public void register() {
 		// 상영스케줄 등록 화면으로 이동
-		
 	}
 	
 	@PostMapping("register")

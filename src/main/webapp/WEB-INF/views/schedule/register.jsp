@@ -16,7 +16,7 @@
 			<div>상영일자</div>
 			<div class="row">
 				<div class="col-xl-6">
-					<select name="month">
+					<select id="selectMon">
 						<option value="01">1</option>
 						<option value="02">2</option>
 						<option value="03">3</option>
@@ -30,7 +30,7 @@
 						<option value="11">11</option>
 						<option value="12">12</option>
 					</select> / 
-					<select name="day">
+					<select id="selectDay">
 						<option value="01">1</option>
 						<option value="02">2</option>
 						<option value="03">3</option>
@@ -72,16 +72,21 @@
 	<div class="hanna_container" style="padding-bottom : 0px;">
 		<div class="mt-10 custom-input">
 			<div>영화선택</div>
-			<input type="text" name="first_name" class="hanna_input">
-			<button class="hanna_button"> 검색 </button>
+			<form id="actionForm" method="post">
+				<input type="text" name="movieName" id="movieName" class="hanna_input">
+				<button type="submit" class="hanna_button" onclick="movieSearch()" style="cursor : pointer;"> 검색 </button>
+			</form>
 		</div>
 	</div>
 	<div class="hanna_container" style="padding-top : 0px;">
 		<div class="">
 			<ul class="hanna_ul_list">
-				<li class="hanna_li"><a href="javascript:movieChoice()">겨울왕국1</a></li>
-				<li class="hanna_li"><a href="movieChoice()">겨울왕국2</a></li>
-				<li class="hanna_li"><a href="movieChoice()">...</a></li>
+<%-- 				<c:forEach items="${movieList }" var="m"> --%>
+<!-- 					영화명 검색한 거 ajax로 처리해야함!! -->
+<!-- 					<li class="hanna_li"> -->
+<%-- 						<a href="javascript:movieChoice('${m.movieTitle}', '${m.movieNo }')"><c:out value='${m.movieTitle }'/></a> --%>
+<!-- 					</li> -->
+<%-- 				</c:forEach> --%>
 			</ul>
 		</div>
 	</div>
@@ -107,23 +112,7 @@
 		<a href="#" class="hanna_button">등록</a>
 		<a href="#" class="hanna_button">취소</a>
 	</div>
-	
-	
-<!-- 	<div class="container"> -->
-<!--         <div class="row"> -->
-<!--             <div class="col-xl-10 offset-xl-1 col-md-12"> -->
-<!--                 <div class="Query_border"> -->
-<!--                     <div class="row align-items-center justify-content-center"> -->
-<!--                         <div class="col-xl-6 col-md-6"> -->
-<!-- 							<a href="#" class="hanna_button">등록</a> -->
-<!-- 							<a href="#" class="hanna_button">취소</a> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </div> -->
-    
+
     <!-- Schedule Add Modal -->
 	<div class="modal fade" id="scheduleAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -137,9 +126,12 @@
 				<div class="modal-body">
 					<div>영화명&nbsp&nbsp
 						<input type="text" name="movieTitle" readOnly="readonly">
+						<input type="hidden" name="movieNo">
+						<input type="hidden" name="month">
+						<input type="hidden" name="day">
 					</div> <br>
 					<div>상영관&nbsp&nbsp
-						<select name="screenNo">
+						<select name="screen">
 							<option value="1"> 1관 3층 </option>
 							<option value="2"> 2관 3층 </option>
 							<option value="3"> 3관 3층 </option>
@@ -174,9 +166,10 @@
 				<div class="modal-body">
 					<div>영화명&nbsp&nbsp
 						<input type="text" name="movieTitle" readOnly="readonly">
+						<input type="hidden" name="movieNo">
 					</div> <br>
 					<div>상영관&nbsp&nbsp
-						<select name="screenNo">
+						<select name="screen">
 							<option value="1관 3층">1관 3층</option>
 							<option value="2관 3층">2관 3층</option>
 							<option value="3관 3층">3관 3층</option>
@@ -198,59 +191,42 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- JS here -->
-	<script src="js/vendor/modernizr-3.5.0.min.js"></script>
-	<script src="js/vendor/jquery-1.12.4.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/isotope.pkgd.min.js"></script>
-	<script src="js/ajax-form.js"></script>
-	<script src="js/waypoints.min.js"></script>
-	<script src="js/jquery.counterup.min.js"></script>
-	<script src="js/imagesloaded.pkgd.min.js"></script>
-	<script src="js/scrollIt.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/nice-select.min.js"></script>
-	<script src="js/jquery.slicknav.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/gijgo.min.js"></script>
 
-	<!--contact js-->
-	<script src="js/contact.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/jquery.form.js"></script>
-	<script src="js/jquery.validate.min.js"></script>
-	<script src="js/mail-script.js"></script>
-
-	<script src="js/main.js"></script>
-	
 	
 	<script>
 		
-		function movieChoice(){
-			$('#scheduleAddModal').find("input[name='movieTitle']").val($(this).html());
+		function movieChoice(movieName, movieNo){
+			// 검색된 영화명을 클릭했을 때 영화명, 영화번호, 날짜 모달에 넣고 모달창 띄움
+			$('#scheduleAddModal').find("input[name='movieTitle']").val(movieName);
+			$('#scheduleAddModal').find("input[name='movieNo']").val(movieNo);
+			$('#scheduleAddModal').find("input[name='month']").val($('#selectMon').val());
+			$('#scheduleAddModal').find("input[name='day']").val($('#selectDay').val());
 			$('#scheduleAddModal').modal('show');
 		}
+		
+		function movieSearch(){
+			var movieName = $("#movieName").val();
+			var str="";
+			if(movieName != null){
+				$.getJSON("/movie/getName/"+movieName+".json",
+					function(data){ // 결과값 받기
+						for(mvo of data){
+							str += "<li class='hanna_li'>";
+							str += "<a href='javascript:movieChoice(\'"+ mvo.movieTitle +"', '" + mvo.movieNo +"\')>";
+							str += mvo.movieTitle + "</a></li>";
+						}
+					
+						$(".hanna_ul_list").html(str);
+					}).fail(function(xhr, status, error){
+						if(error){
+							error();
+						}
+					});
+			}
+		}
+		
 	
 		$(function() {
-			
-			// 등록모달창에 영화명 넘기기
-			var addModal = $('#scheduleAddModal');
-			var addModalMovie = addModal.find("input[name='movieTitle']");
-			
-// 			function movieChoice(){
-// 				addModalMovie.val($(this).html());
-// 				$('#scheduleAddModal').modal('show');
-// 			}
-			
-			$('#hanna_li_a').on("click", function() {
-				addModalMovie.val($(this).html());
-				$('#scheduleAddModal').modal('show');
-			});
 			
 			// 수정모달창에 값 넘기기
 			var modifyModal = $("#scheduleModifyModal");

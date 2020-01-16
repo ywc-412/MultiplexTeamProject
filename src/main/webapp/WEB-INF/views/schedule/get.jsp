@@ -24,8 +24,6 @@
 		</h4>
 	</div>
 	
-
-
 	<!-- 상영 날짜 선택 탭 -->
 	<hr>
 	<div class="schedule_item">
@@ -101,24 +99,6 @@
 	</c:forEach>
 	<!-- 상영시간표 END -->
 
-	<!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
-<!--     <div class="container"> -->
-<!--         <div class="row"> -->
-<!--             <div class="col-xl-10 offset-xl-1 col-md-12"> -->
-<!--                 <div class="Query_border"> -->
-<!--                     <div class="row align-items-center justify-content-center"> -->
-<!--                         <div class="col-xl-6 col-md-6"> -->
-<!-- 							<a href="#" class="hanna_button">시간표 등록</a> -->
-<!-- 							<a href="#" class="hanna_button">시간표 수정</a> -->
-<!-- 							<a href="#" class="hanna_button delete_button">시간표 삭제</a> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </div> -->
-	
-	
 	<!-- 해당 날짜 받아오기 : 삭제할 때 form으로 보내기 -->
 	<form id="actionForm" action="/schedule/remove" method="post">
 		<c:set var="loop_flag" value="false"/>
@@ -129,7 +109,8 @@
 			</c:if>
 		</c:forEach>
 	</form>
-    
+	
+    <!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
     <div class="hanna_container">
 	   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록</button>
 		<button class="hanna_button" id="scheduleModBtn" style="cursor : pointer;">시간표 수정</button>
