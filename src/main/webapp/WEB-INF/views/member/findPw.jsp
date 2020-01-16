@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-
+	<c:if test="${!empty findMemberIdError}">
+		<script>
+			alert('${findMemberIdError}');
+		</script>
+	</c:if>
 	<div class="offers_area padding_top">
 		<div class="container">
 			<div class="row">
@@ -10,7 +14,7 @@
 						<h2>비밀번호 찾기</h2>
 					</div>
 				</div>
-			</div>
+			</div>${findMemberId.memberId}
 			<div class="row justify-content-lg-center">
 				<div class="col-lg-8 col-md-8">
 					<form action="/member/findPw" method="post" id="findPwForm">
@@ -24,7 +28,7 @@
 						<br>
 						<div class="mt-10 custom-input">
 							<div>이메일</div>
-							<input type="text" name="memberEmail" class="single-input custom-text-left custom-input-size">
+							<input type="text" name="memberEmail" id="memberEmail" class="single-input custom-text-left custom-input-size">
 							<div class="custom-text-left custom-my-auto">
 								@
 							</div>
@@ -63,7 +67,6 @@
 							<div class="col-xl-12 text-right">
 								<button type="submit" class="boxed-btn3" id="findPwBtn">비밀번호 찾기</button>
 							</div>
-							<p class="custom-red-font custom-text-right"></p>
 						</div>
 					</form>
 				</div>
@@ -71,6 +74,42 @@
 		</div>
 	</div>
 	<script>
-		
+		$(function(){
+			$('#findPwBtn').on("click",function(e){
+				e.preventDefault();
+				
+				var memberId = $('input#memberId').val();
+				var memberEmail = $('input#memberEmail').val();
+				var memberEmailSecond = $('select#memberEmailSecond').val();
+				var memberPhoneFirst = $('select#memberPhoneFirst').val();
+				var memberPhoneSecond = $('input#memberPhoneSecond').val();
+				var memberPhoneThird = $('input#memberPhoneThird').val();
+				
+				
+				var memberIdErrorMsg = $('#memberIdErrorMsg').html('');
+				var memberEmailErrorMsg = $('#memberEmailErrorMsg').html('');
+				var memberPhoneErrorMsg = $('#memberPhoneErrorMsg').html('');
+				
+				
+				if (!memberId) {
+					$('#memberIdErrorMsg').html('필수 항목입니다');
+				}else if (!memberEmail) {
+					$('#memberEmailErrorMsg').html('필수 항목입니다');
+				}else if (!memberEmailSecond) {
+					$('#memberEmailErrorMsg').html('필수 항목입니다');
+				}else if (!memberPhoneFirst) {
+					$('#memberPhoneErrorMsg').html('필수 항목입니다');
+				}else if (!memberPhoneSecond) {
+					$('#memberPhoneErrorMsg').html('필수 항목입니다');
+				}else if (!memberPhoneThird) {
+					$('#memberPhoneErrorMsg').html('필수 항목입니다');
+				}else{
+					$('#findPwForm').submit();
+				}
+				
+				
+				
+			});
+		})
 	</script>
 <%@ include file="../include/footer.jsp" %>

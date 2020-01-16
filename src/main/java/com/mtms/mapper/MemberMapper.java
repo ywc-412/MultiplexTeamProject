@@ -20,6 +20,9 @@ public interface MemberMapper {
 	public MemberVO duplicatedEmail(@Param("memberEmail") String memberEmail, @Param("memberEmailSecond") String memberEmailSecond);
 	// 회원 아이디 찾기
 	public String selectId(MemberVO memberVO);
+	
+	// 회원 비밀번호 찾을때 일치여부 쿼리..작동..
+	public MemberVO findPw(MemberVO memberVO);
 	// 회원 비밀번호 찾기 -> 비밀번호 재설정
 	public int updatePw(MemberVO memberVO);
 	// 회원 목록 조회 하기

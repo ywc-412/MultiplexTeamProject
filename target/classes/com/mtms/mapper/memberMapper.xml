@@ -63,8 +63,16 @@
 	</select>
 	
 	<select id="findPw" resultType="com.mtms.domain.MemberVO">
-		
-	</select> 
+		SELECT memberId
+		FROM member
+		WHERE 
+			memberId = #{memberId} AND
+			memberEmail=#{memberEmail} AND
+			memberEmailSecond=#{memberEmailSecond} AND
+			memberPhoneFirst = #{memberPhoneFirst} AND
+			memberPhoneSecond = #{memberPhoneSecond} AND
+			memberPhoneThird = #{memberPhoneThird}
+	</select>
 	
 	<update id="updatePw">
 		UPDATE member SET memberPw = #{memberPw} WHERE memberId=#{memberId}

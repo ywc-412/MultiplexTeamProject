@@ -66,16 +66,24 @@ public class MemberController {
 	}
 	
 	@GetMapping("/findPw")
-	public void findPw(MemberVO memberVO, RedirectAttributes rttr) {
+	public void findPw() {
 		
 		// 비밀번호 찾기 화면 들어가기 위한 컨트롤러
 	}
 	
 	@PostMapping("/findPw")
-	public String findPw(MemberVO memberVO, Model model) {
+	public String findPw(MemberVO memberVO, RedirectAttributes rttr) {
 		// 비밀번호 찾기화면에서 포스트 매핑
-		int result = memberService.findPw(memberVO);
-		return null;		// 비밀번호 찾고 customLogin 페이지로 이동
+		MemberVO memberId = memberService.findPwByEmail(memberVO);
+		
+		if(memberId != null) {
+			rttr.addFlashAttribute("findMemberId", memberId);
+			return "redirect:/member/findPw";
+		}
+		// 서비스 메서드 실행시켰지만 입력받은 정보가 데이터베이스에 없을 경우 "입력하신 정보가 일치하지 않습니다"
+		rttr.addFlashAttribute("findMemberIdError", "입력하신 정보가 일치하지 않습니다");
+		return "redirect:/member/findPw";
+				// 비밀번호 찾고 customLogin 페이지로 이동
 	}
 	
 	@GetMapping("/list")

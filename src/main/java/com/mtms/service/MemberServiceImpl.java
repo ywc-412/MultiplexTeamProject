@@ -42,7 +42,24 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public MemberVO findPwByEmail(MemberVO memberVO) {
+		
+		return memberMapper.findPw(memberVO);
+	}
+	
+	@Override
 	public int findPw(MemberVO memberVO) {
+		
+		MemberVO memberId = memberMapper.findPw(memberVO);
+		System.out.println(memberId);
+		
+		String password = memberVO.getMemberPw();
+		String encodedPassword = bcryptpwEncoder.encode(password);
+		memberVO.setMemberPw(encodedPassword);
+		
+		if(memberId == null) {
+			return 2;
+		}
 		return memberMapper.updatePw(memberVO);
 	}
 
@@ -83,4 +100,6 @@ public class MemberServiceImpl implements MemberService{
 				
 		return memberMapper.duplicatedEmail(memberEmail, memberEmailSecond);
 	}
+
+	
 }
