@@ -1,21 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ScheduleMapper">
+
 	<insert id="insert">
-	
+		INSERT INTO schedule VALUES (seq_schedule.nextval, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo})
 	</insert>
 	
-	<update id="update">
+<!-- 	<update id="update"> -->
+<!-- 	</update> -->
 	
-	</update>
-	
-	<delete id="delete">
-	
+<!-- 	<delete id="delete"> -->
+<!-- 	</delete> -->
+
+	<delete id="deleteAll">
+		DELETE FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
 	</delete>
 	
-	<select id="getList" resultType="com.mtms.domain.ScheduleVO">
+	<resultMap type="com.mtms.domain.ScheduleVO" id="scheduleMap">
+		<!-- property VO에 있는 이름 column 디비에 있는 이름 -->
+		<id property="movieNo" column="movieNo"/> <!-- 조인 칼럼 -->
+		<result property="scheduleNo" column="scheduleNo"/>
+		<result property="scheduleDate" column="scheduleDate"/>
+		<result property="scheduleTime" column="scheduleTime"/>
+		<result property="screen" column="screen"/>
+		<result property="movieNo" column="movieNo"/>
+		<collection property="movieVO" resultMap="movieMap"/>
+	</resultMap>
 	
+	<resultMap type="com.mtms.domain.MovieVO" id="movieMap">
+		<result property="movieNo" column="movieNo"/>
+		<result property="movieTitle" column="movieTitle"/>
+	</resultMap>
+	
+	<select id="get" resultMap="scheduleMap">
+		SELECT to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, s.screen, s.movieNo, m.movieTitle FROM schedule s, movie m
+		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo
 	</select>
+
 </mapper>

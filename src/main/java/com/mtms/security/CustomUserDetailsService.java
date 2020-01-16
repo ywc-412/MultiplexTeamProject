@@ -5,7 +5,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.mtms.domain.MemberVO;
 import com.mtms.mapper.MemberMapper;
+import com.mtms.security.domain.CustomUser;
 
 import lombok.Setter;
 
@@ -14,11 +16,11 @@ public class CustomUserDetailsService implements UserDetailsService{
 	private MemberMapper memberMapper;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
 		
+		MemberVO vo = memberMapper.read(memberId);
 		
-		// TODO Auto-generated method stub
-		return null;
+		return vo == null? null : new CustomUser(vo);
 	}
 	
 }
