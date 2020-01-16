@@ -1,93 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
-<html class="no-js" lang="zxx">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ include file="../include/header.jsp"%>
+<div class="side_margin">
+	<div class="row">
+		<div class="review_title">리뷰</div>
+		
+	</div>
+	<div class="title_under"></div>
+<!-- 	검색 조건 및 키워드 입력 부분 -->
+	
+		       
+		       
+		<div class="table_position">
+		<div class="tab-content text-center" id="nav-tabContent">
+		  <table class="table custom-th-size">	   
+                    <thead>
+                        <tr>
+                            <th>영화명<!-- Rendering engine --></th>
+                            <th>제목<!-- Browser --></th>
+                            <th>작성자<!-- Platform(s) --></th>
+                            <th>조회수<!-- Engine version --></th>
+                            <th>등록일<!-- CSS grade --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+						<c:forEach items="${list }" var="rvo">
+						<tr class="odd gradeX">
+							<td><c:out value="${rvo.movieNo }"/></td>
+							<td><a class="move" href='<c:out value="${rvo.reviewNo }"/>'>
+							${rvo.reviewTitle }</a></td>
+                            <td><c:out value="${rvo.memberId }"/></td>
+							<td><c:out value="${rvo.reviewView }"/></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd"
+							value="${rvo.reviewDate }"/></td>
+						</tr>
+					</c:forEach>
+                    </tbody>
+                </table><!-- END 게시물 출력 테이블 -->
+          </div>
+          </div>
+<!--           table_position -->
+ <!-- 페이지 번호 출력 -->
+                <div class="pull-right">
+	              <ul class="pagination">
+	                 <c:if test="${pageMaker.prev }">
+	                    <li class="paginate_button previous">
+	                       <a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
+	                 </c:if>
+	                 <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+	                    <li class='paginate_button ${pageMaker.cri.pageNum == num ? "active":"" }'>
+	                       <a class="page-link" href="${num}">${num }</a></li>
+	                 </c:forEach>
+	                 <c:if test="${pageMaker.next }">
+	                    <li class="paginate_button next">
+	                       <a class="page-link" href="${pageMaker.endPage + 1 }">Next</a></li>
+	                 </c:if>
+	              </ul>
+	           </div>
+                <!-- END 페이지 번호 출력 -->
+	 <!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 -->
+                <form id="actionForm" action="/review/list" method="get">
+	           		<input type="hidden" id="pageNum" name="pageNum" value="${pageMaker.cri.pageNum }">
+	           		<input type="hidden" id="amount" name="amount" value="${pageMaker.cri.amount }">
+    			</form>
+    </div>
+		<!-- 전체마진 END -->
+<script>
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>S_CINEMA</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+//페이지 번호 링크 처리
+$(function(){
+	 //페이지 번호 링트 처리
+	  $(".paginate_button a").on("click", function(e) {
+			 e.preventDefault(); //a태그라서 동작안되게 막아줌
+			 $('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
+			 $('#actionForm').submit();
+	  });
+	  
+	  //게시물 조회 링크처리
+	  $(".move").on("click", function(e) {
+		 	 e.preventDefault();
+		 	 $("#actionForm").append("<input type='hidden' name='reviewNo' value='"+ $(this).attr("href")+"'>");
+		 	 $("#actionForm").attr("action","/review/get");
+		 	 $("#actionForm").submit();
+	  });
+	  
+});
 
-	<!-- <link rel="manifest" href="site.webmanifest"> -->
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon2.png">
-	<!-- Place favicon.ico in the root directory -->
-
-	<!-- CSS here -->
-	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="/resources/css/magnific-popup.css">
-	<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/resources/css/themify-icons.css">
-	<link rel="stylesheet" href="/resources/css/nice-select.css">
-	<link rel="stylesheet" href="/resources/css/flaticon.css">
-	<link rel="stylesheet" href="/resources/css/gijgo.css">
-	<link rel="stylesheet" href="/resources/css/animate.css">
-	<link rel="stylesheet" href="/resources/css/slicknav.css">
-	<link rel="stylesheet" href="/resources/css/style.css">
-	<link rel="stylesheet" href="/resources/css/custom-choi.css">
-	<link rel="stylesheet" href="/resources/css/custom-jj.css">
-	<link rel="stylesheet" href="/resources/css/custom-hanna.css">
-	<link rel="stylesheet" href="/resources/css/custom-hong.css">
-	<link rel="stylesheet" href="/resources/css/custom-lee.css">
-	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
-</head>
-
-<body>
-	<!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
-	<!-- header-start -->
-	<header>
-		<div class="header-area">
-			<div id="sticky-header" class="main-header-area">
-				<div class="container-fluid p-0">
-					<div class="row align-items-center no-gutters">
-						<div class="col-xl-2 col-lg-2">
-							<div class="logo-img">
-								<a href="index.html">
-									<img src="/resources/img/sCineLogo3.png" alt="">
-								</a>
-							</div>
-						</div>
-						<div class="col-xl-6 col-lg-6">
-							<div class="main-menu d-none d-lg-block">
-								<nav>
-									<ul id="navigation">
-										<li><a class="active" href="index.html">영화</a></li>
-										<li><a href="#">예매 <i class="ti-angle-down"></i></a>
-											<ul class="submenu">
-												<li><a href="#">영화 예매</a></li>
-												<li><a href="#">상영시간표</a></li>
-											</ul>
-										</li>
-										<li><a href="#">리뷰</a></li>
-										<li><a href="#">기프티콘</a></li>
-										<li><a href="#">건의사항</a></li>
-										<li><a href="#">공지사항</a></li>
-										<li><a href="#">습득물</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-
-						<!--						<div class="col-xl-4 col-lg-4 d-none d-lg-block">-->
-						<div class="col-xl-4 col-lg-4 d-lg-block">
-							<div class="custom-margin">
-								<button class="btn btn-primary pull-right">회원가입</button>
-							</div>
-							<div class="custom-margin">
-								<button class="btn btn-primary pull-right">로그인</button>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="mobile_menu d-block d-lg-none">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+</script>
