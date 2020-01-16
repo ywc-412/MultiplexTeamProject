@@ -67,6 +67,7 @@
     			</form>
     </div>
 		<!-- 전체마진 END -->
+<%@ include file="../include/footer.jsp"%>
 <script>
 
 //페이지 번호 링크 처리
