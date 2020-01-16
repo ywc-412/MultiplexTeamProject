@@ -12,10 +12,12 @@ import com.mtms.domain.MemberVO;
 import com.mtms.service.MemberService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/duplicated")
 @AllArgsConstructor
+@Log4j
 public class DuplicatedMemberController {
 	
 	private MemberService memberService;
@@ -26,9 +28,10 @@ public class DuplicatedMemberController {
 		return new ResponseEntity<>(memberService.duplicatedId(memberId), HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/{memberEmail}/{memberEmailSecond}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<MemberVO> get(@PathVariable("memberEmail") String memberEmail, @PathVariable("memberEmailSecond") String memberEmailSecond){
+	@GetMapping(value="/email/{totalEmail}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<MemberVO> getEmail(@PathVariable("totalEmail") String totalEmail){
+		System.out.println("controller : " + totalEmail);
 		
-		return new ResponseEntity<>(memberService.duplicatedEmail(memberEmail, memberEmailSecond), HttpStatus.OK);
+		return new ResponseEntity<>(memberService.duplicatedEmail(totalEmail), HttpStatus.OK);
 	}
 }

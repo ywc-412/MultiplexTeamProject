@@ -12,14 +12,19 @@ var memberDuplicatedService = (function() {
 		});
 	}
 	
-	function getEmail(param, callback, error) {
-		$.getJSON("/duplicated/" + param.memberEmail + "/" + param.memberEmailSecond + ".json",
-				function(data) {
-					if (callback) {
-						callback(data.memberEmail, data.memberEmailSecond);
-					}
-				}).fail(function(xhr, status, err) {
-			error();
+	function getEmail(totalEmail, callback, error) {
+		console.log("function: " + totalEmail);
+		$.get("/duplicated/email/" + totalEmail + ".json", function(result){
+			console.log("get 안쪽: " + totalEmail);
+			if(callback){
+				console.log("callback 안쪽: " + totalEmail);
+				console.log("result? : " + result);
+				callback(result);
+			}
+		}).fail(function(xhr, status, err){
+			if(error){
+				error();
+			}
 		});
 	}
 

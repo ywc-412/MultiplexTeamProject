@@ -15,6 +15,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
+		request.setAttribute("successMsg", "환영합니다!");
 		
 		response.sendRedirect("/");
 	}

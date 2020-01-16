@@ -105,6 +105,7 @@
 							</div>
 						</div>
 					</div>
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				</form>
 			</div>
 		</div>
@@ -129,13 +130,14 @@
 		$('select#memberEmailSecond').on('change', function(){
 			var memberEmail = $('input#memberEmail').val()
 			var memberEmailSecond = $('select#memberEmailSecond').val();
-			console.log(memberEmail);
-			console.log(memberEmailSecond);
-			memberDuplicatedService.getEmail(param, function(result){
-				if(result.memberEmail != param.memberEmail && result.memberEmailSecond != param.memberEmailSecond){
-					$('#memberEmailErrorMsg').html('사용 가능한 이메일 입니다');
-				}else{
+			
+			var totalEmail = memberEmail + "@" + memberEmailSecond;
+			
+			memberDuplicatedService.getEmail(totalEmail, function(result){
+				if(memberEmail == result.memberEmail && memberEmailSecond == result.memberEmailSecond){
 					$('#memberEmailErrorMsg').html('중복된 이메일 입니다');
+				}else{
+					$('#memberEmailErrorMsg').html('사용 가능한 이메일 입니다');
 				}
 			});
 		});

@@ -2,6 +2,8 @@ package com.mtms.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
 
@@ -15,7 +17,7 @@ public interface MemberMapper {
 	// 회원 가입 시 회원 아이디 중복 체크
 	public MemberVO duplicatedId(String memberId);
 	// 회원 가입 시 회원 이메일 중복 체크
-	public MemberVO duplicatedEmail(String memberEmail, String memberEmailSecond);
+	public MemberVO duplicatedEmail(@Param("memberEmail") String memberEmail, @Param("memberEmailSecond") String memberEmailSecond);
 	// 회원 아이디 찾기
 	public String selectId(MemberVO memberVO);
 	// 회원 비밀번호 찾기 -> 비밀번호 재설정

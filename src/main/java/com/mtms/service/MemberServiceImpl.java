@@ -72,8 +72,15 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO duplicatedEmail(String memberEmail, String memberEmailSecond) {
+	public MemberVO duplicatedEmail(String totalEmail) {
 		
+		System.out.println("service" + totalEmail);
+		
+		String totalMemberEmail[] = totalEmail.split("@");
+		
+		String memberEmail = totalMemberEmail[0];	
+		String memberEmailSecond = totalMemberEmail[1];
+				
 		return memberMapper.duplicatedEmail(memberEmail, memberEmailSecond);
 	}
 }

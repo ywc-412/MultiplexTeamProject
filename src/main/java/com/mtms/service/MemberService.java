@@ -11,7 +11,7 @@ public interface MemberService {
 	// 회원 가입 시 아이디 중복 확인
 	public MemberVO duplicatedId(String memberId);
 	// 회원 가입 시 이메일 중복 확인
-	public MemberVO duplicatedEmail(String memberEmail, String memberEmailSecond);
+	public MemberVO duplicatedEmail(String totalEmail);
 	// 회원 아이디 찾기 서비스 메서드
 	public String findId(MemberVO memberVO);
 	// 회원 비밀번호 찾기 -> 재설정 서비스 메서드

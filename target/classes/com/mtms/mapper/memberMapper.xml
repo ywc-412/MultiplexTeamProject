@@ -46,7 +46,7 @@
 	<select id="duplicatedEmail" resultType="com.mtms.domain.MemberVO">
 		SELECT memberEmail, memberEmailSecond 
 		FROM member 
-		WHERE memberEmail=#{memberEmail} and memberEmailSecond = #{memberEmailSecond}
+		WHERE memberEmail = #{memberEmail} and memberEmailSecond = #{memberEmailSecond}
 	</select>
 	
 	<insert id="insert">
