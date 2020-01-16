@@ -53,20 +53,28 @@ public class MemberController {
 	}
 	
 	@PostMapping("/findId")
-	public String findId(MemberVO memberVO, Model model) {
+	public String findId(MemberVO memberVO, RedirectAttributes rttr) {
 		// 아이디 찾기 화면에서 form action /member/findId
-		return null;		// 아이디 찾고 customLogin 페이지로 이동
+		String result = memberService.findId(memberVO);
+		
+		if(result != null) {
+			rttr.addFlashAttribute("findMemberId", result);
+			return "redirect:/customLogin";	// 아이디 찾고 customLogin 페이지로 이동
+		}
+		rttr.addFlashAttribute("findMemberId", "일치하는 아이디가 존재하지 않습니다.");
+		return "redirect:/member/findId";	
 	}
 	
 	@GetMapping("/findPw")
-	public void findPw() {
+	public void findPw(MemberVO memberVO, RedirectAttributes rttr) {
+		
 		// 비밀번호 찾기 화면 들어가기 위한 컨트롤러
 	}
 	
 	@PostMapping("/findPw")
 	public String findPw(MemberVO memberVO, Model model) {
 		// 비밀번호 찾기화면에서 포스트 매핑
-		
+		int result = memberService.findPw(memberVO);
 		return null;		// 비밀번호 찾고 customLogin 페이지로 이동
 	}
 	

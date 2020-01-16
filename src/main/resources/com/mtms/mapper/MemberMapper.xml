@@ -58,12 +58,16 @@
 				#{memberEmailSecond})
 	</insert>
 	
-	<select id="selectId" resultType="com.mtms.domain.MemberVO">
-	
+	<select id="selectId" resultType="String">
+		SELECT memberId FROM member WHERE memberEmail=#{memberEmail} AND memberEmailSecond =#{memberEmailSecond}
 	</select>
 	
-	<update id="updatePw">
+	<select id="findPw" resultType="com.mtms.domain.MemberVO">
+		
+	</select> 
 	
+	<update id="updatePw">
+		UPDATE member SET memberPw = #{memberPw} WHERE memberId=#{memberId}
 	</update>
 
 	<select id="getMemberList" resultType="com.mtms.domain.MemberVO">

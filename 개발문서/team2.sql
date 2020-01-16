@@ -2,7 +2,7 @@
 CREATE TABLE member (
     memberId VARCHAR2(20),
     memberPw VARCHAR2(500) NOT NULL,
-    memberName VARCHAR2(15) NOT NULL,
+    memberName VARCHAR2(40) NOT NULL,
     memberAddress VARCHAR2(100) NOT NULL,
     memberPhoneFirst VARCHAR2(20) NOT NULL,
     memberPhoneSecond varchar2(20) not null,

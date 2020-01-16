@@ -40,7 +40,7 @@ public class MemberServiceImpl implements MemberService{
 	public String findId(MemberVO memberVO) {
 		return memberMapper.selectId(memberVO);
 	}
-
+	
 	@Override
 	public int findPw(MemberVO memberVO) {
 		return memberMapper.updatePw(memberVO);

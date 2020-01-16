@@ -13,53 +13,64 @@
 			</div>
 			<div class="row justify-content-lg-center">
 				<div class="col-lg-8 col-md-8">
-					<div class="mt-10 custom-input">
-						<div>아이디</div>
-						<input type="text" name="first_name" class="single-input custom-text-right">
-					</div><br>
-					<div class="mt-10 custom-input">
-						<div>이메일</div>
-						<input type="text" name="first_name" class="single-input custom-text-left custom-input-size">
-						<div class="custom-text-left custom-my-auto">
-							@
+					<form action="/member/findPw" method="post" id="findPwForm">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+						<div class="mt-10 custom-input">
+							<div>아이디</div>
+							<input type="text" name="memberId" id="memberId" class="single-input custom-text-right">
 						</div>
-						<div class="default-select custom-text-left" id="default-select">
-							<select>
-								<option value="1">-직접 입력-</option>
-								<option value="1">naver.com</option>
-								<option value="1">gmail.com</option>
-								<option value="1">hanmail.net</option>
-							</select>
+						<div class="custom-red-font custom-text-right"
+							id="memberIdErrorMsg"></div>
+						<br>
+						<div class="mt-10 custom-input">
+							<div>이메일</div>
+							<input type="text" name="memberEmail" class="single-input custom-text-left custom-input-size">
+							<div class="custom-text-left custom-my-auto">
+								@
+							</div>
+							<div class="default-select custom-text-left" id="default-select">
+								<select name="memberEmailSecond" id="memberEmailSecond">
+									<option value="">선택</option>
+									<option value="naver.com">naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+								</select>
+							</div><br>
+							<div class="custom-red-font custom-text-right"
+							id="memberEmailErrorMsg"></div>
 						</div><br>
-					</div><br>
-					<div class="mt-10 custom-input  align-middle">
-						<div>핸드폰</div>
-						<div class="default-select custom-text-left">
-							<select>
-								<option value="1">010</option>
-								<option value="1">011</option>
-								<option value="1">018</option>
-							</select>
+						<div class="mt-10 custom-input  align-middle">
+							<div>핸드폰</div>
+							<div class="default-select custom-text-left">
+								<select name="memberPhoneFirst" id="memberPhoneFirst">
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="018">018</option>
+								</select>
+							</div>
+							<div class="custom-text-left custom-my-auto">
+								-
+							</div>
+							<input type="text" name="memberPhoneSecond" id="memberPhoneSecond" class="single-input custom-text-left custom-input-size-phone">
+							<div class="custom-text-left custom-my-auto">
+								-
+							</div>
+							<input type="text" name="memberPhoneThird" id="memberPhoneThird" class="single-input custom-text-left custom-input-size-phone">
+							<div class="custom-red-font custom-text-right"
+							id="memberPhoneErrorMsg"></div>
+						</div><br>
+						<div class="mt-10 custom-input">
+							<div class="col-xl-12 text-right">
+								<button type="submit" class="boxed-btn3" id="findPwBtn">비밀번호 찾기</button>
+							</div>
+							<p class="custom-red-font custom-text-right"></p>
 						</div>
-						<div class="custom-text-left custom-my-auto">
-							-
-						</div>
-						<input type="text" name="first_name" class="single-input custom-text-left custom-input-size-phone">
-						<div class="custom-text-left custom-my-auto">
-							-
-						</div>
-						<input type="text" name="first_name" class="single-input custom-text-left custom-input-size-phone">
-						<p class="custom-red-font custom-text-right">필수 입력 항목입니다.</p>
-					</div><br>
-					<div class="mt-10 custom-input">
-						<div class="col-xl-12 text-right">
-							<a class="popup-with-form btn btn-primary" href="#test-form">비밀번호 찾기</a>
-						</div>
-						<p class="custom-red-font custom-text-right"></p>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<script>
+		
+	</script>
 <%@ include file="../include/footer.jsp" %>
