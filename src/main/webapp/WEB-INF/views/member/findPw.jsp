@@ -74,27 +74,7 @@
 		</div>
 	</div>
 	
-	<div class="modal fade" id="scheduleModifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">스케줄 수정</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div>비밀번호&nbsp&nbsp
-						<input type="text" name="movieTitle" readOnly="readonly">
-						<input type="hidden" name="movieNo">
-					</div> <br>
-				</div>
-				<div class="modal-footer justify-content-center">
-					<button type="submit" class="boxed-btn3">비밀번호 변경</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	
 	<script>
 		$(function(){
@@ -134,10 +114,11 @@
 			
 			var findMemberId = '${findMemberId.memberId}';
 			
-			/* if(!findMemberId){
-				$('.modal').show();
-			} */
+			if(!findMemberId){
+				$('#scheduleModifyModal').show();
+			}
 			
 		})
 	</script>
+	
 <%@ include file="../include/footer.jsp" %>
