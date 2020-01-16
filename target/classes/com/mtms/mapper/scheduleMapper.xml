@@ -35,7 +35,7 @@
 	</resultMap>
 	
 	<select id="get" resultMap="scheduleMap">
-		SELECT to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, s.screen, s.movieNo, m.movieTitle FROM schedule s, movie m
+		SELECT to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, m.movieTitle FROM schedule s, movie m
 		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo
 	</select>
 

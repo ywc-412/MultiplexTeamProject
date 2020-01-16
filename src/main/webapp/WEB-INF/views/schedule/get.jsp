@@ -99,14 +99,13 @@
 
 	<!-- 해당 날짜 받아오기 : 삭제할 때 form으로 보내기 -->
 	<form id="actionForm" action="/schedule/remove" method="post">
-		<c:set var="loop_flag" value="false"/>
-		<c:forEach items="${schedule1 }" var ="s">
-			<c:if test="${not loop_flag }">
-				<input type="hidden" name="scheduleDate" value='<fmt:formatDate value="${s.scheduleDate }" pattern="yyyyMMdd"/>' />
-				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-				<c:set var="loop_flag" value="true"/>
-			</c:if>
-		</c:forEach>
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+		<c:if test="${param.scheduleDate == null }">
+			<input type="hidden" name="scheduleDate" value="<fmt:formatDate value="${to }" pattern="yyyyMMdd"/>"/>
+		</c:if>
+		<c:if test="${param.scheduleDate != null }">
+			<input type="hidden" name="scheduleDate" value="${param.scheduleDate }" />
+		</c:if>
 	</form>
 	
     <!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
