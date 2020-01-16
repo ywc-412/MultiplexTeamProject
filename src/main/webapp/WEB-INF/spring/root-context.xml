@@ -48,6 +48,7 @@
 	<context:component-scan base-package="com.mtms.service"/>
 	<context:component-scan base-package="com.mtms.aop"/>
 	<context:component-scan base-package="com.mtms.task"/>
+	<context:component-scan base-package="com.mtms.security"/>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 		
 </beans>
