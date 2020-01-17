@@ -37,7 +37,6 @@ public class MemberController {
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, RedirectAttributes rttr) {
 		// 입력 화면에서 form action /member/join
-		log.info("join");
 		
 		int result = memberService.join(memberVO);
 		
@@ -77,7 +76,6 @@ public class MemberController {
 		MemberVO memberIdVo = memberService.findPwByEmail(memberVO);
 		String memberId = memberIdVo.getMemberId();
 		
-		System.out.println(memberId);
 		if(memberId != null) {
 			rttr.addFlashAttribute("findMemberId", memberId);
 			return "redirect:/member/findPw";

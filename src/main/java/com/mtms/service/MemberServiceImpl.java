@@ -74,7 +74,6 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int removeMember(MemberVO memberVO) {
-		System.out.println("id : " + memberVO.getMemberId());
 		
 		String memberId = memberVO.getMemberId();
 		
