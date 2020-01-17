@@ -74,8 +74,8 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("remove")
-	public String remove(String scheduleDate, RedirectAttributes rttr, Model model) {
-		// 상영스케줄 삭제
+	public String remove(String scheduleDate, RedirectAttributes rttr) {
+		// 상영스케줄 삭제 (하루치)
 		// scheduleDate 같은 게 여러 개니까 한번에 삭제~
 		// service.remove
 		System.out.println("SCHEDULE CONTROLLER - REMOVE");
@@ -90,7 +90,6 @@ public class ScheduleController {
 			// 삭제하는 날짜와 오늘 날짜가 같은 경우 삭제 불가능
 			System.out.println("오늘 날짜의 스케줄은 삭제가 불가능합니다.");
 			rttr.addFlashAttribute("result", "todaySchedule");
-			// get 페이지에서 alert 띄워주기
 		} else {
 			if(scheduleService.removeDay(scheduleDate)) {
 				System.out.println("상영스케줄 삭제 성공");
@@ -122,9 +121,9 @@ public class ScheduleController {
 			List<ScheduleVO> list2 = scheduleService.get(scheduleDate, "2관 3층");
 			List<ScheduleVO> list3 = scheduleService.get(scheduleDate, "3관 3층");
 
-//			System.out.println("controller - list1 : " + list1.size());
-//			System.out.println("controller - list2 : " + list2.size());
-//			System.out.println("controller - list3 : " + list3.size());
+			System.out.println("controller - list1 : " + list1.size());
+			System.out.println("controller - list2 : " + list2.size());
+			System.out.println("controller - list3 : " + list3.size());
 
 			model.addAttribute("schedule1", list1);
 			model.addAttribute("schedule2", list2);
@@ -138,9 +137,9 @@ public class ScheduleController {
 			List<ScheduleVO> list2 = scheduleService.get(scheduleDate, "2관 3층");
 			List<ScheduleVO> list3 = scheduleService.get(scheduleDate, "3관 3층");
 			
-//			System.out.println("controller - list1 : " + list1.size());
-//			System.out.println("controller - list2 : " + list2.size());
-//			System.out.println("controller - list3 : " + list3.size());
+			System.out.println("controller - list1 : " + list1.size());
+			System.out.println("controller - list2 : " + list2.size());
+			System.out.println("controller - list3 : " + list3.size());
 
 			model.addAttribute("schedule1", list1);
 			model.addAttribute("schedule2", list2);

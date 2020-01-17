@@ -14,8 +14,10 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		// TODO Auto-generated method stub
 		
+		request.setAttribute("successMsg", "환영합니다!");
+		
+		response.sendRedirect("/");
 	}
 	
 }
