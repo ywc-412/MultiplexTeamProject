@@ -66,6 +66,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getMemberList(cri);
 	}
 
+	
+	@Override
+	public int getTotalCount(Criteria cri) {
+		return memberMapper.getTotalCount(cri);
+	}
+	
 	// 내 정보 상세보기 메서드
 	@Override
 	public MemberVO getMember(String memberId) {
@@ -119,6 +125,8 @@ public class MemberServiceImpl implements MemberService{
 				
 		return memberMapper.duplicatedEmail(memberEmail, memberEmailSecond);
 	}
+
+	
 
 	
 }

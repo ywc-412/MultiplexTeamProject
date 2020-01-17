@@ -28,7 +28,7 @@ public interface MemberMapper {
 	// 회원 목록 조회 하기
 	public List<MemberVO> getMemberList(Criteria cri);
 	
-	
+	public int getTotalCount(Criteria cri);
 	// 회원 상세 보기
 	public MemberVO getMember(String memberId);
 	// 회원 삭제 하기

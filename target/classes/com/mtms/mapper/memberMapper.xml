@@ -24,6 +24,23 @@
       <result property="memberAuth" column="memberauth" />
    </resultMap>
 	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='I'.toString()">
+							memberId LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='N'.toString()">
+							memberName LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
 	<select id="read" resultMap="memberMap">
 		SELECT 
 			mem.memberid, memberpw, membername, memberaddress, memberphonefirst, 
@@ -79,7 +96,25 @@
 	</update>
 
 	<select id="getMemberList" resultType="com.mtms.domain.MemberVO">
+		<![CDATA[
+			SELECT memberId, memberName
+			FROM(
+				SELECT /*+INDEX_DESC(member PK_MEMBER) */
+					rownum rn, memberId, memberName
+				FROM member
+				WHERE 
+		]]>
+			<include refid="criteria"></include>
+		<![CDATA[
+				rownum <= #{pageNum}*#{amount}
+		)
+		WHERE rn>(#{pageNum}-1) * #{amount}
+		]]>
+	</select>
 	
+	<select id="getTotalCount" resultType="int">
+		SELECT count(*) FROM
+		member
 	</select>
 	
 	<select id="getMember" resultType="com.mtms.domain.MemberVO">

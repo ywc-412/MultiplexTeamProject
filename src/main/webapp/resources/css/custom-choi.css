@@ -214,6 +214,10 @@ li:hover {
 	width: 300px;
 }
 
+.custom-margin-choi{
+	margin-right: 3%;
+}
+
 .searchModal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */

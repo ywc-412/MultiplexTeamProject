@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
+import com.mtms.domain.PageDTO;
 import com.mtms.service.MemberService;
 
 import lombok.AllArgsConstructor;
@@ -99,11 +100,14 @@ public class MemberController {
 		
 	}
 	
-	@GetMapping("/list")
-	public String list(Criteria cri, Model model){
+	@GetMapping("/client")
+	public void list(Criteria cri, Model model){
 		// 멤버 리스트 조회 컨트롤러 // 전체 회원 목록 조회
+		model.addAttribute("list", memberService.getMemberList(cri));
 		
-		return null;
+		int total = memberService.getTotalCount(cri);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	@GetMapping("/myInfo")

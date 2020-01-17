@@ -20,10 +20,12 @@ public interface MemberService {
 	public int findPw(MemberVO memberVO);
 	// 회원 목록 조회 서비스 메서드
 	public List<MemberVO> getMemberList(Criteria cri);
+	public int getTotalCount(Criteria cri);
 	// 내 정보 상세보기 서비스 메서드
 	public MemberVO getMember(String memberId);
 	// 회원 삭제 서비스 메서드
 	public int removeMember(MemberVO memberVO);
 	// 회원 정보 수정 메서드
 	public int modifyMember(MemberVO memberVO);
+	
 }

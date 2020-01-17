@@ -137,6 +137,11 @@
 				e.preventDefault();
 				location.href="/logout";
 			});
+			
+			$('#adminPageBtn').on("click", function(e){
+				e.preventDefault();
+				location.href="/member/client";
+			});
 		})
 		
 	</script>
