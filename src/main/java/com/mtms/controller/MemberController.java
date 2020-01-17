@@ -74,8 +74,10 @@ public class MemberController {
 	@PostMapping("/findPw")
 	public String findPw(MemberVO memberVO, RedirectAttributes rttr) {
 		// 비밀번호 찾기화면에서 포스트 매핑
-		MemberVO memberId = memberService.findPwByEmail(memberVO);
+		MemberVO memberIdVo = memberService.findPwByEmail(memberVO);
+		String memberId = memberIdVo.getMemberId();
 		
+		System.out.println(memberId);
 		if(memberId != null) {
 			rttr.addFlashAttribute("findMemberId", memberId);
 			return "redirect:/member/findPw";
@@ -84,6 +86,21 @@ public class MemberController {
 		rttr.addFlashAttribute("findMemberIdError", "입력하신 정보가 일치하지 않습니다");
 		return "redirect:/member/findPw";
 				// 비밀번호 찾고 customLogin 페이지로 이동
+	}
+	
+	@PostMapping("/findPwComplete")
+	public String findPwComplete(MemberVO memberVO, RedirectAttributes rttr) {
+		System.out.println("findPwComplete Controller");
+		int result = memberService.findPw(memberVO);
+		System.out.println("hi in controlle result : " + result);
+		if(result == 1) {
+			rttr.addFlashAttribute("findPw", "비밀번호 수정이 완료되었습니다");
+			
+			return "redirect:/customLogin";
+		}
+		rttr.addFlashAttribute("findPwError","데이터 베이스 오류 관리자에게 문의하십시오.");
+		return "redirect:/member/findPw";
+		
 	}
 	
 	@GetMapping("/list")

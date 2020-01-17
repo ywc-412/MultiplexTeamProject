@@ -7,6 +7,11 @@
 		alert('회원님의 아이디는 ' + '${findMemberId}' + '입니다');
 	</script>
 </c:if>
+<c:if test="${!empty findPw}">
+	<script>
+		alert('${findPw}');
+	</script>
+</c:if>
 
 <div class="offers_area padding_top">
 	<div class="container">

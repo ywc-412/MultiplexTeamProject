@@ -50,16 +50,16 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int findPw(MemberVO memberVO) {
 		
-		MemberVO memberId = memberMapper.findPw(memberVO);
-		System.out.println(memberId);
+		String get = memberVO.getMemberId();
+		
+		System.out.println("get : " + get);
 		
 		String password = memberVO.getMemberPw();
 		String encodedPassword = bcryptpwEncoder.encode(password);
 		memberVO.setMemberPw(encodedPassword);
 		
-		if(memberId == null) {
-			return 2;
-		}
+		System.out.println("pw : " + memberVO.getMemberPw());
+		
 		return memberMapper.updatePw(memberVO);
 	}
 
