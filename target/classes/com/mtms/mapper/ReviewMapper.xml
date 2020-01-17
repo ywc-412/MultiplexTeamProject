@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ReviewMapper">
-	<select id="getListWithPaging" resultType="com.mtms.domain.ReviewVO">
+<select id="getListWithPaging" resultType="org.zerock.domain.ReviewVo">
 		<![CDATA[
 			SELECT
 			movieNo,reviewTitle,memberId,reviewView,reviewDate
@@ -18,42 +18,9 @@
 				where rn > 10
 		]]>
 	</select>
-<<<<<<< HEAD
-=======
-<<<<<<<< HEAD:src/main/resources/com/mtms/mapper/ReviewMapper.xml
-	
-	<select id="getTotalCount" resultType="int">
-	
-	</select>
-	
-	<select id="getListWithPaging" resultType="int">
-	
-	</select>
-	
-	<select id="insertSelectKey" resultType="com.mtms.domain.ReviewVO">
-	
-	</select>
-	
-	<insert id="insert">
-	
-	</insert>
-	
-	<update id="update">
-	
-	</update>
-	
-	<delete id="delete">
-	
-	</delete>
-	
-	<select id="read">
-	
-	</select>
-	
-	<update id="updateView">
-	
-========
->>>>>>> master
+
+
+
 
 	 <update id="update">
     UPDATE 	review 
@@ -65,7 +32,7 @@
     DELETE review WHERE reviewNo = #{reviewNo}
   </delete>
   
-  <select id="read" resultType="com.mtms.domain.ReviewVO">
+  <select id="read" resultType="org.zerock.domain.ReviewVo">
     SELECT * FROM review WHERE reviewNo = #{reviewNo}
   </select>
   
@@ -83,18 +50,14 @@
 	VALUES(seq_review.NEXTVAL, #{reviewTitle}, #{reviewContent})
   </insert>
 
-  <select id="getList" resultType="com.mtms.domain.ReviewVO">
-  <![CDATA[
-    SELECT * FROM review WHERE reviewNo > 0
-  ]]>
-  </select>
+<!--   <select id="getList" resultType="org.zerock.domain.ReviewVo"> -->
+<!--   <![CDATA[ -->
+<!--     SELECT * FROM review WHERE reviewNo > 0 -->
+<!--   ]]> -->
+<!--   </select> -->
   <update id="updateView">
 	UPDATE review
 	SET reviewView = reviewView+1
 	where reviewNo = #{reviewNo}
-<<<<<<< HEAD
-=======
->>>>>>>> master:target/classes/com/mtms/mapper/reviewMapper.xml
->>>>>>> master
 	</update>
 </mapper>

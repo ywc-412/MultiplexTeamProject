@@ -28,7 +28,7 @@ public class ReviewController {
 	@PostMapping("remove")
 	public String remove(int reviewNo,@ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) {
-		log.info("reviewController remove()");
+		log.info("BoardController remove()");
 		
 		if(service.remove(reviewNo)) {
 			rttr.addFlashAttribute("result", "success");

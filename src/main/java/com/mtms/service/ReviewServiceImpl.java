@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.mtms.domain.Criteria;
 import com.mtms.domain.ReviewVO;
 import com.mtms.mapper.ReviewMapper;
@@ -15,7 +16,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
-	private  ReviewMapper reviewMapper;
+	private ReviewMapper reviewMapper;
 	
 	@Override
 	public boolean modify(ReviewVO rvo) {
@@ -50,9 +51,12 @@ public void register(ReviewVO rvo) {
 	
 }
 
+
 @Override
 public List<ReviewVO> getList(Criteria cri) {
-	
+	// TODO Auto-generated method stub
 	return reviewMapper.getListWithPaging(cri);
 }
+
+
 }
