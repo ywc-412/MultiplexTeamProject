@@ -20,7 +20,7 @@
 	
 	<resultMap type="com.mtms.domain.ScheduleVO" id="scheduleMap">
 		<!-- property VO에 있는 이름 column 디비에 있는 이름 -->
-		<id property="movieNo" column="movieNo"/> 조인 칼럼
+		<id property="movieNo" column="movieNo"/> <!-- 조인 칼럼  -->
 		<result property="scheduleNo" column="scheduleNo"/>
 		<result property="scheduleDate" column="scheduleDate"/>
 		<result property="scheduleTime" column="scheduleTime"/>
