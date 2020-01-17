@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.GiftAttachVO;
@@ -94,11 +95,21 @@ public class GiftController {
 		return "redirect:/gift/list";		
 	}
 	
-	//기프티콘 사진 조회	
+	//기프티콘 사진 붙이기	
 	@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)	
 	public ResponseEntity<List<GiftAttachVO>> getAttachList(int giftNo) {		
 		log.warn("Gift AttachList,,,," + giftNo);
 		return new ResponseEntity<>(giftService.getAttachList(giftNo), HttpStatus.OK);
+	}
+
+	
+	//사진 목록
+	@GetMapping("giftPicList")	
+	@ResponseBody	//json으로 값을 보낼꺼기 때문에  ResponseBody, ResponseEntity 필요함
+	public ResponseEntity<List<GiftAttachVO>> getAttachPicList() {		
+		//log.warn("Gift AttachPicList,,,,");
+		giftService.giftPicList();
+		return new ResponseEntity<>(giftService.giftPicList(),HttpStatus.OK);
 	}
 	
 	//첨부파일 포함한 게시글 삭제

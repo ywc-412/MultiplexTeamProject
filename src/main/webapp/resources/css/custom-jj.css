@@ -413,3 +413,6 @@ input:disabled {
 	outline:none;
 }
 
+.imgmg {
+	float: left;
+}

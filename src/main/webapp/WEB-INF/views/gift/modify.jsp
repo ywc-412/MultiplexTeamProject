@@ -28,8 +28,8 @@
 					</div>
 
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-primary btn-sm"
-							data-oper="modify">수정</button>
+						<button type="submit" class="btn btn-primary btn-sm" data-oper="modify">수정</button>
+						<%-- <button data-oper='modify' class="btn btn-default" onclick="location.href='/gift/modify?giftNo=<c:out value="${gift.giftNo}"/>'">수정</button> --%>
 						<input type="button" onclick="modifyCancel()" class="btn btn-secondary btn-sm" value="취소">
 					</div>
 				</form>
@@ -151,13 +151,7 @@
 				$(result).each(function(index, obj){	
 				//이미지이면 그대로 표시
 				//li += ('<li>' + obj.fileName + '</li>');
-				var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);
-				//var originPath = obj.uploadPath + "\\" + obj.uuid + "_" + obj.fileName;
-				//originPath = originPath.replace(new RegExp(/\\/g),"/");		// \를 /로 바꾸라는 정규표현식
-				
-				//li +ㄴ= "<li><img src='/display?fileName=" + filePath + "'></li>";
-				//li += "<li><a href=\"javascript:showImage(\'" + originPath + "\')\"><img src='/display?fileName=" + filePath + "'></a>"
-				//	  + "<span data-file=\'" + filePath + "\' data-type='image'>x</span>"+"</li>";
+				var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);				
 				li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"'><div>" +
 					  "<button data-file=\'" + filePath + "\' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"
 					  + "<img src='/giftUpload/display?giftFileName="+filePath+"'></div></li>";
@@ -176,10 +170,7 @@
 			(function() {	
 				$.getJSON("/gift/getAttachList", { giftNo : ${gift.giftNo}}, function(data) {
 					console.log(data)
-							//if(callback) {
-								//callback(data);
-								//callback(data.replyCnt, data.list);				
-							//}	
+							
 					var li = "";
 					$(data).each(function(index, obj){								
 						//이미지이면 그대로 표시				

@@ -33,7 +33,7 @@
 						<label>No&emsp; : &ensp;</label><span name="giftNo"><c:out value="${gift.giftNo}" /></span>
 					</div>
 					<div class="form-group">
-						<label>가격&ensp; : &ensp;</label> <input name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly>
+						<label>가격&ensp; : &ensp;</label><input type="hidden" name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly><fmt:formatNumber value="${gift.giftPrice}" pattern="###,###,###"> </fmt:formatNumber>
 					</div>
 					<div class="form-group">
 						<label>구성&ensp; : &ensp;</label> <span name="giftSet"><c:out value="${gift.giftSet}" /></span>
@@ -42,7 +42,7 @@
 						<span class="minus bg-dark">-</span> 
 							<input type="number" class="num-count" name="qty" value="1"> 
 						<span class="plus bg-dark">+</span>
-						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="5500" readonly></span>
+						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly></span>
 					</div>
 				</div>
 				<!-- 내용 e -->
@@ -50,7 +50,7 @@
 		</div>
 		<div class="custom-divide-border-top">
 			<span class="custom-pull-right">
-				<label>총 구매금액&emsp; : &emsp;</label><input name="totalPrice" class="totalPrice" value="5500" readonly>
+				<label>총 구매금액&emsp; : &emsp;</label><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly>
 			</span><br>	
 			<br>
 		</div>
@@ -68,16 +68,16 @@
 
 <script>
 	//삭제 취소 알림창
-	function removeChk() {
+	 function removeChk() {
 		if(confirm("정말로 삭제하시겠습니까?") == true && $(this).data("oper") === 'remove') {
-			/* location.href = "/gift/list" */
+			location.href = "/gift/list" 
 			$("form").attr("action", "gift/remove");
 			location.href = "/gift/list"
 		} else {
 			self.close();
 		}
 		$("form").submit();
-	}
+	} 
 	
 	//form 전송
 	$(function(){

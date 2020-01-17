@@ -12,12 +12,16 @@
 	 <select id="findBygiftNo" resultType="com.mtms.domain.GiftAttachVO">
 	 	select * from giftAttach where giftNo = #{giftNo}
 	 </select>
+	 
+	 <select id="giftPicList" resultType="com.mtms.domain.GiftAttachVO">
+	 	select * from giftAttach
+	 </select>
 	
 	<delete id="delete">
 		delete from gift where giftUuid = #{giftUuid}
 	</delete>
 	
 	<delete id="deleteAll">
-		delete from gift where giftNo = #{giftNo}
+		delete gift where giftNo = #{giftNo}
 	</delete>
 </mapper>

@@ -29,20 +29,27 @@
 					<div class="row">
 
 						<!-- data-start -->
-						<div class="col-md-3 col-sm-6">
-
-							<!-- 아마도 사진 end -->
-							<div class="product-content">
-								<c:forEach items="${list}" var="gift">
-								<br>
-									<b>
-										<a class="move" href="/gift/get?giftNo=${gift.giftNo}"><c:out value="${gift.giftNo}"/></a>
-										<%-- <a class="move" href="${gift.giftNo}"><c:out value="${gift.giftNo}"/></a> --%>										
+						<div class="product-content">
+							<div class="col-md-3 col-sm-6">
+								<c:forEach items="${list}" var="gift">			
+									<br>
+									<b> <a class="move" href="/gift/get?giftNo=${gift.giftNo}"><c:out
+												value="${gift.giftNo}" /></a> 
 									</b>
 									<div class="price">
 										<c:out value="${gift.giftPrice}" />
 									</div>
 								</c:forEach>
+								
+								
+								<div class="uploadResult">
+										<ul>
+										
+										</ul>
+									</div>
+								
+								
+								
 							</div>
 						</div>
 
@@ -54,33 +61,28 @@
 				</div>
 			</div>
 		</div>
+		</div>
 </section>
 <!--board-end-->
+
 <script>
-
-
 //즉시 실행함수 - 첨부파일 목록 가져오기
-$(document).ready(function(){
 	(function(){
-	//var giftNo = "${gift.giftNo}";
-	var giftNo = 98;
-	console.log(giftNo);
-	$.getJSON("/gift/getAttachList", {giftNo : giftNo}, function(data) {
-		console.log(data);
-						
+	$.getJSON("/gift/giftPicList", function(data) {
+		console.log(data);			
 		var li = "";
 		$(data).each(function(index, obj){								
 			//이미지이면 그대로 표시				
 				var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);				
-				li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"' ><div><span>" + obj.giftFileName + "</span>" + 
-					  "<img src='/giftUpload/display?giftFileName="+filePath+"'></div></li>";
+				li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"' ><div>" + 
+					  "<img src='/giftUpload/display?giftFileName="+filePath+"' style='float:left;'></div></li>";
 		});		
 		
 				$('.uploadResult ul').append(li);		
 			
 	});//END JSON	
 	})();
-})
+
 
 /* $('.move').click(
 	function(e) {

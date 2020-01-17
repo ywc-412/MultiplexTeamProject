@@ -79,6 +79,7 @@ public class GiftServiceImpl implements GiftService{
 	}
 	
 	//기프티콘 삭제	
+	@Transactional
 	@Override
 	public boolean remove(int giftNo) {		
 		log.warn("Gift ServiceImpl remove,,");
@@ -91,6 +92,13 @@ public class GiftServiceImpl implements GiftService{
 	public List<GiftAttachVO> getAttachList(int giftNo) {	
 		log.warn("getAttachList giftNo : " + giftNo);
 		return giftAttachMapper.findBygiftNo(giftNo);
+	}
+	
+	//기프티콘 사진 붙이기
+	@Override
+	public List<GiftAttachVO> giftPicList() {
+		//log.warn("giftPicList..........");
+		return giftAttachMapper.giftPicList();
 	}
 
 }

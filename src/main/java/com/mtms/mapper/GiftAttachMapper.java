@@ -9,6 +9,8 @@ public interface GiftAttachMapper {
 	
 	public List<GiftAttachVO> findBygiftNo(int giftNo);
 	
+	public List<GiftAttachVO> giftPicList();
+	
 	public void delete(String giftUuid);
 	
 	public void deleteAll(int giftNo);
