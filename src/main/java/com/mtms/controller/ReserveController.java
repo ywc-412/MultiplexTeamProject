@@ -108,10 +108,16 @@ public class ReserveController {
 	}
 
 	@PostMapping("seat")
-	public String seat(ScheduleVO svo, RedirectAttributes rttr) {
+	public void seat(ScheduleVO svo, String movieTitle, Model model) {
 		// 예매하기 (시간) -> 예매하기 (좌석)
 		// -> seatService.
-		return null;
+		System.out.println("/reserve/seat");
+		System.out.println("movieNo : " + svo.getMovieNo());
+		System.out.println("scheduleDate : " + svo.getScheduleDate());
+		System.out.println("scheduleTime : " + svo.getScheduleTime());
+		
+		model.addAttribute("reserveTime", svo);
+		model.addAttribute("movieName", movieTitle);
 	}
 
 //	@GetMapping("seat")

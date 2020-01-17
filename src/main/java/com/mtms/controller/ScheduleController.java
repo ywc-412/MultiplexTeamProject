@@ -56,10 +56,12 @@ public class ScheduleController {
 			svo.setScheduleTime(time[i]);
 			
 			scheduleService.register(svo);
+			
+			System.out.println(scheduleService.getSeq());
 		}
-		List<ScheduleVO> list = scheduleService.get(scheduleVO.getScheduleDate(), scheduleVO.getScreen());
-		System.out.println("controller register size : " + list.size());
-		model.addAttribute("oneSchedule", list);
+//		List<ScheduleVO> list = scheduleService.get(scheduleVO.getScheduleDate(), scheduleVO.getScreen());
+//		System.out.println("controller register size : " + list.size());
+//		model.addAttribute("oneSchedule", list);
 	}
 	
 //	@GetMapping("modify")

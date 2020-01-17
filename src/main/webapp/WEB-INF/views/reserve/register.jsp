@@ -59,7 +59,14 @@
 		
 		<div class="row">
 			<div class="col-xl-12 text-right">
-				<button type="submit" class="hanna_button2" onclick = "location.replace('reserve_seat.html')">>좌석선택</button>
+				<form id="timeForm" action="/reserve/seat" method="post">
+					<input type="hidden" name="movieNo" value="" >
+					<input type="hidden" name="movieTitle" value="" >
+					<input type="hidden" name="scheduleDate" value="" >
+					<input type="hidden" name="scheduleTime" value="" >
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
+					<button id="goSeatBtn" class="hanna_button2" onclick = "location.replace('reserve_seat.html')">>좌석선택</button>
+				</form>
 			</div>
 		</div>
 	</div> <!-- END hanna_container -->
@@ -71,17 +78,23 @@
 	$(document).ready(function(){
 		$(document).on("click", "#movieClick", function(e){
 			// 영화 버튼 클릭 시 ajax로 상영 날짜 받아오기
-// 			alert($(this).val());
 			var movieNo = $(this).val();
+			$("input[name=movieNo]").val(movieNo);
+			$("input[name=movieTitle]").val($(this).html());
 			var str ="";
 			if(movieNo != null){
 				$.getJSON("/reserve/getDay/"+movieNo+".json",
 						function(data){
-							for(d of data){
-								str+= "<li id='dayClick' value='"+movieNo+"'>"+d+"</li>";
+							for(date of data){
+								var year = date.substring(0, 4);
+								var month = date.substring(4, 6);
+								var day = date.substring(6, 8);
+								str+= "<li id='dayClick' value1='"+movieNo+"' value2='"+date+"'>"+month+"/"+day+"</li>";
 							}
-// 							alert(str);
-							$("#date").html(str);
+							$("#date").html(str); // 상영 날짜 list 출력
+							$("#time").html(""); // 영화를 새로 선택하면 상영 시간 지워줌
+							$("input[name=scheduleDate]").val(""); // 영화 새로 선택하면 상영날짜 값 지워줌
+							$("input[name=scheduleTime]").val(""); // .. 시간 지워줌
 						}).fail(function(xhr, status, error){
 							if(error){
 								error();
@@ -92,20 +105,19 @@
 		
 		$(document).on("click", "#dayClick", function(e){
 			// 영화 날짜 선택 시 ajax로 상영 시간 받아오기
-// 			alert($(this).val());
-// 			alert($(this).html());
-			var movieNo = $(this).val();
-			var scheduleDate = $(this).html();
+			var movieNo = $(this).attr("value1");
+			var scheduleDate = $(this).attr("value2");
+			$("input[name=scheduleDate]").val(scheduleDate);
 			var str = "";
 			if(scheduleDate != null){
 				$.getJSON("/reserve/getTime/"+movieNo+"/"+scheduleDate+".json",
 						function(data){
 							for(d of data){
-								str+= "<li id='timeClick' value='"+movieNo+"'>"+d+"</li>";
-								// 날짜도 넣어야하는디
+								str+= "<li id='timeClick' value1='"+movieNo + "' value2='"+scheduleDate+"'>"+d+"</li>";
+								// value1 : 영화번호 / value2 : 상영날짜
 							}
-// 							alert(str);
-							$("#time").html(str);
+							$("#time").html(str); // 상영 시간 list 출력
+							$("input[name=scheduleTime]").val(""); // .. 시간 지워줌
 				}).fail(function(xhr, status, error){
 					if(error){
 						error();
@@ -115,35 +127,12 @@
 		}); // END dayClick
 		
 		$(document).on("click", "#timeClick", function(e){
-			alert($(this).val());
+			var scheduleTime = $(this).html();
+			$("input[name=scheduleTime]").val(scheduleTime);
 		}); // END timeClick
 		
 	})
-	
-	
-	
-	
-	$(function() {
 
-// 			var movieName = $("#movieName").val();
-// 			var str="";
-// 			if(movieName != null){
-// 				$.getJSON("/movie/getName/"+movieName+".json",
-// 					function(data){ // 결과값 받기
-// 						for(mvo of data){
-// 							str += "<li class='hanna_li'>";
-// 							str += "<a href=\"javascript:movieChoice(\'"+ mvo.movieTitle +"', '" + mvo.movieNo +"\')\">";
-// 							str += mvo.movieTitle + "</a></li>";
-// 						}
-// 						$(".hanna_ul_list").html(str);
-// 					}).fail(function(xhr, status, error){
-// 						if(error){
-// 							error();
-// 						}
-// 					});
-// 			}
-	
-	});
 	</script>
 
 <%@ include file="../include/footer.jsp" %>

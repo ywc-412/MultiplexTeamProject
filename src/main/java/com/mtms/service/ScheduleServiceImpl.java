@@ -1,5 +1,7 @@
 package com.mtms.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +25,15 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Override
 	public int register(ScheduleVO rvo) {
 		// 상영스케줄 등록 ( 영화 하나 / 관 하나 / 시간 6개 )
+		
+		System.out.println("si - no : " + rvo.getMovieNo());
+		System.out.println("si - screen : " + rvo.getScreen());
+		System.out.println("si - time : " + rvo.getScheduleTime());
+		System.out.println("si - date : " + rvo.getScheduleDate());
+		
+		List<String> list = new ArrayList<String>();
+		list.add("A1");
+		list.add("A2");
 		return scheduleMapper.insert(rvo);
 	}
 
@@ -92,5 +103,11 @@ public class ScheduleServiceImpl implements ScheduleService{
 		List<String> list = scheduleMapper.getTime(movieNo, scheduleDate);
 		System.out.println("gettime list size impl : " + list.size());
 		return list;
+	}
+
+	@Override
+	public int getSeq() {
+		// TODO Auto-generated method stub
+		return scheduleMapper.getSeq();
 	}
 }

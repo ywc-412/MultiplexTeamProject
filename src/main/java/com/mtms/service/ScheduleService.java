@@ -39,5 +39,8 @@ public interface ScheduleService {
 	
 	// 해당 영화, 해당 날짜의 상영 시간 조회
 	public List<String> getTime(int movieNo, String scheduleDate);
+	
+	// 방금 삽입한 스케줄 번호 알아오기
+	public int getSeq();
 
 }

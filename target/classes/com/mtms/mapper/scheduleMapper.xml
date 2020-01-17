@@ -5,9 +5,32 @@
 <mapper namespace="com.mtms.mapper.ScheduleMapper">
 
 	<insert id="insert">
-		INSERT INTO schedule VALUES (seq_schedule.nextval, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo})
+		<selectKey keyProperty="scheduleNo" order="BEFORE" resultType="Integer">
+			SELECT seq_schedule.nextval FROM dual
+		</selectKey>
+			INSERT INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo})
+<!-- 		INSERT ALL -->
+<!-- 		INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo}) -->
+<!-- 		INTO seat VALUES (#{scheduleNo}, 'A1', 0) -->
+<!-- 		SELECT * FROM DUAL -->
+		
+<!-- 		SELECT seq_schedule.currval FROM dual : 로 이번 scheduleNo 쿼리 찾아와서 seat에 insert하기^^--> 
+
+<!-- 		INSERT ALL -->
+<!-- 		INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo}) -->
+<!-- 		INTO seat(scheduleNo, seatNo) VALUES -->
+<!-- 			<foreach item="item" index="index" collection="list"> -->
+<!-- 				(#{scheduleNo}, #{item, jdbcType=VARCHAR}) -->
+<!-- 			</foreach> -->
+<!-- 		SELECT * FROM DUAL -->
+
 	</insert>
 	
+	<select id="getSeq" resultType="int">
+		SELECT seq_schedule.currval FROM dual
+	</select>
+
+
 <!-- 	<update id="update"> -->
 <!-- 	</update> -->
 	
@@ -41,7 +64,7 @@
 	</select>
 	
 	<select id="getTime" resultType="java.lang.String">
-		SELECT scheduleTime FROM schedule WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
+		SELECT DISTINCT scheduleTime FROM schedule WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} ORDER BY scheduleTime
 	</select>
 	
 	<select id="getMovie" resultMap="scheduleMap">
