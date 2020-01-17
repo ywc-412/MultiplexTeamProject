@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -10,6 +13,7 @@
    <meta name="description" content="">
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<<<<<<< HEAD
    <!-- <link rel="manifest" href="site.webmanifest"> -->
    <link rel="shortcut icon" type="image/x-icon" href="img/favicon2.png">
    <!-- Place favicon.ico in the root directory -->
@@ -32,6 +36,30 @@
    <link rel="stylesheet" href="/resources/css/custom-hong.css">
    <link rel="stylesheet" href="/resources/css/custom-lee.css">
    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+=======
+	<!-- <link rel="manifest" href="site.webmanifest"> -->
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon2.png">
+	<!-- Place favicon.ico in the root directory -->
+	<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+	<!-- CSS here -->
+	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/resources/css/magnific-popup.css">
+	<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/resources/css/themify-icons.css">
+	<link rel="stylesheet" href="/resources/css/nice-select.css">
+	<link rel="stylesheet" href="/resources/css/flaticon.css">
+	<link rel="stylesheet" href="/resources/css/gijgo.css">
+	<link rel="stylesheet" href="/resources/css/animate.css">
+	<link rel="stylesheet" href="/resources/css/slicknav.css">
+	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="/resources/css/custom-choi.css">
+	<link rel="stylesheet" href="/resources/css/custom-jj.css">
+	<link rel="stylesheet" href="/resources/css/custom-hanna.css">
+	<link rel="stylesheet" href="/resources/css/custom-hong.css">
+	<link rel="stylesheet" href="/resources/css/custom-lee.css">
+	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
+>>>>>>> master
 </head>
 
 <body>
@@ -73,6 +101,7 @@
                      </div>
                   </div>
 
+<<<<<<< HEAD
                   <!--                  <div class="col-xl-4 col-lg-4 d-none d-lg-block">-->
                   <div class="col-xl-4 col-lg-4 d-lg-block">
                      <div class="custom-margin">
@@ -91,3 +120,54 @@
          </div>
       </div>
    </header>
+=======
+						<!--						<div class="col-xl-4 col-lg-4 d-none d-lg-block">-->
+						<div class="col-xl-4 col-lg-4 d-lg-block">
+							<div class="custom-margin">
+								
+							</div>
+							<div class="custom-margin">
+								<sec:authorize access="!isAuthenticated()">
+									<button class="btn btn-primary pull-right" id="joinBtn">회원가입</button>
+									<button class="btn btn-primary pull-right" id="loginBtn">로그인</button>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+									<button class="btn btn-primary pull-right" id="logoutBtn">로그아웃</button>
+								
+									<sec:authorize access="hasRole('ROLE_MEMBER')">
+										<button class="btn btn-primary pull-right" id="myPageBtn">마이페이지</button>
+									</sec:authorize>
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<button class="btn btn-primary pull-right" id="adminPageBtn">관리자페이지</button>
+									</sec:authorize>
+								</sec:authorize>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="mobile_menu d-block d-lg-none">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+										
+										
+	<script>
+		$(function(){
+			$('#joinBtn').on("click", function(){
+				location.href="/member/join";
+			});
+			
+			$('#loginBtn').on("click", function(){
+				location.href="/customLogin";
+			});
+			
+			$('#logoutBtn').on("click", function(){
+				location.href="/logout";
+			});
+		})
+		
+	</script>
+>>>>>>> master

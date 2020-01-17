@@ -1,12 +1,15 @@
 -- ¿µ¿ì SQL START
 CREATE TABLE member (
     memberId VARCHAR2(20),
-    memberPw VARCHAR2(30) NOT NULL,
+    memberPw VARCHAR2(500) NOT NULL,
     memberName VARCHAR2(15) NOT NULL,
     memberAddress VARCHAR2(100) NOT NULL,
-    memberPhone VARCHAR2(20) NOT NULL,
+    memberPhoneFirst VARCHAR2(20) NOT NULL,
+    memberPhoneSecond varchar2(20) not null,
+    memberPhoneThird varchar2(20) not null,
     memberBirth DATE NOT NULL,
-    memberEmail VARCHAR2(100) NOT NULL
+    memberEmail VARCHAR2(100) NOT NULL,
+    memberEmailSecond varchar2(100) not null
 );
 
 CREATE TABLE auth(
@@ -182,7 +185,7 @@ CREATE TABLE lost(
 
 --ALTER-------------------------------------------------------------------------------
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY(memberId);
-ALTER TABLE auth ADD CONSTRAINT PK_AUTH PRIMARY KEY(memberId);
+
 ALTER TABLE movieAttach ADD CONSTRAINT pk_movieAttach PRIMARY KEY (movieUuid) ;
 ALTER TABLE movie ADD CONSTRAINT pk_movie PRIMARY KEY (movieNo);
 ALTER TABLE commentReply ADD CONSTRAINT pk_commentReply PRIMARY KEY (commentNo);
@@ -256,3 +259,4 @@ CREATE SEQUENCE seq_lost;
 CREATE SEQUENCE seq_reply;
 CREATE SEQUENCE seq_review;
 CREATE SEQUENCE SEQ_SUGGEST;
+

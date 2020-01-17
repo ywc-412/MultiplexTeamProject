@@ -14,11 +14,21 @@ public class CommonController {
 	public void accessDenied(Authentication auth, Model model) {
 		log.info("access Denied : " + auth);
 		
-		model.addAttribute("msg", "Access Denied");
+		model.addAttribute("msg", "아이디와 비밀번호를 확인해주세요");
 	}
 	
 	@GetMapping("/customLogin")
 	public void loginInput(String error, String logout, Model model) {
+		model.addAttribute("loginSuccess", "환영합니다");
+	}
+	
+	@GetMapping("/logout")
+	public void logoutGet() {
+		log.info("custom logout");
+	}
+	
+	@GetMapping("/customLoginError")
+	public void loginError() {
 		
 	}
 }

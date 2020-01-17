@@ -2,10 +2,14 @@ package com.mtms.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -34,8 +38,13 @@ public class MemberController {
 	public String join(MemberVO memberVO, RedirectAttributes rttr) {
 		// 입력 화면에서 form action /member/join
 		log.info("join");
-		memberService.join(memberVO);
-		return null;
+		
+		int result = memberService.join(memberVO);
+		
+		rttr.addFlashAttribute("regMsg", "환영합니다!");
+		
+		return "redirect:/";
+		
 	}
 	
 	@GetMapping("/findId")
