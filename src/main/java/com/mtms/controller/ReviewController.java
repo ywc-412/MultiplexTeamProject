@@ -80,8 +80,10 @@ public class ReviewController {
 	
 	@PostMapping("register")
 	public String register(ReviewVO rvo, RedirectAttributes rttr) {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@들어왔다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		log.info("reviewController register()");
 		service.register(rvo);
+		System.out.println(rvo);
 		rttr.addFlashAttribute("result",rvo.getReviewNo());
 		return "redirect:/review/list";
 	}

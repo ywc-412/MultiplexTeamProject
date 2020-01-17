@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <div class="side_margin">
 	<div class="row">
@@ -6,12 +8,12 @@
 	<div class="title_under"></div>
 <!-- 	계시판명 END -->
 	<form action="/review/register" method="post">
-		<input type="text" id="title_register" value="영화제목" name="movieNo"><br>
-	
+	<input type="text" id="title_register" value="영화제목" name="movieNo"><br>
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	<input type="text" id="movie_register" value="리뷰제목"  name="reviewTitle"><br>
 	
 	<input type="text" id="content_register" name="reviewContent">
-	
+	<input type="hidden" value="로옹로옹" name="memberId">
 	
 	<div class="title_under2"></div>
 <!-- 	버튼위치 style -->
