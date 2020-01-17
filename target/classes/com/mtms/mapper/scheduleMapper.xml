@@ -18,6 +18,7 @@
 		DELETE FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
 	</delete>
 	
+	
 	<resultMap type="com.mtms.domain.ScheduleVO" id="scheduleMap">
 		<!-- property VO에 있는 이름 column 디비에 있는 이름 -->
 		<id property="movieNo" column="movieNo"/> <!-- 조인 칼럼  -->
@@ -26,13 +27,26 @@
 		<result property="scheduleTime" column="scheduleTime"/>
 		<result property="screen" column="screen"/>
 		<result property="movieNo" column="movieNo"/>
-		<collection property="movieVO" resultMap="movieMap"/>
+		<association property="movieVO" resultMap="movieMap"/>
 	</resultMap>
 	
 	<resultMap type="com.mtms.domain.MovieVO" id="movieMap">
 		<result property="movieNo" column="movieNo"/>
 		<result property="movieTitle" column="movieTitle"/>
 	</resultMap>
+	
+	<select id="getDay" resultType="java.lang.String">
+		SELECT DISTINCT to_char(s.scheduleDate, 'yyyymmdd') FROM schedule s, movie m
+		WHERE #{movieNo} = s.movieNo AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate} AND #{endDate} ORDER BY to_char(s.scheduleDate, 'yyyymmdd')
+	</select>
+	
+	<select id="getTime" resultType="java.lang.String">
+		SELECT scheduleTime FROM schedule WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
+	</select>
+	
+	<select id="getMovie" resultMap="scheduleMap">
+		select distinct m.movieTitle, m.movieNo from movie m, schedule s where s.movieNo = m.movieNo and to_char(s.scheduleDate, 'yyyymmdd') between '20200117' and '20200119'
+	</select>
 	
 	<select id="get" resultMap="scheduleMap">
 		SELECT m.*, to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, s.screen FROM schedule s, movie m

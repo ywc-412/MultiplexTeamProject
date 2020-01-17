@@ -26,7 +26,7 @@
 <!-- 	<insert id="insert"> -->
 	
 <!-- 	</insert> -->
-	
+
 	<select id="getMovieName" resultType="com.mtms.domain.MovieVO">
 		SELECT movieNo, movieTitle FROM movie WHERE movieTitle LIKE '%'||#{movieName}||'%'
 	</select>

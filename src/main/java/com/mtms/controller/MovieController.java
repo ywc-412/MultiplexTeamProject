@@ -109,16 +109,4 @@ public class MovieController {
 		return new ResponseEntity<>(movieService.getMovieName(movieName), HttpStatus.OK);
 	}
 	
-//	@PostMapping("getName")
-//	public String getName(String movieName, RedirectAttributes rttr, Model model) {
-//		System.out.println("MOVIE CONTROLLER - getName");
-//		System.out.println("movieName : " + movieName);
-//		List<MovieVO> list = movieService.getMovieName(movieName);
-//		rttr.addFlashAttribute("movieList", list);
-////		model.addAttribute("movieList", list);
-//		System.out.println("controller - list size : " + list.size());
-//		return "redirect:/schedule/register";
-//	}
-	
-	
 }

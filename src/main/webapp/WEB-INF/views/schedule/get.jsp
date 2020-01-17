@@ -14,13 +14,12 @@
 	<div class="hanna_head">
 		<h3>TIME TABLE </h3>
 		<h4>
-			<c:set var="loop_flag" value="false"/>
-			<c:forEach items="${schedule1 }" var ="s">
-				<c:if test="${not loop_flag }">
-					<fmt:formatDate value="${s.scheduleDate }" pattern="yyyy/MM/dd"/>
-					<c:set var="loop_flag" value="true"/>
-				</c:if>
-			</c:forEach>
+			<c:if test="${param.scheduleDate == null}">
+				<fmt:formatDate value='${to }' pattern='yyyyMMdd'/>
+			</c:if>
+			<c:if test="${param.scheduleDate != null }">
+				${param.scheduleDate }
+			</c:if>
 		</h4>
 	</div>
 	
@@ -52,8 +51,8 @@
 				<c:set var="loop_flag" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule1 }" var="s" >
-							<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+					<c:forEach items="${schedule1 }" var="s1" >
+							<div class="hanna_schedule_time"> ${s1.scheduleTime } </div>
 					</c:forEach>
 				</div>
 			</div>
@@ -70,8 +69,8 @@
 				<c:set var="loop_flag" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule2 }" var="s">
-						<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+					<c:forEach items="${schedule2 }" var="s2">
+						<div class="hanna_schedule_time"> ${s2.scheduleTime } </div>
 					</c:forEach>
 				</div>
 			</div>
@@ -88,8 +87,8 @@
 				<c:set var="loop_flag" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule3 }" var="s">
-						<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+					<c:forEach items="${schedule3 }" var="s3">
+						<div class="hanna_schedule_time"> ${s3.scheduleTime } </div>
 					</c:forEach>
 				</div>
 			</div>
@@ -100,13 +99,12 @@
 	<!-- 해당 날짜 받아오기 : 삭제할 때 form으로 보내기 -->
 	<form id="actionForm" action="/schedule/remove" method="post">
 		<c:if test="${param.scheduleDate == null}">
-			<input type="text" name="scheduleDate" value="<fmt:formatDate value='${to }' pattern='yyyyMMdd'/>"/>
+			<input type="hidden" name="scheduleDate" value="<fmt:formatDate value='${to }' pattern='yyyyMMdd'/>"/>
 		</c:if>
 		<c:if test="${param.scheduleDate != null }">
-			<input type="text" name="scheduleDate" value="${param.scheduleDate }"/>
+			<input type="hidden" name="scheduleDate" value="${param.scheduleDate }"/>
 		</c:if>
-<%-- 						<input type="hidden" name="scheduleDate" value='<fmt:formatDate value="${s.scheduleDate }" pattern="yyyyMMdd"/>' /> --%>
-				
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">				
 	</form>
 	
     <!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
@@ -157,8 +155,5 @@
 		});
 	
 	</script>
-	
-	
-	
 	
 <%@ include file="../include/footer.jsp" %>

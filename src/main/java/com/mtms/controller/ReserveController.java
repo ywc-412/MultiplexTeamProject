@@ -1,13 +1,24 @@
 package com.mtms.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
+import com.mtms.domain.MovieVO;
 import com.mtms.domain.ReserveVO;
 import com.mtms.domain.ScheduleVO;
 import com.mtms.service.MovieService;
@@ -51,8 +62,49 @@ public class ReserveController {
 	}
 	
 	@GetMapping("register")
-	public void register() {
+	public void register(Model model) {
 		// 초기화면 -> 예매하기 (시간) 화면으로 이동
+		// 현재 상영작 영화 목록 끌어오기
+		// select distinct m.movieTitle, m.movieNo from movie m, schedule s where s.movieNo = m.movieNo and to_char(s.scheduleDate, 'yyyymmdd') between '20200117' and '20200119'
+		
+		// 날짜 구하기
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		DateFormat date = new SimpleDateFormat("yyyyMMdd");
+		String startDate = date.format(cal.getTime());
+		cal.add(Calendar.DATE, 2);
+		date = new SimpleDateFormat("yyyyMMdd");
+		String endDate = date.format(cal.getTime());
+		
+		List<ScheduleVO> list = scheduleService.getMovie(startDate, endDate);
+		
+		System.out.println("controller list size : " + list.size());
+		model.addAttribute("movieList", list);
+	}
+	
+	@RequestMapping(value="getDay/{movieNo}", 
+			produces = { MediaType.APPLICATION_XML_VALUE,
+								MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<String>> getDay(@PathVariable("movieNo") int movieNo){
+		// 예매 창에서 영화 선택 시 영화에 해당하는 상영 날짜 받아오기
+//		System.out.println("RESERVE CONTROLLER - GET DAY - movie No : " + movieNo);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		DateFormat date = new SimpleDateFormat("yyyyMMdd");
+		String startDate = date.format(cal.getTime());
+		cal.add(Calendar.DATE, 2);
+		date = new SimpleDateFormat("yyyyMMdd");
+		String endDate = date.format(cal.getTime());
+//		System.out.println("start : " + startDate + " end : " + endDate);
+		return new ResponseEntity<>(scheduleService.getDay(movieNo, startDate, endDate), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="getTime/{movieNo}/{scheduleDate}",
+			produces = { MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<String>> getTime(@PathVariable("movieNo") int movieNo, @PathVariable("scheduleDate") String scheduleDate){
+		System.out.println("RESERVE CONTROLLER - GET TIME - MOVIE NO : " + movieNo + " / scheduleDate : " + scheduleDate);
+		return new ResponseEntity<>(scheduleService.getTime(movieNo, scheduleDate), HttpStatus.OK);
 	}
 
 	@PostMapping("seat")
