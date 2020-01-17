@@ -13,4 +13,5 @@ public interface ReviewService {
 	public void register(ReviewVO rvo);
 //	public List<ReviewVo> getList();
 	public List<ReviewVO> getList(Criteria cri);
+	public int getTotalCount(Criteria cri);
 }

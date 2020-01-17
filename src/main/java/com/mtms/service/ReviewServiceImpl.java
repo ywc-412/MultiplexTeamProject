@@ -58,5 +58,11 @@ public List<ReviewVO> getList(Criteria cri) {
 	return reviewMapper.getListWithPaging(cri);
 }
 
+@Override
+public int getTotalCount(Criteria cri) {
+	// TODO Auto-generated method stub
+	return reviewMapper.getTotalCount(cri);
+}
+
 
 }

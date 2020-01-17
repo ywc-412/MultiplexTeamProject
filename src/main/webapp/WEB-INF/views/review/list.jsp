@@ -10,7 +10,25 @@
 	</div>
 	<div class="title_under"></div>
 <!-- 	검색 조건 및 키워드 입력 부분 -->
-	
+	 <!-- 검색 조건 및 키워드 입력 부분 -->
+                <div class='row'>
+                   <div class="col-lg-12">
+                   <!--  -->
+                      <form id="searchForm" action="/review/list" method="get">
+                         <select name='type'>
+                               <option value="" <c:out value="${pageMaker.cri.type ==null?'selected':'' }"/>> 검색 조건 지정 </option>
+                               <option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
+                               <option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>내용</option>
+                               <option value="W" <c:out value="${pageMaker.cri.type eq 'W'?'selected':'' }"/>>작성자</option>
+                         </select>
+                         <input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'>
+                         <input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
+                         <input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
+                         <button class='btn btn-default'>Search</button>
+                      </form>
+                   </div>
+                </div>
+                <!-- END 검색 조건 및 키워드 입력부분 -->
 		       
 		       
 		<div class="table_position">
@@ -71,6 +89,29 @@
 
 //페이지 번호 링크 처리
 $(function(){
+	  //검색 버튼 이벤트 처리
+  	//검색 조건을 지정하지 않은경우
+  		//'검색 종류를 선택하세요' 메시지 출력
+  	//검색어를 입력하지 않은경우
+  		//'키워드를 입력하세요' 출력
+  var searchForm = $("#searchForm");
+  
+  $("#searchForm button").on("click", function(e) {
+	 if(!searchForm.find("option:selected").val()){	//검색 조건을 지정안했을때
+		 alert('검색종류를 선택하세요');
+		 return false;
+	 } 
+	 if(!searchForm.find("input[name='keyword']").val()){	//키워드를 입력하지 않았을때
+		 alert('키워드를 선택하세요');
+		 return false;
+	 }
+	 //검색 결과 페이지 번호가 1이 되도록 처리
+	 searchForm.find("input[name='pageNum']").val("1");
+	 e.preventDefault();
+	 
+	 searchForm.submit();
+  });//END 컴색처리
+  
 	 //페이지 번호 링트 처리
 	  $(".paginate_button a").on("click", function(e) {
 			 e.preventDefault(); //a태그라서 동작안되게 막아줌
