@@ -87,10 +87,6 @@
                 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
     			</form>
     </div>
-<!--     <form action = "/review/get" method="get"> -->
-<!--     <input type="hidden" name="reviewNo"> -->
-<!--     <button type="submit">실험버튼</button> -->
-<!--     </form> -->
 		<!-- 전체마진 END -->
 <script>
 
