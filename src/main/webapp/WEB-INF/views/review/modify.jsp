@@ -11,6 +11,7 @@
 <!-- 	계시판명 END -->
 
 	<form role="form" action="/review/modify" method="post">
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 	<input type="text" id="movie_register1" name="reviewTitle" value="<c:out value='${rvo.reviewTitle }'/>"><br>
 	

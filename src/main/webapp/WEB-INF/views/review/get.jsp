@@ -31,9 +31,10 @@
 	 
 	 <button data-oper="list" class="btn btn-info">List</button>
 	 <div class="button_position">
-			<button type="submit" class="btn btn-default" data-oper ="modify">수정</button>
+	 		<button type="submit" class="btn btn-default" data-oper ="modify">수정</button>
 				
 				<form method="post" action="/review/remove">
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 				<button id="reviewRemove" class="btn btn-danger" type="submit">
 				삭제</button>

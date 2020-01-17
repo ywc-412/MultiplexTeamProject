@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ReviewMapper">
-<select id="getListWithPaging" resultType="org.zerock.domain.ReviewVo">
+<select id="getListWithPaging" resultType="com.mtms.domain.ReviewVO">
 		<![CDATA[
 			SELECT
 			movieNo,reviewTitle,memberId,reviewView,reviewDate
@@ -32,7 +32,7 @@
     DELETE review WHERE reviewNo = #{reviewNo}
   </delete>
   
-  <select id="read" resultType="org.zerock.domain.ReviewVo">
+  <select id="read" resultType="com.mtms.domain.ReviewVO">
     SELECT * FROM review WHERE reviewNo = #{reviewNo}
   </select>
   
