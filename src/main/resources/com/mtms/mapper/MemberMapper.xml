@@ -83,14 +83,28 @@
 	</select>
 	
 	<select id="getMember" resultType="com.mtms.domain.MemberVO">
-		SELECT * FROM member WHERE memberId = #{memberId}
+		SELECT memberName, memberAddress, memberEmail, memberEmailSecond, 
+			memberPhoneFirst, memberPhoneSecond, memberPhoneThird, 
+			memberBirth 
+		FROM member 
+		WHERE memberId = #{memberId}
 	</select>
 	
 	<delete id="deleteMember">
-	
+		DELETE FROM member WHERE memberId=#{memberId}
 	</delete>
 	
-	<update id="updateMember">
+	<select id="memberPw" resultType="String">
+		SELECT memberPw
+		FROM member
+		WHERE memberId = #{memberId}
+	</select>
 	
+	<update id="updateMember">
+		UPDATE member 
+		SET memberPw = #{memberPw}, memberPhoneFirst = #{memberPhoneFirst}, 
+			memberPhoneSecond = #{memberPhoneSecond},
+			memberPhoneThird = #{memberPhoneThird}
+		WHERE memberId = #{memberId}
 	</update>
 </mapper>

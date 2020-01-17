@@ -90,9 +90,7 @@ public class MemberController {
 	
 	@PostMapping("/findPwComplete")
 	public String findPwComplete(MemberVO memberVO, RedirectAttributes rttr) {
-		System.out.println("findPwComplete Controller");
 		int result = memberService.findPw(memberVO);
-		System.out.println("hi in controlle result : " + result);
 		if(result == 1) {
 			rttr.addFlashAttribute("findPw", "비밀번호 수정이 완료되었습니다");
 			
@@ -113,24 +111,47 @@ public class MemberController {
 	@GetMapping("/myInfo")
 	public void get(String memberId, Model model) {
 		//회원 상세보기 컨트롤러	
-		
 		MemberVO memberVO = memberService.getMember(memberId);
 		
 		model.addAttribute("memberInfo", memberVO);
 	}
 	
 	@PostMapping("/remove")
-	public String removeMember(String memberId, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		// 회원 강퇴, 삭제 컨트롤러
+	public String removeMember(MemberVO memberVO, RedirectAttributes rttr) {
+		int result = memberService.removeMember(memberVO);
 		
-		return null;
+		if(result == -1) {
+			rttr.addFlashAttribute("noGoodBye", "비밀번호가 일치하지 않습니다");
+			rttr.addAttribute("memberId", memberVO.getMemberId().split(",")[0]);
+			return "redirect:/member/myInfo";
+		}
+		// 회원 강퇴, 삭제 컨트롤러
+		rttr.addFlashAttribute("goodBye", "감사합니다 다음에 또 놀러와주세요!");
+		
+		return "redirect:/logout";
 	}
 	
-	@PostMapping("/modify")
-	public String modifyMember(String memberId, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+	@PostMapping("/myInfoMod")
+	public String modifyMember(MemberVO memberVO, RedirectAttributes rttr) {
 		// 회원 수정 , 컨트롤러
+		int result = memberService.modifyMember(memberVO);
 		
-		return null;
+		System.out.println("result : " + result);
+		
+		if(result == 1) {
+			rttr.addFlashAttribute("updateSuccess", "수정되었습니다");
+			rttr.addAttribute("memberId", memberVO.getMemberId());
+			return "redirect:/member/myInfo";
+		}
+		rttr.addFlashAttribute("updateFail", "update 실패 관리자에게 문의해주세요");
+		return "redirect:/member/myInfoMod";
+	}
+	
+	@GetMapping("/myInfoMod")
+	public void modifyMember(String memberId, Model model) {
+		MemberVO memberVO = memberService.getMember(memberId);
+		
+		model.addAttribute("memberInfo", memberVO);
 	}
 	
 }

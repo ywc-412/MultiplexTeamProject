@@ -52,13 +52,11 @@ public class MemberServiceImpl implements MemberService{
 		
 		String get = memberVO.getMemberId();
 		
-		System.out.println("get : " + get);
 		
 		String password = memberVO.getMemberPw();
 		String encodedPassword = bcryptpwEncoder.encode(password);
 		memberVO.setMemberPw(encodedPassword);
 		
-		System.out.println("pw : " + memberVO.getMemberPw());
 		
 		return memberMapper.updatePw(memberVO);
 	}
@@ -75,13 +73,35 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int removeMember(String memberId) {
-		return memberMapper.deleteMember(memberId);
+	public int removeMember(MemberVO memberVO) {
+		System.out.println("id : " + memberVO.getMemberId());
+		
+		String memberId = memberVO.getMemberId();
+		
+		String memberRealId [] = memberId.split(",");
+		
+		
+		String resultPw = memberMapper.memberPw(memberRealId[0]);
+		
+		if(resultPw != null) {
+			boolean result = bcryptpwEncoder.matches(memberVO.getMemberPw(), resultPw);
+			if(result == false) {
+				return -1;
+			}
+		}
+		
+		return memberMapper.deleteMember(memberRealId[0]);
 	}
 
 	@Override
 	public int modifyMember(MemberVO memberVO) {
-		return 0;
+		
+		String password = memberVO.getMemberPw();
+		String encodedPassword = bcryptpwEncoder.encode(password);
+		memberVO.setMemberPw(encodedPassword);
+		
+		
+		return memberMapper.updateMember(memberVO);
 	}
 
 	@Override
@@ -92,7 +112,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO duplicatedEmail(String totalEmail) {
 		
-		System.out.println("service" + totalEmail);
 		
 		String totalMemberEmail[] = totalEmail.split("@");
 		

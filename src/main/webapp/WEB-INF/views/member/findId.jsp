@@ -28,7 +28,7 @@
 						<div class="custom-text-left custom-my-auto">@</div>
 						<div class="default-select custom-text-left" id="default-select">
 							<select name="memberEmailSecond" id="memberEmailSecond">
-								<option value="">-직접 입력-</option>
+								<option value="">선택</option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="hanmail.net">hanmail.net</option>

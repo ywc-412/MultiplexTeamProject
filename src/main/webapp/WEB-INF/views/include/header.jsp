@@ -50,7 +50,7 @@
 					<div class="row align-items-center no-gutters">
 						<div class="col-xl-2 col-lg-2">
 							<div class="logo-img">
-								<a href="index.html">
+								<a href="/">
 									<img src="/resources/img/sCineLogo3.png" alt="">
 								</a>
 							</div>
@@ -83,11 +83,9 @@
 								
 							</div>
 							<form action="/member/myInfo" method="get" id="headerForm">
-								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 								<sec:authorize access="isAuthenticated()">
-									<input type="hidden" name="memberId" value="${principal.username }">
+									<input type="hidden" name="memberId" value="<sec:authentication property="principal.username"/>">
 								</sec:authorize>
-								
 								<div class="custom-margin">
 									<sec:authorize access="!isAuthenticated()">
 										<button class="btn btn-primary pull-right" id="joinBtn">회원가입</button>

@@ -86,7 +86,7 @@
 <div id="modal" class="searchModal">
 	<div class="search-modal-content">
 		<div class="page-header">
-			<h4>비밀번호 변경  ${findMemberId}</h4>
+			<h4>비밀번호 변경</h4>
 			<hr>
 		</div>
 		<div class="row">

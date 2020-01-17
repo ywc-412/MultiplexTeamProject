@@ -23,7 +23,7 @@ public interface MemberService {
 	// 내 정보 상세보기 서비스 메서드
 	public MemberVO getMember(String memberId);
 	// 회원 삭제 서비스 메서드
-	public int removeMember(String memberId);
+	public int removeMember(MemberVO memberVO);
 	// 회원 정보 수정 메서드
 	public int modifyMember(MemberVO memberVO);
 }

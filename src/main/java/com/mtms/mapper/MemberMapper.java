@@ -27,10 +27,15 @@ public interface MemberMapper {
 	public int updatePw(MemberVO memberVO);
 	// 회원 목록 조회 하기
 	public List<MemberVO> getMemberList(Criteria cri);
+	
+	
 	// 회원 상세 보기
 	public MemberVO getMember(String memberId);
 	// 회원 삭제 하기
 	public int deleteMember(String memberId);
 	// 회원 정보 수정하기
 	public int updateMember(MemberVO memberVO);
+	
+	// 회원 비밀번호 비교하기 위해서 memberPw 를 가져옴
+	public String memberPw(String memberId);
 }
