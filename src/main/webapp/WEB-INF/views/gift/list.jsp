@@ -34,10 +34,11 @@
 							<!-- 아마도 사진 end -->
 							<div class="product-content">
 								<c:forEach items="${list}" var="gift">
-									<h3 class="title">
-										<a class="move" href="${gift.giftNo}"><c:out value="${gift.giftNo}"/></a>
-										
-									</h3>
+								<br>
+									<b>
+										<a class="move" href="/gift/get?giftNo=${gift.giftNo}"><c:out value="${gift.giftNo}"/></a>
+										<%-- <a class="move" href="${gift.giftNo}"><c:out value="${gift.giftNo}"/></a> --%>										
+									</b>
 									<div class="price">
 										<c:out value="${gift.giftPrice}" />
 									</div>
@@ -81,7 +82,7 @@ $(document).ready(function(){
 	})();
 })
 
-$('.move').click(
+/* $('.move').click(
 	function(e) {
 		e.preventDefault();
 		//actionForm에 hidden으로 name 속성 추가 값은 giftNo 지정, value 속성 추가 값은 ~~ 지정한 후 append
@@ -91,7 +92,7 @@ $('.move').click(
 		$('#actionForm').attr("action", "/gift/get");
 
 		$('#actionForm').submit();
-	});
+	}); */
 	
 $('#regGift').click(function() {
 	self.location = "/gift/register";

@@ -14,10 +14,10 @@
 	 </select>
 	
 	<delete id="delete">
-	
+		delete from gift where giftUuid = #{giftUuid}
 	</delete>
 	
 	<delete id="deleteAll">
-	
+		delete from gift where giftNo = #{giftNo}
 	</delete>
 </mapper>

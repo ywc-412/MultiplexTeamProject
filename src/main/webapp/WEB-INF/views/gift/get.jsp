@@ -1,69 +1,133 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%@include file="../include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 
-<!--board-start-->
+<!--board s -->
 <section id="tabs" class="project-tab">
-    <div class="container custom-mobile">
-        <div class="custom-gift-divide-border">
-            <h3 class="custom-font-bold"><input class="giftName" value="${gift.giftName}"/></h3>
-        </div>
-        <div class="section-top-border">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="/resources/img/popcorn.jpg" alt="" class="img-fluid">
-                </div>
-                <div class="col-md-9 mt-sm-20">
-                	<div class="form-group">
-						<label>No.</label> <span name="giftNo"><c:out value="${gift.giftNo}"/> </span>
+	<div class="container custom-mobile">
+		<div class="custom-gift-divide-border">
+			<h3 class="custom-font-bold">
+				<input class="giftName" value="${gift.giftName}" />
+			</h3>
+		</div>
+		<div class="section-top-border">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<!-- 사진 s -->
+							<div class="uploadResult">
+								<ul>
+
+								</ul>
+							</div>
+							<!-- 사진 e -->
+						</div>
+					</div>
+				</div>
+				<!-- 내용 s -->
+				<div class="col-md-9 mt-sm-20">
+					<div class="form-group">
+						<label>No&emsp; : &ensp;</label><span name="giftNo"><c:out value="${gift.giftNo}" /></span>
 					</div>
 					<div class="form-group">
-						<label>가격 : </label> <input name="giftPrice" class="giftPrice" value="${gift.giftPrice}">
-					</div>					
-                    <div class="form-group">
-						<label>구성 : </label> <span name="giftSet"><c:out value="${gift.giftSet}"/></span>
+						<label>가격&ensp; : &ensp;</label> <input name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly>
 					</div>
-                    <div class="qty mt-5">
-                        <span class="minus bg-dark">-</span>
-                        <input type="number" class="num-count" name="qty" value="1">
-                        <span class="plus bg-dark">+</span>
-                        <span class="custom-price"><input name="totalPrice" class="totalPrice" value="5500"/></span>
+					<div class="form-group">
+						<label>구성&ensp; : &ensp;</label> <span name="giftSet"><c:out value="${gift.giftSet}" /></span>
 					</div>
-                    </div>
-                </div>
-            </div>
-            <div class="custom-divide-border-top">
-                <span class="custom-pull-right"><label>총 구매금액 </label>&emsp; : &emsp;<input name="totalPrice" class="totalPrice" value="5500"/></span><br><br>
-            </div>
-            <div class="">
-                <button type="submit" class="btn btn-primary float-left custom-button-gift">LIST</button>
-                <button type="submit" class="btn btn-danger float-right custom-button-gift">삭제</button>
-                <button type="submit" class="btn btn-primary float-right custom-button-gift">수정</button>
-                <button type="button" id="payment" class="btn btn-primary float-right custom-button-gift">구입</button>
-            </div>
-        </div>
-    </div>
+					<div class="qty mt-5">
+						<span class="minus bg-dark">-</span> 
+							<input type="number" class="num-count" name="qty" value="1"> 
+						<span class="plus bg-dark">+</span>
+						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="5500" readonly></span>
+					</div>
+				</div>
+				<!-- 내용 e -->
+			</div>
+		</div>
+		<div class="custom-divide-border-top">
+			<span class="custom-pull-right">
+				<label>총 구매금액&emsp; : &emsp;</label><input name="totalPrice" class="totalPrice" value="5500" readonly>
+			</span><br>	
+			<br>
+		</div>
+		<!-- 버튼 s -->
+		<div class="">
+			<button class="btn btn-primary float-left custom-button-gift" onclick="location.href='/gift/list'" data-oper='list'>LIST</button>
+			<button type="submit" class="btn btn-danger float-right custom-button-gift" data-oper="remove" onclick="removeChk()">삭제</button>
+			<button type="submit" class="btn btn-primary float-right custom-button-gift" data-oper='modify' onclick="location.href='/gift/modify?giftNo=${gift.giftNo}'">수정</button>
+			<button type="button" id="payment" class="btn btn-primary float-right custom-button-gift">구입</button>
+		</div>
+		<!-- 버튼 e -->
+	</div>
 </section>
-<!--board-end-->
+<!-- board e -->
 
-<%@include file="../include/footer.jsp" %> 
 <script>
+	//삭제 취소 알림창
+	function removeChk() {
+		if(confirm("정말로 삭제하시겠습니까?") == true && $(this).data("oper") === 'remove') {
+			/* location.href = "/gift/list" */
+			$("form").attr("action", "gift/remove");
+			location.href = "/gift/list"
+		} else {
+			self.close();
+		}
+		$("form").submit();
+	}
+	
+	//form 전송
+	$(function(){
+	   var formObj = $("form");
+	   $('button').on("click", function(e){
+	      e.preventDefault();
+	      var operation = $(this).data("oper");
+	      if(operation === 'remove'){	//삭제 버튼
+		         formObj.attr("action", "/gift/remove");		      
+	      } else if(operation === 'modify'){
+	         formObj.attr("action", "/gift/modify");
+	      } else if(operation === 'list'){
+	         formObj.attr("action", "/gift/list").attr("method", "get");	        	         
+	      }
+	      formObj.submit();
+	   });	  	
+	}); 
+
+	//첨부파일 목록 가져오기
+	(function() {	
+		$.getJSON("/gift/getAttachList", { giftNo : ${gift.giftNo}}, function(data) {
+					console.log(data);
+			var li = "";
+			$(data).each(function(index, obj){								
+				//이미지이면 그대로 표시				
+				var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);				
+				li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"'><div>" + 
+					  "<img src='/giftUpload/display?giftFileName="+filePath+"' style='width:100%'></div></li>";		
+			});	
+					$('.uploadResult ul').append(li);		
+				}).fail(function(xhr, status, err) {
+					/* if(error) {
+						error(err);
+					} */
+		});//END JSON	
+	})();
+
     //기프티콘 수량 변경
     $(document).ready(function () {
         $('.num-count').prop('disabled', true);
         $(document).on('click', '.plus', function () {
             $('.num-count').val(parseInt($('.num-count').val()) + 1);
-            $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));
-            
+            $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));         
         });
         $(document).on('click', '.minus', function () {
             $('.num-count').val(parseInt($('.num-count').val()) - 1);
             $('.totalPrice').val(parseInt($('.totalPrice').val() - $('.giftPrice').val()));
             if ($('.num-count').val() == 0) {
                 $('.num-count').val(1);
-                alert("0 이하는 불가능");
+                alert("1개 이상 구입 가능");
                 $('.totalPrice').val(parseInt($('.giftPrice').val() * 1));
             }
         });
@@ -74,7 +138,6 @@
 
 		var IMP = window.IMP; // 생략가능
 		IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-
 
 		IMP.request_pay({
 			pg: 'inicis', // version 1.1.0부터 지원.
@@ -99,8 +162,9 @@
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 			}
-			alert(msg);
+			alert(msg);			
 		});
 	});
 </script>
 
+<%@include file="../include/footer.jsp"%>

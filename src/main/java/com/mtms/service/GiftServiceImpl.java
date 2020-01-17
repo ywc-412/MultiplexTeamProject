@@ -23,22 +23,18 @@ public class GiftServiceImpl implements GiftService{
 	@Setter(onMethod_ = @Autowired)
 	private GiftAttachMapper giftAttachMapper;
 	
+	//기프티콘 등록
 	@Transactional
 	@Override
-	public void register(GiftVO gift) {		//기프티콘 등록
+	public void register(GiftVO gift) {		
 		log.warn(gift);
-		giftMapper.insertSelectKey(gift);				
-		
-		List<GiftAttachVO> attachList = gift.getAttachList();
-		
-		log.warn(attachList);
-		
+		giftMapper.insertSelectKey(gift);			
+		List<GiftAttachVO> attachList = gift.getAttachList();		
+		log.warn(attachList);		
 		//첨부파일이 없으면 중단
 		if(attachList == null || attachList.size() <=0) {
 			return;
-		}
-		
-		
+		}		
 		//첨부파일이 있으면 giftAttach에 insert
 		attachList.forEach(gvo -> {
 			gvo.setGiftNo(gift.getGiftNo());
@@ -46,9 +42,10 @@ public class GiftServiceImpl implements GiftService{
 			giftAttachMapper.insert(gvo);
 		});
 	}
-
+	
+	//기프티콘 조회
 	@Override
-	public List<GiftVO> getList() {		//기프티콘 조회
+	public List<GiftVO> getList() {		
 		log.info("getList..........");
 		return giftMapper.getList();
 	}
@@ -59,25 +56,39 @@ public class GiftServiceImpl implements GiftService{
 		return null;
 	}
 	
+	//기프티콘 상세보기
 	@Override
-	public GiftVO get(int giftNo) {		//기프티콘 상세보기
+	public GiftVO get(int giftNo) {		
 		return giftMapper.read(giftNo);
 	}
-
+	
+	//기프티콘 수정
+	@Transactional
 	@Override
-	public boolean modify(GiftVO gift) {	//기프티콘 수정
-		// TODO Auto-generated method stub
-		return false;
+	public boolean modify(GiftVO gift) {	
+		log.info("Gift ServiceImpl modify,,,,");
+		giftAttachMapper.deleteAll(gift.getGiftNo());
+		boolean modifyResult = giftMapper.update(gift) == 1;
+		if(modifyResult && gift.getAttachList() != null & gift.getAttachList().size() > 0) {
+			gift.getAttachList().forEach(attach -> {
+				attach.setGiftNo(gift.getGiftNo());
+				giftAttachMapper.insert(attach);
+			});
+		}
+		return modifyResult;
 	}
-
+	
+	//기프티콘 삭제	
 	@Override
-	public boolean remove(int giftNo) {		//기프티콘 삭제
-		// TODO Auto-generated method stub
-		return false;
+	public boolean remove(int giftNo) {		
+		log.warn("Gift ServiceImpl remove,,");
+		giftAttachMapper.deleteAll(giftNo);
+		return giftMapper.delete(giftNo) == 1;
 	}
-
+	
+	//기프티콘 사진 등록
 	@Override
-	public List<GiftAttachVO> getAttachList(int giftNo) {	//기프티콘 사진 등록
+	public List<GiftAttachVO> getAttachList(int giftNo) {	
 		log.warn("getAttachList giftNo : " + giftNo);
 		return giftAttachMapper.findBygiftNo(giftNo);
 	}

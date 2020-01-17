@@ -83,7 +83,7 @@ label {
 
 
 .custom-divide-border-top {
-    margin-top: 5%;
+  
     padding-top: 3%;
     border-top: 1px solid lightgrey;
 }
@@ -347,7 +347,7 @@ input:disabled {
 
 
 .custom-price {
-    margin-left: 40%;
+    margin-left: 37%;
 }
 
 
@@ -405,3 +405,11 @@ input:disabled {
 .product-content {
 	float: left;
 }
+
+.giftName, .giftPrice, .totalPrice {
+	background: transparent;
+	border: white;
+	font-weight: bold;
+	outline:none;
+}
+
