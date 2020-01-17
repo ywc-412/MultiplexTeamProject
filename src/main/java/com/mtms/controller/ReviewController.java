@@ -59,6 +59,7 @@ public class ReviewController {
 		Criteria cri,Model model)  {
 		log.info("들어온건가들어온건가들어온건가들어온건가들어온건가들어온건가들어온건가들어온건가들어온건가");
 		model.addAttribute("rvo", service.get(reviewNo));
+		System.out.println("컨트롤러 리뷰 번호 : "+service.get(reviewNo));
 	}
 
 	

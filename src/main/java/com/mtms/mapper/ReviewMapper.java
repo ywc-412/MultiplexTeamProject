@@ -8,7 +8,7 @@ import com.mtms.domain.ReviewVO;
 public interface ReviewMapper {
 	
 	public void insertSelectKey(ReviewVO rvo);							
-	public void insert(ReviewVO rvo);
+//	public void insert(ReviewVO rvo);
 	public int update(ReviewVO rvo);
 	public int delete(int reviewNo);
 	public ReviewVO read(int reviewNo);
@@ -16,4 +16,5 @@ public interface ReviewMapper {
 	public int updateView(int reviewNo);
 	public List<ReviewVO> getListWithPaging(Criteria cri);
 	public int getTotalCount(Criteria cri);
+	
 }

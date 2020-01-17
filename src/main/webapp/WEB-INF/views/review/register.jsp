@@ -9,12 +9,14 @@
 <!-- 	계시판명 END -->
 	<form action="/review/register" method="post">
 	<input type="text" id="title_register" value="영화제목" name="movieNo"><br>
-	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+	
 	<input type="text" id="movie_register" value="리뷰제목"  name="reviewTitle"><br>
 	
 	<input type="text" id="content_register" name="reviewContent">
+	<div class="form-group">
 	<input type="hidden" value="로옹로옹" name="memberId">
-	
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+	</div>
 	<div class="title_under2"></div>
 <!-- 	버튼위치 style -->
 	<div class="buttln_style">

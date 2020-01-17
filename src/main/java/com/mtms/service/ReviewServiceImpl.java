@@ -47,7 +47,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 @Override
 public void register(ReviewVO rvo) {
-	// TODO Auto-generated method stub
+	reviewMapper.insertSelectKey(rvo);
 	
 }
 

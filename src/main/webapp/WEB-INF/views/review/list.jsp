@@ -47,8 +47,8 @@
 						<c:forEach items="${list }" var="rvo">
 						<tr class="odd gradeX">
 							<td><c:out value="${rvo.movieNo }"/></td>
-							<td><a class="move" href='<c:out value="${rvo.reviewNo }"/>'>
-							${rvo.reviewTitle }</a></td>
+							<td><a class="move" href="${rvo.reviewNo}">
+                            		${rvo.reviewTitle }</a></td>
                             <td><c:out value="${rvo.memberId }"/></td>
 							<td><c:out value="${rvo.reviewView }"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"
@@ -80,10 +80,17 @@
                 <!-- END 페이지 번호 출력 -->
 	 <!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 -->
                 <form id="actionForm" action="/review/list" method="get">
-	           		<input type="hidden" id="pageNum" name="pageNum" value="${pageMaker.cri.pageNum }">
-	           		<input type="hidden" id="amount" name="amount" value="${pageMaker.cri.amount }">
+	           		<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}">
+                	<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                	<!-- 검색 조건과 키워드 파라미터 추가 -->
+                	<input type="hidden" name="type" value="${pageMaker.cri.type}">
+                	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
     			</form>
     </div>
+<!--     <form action = "/review/get" method="get"> -->
+<!--     <input type="hidden" name="reviewNo"> -->
+<!--     <button type="submit">실험버튼</button> -->
+<!--     </form> -->
 		<!-- 전체마진 END -->
 <script>
 
@@ -101,10 +108,7 @@ $(function(){
 		 alert('검색종류를 선택하세요');
 		 return false;
 	 } 
-	 if(!searchForm.find("input[name='keyword']").val()){	//키워드를 입력하지 않았을때
-		 alert('키워드를 선택하세요');
-		 return false;
-	 }
+
 	 //검색 결과 페이지 번호가 1이 되도록 처리
 	 searchForm.find("input[name='pageNum']").val("1");
 	 e.preventDefault();
@@ -113,17 +117,17 @@ $(function(){
   });//END 컴색처리
   
 	 //페이지 번호 링트 처리
-	  $(".paginate_button a").on("click", function(e) {
-			 e.preventDefault(); //a태그라서 동작안되게 막아줌
-			 $('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
-			 $('#actionForm').submit();
-	  });
+	   $(".paginate_button a").on("click", function(e) {
+				 e.preventDefault(); //a태그라서 동작안되게 막아줌
+				 $('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
+				 $('#actionForm').submit();
+		  });
 	  
 	  //게시물 조회 링크처리
-	  $(".move").on("click", function(e) {
+	   $(".move").on("click", function(e) {
 		 	 e.preventDefault();
 		 	 $("#actionForm").append("<input type='hidden' name='reviewNo' value='"+ $(this).attr("href")+"'>");
-		 	 $("#actionForm").attr("action","/review/get");
+		 	 $("#actionForm").attr("action", "/review/get");
 		 	 $("#actionForm").submit();
 	  });
 	  

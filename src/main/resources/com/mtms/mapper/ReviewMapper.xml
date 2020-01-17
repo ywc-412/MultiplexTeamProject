@@ -81,7 +81,7 @@
   		SELECT seq_review.NEXTVAL FROM dual
   	</selectKey>
   
-  	INSERT INTO review(reviewNo, reviewTitle, reviewContent movieNo,memberId)
+  	 INSERT INTO review(reviewNo, reviewTitle, reviewContent, movieNo,memberId)
 	VALUES(#{reviewNo}, #{reviewTitle}, #{reviewContent},#{movieNo},#{memberId})
   </insert>
   

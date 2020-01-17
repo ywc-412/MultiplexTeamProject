@@ -12,7 +12,7 @@
 		<div class="get_title">	<c:out value="${rvo.reviewTitle }"/></div>
 	
 		<div class = "title_under_div">
-			<span aclass="title_under_ex2">작성일:<fmt:formatDate pattern="yyyy-MM-dd"
+			<span class="title_under_ex2">작성일:<fmt:formatDate pattern="yyyy-MM-dd"
 							value="${rvo.reviewDate }"/></span> 
 			<span class="title_under_ex2">작성자:<c:out value="${rvo.memberId }"/></span> 
 			<span class="title_under_ex2">조회수:<c:out value="${rvo.reviewView }"/></span>
@@ -105,6 +105,7 @@
 	<!-- 페이징 end -->
 </div>
 <!-- 전체마진 END -->
+<%@ include file="../include/footer.jsp"%>
 <script>
 $(function(){
     var operForm = $("#operForm");
