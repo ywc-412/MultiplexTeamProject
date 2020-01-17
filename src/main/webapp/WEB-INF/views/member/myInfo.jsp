@@ -33,11 +33,11 @@
 								<form action="#">
 									<div class="mt-10 custom-input">
 										<div>아이디</div>
-										<p>ywc412</p>
+										<p><sec:authentication property="principal.username"/></p>
 									</div><br>
 									<div class="mt-10 custom-input">
 										<div>이름</div>
-										<p>최영우</p>
+										<p><c:out value="${memberInfo.memberName }"></c:out></p>
 									</div><br>
 									<div class="mt-10 custom-input">
 										<div>이메일</div>
@@ -61,8 +61,18 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 
+
+
 <%@ include file="../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+

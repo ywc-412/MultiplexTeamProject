@@ -68,6 +68,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getMemberList(cri);
 	}
 
+	// 내 정보 상세보기 메서드
 	@Override
 	public MemberVO getMember(String memberId) {
 		return memberMapper.getMember(memberId);

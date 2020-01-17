@@ -110,11 +110,13 @@ public class MemberController {
 		return null;
 	}
 	
-	@GetMapping("/get")
-	public String get(String memberId, Model model) {
+	@GetMapping("/myInfo")
+	public void get(String memberId, Model model) {
 		//회원 상세보기 컨트롤러	
 		
-		return null;
+		MemberVO memberVO = memberService.getMember(memberId);
+		
+		model.addAttribute("memberInfo", memberVO);
 	}
 	
 	@PostMapping("/remove")

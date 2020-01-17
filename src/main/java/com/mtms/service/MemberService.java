@@ -20,7 +20,7 @@ public interface MemberService {
 	public int findPw(MemberVO memberVO);
 	// 회원 목록 조회 서비스 메서드
 	public List<MemberVO> getMemberList(Criteria cri);
-	// 회원 상세보기 서비스 메서드
+	// 내 정보 상세보기 서비스 메서드
 	public MemberVO getMember(String memberId);
 	// 회원 삭제 서비스 메서드
 	public int removeMember(String memberId);
