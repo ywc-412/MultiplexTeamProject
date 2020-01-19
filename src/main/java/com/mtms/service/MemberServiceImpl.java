@@ -126,6 +126,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.duplicatedEmail(memberEmail, memberEmailSecond);
 	}
 
+	@Override
+	public int removeMember(String memberId) {
+		
+		return memberMapper.deleteMember(memberId);
+	}
+
 	
 
 	

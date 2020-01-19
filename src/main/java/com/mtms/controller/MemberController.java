@@ -110,12 +110,25 @@ public class MemberController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
+	@GetMapping("/clientInfo")
+	public void clientGet(String memberId, Model model) {
+		model.addAttribute("member", memberService.getMember(memberId));
+	}
+	
 	@GetMapping("/myInfo")
 	public void get(String memberId, Model model) {
 		//회원 상세보기 컨트롤러	
 		MemberVO memberVO = memberService.getMember(memberId);
 		
 		model.addAttribute("memberInfo", memberVO);
+	}
+	
+	@PostMapping("/client/remove")
+	public String adminRemoveMember(String memberId, RedirectAttributes rttr) {
+		
+		memberService.removeMember(memberId);
+		
+		return "redirect:/member/client";
 	}
 	
 	@PostMapping("/remove")

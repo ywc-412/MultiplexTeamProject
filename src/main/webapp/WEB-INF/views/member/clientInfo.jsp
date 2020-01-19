@@ -33,22 +33,29 @@
 					<div class="row">
 						<div class="row justify-content-lg-center">
 							<div class="custom-col-md col-md-12">
+								<form action="/member/client/remove" method="post" id="clientRemoveForm">
+									<input type="hidden" name="memberId" value="<c:out value="${member.memberId}"/>">
+									<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+									<div>
+										<button id="clientRemoveBtn" class="pull-right">강퇴</button>
+									</div>
+								</form>
 								<form action="#">
 									<div class="mt-10 custom-input">
 										<div>아이디</div>
-										<p>ywc412</p>
+										<p>${member.memberId }</p>
 									</div><br>
 									<div class="mt-10 custom-input">
 										<div>이름</div>
-										<p>최영우</p>
+										<p>${member.memberName }</p>
 									</div><br>
 									<div class="mt-10 custom-input">
 										<div>이메일</div>
-										<p>ywc412@naver.com</p>
+										<p>${member.memberEmail }@${member.memberEmailSecond }</p>
 									</div><br>
 									<div class="mt-10 custom-input">
 										<div>핸드폰</div>
-										<p>010-4189-5485</p>
+										<p>${member.memberPhoneFirst}-${member.memberPhoneSecond}-${member.memberPhoneThird }</p>
 									</div><br>
 									<div class="mt-10 custom-input">
 										<div>해당 회원의 예매내역은 다음과 같습니다.</div>
@@ -160,5 +167,11 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		$('#clientRemoveBtn').on("click", function(e){
+			$('#clientRemoveForm').submit();
+		});
+	</script>
 	
 <%@ include file="../include/footer.jsp" %>

@@ -101,8 +101,7 @@
 			FROM(
 				SELECT /*+INDEX_DESC(member PK_MEMBER) */
 					rownum rn, memberId, memberName
-				FROM member
-				WHERE 
+				FROM member WHERE
 		]]>
 			<include refid="criteria"></include>
 		<![CDATA[
@@ -113,12 +112,14 @@
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		SELECT count(*) FROM
-		member
+		SELECT count(*) 
+		FROM member WHERE
+		<include refid="criteria"></include>
+		rownum>0
 	</select>
 	
 	<select id="getMember" resultType="com.mtms.domain.MemberVO">
-		SELECT memberName, memberAddress, memberEmail, memberEmailSecond, 
+		SELECT memberId, memberName, memberAddress, memberEmail, memberEmailSecond, 
 			memberPhoneFirst, memberPhoneSecond, memberPhoneThird, 
 			memberBirth 
 		FROM member 

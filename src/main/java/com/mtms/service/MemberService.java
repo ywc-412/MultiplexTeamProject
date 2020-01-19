@@ -28,4 +28,7 @@ public interface MemberService {
 	// 회원 정보 수정 메서드
 	public int modifyMember(MemberVO memberVO);
 	
+	
+	public int removeMember(String memberId);
+	
 }

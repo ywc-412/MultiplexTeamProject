@@ -59,7 +59,7 @@
 								</tr>
 								<c:forEach items="${list}" var="list">
 									<tr>
-										<td>${list.memberId}</td>
+										<td><a class="trMove" href="<c:out value="${list.memberId}"/>"><c:out value="${list.memberId}"/></a></td>
 										<td>${list.memberName}</td>
 									</tr>
 								</c:forEach>
@@ -73,7 +73,7 @@
 								</li>
 							</c:if>
 							<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-								<li class='page-item ${pageMaker.cri.pageNum == num? "active" : "" } '><a href="${num}">${num}</a></li>
+								<li class='page-item ${pageMaker.cri.pageNum == num? "custom-active-choi" : "" } '><a href="${num}">${num}</a></li>
 							</c:forEach>
 							<c:if test="${pageMaker.next }">
 								<li class="page-item"><a class="page-link" href="${pageMaker.endPage +1}"
@@ -96,6 +96,8 @@
 	</div>
 </div>
 <script>
+	console.log('startpage: ' + '${pageMaker.startPage}');
+	console.log('endpage: ' + '${pageMaker.endPage}');
 	$(function(){
 		var actionForm = $('#actionForm');
 		
@@ -103,6 +105,14 @@
 			e.preventDefault();
 			
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		$('.trMove').on("click",function(e){
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='memberId' value='"+$(this).attr("href") +"'>");
+			
+			actionForm.attr("action", "/member/clientInfo");
 			actionForm.submit();
 		});
 	})

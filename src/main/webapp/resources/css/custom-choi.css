@@ -238,3 +238,12 @@ li:hover {
 	border: 1px solid #888;
 	width: 50%; /* Could be more or less, depending on screen size */
 }
+
+.custom-active-choi{
+	background-color: royalblue;
+	font-style: white;
+}
+
+.trMove{
+	cursor: pointer;
+}
