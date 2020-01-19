@@ -1,33 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mtms.mapper.NoticeMapper">
-	<select id="insertSelectKey" resultType="com.mtms.domain.NoticeVO">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.mtms.mapper.NoticeMapper">
 	
-	</select>
+	<!-- 공지사항 등록 -->
+	<insert id="insertSelectKey">	
+		<selectKey keyProperty="noticeNo" order="BEFORE" resultType="int">
+  		SELECT seq_notice.nextval from dual
+  		</selectKey>	
+		INSERT INTO notice (noticeNo, noticeTitle, noticeContent) 
+		VALUES(#{noticeNo}, #{noticeTitle}, #{noticeContent})
+	</insert>
 	
+	<!-- 쿼리 보관  -->
+	<sql id="criteria">
+	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+	 	<foreach collection="typeArr" item="type">
+	 		<trim prefix="OR">
+	 		<choose>
+	 			<when test="type == 'T'.toString()">
+	 				noticeTitle LIKE '%'||#{keyword}||'%'
+	 			</when>
+	 			<when test="type == 'C'.toString()">
+	 				noticeContent LIKE '%'||#{keyword}||'%'
+	 			</when>	 			
+	 		</choose>
+	 		</trim>
+	 	</foreach>
+	 </trim>
+	</sql>
+	
+	<!-- 공지사항 조회 -->
 	<select id="getListWithPaging" resultType="com.mtms.domain.NoticeVO">
-	
+		<![CDATA[SELECT * FROM ( SELECT /*+INDEX_ASC(notice notice_pk )*/ 
+								rownum rn, noticeNo, noticeTitle, noticeContent, noticeView, noticeDate FROM notice WHERE]]>		
+		 <include refid="criteria"></include>
+  		<![CDATA[ rownum <= #{pageNum} * #{amount}) where rn > (#{pageNum}-1) * #{amount} ]]>
 	</select>
 	
+	<!-- 공지사항 상세보기 -->
 	<select id="read" resultType="com.mtms.domain.NoticeVO">
-	
+		SELECT * FROM notice WHERE noticeNo = #{noticeNo}
 	</select>
 	
+	<!-- 공지사항 수정 -->
 	<update id="update">
-	
+		UPDATE notice
+		SET noticeTitle = #{noticeTitle},
+			noticeContent = #{noticeContent}
+		WHERE noticeNo = #{noticeNo}
 	</update>
 	
+	<!-- 공지사항 삭제 -->
 	<delete id="delete">
-	
+		DELETE FROM notice WHERE noticeNo = #{noticeNo}
 	</delete>
 	
+	<!-- 공지사항 게시글 총 갯수 -->
 	<select id="getTotalCount" resultType="int">
-		
+		<![CDATA[SELECT count(*) FROM notice WHERE]]> 
+			<include refid="criteria"></include>
+		<![CDATA[noticeNo > 0]]>		
 	</select>
 	
 	<update id="viewUpdate">
-	
+		UPDATE notice
+		SET noticeView = noticeView + 1
+		WHERE noticeNo = #{noticeNo}
 	</update>
 </mapper>

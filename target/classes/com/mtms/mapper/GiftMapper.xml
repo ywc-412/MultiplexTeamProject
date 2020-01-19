@@ -6,30 +6,31 @@
 	<!-- 기프티콘 등록하기 -->
 	<insert id="insertSelectKey">
 	  	<selectKey keyProperty="giftNo" order="BEFORE" resultType="int">
-	  		select seq_gift.nextval from dual
+	  		SELECT seq_gift.nextval FROM dual
 	  	</selectKey>
-	  		insert into gift (giftNo, giftName, giftPrice, giftSet) values(#{giftNo}, #{giftName}, #{giftPrice}, #{giftSet})
+	  		INSERT INTO gift (giftNo, giftName, giftPrice, giftSet) VALUES(#{giftNo}, #{giftName}, #{giftPrice}, #{giftSet})
 	  </insert>
 	
 	<!-- 기프티콘 조회 -->
 	<select id="getList" resultType="com.mtms.domain.GiftVO">
-		<![CDATA[select * from gift where giftNo > 0]]>
+		<![CDATA[SELECT * FROM gift WHERE giftNo > 0]]>
 	</select>
 	
 	<!-- 기프티콘 상세보기 -->
 	<select id="read" resultType="com.mtms.domain.GiftVO">
-		select * from gift where giftNo = #{giftNo}
+		SELECT * FROM gift WHERE giftNo = #{giftNo}
 	</select>
 	
 	<!-- 기프티콘 수정 -->
 	<update id="update">
-		update gift
-		set giftName = #{giftName},
+		UPDATE gift
+		SET giftName = #{giftName},
 			giftPrice = #{giftPrice}
-		where giftNo = #{giftNo}
+		WHERE giftNo = #{giftNo}
 	</update>
 	
+	<!-- 기프티콘 삭제 -->
 	<delete id="delete">
-		delete from gift where giftNo = #{giftNo}			
+		DELETE FROM gift WHERE giftNo = #{giftNo}			
 	</delete>
 	</mapper>

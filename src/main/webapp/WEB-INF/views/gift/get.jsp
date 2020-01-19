@@ -85,9 +85,7 @@
 	    	   } 
 	      } else if(operation === 'modify'){
 	         formObj.attr("action", "/gift/modify");
-	      }  /*else if(operation === 'list'){
-	         formObj.attr("action", "/gift/list").attr("method", "get");	        	         
-	      } */
+	      } 
 	      formObj.submit();
 	   });	  	
 	}); 

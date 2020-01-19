@@ -18,5 +18,5 @@ public interface NoticeMapper {
 	
 	public int getTotalCount(Criteria cri); 				//공지사항 총 갯수
 	
-	public int viewUpdate(int noitceNo);					//공지사항 조회수
+	public boolean viewUpdate(int noticeNo);				//공지사항 조회수
 }

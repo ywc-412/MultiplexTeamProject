@@ -17,4 +17,6 @@ public interface NoticeService {
 	public boolean remove(int noticeNo); 		 //공지사항 삭제
 	
 	public int getTotalCount(Criteria cri); 	 //공지사항 총 갯수
+	
+	public boolean viewUpdate(int noticeNo);	//공지사항 조회수
 }
