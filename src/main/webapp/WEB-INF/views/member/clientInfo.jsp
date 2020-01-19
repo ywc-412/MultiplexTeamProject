@@ -140,22 +140,21 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- End Align Area -->
 
 	
-	
 	<script>
-		$('#clientRemoveBtn').on("click", function(e){
-			var confirmRemove = confirm("해당 회원을 강퇴하시겠습니까?");
-			
-			if(confirmRemove === true){
-				$('#clientRemoveForm').submit();
-			}
-			
-		});
+		$(function(){
+			$('#clientRemoveBtn').on("click", function(e){
+				var confirmRemove = confirm("해당 회원을 강퇴하시겠습니까?");
+				
+				if(confirmRemove === true){
+					$('#clientRemoveForm').submit();
+				}
+			});
+		})
 	</script>
 	
 <%@ include file="../include/footer.jsp" %>

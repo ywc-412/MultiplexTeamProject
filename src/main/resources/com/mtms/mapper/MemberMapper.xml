@@ -72,7 +72,7 @@
 		VALUES(#{memberId}, #{memberPw}, #{memberName},
 				#{memberAddress},#{memberPhoneFirst},#{memberPhoneSecond},
 				#{memberPhoneThird}, #{memberBirth}, #{memberEmail},
-				#{memberEmailSecond})
+				#{memberEmailSecond}, sysdate)
 	</insert>
 	
 	<select id="selectId" resultType="String">
@@ -97,10 +97,10 @@
 
 	<select id="getMemberList" resultType="com.mtms.domain.MemberVO">
 		<![CDATA[
-			SELECT memberId, memberName
+			SELECT memberId, memberName, memberRegDate
 			FROM(
-				SELECT /*+INDEX_DESC(member PK_MEMBER) */
-					rownum rn, memberId, memberName
+				SELECT /*+INDEX_DESC(member idx_member_memberRegDate) */
+					rownum rn, memberId, memberName, memberRegDate
 				FROM member WHERE
 		]]>
 			<include refid="criteria"></include>
@@ -123,7 +123,7 @@
 	<select id="getMember" resultType="com.mtms.domain.MemberVO">
 		SELECT memberId, memberName, memberAddress, memberEmail, memberEmailSecond, 
 			memberPhoneFirst, memberPhoneSecond, memberPhoneThird, 
-			memberBirth 
+			memberBirth, memberRegDate
 		FROM member 
 		WHERE memberId = #{memberId}
 	</select>

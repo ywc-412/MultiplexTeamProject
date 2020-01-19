@@ -18,4 +18,5 @@ public class MemberVO {
 	private String memberPhoneThird;
 	private Date memberBirth;		// 회원 생년월일
 	private List<AuthVO> authList;
+	private Date memberRegDate;
 }

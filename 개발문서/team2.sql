@@ -9,7 +9,8 @@ CREATE TABLE member (
     memberPhoneThird varchar2(20) not null,
     memberBirth DATE NOT NULL,
     memberEmail VARCHAR2(100) NOT NULL,
-    memberEmailSecond varchar2(100) not null
+    memberEmailSecond varchar2(100) not null,
+    memberRegDate DATE DEFAULT sysdate
 );
 
 CREATE TABLE auth(
@@ -207,6 +208,7 @@ ALTER TABLE replyReport ADD CONSTRAINT PK_replyReport PRIMARY KEY (replyReportNo
 -- 영우 알터 START
 ALTER TABLE auth ADD CONSTRAINT FK_AUTH_MEMBER FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 ALTER TABLE suggest ADD CONSTRAINT fk_suggest_memberId foreign key (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
+CREATE INDEX idx_member_memberRegDate ON MEMBER(memberRegDate);
 -- 영우 알터 END
 
 -- 영주 ALTER START

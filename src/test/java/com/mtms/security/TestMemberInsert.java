@@ -36,8 +36,8 @@ public class TestMemberInsert {
       
       String query = "insert into "
       		+ "member(memberId, memberPw, memberName, memberAddress, memberPhoneFirst, "
-      		+ "memberPhoneSecond, memberPhoneThird, memberBirth, memberEmail, memberEmailSecond) "
-      		+ "values(?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?)";
+      		+ "memberPhoneSecond, memberPhoneThird, memberBirth, memberEmail, memberEmailSecond, memberRegDate) "
+      		+ "values(?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, sysdate)";
       
       try(Connection con = ds.getConnection(); 
             PreparedStatement pstmt = con.prepareStatement(query)) {
@@ -60,7 +60,7 @@ public class TestMemberInsert {
       }
    }
    
-   @Test
+//   @Test
    public void testInsertAuth() {
 	   String query = "insert into auth (memberid, memberauth) values(?, ?)";
 	      

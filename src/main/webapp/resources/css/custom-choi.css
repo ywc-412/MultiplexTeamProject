@@ -257,3 +257,8 @@ li:hover {
 	width: 30%;
 	height: 20%;
 }
+
+.custom-button-size3{
+	width: 60px;
+	height: 30px;
+}

@@ -52,7 +52,7 @@
 								<input type="hidden" name='pageNum' value="${pageMaker.cri.pageNum }">
 								<input type="hidden" name='amount' value="${pageMaker.cri.amount }">
 								<div class="custom-text-left">
-									<button class="btn boxed-btn">회원 검색</button>
+									<button class="boxed-btn custom-button-size3">회원 검색</button>
 								</div>
 							</form>
 						</div><br><br>
@@ -62,11 +62,13 @@
 								<tr>
 									<th class="custom-table-size">회원 ID</th>
 									<th class="custom-table-size">회원 이름</th>
+									<th class="custom-table-size">가입 일자</th>
 								</tr>
 								<c:forEach items="${list}" var="list">
 									<tr>
 										<td><a class="trMove" href="<c:out value="${list.memberId}"/>"><c:out value="${list.memberId}"/></a></td>
 										<td>${list.memberName}</td>
+										<td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.memberRegDate}"/></td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -102,8 +104,6 @@
 	</div>
 </div>
 <script>
-	console.log('startpage: ' + '${pageMaker.startPage}');
-	console.log('endpage: ' + '${pageMaker.endPage}');
 	$(function(){
 		var actionForm = $('#actionForm');
 		
