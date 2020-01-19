@@ -128,6 +128,8 @@ public class MemberController {
 		
 		memberService.removeMember(memberId);
 		
+		rttr.addFlashAttribute("removeCompleteMsg", "해당 회원이 강퇴처리되었습니다");
+		
 		return "redirect:/member/client";
 	}
 	

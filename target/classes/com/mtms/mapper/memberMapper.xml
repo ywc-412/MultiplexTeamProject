@@ -115,7 +115,9 @@
 		SELECT count(*) 
 		FROM member WHERE
 		<include refid="criteria"></include>
-		rownum>0
+		<![CDATA[
+			rownum>0
+		]]>
 	</select>
 	
 	<select id="getMember" resultType="com.mtms.domain.MemberVO">

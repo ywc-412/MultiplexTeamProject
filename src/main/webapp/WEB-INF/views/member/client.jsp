@@ -2,6 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
+<c:if test="${!empty removeCompleteMsg}">
+	<script>
+		alert('${removeCompleteMsg}');
+	</script>
+</c:if>
+
 <div class="whole-wrap">
 	<div class="container box_1170">
 		<div class="section-top-border">

@@ -247,3 +247,13 @@ li:hover {
 .trMove{
 	cursor: pointer;
 }
+
+.custom-row-width{
+	width: 100%;
+}
+
+.custom-button-size2{
+	background-color: red;
+	width: 30%;
+	height: 20%;
+}
