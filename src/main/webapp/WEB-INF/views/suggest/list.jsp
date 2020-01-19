@@ -10,7 +10,7 @@
 						<h3 class="custom-font-bold">건의사항</h3>
 					</div>
 					<div class="custom-search-position">
-						<a href="/mtms/noticeReg.html" class="btn btn-primary btn-sm">등록</a>
+						<a href="/suggest/register" class="btn btn-primary btn-sm">등록</a>
 						<!--search-start-->
 						<div class="pull-right">
 							<input type="text" placeholder="검색어를 입력하세요" class="input-group-btn  float-right">

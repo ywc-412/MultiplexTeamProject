@@ -3,27 +3,35 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.SuggestMapper">
-	<select id="insertSuggestSelectKey" resultType="com.mtms.domain.SuggestVO">
+	<insert id="insertSuggestSelectKey">
+		<selectKey keyProperty="suggestNo" order="BEFORE" resultType="int">
+			SELECT seq_suggest.nextval FROM dual
+		</selectKey>
+		INSERT INTO suggest(suggestNo, memberId, 
+							suggestTitle, suggestContent, 
+							suggestPrivateChk, suggestPw, 
+							suggestView) 
+		VALUES(#{suggestNo}, #{memberId}, #{suggestTitle}, #{suggestContent},
+				#{suggestPrivateChk}, #{suggestPw}, #{suggestView})
+	</insert>
+	
+	<select id="getSuggestList" resultType="com.mtms.domain.SuggestVO">
 		
 	</select>
 	
-	<select id="getSuggestList" resultType="com.mtms.domain.SuggestVO">
-	
-	</select>
-	
 	<select id="getSuggest" resultType="com.mtms.domain.SuggestVO">
-	
+		
 	</select>
 	
 	<delete id="deleteSuggest">
-	
+		
 	</delete>
 	
 	<update id="updateSuggest">
-	
+		
 	</update>
 	
 	<select id="getTotalCount" resultType="int">
-	
+		
 	</select>
 </mapper>

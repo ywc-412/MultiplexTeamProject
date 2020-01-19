@@ -23,9 +23,8 @@ public class SuggestServiceImpl implements SuggestService{
 	private MemberMapper memberMapper;
 
 	@Override
-	public void registerSuggest(SuggestVO svo) {
-		// TODO Auto-generated method stub
-		
+	public void registerSuggest(SuggestVO suggestVO) {
+		suggestMapper.insertSuggestSelectKey(suggestVO);
 	}
 
 	@Override
