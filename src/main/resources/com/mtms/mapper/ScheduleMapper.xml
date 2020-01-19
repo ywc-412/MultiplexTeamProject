@@ -23,7 +23,6 @@
 <!-- 				(#{scheduleNo}, #{item, jdbcType=VARCHAR}) -->
 <!-- 			</foreach> -->
 <!-- 		SELECT * FROM DUAL -->
-
 	</insert>
 	
 	<select id="getSeq" resultType="int">

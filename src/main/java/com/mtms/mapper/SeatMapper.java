@@ -10,7 +10,7 @@ public interface SeatMapper {
 	public List<SeatVO> getStatus(int scheduleNo);
 	
 	// 좌석 추가
-	public void insert(List<SeatVO> seatList);
+	public int insert(int scheduleNo, List<String> list);
 	
 	// 좌석 삭제
 	public int delete(int scheduleNo);

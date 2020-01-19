@@ -30,10 +30,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		System.out.println("si - screen : " + rvo.getScreen());
 		System.out.println("si - time : " + rvo.getScheduleTime());
 		System.out.println("si - date : " + rvo.getScheduleDate());
-		
-		List<String> list = new ArrayList<String>();
-		list.add("A1");
-		list.add("A2");
+
 		return scheduleMapper.insert(rvo);
 	}
 

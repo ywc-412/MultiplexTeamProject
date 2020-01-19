@@ -57,7 +57,8 @@ public class ScheduleController {
 			
 			scheduleService.register(svo);
 			
-			System.out.println(scheduleService.getSeq());
+			System.out.println("controller - now sequence : " + scheduleService.getSeq());
+			seatService.register(scheduleService.getSeq());
 		}
 //		List<ScheduleVO> list = scheduleService.get(scheduleVO.getScheduleDate(), scheduleVO.getScreen());
 //		System.out.println("controller register size : " + list.size());

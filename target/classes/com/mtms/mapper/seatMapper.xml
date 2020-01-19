@@ -8,8 +8,26 @@
 	</select>
 	
 	<insert id="insert">
-	
+		<foreach item="item" collection="list" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL">
+			INTO seat(scheduleNo, seatNo, seatStatus)
+			VALUES (#{scheduleNo}, #{item.value}, 0)
+		</foreach>
 	</insert>
+	
+	<!-- 		INSERT ALL -->
+<!-- 		INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo}) -->
+<!-- 		INTO seat VALUES (#{scheduleNo}, 'A1', 0) -->
+<!-- 		SELECT * FROM DUAL -->
+		
+<!-- 		SELECT seq_schedule.currval FROM dual : 로 이번 scheduleNo 쿼리 찾아와서 seat에 insert하기^^--> 
+
+<!-- 		INSERT ALL -->
+<!-- 		INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo}) -->
+<!-- 		INTO seat(scheduleNo, seatNo) VALUES -->
+<!-- 			<foreach item="item" index="index" collection="list"> -->
+<!-- 				(#{scheduleNo}, #{item, jdbcType=VARCHAR}) -->
+<!-- 			</foreach> -->
+<!-- 		SELECT * FROM DUAL -->
 	
 	<delete id="delete">
 	

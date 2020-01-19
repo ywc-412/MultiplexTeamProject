@@ -10,7 +10,7 @@ public interface SeatService {
 	public List<SeatVO> getStatus(int scheduleNo);
 	
 	// 좌석 추가하기 (상영스케줄 등록될 때)
-	public void register(List<SeatVO> seatList);
+	public boolean register(int scheduleNo);
 	
 	// 좌석 삭제하기 (상영스케줄 삭제될 때)
 	public boolean remove(int scheduleNo);
