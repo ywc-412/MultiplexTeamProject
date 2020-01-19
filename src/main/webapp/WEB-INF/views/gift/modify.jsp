@@ -127,11 +127,11 @@
 		   $('button').on("click", function(e){
 		      e.preventDefault();
 		      var operation = $(this).data("oper");
-		     /*  if(operation === 'remove'){	//삭제 버튼
+		       if(operation === 'remove'){	//삭제 버튼
 		         formObj.attr("action", "/gift/remove");
-		      } else if(operation === 'list'){	//목록 버튼
-		         formObj.attr("action", "/gift/list").attr("method", "get");		        
-		      } else  */if(operation === 'modify') {
+		         /* } else if(operation === 'list'){	//목록 버튼
+		         formObj.attr("action", "/gift/list").attr("method", "get");	*/	        
+		      } else  if(operation === 'modify') {
 					var tags = "";		
 					
 					$('.uploadResult ul li').each(function(i,obj){
@@ -167,10 +167,10 @@
 				}
 			});
 			
-			(function() {	
-				$.getJSON("/gift/getAttachList", { giftNo : ${gift.giftNo}}, function(data) {
-					console.log(data)
-							
+			(function() {
+				var giftNo = ${gift.giftNo};
+				$.getJSON("/gift/getAttachList", { giftNo : giftNo}, function(data) {
+					console.log(data)							
 					var li = "";
 					$(data).each(function(index, obj){								
 						//이미지이면 그대로 표시				

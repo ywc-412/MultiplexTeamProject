@@ -33,7 +33,7 @@
 						<label>No&emsp; : &ensp;</label><span name="giftNo"><c:out value="${gift.giftNo}" /></span>
 					</div>
 					<div class="form-group">
-						<label>가격&ensp; : &ensp;</label><input type="hidden" name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly><fmt:formatNumber value="${gift.giftPrice}" pattern="###,###,###"> </fmt:formatNumber>
+						<label>가격&ensp; : &ensp;</label><input pattern="###,###" name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly>
 					</div>
 					<div class="form-group">
 						<label>구성&ensp; : &ensp;</label> <span name="giftSet"><c:out value="${gift.giftSet}" /></span>
@@ -57,7 +57,12 @@
 		<!-- 버튼 s -->
 		<div class="">
 			<button class="btn btn-primary float-left custom-button-gift" onclick="location.href='/gift/list'" data-oper='list'>LIST</button>
-			<button type="submit" class="btn btn-danger float-right custom-button-gift" data-oper="remove" onclick="removeChk()">삭제</button>
+			<form method="post" action="/gift/remove" role="form">
+				
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+				<input value="${gift.giftNo}" name="giftNo" type="hidden">				
+				<button type="submit" class="btn btn-danger float-right custom-button-gift" data-oper="remove">삭제</button>
+			</form>
 			<button type="submit" class="btn btn-primary float-right custom-button-gift" data-oper='modify' onclick="location.href='/gift/modify?giftNo=${gift.giftNo}'">수정</button>
 			<button type="button" id="payment" class="btn btn-primary float-right custom-button-gift">구입</button>
 		</div>
@@ -67,31 +72,22 @@
 <!-- board e -->
 
 <script>
-	//삭제 취소 알림창
-	 function removeChk() {
-		if(confirm("정말로 삭제하시겠습니까?") == true && $(this).data("oper") === 'remove') {
-			location.href = "/gift/list" 
-			$("form").attr("action", "gift/remove");
-			location.href = "/gift/list"
-		} else {
-			self.close();
-		}
-		$("form").submit();
-	} 
 	
 	//form 전송
 	$(function(){
 	   var formObj = $("form");
 	   $('button').on("click", function(e){
-	      e.preventDefault();
+	      e.preventDefault();	      
 	      var operation = $(this).data("oper");
 	      if(operation === 'remove'){	//삭제 버튼
-		         formObj.attr("action", "/gift/remove");		      
+	    	   if(confirm("정말로 삭제하시겠습니까?") == true) { 
+		         formObj.attr("action", "/gift/remove");
+	    	   } 
 	      } else if(operation === 'modify'){
 	         formObj.attr("action", "/gift/modify");
-	      } else if(operation === 'list'){
+	      }  /*else if(operation === 'list'){
 	         formObj.attr("action", "/gift/list").attr("method", "get");	        	         
-	      }
+	      } */
 	      formObj.submit();
 	   });	  	
 	}); 

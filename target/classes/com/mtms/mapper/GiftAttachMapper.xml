@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="com.mtms.mapper.GiftAttachMapper">
-		<!-- 사진 파일 등록하기 -->
+	
+	<!-- 사진 파일 등록하기 -->
 	<insert id="insert">
 		insert into giftAttach (giftUuid, giftUploadPath, giftFileName, giftNo)
 		values(#{giftUuid}, #{giftUploadPath}, #{giftFileName}, #{giftNo})
 	</insert>
 	
-	 <select id="findBygiftNo" resultType="com.mtms.domain.GiftAttachVO">
-	 	select * from giftAttach where giftNo = #{giftNo}
-	 </select>
+	<!-- 해당 게시물의 사진 조회 -->
+	<select id="findBygiftNo" resultType="com.mtms.domain.GiftAttachVO">
+		select * from giftAttach where giftNo = #{giftNo}
+	</select>
 	 
-	 <select id="giftPicList" resultType="com.mtms.domain.GiftAttachVO">
+	<!-- 사진 목록 조회 -->
+	<select id="giftPicList" resultType="com.mtms.domain.GiftAttachVO">
 	 	select * from giftAttach
-	 </select>
+	</select>
 	
+	<!-- 사진 하나 삭제  -->
 	<delete id="delete">
-		delete from gift where giftUuid = #{giftUuid}
+		delete from giftAttach where giftUuid = #{giftUuid}
 	</delete>
 	
+	<!-- 해당 게시물의 사진 모두 삭제 -->
 	<delete id="deleteAll">
-		delete gift where giftNo = #{giftNo}
+		delete giftAttach where giftNo = #{giftNo}
 	</delete>
-</mapper>
+	
+	</mapper>

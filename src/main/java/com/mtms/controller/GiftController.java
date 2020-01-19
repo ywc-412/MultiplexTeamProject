@@ -36,6 +36,7 @@ public class GiftController {
 	@GetMapping("list")	
 	public void list(Model model) {
 		log.info("Gift Controller list()");
+		/* model.addAttribute("pic", giftService.giftPicList()); */
 		model.addAttribute("list", giftService.getList());
 	}
 	
@@ -87,10 +88,8 @@ public class GiftController {
 		log.warn("Gift Controller remove()");
 		List<GiftAttachVO> attachList = giftService.getAttachList(giftNo); 
 		if(giftService.remove(giftNo)) {
-			if(attachList !=null || attachList.size() !=0) {
-				deleteFiles(attachList);
-			}
-			rttr.addAttribute("result", "success");
+			deleteFiles(attachList);
+			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/gift/list";		
 	}
@@ -115,9 +114,13 @@ public class GiftController {
 	//첨부파일 포함한 게시글 삭제
 	private void deleteFiles(List<GiftAttachVO> attachList) {
 		log.warn("Gift deleteFiles,,,,");
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
 		attachList.forEach(attach -> {
 			try {
-				Path file = Paths.get("c:\\upload\\" + attach.getGiftUploadPath() + "\\" + attach.getGiftUuid() + "_" + attach.getGiftFileName());
+				Path file = Paths.get("c:\\upload\\" + attach.getGiftUploadPath() /* + "\\" */+ attach.getGiftUuid() + "_" + attach.getGiftFileName());
+				log.info(file);
 				Files.deleteIfExists(file);
 			} catch (Exception e) {
 				log.error(e.getMessage());

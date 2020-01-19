@@ -95,16 +95,6 @@ public class GiftUploadController {
 		
 	}
 	
-	/*
-	 * private String getFolder() { //현재 시점의 연\\월\\일 폴더 경로 문자열 생성 SimpleDateFormat
-	 * sdf = new SimpleDateFormat("yyyy-MM-dd"); 
-	 * Date date = new Date(); 
-	 * String str = sdf.format(date);
-	 * 
-	 * return str.replace("-", File.separator);
-	 * 
-	 * }
-	 */
 	
 	@GetMapping("/display")	//표시
 	@ResponseBody

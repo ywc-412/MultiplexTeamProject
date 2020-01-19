@@ -31,7 +31,9 @@
 						<!-- data-start -->
 						<div class="product-content">
 							<div class="col-md-3 col-sm-6">
-								<c:forEach items="${list}" var="gift">			
+							
+							
+								<%-- <c:forEach items="${list}" var="gift">			
 									<br>
 									<b> <a class="move" href="/gift/get?giftNo=${gift.giftNo}"><c:out
 												value="${gift.giftNo}" /></a> 
@@ -39,14 +41,21 @@
 									<div class="price">
 										<c:out value="${gift.giftPrice}" />
 									</div>
-								</c:forEach>
-								
+								</c:forEach> --%>
 								
 								<div class="uploadResult">
-										<ul>
-										
-										</ul>
+									<c:forEach items="${list}" var="gift">	
+										<b> <a class="move" href="/gift/get?giftNo=${gift.giftNo}">
+										<c:out value="${gift.giftNo}" /></a> 
+										</b>
+										<div class="price">
+										<c:out value="${gift.giftPrice}" />
 									</div>
+										<ul class="here">
+											<!-- 사진 -->
+										</ul>
+									</c:forEach>	
+								</div> 
 								
 								
 								
@@ -68,19 +77,36 @@
 <script>
 //즉시 실행함수 - 첨부파일 목록 가져오기
 	(function(){
-	$.getJSON("/gift/giftPicList", function(data) {
-		console.log(data);			
-		var li = "";
-		$(data).each(function(index, obj){								
-			//이미지이면 그대로 표시				
-				var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);				
-				li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"' ><div>" + 
-					  "<img src='/giftUpload/display?giftFileName="+filePath+"' style='float:left;'></div></li>";
-		});		
-		
-				$('.uploadResult ul').append(li);		
+		$.getJSON("/gift/giftPicList", function(data) {
+			console.log(data);		
+			console.log(data[0].length);/* 2 */
 			
-	});//END JSON	
+			
+			var li = ""; 
+			for(var i=0; i<data.length; i++){
+				var filePath = encodeURIComponent(data[i].giftUploadPath + data[i].giftUuid + "_" + data[i].giftFileName);
+				li += 	"<li data-path='"+data[i].giftUploadPath+"' data-uuid='"+data[i].giftUuid+"' data-fileName='"+data[i].giftFileName+"' >"+
+								"<div>" + 
+						  			"<img src='/giftUpload/display?giftFileName="+filePath+"' style='width:100%;'>"+
+						  		"</div>"+
+					  		"</li>";
+				
+			}
+			$('.here').append(li);
+			
+			/* $(data).each(function(index, obj){								
+				//이미지이면 그대로 표시				
+					var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);		
+					
+					
+					li += "${myArray[0].giftNo }, ${myArray[0].giftPrice }<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"' ><div>" + 
+						  "<img src='/giftUpload/display?giftFileName="+filePath+"' style='width:100%;'></div></li>";
+					
+			});		 */
+			
+					/* $('.uploadResult ul').append(li); */		
+				
+		});//END JSON	
 	})();
 
 
