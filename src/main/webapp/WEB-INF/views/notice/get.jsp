@@ -30,8 +30,8 @@
 				<hr>
 				<div class="">
 				<button type="button" data-oper="list"
-					class="btn btn-primary float-left custom-button-gift">LIST</button>
-				
+					class="btn btn-primary float-left custom-button-gift">LIST</button>		
+						<sec:authorize access="isAuthenticated()">		
 					<form action="/notice/modify" id="operForm" method="get">
 						<input type="hidden" id="noticeNo" name="noticeNo"
 							value="${notice.noticeNo}"> <input type="hidden"
@@ -50,6 +50,7 @@
 						<button type="submit" data-oper="remove"
 							class="btn btn-danger float-right custom-button-gift">삭제</button>
 					</form>
+					</sec:authorize>
 				</div>
 			</div>
 		</div>
@@ -63,9 +64,16 @@
 			e.preventDefault();
 			var operation = $(this).data("oper");
 			if (operation === 'modify') {
-				formObj.attr("action", "/notice/modify")
+				formObj.attr("action", "/notice/modify");
+				formObj.submit();
 			} else if (operation === 'remove') { //삭제 버튼
-				formObj.attr("action", "/notice/remove");
+				  if(confirm("정말로 삭제하시겠습니까?") == true) { 
+					  formObj.attr("action", "/notice/remove");
+					  formObj.submit();
+			    	   } else {
+			    		   false;
+			    	   }
+				
 			} else if (operation === 'list') {
 				formObj.attr("action", "/notice/list").attr("method", "get");
 				var pageNumTag = $("input[name='pageNum']").clone();
@@ -77,8 +85,10 @@
 				formObj.append(amountTag);
 				formObj.append(typeTag);
 				formObj.append(keywordTag);
+				
+				formObj.submit();
 			}
-			formObj.submit();
+			
 		});
 	});
 </script>

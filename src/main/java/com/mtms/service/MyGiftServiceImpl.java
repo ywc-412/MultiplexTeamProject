@@ -27,8 +27,9 @@ public class MyGiftServiceImpl implements MyGiftService{
 	private GiftMapper giftMapper;
 	
 	@Override
-	public void register(MyGiftVO gift) {	//내 기프티콘 등록
-		// TODO Auto-generated method stub	
+	public void register(MyGiftVO myGift) {	//내 기프티콘 등록
+		log.info("Mygift ServiceImpl register,,");
+		myGiftMapper.insertSelectKey(myGift);
 	}
 	
 	@Override

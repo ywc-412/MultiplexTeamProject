@@ -25,14 +25,17 @@ public class MyGiftController {
 	private MyGiftService myGiftService;
 	
 	@PostMapping("register")	//내 기프티콘 등록(P)
-	public String register(MyGiftVO mvo, RedirectAttributes rttr) {
-		return null;
+	public String register(MyGiftVO myGift, RedirectAttributes rttr) {
+		log.info("myGift Controller register()");
+		myGiftService.register(myGift);
+		rttr.addFlashAttribute("myGift", myGift.getMyGiftNo());
+		return "redirect:/mygift/list";
 		
 	}
 	
 	@GetMapping("register")	//내 기프티콘 등록(G)
 	public void register() {
-	
+		log.warn("Mygift Controller register get,,,");
 	}
 	
 	@GetMapping("list")//내 기프티콘 목록조회

@@ -15,8 +15,11 @@
 					</div>
 					<div class="custom-search-position">
 						<!--추가-->
+					<sec:authorize access="isAuthenticated()">
+						
 						<button id="regNotice" type="button" class="btn btn-primary btn-sm">등록</button>
 						
+					</sec:authorize>
 						<!--search-start-->
 						<div class="pull-right">
 							<form id="searchForm" action="/notice/list" method="get">							
@@ -35,8 +38,7 @@
 						
 						<!--search-end-->
 						
-						<div class="tab-content" id="nav-tabContent">
-							<!--<table class="table">-->
+						<div class="tab-content" id="nav-tabContent">					
 							<table class="table custom-th-size">								
 								<tr>
 									<!--<th>-->

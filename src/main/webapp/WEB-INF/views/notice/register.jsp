@@ -24,7 +24,7 @@
                 <hr>
                 <div class="form-group text-center">               
                     <button type="submit"  id="register" class="btn btn-primary btn-sm">등록</button>
-                    <button class="btn btn-secondary btn-sm">취소</button>   
+                    <button type="button"  class="btn btn-secondary btn-sm" onclick="location.href='/notice/list'">취소</button>   
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                 
                 </div>
                 </form>
@@ -35,23 +35,24 @@
 <!--board-end-->
 
 <script>
+var formObj = $("form[role='form']");
+var registerForm = $("#registerForm");
 	$(function(e){
-		var formObj = $("form[role='form']");
-		var registerForm = $("#registerForm");
+		
 		
 		$("button[type='submit']").click(function(){
 			if (!registerForm.find("input[name='noticeTitle']").val() || !registerForm.find("textarea[name='noticeContent']").val()) {
 				alert("내용을 입력해주세요");
 				return false;
-			} else {
-			e.preventDefault();
-			console.log('submit clicked');
+			} 
+			 if(confirm("정말로 등록하시겠습니까?") == true) { 
 			formObj.submit();
-			}
+			 } else {
+	    		   false;
+	    	   }
+			
 		});
 	});
-
-	
 </script>
 
 <%@include file="../include/footer.jsp" %>

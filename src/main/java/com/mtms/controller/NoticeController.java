@@ -1,5 +1,6 @@
 package com.mtms.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +53,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 등록(P)
+	@PreAuthorize("isAuthenticated() and hasRole('ROLE_MEMBER')")	
 	@PostMapping("register")	
 	public String register(NoticeVO notice, RedirectAttributes rttr) {	
 		log.info("Notice Controller register,,");
@@ -67,6 +69,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 수정(P)
+	@PreAuthorize("principal.username == #board.writer")
 	@PostMapping("modify")	
 	public String modify(NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("Notice Controller modify post,,");
@@ -77,6 +80,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 삭제
+	@PreAuthorize("principal.username == #writer")
 	@PostMapping("remove")	
 	public String remove(int noticeNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("Notice Controller modify post,,");

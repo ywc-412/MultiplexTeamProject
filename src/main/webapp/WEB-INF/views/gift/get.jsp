@@ -56,15 +56,28 @@
 		</div>
 		<!-- 버튼 s -->
 		<div class="">
-			<button class="btn btn-primary float-left custom-button-gift" onclick="location.href='/gift/list'" data-oper='list'>LIST</button>
-			<form method="post" action="/gift/remove" role="form">
-				
+			<button class="btn btn-primary float-left custom-button-gift" data-oper='list'>LIST</button>
+			
+			<form method="post" action="/gift/remove" role="form">				
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
 				<input value="${gift.giftNo}" name="giftNo" type="hidden">				
 				<button type="submit" class="btn btn-danger float-right custom-button-gift" data-oper="remove">삭제</button>
 			</form>
-			<button type="submit" class="btn btn-primary float-right custom-button-gift" data-oper='modify' onclick="location.href='/gift/modify?giftNo=${gift.giftNo}'">수정</button>
-			<button type="button" id="payment" class="btn btn-primary float-right custom-button-gift">구입</button>
+			
+			<form action="/gift/modify" id="operForm" method="get">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+				<input value="${gift.giftNo}" name="giftNo" type="hidden">		
+				<button type="submit" class="btn btn-primary float-right custom-button-gift" data-oper='modify' onclick="location.href='/gift/modify?giftNo=${gift.giftNo}'">수정</button>
+			</form>
+			
+			<form action="/mygift/register" id="payForm" method="post">
+				<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
+				<input type="hidden" name="giftName" value="${gift.giftName}"> 
+				<input type="hidden" name="giftSet" value="${gift.giftSet}"> 
+				<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
+				<input type="hidden" name="totalPrice">
+				<input type="button" id="payment" class="btn btn-primary float-right custom-button-gift" value="구입"/>
+			</form>
 		</div>
 		<!-- 버튼 e -->
 	</div>
@@ -72,6 +85,43 @@
 <!-- board e -->
 
 <script>
+	
+//결제
+
+
+function payment(giftNo, giftName, giftPrice) {	
+	
+	var IMP = window.IMP; // 생략가능
+	IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+
+	IMP.request_pay({
+		pg: 'inicis', // version 1.1.0부터 지원.
+		pay_method: 'card',
+		merchant_uid: 'merchant_' + new Date().getTime()+30,
+		name: $('.giftName').val(),
+		amount: $('.totalPrice').val(),
+		buyer_email: 'iamport@siot.do',
+		buyer_name: '박진주',
+		buyer_tel: '010-6626-2818',
+		buyer_addr: '서울특별시 강남구 삼성동',
+		buyer_postcode: '123-456',
+		m_redirect_url: '/gift/pay'
+	}, function(rsp) {
+		if (rsp.success) {
+			//컨트롤러로 값
+			var msg = '결제가 완료되었습니다.';
+			msg += '고유ID : ' + rsp.imp_uid;
+			msg += '상품명 : ' + rsp.name;
+			msg += '상점 거래ID : ' + rsp.merchant_uid;
+			msg += '결제 금액 : ' + rsp.paid_amount;
+			msg += '카드 승인번호 : ' + rsp.apply_num;				
+			} else {
+			var msg = '결제에 실패하였습니다.';
+			msg += '에러내용 : ' + rsp.error_msg;
+		}
+		alert(msg);			
+	});
+}
 	
 	//form 전송
 	$(function(){
@@ -82,11 +132,18 @@
 	      if(operation === 'remove'){	//삭제 버튼
 	    	   if(confirm("정말로 삭제하시겠습니까?") == true) { 
 		         formObj.attr("action", "/gift/remove");
-	    	   } 
-	      } else if(operation === 'modify'){
+		         formObj.submit();
+	    	   } else {
+	    		   false;
+	    	   }
+	      }else if (operation === 'list') {
+				formObj.attr("action", "/gift/list").attr("method", "get"); 
+				formObj.submit();
+	      }else if(operation === 'modify'){
 	         formObj.attr("action", "/gift/modify");
+	         formObj.submit();
 	      } 
-	      formObj.submit();
+	      
 	   });	  	
 	}); 
 
@@ -127,38 +184,7 @@
         });
     });
     
-    //결제
-	$("#payment").click(function () {
-
-		var IMP = window.IMP; // 생략가능
-		IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-
-		IMP.request_pay({
-			pg: 'inicis', // version 1.1.0부터 지원.
-			pay_method: 'card',
-			merchant_uid: 'merchant_' + new Date().getTime()+30,
-			name: $('.giftName').val(),
-			amount: $('.totalPrice').val(),
-			buyer_email: 'iamport@siot.do',
-			buyer_name: '박진주',
-			buyer_tel: '010-6626-2818',
-			buyer_addr: '서울특별시 강남구 삼성동',
-			buyer_postcode: '123-456',
-			m_redirect_url: 'https://www.yourdomain.com/payments/complete'
-		}, function(rsp) {
-			if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-			alert(msg);			
-		});
-	});
+    
 </script>
 
 <%@include file="../include/footer.jsp"%>

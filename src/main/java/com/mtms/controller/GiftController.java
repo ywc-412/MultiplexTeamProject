@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,8 @@ public class GiftController {
 	public void list(Model model) {
 		log.info("Gift Controller list()");
 		model.addAttribute("list", giftService.getList());
+		model.addAttribute("pic", giftService.giftPicList());
+		
 	}
 	
 	//기프티콘 상세보기
@@ -104,16 +107,16 @@ public class GiftController {
 
 	
 	//사진 목록
-	@GetMapping("giftPicList")	
-	@ResponseBody	//json으로 값을 보낼꺼기 때문에  ResponseBody, ResponseEntity 필요함
-	public ResponseEntity<List<GiftAttachVO>> getAttachPicList() {		
-		//log.warn("Gift AttachPicList,,,,");
-		
-		List<GiftAttachVO> list = giftService.giftPicList();
-		
-		
-		return new ResponseEntity<>(list, HttpStatus.OK);
-	}
+//	@GetMapping("giftPicList")	
+//	@ResponseBody	//json으로 값을 보낼꺼기 때문에  ResponseBody, ResponseEntity 필요함
+//	public ResponseEntity<List<GiftAttachVO>> getAttachPicList() {		
+//		//log.warn("Gift AttachPicList,,,,");
+//		
+//		List<GiftAttachVO> list = giftService.giftPicList();
+//		
+//		
+//		return new ResponseEntity<>(list, HttpStatus.OK);
+//	}
 	
 	
 	

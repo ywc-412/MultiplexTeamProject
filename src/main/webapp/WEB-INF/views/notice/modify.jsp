@@ -12,7 +12,7 @@
                 <div class="custom-board-title">
                     <h3 class="custom-font-bold">공지사항 수정</h3>
                 </div>
-                <form method="post" action="/notice/modify" role="form">
+                <form method="post" action="/notice/modify" role="form" id="modifyForm">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                 <div class="form-group">
 						<label>번호</label> <input readonly class="form-control" name="noticeNo" value='<c:out value="${notice.noticeNo}"/>'>
@@ -43,6 +43,7 @@
 
 <script>
  var formObj = $("form");
+ var modifyForm = $("#modifyForm");
 	   $('button').on("click", function(e){
 	      e.preventDefault();
 	      var operation = $(this).data("oper");
@@ -57,11 +58,31 @@
 	         formObj.append(amountTag);
 	         formObj.append(typeTag);
 	         formObj.append(keywordTag);
+	         
+	         formObj.submit();
 	      } else if(operation === 'modify') {
-	    	  formObj.submit();
+	    	  if (!modifyForm.find("input[name='noticeTitle']").val() || !modifyForm.find("textarea[name='noticeContent']").val()) {
+					alert("내용을 입력해주세요");
+					return false;
+				} 
+	    	  if(confirm("정말로 수정하시겠습니까?") == true) { 
+				  formObj.attr("action", "/notice/modify");
+				  formObj.submit();
+		    	   } else {
+		    		   false;
+		    	   }
 	      }
-	   		formObj.submit();
+	   		
 	   });
+	   
+	 
+			
+			
+			$("button[type='submit']").click(function(){
+				
+			});
+		
+	   
 </script>
 	   
 <%@include file="../include/footer.jsp" %>

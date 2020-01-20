@@ -31,41 +31,23 @@
 						<!-- data-start -->
 						<div class="product-content">
 							<div class="col-md-3 col-sm-6">
-							
-							
-								<%-- <c:forEach items="${list}" var="gift">			
-									<br>
-									<b> <a class="move" href="/gift/get?giftNo=${gift.giftNo}"><c:out
-												value="${gift.giftNo}" /></a> 
-									</b>
-									<div class="price">
-										<c:out value="${gift.giftPrice}" />
-									</div>
-								</c:forEach> --%>
 								
 									
+								<div class="gift_area" id="giftArea">
 									<c:forEach items="${list}" var="gift">	
+								 <div class="single_gift uploadDiv" id="${gift.giftNo}">
 									<div class="uploadResult">
-										<ul class="here">
+										<ul>
 											<!-- 사진 -->
 										</ul>
+									</div>
+										<a href="/gift/get?giftNo=${gift.giftNo}">
+										 <span><c:out value="${gift.giftName}"/></span><br>																																	 
+										 <span><c:out value="${gift.giftPrice}"/>원</span>
+										</a> 
 										</div>
-										<b> <a class="move" href="/gift/get?giftNo=${gift.giftNo}">
-										 <c:out value="${gift.giftName}" /></a> 
-										</b>
-										
-										
-										 
-										<div class="price">
-										<c:out value="${gift.giftPrice}" />원
-										</div>
-									</c:forEach>
-									
-																				
-									
-								
-								
-								
+									</c:forEach> 
+									</div>
 							</div>
 						</div>
 
@@ -84,50 +66,24 @@
 <script>
 //즉시 실행함수 - 첨부파일 목록 가져오기
 	(function(){
-		$.getJSON("/gift/giftPicList", function(data) {
-			console.log(data);		
-			
-			
+		$("#giftArea").find(".single_gift").each(function(){	
+			var $this = $(this);		
+		
 			var li = ""; 
-			 for(var i=0; i<=1; i++){ 
-				var filePath = encodeURIComponent(data[i].giftUploadPath + data[i].giftUuid + "_" + data[i].giftFileName);
-			 }
-				li += 	"<li data-path='"+data.giftUploadPath+"' data-uuid='"+data.giftUuid+"' data-fileName='"+data.giftFileName+"' >"+
-								"<div>" + 
-						  			"<img src='/giftUpload/display?giftFileName="+filePath+"' style='width:100%;'>"+
-						  		"</div>"+
-					  		"</li>";
-				console.log(filePath)
-			  
-			$('.here').append(li);
 			
-			/* $(data).each(function(index, obj){								
-				//이미지이면 그대로 표시				
-					var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);		
-					
-					
-					li += "${myArray[0].giftNo }, ${myArray[0].giftPrice }<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"' ><div>" + 
-						  "<img src='/giftUpload/display?giftFileName="+filePath+"' style='width:100%;'></div></li>";
-					
-			});		 */
-			
-					/* $('.uploadResult ul').append(li); */		
+			$.get("/gift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {
+			 console.log(data);				
+				var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;
+			 
+				filePath = filePath.replace(new RegExp(/\\/g), "/");
+				console.log(filePath);
+				li += "<a class='move'><img class='move' src='/giftUpload/display?giftFileName="+filePath+"'></a>"						  		
+					  		$this.find(".uploadResult").find("ul").append(li);
 				
-		});//END JSON	
-	})();
-
-
-/* $('.move').click(
-	function(e) {
-		e.preventDefault();
-		//actionForm에 hidden으로 name 속성 추가 값은 giftNo 지정, value 속성 추가 값은 ~~ 지정한 후 append
-		$('#actionForm').append(
-				"<input type='hidden' name='giftNo' value='"
-						+ $(this).attr("href") + "'>");
-		$('#actionForm').attr("action", "/gift/get");
-
-		$('#actionForm').submit();
-	}); */
+				console.log(li);
+			});//END JSON	
+		});
+		})(); 
 	
 $('#regGift').click(function() {
 	self.location = "/gift/register";

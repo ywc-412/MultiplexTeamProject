@@ -16,9 +16,10 @@
                     <img src="/mtms/img/popcorn.jpg" alt="" class="img-fluid">
                 </div>
                 <div class="col-md-9 mt-sm-20">
-                    <p>품목 : 카라멜팝콘 (M)</p>
-                    <p>금액 : 6,000원</p>
-                    <p>구성 : 카라멜팝콘</p>
+                <c:out value="${gift.giftPrice}" />
+                    <p>품목 : <c:out value="${gift.giftName}" /></p>
+                    <p>금액 : <c:out value="${gift.giftPrice}" /></p>
+                    <p>구성 : <c:out value="${gift.giftSet}" /></p>
                     <p>구입일자 : 2020.01.13</p>
                     <p>만료일자 : 2020.02.12</p>
                 </div>

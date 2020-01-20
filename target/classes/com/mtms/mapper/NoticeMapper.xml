@@ -32,7 +32,7 @@
 	
 	<!-- 공지사항 조회 -->
 	<select id="getListWithPaging" resultType="com.mtms.domain.NoticeVO">
-		<![CDATA[SELECT * FROM ( SELECT /*+INDEX_ASC(notice notice_pk )*/ 
+		<![CDATA[SELECT * FROM ( SELECT /*+INDEX_DESC(notice pk_notice)*/ 
 								rownum rn, noticeNo, noticeTitle, noticeContent, noticeView, noticeDate FROM notice WHERE]]>		
 		 <include refid="criteria"></include>
   		<![CDATA[ rownum <= #{pageNum} * #{amount}) where rn > (#{pageNum}-1) * #{amount} ]]>
