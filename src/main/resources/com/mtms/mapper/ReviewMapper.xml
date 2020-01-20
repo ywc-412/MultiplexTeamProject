@@ -40,11 +40,11 @@
 <select id="getListWithPaging" resultType="com.mtms.domain.ReviewVO">
 		<![CDATA[
 			SELECT
-			movieNo,reviewTitle,memberId,reviewView,reviewDate
+			movieNo,reviewTitle,memberId,reviewView,reviewDate, reviewNo
 			from 
 				(
 				select /*+INDEX_DESC(review PK_review )*/
-				rownum rn,movieNo,reviewTitle,memberId,reviewView,reviewDate
+				rownum rn,movieNo,reviewTitle,memberId,reviewView,reviewDate,reviewNo
 				from 
 				review
 				where

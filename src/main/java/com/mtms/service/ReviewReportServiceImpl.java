@@ -27,13 +27,13 @@ public class ReviewReportServiceImpl implements ReviewReportService{
 	@Override
 	public int getTotalCount(Criteria cri) {
 		// TODO Auto-generated method stub
-		return 0;
+		return reviewReportMapper.getTotalCount(cri);
 	}
 
 	@Override
 	public List<ReviewReportVO> getList(Criteria cri) {
 		// TODO Auto-generated method stub
-		return null;
+		return reviewReportMapper.getListWithPaging(cri);
 	}
 
 //	@Override
@@ -62,7 +62,7 @@ public class ReviewReportServiceImpl implements ReviewReportService{
 
 	@Override
 	public void register(ReviewReportVO rrvo) {
-		// TODO Auto-generated method stub
+		reviewReportMapper.insert(rrvo);
 		
 	}
 }

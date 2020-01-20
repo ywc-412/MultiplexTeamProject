@@ -1,5 +1,10 @@
 package com.mtms.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
+import com.mtms.domain.PageDTO;
 import com.mtms.domain.ReviewReportVO;
 import com.mtms.service.ReviewReportService;
 import com.mtms.service.ReviewReportServiceImpl;
@@ -45,17 +51,37 @@ public class ReviewReportController {
 	
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
+		log.info("list 가 출력 되고 있어ㅓㅓ어어어어어 list()");
+		model.addAttribute("list",reviweReportService.getList(cri) );
 		
+		int total = reviweReportService.getTotalCount(cri);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	@GetMapping("register")
-	public void register() {
+	public void register(HttpServletRequest request,Model model) {
+		
+		String reviewNo1 = request.getParameter("reviewNo");
+		int reviewNo = Integer.parseInt(reviewNo1);
+		String reviewTitle = request.getParameter("reviewTitle");
+		
+		ReviewReportVO vo = new ReviewReportVO();
+		vo.setReviewNo(reviewNo);
+		vo.setReviewTitle(reviewTitle);
+		
+		model.addAttribute("rvo", vo);
 		
 	}
 	
 	@PostMapping("register")
 	public String register(ReviewReportVO rrvo, RedirectAttributes rttr) {
-		return null;
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@들어왔다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		log.info("reviewController register()");
+		reviweReportService.register(rrvo);
+		System.out.println(rrvo);
+		System.out.println("부적절? : "+rrvo);
+		rttr.addFlashAttribute("result",rrvo.getReviewReportNo());
+		return "redirect:/report/review/list";
 		
 	}
 }

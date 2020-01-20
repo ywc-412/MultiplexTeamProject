@@ -4,6 +4,8 @@ import java.util.Date;
 
 import lombok.Data;
 
+
+
 @Data
 public class ReplyVO {
 	private int replyNo;			// 댓글 번호

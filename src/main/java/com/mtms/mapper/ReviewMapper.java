@@ -3,6 +3,7 @@ package com.mtms.mapper;
 import java.util.List;
 
 import com.mtms.domain.Criteria;
+import com.mtms.domain.ReviewReportVO;
 import com.mtms.domain.ReviewVO;
 
 public interface ReviewMapper {

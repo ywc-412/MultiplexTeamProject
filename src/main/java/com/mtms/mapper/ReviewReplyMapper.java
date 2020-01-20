@@ -8,7 +8,7 @@ import com.mtms.domain.Criteria;
 import com.mtms.domain.ReplyVO;
 
 public interface ReviewReplyMapper {
-	public int getCountByReplyNo(int reviewNo);
+	public int getCountByReplyNo(int reviewNo); //총페이지
 	public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri,  @Param("reviewNo") int reviewNo);	//댓글 전체 조회
 	public int update(ReplyVO revo);	//댓글 수정
 	public int delete(int replyNo);	//댓글 삭제

@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ReviewController {
 	private ReviewService service;
-
+	
 	@PostMapping("remove")
 	public String remove(int reviewNo,@ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) {
