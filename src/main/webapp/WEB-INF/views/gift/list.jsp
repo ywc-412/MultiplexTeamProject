@@ -43,19 +43,26 @@
 									</div>
 								</c:forEach> --%>
 								
-								<div class="uploadResult">
+									
 									<c:forEach items="${list}" var="gift">	
-										<b> <a class="move" href="/gift/get?giftNo=${gift.giftNo}">
-										<c:out value="${gift.giftNo}" /></a> 
-										</b>
-										<div class="price">
-										<c:out value="${gift.giftPrice}" />
-									</div>
+									<div class="uploadResult">
 										<ul class="here">
 											<!-- 사진 -->
 										</ul>
-									</c:forEach>	
-								</div> 
+										</div>
+										<b> <a class="move" href="/gift/get?giftNo=${gift.giftNo}">
+										 <c:out value="${gift.giftName}" /></a> 
+										</b>
+										
+										
+										 
+										<div class="price">
+										<c:out value="${gift.giftPrice}" />원
+										</div>
+									</c:forEach>
+									
+																				
+									
 								
 								
 								
@@ -79,19 +86,19 @@
 	(function(){
 		$.getJSON("/gift/giftPicList", function(data) {
 			console.log(data);		
-			console.log(data[0].length);/* 2 */
 			
 			
 			var li = ""; 
-			for(var i=0; i<data.length; i++){
+			 for(var i=0; i<=1; i++){ 
 				var filePath = encodeURIComponent(data[i].giftUploadPath + data[i].giftUuid + "_" + data[i].giftFileName);
-				li += 	"<li data-path='"+data[i].giftUploadPath+"' data-uuid='"+data[i].giftUuid+"' data-fileName='"+data[i].giftFileName+"' >"+
+			 }
+				li += 	"<li data-path='"+data.giftUploadPath+"' data-uuid='"+data.giftUuid+"' data-fileName='"+data.giftFileName+"' >"+
 								"<div>" + 
 						  			"<img src='/giftUpload/display?giftFileName="+filePath+"' style='width:100%;'>"+
 						  		"</div>"+
 					  		"</li>";
-				
-			}
+				console.log(filePath)
+			  
 			$('.here').append(li);
 			
 			/* $(data).each(function(index, obj){								

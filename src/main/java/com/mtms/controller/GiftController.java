@@ -3,6 +3,7 @@ package com.mtms.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.JsonArray;
 import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
 import com.mtms.service.GiftService;
@@ -36,7 +38,6 @@ public class GiftController {
 	@GetMapping("list")	
 	public void list(Model model) {
 		log.info("Gift Controller list()");
-		/* model.addAttribute("pic", giftService.giftPicList()); */
 		model.addAttribute("list", giftService.getList());
 	}
 	
@@ -107,9 +108,14 @@ public class GiftController {
 	@ResponseBody	//json으로 값을 보낼꺼기 때문에  ResponseBody, ResponseEntity 필요함
 	public ResponseEntity<List<GiftAttachVO>> getAttachPicList() {		
 		//log.warn("Gift AttachPicList,,,,");
-		giftService.giftPicList();
-		return new ResponseEntity<>(giftService.giftPicList(),HttpStatus.OK);
+		
+		List<GiftAttachVO> list = giftService.giftPicList();
+		
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
+	
 	
 	//첨부파일 포함한 게시글 삭제
 	private void deleteFiles(List<GiftAttachVO> attachList) {
