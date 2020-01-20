@@ -3,27 +3,69 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.SuggestMapper">
-	<select id="insertSuggestSelectKey" resultType="com.mtms.domain.SuggestVO">
-		
-	</select>
+	<sql id="criteria1">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							suggestTitle LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							memberId LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	
+	<insert id="insertSuggestSelectKey">
+		<selectKey keyProperty="suggestNo" order="BEFORE" resultType="int">
+			SELECT seq_suggest.nextval FROM dual
+		</selectKey>
+		INSERT INTO suggest(suggestNo, memberId, 
+							suggestTitle, suggestContent, 
+							suggestPrivateChk, suggestPw, 
+							suggestView) 
+		VALUES(#{suggestNo}, #{memberId}, #{suggestTitle}, #{suggestContent},
+				#{suggestPrivateChk}, #{suggestPw}, #{suggestView})
+	</insert>
 	
 	<select id="getSuggestList" resultType="com.mtms.domain.SuggestVO">
-	
+		<![CDATA[
+			SELECT * FROM (
+				SELECT /*+INDEX_DESC(suggest seq_suggest) */
+					rownum rn, suggestNo, memberId, suggestTitle, suggestContent, suggestPrivateChk, suggestPw, suggestView
+				FROM suggest
+				WHERE 
+		]]>
+			<include refid="criteria1"></include>
+ 		<![CDATA[			
+				rownum <=#{pageNum}*#{amount} 
+			) WHERE rn > (#{pageNum} - 1 ) *  #{amount}
+		]]>
 	</select>
 	
 	<select id="getSuggest" resultType="com.mtms.domain.SuggestVO">
-	
+		
 	</select>
 	
 	<delete id="deleteSuggest">
-	
+		
 	</delete>
 	
 	<update id="updateSuggest">
-	
+		
 	</update>
 	
 	<select id="getTotalCount" resultType="int">
-	
+		SELECT count(*) 
+		FROM suggest WHERE
+		<include refid="criteria1"></include>
+		<![CDATA[
+			suggestNo>0
+		]]>
 	</select>
 </mapper>

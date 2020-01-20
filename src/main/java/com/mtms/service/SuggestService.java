@@ -7,7 +7,7 @@ import com.mtms.domain.SuggestVO;
 
 public interface SuggestService {
 	// 건의사항 등록
-	public void registerSuggest(SuggestVO svo);
+	public void registerSuggest(SuggestVO suggestVO);
 
 	// 건의사항 조회
 	public List<SuggestVO> getSuggestListWithPaging(Criteria cri);
@@ -19,7 +19,7 @@ public interface SuggestService {
 	public int removeSuggest(int suggestNo);
 
 	// 건의사항 수정
-	public int modifySuggest(SuggestVO svo);
+	public int modifySuggest(SuggestVO suggestVO);
 	
 	public int getTotalCount(Criteria cri);
 }

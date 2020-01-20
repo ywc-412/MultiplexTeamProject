@@ -2,14 +2,15 @@
 CREATE TABLE member (
     memberId VARCHAR2(20),
     memberPw VARCHAR2(500) NOT NULL,
-    memberName VARCHAR2(15) NOT NULL,
+    memberName VARCHAR2(40) NOT NULL,
     memberAddress VARCHAR2(100) NOT NULL,
     memberPhoneFirst VARCHAR2(20) NOT NULL,
     memberPhoneSecond varchar2(20) not null,
     memberPhoneThird varchar2(20) not null,
     memberBirth DATE NOT NULL,
     memberEmail VARCHAR2(100) NOT NULL,
-    memberEmailSecond varchar2(100) not null
+    memberEmailSecond varchar2(100) not null,
+    memberRegDate DATE DEFAULT sysdate
 );
 
 CREATE TABLE auth(
@@ -207,6 +208,7 @@ ALTER TABLE replyReport ADD CONSTRAINT PK_replyReport PRIMARY KEY (replyReportNo
 -- 영우 알터 START
 ALTER TABLE auth ADD CONSTRAINT FK_AUTH_MEMBER FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 ALTER TABLE suggest ADD CONSTRAINT fk_suggest_memberId foreign key (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
+CREATE INDEX idx_member_memberRegDate ON MEMBER(memberRegDate);
 -- 영우 알터 END
 
 -- 영주 ALTER START
@@ -258,5 +260,5 @@ CREATE SEQUENCE seq_replyReport;
 CREATE SEQUENCE seq_lost;
 CREATE SEQUENCE seq_reply;
 CREATE SEQUENCE seq_review;
-CREATE SEQUENCE SEQ_SUGGEST;
+CREATE SEQUENCE seq_suggest;
 
