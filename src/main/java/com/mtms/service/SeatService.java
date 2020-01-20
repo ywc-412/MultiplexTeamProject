@@ -6,8 +6,11 @@ import com.mtms.domain.SeatVO;
 
 public interface SeatService {
 	
-	// 현재 좌석 상태 가져오기 - 스케줄 번호(날짜/시간/스크린) 별 좌석번호와 상태
+	// 현재 좌석 상태 가져오기 - 스케줄 번호(날짜/시간/스크린) 별 좌석번호와 상태 - fin
 	public List<SeatVO> getStatus(int scheduleNo);
+	
+	// 예매된 좌석 상태 1로 변경
+	public int modifyStatus(String seats, int scheduleNo);
 	
 	// 좌석 추가하기 (상영스케줄 등록될 때) - fin
 	public void register(int scheduleNo);

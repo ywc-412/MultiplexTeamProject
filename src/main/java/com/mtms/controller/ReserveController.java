@@ -137,10 +137,24 @@ public class ReserveController {
 //	}
 	
 	@PostMapping("reserve")
-	public void reserve(Model model, ReserveVO rvo) {
+	public void reserve(Model model, ReserveVO rvo, String scheduleDate) {
 		// 예매하기 (좌석)
 		// 예매 완료되면 영화 정보에 예매+1 해주기
 		
+		String year = scheduleDate.substring(0, 4);
+		String day = scheduleDate.substring(4, 8);
+		int rand1 = (int)Math.floor(Math.random() * 10000)+1000;
+		if(rand1>10000){
+			rand1 = rand1 - 1000;
+		}
+		int rand2 = (int)Math.floor(Math.random() * 10000)+1000;
+		if(rand2>10000){
+			rand2 = rand2 - 1000;
+		}
+		String reserveNo = year + "-" + day + "-" + rand1 + "-" + rand2;
+		
+		System.out.println("reserveNo : " + reserveNo);
+
 		System.out.println("RESERVE CONTROLLER / RESERVE");
 		// 예매번호 추가해줘야함 (생성)
 		System.out.println("scheduleNo : " + rvo.getScheduleNo());
@@ -150,6 +164,8 @@ public class ReserveController {
 		System.out.println("teenNum : " + rvo.getTeenNum());
 		System.out.println("status : " + rvo.getStatus());
 		
+		// 예매된 좌석 업데이트 해주기
+		System.out.println("controller modify return : " + seatService.modifyStatus(rvo.getSeat(), rvo.getScheduleNo()));
 	}
 
 }

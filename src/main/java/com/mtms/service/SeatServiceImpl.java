@@ -28,6 +28,19 @@ public class SeatServiceImpl implements SeatService {
 	}
 
 	@Override
+	public int modifyStatus(String seats, int scheduleNo) {
+		// 예매 완료된 좌석의 상태 변경
+		System.out.println("seat si - modifystatus : " + seats);
+		seats = "(" + seats + ")";
+		System.out.println("seat si - modifystatus2 : " + seats);
+		System.out.println("seat si - scheduleNo : " + scheduleNo);
+		int upint = seatMapper.modifyStatus(seats, scheduleNo);
+		System.out.println("seat si return int : " + upint);
+		
+		return upint;
+	}
+
+	@Override
 	public void register(int scheduleNo) {
 		// 스케줄 번호에 대한 좌석 추가
 		List<String> list = new ArrayList<String>();

@@ -69,6 +69,7 @@
 		<div class="row">
 			<div class="col-xl-12 text-right">
 				<form id="seatForm" action="/reserve/reserve" method="post">
+					<input type="hidden" name="scheduleDate" value="${reserveTime.scheduleDate }">
 					<input type="hidden" name="scheduleNo" value="${scheduleNo }">
 					<input type="hidden" name="memberId" value="hue9404">
 <%-- 					<sec:authentication property="principal.username" />로 로그인한 아이디 가져오기 --%>
@@ -86,6 +87,39 @@
 	<script>
 		$(function(){
 			
+			function payment(adultNum, teenNum){
+				$("#payment").click(function () {
+					  var IMP = window.IMP; // 생략가능
+					  IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+					  IMP.request_pay({
+					   pg: 'inicis', // version 1.1.0부터 지원.
+					   pay_method: 'card',
+					   merchant_uid: 'merchant_' + new Date().getTime()+30,
+					   name: $('.giftName').val(), // 결제내용 이름
+					   amount: $('.totalPrice').val(), // 결제금액
+					   buyer_email: 'iamport@siot.do', // 유저 이메일
+					   buyer_name: '박진주', // 유저 이름
+					   buyer_tel: '010-6626-2818', // 유저 번호
+					   buyer_addr: '서울특별시 강남구 삼성동',
+					   buyer_postcode: '123-456',
+					   m_redirect_url: 'https://www.yourdomain.com/payments/complete' // 결제완료창 url 넣기
+					  }, function(rsp) {
+					   if (rsp.success) {
+					    var msg = '결제가 완료되었습니다.';
+					    // 컨트롤러로 값 보내기 (예매 완료)
+					    msg += '고유ID : ' + rsp.imp_uid;
+					    msg += '상점 거래ID : ' + rsp.merchant_uid;
+					    msg += '결제 금액 : ' + rsp.paid_amount;
+					    msg += '카드 승인번호 : ' + rsp.apply_num;
+					   } else {
+					    var msg = '결제에 실패하였습니다.';
+					    msg += '에러내용 : ' + rsp.error_msg;
+					   }
+					   alert(msg);   
+					  });
+					 });
+			}
+			
 			$("#goReserve").on("click", function(){
 				var adultNum = Number($("#adultNum").html());
 				var teenNum = Number($("#teenNum").html());
@@ -98,7 +132,7 @@
 					if(index!=0){
 						seatStr += ', ';
 					}
-					seatStr += $(this).val();
+					seatStr += "'" + $(this).val() + "'";
 				});
 				$("input[name=seat]").val(seatStr);
 				$("#seatForm").submit();
