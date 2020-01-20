@@ -252,19 +252,14 @@
 			var modifyModalMovie = modifyModal.find("input[name='movieTitle']");
 			var modifyModalScreen = modifyModal.find("select[name='screenNo']");
 			var modifyModalTime1 = modifyModal.find("input[name='time']");
-			var modifyModalTime2 = modifyModal.find("input[name='time2']");
-			var modifyModalTime3 = modifyModal.find("input[name='time3']");
-			var modifyModalTime4 = modifyModal.find("input[name='time4']");
-			var modifyModalTime5 = modifyModal.find("input[name='time5']");
-			var modifyModalTime6 = modifyModal.find("input[name='time6']");
+			var modifyModalTime2 = modifyModal.find("input[name='time']");
+			var modifyModalTime3 = modifyModal.find("input[name='time']");
+			var modifyModalTime4 = modifyModal.find("input[name='time']");
+			var modifyModalTime5 = modifyModal.find("input[name='time']");
+			var modifyModalTime6 = modifyModal.find("input[name='time']");
 			
 			$('#movieTitle').on("click", function(){
-				modifyModalTime1.val($('#time1').html());
-				modifyModalTime2.val($('#time2').html());
-				modifyModalTime3.val($('#time3').html());
-				modifyModalTime4.val($('#time4').html());
-				modifyModalTime5.val($('#time5').html());
-				modifyModalTime6.val($('#time6').html());
+				modifyModalTime.val($('#time').html());
 				modifyModalScreen.val($('#screenNo').html());
 				modifyModalMovie.val($('#movieTitle').html());
 				

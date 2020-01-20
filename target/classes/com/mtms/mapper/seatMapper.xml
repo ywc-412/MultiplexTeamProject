@@ -3,16 +3,20 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.SeatMapper">
-	<select id="getStatus" resultType="com.mtms.domain.SeatVO">
+
+<!-- 	<select id="getStatus" resultType="com.mtms.domain.SeatVO"> -->
 	
-	</select>
+<!-- 	</select> -->
 	
 	<insert id="insert">
-		<foreach item="item" collection="list" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL">
-			INTO seat(scheduleNo, seatNo, seatStatus)
-			VALUES (#{scheduleNo}, #{item.value}, 0)
-		</foreach>
+		INSERT INTO seat(scheduleNo, seatNo) VALUES (#{scheduleNo}, #{seatNo})
 	</insert>
+	
+	
+<!-- 		<foreach item="item" collection="list" open="INSERT ALL " separator=" " close="SELECT * FROM DUAL"> -->
+<!-- 			INTO seat(scheduleNo, seatNo, seatStatus) -->
+<!-- 			VALUES (#{scheduleNo}, #{item.value}, 0) -->
+<!-- 		</foreach> -->
 	
 	<!-- 		INSERT ALL -->
 <!-- 		INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo}) -->

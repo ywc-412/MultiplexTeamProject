@@ -29,7 +29,6 @@ public interface ScheduleMapper {
 	public List<ScheduleVO> getMovie(@Param("startDate") String startDate, @Param("endDate") String endDate);
 	
 	// 해당 영화의 상영 날짜 받아오기
-//	public List<ScheduleVO> getDay(@Param("movieNo") int movieNo, @Param("startDate") String startDate, @Param("endDate") String endDate);
 	public List<String> getDay(@Param("movieNo") int movieNo, @Param("startDate") String startDate, @Param("endDate") String endDate);
 	
 	// 해당 영화, 해당 날짜의 상영 시간 조회

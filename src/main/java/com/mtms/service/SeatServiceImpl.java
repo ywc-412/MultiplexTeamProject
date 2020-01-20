@@ -6,9 +6,16 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mtms.domain.SeatVO;
+import com.mtms.mapper.MovieMapper;
+import com.mtms.mapper.ScheduleMapper;
 import com.mtms.mapper.SeatMapper;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
 @Service
+@AllArgsConstructor
+@Log4j
 public class SeatServiceImpl implements SeatService {
 	
 	private SeatMapper seatMapper;
@@ -20,18 +27,22 @@ public class SeatServiceImpl implements SeatService {
 	}
 
 	@Override
-	public boolean register(int scheduleNo) {
+	public void register(int scheduleNo) {
 		// 스케줄 번호에 대한 좌석 추가
-		System.out.println("seat service impl register - scheduleNo : " + scheduleNo);
 		List<String> list = new ArrayList<String>();
-		list.add("A1");
-		list.add("A2");
-		list.add("A3");
 		
-		int ab = seatMapper.insert(scheduleNo, list);
-		System.out.println("seatserviceimpl - int : " + ab);
-		if(ab>0) return true;
-		else return false;
+		for(int i=1; i<6; i++) {
+			list.add("A"+i);
+			list.add("B"+i);
+			list.add("C"+i);
+			list.add("D"+i);
+			list.add("E"+i);
+		}
+		
+		for(int i=0; i<list.size(); i++) {
+			String seatNo = list.get(i);
+			seatMapper.insert(scheduleNo, seatNo);
+		}
 	}
 
 	@Override

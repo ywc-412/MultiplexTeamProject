@@ -1,6 +1,7 @@
 package com.mtms.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -56,13 +57,11 @@ public class ScheduleController {
 			svo.setScheduleTime(time[i]);
 			
 			scheduleService.register(svo);
-			
-			System.out.println("controller - now sequence : " + scheduleService.getSeq());
 			seatService.register(scheduleService.getSeq());
 		}
-//		List<ScheduleVO> list = scheduleService.get(scheduleVO.getScheduleDate(), scheduleVO.getScreen());
-//		System.out.println("controller register size : " + list.size());
-//		model.addAttribute("oneSchedule", list);
+		List<ScheduleVO> list = scheduleService.get(scheduleVO.getScheduleDate(), scheduleVO.getScreen());
+		System.out.println("controller register size : " + list.size());
+		model.addAttribute("oneSchedule", list);
 	}
 	
 //	@GetMapping("modify")

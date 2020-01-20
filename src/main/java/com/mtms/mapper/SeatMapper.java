@@ -2,6 +2,8 @@ package com.mtms.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mtms.domain.SeatVO;
 
 public interface SeatMapper {
@@ -10,7 +12,7 @@ public interface SeatMapper {
 	public List<SeatVO> getStatus(int scheduleNo);
 	
 	// 좌석 추가
-	public int insert(int scheduleNo, List<String> list);
+	public void insert(@Param("scheduleNo") int scheduleNo, @Param("seatNo") String seatNo);
 	
 	// 좌석 삭제
 	public int delete(int scheduleNo);
