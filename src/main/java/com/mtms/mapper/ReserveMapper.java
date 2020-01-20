@@ -9,13 +9,13 @@ public interface ReserveMapper {
 
 	// 예매내역 하나 조회
 	public ReserveVO read(String reserveNo);
-	
-	// 회원별 예매내역 조회
-	public List<ReserveVO> getList(String memberId);
+//	
+//	// 회원별 예매내역 조회
+//	public List<ReserveVO> getList(String memberId);
 	
 	// 예매하기
 	public void insert(ReserveVO rvo);
 	
-	// 예매 수정하기 (환불한다던가)
-	public int update(String reserveNum);
+//	// 예매 수정하기 (환불한다던가)
+//	public int update(String reserveNum);
 }

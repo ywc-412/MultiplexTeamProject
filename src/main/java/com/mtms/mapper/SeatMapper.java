@@ -17,10 +17,4 @@ public interface SeatMapper {
 	// 좌석 추가 - fin
 	public void insert(@Param("scheduleNo") int scheduleNo, @Param("seatNo") String seatNo);
 	
-	// 좌석 삭제
-	public int delete(int scheduleNo);
-	
-	// 좌석 수정
-	public int update(List<SeatVO> seatList);
-	
 }

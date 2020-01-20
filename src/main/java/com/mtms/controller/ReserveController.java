@@ -43,10 +43,11 @@ public class ReserveController {
 	// movieServiceImpl에 예매수(todayNum) +1 하는 update 구현해야함..
 	
 	@GetMapping("get")
-	public String get(String reserveNo, RedirectAttributes rttr) {
+	public String get(RedirectAttributes rttr) {
 		// 예매 완료 후 예매 결과창으로 이동
 		// service.get
-		return reserveNo;
+//		System.out.println("/reserve/get : " + rttr.getFlashAttributes("reserveNo"));
+		return null;
 	}
 
 	@GetMapping("list")
@@ -130,11 +131,6 @@ public class ReserveController {
 		model.addAttribute("movieName", movieTitle);
 		model.addAttribute("seatStatus", seatStatus);
 	}
-
-//	@GetMapping("seat")
-//	public void seat(ScheduleVO svo) {
-//		// 예매하기 (시간) -> 예매하기 (좌석)
-//	}
 	
 	@PostMapping("reserve")
 	public void reserve(Model model, ReserveVO rvo, String scheduleDate) {
@@ -154,7 +150,7 @@ public class ReserveController {
 		String reserveNo = year + "-" + day + "-" + rand1 + "-" + rand2;
 		
 		System.out.println("reserveNo : " + reserveNo);
-
+		rvo.setReserveNo(reserveNo);
 		System.out.println("RESERVE CONTROLLER / RESERVE");
 		// 예매번호 추가해줘야함 (생성)
 		System.out.println("scheduleNo : " + rvo.getScheduleNo());
@@ -164,8 +160,20 @@ public class ReserveController {
 		System.out.println("teenNum : " + rvo.getTeenNum());
 		System.out.println("status : " + rvo.getStatus());
 		
+		// 예매 테이블에 insert
+		reserveService.register(rvo);
+		
 		// 예매된 좌석 업데이트 해주기
-		System.out.println("controller modify return : " + seatService.modifyStatus(rvo.getSeat(), rvo.getScheduleNo()));
+		seatService.modifyStatus(rvo.getSeat(), rvo.getScheduleNo());
+		
+		// 영화정보에 예매자수 +1 해주기
+//		movieService
+		
+		// 예매 결과 보내기
+			// 예매내역 정보 보내기
+		model.addAttribute("reserve", reserveService.get(reserveNo));
+			// 예매한 시간 정보 보내기 
+		model.addAttribute("schedule", scheduleService.getSchedule(rvo.getScheduleNo()));
 	}
 
 }

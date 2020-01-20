@@ -45,6 +45,10 @@
 		<result property="movieTitle" column="movieTitle"/>
 	</resultMap>
 	
+	<select id="getSchedule" resultMap="scheduleMap">
+		SELECT to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen, s.movieNo, m.movieTitle FROM schedule s, movie m WHERE scheduleNo = #{scheduleNo} and s.movieNo = m.movieno
+	</select>
+	
 	<select id="getDay" resultType="java.lang.String">
 		SELECT DISTINCT to_char(s.scheduleDate, 'yyyymmdd') FROM schedule s, movie m
 		WHERE #{movieNo} = s.movieNo AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate} AND #{endDate} ORDER BY to_char(s.scheduleDate, 'yyyymmdd')
@@ -59,13 +63,8 @@
 	</select>
 	
 	<select id="get" resultMap="scheduleMap">
-		SELECT m.*, to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, s.screen FROM schedule s, movie m
+		SELECT m.*, to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen FROM schedule s, movie m
 		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo
 	</select>
-	
-<!-- 	<select id="get" resultType="com.mtms.domain.ScheduleMovieVO"> -->
-<!-- 		SELECT m.*, to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, s.screen FROM schedule s, movie m -->
-<!-- 		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo -->
-<!-- 	</select> -->
 
 </mapper>

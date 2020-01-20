@@ -23,7 +23,6 @@ public class SeatServiceImpl implements SeatService {
 	@Override
 	public List<SeatVO> getStatus(int scheduleNo) {
 		// 영화번호/상영날짜/시간에 대한 좌석 상태 가져오기
-		System.out.println("seat service impl");
 		return seatMapper.getStatus(scheduleNo);
 	}
 
@@ -32,10 +31,8 @@ public class SeatServiceImpl implements SeatService {
 		// 예매 완료된 좌석의 상태 변경
 		System.out.println("seat si - modifystatus : " + seats);
 		System.out.println("seat si - scheduleNo : " + scheduleNo);
-		int upint = seatMapper.modifyStatus(seats, scheduleNo);
-		System.out.println("seat si return int : " + upint);
 		
-		return upint;
+		return seatMapper.modifyStatus(seats, scheduleNo);
 	}
 
 	@Override

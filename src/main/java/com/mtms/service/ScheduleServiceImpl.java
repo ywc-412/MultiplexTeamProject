@@ -25,12 +25,6 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Override
 	public int register(ScheduleVO rvo) {
 		// 상영스케줄 등록 ( 영화 하나 / 관 하나 / 시간 6개 )
-		
-//		System.out.println("si - no : " + rvo.getMovieNo());
-//		System.out.println("si - screen : " + rvo.getScreen());
-//		System.out.println("si - time : " + rvo.getScheduleTime());
-//		System.out.println("si - date : " + rvo.getScheduleDate());
-
 		return scheduleMapper.insert(rvo);
 	}
 
@@ -115,5 +109,11 @@ public class ScheduleServiceImpl implements ScheduleService{
 		System.out.println("- scheduleDate : " + scheduleDate);
 		System.out.println("- scheduleTime : " + scheduleTime);
 		return scheduleMapper.getScheduleNo(movieNo, scheduleDate, scheduleTime);
+	}
+
+	@Override
+	public ScheduleVO getSchedule(int scheduleNo) {
+		// 예매 결과) 스케줄 번호로 스케줄 정보 알아오기
+		return scheduleMapper.getSchedule(scheduleNo);
 	}
 }

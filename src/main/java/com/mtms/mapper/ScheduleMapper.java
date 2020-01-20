@@ -39,5 +39,8 @@ public interface ScheduleMapper {
 	
 	// 영화번호, 날짜, 시간으로 스케줄 번호 알아오기
 	public int getScheduleNo(@Param("movieNo") int movieNo, @Param("scheduleDate") String scheduleDate, @Param("scheduleTime") String scheduleTime);
+	
+	// 스케줄 번호로 스케줄 정보 알아오기
+	public ScheduleVO getSchedule(@Param("scheduleNo") int scheduleNo);
 
 }

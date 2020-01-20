@@ -43,5 +43,8 @@ public interface ScheduleService {
 	
 	// 예매) 영화번호, 영화날짜, 영화시간으로 상영스케줄 번호 알아오기
 	public int getScheduleNo(int movieNo, String scheduleDate, String scheduleTime);
+	
+	// 예매 결과) 스케줄 번호로 스케줄 정보 알아오기
+	public ScheduleVO getSchedule(int scheduleNo);
 
 }
