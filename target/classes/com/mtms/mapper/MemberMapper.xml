@@ -24,6 +24,23 @@
       <result property="memberAuth" column="memberauth" />
    </resultMap>
 	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='I'.toString()">
+							memberId LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='N'.toString()">
+							memberName LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
 	<select id="read" resultMap="memberMap">
 		SELECT 
 			mem.memberid, memberpw, membername, memberaddress, memberphonefirst, 
@@ -55,30 +72,77 @@
 		VALUES(#{memberId}, #{memberPw}, #{memberName},
 				#{memberAddress},#{memberPhoneFirst},#{memberPhoneSecond},
 				#{memberPhoneThird}, #{memberBirth}, #{memberEmail},
-				#{memberEmailSecond})
+				#{memberEmailSecond}, sysdate)
 	</insert>
 	
-	<select id="selectId" resultType="com.mtms.domain.MemberVO">
+	<select id="selectId" resultType="String">
+		SELECT memberId FROM member WHERE memberEmail=#{memberEmail} AND memberEmailSecond =#{memberEmailSecond}
+	</select>
 	
+	<select id="findPw" resultType="com.mtms.domain.MemberVO">
+		SELECT memberId
+		FROM member
+		WHERE 
+			memberId = #{memberId} AND
+			memberEmail=#{memberEmail} AND
+			memberEmailSecond=#{memberEmailSecond} AND
+			memberPhoneFirst = #{memberPhoneFirst} AND
+			memberPhoneSecond = #{memberPhoneSecond} AND
+			memberPhoneThird = #{memberPhoneThird}
 	</select>
 	
 	<update id="updatePw">
-	
+		UPDATE member SET memberPw = #{memberPw} WHERE memberId = #{memberId}
 	</update>
 
 	<select id="getMemberList" resultType="com.mtms.domain.MemberVO">
+		<![CDATA[
+			SELECT memberId, memberName, memberRegDate
+			FROM(
+				SELECT /*+INDEX_DESC(member idx_member_memberRegDate) */
+					rownum rn, memberId, memberName, memberRegDate
+				FROM member WHERE
+		]]>
+			<include refid="criteria"></include>
+		<![CDATA[
+				rownum <= #{pageNum}*#{amount}
+		)
+		WHERE rn>(#{pageNum}-1) * #{amount}
+		]]>
+	</select>
 	
+	<select id="getTotalCount" resultType="int">
+		SELECT count(*) 
+		FROM member WHERE
+		<include refid="criteria"></include>
+		<![CDATA[
+			rownum>0
+		]]>
 	</select>
 	
 	<select id="getMember" resultType="com.mtms.domain.MemberVO">
-	
+		SELECT memberId, memberName, memberAddress, memberEmail, memberEmailSecond, 
+			memberPhoneFirst, memberPhoneSecond, memberPhoneThird, 
+			memberBirth, memberRegDate
+		FROM member 
+		WHERE memberId = #{memberId}
 	</select>
 	
 	<delete id="deleteMember">
-	
+		DELETE FROM member WHERE memberId=#{memberId}
 	</delete>
 	
-	<update id="updateMember">
+	<select id="memberPw" resultType="String">
+		SELECT memberPw
+		FROM member
+		WHERE memberId = #{memberId}
+	</select>
 	
+	<update id="updateMember">
+		UPDATE member 
+		SET memberPw = #{memberPw}, memberPhoneFirst = #{memberPhoneFirst}, 
+			memberPhoneSecond = #{memberPhoneSecond},
+			memberPhoneThird = #{memberPhoneThird}
+		WHERE memberId = #{memberId}
 	</update>
 </mapper>

@@ -50,7 +50,7 @@
 					<div class="row align-items-center no-gutters">
 						<div class="col-xl-2 col-lg-2">
 							<div class="logo-img">
-								<a href="index.html">
+								<a href="/">
 									<img src="/resources/img/sCineLogo3.png" alt="">
 								</a>
 							</div>
@@ -68,9 +68,10 @@
 										</li>
 										<li><a href="#">리뷰</a></li>
 										<li><a href="#">기프티콘</a></li>
-										<li><a href="#">건의사항</a></li>
+										<li><a href="/suggest/list">건의사항</a></li>
 										<li><a href="#">공지사항</a></li>
 										<li><a href="#">습득물</a></li>
+										
 									</ul>
 								</nav>
 							</div>
@@ -81,22 +82,27 @@
 							<div class="custom-margin">
 								
 							</div>
-							<div class="custom-margin">
-								<sec:authorize access="!isAuthenticated()">
-									<button class="btn btn-primary pull-right" id="joinBtn">회원가입</button>
-									<button class="btn btn-primary pull-right" id="loginBtn">로그인</button>
-								</sec:authorize>
+							<form action="/member/myInfo" method="get" id="headerForm">
 								<sec:authorize access="isAuthenticated()">
-									<button class="btn btn-primary pull-right" id="logoutBtn">로그아웃</button>
-								
-									<sec:authorize access="hasRole('ROLE_MEMBER')">
-										<button class="btn btn-primary pull-right" id="myPageBtn">마이페이지</button>
-									</sec:authorize>
-									<sec:authorize access="hasRole('ROLE_ADMIN')">
-										<button class="btn btn-primary pull-right" id="adminPageBtn">관리자페이지</button>
-									</sec:authorize>
+									<input type="hidden" name="memberId" value="<sec:authentication property="principal.username"/>">
 								</sec:authorize>
-							</div>
+								<div class="custom-margin">
+									<sec:authorize access="!isAuthenticated()">
+										<button class="btn btn-primary pull-right" id="joinBtn">회원가입</button>
+										<button class="btn btn-primary pull-right" id="loginBtn">로그인</button>
+									</sec:authorize>
+									<sec:authorize access="isAuthenticated()">
+										<button class="btn btn-primary pull-right" id="logoutBtn">로그아웃</button>
+									
+										<sec:authorize access="hasRole('ROLE_MEMBER')">
+											<button class="btn btn-primary pull-right" id="myPageBtn">마이페이지</button>
+										</sec:authorize>
+										<sec:authorize access="hasRole('ROLE_ADMIN')">
+											<button class="btn btn-primary pull-right" id="adminPageBtn">관리자페이지</button>
+										</sec:authorize>
+									</sec:authorize>
+								</div>
+							</form>
 						</div>
 						<div class="col-12">
 							<div class="mobile_menu d-block d-lg-none">
@@ -111,16 +117,30 @@
 										
 	<script>
 		$(function(){
-			$('#joinBtn').on("click", function(){
+			
+			$('#joinBtn').on("click", function(e){
+				e.preventDefault();
 				location.href="/member/join";
 			});
 			
-			$('#loginBtn').on("click", function(){
+			$('#myPageBtn').on("click", function(e){
+				e.preventDefault();
+				$('#headerForm').submit();
+			});
+			
+			$('#loginBtn').on("click", function(e){
+				e.preventDefault();
 				location.href="/customLogin";
 			});
 			
-			$('#logoutBtn').on("click", function(){
+			$('#logoutBtn').on("click", function(e){
+				e.preventDefault();
 				location.href="/logout";
+			});
+			
+			$('#adminPageBtn').on("click", function(e){
+				e.preventDefault();
+				location.href="/member/client";
 			});
 		})
 		

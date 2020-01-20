@@ -23,9 +23,8 @@ public class SuggestServiceImpl implements SuggestService{
 	private MemberMapper memberMapper;
 
 	@Override
-	public void registerSuggest(SuggestVO svo) {
-		// TODO Auto-generated method stub
-		
+	public void registerSuggest(SuggestVO suggestVO) {
+		suggestMapper.insertSuggestSelectKey(suggestVO);
 	}
 
 	@Override
@@ -46,21 +45,14 @@ public class SuggestServiceImpl implements SuggestService{
 		return 0;
 	}
 
-//	@Override
-//	public List<SuggestVO> getSuggestList(Criteria cri) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	@Override
 	public List<SuggestVO> getSuggestListWithPaging(Criteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return suggestMapper.getSuggestList(cri);
 	}
 
 	@Override
 	public int getTotalCount(Criteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
+		return suggestMapper.getTotalCount(cri);
 	}
 }

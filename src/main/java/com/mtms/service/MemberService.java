@@ -14,14 +14,21 @@ public interface MemberService {
 	public MemberVO duplicatedEmail(String totalEmail);
 	// 회원 아이디 찾기 서비스 메서드
 	public String findId(MemberVO memberVO);
+	// 회원 비밀찾기 할때 일치 여부?
+	public MemberVO findPwByEmail(MemberVO memberVO);
 	// 회원 비밀번호 찾기 -> 재설정 서비스 메서드
 	public int findPw(MemberVO memberVO);
 	// 회원 목록 조회 서비스 메서드
 	public List<MemberVO> getMemberList(Criteria cri);
-	// 회원 상세보기 서비스 메서드
+	public int getTotalCount(Criteria cri);
+	// 내 정보 상세보기 서비스 메서드
 	public MemberVO getMember(String memberId);
 	// 회원 삭제 서비스 메서드
-	public int removeMember(String memberId);
+	public int removeMember(MemberVO memberVO);
 	// 회원 정보 수정 메서드
 	public int modifyMember(MemberVO memberVO);
+	
+	
+	public int removeMember(String memberId);
+	
 }
