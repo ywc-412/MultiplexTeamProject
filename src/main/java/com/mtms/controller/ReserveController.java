@@ -166,14 +166,16 @@ public class ReserveController {
 		// 예매된 좌석 업데이트 해주기
 		seatService.modifyStatus(rvo.getSeat(), rvo.getScheduleNo());
 		
+		ScheduleVO scheduleVO = scheduleService.getSchedule(rvo.getScheduleNo());
+		int audienceNum = rvo.getAdultNum() + rvo.getTeenNum();
 		// 영화정보에 예매자수 +1 해주기
-//		movieService
+		movieService.audience(scheduleVO.getMovieNo(), audienceNum);
 		
 		// 예매 결과 보내기
 			// 예매내역 정보 보내기
 		model.addAttribute("reserve", reserveService.get(reserveNo));
 			// 예매한 시간 정보 보내기 
-		model.addAttribute("schedule", scheduleService.getSchedule(rvo.getScheduleNo()));
+		model.addAttribute("schedule", scheduleVO);
 	}
 
 }

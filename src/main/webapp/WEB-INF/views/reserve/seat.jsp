@@ -78,19 +78,46 @@
 					<input type="hidden" name="seat">
 					<input type="hidden" name="status" value="0">
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
-					<button id="goReserve" class="hanna_button2" >>결제하기</button>
+					<button id="goReserve" class="hanna_button2" onclick="payment($('input[name=adultNum]').html(), $('input[name=teenNum]').html())">>결제하기</button>
 				</form>
 			</div>
 		</div>
 	</div> <!-- END hanna_container -->
 	
 	<script>
+	
+		function payment(adultNum, teenNum){
+			var IMP = window.IMP;
+			IMP.init('iamport');
+			IMP.request_pay({
+				pg : 'inicis',
+				pay_method : 'card',
+				merchant_uid : 'merchant_' + new Date().getTime()+30,
+				name : ${movieName}, //결제 내용 이름
+				amount : adultNum * 10 + teenNum * 9, // 결제금액
+				buyer_email : 'iamport@siot.do',
+				buyer_name : 'hanna', 
+				buyer_tel : '010-5287-5061',
+				buyer_addr : '인천시',
+				buyer_postcode : '12345',
+				m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+			}, function(rsp){
+				if(rsp.success){
+					// controller로 값 보내기
+					var msg = '결제가 완료되었습니다.';
+					msg += '고유ID : ' + rsp.imp_uid;
+					msg += '상점 거래 ID : ' + rsp.merchant_uid;
+					msg += '결제 금액 : ' + rsp.paid_amount;
+					msg += '카드 승인번호 : ' + rsp.apply_num;
+				} else {
+					var msg = '결제가 실패되었습니다.';
+					msg += '에러 내용 : ' + rsp.error_msg;
+				}
+				alert(msg);
+			});
+		}
+	
 		$(function(){
-			
-
-			var seatsNum = $("input[type=checkbox]").length;
-			var reservedNum = $(".reserved_seat").length;
-			
 			function payment(adultNum, teenNum){
 				$("#payment").click(function () {
 					  var IMP = window.IMP; // 생략가능
@@ -123,6 +150,10 @@
 					  });
 					 });
 			}
+			
+
+			var seatsNum = $("input[type=checkbox]").length;
+			var reservedNum = $(".reserved_seat").length;
 			
 			$("#goReserve").on("click", function(){
 				var adultNum = Number($("#adultNum").html());

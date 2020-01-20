@@ -28,5 +28,8 @@ public interface MovieMapper {
 	
 	// 한나 - 영화 이름으로 검색
 	public List<MovieVO> getMovieName(@Param("movieName") String movieName);
+	
+	// 한나 - 예매 시 관객수 +
+	public void audience(@Param("movieNo") int movieNo, @Param("audienceNum") int audienceNum);
 
 }
