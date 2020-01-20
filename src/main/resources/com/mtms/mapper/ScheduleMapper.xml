@@ -9,26 +9,15 @@
 			SELECT seq_schedule.nextval FROM dual
 		</selectKey>
 			INSERT INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo})
-<!-- 		INSERT ALL -->
-<!-- 		INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo}) -->
-<!-- 		INTO seat VALUES (#{scheduleNo}, 'A1', 0) -->
-<!-- 		SELECT * FROM DUAL -->
-		
-<!-- 		SELECT seq_schedule.currval FROM dual : 로 이번 scheduleNo 쿼리 찾아와서 seat에 insert하기^^--> 
-
-<!-- 		INSERT ALL -->
-<!-- 		INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo}) -->
-<!-- 		INTO seat(scheduleNo, seatNo) VALUES -->
-<!-- 			<foreach item="item" index="index" collection="list"> -->
-<!-- 				(#{scheduleNo}, #{item, jdbcType=VARCHAR}) -->
-<!-- 			</foreach> -->
-<!-- 		SELECT * FROM DUAL -->
 	</insert>
 	
 	<select id="getSeq" resultType="int">
 		SELECT seq_schedule.currval FROM dual
 	</select>
-
+	
+	<select id="getScheduleNo" resultType="int">
+		SELECT scheduleNo FROM schedule WHERE movieNo=#{movieNo} AND to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} AND scheduleTime = #{scheduleTime}
+	</select>
 
 <!-- 	<update id="update"> -->
 <!-- 	</update> -->
@@ -39,7 +28,6 @@
 	<delete id="deleteAll">
 		DELETE FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
 	</delete>
-	
 	
 	<resultMap type="com.mtms.domain.ScheduleVO" id="scheduleMap">
 		<!-- property VO에 있는 이름 column 디비에 있는 이름 -->
@@ -67,7 +55,7 @@
 	</select>
 	
 	<select id="getMovie" resultMap="scheduleMap">
-		select distinct m.movieTitle, m.movieNo from movie m, schedule s where s.movieNo = m.movieNo and to_char(s.scheduleDate, 'yyyymmdd') between '20200117' and '20200119'
+		select distinct m.movieTitle, m.movieNo from movie m, schedule s where s.movieNo = m.movieNo and to_char(s.scheduleDate, 'yyyymmdd') between #{startDate} and #{endDate}
 	</select>
 	
 	<select id="get" resultMap="scheduleMap">

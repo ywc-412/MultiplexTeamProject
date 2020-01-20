@@ -26,10 +26,10 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public int register(ScheduleVO rvo) {
 		// 상영스케줄 등록 ( 영화 하나 / 관 하나 / 시간 6개 )
 		
-		System.out.println("si - no : " + rvo.getMovieNo());
-		System.out.println("si - screen : " + rvo.getScreen());
-		System.out.println("si - time : " + rvo.getScheduleTime());
-		System.out.println("si - date : " + rvo.getScheduleDate());
+//		System.out.println("si - no : " + rvo.getMovieNo());
+//		System.out.println("si - screen : " + rvo.getScreen());
+//		System.out.println("si - time : " + rvo.getScheduleTime());
+//		System.out.println("si - date : " + rvo.getScheduleDate());
 
 		return scheduleMapper.insert(rvo);
 	}
@@ -75,7 +75,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public List<ScheduleVO> getMovie(String startDate, String endDate) {
 		// 현재 상영중인 영화 목록 가져오기
 		System.out.println("schedule service impl - getMovie");
-		System.out.println("si start : " + startDate + "si end : " + endDate);
+		System.out.println("schedule service impl - start day : " + startDate + " / end day : " + endDate);
 		List<ScheduleVO> list = scheduleMapper.getMovie(startDate, endDate);
 		System.out.println("si list size : " + list.size());
 		return list;
@@ -104,7 +104,16 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	@Override
 	public int getSeq() {
-		// TODO Auto-generated method stub
+		// 방금 등록한 스케줄의 스케줄 번호 가져오기
 		return scheduleMapper.getSeq();
+	}
+
+	@Override
+	public int getScheduleNo(int movieNo, String scheduleDate, String scheduleTime) {
+		// 시간선택->좌석선택에서 좌석 상태 끌어오기 위해서 상영스케줄 번호 가져오기
+		System.out.println("scheduleservice impl - movieNo : " + movieNo);
+		System.out.println("- scheduleDate : " + scheduleDate);
+		System.out.println("- scheduleTime : " + scheduleTime);
+		return scheduleMapper.getScheduleNo(movieNo, scheduleDate, scheduleTime);
 	}
 }

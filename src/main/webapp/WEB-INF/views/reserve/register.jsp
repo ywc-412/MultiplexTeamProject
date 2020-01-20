@@ -21,7 +21,9 @@
 						<div class="">
 							<ul class="hanna_ul_list">
 								<c:forEach items="${movieList }" var="m">
-									<li id="movieClick" value="${m.movieVO.movieNo }">${m.movieVO.movieTitle }</li>
+									<li id="movieClick" value="${m.movieVO.movieNo }">
+										${m.movieVO.movieTitle }
+									</li>
 								</c:forEach>
 							</ul>
 						</div>
@@ -54,18 +56,30 @@
 						</div>
 					</div>
 				</div>
+<!-- 				<div class="col-md-2"> -->
+<!-- 					<div class="single-defination"> -->
+<!-- 						<h4 class="mb-20">나의 선택</h4> -->
+<!-- 						<div class=""> -->
+<!-- 							<ul class="hanna_ul_list"> -->
+<!-- 								<li>영화 : </li> -->
+<!-- 								<li>날짜 : </li> -->
+<!-- 								<li>시간 : </li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="col-xl-12 text-right">
 				<form id="timeForm" action="/reserve/seat" method="post">
-					<input type="hidden" name="movieNo" value="" >
-					<input type="hidden" name="movieTitle" value="" >
-					<input type="hidden" name="scheduleDate" value="" >
-					<input type="hidden" name="scheduleTime" value="" >
+					<input type="hidden" name="movieNo" >
+					<input type="hidden" name="movieTitle" >
+					<input type="hidden" name="scheduleDate" >
+					<input type="hidden" name="scheduleTime" >
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
-					<button id="goSeatBtn" class="hanna_button2" onclick = "location.replace('reserve_seat.html')">>좌석선택</button>
+					<button id="goSeatBtn" class="hanna_button2">>좌석선택</button>
 				</form>
 			</div>
 		</div>
@@ -76,6 +90,35 @@
 	
 	
 	$(document).ready(function(){
+		
+		$(document).on("click", "#goSeatBtn", function(e){
+			
+			var regResult = false;
+
+			var movieNo = $('input[name=movieNo]').val();
+			var scheduleDate = $('input[name=scheduleDate]').val();
+			var scheduleTime = $('input[name=scheduleTime]').val();
+			
+			if(!regResult){
+				e.preventDefault();
+			}
+			
+			if(!movieNo){
+				alert('영화를 선택 후 클릭해주세요.');
+			} else if(!scheduleDate){
+				alert('날짜를 선택 후 클릭해주세요.');
+			} else if(!scheduleTime){
+				alert('시간을 선택 후 클릭해주세요.');
+			} else {
+				regResult = true;
+			}
+			
+			if(regResult){
+				$('#timeForm').submit();
+			}
+
+		}); // goSeatBtn (좌석선택) 버튼 클릭 시
+		
 		$(document).on("click", "#movieClick", function(e){
 			// 영화 버튼 클릭 시 ajax로 상영 날짜 받아오기
 			var movieNo = $(this).val();
@@ -129,6 +172,7 @@
 		$(document).on("click", "#timeClick", function(e){
 			var scheduleTime = $(this).html();
 			$("input[name=scheduleTime]").val(scheduleTime);
+			alert("영화 : " + $("input[name=movieTitle]").val() + "\n상영 날짜 : " + $("input[name=scheduleDate]").val() + "\n상영 시간 : " + $("input[name=scheduleTime]").val() + "을 선택하셨습니다.");
 		}); // END timeClick
 		
 	})

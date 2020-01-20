@@ -62,8 +62,8 @@
 										<li><a class="active" href="index.html">영화</a></li>
 										<li><a href="#">예매 <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="#">영화 예매</a></li>
-												<li><a href="#">상영시간표</a></li>
+												<li><a href="/reserve/register">영화 예매</a></li>
+												<li><a href="/schedule/get">상영시간표</a></li>
 											</ul>
 										</li>
 										<li><a href="#">리뷰</a></li>

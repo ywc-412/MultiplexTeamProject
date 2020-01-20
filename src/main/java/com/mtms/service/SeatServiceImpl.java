@@ -22,8 +22,9 @@ public class SeatServiceImpl implements SeatService {
 
 	@Override
 	public List<SeatVO> getStatus(int scheduleNo) {
-		// TODO Auto-generated method stub
-		return null;
+		// 영화번호/상영날짜/시간에 대한 좌석 상태 가져오기
+		System.out.println("seat service impl");
+		return seatMapper.getStatus(scheduleNo);
 	}
 
 	@Override

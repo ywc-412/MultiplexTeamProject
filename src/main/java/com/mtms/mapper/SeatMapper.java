@@ -9,9 +9,9 @@ import com.mtms.domain.SeatVO;
 public interface SeatMapper {
 	
 	// 좌석 상태 가져오기
-	public List<SeatVO> getStatus(int scheduleNo);
+	public List<SeatVO> getStatus(@Param("scheduleNo") int scheduleNo);
 	
-	// 좌석 추가
+	// 좌석 추가 - fin
 	public void insert(@Param("scheduleNo") int scheduleNo, @Param("seatNo") String seatNo);
 	
 	// 좌석 삭제

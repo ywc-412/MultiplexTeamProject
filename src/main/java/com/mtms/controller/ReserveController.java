@@ -21,6 +21,7 @@ import com.mtms.domain.Criteria;
 import com.mtms.domain.MovieVO;
 import com.mtms.domain.ReserveVO;
 import com.mtms.domain.ScheduleVO;
+import com.mtms.domain.SeatVO;
 import com.mtms.service.MovieService;
 import com.mtms.service.ReserveService;
 import com.mtms.service.ScheduleService;
@@ -95,7 +96,6 @@ public class ReserveController {
 		cal.add(Calendar.DATE, 2);
 		date = new SimpleDateFormat("yyyyMMdd");
 		String endDate = date.format(cal.getTime());
-//		System.out.println("start : " + startDate + " end : " + endDate);
 		return new ResponseEntity<>(scheduleService.getDay(movieNo, startDate, endDate), HttpStatus.OK);
 	}
 	
@@ -103,7 +103,8 @@ public class ReserveController {
 			produces = { MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<String>> getTime(@PathVariable("movieNo") int movieNo, @PathVariable("scheduleDate") String scheduleDate){
-		System.out.println("RESERVE CONTROLLER - GET TIME - MOVIE NO : " + movieNo + " / scheduleDate : " + scheduleDate);
+		// 예매 화면에서 영화, 날짜 선택 시 해당 시간대 받아오기
+//		System.out.println("RESERVE CONTROLLER - GET TIME - MOVIE NO : " + movieNo + " / scheduleDate : " + scheduleDate);
 		return new ResponseEntity<>(scheduleService.getTime(movieNo, scheduleDate), HttpStatus.OK);
 	}
 
@@ -112,12 +113,22 @@ public class ReserveController {
 		// 예매하기 (시간) -> 예매하기 (좌석)
 		// -> seatService.
 		System.out.println("/reserve/seat");
-		System.out.println("movieNo : " + svo.getMovieNo());
-		System.out.println("scheduleDate : " + svo.getScheduleDate());
-		System.out.println("scheduleTime : " + svo.getScheduleTime());
+		int movieNo = svo.getMovieNo();
+		String scheduleDate = svo.getScheduleDate();
+		String scheduleTime = svo.getScheduleTime();
+		System.out.println("movieNo : " + movieNo);
+		System.out.println("scheduleDate : " + scheduleDate);
+		System.out.println("scheduleTime : " + scheduleTime);
+		
+		// 좌석 정보 가져오기
+			// 영화 번호, 상영 날짜, 상영 시간으로 스케줄 번호 가져오기
+		int scheduleNo = scheduleService.getScheduleNo(movieNo, scheduleDate, scheduleTime);
+		List<SeatVO> seatStatus = seatService.getStatus(scheduleNo);
 		
 		model.addAttribute("reserveTime", svo);
+		model.addAttribute("scheduleNo", scheduleNo);
 		model.addAttribute("movieName", movieTitle);
+		model.addAttribute("seatStatus", seatStatus);
 	}
 
 //	@GetMapping("seat")

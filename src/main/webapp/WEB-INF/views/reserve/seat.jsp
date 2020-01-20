@@ -37,29 +37,29 @@
 					<div class="single-defination">
 						<h4 class="mb-20">좌석 선택</h4>
 						<div style="padding-left:30px;"> ---- SCREEN ---- </div>
+						
 						<div class="hanna_seat">
-							<input type="checkbox" id="a1">
-							<label for="a1"></label>
-							<input type="checkbox" id="a2">
-							<label for="a2"></label>
-							<input type="checkbox" id="a3">
-							<label for="a3"></label>
-							<input type="checkbox" id="a4">
-							<label for="a4"></label>
-							<input type="checkbox" id="a5">
-							<label for="a5"></label>
-						</div>
-						<div class="hanna_seat">
-							<input type="checkbox" id="b1" class="reserved_seat">
-							<label for="b1"></label>
-							<input type="checkbox" id="b2">
-							<label for="b2" class="reserved_seat"></label>
-							<input type="checkbox" id="b3" class="reserved_seat" disabled="disabled">
-							<label for="b3"></label>
-							<input type="checkbox" id="b4">
-							<label for="b4"></label>
-							<input type="checkbox" id="b5">
-							<label for="b5"></label>
+							&nbsp&nbsp 1 &nbsp 2 &nbsp 3 &nbsp 4 &nbsp 5 <br>
+							<c:forEach items="${seatStatus}" var="seat" varStatus="status">
+									<c:if test="${status.count == 1 }"> A </c:if>
+									<c:choose> 
+										<c:when test="${seat.seatStatus == 0 }">
+											<input type="checkbox" id="${seat.seatNo }" value="${seat.seatNo }" name="seatNo">
+											<label for="${seat.seatNo }"></label>
+										</c:when>
+										<c:when test="${seat.seatStatus == 1 }">
+											<input type="checkbox" id="${seat.seatNo }" value="${seat.seatNo }" name="seatNo" class="reserved_seat" disabled="disabled">
+											<label for="${seat.seatNo }"></label>
+										</c:when>
+									</c:choose>
+									
+									<c:choose>
+										<c:when test="${status.count == 5 }"><br>B</c:when>
+										<c:when test="${status.count == 10 }"><br>C</c:when>
+										<c:when test="${status.count == 15 }"><br>D</c:when>
+										<c:when test="${status.count == 20 }"><br>E</c:when>
+									</c:choose>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -68,13 +68,39 @@
 		
 		<div class="row">
 			<div class="col-xl-12 text-right">
-				<button type="submit" class="hanna_button2" onclick = "location.replace('#')">>결제하기</button>
+			${reserveTime.movieNo } / ${reserveTime.scheduleDate } / ${reserveTime.scheduleTime } / ${movieName } 
+				<form id="seatForm" action="/reserve/" method="post">
+					<input type="hidden" name="movieNo" value="${reserveTime.movieNo }" >
+					<input type="hidden" name="scheduleNo" value="${scheduleNo }">
+					<input type="hidden" name="memberId" value="hue9404">
+					<!-- <sec:authentication property="principal.username" />로 로그인한 아이디 가져오기 -->
+					<input type="hidden" name="adultNum">
+					<input type="hidden" name="teenNum">
+					<input type="hidden" name="status">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
+					<button id="goReserve" class="hanna_button2" >>결제하기</button>
+				</form>
 			</div>
 		</div>
 	</div> <!-- END hanna_container -->
 	
 	<script>
 		$(function(){
+			
+			$("#goReserve").on("click", function(){
+				var adultNum = Number($("#adultNum").html());
+				var teenNum = Number($("#teenNum").html());
+				alert("결제하기");
+			});
+			
+			$("input[type=checkbox]").on("click", function(){
+				var peopleNum = Number($("#adultNum").html()) + Number($("#teenNum").html());
+				var clickedNum = $("input[type=checkbox]:checked").length;
+				if(peopleNum < clickedNum){
+					alert("인원 수에 맞게 좌석을 선택해주세요.");
+					$(this).prop("checked", false);
+				}
+			});
 			
 			$('#adultPlus').on("click", function() {
 				if(Number($('#adultNum').html()) == 2){
