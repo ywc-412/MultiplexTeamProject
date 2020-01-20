@@ -24,9 +24,20 @@ public interface CommentService {
 	public int modify(CommentVO comment);
 	
 	//한줄평 삭제
-	public int remove(int CommentNo);
+	public int remove(int commentNo);
+	
 	
 	//한줄평 등록
 	public int register(CommentVO comment);
 	
+	//한줄평 조회
+	public CommentVO get(int commentNo);	 //댓글 하나 조회
+	
+	
+	//한줄평 페이징
+	public CommentPageDTO getListCommentPage(Criteria cri);
+	
+	//한줄평 조회
+	public List<CommentVO> getCommentList(@Param("cri") Criteria cri);
+
 }

@@ -28,7 +28,7 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public List<CommentVO> getList(Criteria cri, int movieNo){
 		
-		return null;
+		return commentMapper.getListWithPaging(cri, movieNo);
 	}
 	
 	//내 한줄평 조회
@@ -42,29 +42,48 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public int modify(CommentVO comment) {
 		
-		return 0;
+		return commentMapper.update(comment);
 	}
 	
 	//한줄평 삭제
 	@Override
 	public int remove(int commentNo) {
 		
-		return commentNo;
+		return commentMapper.delete(commentNo);
 	}
 	
 	//한줄평 등록
 	@Override
 	public int register(CommentVO comment) {
 		
-		return 0;
+		return commentMapper.insert(comment);
 	}
 	
 	//한줄평 페이징
 	@Override
 	public CommentPageDTO getListPage(Criteria cri, int movieNo) {
-		
-		return null;
+			
+		return new CommentPageDTO(commentMapper.getCountByBno(movieNo), commentMapper.getListWithPaging(cri, movieNo));
 	}
+
+	@Override
+	public CommentVO get(int commentNo) {
+		
+		return commentMapper.read(commentNo);
+	}
+
+	@Override
+	public CommentPageDTO getListCommentPage(Criteria cri) {
+		
+		return new CommentPageDTO(commentMapper.commentCount(cri), commentMapper.commentList(cri));
+	}
+
+	@Override
+	public List<CommentVO> getCommentList(Criteria cri) {
+		
+		return commentMapper.commentList(cri);
+	}
+
 	
 	
 	

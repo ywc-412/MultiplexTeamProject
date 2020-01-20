@@ -21,12 +21,16 @@ public interface MovieService {
 	public void register(MovieVO movie); 
 	
 	//영화 페이징
-	public List<MovieVO> getList(Criteria cri);  
+	public List<MovieVO> getList(Criteria cri); 
+	
+
+	public List<MovieAttachVO> attachGetList();
 	
 	//영화 총페이지
 	public int getTotal(Criteria cri);
 	
 	//영화 첨부파일
 	public List<MovieAttachVO> getAttachList(int movieNo);
+	
 
 }

@@ -3,19 +3,27 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.MovieAttachMapper">
-	<insert id="insert">
 	
+	<insert id="insert">
+		insert into movieAttach(movieUuid, movieUploadPath, movieFileName, movieNo)
+		values(#{movieUuid}, #{movieUploadPath}, #{movieFileName}, #{movieNo})
 	</insert>
 	
 	<delete id="delete">
-	
+		delete from movieAttach where movieUuid = #{movieUuid }
 	</delete>
 	
 	<select id="findByNo" resultType="com.mtms.domain.MovieAttachVO">
-	
+		select * from movieAttach where movieNo = #{movieNo }
 	</select>
 	
 	<delete id="deleteAll">
+		delete from movieAttach where movieNo = #{movieNo }
+	</delete>
 	
-	</delete>	
+	<select id="attachList" resultType="com.mtms.domain.MovieAttachVO">
+		SELECT * FROM movieAttach
+	</select>
+	
+	
 </mapper>

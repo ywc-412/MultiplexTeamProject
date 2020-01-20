@@ -3,27 +3,64 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.CommentMapper">
-	<select id="getCountByBno" resultType="int">
+
+	 <select id="getListWithPaging" resultType="com.mtms.domain.CommentVO">
+     	<![CDATA[
+        	SELECT * FROM (
+           		SELECT /*+INDEX_DESC(commentReply PK_COMMENTREPLY) */
+                rownum rn, commentNo, movieNo, memberId, commentContent, commentStar, commentDate
+            	FROM commentReply 
+           			WHERE movieNo = #{movieNo } AND
+            			rownum <= #{cri.pageNum} * #{cri.amount}
+            			) WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount}
+       ]]> 
+     </select>
+   
+    <!-- 댓글 갯수  -->
+    <select id="getCountByBno" resultType="int">
+      	SELECT COUNT(commentNo) FROM commentReply WHERE movieNo = #{movieNo } 
+    </select>
+    
+    
+    <!-- 새로 만든거  -->
+    <select id="commentList" resultType="com.mtms.domain.CommentVO">
+     	<![CDATA[
+        	SELECT * FROM (
+           		SELECT /*+INDEX_DESC(commentReply PK_COMMENTREPLY) */
+                rownum rn, commentNo, memberId, commentContent, commentStar, commentDate
+            	FROM commentReply 
+           			WHERE
+            			rownum <= #{cri.pageNum} * #{cri.amount}
+            			) WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount}
+       ]]> 
+    </select>
+     
+    <select id="commentCount" resultType="int">
+    	SELECT COUNT(commentNo) FROM commentReply
+    </select>
+
+	<!-- 여기까지 -->
 	
-	</select>
-	
-	<select id="getListWithPaging" resultType="com.mtms.domain.CommentVO">
-	
-	</select>
 	
 	<select id="myGetListWithPaging" resultType="com.mtms.domain.CommentVO">
 	
 	</select>
 	
 	<update id="update">
-	
+		UPDATE commentReply
+   		SET commentContent = #{commentContent}, commentStar = #{commentStar}
+   		WHERE commentNo = #{commentNo}
 	</update>
 	
 	<delete id="delete">
-	
+		DELETE FROM commentReply WHERE commentNo = #{commentNo }
 	</delete>
 	
 	<insert id="insert">
-	
+		insert into commentReply(commentNo, movieNo, memberId, commentContent, commentStar, commentDate) values(seq_commentreply.nextval, #{movieNo}, #{memberId}, #{commentContent}, #{commentStar}, SYSDATE)
 	</insert>
+	
+	<select id="read" resultType="com.mtms.domain.CommentVO">
+		SELECT * FROM commentReply WHERE commentNo = #{commentNo }
+	</select>
 </mapper>
