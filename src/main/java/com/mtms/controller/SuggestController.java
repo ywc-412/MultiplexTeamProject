@@ -38,9 +38,10 @@ public class SuggestController {
 	}
 	
 	@PostMapping("register")
-	public String register(SuggestVO sugeestVO, RedirectAttributes rttr) {
+	public String register(SuggestVO suggestVO, RedirectAttributes rttr) {
 		rttr.addAttribute("reigsterComplete", "건의사항이 등록되었습니다!");
-		suggestService.registerSuggest(sugeestVO);
+		suggestService.registerSuggest(suggestVO);
+		
 		return "redirect:/suggest/list";
 	}
 	
@@ -66,6 +67,7 @@ public class SuggestController {
 	@GetMapping({"get", "modify"})
 	public void get(int suggestNo, @ModelAttribute("cri") Criteria cri, Model model) {
 		// 건의사항 게시글 상세보기 화면으로 이동
+		suggestService.getSuggest(suggestNo);
 	}
 	
 	@PostMapping("remove")

@@ -36,7 +36,7 @@
 	<select id="getSuggestList" resultType="com.mtms.domain.SuggestVO">
 		<![CDATA[
 			SELECT * FROM (
-				SELECT /*+INDEX_DESC(suggest seq_suggest) */
+				SELECT /*+INDEX_DESC(suggest PK_SUGGEST_SUGGESTNO) */
 					rownum rn, suggestNo, memberId, suggestTitle, suggestContent, suggestPrivateChk, suggestPw, suggestView
 				FROM suggest
 				WHERE 
@@ -49,11 +49,11 @@
 	</select>
 	
 	<select id="getSuggest" resultType="com.mtms.domain.SuggestVO">
-		
+		SELECT * FROM WHERE suggestNo = #{suggestNo}
 	</select>
 	
 	<delete id="deleteSuggest">
-		
+		DELETE FROM suggest WHERE suggestNo = #{suggestNo}
 	</delete>
 	
 	<update id="updateSuggest">
