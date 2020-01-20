@@ -140,6 +140,16 @@ public class ReserveController {
 	public void reserve(Model model, ReserveVO rvo) {
 		// 예매하기 (좌석)
 		// 예매 완료되면 영화 정보에 예매+1 해주기
+		
+		System.out.println("RESERVE CONTROLLER / RESERVE");
+		// 예매번호 추가해줘야함 (생성)
+		System.out.println("scheduleNo : " + rvo.getScheduleNo());
+		System.out.println("memberId : " + rvo.getMemberId());
+		System.out.println("seat : " + rvo.getSeat());
+		System.out.println("adultNum : " + rvo.getAdultNum());
+		System.out.println("teenNum : " + rvo.getTeenNum());
+		System.out.println("status : " + rvo.getStatus());
+		
 	}
 
 }

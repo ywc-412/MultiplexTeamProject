@@ -68,15 +68,14 @@
 		
 		<div class="row">
 			<div class="col-xl-12 text-right">
-			${reserveTime.movieNo } / ${reserveTime.scheduleDate } / ${reserveTime.scheduleTime } / ${movieName } 
-				<form id="seatForm" action="/reserve/" method="post">
-					<input type="hidden" name="movieNo" value="${reserveTime.movieNo }" >
+				<form id="seatForm" action="/reserve/reserve" method="post">
 					<input type="hidden" name="scheduleNo" value="${scheduleNo }">
 					<input type="hidden" name="memberId" value="hue9404">
-					<!-- <sec:authentication property="principal.username" />로 로그인한 아이디 가져오기 -->
+<%-- 					<sec:authentication property="principal.username" />로 로그인한 아이디 가져오기 --%>
 					<input type="hidden" name="adultNum">
 					<input type="hidden" name="teenNum">
-					<input type="hidden" name="status">
+					<input type="hidden" name="seat">
+					<input type="hidden" name="status" value="0">
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
 					<button id="goReserve" class="hanna_button2" >>결제하기</button>
 				</form>
@@ -90,8 +89,20 @@
 			$("#goReserve").on("click", function(){
 				var adultNum = Number($("#adultNum").html());
 				var teenNum = Number($("#teenNum").html());
-				alert("결제하기");
-			});
+				$("input[name=adultNum]").val(adultNum);
+				$("input[name=teenNum]").val(teenNum);
+				
+				// 선택된 좌석 번호들 , 로 이어붙이기
+				var seatStr = "";
+				$("input[type=checkbox]:checked").each(function(index, item){
+					if(index!=0){
+						seatStr += ', ';
+					}
+					seatStr += $(this).val();
+				});
+				$("input[name=seat]").val(seatStr);
+				$("#seatForm").submit();
+			}); // 결제하기 버튼 클릭 END
 			
 			$("input[type=checkbox]").on("click", function(){
 				var peopleNum = Number($("#adultNum").html()) + Number($("#teenNum").html());
@@ -114,7 +125,13 @@
 				if(Number($('#adultNum').html()) == 0){
 					alert('0이하로는 선택하실 수 없습니다.');
 				} else {
-					$('#adultNum').html(Number($('#adultNum').html()) - 1);
+					var clickNum = $("input[type=checkbox]:checked").length;
+					var nowNum = Number($("#adultNum").html()-1) + Number($("#teenNum").html());
+					if(clickNum > nowNum){
+						alert('현재 선택된 좌석보다 적은 인원수입니다. 좌석 선택을 해제하신 후에 인원 수를 조정해주세요.');
+					} else {
+						$('#adultNum').html(Number($('#adultNum').html()) - 1);
+					}
 				}
 			});
 			
@@ -130,7 +147,13 @@
 				if(Number($('#teenNum').html()) == 0){
 					alert('0이하로는 선택하실 수 없습니다.');
 				} else {
-					$('#teenNum').html(Number($('#teenNum').html()) - 1);
+					var clickNum = $("input[type=checkbox]:checked").length;
+					var nowNum = Number($("#teenNum").html()-1) + Number($("#adultNum").html());
+					if(clickNum > nowNum){
+						alert('현재 선택된 좌석보다 적은 인원수입니다. 좌석 선택을 해제하신 후에 인원 수를 조정해주세요.');
+					} else {
+						$('#teenNum').html(Number($('#teenNum').html()) - 1);
+					}
 				}
 			});
 			
