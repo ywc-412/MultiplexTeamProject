@@ -151,7 +151,13 @@
 				if(Number($('#adultNum').html()) == 2){
 					alert('최대 2명까지 선택 가능합니다.');
 				} else {
-					$('#adultNum').html(Number($('#adultNum').html()) + 1);
+					var clickNum = $("input[type=checkbox]:checked").length;
+					var nowNum = Number($("#adultNum").html()+1) + Number($("#teenNum").html());
+					if(clickNum < nowNum){
+						alert('좌석이 부족합니다.');
+					} else {
+						$('#adultNum').html(Number($('#adultNum').html()) + 1);
+					}
 				}
 			});
 			
@@ -172,8 +178,15 @@
 			$('#teenPlus').on("click", function() {
 				if(Number($('#teenNum').html()) == 2){
 					alert('최대 2명까지 선택 가능합니다.');
-				} else {
-					$('#teenNum').html(Number($('#teenNum').html()) + 1);
+				}  else {
+					var clickNum = $("input[type=checkbox]:checked").length;
+					var totalSeatNum = $("input[type=checkbox]").length;
+					var nowNum = Number($("#adultNum").html()) + Number($("#teenNum").html()+1);
+					if(totalSeatNum-clickNum < nowNum){
+						alert('좌석이 부족합니다.');
+					} else {
+						$('#teenNum').html(Number($('#teenNum').html()) + 1);
+					}
 				}
 			});
 			
@@ -182,8 +195,9 @@
 					alert('0이하로는 선택하실 수 없습니다.');
 				} else {
 					var clickNum = $("input[type=checkbox]:checked").length;
+					var totalSeatNum = $("input[type=checkbox]").length;
 					var nowNum = Number($("#teenNum").html()-1) + Number($("#adultNum").html());
-					if(clickNum > nowNum){
+					if(totalSeatNum-clickNum > nowNum){
 						alert('현재 선택된 좌석보다 적은 인원수입니다. 좌석 선택을 해제하신 후에 인원 수를 조정해주세요.');
 					} else {
 						$('#teenNum').html(Number($('#teenNum').html()) - 1);

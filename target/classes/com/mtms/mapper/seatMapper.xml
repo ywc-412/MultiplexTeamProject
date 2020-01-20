@@ -13,7 +13,7 @@
 	</insert>
 	
 	<update id="modifyStatus">
-		UPDATE seat SET seatStatus = 1 WHERE seatNo IN ('E1', 'E2') AND scheduleNo = 586
+		UPDATE seat SET seatStatus = 1 WHERE seatNo IN (${seats}) AND scheduleNo = #{scheduleNo}
 	</update>
 	
 	<delete id="delete">
