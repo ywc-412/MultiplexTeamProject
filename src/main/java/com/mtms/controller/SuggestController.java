@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
+import com.mtms.domain.PageDTO;
 import com.mtms.domain.SuggestVO;
 import com.mtms.service.SuggestService;
 
@@ -52,6 +53,14 @@ public class SuggestController {
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
 		// 건의사항 게시글 전체 조회
+		model.addAttribute("list", suggestService.getSuggestListWithPaging(cri));
+		
+		int total = suggestService.getTotalCount(cri);
+		
+		System.out.println(total);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 	}
 	
 	@GetMapping({"get", "modify"})

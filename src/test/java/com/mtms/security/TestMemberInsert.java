@@ -24,34 +24,30 @@ import lombok.extern.log4j.Log4j;
                               "file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 public class TestMemberInsert {
    
-   @Setter(onMethod_ = @Autowired)
-   private PasswordEncoder pwencoder;
-   // PasswordEncoder를 구현한 CustomNoOpPasswordEncoder의 메소드를 이용할 수 있음
    
    @Setter(onMethod_ = @Autowired)
    private DataSource ds;
    
-//   @Test
-   public void testInsertMember() {
+   @Test
+   public void testInsertSuggest() {
       
-      String query = "insert into "
-      		+ "member(memberId, memberPw, memberName, memberAddress, memberPhoneFirst, "
-      		+ "memberPhoneSecond, memberPhoneThird, memberBirth, memberEmail, memberEmailSecond, memberRegDate) "
-      		+ "values(?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, sysdate)";
+      String query = "INSERT INTO suggest(suggestNo, memberId," + 
+      		"							suggestTitle, suggestContent," + 
+      		"							suggestPrivateChk, suggestPw," + 
+      		"							suggestView)" + 
+      		"		VALUES(seq_suggest.nextval, ?, ?, ?," + 
+      		"				?, ?, ?)";
       
       try(Connection con = ds.getConnection(); 
             PreparedStatement pstmt = con.prepareStatement(query)) {
          for(int i=0; i<100; i++) {
-            pstmt.setString(2, pwencoder.encode("1111"));
             if(i<100) {
-               pstmt.setString(1, "member"+i);
-               pstmt.setString(3, "일반사용자"+i);
-               pstmt.setString(4, "test주소");
-               pstmt.setString(5, "010");
-               pstmt.setString(6, "4189");
-               pstmt.setString(7, "5485");
-               pstmt.setString(8, "ywc412");
-               pstmt.setString(9,"naver.com");
+               pstmt.setString(1, "admin");
+               pstmt.setString(2, "test data title"+i);
+               pstmt.setString(3, "test data content"+i);
+               pstmt.setInt(4, 0);
+               pstmt.setString(5, "");
+               pstmt.setInt(6, 0);
             }
             pstmt.executeUpdate();
          }
@@ -60,22 +56,5 @@ public class TestMemberInsert {
       }
    }
    
-//   @Test
-   public void testInsertAuth() {
-	   String query = "insert into auth (memberid, memberauth) values(?, ?)";
-	      
-	      try(Connection con = ds.getConnection(); 
-	            PreparedStatement pstmt = con.prepareStatement(query)) {
-	         for(int i=0; i<100; i++) {
-	            if(i<100) {
-	               pstmt.setString(1, "member"+i);
-	               pstmt.setString(2, "ROLE_MEMBER");
-	            }
-	            pstmt.executeUpdate();
-	         }
-	      } catch(Exception e) {
-	         e.printStackTrace();
-	      }
-   }
 }
    
