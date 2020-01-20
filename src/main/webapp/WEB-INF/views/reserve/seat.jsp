@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ include file="../include/header.jsp" %>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 	<div class="hanna_head">
 		<h3>RESERVE_SEAT</h3>
@@ -78,7 +80,7 @@
 					<input type="hidden" name="seat">
 					<input type="hidden" name="status" value="0">
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
-					<button id="goReserve" class="hanna_button2" onclick="payment($('input[name=adultNum]').html(), $('input[name=teenNum]').html())">>결제하기</button>
+					<button id="goReserve" class="hanna_button2">>결제하기</button>
 				</form>
 			</div>
 		</div>
@@ -86,14 +88,21 @@
 	
 	<script>
 	
-		function payment(adultNum, teenNum){
+// 		function payment(adultNum, teenNum){
+		$('#goReserve').click(function(e){
+			e.preventDefault();
+			var adultNum = Number($('#adultNum').html())
+			var teenNum = Number($('#teenNum').html())
+			alert(adultNum);
+			alert(teenNum);
+			
 			var IMP = window.IMP;
-			IMP.init('iamport');
+			IMP.init('imp75857452');
 			IMP.request_pay({
 				pg : 'inicis',
 				pay_method : 'card',
 				merchant_uid : 'merchant_' + new Date().getTime()+30,
-				name : ${movieName}, //결제 내용 이름
+				name : "s-cinema", //결제 내용 이름
 				amount : adultNum * 10 + teenNum * 9, // 결제금액
 				buyer_email : 'iamport@siot.do',
 				buyer_name : 'hanna', 
@@ -115,63 +124,33 @@
 				}
 				alert(msg);
 			});
-		}
-	
+		});
+		
 		$(function(){
-			function payment(adultNum, teenNum){
-				$("#payment").click(function () {
-					  var IMP = window.IMP; // 생략가능
-					  IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-					  IMP.request_pay({
-					   pg: 'inicis', // version 1.1.0부터 지원.
-					   pay_method: 'card',
-					   merchant_uid: 'merchant_' + new Date().getTime()+30,
-					   name: $('.giftName').val(), // 결제내용 이름
-					   amount: $('.totalPrice').val(), // 결제금액
-					   buyer_email: 'iamport@siot.do', // 유저 이메일
-					   buyer_name: '박진주', // 유저 이름
-					   buyer_tel: '010-6626-2818', // 유저 번호
-					   buyer_addr: '서울특별시 강남구 삼성동',
-					   buyer_postcode: '123-456',
-					   m_redirect_url: 'https://www.yourdomain.com/payments/complete' // 결제완료창 url 넣기
-					  }, function(rsp) {
-					   if (rsp.success) {
-					    var msg = '결제가 완료되었습니다.';
-					    // 컨트롤러로 값 보내기 (예매 완료)
-					    msg += '고유ID : ' + rsp.imp_uid;
-					    msg += '상점 거래ID : ' + rsp.merchant_uid;
-					    msg += '결제 금액 : ' + rsp.paid_amount;
-					    msg += '카드 승인번호 : ' + rsp.apply_num;
-					   } else {
-					    var msg = '결제에 실패하였습니다.';
-					    msg += '에러내용 : ' + rsp.error_msg;
-					   }
-					   alert(msg);   
-					  });
-					 });
-			}
-			
 
 			var seatsNum = $("input[type=checkbox]").length;
 			var reservedNum = $(".reserved_seat").length;
 			
-			$("#goReserve").on("click", function(){
-				var adultNum = Number($("#adultNum").html());
-				var teenNum = Number($("#teenNum").html());
-				$("input[name=adultNum]").val(adultNum);
-				$("input[name=teenNum]").val(teenNum);
+// 			$("#goReserve").on("click", function(){
+// 				var adultNum = Number($("#adultNum").html());
+// 				var teenNum = Number($("#teenNum").html());
+// 				$("input[name=adultNum]").val(adultNum);
+// 				$("input[name=teenNum]").val(teenNum);
 				
-				// 선택된 좌석 번호들 , 로 이어붙이기
-				var seatStr = "";
-				$("input[type=checkbox]:checked").each(function(index, item){
-					if(index!=0){
-						seatStr += ', ';
-					}
-					seatStr += "'" + $(this).val() + "'";
-				});
-				$("input[name=seat]").val(seatStr);
-				$("#seatForm").submit();
-			}); // 결제하기 버튼 클릭 END
+// 				// 선택된 좌석 번호들 , 로 이어붙이기
+// 				var seatStr = "";
+// 				$("input[type=checkbox]:checked").each(function(index, item){
+// 					if(index!=0){
+// 						seatStr += ', ';
+// 					}
+// 					seatStr += "'" + $(this).val() + "'";
+// 				});
+// 				$("input[name=seat]").val(seatStr);
+				
+// 				payment(adultNum, teenNum);
+				
+// // 				$("#seatForm").submit();
+// 			}); // 결제하기 버튼 클릭 END
 			
 			$("input[type=checkbox]").on("click", function(){
 				var peopleNum = Number($("#adultNum").html()) + Number($("#teenNum").html());
