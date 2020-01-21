@@ -209,6 +209,7 @@ ALTER TABLE replyReport ADD CONSTRAINT PK_replyReport PRIMARY KEY (replyReportNo
 -- 영우 알터 START
 ALTER TABLE auth ADD CONSTRAINT FK_AUTH_MEMBER FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 ALTER TABLE suggest ADD CONSTRAINT fk_suggest_memberId foreign key (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
+ALTER TABLE suggest ADD CONSTRAINT pk_suggest_suggestNo PRIMARY KEY (suggestNo);
 CREATE INDEX idx_member_memberRegDate ON MEMBER(memberRegDate);
 -- 영우 알터 END
 

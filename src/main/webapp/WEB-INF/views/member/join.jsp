@@ -12,7 +12,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row justify-content-lg-center" name="regForm">
+		<div class="row justify-content-lg-center" id="regForm">
 			<div class="col-lg-8 col-md-8">
 				<form method="post" action="/member/join" role="form" id="joinForm">
 					<div class="mt-10 custom-input">
