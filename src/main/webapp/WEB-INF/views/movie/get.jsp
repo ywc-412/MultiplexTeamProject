@@ -289,7 +289,7 @@
 	  
 	    $(function(){
 	    	
-	    	var movieNo = '<c:out value="${movie.movieNo}"/>'; //
+	    	var movieNo = '<c:out value="${movie.movieNo}"/>'; 
 	    	var replyUL = $(".chat");
 
 			console.log("1?");
@@ -334,23 +334,37 @@
 						
 	    				console.log("로그인한 아이디  :" + memberId);
 	    				console.log("작성한 아이디 : " + list[i].memberId );
+	    				var adminId = '<c:out value="admin"/>';
+	    				console.log(adminId);
+	    				
+	    				var auth = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}';
+	    				console.log(auth);
+	    				
+	    				var adminAuth = '<c:out value="[ROLE_ADMIN, ROLE_MEMBER]"/>';
+	    				var memberAuth = '<c:out value="[ROLE_MEMBER]"/>';
+	    				console.log(adminAuth);
+	    				
+						if(auth == adminAuth){
+							console.log("권한 같다");
+						}
 	    				
 	    				if(memberId == list[i].memberId){
 	    					console.log("같다");
 	    				}
 	    			
-// 	    				<sec:authorize access="hasRole('ROLE_ADMIN')">
-// 							<a href="/movie/register" class="btn btn-primary">영화등록</a>
-// 						</sec:authorize>
-					
 						str += "<tr data-commentNo='"+list[i].commentNo+"'>";
 						str += "  <td scope='row' class='yeongth10 yeong-starRed'>" + list[i].commentStar + "</td>";
 						str += "  <td class='yeongth10'>" + list[i].memberId + "</td>";
 						str += "  <td scope='col' class='yeongth60'>" + list[i].commentContent + "</td>";
-						str += "  	<td colspan='2' class='yeongth20'>";
-						str += "  		<a href='#' class='custom-blue' id='commentUpdate' data-commentNo='"+list[i].commentNo+"'>수정</a>";
-						str += "        <a href='#' id='commentDelete' class='custom-red' data-commentNo='"+list[i].commentNo+"'>삭제</a>";
-						str += "    <td colspan='2' class='yeongth20'><a href='#' id='commentReport' class='custom-red' data-commentNo='"+list[i].commentNo+"'>신고</a></td>";
+						if(auth == adminAuth){
+							str += "    <td colspan='2' class='yeongth20'><a href='#' id='commentDelete' class='custom-red' data-commentNo='"+list[i].commentNo+"'>삭제</a></td>";	
+						}else if(memberId == list[i].memberId){
+							str += "  	<td colspan='2' class='yeongth20'>";
+							str += "  		<a href='#' class='custom-blue' id='commentUpdate' data-commentNo='"+list[i].commentNo+"'>수정</a>";
+							str += "        <a href='#' id='commentDelete' class='custom-red' data-commentNo='"+list[i].commentNo+"'>삭제</a>";
+						}else{
+							str += "    <td colspan='2' class='yeongth20'><a href='#' id='commentReport' class='custom-red' data-commentNo='"+list[i].commentNo+"'>신고</a></td>";
+						}
 						str += "</td>";
 	    				
 	    			}

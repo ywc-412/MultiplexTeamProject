@@ -116,7 +116,7 @@ public class MovieController {
 	}
 	
 	//영화 등록 창 보여주기
-	@Secured("{ROLE_ADMIN}")
+//	@Secured("{ROLE_ADMIN}")
 //	@PreAuthorize("isAuthenticated()")
 	@GetMapping("register")
 	public void register() {
@@ -125,7 +125,7 @@ public class MovieController {
 		
 	//영화 등록 처리
 	@PostMapping("register")
-	@Secured("{ROLE_ADMIN}")
+//	@Secured("{ROLE_ADMIN}")
 //	@PreAuthorize("isAuthenticated()")
 	public String register(MovieVO movie, RedirectAttributes rttr) {
 		log.info("controller 영화 register");

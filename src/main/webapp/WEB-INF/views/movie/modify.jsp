@@ -17,6 +17,9 @@
 		<div class="row justify-content-lg-center">
 			<div class="col-lg-8 col-md-8">
 				<form role="form" action="/movie/modify" method="post" id="frm">
+				
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+					
 					<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
 					<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'>
 	           		<!--  검색 조건과 키워드 파라미터 추가 -->
@@ -202,8 +205,8 @@
 			return true;
 		}
 		
-// 		var csrfHeaderName = "${_csrf.headerName}";	//CSRF 토큰 관련 변수 추가
-// 		var csrfTokenValue = "${_csrf.token}";	//CSRF
+		var csrfHeaderName = "${_csrf.headerName}";	//CSRF 토큰 관련 변수 추가
+		var csrfTokenValue = "${_csrf.token}";	//CSRF
 		
 		//첨부 파일 클릭 이벤트 처리
 		$("input[type='file']").change(function(e){
@@ -228,9 +231,9 @@
 					dataType : 'json',
 					processData : false,
 					contentType : false,
-// 					beforeSend : function(xhr){	//전송 전 추가 헤더 설정
-// 						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-// 					},
+					beforeSend : function(xhr){	//전송 전 추가 헤더 설정
+						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
 					success : function(result){
 						alert("업로드 성공");
 						console.log(result);
