@@ -101,6 +101,7 @@ public class MovieController {
 		return null;
 	}
 	
+	// 한나 - 영화명 검색
 	@RequestMapping(value="getName/{movieName}", 
 			produces = { MediaType.APPLICATION_XML_VALUE,
 								MediaType.APPLICATION_JSON_UTF8_VALUE})

@@ -91,10 +91,8 @@
 // 		function payment(adultNum, teenNum){
 		$('#goReserve').click(function(e){
 			e.preventDefault();
-			var adultNum = Number($('#adultNum').html())
-			var teenNum = Number($('#teenNum').html())
-			alert(adultNum);
-			alert(teenNum);
+			var adultNum = Number($('#adultNum').html());
+			var teenNum = Number($('#teenNum').html());
 			
 			var IMP = window.IMP;
 			IMP.init('imp75857452');

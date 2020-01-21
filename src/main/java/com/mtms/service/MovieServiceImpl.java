@@ -83,5 +83,11 @@ public class MovieServiceImpl implements MovieService{
 	public void audience(int movieNo, int audienceNum) {
 		movieMapper.audience(movieNo, audienceNum);
 	}
+
+	// 희홍 - 영화번호로 영화명 가져오기
+	@Override
+	public String getMovie(int movieNo) {
+		return movieMapper.getMovie(movieNo);
+	}
 	
 }

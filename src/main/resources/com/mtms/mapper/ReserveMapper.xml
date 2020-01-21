@@ -16,33 +16,45 @@
 	</select>
 	
 	<select id="getList" resultType="com.mtms.domain.ReserveVO">
-<!-- 		select * from reserve -->
 		<![CDATA[
-			SELECT c.reserveNo,
-						c.seat,
-						c.scheduleNo,
-						c.adultNum,
-						c.teenNum,
-						s.scheduleDate,
-						s.scheduleTime,
-						m.movieTitle
+			SELECT c.reserveNo as reserveNo,
+						c.seat as seat,
+						c.scheduleNo as scheduleNo,
+						c.adultNum as adultNum,
+						c.teenNum as teenNum,
+						c.status as status,
+						to_char(c.scheduleDate, 'yyyymmdd') as scheduleDate,
+						c.scheduleTime as scheduleTime,
+						c.movieNo as movieNo,
+						c.movieTitle as movieTitle
 			FROM (
 				SELECT rownum rn,
 							r.*,
-							s.*,
+							s.scheduleNo as originscheduleNo,
+							s.scheduleDate,
+							s.scheduleTime,
+							s.screen,
+							s.movieNo,
 							m.movieTitle
 				FROM reserve r, schedule s, movie m
 				WHERE memberId=#{memberId} and r.scheduleNo = s.scheduleNo and s.movieNo = m.movieNo
-				AND rownum <= #{pageNum} * #{amount}
+				AND rownum <= 1 * 10 ORDER BY status
 			) c
-			WHERE c.rn > (#{pageNum} - 1) * #{amount}
+			WHERE c.rn > (1 - 1) * 10 
 		]]>
 	</select>
 	
-<!-- 	select r.*, s.*, m.movieTitle from reserve r, schedule s, movie m -->
-<!-- where memberId='hue9404' and r.scheduleNo = s.scheduleNo and s.movieNo=m.movieNo; -->
-	
-	
+	<!-- 상영시간이 지난 영화 상태 변경 (관람완료) -->
+	<update id="changeStatus">
+		<![CDATA[
+			UPDATE reserve SET status = 1
+			WHERE reserveNo IN (
+				SELECT r.reserveNo FROM reserve r, schedule s
+				WHERE r.scheduleNo = s.scheduleNo AND
+							to_char(scheduleDate, 'yyyyMMdd') <= #{scheduleDate}
+				AND		scheduleTime < #{time} and status = 0 )
+			]]>
+	</update>
 	
 
 	<!-- 예매 완료 시 예매 테이블에 등록 -->
@@ -53,4 +65,5 @@
 <!-- 	<update id="update"> -->
 	
 <!-- 	</update> -->
+
 </mapper>

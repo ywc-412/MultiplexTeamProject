@@ -30,13 +30,13 @@ public interface ScheduleService {
 	public List<ScheduleVO> get(String scheduleDate, String screen);
 	
 	// 예매) 상영중인 영화 목록 - fin
-	public List<ScheduleVO> getMovie(String startDate, String endDate);
+	public List<ScheduleVO> getMovie(String startDate, String endDate, String time);
 	
 	// 예매) 해당 영화의 상영 스케줄 조회 - fin
-	public List<String> getDay(int movieNo, String startDate, String endDate);
+	public List<String> getDay(int movieNo, String startDate, String endDate, String time);
 	
 	// 예매) 해당 영화, 해당 날짜의 상영 시간 조회 - fin
-	public List<String> getTime(int movieNo, String scheduleDate);
+	public List<String> getTime(int movieNo, String scheduleDate, String time);
 	
 	// 상영스케줄 등록) 방금 삽입한 스케줄 번호 알아오기 - fin
 	public int getSeq();

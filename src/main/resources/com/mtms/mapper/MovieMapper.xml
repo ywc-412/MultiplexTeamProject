@@ -35,4 +35,8 @@
 		UPDATE movie SET todayNum = todayNum + #{audienceNum} WHERE movieNo = #{movieNo}
 	</update>
 	
+	<select id="getMovie" resultType="String">
+		SELECT movieTitle FROM movie WHERE movieNo = #{movieNo}
+	</select>
+	
 </mapper>

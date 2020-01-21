@@ -45,8 +45,17 @@ public class ReserveController {
 	@GetMapping("list")
 	public void list(Model model, String memberId, Criteria cri) {
 		// 회원 별 예매내역 조회
-		model.addAttribute("reserveList", reserveService.getList(memberId, cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, reserveService.getTotal(memberId, cri)));
+		System.out.println("r con - cri pagenum : " + cri.getPageNum());
+		System.out.println("r con - cri amount: " + cri.getAmount());
+		System.out.println("r con - memberId : " + memberId);
+		List<ReserveVO> list = reserveService.getList(memberId, cri);
+		System.out.println("r con - list size : " + list.size());
+
+		model.addAttribute("reserveList", list);
+
+		int total = reserveService.getTotal(memberId, cri);
+		System.out.println("r con - get total : " + total );
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	@PostMapping("refund")
@@ -70,7 +79,11 @@ public class ReserveController {
 		date = new SimpleDateFormat("yyyyMMdd");
 		String endDate = date.format(cal.getTime());
 		
-		List<ScheduleVO> list = scheduleService.getMovie(startDate, endDate);
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+		Date now = new Date();
+		String time = format.format(now);
+		
+		List<ScheduleVO> list = scheduleService.getMovie(startDate, endDate, time);
 		
 		System.out.println("controller list size : " + list.size());
 		model.addAttribute("movieList", list);
@@ -81,7 +94,6 @@ public class ReserveController {
 								MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<String>> getDay(@PathVariable("movieNo") int movieNo){
 		// 예매 창에서 영화 선택 시 영화에 해당하는 상영 날짜 받아오기
-//		System.out.println("RESERVE CONTROLLER - GET DAY - movie No : " + movieNo);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		DateFormat date = new SimpleDateFormat("yyyyMMdd");
@@ -89,7 +101,12 @@ public class ReserveController {
 		cal.add(Calendar.DATE, 2);
 		date = new SimpleDateFormat("yyyyMMdd");
 		String endDate = date.format(cal.getTime());
-		return new ResponseEntity<>(scheduleService.getDay(movieNo, startDate, endDate), HttpStatus.OK);
+		
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+		Date now = new Date();
+		String time = format.format(now);
+		
+		return new ResponseEntity<>(scheduleService.getDay(movieNo, startDate, endDate, time), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="getTime/{movieNo}/{scheduleDate}",
@@ -97,8 +114,13 @@ public class ReserveController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<String>> getTime(@PathVariable("movieNo") int movieNo, @PathVariable("scheduleDate") String scheduleDate){
 		// 예매 화면에서 영화, 날짜 선택 시 해당 시간대 받아오기
-//		System.out.println("RESERVE CONTROLLER - GET TIME - MOVIE NO : " + movieNo + " / scheduleDate : " + scheduleDate);
-		return new ResponseEntity<>(scheduleService.getTime(movieNo, scheduleDate), HttpStatus.OK);
+		
+		// 현재 시간 전 영화 시간대만 받아오기
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+		Date now = new Date();
+		String time = format.format(now);
+		
+		return new ResponseEntity<>(scheduleService.getTime(movieNo, scheduleDate, time), HttpStatus.OK);
 	}
 
 	@PostMapping("seat")
