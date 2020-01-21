@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MovieVO;
+import com.mtms.domain.PageDTO;
 import com.mtms.domain.ReserveVO;
 import com.mtms.domain.ScheduleVO;
 import com.mtms.domain.SeatVO;
@@ -40,20 +41,21 @@ public class ReserveController {
 	private ScheduleService scheduleService;
 	private SeatService seatService;
 	private MovieService movieService;
-	// movieServiceImpl에 예매수(todayNum) +1 하는 update 구현해야함..
-	
-	@GetMapping("get")
-	public String get(RedirectAttributes rttr) {
-		// 예매 완료 후 예매 결과창으로 이동
-		// service.get
-//		System.out.println("/reserve/get : " + rttr.getFlashAttributes("reserveNo"));
-		return null;
-	}
 
 	@GetMapping("list")
 	public void list(Model model, String memberId, Criteria cri) {
 		// 회원 별 예매내역 조회
-		// service.getList
+		System.out.println("r con - cri pagenum : " + cri.getPageNum());
+		System.out.println("r con - cri amount: " + cri.getAmount());
+		System.out.println("r con - memberId : " + memberId);
+		List<ReserveVO> list = reserveService.getList(memberId, cri);
+		System.out.println("r con - list size : " + list.size());
+
+		model.addAttribute("reserveList", list);
+
+		int total = reserveService.getTotal(memberId, cri);
+		System.out.println("r con - get total : " + total );
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	@PostMapping("refund")
@@ -67,7 +69,6 @@ public class ReserveController {
 	public void register(Model model) {
 		// 초기화면 -> 예매하기 (시간) 화면으로 이동
 		// 현재 상영작 영화 목록 끌어오기
-		// select distinct m.movieTitle, m.movieNo from movie m, schedule s where s.movieNo = m.movieNo and to_char(s.scheduleDate, 'yyyymmdd') between '20200117' and '20200119'
 		
 		// 날짜 구하기
 		Calendar cal = Calendar.getInstance();
@@ -78,7 +79,11 @@ public class ReserveController {
 		date = new SimpleDateFormat("yyyyMMdd");
 		String endDate = date.format(cal.getTime());
 		
-		List<ScheduleVO> list = scheduleService.getMovie(startDate, endDate);
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+		Date now = new Date();
+		String time = format.format(now);
+		
+		List<ScheduleVO> list = scheduleService.getMovie(startDate, endDate, time);
 		
 		System.out.println("controller list size : " + list.size());
 		model.addAttribute("movieList", list);
@@ -89,7 +94,6 @@ public class ReserveController {
 								MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<String>> getDay(@PathVariable("movieNo") int movieNo){
 		// 예매 창에서 영화 선택 시 영화에 해당하는 상영 날짜 받아오기
-//		System.out.println("RESERVE CONTROLLER - GET DAY - movie No : " + movieNo);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		DateFormat date = new SimpleDateFormat("yyyyMMdd");
@@ -97,7 +101,12 @@ public class ReserveController {
 		cal.add(Calendar.DATE, 2);
 		date = new SimpleDateFormat("yyyyMMdd");
 		String endDate = date.format(cal.getTime());
-		return new ResponseEntity<>(scheduleService.getDay(movieNo, startDate, endDate), HttpStatus.OK);
+		
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+		Date now = new Date();
+		String time = format.format(now);
+		
+		return new ResponseEntity<>(scheduleService.getDay(movieNo, startDate, endDate, time), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="getTime/{movieNo}/{scheduleDate}",
@@ -105,21 +114,25 @@ public class ReserveController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<String>> getTime(@PathVariable("movieNo") int movieNo, @PathVariable("scheduleDate") String scheduleDate){
 		// 예매 화면에서 영화, 날짜 선택 시 해당 시간대 받아오기
-//		System.out.println("RESERVE CONTROLLER - GET TIME - MOVIE NO : " + movieNo + " / scheduleDate : " + scheduleDate);
-		return new ResponseEntity<>(scheduleService.getTime(movieNo, scheduleDate), HttpStatus.OK);
+		
+		// 현재 시간 전 영화 시간대만 받아오기
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+		Date now = new Date();
+		String time = format.format(now);
+		
+		return new ResponseEntity<>(scheduleService.getTime(movieNo, scheduleDate, time), HttpStatus.OK);
 	}
 
 	@PostMapping("seat")
 	public void seat(ScheduleVO svo, String movieTitle, Model model) {
 		// 예매하기 (시간) -> 예매하기 (좌석)
-		// -> seatService.
-		System.out.println("/reserve/seat");
+//		System.out.println("/reserve/seat");
 		int movieNo = svo.getMovieNo();
 		String scheduleDate = svo.getScheduleDate();
 		String scheduleTime = svo.getScheduleTime();
-		System.out.println("movieNo : " + movieNo);
-		System.out.println("scheduleDate : " + scheduleDate);
-		System.out.println("scheduleTime : " + scheduleTime);
+//		System.out.println("movieNo : " + movieNo);
+//		System.out.println("scheduleDate : " + scheduleDate);
+//		System.out.println("scheduleTime : " + scheduleTime);
 		
 		// 좌석 정보 가져오기
 			// 영화 번호, 상영 날짜, 상영 시간으로 스케줄 번호 가져오기
@@ -149,16 +162,16 @@ public class ReserveController {
 		}
 		String reserveNo = year + "-" + day + "-" + rand1 + "-" + rand2;
 		
-		System.out.println("reserveNo : " + reserveNo);
+//		System.out.println("reserveNo : " + reserveNo);
 		rvo.setReserveNo(reserveNo);
-		System.out.println("RESERVE CONTROLLER / RESERVE");
+//		System.out.println("RESERVE CONTROLLER / RESERVE");
 		// 예매번호 추가해줘야함 (생성)
-		System.out.println("scheduleNo : " + rvo.getScheduleNo());
-		System.out.println("memberId : " + rvo.getMemberId());
-		System.out.println("seat : " + rvo.getSeat());
-		System.out.println("adultNum : " + rvo.getAdultNum());
-		System.out.println("teenNum : " + rvo.getTeenNum());
-		System.out.println("status : " + rvo.getStatus());
+//		System.out.println("scheduleNo : " + rvo.getScheduleNo());
+//		System.out.println("memberId : " + rvo.getMemberId());
+//		System.out.println("seat : " + rvo.getSeat());
+//		System.out.println("adultNum : " + rvo.getAdultNum());
+//		System.out.println("teenNum : " + rvo.getTeenNum());
+//		System.out.println("status : " + rvo.getStatus());
 		
 		// 예매 테이블에 insert
 		reserveService.register(rvo);
@@ -168,7 +181,7 @@ public class ReserveController {
 		
 		ScheduleVO scheduleVO = scheduleService.getSchedule(rvo.getScheduleNo());
 		int audienceNum = rvo.getAdultNum() + rvo.getTeenNum();
-		// 영화정보에 예매자수 +1 해주기
+		// 영화정보에 예매자수 + 해주기
 		movieService.audience(scheduleVO.getMovieNo(), audienceNum);
 		
 		// 예매 결과 보내기

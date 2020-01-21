@@ -91,4 +91,8 @@
       SELECT movieTitle FROM movie WHERE movieNo = #{movieNo}
    </select>
 	
+	<select id="getMovie" resultType="String">
+		SELECT movieTitle FROM movie WHERE movieNo = #{movieNo}
+	</select>
+	
 </mapper>

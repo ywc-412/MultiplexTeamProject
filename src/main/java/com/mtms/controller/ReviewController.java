@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.ReviewVO;
+import com.mtms.service.MovieService;
 import com.mtms.service.ReviewService;
 import com.mtms.service.ReviewServiceImpl;
 
@@ -23,6 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class ReviewController {
 	
 	private ReviewService reviewService;
+	private MovieService movieService;
 	
 	@PostMapping("remove")	
 	 public String remove(int reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
@@ -47,9 +49,10 @@ public class ReviewController {
 	}
 	
 	@GetMapping("register")
-	public void register() {
-		
-	}	
+	public void register(int movieNo, Model model) {
+		model.addAttribute("movieTitle", movieService.getMovie(movieNo));
+		model.addAttribute("movieNo", movieNo);
+	}
 	
 	@PostMapping("register")
 	public String register(ReviewVO rvo, RedirectAttributes rttr) {

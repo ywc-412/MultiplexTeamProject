@@ -91,10 +91,8 @@
 // 		function payment(adultNum, teenNum){
 		$('#goReserve').click(function(e){
 			e.preventDefault();
-			var adultNum = Number($('#adultNum').html())
-			var teenNum = Number($('#teenNum').html())
-			alert(adultNum);
-			alert(teenNum);
+			var adultNum = Number($('#adultNum').html());
+			var teenNum = Number($('#teenNum').html());
 			
 			var IMP = window.IMP;
 			IMP.init('imp75857452');
@@ -137,7 +135,6 @@
 					msg += '에러 내용 : ' + rsp.error_msg;
 					alert(msg);
 				}
-// 				alert(msg);
 			});
 		});
 		
@@ -145,27 +142,6 @@
 
 			var seatsNum = $("input[type=checkbox]").length;
 			var reservedNum = $(".reserved_seat").length;
-			
-// 			$("#goReserve").on("click", function(){
-// 				var adultNum = Number($("#adultNum").html());
-// 				var teenNum = Number($("#teenNum").html());
-// 				$("input[name=adultNum]").val(adultNum);
-// 				$("input[name=teenNum]").val(teenNum);
-				
-				// 선택된 좌석 번호들 , 로 이어붙이기
-// 				var seatStr = "";
-// 				$("input[type=checkbox]:checked").each(function(index, item){
-// 					if(index!=0){
-// 						seatStr += ', ';
-// 					}
-// 					seatStr += "'" + $(this).val() + "'";
-// 				});
-// 				$("input[name=seat]").val(seatStr);
-				
-// 				payment(adultNum, teenNum);
-				
-// 				$("#seatForm").submit();
-// 			}); // 결제하기 버튼 클릭 END
 			
 			$("input[type=checkbox]").on("click", function(){
 				var peopleNum = Number($("#adultNum").html()) + Number($("#teenNum").html());

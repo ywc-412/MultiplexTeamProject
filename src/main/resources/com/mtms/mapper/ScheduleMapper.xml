@@ -46,20 +46,28 @@
 	</resultMap>
 	
 	<select id="getSchedule" resultMap="scheduleMap">
-		SELECT to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen, s.movieNo, m.movieTitle FROM schedule s, movie m WHERE scheduleNo = #{scheduleNo} and s.movieNo = m.movieno
+		SELECT to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen, s.movieNo, m.movieTitle
+		FROM schedule s, movie m WHERE scheduleNo = #{scheduleNo} AND s.movieNo = m.movieNo
 	</select>
 	
 	<select id="getDay" resultType="java.lang.String">
 		SELECT DISTINCT to_char(s.scheduleDate, 'yyyymmdd') FROM schedule s, movie m
-		WHERE #{movieNo} = s.movieNo AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate} AND #{endDate} ORDER BY to_char(s.scheduleDate, 'yyyymmdd')
+		WHERE #{movieNo} = s.movieNo
+		AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate}	AND #{endDate}
+		AND scheduleTime > #{time}
+		ORDER BY to_char(s.scheduleDate, 'yyyymmdd')
 	</select>
 	
 	<select id="getTime" resultType="java.lang.String">
-		SELECT DISTINCT scheduleTime FROM schedule WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} ORDER BY scheduleTime
+		SELECT DISTINCT scheduleTime FROM schedule
+		WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} and scheduleTime > #{time}
+		ORDER BY scheduleTime
 	</select>
 	
 	<select id="getMovie" resultMap="scheduleMap">
-		select distinct m.movieTitle, m.movieNo from movie m, schedule s where s.movieNo = m.movieNo and to_char(s.scheduleDate, 'yyyymmdd') between #{startDate} and #{endDate}
+		SELECT DISTINCT m.movieTitle, m.movieNo FROM movie m, schedule s 
+		WHERE s.movieNo = m.movieNo AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate} AND #{endDate}
+		AND scheduleTime > #{time}
 	</select>
 	
 	<select id="get" resultMap="scheduleMap">
