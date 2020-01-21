@@ -67,7 +67,7 @@ public class MovieController {
 		//평균 평점
 		int totalStar = movieService.totalStar(movieNo);
 		int totalComment = movieService.totalComment(movieNo);
-		double avgStar = totalComment / (double) totalStar;
+		double avgStar = totalStar / (double) totalComment;
 		int percentStar = (int) (avgStar*100);
 		
 		//예매율
@@ -172,5 +172,14 @@ public class MovieController {
 		System.out.println("무비사진");
 		return new ResponseEntity<>(movieService.getAttachList(movieNo), HttpStatus.OK);
 	}
+	
+	// 한나 - 영화명 검색
+   @RequestMapping(value="getName/{movieName}", 
+         produces = { MediaType.APPLICATION_XML_VALUE,
+                        MediaType.APPLICATION_JSON_UTF8_VALUE})
+   public ResponseEntity<List<MovieVO>> getName(@PathVariable("movieName") String movieName){
+      System.out.println("MOVIE CONTROLLER - GETNAME");
+      return new ResponseEntity<>(movieService.getMovieName(movieName), HttpStatus.OK);
+   }
 	
 }

@@ -26,13 +26,22 @@ public interface MovieMapper {
 	//영화 등록
 	public void insert(MovieVO movie);
 	
-	// 한나 - 영화 이름으로 검색
-	public List<MovieVO> getMovieName(@Param("movieName") String movieName);
-	
 	//예매율
 	public int sumMovie(int movieNo);
 	
 
 	public int sumGetMovie(int movieNo);
+	
+	
+	//한나
+	
+	// 한나 - 영화 이름으로 검색
+    public List<MovieVO> getMovieName(@Param("movieName") String movieName);
+   
+    // 한나 - 예매 시 관객수 +
+    public void audience(@Param("movieNo") int movieNo, @Param("audienceNum") int audienceNum);
+   
+    // 희홍 - 영화 번호로 영화 이름 알아오기
+    public String getMovie(@Param("movieNo") int movieNo);
 
 }

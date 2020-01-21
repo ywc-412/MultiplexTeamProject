@@ -78,4 +78,17 @@
 		SELECT SUM(yesterdayNum) FROM movie WHERE movieNo = #{movieNo }
 	</select>
 	
+	<!-- 한나 -->
+	<select id="getMovieName" resultType="com.mtms.domain.MovieVO">
+      SELECT movieNo, movieTitle FROM movie WHERE movieTitle LIKE '%'||#{movieName}||'%'
+   </select>
+   
+   <update id="audience">
+      UPDATE movie SET todayNum = todayNum + #{audienceNum} WHERE movieNo = #{movieNo}
+   </update>
+   
+   <select id="getMovie" resultType="String">
+      SELECT movieTitle FROM movie WHERE movieNo = #{movieNo}
+   </select>
+	
 </mapper>

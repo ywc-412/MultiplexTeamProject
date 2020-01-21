@@ -71,7 +71,7 @@
 					</tr>
 					<tr>
 						<td scope="col" class="yeongth_movie30">예매율</td>
-						<td scope="col" class="yeongth_movie70">${ percentMovie } %  </td>
+						<td scope="col" class="yeongth_movie70">${ percentMovie } % </td>
 					</tr>
 					<tr>
 						<td scope="col" class="yeongth_movie30">개봉일</td>
@@ -118,7 +118,7 @@
 			    <h2 class="total">
 				</h2>
                 <h2 class="yeong-allStar">
-                   	( ${percentComment } %)
+                   	( ${percentComment } %  ${ avgStar })
                 </h2>
             </div>
 	    </div>

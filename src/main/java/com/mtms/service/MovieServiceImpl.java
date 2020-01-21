@@ -143,6 +143,25 @@ public class MovieServiceImpl implements MovieService{
 		return movieMapper.sumGetMovie(movieNo);
 	}
 
+	// 한나 - 스케줄 : 영화 이름으로 검색
+    @Override
+    public List<MovieVO> getMovieName(String movieName) {
+       System.out.println("★Movie Service Impl - getMovieName");
+       System.out.println("movieName : " + movieName);
+       return movieMapper.getMovieName(movieName);
+    }
+
+    // 한나 - 예매 : 예매 시 관객수 ++
+    @Override
+    public void audience(int movieNo, int audienceNum) {
+       movieMapper.audience(movieNo, audienceNum);
+    }
+
+    // 희홍 - 영화번호로 영화명 가져오기
+    @Override
+    public String getMovie(int movieNo) {
+       return movieMapper.getMovie(movieNo);
+    }
 	
 
 	
