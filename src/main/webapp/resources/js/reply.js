@@ -13,6 +13,7 @@ var replyService = (function(){
 			success : function(result, status, xhr){	//성공했을때 어떻게 처리할꺼냐
 				if(callback){
 					callback(result);
+					console.log("댓글추가하는중");
 				}
 			},
 			error : function(xhr, status, err){			//에러로났을때 어떻게 처리할꺼냐
@@ -24,7 +25,7 @@ var replyService = (function(){
 	}
 	
 	function getList(param, callback, error){	//댓글 목록보기
-		console.log("getList......");
+		console.log("getList......들어왔어요");
 		var reviewNo = param.reviewNo;
 		var page = param.page || 1;
 		
@@ -44,7 +45,7 @@ var replyService = (function(){
 			function(data){
 				if(callback){
 					//갯수, 리스트
-					callback(data.list);
+					callback(data.replyCnt, data.list);
 //					callback(data);
 				}
 			}).fail(function(xhr, status, err){

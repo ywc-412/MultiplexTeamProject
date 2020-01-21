@@ -8,7 +8,8 @@
 	<div class="title_under"></div>
 <!-- 	계시판명 END -->
 	<form action="/review/register" method="post">
-	<input type="text" id="title_register" value="영화제목" name="movieNo"><br>
+	<input type="text" id="title_register" value="영화명 : ${movieTitle }" readOnly="readOnly" style="cursor : Default;"><br>
+   <input type="hidden" value="${movieNo }" name="movieNo">
 	
 	<input type="text" id="movie_register" value="리뷰제목"  name="reviewTitle"><br>
 	

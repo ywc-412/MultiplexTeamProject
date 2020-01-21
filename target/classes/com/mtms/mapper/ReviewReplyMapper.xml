@@ -35,6 +35,6 @@
 	
 	<insert id="insert">
 		insert into reply (replyNo,reviewNo,memberId,replyContent)
-		values(seq_reply.NEXTVAL,#{reviewNo},#{memberId},#{replyContent})
+		values(seq_reply.NEXTVAL, #{reviewNo},#{memberId},#{replyContent})
 	</insert>
 </mapper>

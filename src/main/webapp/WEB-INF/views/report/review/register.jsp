@@ -22,7 +22,7 @@
 		<div class="title_under2"></div>
 <!-- 	버튼위치 style -->
 	<div class="buttln_style">
-	<button id="reviewReport" class="btn btn-danger">신고</button>
+	<button id="reviewReport" class="btn btn-danger" type="submit">신고</button>
 	 <button id="censle" class="btn btn-primary">취소</button>
 	 </div>
 	 </form>

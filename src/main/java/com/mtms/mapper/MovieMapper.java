@@ -28,5 +28,8 @@ public interface MovieMapper {
 	
 	// 한나 - 영화 이름으로 검색
 	public List<MovieVO> getMovieName(@Param("movieName") String movieName);
+	
+	// 희홍 - 영화 번호로 영화 이름 알아오기
+	   public String getMovie(@Param("movieNo") int movieNo);
 
 }

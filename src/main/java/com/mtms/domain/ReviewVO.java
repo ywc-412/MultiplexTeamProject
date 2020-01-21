@@ -13,4 +13,5 @@ public class ReviewVO {
 	private String reviewContent;
 	private Date reviewDate;
 	private int reviewView;	// 리뷰 조회수
+	private int replyCnt;
 }

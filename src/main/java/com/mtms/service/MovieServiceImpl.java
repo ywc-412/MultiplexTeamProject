@@ -78,6 +78,11 @@ public class MovieServiceImpl implements MovieService{
 		return movieMapper.getMovieName(movieName);
 	}
 	
+	// 희홍 - 영화번호로 영화명 가져오기
+	   @Override
+	   public String getMovie(int movieNo) {
+	      return movieMapper.getMovie(movieNo);
+	   }
 	
 	
 }

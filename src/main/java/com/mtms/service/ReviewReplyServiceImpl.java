@@ -43,7 +43,9 @@ public class ReviewReplyServiceImpl implements ReviewReplyService{
 
 	@Override
 	public int remove(int replyNo) {
-//		public int remove(Long replyNo)
+		ReplyVO revo = reviewReplyMapper.read(replyNo);
+		
+		reviewMapper.updateReplyCnt(revo.getReviewNo(), -1);
 		return reviewReplyMapper.delete(replyNo);
 	}
 
@@ -55,7 +57,7 @@ public class ReviewReplyServiceImpl implements ReviewReplyService{
 
 	@Override
 	public int register(ReplyVO revo) {
-//		public int register(ReplyVO revo)
+		reviewMapper.updateReplyCnt(revo.getReviewNo(), 1);
 		return reviewReplyMapper.insert(revo);
 	}
 }

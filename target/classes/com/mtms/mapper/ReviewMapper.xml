@@ -100,5 +100,9 @@
 	SET reviewView = reviewView+1
 	where reviewNo = #{reviewNo}
 	</update>
+	<update id="updateReplyCnt">
+   		UPDATE review
+   		SET replycnt = replycnt + #{amount} where reviewNo = #{reviewNo}
+   </update>
 </mapper>
 
