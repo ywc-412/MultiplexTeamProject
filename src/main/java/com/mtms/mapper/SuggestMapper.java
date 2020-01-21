@@ -19,4 +19,6 @@ public interface SuggestMapper {
 	public int updateSuggest(SuggestVO svo);
 	
 	public int getTotalCount(Criteria cri);
+	
+	public int updateViewCount(int suggestNo);
 }
