@@ -50,7 +50,7 @@
 						<c:forEach items="${mygift}" var="mygift" varStatus="status">
 							<tbody>
 								<tr>
-									<td><span class="modalPop">${mygift.giftList[0].giftName}</span></td>
+									<td>${mygift.giftList[0].giftName}</td>
 									<td>${mygift.giftList[0].giftPrice}</td>
 									<td><c:set var="status" value="${mygift.status}"/>
 										<c:choose>
@@ -69,43 +69,20 @@
 							</tbody>
 						</c:forEach>
 					</table>
-<!-- Reply Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                        	<div class="form-group">
-            									<label>Reply</label>
-           										<input class="form-control" 
-           											   id="giftName" name="giftName" value="${mygift.giftList[0].giftName}">
-          									</div>
-                                        	<div class="form-group">
-            									<label>Replyer</label>
-           										<input class="form-control" 
-           											   id="replyer" name="replyer" value="replyer">
-          									</div>
-                                        	<div class="form-group">
-            									<label>Reply Date</label>
-           										<input class="form-control" 
-           											   id="replyDate" name="replyDate" value="2019-12-02 11:22:33">
-          									</div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button id="modalModBtn" class="btn btn-warning">Modify</button>
-                                            <button id="modalRemoveBtn" class="btn btn-danger">Remove</button>
-                                            <button id="modalRegisterBtn" class="btn btn-primary">Register</button>
-                                            <button id="modalCloseBtn" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                            </div>
-                            <!-- /.modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+        <div class="modal-dialog"> 
+                <div class="modal-content"> 
+                        <div class="modal-header"> 
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+                                <h4 class="modal-title" id="myModalLabel">외식사업연구소</h4> 
+                        </div> 
+                        <div class="modal-body"> 
+                                <p><img src="assets/img/w1.jpg" class="img-responsive"></p> 
+                                <p>외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는.....</p> 
+                        </div> 
+                </div> 
+        </div> 
+</div>
 					<!--paging-start-->
                 <div class="custom-gift-pagination custom-th-size2">
 							<div class="custom-pagination">
@@ -147,9 +124,9 @@ $(document).ready(function (){
 	
 	//#addReplyBtn 누르면 모달창 뜨면서 댓글달 수 있게 함
 	var modal = $(".modal");
-	var modalInputgiftName = modal.find("input[name='giftName']");
-/* 	var modalInputReplyer = modal.find("input[name='replyer']");
-	var modalInputReplyDate = modal.find("input[name='replyDate']"); */
+	var modalInputReply = modal.find("input[name='reply']");
+	var modalInputReplyer = modal.find("input[name='replyer']");
+	var modalInputReplyDate = modal.find("input[name='replyDate']");
 	
 	var modalModBtn = $("#modalModBtn");
 	var modalRemoveBtn = $("#modalRemoveBtn");
@@ -165,8 +142,8 @@ $(document).ready(function (){
 		var csrHeaderName = '${_csrf.headerName}';
 		var csrTokenValue = '${_csrf.token}';
 		
-	$(".modalPop").on("click", function(e){
-		modal.find("input=[name='giftName']").val(giftName);
+	$("#addReplyBtn").on("click", function(e){
+		modal.find("input=[name='replyer']").val(replyer);
 		modalInputReplyDate.closest("div").hide();
 		modal.find("button[id != 'modalCloseBtn']").hide();
 		
