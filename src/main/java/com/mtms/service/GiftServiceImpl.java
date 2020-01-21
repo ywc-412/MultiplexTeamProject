@@ -108,11 +108,5 @@ public class GiftServiceImpl implements GiftService{
 		
 	}
 
-	@Override
-	public List<GiftVO> giftList() {
-		//log.warn("giftList..........");
-		return giftMapper.giftList();
-	}
-
 
 }

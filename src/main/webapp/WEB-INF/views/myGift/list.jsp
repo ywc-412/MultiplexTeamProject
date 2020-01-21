@@ -39,18 +39,16 @@
 							<th>만료일자</th>
 							<th>기간연장</th>
 						</tr>
-						<%-- <c:forEach items="${gift}" var="gift">
-							<tbody>
-								<tr>
-									<td>${gift.giftNo}</td>
-									<td>${gift.giftPrice}</td>									
-								</tr>
-							</tbody>
-						</c:forEach> --%>
+						
+						
 						<c:forEach items="${mygift}" var="mygift" varStatus="status">
 							<tbody>
 								<tr>
-									<td>${mygift.giftList[0].giftName}</td>
+									
+										 
+										
+									<td><a href="/myGift/get?myGiftNo=${mygift.myGiftNo}">${mygift.giftList[0].giftName}</a></td>
+									
 									<td>${mygift.giftList[0].giftPrice}</td>
 									<td><c:set var="status" value="${mygift.status}"/>
 										<c:choose>
@@ -64,25 +62,14 @@
 										<c:choose>
 											<c:when test="${status eq 0}">가능</c:when>	      									
 	      									<c:otherwise>불가능</c:otherwise>							
-    									</c:choose></td>															
+    									</c:choose></td>	
+    																							
 								</tr>
 							</tbody>
 						</c:forEach>
+						
 					</table>
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-        <div class="modal-dialog"> 
-                <div class="modal-content"> 
-                        <div class="modal-header"> 
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                                <h4 class="modal-title" id="myModalLabel">외식사업연구소</h4> 
-                        </div> 
-                        <div class="modal-body"> 
-                                <p><img src="assets/img/w1.jpg" class="img-responsive"></p> 
-                                <p>외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는....외식사업연구소는.....</p> 
-                        </div> 
-                </div> 
-        </div> 
-</div>
+
 					<!--paging-start-->
                 <div class="custom-gift-pagination custom-th-size2">
 							<div class="custom-pagination">
@@ -120,42 +107,7 @@
 </div>
 </div>
 <script>
-$(document).ready(function (){
-	
-	//#addReplyBtn 누르면 모달창 뜨면서 댓글달 수 있게 함
-	var modal = $(".modal");
-	var modalInputReply = modal.find("input[name='reply']");
-	var modalInputReplyer = modal.find("input[name='replyer']");
-	var modalInputReplyDate = modal.find("input[name='replyDate']");
-	
-	var modalModBtn = $("#modalModBtn");
-	var modalRemoveBtn = $("#modalRemoveBtn");
-	var modalRegisterBtn = $("#modalRegisterBtn");
-	
-/* 	var replyer = null;	//로그인한 아이디
-	
-	
-		<sec:authorize access="isAuthenticated()">
-			replyer = '<sec:authentication property="principal.username"/>';
-		</sec:authorize> */
-		
-		var csrHeaderName = '${_csrf.headerName}';
-		var csrTokenValue = '${_csrf.token}';
-		
-	$("#addReplyBtn").on("click", function(e){
-		modal.find("input=[name='replyer']").val(replyer);
-		modalInputReplyDate.closest("div").hide();
-		modal.find("button[id != 'modalCloseBtn']").hide();
-		
-		modalRegisterBtn.show();
-		
-		modal.modal("show");
-	});
-	
 
-	$(document).ajaxSend(function(e, xhr, options){
-		xhr.setRequestHeader(csrHeaderName, csrTokenValue);
-	});
 </script>
 
 <%@include file="../include/footer.jsp" %>

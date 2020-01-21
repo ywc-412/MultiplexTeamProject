@@ -9,6 +9,7 @@
     <div class="container">
         <div class="custom-gift-divide-border">
             <h3 class="custom-font-bold">카라멜팝콘</h3>
+            ${mygift}
         </div>
         <div class="section-top-border">
             <div class="row">

@@ -13,7 +13,8 @@ public interface MyGiftMapper {
 	
 	public List<MyGiftVO> getListWithPaging(Criteria cri);	//내 기프티콘 조회
 	
-	public MyGiftVO read(int mygiftNo); 					//내 기프티콘 상세보기
+	//public MyGiftVO read(); 					//내 기프티콘 상세보기
+	public List<MyGiftVO> read(int myGiftNo); 					//내 기프티콘 상세보기
 	
 	public int update(MyGiftVO myGift); 					//내 기프티콘 기간연장
 	

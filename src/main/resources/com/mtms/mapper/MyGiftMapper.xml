@@ -14,12 +14,15 @@
 		<result column="giftNo" property="giftNo" />
 		<result column="giftName" property="giftName" />
 		<result column="giftPrice" property="giftPrice" />
+		<result column="giftSet" property="giftSet" />
 	</resultMap>
 	
 	<resultMap type="com.mtms.domain.MyGiftVO" id="MyGift">
 		<result column="memberId" property="memberId" />
 		<result column="giftNo" property="giftNo" />
+		<result column="myGiftNo" property="myGiftNo" />
 		<result column="status" property="status" />
+		<result column="buyingDate" property="buyingDate" />
 		<result column="expireDate" property="expireDate" />
 		<result column="extendChk" property="extendChk" />
 		<collection property="giftList" resultMap="Gift"/>
@@ -27,12 +30,12 @@
 	
 	
 	<select id="getListWithPaging" resultMap="MyGift">
-		SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.expireDate, myGift.status, myGift.extendChk FROM gift, myGift WHERE gift.giftNo = myGift.giftNo AND memberId = myGift.memberId
+		SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo, myGift.expireDate, myGift.status, myGift.extendChk FROM gift, myGift WHERE gift.giftNo = myGift.giftNo AND memberId = myGift.memberId
 	</select>
 
 	
-	<select id="read" resultType="com.mtms.domain.MyGiftVO">
-	
+	<select id="read" resultMap="MyGift">
+		SELECT gift.giftNo, gift.giftName, gift.giftPrice, gift.giftSet, myGift.memberId, myGift.mygiftNo, myGift.expireDate, myGift.status, myGift.extendChk FROM gift, myGift WHERE myGift.mygiftNo = #{myGift.mygiftNo} AND gift.giftNo = myGift.giftNo AND memberId = myGift.memberId
 	</select>
 	
 	<update id="update">

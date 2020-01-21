@@ -35,9 +35,10 @@ public class MyGiftServiceImpl implements MyGiftService{
 	}
 
 	@Override
-	public MyGiftVO get(int myGiftNo) {			//내 기프티콘 상세보기
-		// TODO Auto-generated method stub
-		return null;
+	//public MyGiftVO get() {			//내 기프티콘 상세보기
+	public List<MyGiftVO> get(int myGiftNo) {			//내 기프티콘 상세보기
+		log.info("MyGift ServiceImpl list()");
+		return myGiftMapper.read(myGiftNo);
 	}
 
 	@Override

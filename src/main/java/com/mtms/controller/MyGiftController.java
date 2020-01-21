@@ -23,7 +23,6 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/myGift/")
 public class MyGiftController {
 	
-	private GiftService giftService;
 	private MyGiftService myGiftService;
 	
 //	@PostMapping("register")	//내 기프티콘 등록(P)
@@ -48,8 +47,9 @@ public class MyGiftController {
 	}
 	
 	@GetMapping("get")	//내 기프티콘 상세보기
-	public String get(@RequestParam("myGiftNo") int myGiftNo, @ModelAttribute("cri") Criteria cri, Model model) {
-		return null;
+	public void get(@RequestParam("myGiftNo") int myGiftNo, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("Gift Controller get()");
+		model.addAttribute("mygift", myGiftService.get(myGiftNo));
 	}
 	
 	@PostMapping("extend")	//내 기프티콘 기간연장(P)
