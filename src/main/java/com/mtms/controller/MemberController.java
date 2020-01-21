@@ -19,6 +19,7 @@ import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
 import com.mtms.domain.PageDTO;
 import com.mtms.service.MemberService;
+import com.mtms.service.SuggestService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -30,7 +31,9 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	
 	private MemberService memberService;
-
+	private SuggestService suggestService;
+	
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/join")
 	public void join() {
 		// 회원가입 화면 들어가기 위한 컨트롤러
@@ -170,6 +173,15 @@ public class MemberController {
 		MemberVO memberVO = memberService.getMember(memberId);
 		
 		model.addAttribute("memberInfo", memberVO);
+	}
+	
+	@GetMapping("/mySuggest")
+	public void mySuggest(Criteria cri, Model model) {
+		model.addAttribute("list", suggestService.getSuggestListWithPaging(cri));
+		
+		int total = suggestService.getTotalCount(cri);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 }

@@ -28,9 +28,8 @@ public class ReserveServiceImpl implements ReserveService{
 
 	@Override
 	public ReserveVO get(String reserveNo) {
-		// TODO Auto-generated method stub
-		// mapper.read
-		return null;
+		// 예매 내역 불러오기
+		return reserveMapper.read(reserveNo);
 	}
 
 	@Override
@@ -42,8 +41,17 @@ public class ReserveServiceImpl implements ReserveService{
 
 	@Override
 	public void register(ReserveVO rvo) {
-		// TODO Auto-generated method stub
-		// mapper.insert
+		// 예매내역에 등록하기^^
+		System.out.println("★★★★★reserve si - rvo");
+		System.out.println("RESERVE NO : " + rvo.getReserveNo());
+		System.out.println("memberid : " + rvo.getMemberId());
+		System.out.println("scheduleno : " + rvo.getScheduleNo());
+		System.out.println("seat : " + rvo.getSeat());
+		System.out.println("status : " + rvo.getStatus());
+		System.out.println("teen num : " + rvo.getTeenNum());
+		System.out.println("adult num : " + rvo.getAdultNum());
+		
+		reserveMapper.insert(rvo);
 	}
 
 	@Override

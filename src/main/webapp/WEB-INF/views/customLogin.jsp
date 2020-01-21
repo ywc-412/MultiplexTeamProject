@@ -12,6 +12,11 @@
 		alert('${findPw}');
 	</script>
 </c:if>
+<c:if test="${!empty error} ">
+	<script>
+		alert('아이디와 비밀번호를 확인해주세요');
+	</script>	
+</c:if>
 
 <div class="offers_area padding_top">
 	<div class="container">

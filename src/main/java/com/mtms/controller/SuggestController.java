@@ -42,13 +42,17 @@ public class SuggestController {
 		rttr.addFlashAttribute("registerComplete", "건의사항이 등록되었습니다!");
 		suggestService.registerSuggest(suggestVO);
 		
+		
 		return "redirect:/suggest/list";
 	}
 	
 	@PostMapping("modify")
-	public String modify(SuggestVO sugeestVO, RedirectAttributes rttr) {
+	public String modify(SuggestVO suggestVO, RedirectAttributes rttr) {
 		// 건의사항 수정
-		return null;
+		rttr.addFlashAttribute("updateComplete", "수정되었습니다");
+		suggestService.modifySuggest(suggestVO);
+		rttr.addAttribute("suggestNo", suggestVO.getSuggestNo());
+		return "redirect:/suggest/get";
 	}
 	
 	@GetMapping("list")
@@ -58,7 +62,6 @@ public class SuggestController {
 		
 		int total = suggestService.getTotalCount(cri);
 		
-		System.out.println(total);
 		
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		

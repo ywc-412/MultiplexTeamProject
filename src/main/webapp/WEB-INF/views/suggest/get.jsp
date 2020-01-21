@@ -25,11 +25,8 @@
 				</form>
 				<hr>
 				<div class="pull-right">
-					<a href="/mtms/noticeList.html">
-						<button type="button" class="btn btn-primary btn-sm">LIST</button>
-					</a> <a href="/mtms/noticeModi.html">
-						<button type="button" class="btn btn-primary btn-sm">수정</button>
-					</a>
+					<button type="button" class="btn btn-primary btn-sm">LIST</button>
+					<button type="button" class="btn btn-primary btn-sm" id="suggestModifyBtn">수정</button>
 					<button type="button" class="btn btn-danger btn-sm" id="suggestRemoveBtn">삭제</button>
 				</div>
 			</div>
@@ -40,8 +37,20 @@
 <script>
 	$(function(){
 		$('#suggestRemoveBtn').on("click", function(e){
+			var result = confirm('삭제하시겠습니까?');
+			
+			if(result == true){
+				$('#removeForm').submit();
+			}
+			
+		});
+		
+		$('#suggestModifyBtn').on("click", function(e){
+			$('#removeForm').attr("method","get");
+			$('#removeForm').attr("action","/suggest/modify");
 			$('#removeForm').submit();
 		});
+		
 	})
 </script>
 

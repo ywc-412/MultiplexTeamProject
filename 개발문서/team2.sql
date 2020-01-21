@@ -115,7 +115,8 @@ CREATE TABLE movie (
     runningTime NUMBER(10)  NOT NULL,
     summary VARCHAR2(3000),
     openDate DATE,
-    yesterdayNum NUMBER(10) DEFAULT 0
+    todayNum NUMBER(10) DEFAULT 0,
+    yesterdayNum NUMBER(10)
 );
 
 CREATE TABLE commentReply (
@@ -128,12 +129,12 @@ CREATE TABLE commentReply (
 );
 
 CREATE TABLE commentReport (
-commentReportNo NUMBER(10),
-commentNo NUMBER(10) NOT NULL,
-commentReportContent VARCHAR2(3000) NOT NULL,
-memberId VARCHAR2(20)  NOT NULL,
-commentReportResult NUMBER(1) DEFAULT 0,
-commentReportDate DATE DEFAULT SYSDATE
+    commentReportNo NUMBER(10),
+    commentNo NUMBER(10) NOT NULL,
+    commentReportContent VARCHAR2(3000) NOT NULL,
+    memberId VARCHAR2(20)  NOT NULL,
+    commentReportResult NUMBER(1) DEFAULT 0,
+    commentReportDate DATE DEFAULT SYSDATE
 );
 
 -- 영주 SQL END
@@ -216,7 +217,7 @@ CREATE INDEX idx_member_memberRegDate ON MEMBER(memberRegDate);
 ALTER TABLE movieAttach ADD CONSTRAINT fk_movieAttach_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo) ON DELETE CASCADE;
 ALTER TABLE commentReply ADD CONSTRAINT fk_commentReply_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo) ON DELETE CASCADE;
 ALTER TABLE commentReply ADD CONSTRAINT fk_commentReply_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
-ALTER TABLE commentReport ADD CONSTRAINT fk_commentReport_commentReply FOREIGN KEY (commentNo) REFERENCES commentReply(commentNo) ON DELETE SET NULL;
+ALTER TABLE commentReport ADD CONSTRAINT fk_commentReport_commentReply FOREIGN KEY (commentNo) REFERENCES commentReply(commentNo) ON DELETE CASCADE;
 ALTER TABLE commentReport ADD CONSTRAINT fk_commentReport_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 -- 영주 ALTER END
 
@@ -239,8 +240,8 @@ ALTER TABLE review ADD CONSTRAINT FK_review_movie FOREIGN KEY (movieNo)REFERENCE
 ALTER TABLE reply ADD CONSTRAINT FK_reply_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 ALTER TABLE reply ADD CONSTRAINT FK_reply_review FOREIGN KEY (reviewNo) REFERENCES review(reviewNo) ON DELETE CASCADE;
 ALTER TABLE reviewReport ADD CONSTRAINT FK_reviewReport_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
-ALTER TABLE reviewReport ADD CONSTRAINT FK_reviewReport_review FOREIGN KEY (reviewNo) REFERENCES review(reviewNo) ON DELETE SET NULL;
-ALTER TABLE replyReport ADD CONSTRAINT FK_replyReport_reply FOREIGN KEY (replyNo) REFERENCES reply(replyNo) ON DELETE SET NULL;
+ALTER TABLE reviewReport ADD CONSTRAINT FK_reviewReport_review FOREIGN KEY (reviewNo) REFERENCES review(reviewNo) ON DELETE CASCADE;
+ALTER TABLE replyReport ADD CONSTRAINT FK_replyReport_reply FOREIGN KEY (replyNo) REFERENCES reply(replyNo) ON DELETE CASCADE;
 ALTER TABLE replyReport ADD CONSTRAINT FK_replyReport_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 -- 홍이 ALTER END
 --ALTER END-------------------------------------------------------------------------------

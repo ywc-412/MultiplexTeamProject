@@ -1,26 +1,57 @@
 package com.mtms.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.mtms.domain.SeatVO;
+import com.mtms.mapper.MovieMapper;
+import com.mtms.mapper.ScheduleMapper;
 import com.mtms.mapper.SeatMapper;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
 @Service
+@AllArgsConstructor
+@Log4j
 public class SeatServiceImpl implements SeatService {
 	
 	private SeatMapper seatMapper;
 
 	@Override
 	public List<SeatVO> getStatus(int scheduleNo) {
-		// TODO Auto-generated method stub
-		return null;
+		// 영화번호/상영날짜/시간에 대한 좌석 상태 가져오기
+		return seatMapper.getStatus(scheduleNo);
 	}
 
 	@Override
-	public void register(List<SeatVO> seatList) {
-		// TODO Auto-generated method stub
+	public int modifyStatus(String seats, int scheduleNo) {
+		// 예매 완료된 좌석의 상태 변경
+		System.out.println("seat si - modifystatus : " + seats);
+		System.out.println("seat si - scheduleNo : " + scheduleNo);
+		
+		return seatMapper.modifyStatus(seats, scheduleNo);
+	}
+
+	@Override
+	public void register(int scheduleNo) {
+		// 스케줄 번호에 대한 좌석 추가
+		List<String> list = new ArrayList<String>();
+		
+		for(int i=1; i<6; i++) {
+			list.add("A"+i);
+			list.add("B"+i);
+			list.add("C"+i);
+			list.add("D"+i);
+			list.add("E"+i);
+		}
+		
+		for(int i=0; i<list.size(); i++) {
+			String seatNo = list.get(i);
+			seatMapper.insert(scheduleNo, seatNo);
+		}
 	}
 
 	@Override
@@ -34,6 +65,5 @@ public class SeatServiceImpl implements SeatService {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }

@@ -49,7 +49,7 @@
 	</select>
 	
 	<select id="getSuggest" resultType="com.mtms.domain.SuggestVO">
-		SELECT suggestNo, memberId, suggestTitle, suggestContent, suggestPrivateChk, suggestView FROM suggest WHERE suggestNo = #{suggestNo}
+		SELECT suggestNo, memberId, suggestTitle, suggestContent, suggestPrivateChk, suggestPw, suggestView FROM suggest WHERE suggestNo = #{suggestNo}
 	</select>
 	
 	<update id="updateViewCount">
@@ -61,7 +61,7 @@
 	</delete>
 	
 	<update id="updateSuggest">
-		
+		UPDATE suggest SET suggestTitle = #{suggestTitle}, suggestContent = #{suggestContent} WHERE suggestNo = #{suggestNo}
 	</update>
 	
 	<select id="getTotalCount" resultType="int">
