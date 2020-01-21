@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MovieVO;
+import com.mtms.domain.PageDTO;
 import com.mtms.domain.ReserveVO;
 import com.mtms.domain.ScheduleVO;
 import com.mtms.domain.SeatVO;
@@ -40,20 +41,12 @@ public class ReserveController {
 	private ScheduleService scheduleService;
 	private SeatService seatService;
 	private MovieService movieService;
-	// movieServiceImpl에 예매수(todayNum) +1 하는 update 구현해야함..
-	
-	@GetMapping("get")
-	public String get(RedirectAttributes rttr) {
-		// 예매 완료 후 예매 결과창으로 이동
-		// service.get
-//		System.out.println("/reserve/get : " + rttr.getFlashAttributes("reserveNo"));
-		return null;
-	}
 
 	@GetMapping("list")
 	public void list(Model model, String memberId, Criteria cri) {
 		// 회원 별 예매내역 조회
-		// service.getList
+		model.addAttribute("reserveList", reserveService.getList(memberId, cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, reserveService.getTotal(memberId, cri)));
 	}
 	
 	@PostMapping("refund")
@@ -67,7 +60,6 @@ public class ReserveController {
 	public void register(Model model) {
 		// 초기화면 -> 예매하기 (시간) 화면으로 이동
 		// 현재 상영작 영화 목록 끌어오기
-		// select distinct m.movieTitle, m.movieNo from movie m, schedule s where s.movieNo = m.movieNo and to_char(s.scheduleDate, 'yyyymmdd') between '20200117' and '20200119'
 		
 		// 날짜 구하기
 		Calendar cal = Calendar.getInstance();
@@ -112,14 +104,13 @@ public class ReserveController {
 	@PostMapping("seat")
 	public void seat(ScheduleVO svo, String movieTitle, Model model) {
 		// 예매하기 (시간) -> 예매하기 (좌석)
-		// -> seatService.
-		System.out.println("/reserve/seat");
+//		System.out.println("/reserve/seat");
 		int movieNo = svo.getMovieNo();
 		String scheduleDate = svo.getScheduleDate();
 		String scheduleTime = svo.getScheduleTime();
-		System.out.println("movieNo : " + movieNo);
-		System.out.println("scheduleDate : " + scheduleDate);
-		System.out.println("scheduleTime : " + scheduleTime);
+//		System.out.println("movieNo : " + movieNo);
+//		System.out.println("scheduleDate : " + scheduleDate);
+//		System.out.println("scheduleTime : " + scheduleTime);
 		
 		// 좌석 정보 가져오기
 			// 영화 번호, 상영 날짜, 상영 시간으로 스케줄 번호 가져오기
@@ -149,16 +140,16 @@ public class ReserveController {
 		}
 		String reserveNo = year + "-" + day + "-" + rand1 + "-" + rand2;
 		
-		System.out.println("reserveNo : " + reserveNo);
+//		System.out.println("reserveNo : " + reserveNo);
 		rvo.setReserveNo(reserveNo);
-		System.out.println("RESERVE CONTROLLER / RESERVE");
+//		System.out.println("RESERVE CONTROLLER / RESERVE");
 		// 예매번호 추가해줘야함 (생성)
-		System.out.println("scheduleNo : " + rvo.getScheduleNo());
-		System.out.println("memberId : " + rvo.getMemberId());
-		System.out.println("seat : " + rvo.getSeat());
-		System.out.println("adultNum : " + rvo.getAdultNum());
-		System.out.println("teenNum : " + rvo.getTeenNum());
-		System.out.println("status : " + rvo.getStatus());
+//		System.out.println("scheduleNo : " + rvo.getScheduleNo());
+//		System.out.println("memberId : " + rvo.getMemberId());
+//		System.out.println("seat : " + rvo.getSeat());
+//		System.out.println("adultNum : " + rvo.getAdultNum());
+//		System.out.println("teenNum : " + rvo.getTeenNum());
+//		System.out.println("status : " + rvo.getStatus());
 		
 		// 예매 테이블에 insert
 		reserveService.register(rvo);
@@ -168,7 +159,7 @@ public class ReserveController {
 		
 		ScheduleVO scheduleVO = scheduleService.getSchedule(rvo.getScheduleNo());
 		int audienceNum = rvo.getAdultNum() + rvo.getTeenNum();
-		// 영화정보에 예매자수 +1 해주기
+		// 영화정보에 예매자수 + 해주기
 		movieService.audience(scheduleVO.getMovieNo(), audienceNum);
 		
 		// 예매 결과 보내기

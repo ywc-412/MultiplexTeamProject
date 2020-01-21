@@ -4,14 +4,48 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ReserveMapper">
 
+	<!-- 예매 완료 후 예매 완료 페이지로 갈 때 예매 정보 불러옴 -->
 	<select id="read" resultType="com.mtms.domain.ReserveVO">
 		SELECT * FROM reserve WHERE reserveNo = #{reserveNo}
 	</select>
 	
-<!-- 	<select id="getList" resultType="com.mtms.domain.ReserveVO"> -->
+	<select id="getTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM reserve WHERE memberId=#{memberId}
+		]]>
+	</select>
 	
-<!-- 	</select> -->
+	<select id="getList" resultType="com.mtms.domain.ReserveVO">
+<!-- 		select * from reserve -->
+		<![CDATA[
+			SELECT c.reserveNo,
+						c.seat,
+						c.scheduleNo,
+						c.adultNum,
+						c.teenNum,
+						s.scheduleDate,
+						s.scheduleTime,
+						m.movieTitle
+			FROM (
+				SELECT rownum rn,
+							r.*,
+							s.*,
+							m.movieTitle
+				FROM reserve r, schedule s, movie m
+				WHERE memberId=#{memberId} and r.scheduleNo = s.scheduleNo and s.movieNo = m.movieNo
+				AND rownum <= #{pageNum} * #{amount}
+			) c
+			WHERE c.rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
 	
+<!-- 	select r.*, s.*, m.movieTitle from reserve r, schedule s, movie m -->
+<!-- where memberId='hue9404' and r.scheduleNo = s.scheduleNo and s.movieNo=m.movieNo; -->
+	
+	
+	
+
+	<!-- 예매 완료 시 예매 테이블에 등록 -->
 	<insert id="insert">
 		INSERT INTO reserve VALUES (#{reserveNo}, #{memberId}, #{seat}, #{scheduleNo}, #{adultNum}, #{teenNum}, #{status})
 	</insert>

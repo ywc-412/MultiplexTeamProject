@@ -8,7 +8,7 @@
 				<div class="">
 					<ul class="unordered-list">
 						<li class="custom-active">내 정보 조회</li>
-						<li>예매 내역</li>
+						<li><a href="/reserve/list?memberId=hue9404">예매 내역</a></li>
 						<li>내 리뷰</li>
 						<li>내 한줄평</li>
 						<li>내 기프티콘</li>

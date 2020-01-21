@@ -14,7 +14,9 @@ public class ReserveVO {
 //	private int movieNo;			// 영화 번호
 //	private int screenNo;			// 상영관
 	private int scheduleNo;
-//	private ScheduleVO scheduleVO; // 상영날짜/시간/영화번호/상영관 가져오기
+	
+	private ScheduleVO scheduleVO; // 상영날짜/시간/영화번호/상영관 가져오기
+	private MovieVO movieVO;
 	
 	private String seat;			// 좌석 번호 - 여러개 ,로 묶여서 들어갈 것
 	

@@ -68,18 +68,17 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Override
 	public List<ScheduleVO> getMovie(String startDate, String endDate) {
 		// 현재 상영중인 영화 목록 가져오기
-		System.out.println("schedule service impl - getMovie");
-		System.out.println("schedule service impl - start day : " + startDate + " / end day : " + endDate);
+//		System.out.println("schedule service impl - getMovie");
+//		System.out.println("schedule service impl - start day : " + startDate + " / end day : " + endDate);
 		List<ScheduleVO> list = scheduleMapper.getMovie(startDate, endDate);
-		System.out.println("si list size : " + list.size());
+//		System.out.println("si list size : " + list.size());
 		return list;
 	}
 
 	@Override
 	public List<String> getDay(int movieNo, String startDate, String endDate) {
-//	public List<ScheduleVO> getDay(int movieNo, String startDate, String endDate) {
 		// 해당 영화의 상영 날짜 받아오기
-		System.out.println("schedule service i : get day");
+//		System.out.println("schedule service i : get day");
 		List<String> list = scheduleMapper.getDay(movieNo, startDate, endDate);
 		for(int i=0; i<list.size(); i++) {
 			System.out.println("impl / day / size " + list.get(i));
@@ -90,9 +89,9 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Override
 	public List<String> getTime(int movieNo, String scheduleDate) {
 		// 해당 영화, 해당 날짜의 상영 시간 조회
-		System.out.println("si - gettime");
+//		System.out.println("si - gettime");
 		List<String> list = scheduleMapper.getTime(movieNo, scheduleDate);
-		System.out.println("gettime list size impl : " + list.size());
+//		System.out.println("gettime list size impl : " + list.size());
 		return list;
 	}
 
