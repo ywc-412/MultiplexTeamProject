@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ include file="../include/header.jsp" %>
 
 <!-- Start Align Area -->
@@ -73,46 +76,12 @@
 									<th class="custom-table-size2">영화 제목</th>
 									<th class="custom-table-size2">관람 일시</th>
 								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
-								<tr>
-									<td>조커</td>
-									<td>2019.12.18</td>
-								</tr>
+								<c:forEach items="${reserveList }" var="r">
+									<tr>
+										<td>${r.movieTitle }</td>
+										<td><c:set var="sdate" value="${r.scheduleDate }"/>${fn:substring(sdate,0,4)}.${fn:substring(sdate,4,6) }.${fn:substring(sdate,6,8) }</td>
+									</tr>
+								</c:forEach>
 							</table>
 						</div>
 						<ul class="pagination justify-content-center">

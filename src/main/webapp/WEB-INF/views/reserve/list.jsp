@@ -36,7 +36,7 @@
 	                            <td>
 	                            	<c:if test="${r.status == 1 }">
 	                            			<form id="reviewForm" action="/review/register">
-	                            				<input type="text" name="movieNo" value="${r.movieNo }">
+	                            				<input type="hidden" name="movieNo" value="${r.movieNo }">
 			                            		<button class="btn btn-primary">리뷰작성</button>
 	                            			</form>
 	                            	</c:if>

@@ -19,6 +19,7 @@ import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
 import com.mtms.domain.PageDTO;
 import com.mtms.service.MemberService;
+import com.mtms.service.ReserveService;
 import com.mtms.service.SuggestService;
 
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class MemberController {
 	
 	private MemberService memberService;
 	private SuggestService suggestService;
+	private ReserveService reserveService;
 	
 	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/join")
@@ -117,6 +119,7 @@ public class MemberController {
 	@GetMapping("/clientInfo")
 	public void clientGet(String memberId, Model model) {
 		model.addAttribute("member", memberService.getMember(memberId));
+		model.addAttribute("reserveList", reserveService.getList(memberId, new Criteria(1,10)));
 	}
 	
 	@GetMapping("/myInfo")
