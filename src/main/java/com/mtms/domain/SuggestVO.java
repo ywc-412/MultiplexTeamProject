@@ -10,4 +10,5 @@ public class SuggestVO {
 	private String suggestContent;			// 건의사항 내용
 	private boolean suggestPrivateChk;		// 건의사항 비밀글 여부
 	private String suggestPw;				// 건의사항 비밀글 비밀번호
+	private int suggestView;
 }

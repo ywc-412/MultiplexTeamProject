@@ -101,6 +101,7 @@ public class MovieController {
 		return null;
 	}
 	
+	// 한나 - 영화명 검색
 	@RequestMapping(value="getName/{movieName}", 
 			produces = { MediaType.APPLICATION_XML_VALUE,
 								MediaType.APPLICATION_JSON_UTF8_VALUE})
@@ -108,17 +109,5 @@ public class MovieController {
 		System.out.println("MOVIE CONTROLLER - GETNAME");
 		return new ResponseEntity<>(movieService.getMovieName(movieName), HttpStatus.OK);
 	}
-	
-//	@PostMapping("getName")
-//	public String getName(String movieName, RedirectAttributes rttr, Model model) {
-//		System.out.println("MOVIE CONTROLLER - getName");
-//		System.out.println("movieName : " + movieName);
-//		List<MovieVO> list = movieService.getMovieName(movieName);
-//		rttr.addFlashAttribute("movieList", list);
-////		model.addAttribute("movieList", list);
-//		System.out.println("controller - list size : " + list.size());
-//		return "redirect:/schedule/register";
-//	}
-	
 	
 }

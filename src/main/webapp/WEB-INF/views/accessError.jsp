@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예매완료</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+	<h3>accessErrorPage</h3>
 </body>
 </html>

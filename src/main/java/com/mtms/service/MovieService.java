@@ -31,5 +31,11 @@ public interface MovieService {
 	
 	// 한나 -> 영화명 검색
 	public List<MovieVO> getMovieName(String movieName);
+	
+	// 한나 -> 예매시 영화의 오늘 관객수 +1
+	public void audience(int movieNo, int audienceNum);
+	
+	// 희홍 -> 영화명 가져오기
+	public String getMovie(int movieNo);
 
 }

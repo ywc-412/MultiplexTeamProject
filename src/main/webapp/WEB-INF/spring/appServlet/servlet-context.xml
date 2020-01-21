@@ -27,6 +27,6 @@
 	<context:component-scan base-package="com.mtms.controller" />
 	<!--  exception 은 web과 관련된 부분이라 servlet-context.xml에 넣음 -->
 	
-	
+	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" proxy-target-class="true"/>
 	
 </beans:beans>
