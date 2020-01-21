@@ -24,17 +24,13 @@ public class Task {
 		// 현재 날짜, 시간 구하기
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
-				
 		Date now = new Date();
-				
 		String scheduleDate = format1.format(now);
 		String time = format2.format(now);
-				
 		System.out.println("@Scheduled - date : " + scheduleDate);
 		System.out.println("@Scheduled - time : " + time);
 		
 		reserveMapper.changeStatus(scheduleDate, time);
+		reserveMapper.beforeStatus(scheduleDate, time);
 	}
-	
-
 }

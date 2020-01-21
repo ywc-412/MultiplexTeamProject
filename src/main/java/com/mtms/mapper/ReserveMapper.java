@@ -25,6 +25,9 @@ public interface ReserveMapper {
 	// 상영시간이 지난 영화 - 상태값 변경 - fin
 	public void changeStatus(@Param("scheduleDate") String scheduleDate, @Param("time") String time);
 	
+	// 상영시간 30분 전 - 상태값 변경
+	public void beforeStatus(@Param("scheduleDate") String scheduleDate, @Param("time") String time);
+	
 //	// 예매 수정하기 (환불한다던가)
 //	public int update(String reserveNum);
 }
