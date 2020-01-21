@@ -63,7 +63,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public List<MemberVO> getMemberList(Criteria cri) {
 		return memberMapper.getMemberList(cri);
 	}

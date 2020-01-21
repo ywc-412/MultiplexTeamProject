@@ -42,9 +42,9 @@ public class SuggestServiceImpl implements SuggestService{
 	}
 
 	@Override
-	public int modifySuggest(SuggestVO svo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int modifySuggest(SuggestVO suggestVO) {
+		
+		return suggestMapper.updateSuggest(suggestVO);
 	}
 
 	@Override

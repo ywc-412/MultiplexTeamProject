@@ -59,18 +59,18 @@
 							<div class="main-menu d-none d-lg-block">
 								<nav>
 									<ul id="navigation">
-										<li><a class="active" href="index.html">영화</a></li>
-										<li><a href="#">예매 <i class="ti-angle-down"></i></a>
+										<li><a class="" href="/movie/list">영화</a></li>
+										<li><a class="" href="/reserve/register">예매 <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
 												<li><a href="/reserve/register">영화 예매</a></li>
 												<li><a href="/schedule/get">상영시간표</a></li>
 											</ul>
 										</li>
-										<li><a href="#">리뷰</a></li>
-										<li><a href="#">기프티콘</a></li>
-										<li><a href="/suggest/list">건의사항</a></li>
-										<li><a href="#">공지사항</a></li>
-										<li><a href="#">습득물</a></li>
+										<li><a class="" href="/review/list">리뷰</a></li>
+										<li><a class="" href="/gift/list">기프티콘</a></li>
+										<li><a class='${list == null? "" : "active"}' href="/suggest/list">건의사항</a></li>
+										<li><a class="" href="/notice/list">공지사항</a></li>
+										<li><a class="" href="/lost/list">습득물</a></li>
 										
 									</ul>
 								</nav>
