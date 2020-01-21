@@ -7,7 +7,7 @@ import com.mtms.domain.GiftVO;
 import com.mtms.domain.MyGiftVO;
 
 public interface MyGiftService {
-	public void register(MyGiftVO myGift);					//내 기프티콘 등록
+	public void myInsertSelectKey(MyGiftVO myGift); 					//내 기프티콘 등록
 	
 	public List<MyGiftVO> getListWithPaging(Criteria cri);  //내 기프티콘 조회
 	

@@ -70,9 +70,9 @@
 											</ul>
 										</li>
 										<li><a href="#">리뷰</a></li>
-										<li><a href="#">기프티콘</a></li>
+										<li><a href="/gift/list">기프티콘</a></li>
 										<li><a href="#">건의사항</a></li>
-										<li><a href="#">공지사항</a></li>
+										<li><a href="/notice/list">공지사항</a></li>
 										<li><a href="#">습득물</a></li>
 									</ul>
 								</nav>

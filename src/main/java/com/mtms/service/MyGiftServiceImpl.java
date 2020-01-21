@@ -26,16 +26,12 @@ public class MyGiftServiceImpl implements MyGiftService{
 	private MemberMapper memberMapper;
 	private GiftMapper giftMapper;
 	
-	@Override
-	public void register(MyGiftVO myGift) {	//내 기프티콘 등록
-		log.info("Mygift ServiceImpl register,,");
-		myGiftMapper.insertSelectKey(myGift);
-	}
+
 	
 	@Override
 	public List<MyGiftVO> getListWithPaging(Criteria cri) {	//내 기프티콘 조회
-		// TODO Auto-generated method stub
-		return null;
+		log.info("MyGift ServiceImpl list()");
+		return myGiftMapper.getListWithPaging(cri);
 	}
 
 	@Override
@@ -60,5 +56,10 @@ public class MyGiftServiceImpl implements MyGiftService{
 	public int getTotalCount(Criteria cri) {	//내 기프티콘 총 갯수
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void myInsertSelectKey(MyGiftVO myGift) {
+		myGiftMapper.myInsertSelectKey(myGift);		
 	}
 }

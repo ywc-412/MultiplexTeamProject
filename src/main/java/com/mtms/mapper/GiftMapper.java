@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.GiftVO;
+import com.mtms.domain.MyGiftVO;
 
 public interface GiftMapper {
 	public void insertSelectKey(GiftVO gift); //기프티콘 등록
@@ -15,4 +16,9 @@ public interface GiftMapper {
 	public int update(GiftVO gift); //기프티콘 수정
 	
 	public int delete(int giftNo); //기프티콘 삭제
+	
+	public GiftVO pay(int giftNo);	//기프티콘 결제완료
+	
+	public List<GiftVO> giftList();							//내 기프티콘 조회 중 기프티콘 테이블 부분
+	
 }

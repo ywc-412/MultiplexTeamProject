@@ -16,13 +16,17 @@
                     <img src="/mtms/img/popcorn.jpg" alt="" class="img-fluid">
                 </div>
                 <div class="col-md-9 mt-sm-20">
-                <c:out value="${gift.giftPrice}" />
+               		
+                    <p>품목 : <c:out value="${gift.giftNo}" /></p>
                     <p>품목 : <c:out value="${gift.giftName}" /></p>
                     <p>금액 : <c:out value="${gift.giftPrice}" /></p>
-                    <p>구성 : <c:out value="${gift.giftSet}" /></p>
-                    <p>구입일자 : 2020.01.13</p>
-                    <p>만료일자 : 2020.02.12</p>
+                    <p>구성 : <c:out value="${gift.giftSet}" /></p>  
+                    <!-- <p>구입일자 : 2020.01.13</p>
+                    <p>만료일자 : 2020.02.12</p> -->
+              
                 </div>
+
+                
             </div>
             <div class="custom-gift-divide-border"></div>
         </div>

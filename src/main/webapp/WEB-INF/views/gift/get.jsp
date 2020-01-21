@@ -36,11 +36,11 @@
 						<label>가격&ensp; : &ensp;</label><input pattern="###,###" name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly>
 					</div>
 					<div class="form-group">
-						<label>구성&ensp; : &ensp;</label> <span name="giftSet"><c:out value="${gift.giftSet}" /></span>
+						<label>구성&ensp; : &ensp;</label><span name="giftSet"><c:out value="${gift.giftSet}" /></span>
 					</div>
 					<div class="qty mt-5">
 						<span class="minus bg-dark">-</span> 
-							<input type="number" class="num-count" name="qty" value="1"> 
+							<input type="number" class="num-count" id="qty" name="qty" value="1">
 						<span class="plus bg-dark">+</span>
 						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly></span>
 					</div>
@@ -72,12 +72,22 @@
 			
 			<form action="/mygift/register" id="payForm" method="post">
 				<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
-				<input type="hidden" name="giftName" value="${gift.giftName}"> 
-				<input type="hidden" name="giftSet" value="${gift.giftSet}"> 
+				<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
+				<input type="hidden" name="giftSet" id="giftSet" value="${gift.giftSet}"> 
 				<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
 				<input type="hidden" name="totalPrice">
 				<input type="button" id="payment" class="btn btn-primary float-right custom-button-gift" value="구입"/>
 			</form>
+			
+			<form action="/gift/paying" method="post" id="payRealForm">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+				<input type="hidden" name="memberId" value="jj">
+				<div id="payHere">
+					
+				</div>
+			</form>
+			
+			
 		</div>
 		<!-- 버튼 e -->
 	</div>
@@ -87,25 +97,34 @@
 <script>
 	
 //결제
+$(function(){
+	$('#payment').on("click", function(){
+		var giftNo = ${gift.giftNo};
+		var giftName = $('#giftName').val();
+		var giftPrice = $('.totalPrice').val();
+		var giftSet = $('#giftSet').val();
+		payment(giftNo, giftName, giftPrice, giftSet);
+	});
+})
 
 
-function payment(giftNo, giftName, giftPrice) {	
+
+function payment(giftNo, giftName, giftPrice, giftSet) {	
 	
 	var IMP = window.IMP; // 생략가능
-	IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	IMP.init('imp92933704'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
 	IMP.request_pay({
 		pg: 'inicis', // version 1.1.0부터 지원.
 		pay_method: 'card',
 		merchant_uid: 'merchant_' + new Date().getTime()+30,
-		name: $('.giftName').val(),
-		amount: $('.totalPrice').val(),
+		name: giftName,
+		amount: 10,
 		buyer_email: 'iamport@siot.do',
 		buyer_name: '박진주',
 		buyer_tel: '010-6626-2818',
 		buyer_addr: '서울특별시 강남구 삼성동',
-		buyer_postcode: '123-456',
-		m_redirect_url: '/gift/pay'
+		buyer_postcode: '123-456'
 	}, function(rsp) {
 		if (rsp.success) {
 			//컨트롤러로 값
@@ -114,14 +133,25 @@ function payment(giftNo, giftName, giftPrice) {
 			msg += '상품명 : ' + rsp.name;
 			msg += '상점 거래ID : ' + rsp.merchant_uid;
 			msg += '결제 금액 : ' + rsp.paid_amount;
-			msg += '카드 승인번호 : ' + rsp.apply_num;				
-			} else {
+			msg += '카드 승인번호 : ' + rsp.apply_num;
+			// payHere에 input hidden append 를 시켜주고 그걸 form
+			var str = "<input type='hidden' value='"+ giftNo +"' name='giftNo'/>";
+			str += "<input type='hidden' value='"+ giftName +"' name='giftName'/>";
+			str += "<input type='hidden' value='"+ giftPrice +"' name='giftPrice'/>";
+			str += "<input type='hidden' value='"+ giftSet +"' name='giftSet'/>";
+			
+			$('#payHere').append(str);
+			$('#payRealForm').submit(); 
+		} else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;
+			$('#payHere').html("");
 		}
 		alert(msg);			
 	});
 }
+	
+	
 	
 	//form 전송
 	$(function(){
@@ -172,10 +202,12 @@ function payment(giftNo, giftName, giftPrice) {
         $(document).on('click', '.plus', function () {
             $('.num-count').val(parseInt($('.num-count').val()) + 1);
             $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));         
+            console.log($('.totalPrice').val());
         });
         $(document).on('click', '.minus', function () {
             $('.num-count').val(parseInt($('.num-count').val()) - 1);
             $('.totalPrice').val(parseInt($('.totalPrice').val() - $('.giftPrice').val()));
+            console.log($('.totalPrice').val());
             if ($('.num-count').val() == 0) {
                 $('.num-count').val(1);
                 alert("1개 이상 구입 가능");

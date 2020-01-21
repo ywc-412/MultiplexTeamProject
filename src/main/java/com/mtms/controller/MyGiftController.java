@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MyGiftVO;
+import com.mtms.service.GiftService;
 import com.mtms.service.MyGiftService;
 
 import lombok.AllArgsConstructor;
@@ -19,28 +20,31 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @AllArgsConstructor
-@RequestMapping("/mygift/")
+@RequestMapping("/myGift/")
 public class MyGiftController {
 	
+	private GiftService giftService;
 	private MyGiftService myGiftService;
 	
-	@PostMapping("register")	//내 기프티콘 등록(P)
-	public String register(MyGiftVO myGift, RedirectAttributes rttr) {
-		log.info("myGift Controller register()");
-		myGiftService.register(myGift);
-		rttr.addFlashAttribute("myGift", myGift.getMyGiftNo());
-		return "redirect:/mygift/list";
-		
-	}
+//	@PostMapping("register")	//내 기프티콘 등록(P)
+//	public String register(MyGiftVO myGift, RedirectAttributes rttr) {
+//		log.info("myGift Controller register()");
+//		myGiftService.register(myGift);
+//		rttr.addFlashAttribute("myGift", myGift.getMyGiftNo());
+//		return "redirect:/mygift/list";
+//		
+//	}
 	
-	@GetMapping("register")	//내 기프티콘 등록(G)
-	public void register() {
-		log.warn("Mygift Controller register get,,,");
-	}
+//	@GetMapping("register")	//내 기프티콘 등록(G)
+//	public void register() {
+//		log.warn("Mygift Controller register get,,,");
+//	}
 	
 	@GetMapping("list")//내 기프티콘 목록조회
 	public void list(Criteria cri, Model model) {
-		
+		log.info("Gift Controller list()");
+//		model.addAttribute("gift", giftService.giftList());
+		model.addAttribute("mygift", myGiftService.getListWithPaging(cri));
 	}
 	
 	@GetMapping("get")	//내 기프티콘 상세보기

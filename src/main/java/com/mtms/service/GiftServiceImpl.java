@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mtms.mapper.GiftAttachMapper;
 import com.mtms.mapper.GiftMapper;
+import com.mtms.mapper.MyGiftMapper;
 import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
+import com.mtms.domain.MyGiftVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -22,6 +24,9 @@ public class GiftServiceImpl implements GiftService{
 	
 	@Setter(onMethod_ = @Autowired)
 	private GiftAttachMapper giftAttachMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private MyGiftMapper mygiftMapper;
 	
 	//기프티콘 등록
 	@Transactional
@@ -48,12 +53,6 @@ public class GiftServiceImpl implements GiftService{
 	public List<GiftVO> getList() {		
 		log.info("getList..........");
 		return giftMapper.getList();
-	}
-
-	@Override
-	public GiftVO pay(int giftNo) {		//기프티콘 결제완료
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	//기프티콘 상세보기
@@ -100,5 +99,20 @@ public class GiftServiceImpl implements GiftService{
 		//log.warn("giftPicList..........");
 		return giftAttachMapper.giftPicList();
 	}
+	
+	@Transactional
+	@Override
+	public GiftVO pay(int giftNo, MyGiftVO myGift) {
+		log.warn("Gift ServiceImpl pay,,");
+		return giftMapper.pay(giftNo);
+		
+	}
+
+	@Override
+	public List<GiftVO> giftList() {
+		//log.warn("giftList..........");
+		return giftMapper.giftList();
+	}
+
 
 }

@@ -11,10 +11,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,7 +24,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.JsonArray;
 import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
+import com.mtms.domain.MyGiftVO;
 import com.mtms.service.GiftService;
+import com.mtms.service.MyGiftService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -34,6 +38,7 @@ import lombok.extern.log4j.Log4j;
 public class GiftController {
 	
 	private GiftService giftService;
+	private MyGiftService myGiftService;
 	
 	//기프티콘 목록
 	@GetMapping("list")	
@@ -136,5 +141,39 @@ public class GiftController {
 			}
 		});
 	}
+	
+	@PostMapping("paying")
+	private String paying(GiftVO gift, MyGiftVO myGift, RedirectAttributes rttr) {
+		// insert 하고, select 가 동시에 되야하는거지..
+		// myGift에 내가 주문한 기프티콘을 insert한다. 
+		System.out.println("giftNo : " + gift.getGiftNo());
+		System.out.println("GiftName : " + gift.getGiftName());
+		System.out.println("GiftPrice : " + gift.getGiftPrice());
+		System.out.println("GiftSet : " + gift.getGiftSet());
+		
+		myGiftService.myInsertSelectKey(myGift);
+		//rttr.addFlashAttribute("result", myGift.getMyGiftNo());	
+		rttr.addAttribute("giftNo", gift.getGiftNo());	
+		rttr.addAttribute("GiftName", gift.getGiftName());	
+		rttr.addAttribute("giftPrice", gift.getGiftPrice());	
+		rttr.addAttribute("GiftSet", gift.getGiftSet());	
+		
+		
+		return "redirect:/gift/pay";	
+	}
+
+	
+	@GetMapping("pay")
+	private void pay(@RequestParam("giftNo") int giftNo, @RequestParam("GiftName") String GiftName, @RequestParam("giftPrice") int giftPrice, @RequestParam("GiftSet") String GiftSet, Model model) {
+		model.addAttribute("gift", giftService.get(giftNo));
+		model.addAttribute("pic", giftService.giftPicList());
+	}
+//	
+//	@PostMapping("pay")
+//	private String pay(MyGiftVO myGift, RedirectAttributes rttr) {
+//		log.warn("Gift Controller pay post,,,,");
+//		giftService.myInsertSelectKey(myGift);
+//		return "redirect:/mygift/list";
+//	}
 	
 }

@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.MyGiftMapper">
-	<select id="insertSelectKey" resultType="com.mtms.domain.MyGiftVO">
+	 <insert id="myInsertSelectKey">
+	  	<selectKey keyProperty="myGiftNo" order="BEFORE" resultType="int">
+	  		SELECT seq_mygift.nextval FROM dual
+	  	</selectKey>
+	  		INSERT INTO myGift VALUES(#{memberId}, #{giftNo}, #{myGiftNo}, 0 , SYSDATE, SYSDATE + (INTERVAL '1' MONTH), 0)
+	  </insert> 
 	
+
+ 	<resultMap type="com.mtms.domain.GiftVO" id="Gift">
+		<result column="giftNo" property="giftNo" />
+		<result column="giftName" property="giftName" />
+		<result column="giftPrice" property="giftPrice" />
+	</resultMap>
+	
+	<resultMap type="com.mtms.domain.MyGiftVO" id="MyGift">
+		<result column="memberId" property="memberId" />
+		<result column="giftNo" property="giftNo" />
+		<result column="status" property="status" />
+		<result column="expireDate" property="expireDate" />
+		<result column="extendChk" property="extendChk" />
+		<collection property="giftList" resultMap="Gift"/>
+	</resultMap>
+	
+	
+	<select id="getListWithPaging" resultMap="MyGift">
+		SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.expireDate, myGift.status, myGift.extendChk FROM gift, myGift WHERE gift.giftNo = myGift.giftNo AND memberId = myGift.memberId
 	</select>
-	
-	<select id="getListWithPaging" resultType="com.mtms.domain.MyGiftVO">
-	
-	</select>
+
 	
 	<select id="read" resultType="com.mtms.domain.MyGiftVO">
 	
