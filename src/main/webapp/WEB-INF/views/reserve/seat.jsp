@@ -113,16 +113,31 @@
 			}, function(rsp){
 				if(rsp.success){
 					// controller로 값 보내기
-					var msg = '결제가 완료되었습니다.';
-					msg += '고유ID : ' + rsp.imp_uid;
-					msg += '상점 거래 ID : ' + rsp.merchant_uid;
-					msg += '결제 금액 : ' + rsp.paid_amount;
-					msg += '카드 승인번호 : ' + rsp.apply_num;
+// 					var msg = '결제가 완료되었습니다.';
+// 					msg += '고유ID : ' + rsp.imp_uid;
+// 					msg += '상점 거래 ID : ' + rsp.merchant_uid;
+// 					msg += '결제 금액 : ' + rsp.paid_amount;
+// 					msg += '카드 승인번호 : ' + rsp.apply_num;
+					$("input[name=adultNum]").val(adultNum);
+					$("input[name=teenNum]").val(teenNum);
+					
+					var seatStr = "";
+					$("input[type=checkbox]:checked").each(function(index, item){
+						if(index!=0){
+							seatStr += ', ';
+						}
+						seatStr += "'" + $(this).val() + "'";
+					});
+					$("input[name=seat]").val(seatStr);
+					
+					$("#seatForm").submit();
+					
 				} else {
 					var msg = '결제가 실패되었습니다.';
 					msg += '에러 내용 : ' + rsp.error_msg;
+					alert(msg);
 				}
-				alert(msg);
+// 				alert(msg);
 			});
 		});
 		
@@ -137,7 +152,7 @@
 // 				$("input[name=adultNum]").val(adultNum);
 // 				$("input[name=teenNum]").val(teenNum);
 				
-// 				// 선택된 좌석 번호들 , 로 이어붙이기
+				// 선택된 좌석 번호들 , 로 이어붙이기
 // 				var seatStr = "";
 // 				$("input[type=checkbox]:checked").each(function(index, item){
 // 					if(index!=0){
@@ -149,7 +164,7 @@
 				
 // 				payment(adultNum, teenNum);
 				
-// // 				$("#seatForm").submit();
+// 				$("#seatForm").submit();
 // 			}); // 결제하기 버튼 클릭 END
 			
 			$("input[type=checkbox]").on("click", function(){
