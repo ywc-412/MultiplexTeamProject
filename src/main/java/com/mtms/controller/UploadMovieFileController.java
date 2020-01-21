@@ -33,7 +33,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Controller
 @Log4j
 @AllArgsConstructor
-@RequestMapping("/movieUpload")
+@RequestMapping("/movieUpload/*")
 public class UploadMovieFileController {
 	
 	//오늘 날짜로 년월일 폴더생성
@@ -64,14 +64,14 @@ public class UploadMovieFileController {
 	}
 	
 	//ajax의 get방식으로 첨부파일을 업로드 할수 있는 화면을 처리하는 메서드
-	@GetMapping("/uploadAjax")
+	@GetMapping("uploadAjax")
 	public void uploadAjax() {
 		log.info("uploadAjax");
 	}
 	
 	//ajax의 post방식으로 첨부파일 업로드를 처리하는 메서드
 //	@PreAuthorize("isAuthenticated()")
-	@PostMapping("/uploadAjaxAction")
+	@PostMapping("uploadAjaxAction")
 	@ResponseBody //@RestController를 쓸수 없어서
 	public ResponseEntity<List<MovieAttachVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		
@@ -129,7 +129,7 @@ public class UploadMovieFileController {
 	}
 	
 	//파일 섬네일 보여주기
-	@GetMapping("/display")
+	@GetMapping("display")
 	@ResponseBody
 	//파일을 받아야해서 바이트로 써준다
 	public ResponseEntity<byte[]> getFile(String movieFileName){
@@ -154,7 +154,7 @@ public class UploadMovieFileController {
 	
 	//파일 삭제
 //	@PreAuthorize("isAuthenticated()")
-	@PostMapping("/deleteFile")
+	@PostMapping("deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){
 		

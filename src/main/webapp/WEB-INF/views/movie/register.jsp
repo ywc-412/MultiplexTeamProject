@@ -18,6 +18,7 @@
 		<div class="row justify-content-lg-center">
 			<div class="col-lg-8 col-md-8">
 				<form role="form" action="/movie/register" method="post" id="frm">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<div class="form-group">
 						<label for="movieTitle">영화제목</label>
 						<input type="text" class="form-control" id="movieTitle" name="movieTitle" placeholder="영화 제목 입력">
@@ -187,8 +188,8 @@
 			return true;
 		}
 		
-// 		var csrfHeaderName = "${_csrf.headerName}";	//CSRF 토큰 관련 변수 추가
-// 		var csrfTokenValue = "${_csrf.token}";	//CSRF
+		var csrfHeaderName = "${_csrf.headerName}";	//CSRF 토큰 관련 변수 추가
+		var csrfTokenValue = "${_csrf.token}";	//CSRF
 		
 		//첨부 파일 클릭 이벤트 처리
 		$("input[type='file']").change(function(e){
@@ -213,9 +214,9 @@
 					dataType : 'json',
 					processData : false,
 					contentType : false,
-// 					beforeSend : function(xhr){	//전송 전 추가 헤더 설정
-// 						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-// 					},
+					beforeSend : function(xhr){	//전송 전 추가 헤더 설정
+						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
 					success : function(result){
 						alert("업로드 성공");
 						console.log(result);
@@ -271,9 +272,9 @@
 				data : {fileName: targetFile, type: type },
 				dataType : 'text',
 				type : 'POST',
-// 				beforeSend : function(xhr){	//전송 전 추가 헤더 설정
-// 					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-// 				},
+				beforeSend : function(xhr){	//전송 전 추가 헤더 설정
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
 				success : function(result){
 					alert(result);
 					targetLi.remove();

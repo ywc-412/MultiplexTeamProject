@@ -73,8 +73,10 @@
         <div class="col-xl-12">
              <div class="section_title yeong-center">
 		   		<button data-oper="list" class='btn btn-primary yeong-list'>List</button>
-		   		<button data-oper="modify" class='btn btn-primary'>영화 수정</button>
-		   		<button data-oper="remove" class='btn btn-danger'>영화 삭제</button>
+		   		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			   		<button data-oper="modify" class='btn btn-primary'>영화 수정</button>
+			   		<button data-oper="remove" class='btn btn-danger'>영화 삭제</button>
+		   		</sec:authorize>
     		</div>
     	</div>
     </div>
@@ -97,7 +99,11 @@
 				        <a href="#" class="star4">★</a>
 				        <a href="#" class="star5">★</a>
 					</span>
-					<input class="yeong-commentInput yeong_input" type="hidden" id="memberId" name='memberId' value="dudwn">
+ 	                <sec:authentication property="principal" var="pinfo"/>
+ 	                	<sec:authorize access="isAuthenticated()">
+ 	                		<input class="yeong-commentInput yeong_input" type="hidden" id="memberId" name='memberId' value="${pinfo.username }">
+ 	                	</sec:authorize>
+					
 					<input class="yeong-commentInput yeong_input" type="hidden" id="commentStar" name='commentStar'>
 			        <input class="yeong-commentInput yeong_input" type='text' id="commentContent" name='commentContent' placeholder="한줄평을 등록해주세요">
 			        <button id="commentRegisterBtn" type="button" class='btn btn-primary yeong-list'>등록</button>
@@ -118,15 +124,7 @@
 					</tr>
 				</thead>
 				<tbody class="chat">
-<!-- 					<tr> -->
-<!-- 						<td scope="col" class="yeongth10">평점</td> -->
-<!-- 						<td scope="col" class="yeongth10">아이디</td> -->
-<!-- 						<td scope="col" class="yeongth60">한줄평</td> -->
-<!-- 						<td colspan="2" scope="col" class="yeongth20" > -->
-<!-- 							<a href='#' class='custom-blue' id='commentUpdate'>수정</a> -->
-<!-- 							<a href='#' class='custom-red' id='commentDelete'>삭제</a> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
+				
 				</tbody>
 			</table>
 		</div>
@@ -160,7 +158,10 @@
 					
 					<input class="yeong-commentInput" type="hidden" id="movieNo" name='movieNo'>
 			        <input class="yeong-commentInput" type="hidden" id="commentStar" name='commentStar'>
-			        <input class="yeong-commentInput" type="hidden" id='memberId' name='memberId' value='memberId' readonly="readonly" value="dudwn">
+			        <sec:authentication property="principal" var="pinfo"/>
+ 	                	<sec:authorize access="isAuthenticated()">
+			        		<input class="yeong-commentInput" type="hidden" id='memberId' name='memberId' value='memberId' readonly="readonly" value="${pinfo.username }">
+			        	</sec:authorize>
 			        <input class="yeong-commentInput" type="hidden" id="commentDate" name='commentDate' value='commentDate' readonly="readonly">
 			            
 				</div>
@@ -215,13 +216,6 @@
   		$('#commentStar').val(5);
 	});
 	
-// 	$(document).on("click", "#commentReport", function(e){
-// 		e.preventDefault();
-// 		console.log($(this).data("commentno"));
-// 		var commentNo = $(this).data("commentno");
-		
-// 		location.href="/report/comment/register?commentNo=" + $(this).data("commentno");
-// 	});
 	
 	</script>
 	<script>
@@ -337,17 +331,27 @@
 	    				} else if(list[i].commentStar == 5){
 	    					list[i].commentStar = "★★★★★";
 	    				} 
+						
+	    				console.log("로그인한 아이디  :" + memberId);
+	    				console.log("작성한 아이디 : " + list[i].memberId );
 	    				
-	    				
+	    				if(memberId == list[i].memberId){
+	    					console.log("같다");
+	    				}
+	    			
+// 	    				<sec:authorize access="hasRole('ROLE_ADMIN')">
+// 							<a href="/movie/register" class="btn btn-primary">영화등록</a>
+// 						</sec:authorize>
+					
 						str += "<tr data-commentNo='"+list[i].commentNo+"'>";
 						str += "  <td scope='row' class='yeongth10 yeong-starRed'>" + list[i].commentStar + "</td>";
 						str += "  <td class='yeongth10'>" + list[i].memberId + "</td>";
 						str += "  <td scope='col' class='yeongth60'>" + list[i].commentContent + "</td>";
-						str += "  <td colspan='2' class='yeongth20'><a href='#' class='custom-blue' id='commentUpdate' data-commentNo='"+list[i].commentNo+"'>수정</a>";
-						str += "     <a href='#' id='commentDelete' class='custom-red' data-commentNo='"+list[i].commentNo+"'>삭제</a>";
-						str += "     <a href='#' id='commentReport' class='custom-red' data-commentNo='"+list[i].commentNo+"'>신고</a></td>";
-						
-						str += "</td>"
+						str += "  	<td colspan='2' class='yeongth20'>";
+						str += "  		<a href='#' class='custom-blue' id='commentUpdate' data-commentNo='"+list[i].commentNo+"'>수정</a>";
+						str += "        <a href='#' id='commentDelete' class='custom-red' data-commentNo='"+list[i].commentNo+"'>삭제</a>";
+						str += "    <td colspan='2' class='yeongth20'><a href='#' id='commentReport' class='custom-red' data-commentNo='"+list[i].commentNo+"'>신고</a></td>";
+						str += "</td>";
 	    				
 	    			}
 	    			replyUL.html(str);
@@ -427,19 +431,19 @@
 	    	var commentRegisterBtn = $("#commentRegisterBtn");
 	    
 	    	
-	    	var replyer = null; //로그인한 아이디
+	    	var memberId = null; //로그인한 아이디
 	    	
-// 	    	<sec:authorize access="isAuthenticated()">
-// 	    		replyer = '<sec:authentication property="principal.username" />';
-// 	    	</sec:authorize>
+	    	<sec:authorize access="isAuthenticated()">
+	    		memberId = '<sec:authentication property="principal.username" />';
+	    	</sec:authorize>
 	    	
-// 	    	var csrfHeaderName = "${_csrf.headerName}";	//CSRF 토큰 관련 변수 추가
-// 	    	var csrfTokenValue = "${_csrf.token}";	//CSRF
+	    	var csrfHeaderName = "${_csrf.headerName}";	//CSRF 토큰 관련 변수 추가
+	    	var csrfTokenValue = "${_csrf.token}";	//CSRF
 	    	
 	    	//beforeSend 대신 사용
-// 	    	$(document).ajaxSend(function(e, xhr, options){	//전송 전 추가 헤더 설정
-// 	    		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-// 	    	});
+	    	$(document).ajaxSend(function(e, xhr, options){	//전송 전 추가 헤더 설정
+	    		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	    	});
 	    	
 	    	commentRegisterBtn.on("click", function(e){
 	            var comment = {
@@ -469,7 +473,6 @@
 	    	   		
 	    	   		modal.data("commentNo", data.commentNo);
 	    	   		console.log(modal.data('commentNo'));
-	    	   		
 	    	   		
 	    	    	modalInputStar.val(data.commentStar);		
 	    	    	modalInputContent.val(data.commentContent);
@@ -530,7 +533,7 @@
 	
 		             console.log(originalReplyer + " + " + memberId);
 		             
-		             if("dudwn" != originalReplyer){
+		             if(memberId != originalReplyer){
 		                // 자신의 댓글이 아닌 경우
 		                alert('자신의 댓글만 삭제 가능합니다.');
 		                return ;

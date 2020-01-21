@@ -21,9 +21,11 @@
     <div class="container">
         <div class="row justify-content-lg-center">
 		    <div class="section_title movie_register">
-				<a href="/movie/register" class="btn btn-primary">영화등록</a>
+		    
+	            <sec:authorize access="hasRole('ROLE_ADMIN')">
+					<a href="/movie/register" class="btn btn-primary">영화등록</a>
+				</sec:authorize>
 			</div>
-			
 			
 			<div class='movie_search'>
 			    <form id="searchForm" action="/movie/list" method="get">
@@ -121,7 +123,7 @@
 	    		
 	    		var str = "";
 	    		
-	    		$.get("/movie//getAttachList", {movieNo : $(this).attr("id") }, function(result) {
+	    		$.get("/movie/getAttachList", {movieNo : $(this).attr("id") }, function(result) {
 	    			
 	    			var fileCallPath = encodeURIComponent( result[0].movieUploadPath + "/s_" + result[0].movieUuid + "_" + result[0].movieFileName);
 					var originPath = result[0].movieUploadPath + "\\" + result[0].movieUuid + "_" + result[0].movieFileName;
