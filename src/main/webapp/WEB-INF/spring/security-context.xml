@@ -20,9 +20,12 @@
 	</security:http>
 
 	<security:authentication-manager>
+	
 		<security:authentication-provider user-service-ref="customUserDetailsService">
 			<security:password-encoder ref="bcryptPasswordEncoder"/>
 			
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
 </beans>

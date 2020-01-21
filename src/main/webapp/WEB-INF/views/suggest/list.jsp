@@ -7,6 +7,11 @@
 			alert('${registerComplete}');
 		</script>
 	</c:if>
+	<c:if test="${!empty suggestRemoveComplete}">
+		<script>
+			alert('${suggestRemoveComplete}');
+		</script>
+	</c:if>
 <!--board-start-->
 	<section id="tabs" class="project-tab">
 		<div class="container">
