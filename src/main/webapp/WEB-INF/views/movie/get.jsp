@@ -24,35 +24,66 @@
 				<ul>
 				</ul>
 			</div>
-<!-- 		    <img class="yeong_moveImg" src="img/instragram/1.jpg" alt=""> -->
 		</div>
 		<div class="movie-container-right">
-			<h3>${movie.movieTitle }</h3>
+			<h3 class="yeongth_movieGetTilte">${movie.movieTitle }</h3>
 	        <hr>
-			<h4>감독 : <span class="yeong-span">${movie.movieManager }</span></h4>
-			<h4>주연배우 : <span class="yeong-span">${movie.movieMainActor } </span></h4>
-			<h4>조연배우 : <span class="yeong-span">${movie.movieSupportActor } </span></h4>
-			<h4>장르 : <span class="yeong-span">${movie.movieGenre }</span></h4>
-			<h4>등급 : <span class="yeong-span">
-				<c:choose>
-			         <c:when test = "${movie.movieGrade eq 0}">
-			            	전체 관람가
-			         </c:when>
-			         <c:when test = "${movie.movieGrade eq 12}">
-			            	12세 관람가
-			         </c:when>
-			         <c:when test = "${movie.movieGrade eq 15}">
-			            	15세 관람가
-			         </c:when>
-			         <c:otherwise>
-			            	청소년 관람 불가
-			         </c:otherwise>
-			    </c:choose>
-			</span></h4>
-			<h4>러닝타임 : <span class="yeong-span">${movie.runningTime } 분</span></h4>
-			<h4>예매율 : <span class="yeong-span">${movie.yesterdayNum } %</span></h4>
-			<h4>개봉일 : <span class="yeong-span"><fmt:formatDate value="${movie.openDate }" pattern="yyyy.MM.dd"/></span></h4>
-			<h4>줄거리 : <span class="yeong-span">${movie.summary }</span></h4>
+	        <table>
+				<tbody>
+					<tr>
+						<td scope="col" class="yeongth_movie30">감독</td>
+						<td scope="col" class="yeongth_movie70">${movie.movieManager }</td>
+					</tr>
+					<tr>
+						<td scope="col" class="yeongth_movie30">주연배우</td>
+						<td scope="col" class="yeongth_movie70">${movie.movieMainActor }</td>
+					</tr>
+					<tr>
+						<td scope="col" class="yeongth_movie30">조연배우</td>
+						<td scope="col" class="yeongth_movie70">${movie.movieSupportActor }</td>
+					</tr>
+					<tr>
+						<td scope="col" class="yeongth_movie30">장르</td>
+						<td scope="col" class="yeongth_movie70">${movie.movieGenre }</td>
+					</tr>
+					<tr>
+						<td scope="col" class="yeongth_movie30">등급</td>
+						<td scope="col" class="yeongth_movie70">
+							<c:choose>
+						        <c:when test = "${movie.movieGrade eq 0}">
+						           	 전체 관람가
+						        </c:when>
+						        <c:when test = "${movie.movieGrade eq 12}">
+						            12세 관람가
+						        </c:when>
+						        <c:when test = "${movie.movieGrade eq 15}">
+						           	15세 관람가
+						        </c:when>
+						        <c:otherwise>
+						           	청소년 관람 불가
+						        </c:otherwise>
+						    </c:choose>
+					    </td>
+					</tr>
+					<tr>
+						<td scope="col" class="yeongth_movie30">러닝타임</td>
+						<td scope="col" class="yeongth_movie70">${movie.runningTime } 분</td>
+					</tr>
+					<tr>
+						<td scope="col" class="yeongth_movie30">예매율</td>
+						<td scope="col" class="yeongth_movie70">${ percentMovie } %  </td>
+					</tr>
+					<tr>
+						<td scope="col" class="yeongth_movie30">개봉일</td>
+						<td scope="col" class="yeongth_movie70"><fmt:formatDate value="${movie.openDate }" pattern="yyyy.MM.dd"/></td>
+					</tr>
+					<tr>
+						<td scope="col" class="yeongth_movie30">줄거리</td>
+						<td scope="col" class="yeongth_movie70">${movie.summary }</td>
+					</tr>
+					
+				</tbody>
+			</table>
 		</div>
     </div>
     
@@ -64,7 +95,7 @@
          		<!--  검색 조건과 키워드 파라미터 추가 -->
         <input type="hidden" id="type" name="type" value='<c:out value="${cri.type }"/>'>
         <input type="hidden" id="keyword" name="keyword" value='<c:out value="${cri.keyword }"/>'>
-        <input type="hidden" id="commentNo" name="commentNo" value=''>
+<!--         <input type="hidden" id="commentNo" name="commentNo" value=''> -->
 	</form><br>
     
     <hr class="clear">
@@ -82,8 +113,13 @@
     </div>
     <div class="container">
 	    <div class="score_area">
-	    	<div class="section_title">
-                    <h2 class="yeong-allStar">전체 평점 : ★★★★★ (100%) </h2>
+	    	<div class="section_title yeong-star yeong-starRed" id="star_grade_total">
+	    		<h2 class="starTotalTitle">평균 평점 </h2>
+			    <h2 class="total">
+				</h2>
+                <h2 class="yeong-allStar">
+                   	( ${percentComment } %)
+                </h2>
             </div>
 	    </div>
     </div>
@@ -92,6 +128,7 @@
         <div class="row">
 			<div class='comment_register'>
 			    <form id="searchForm" action="#" method="get">
+			    
 			    	<span class="yeong-star yeong-starRed" id="star_grade">
 				        <a href="#" class="star1">★</a>
 				        <a href="#" class="star2">★</a>
@@ -146,18 +183,17 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<span class="yeong-star yeong-starRed" id="star_grade">
-				        <a href="#" class="star1">★</a>
-				        <a href="#" class="star2">★</a>
-				        <a href="#" class="star3">★</a>
-				        <a href="#" class="star4">★</a>
-				        <a href="#" class="star5">★</a>
+					<span class="yeong-star yeong-starRed" id="star_grade_modify">
+				        <a href="#" class="starModify1">★</a>
+				        <a href="#" class="starModify2">★</a>
+				        <a href="#" class="starModify3">★</a>
+				        <a href="#" class="starModify4">★</a>
+				        <a href="#" class="starModify5">★</a>
 					</span>
-					
+					<input class="yeong-commentInput" type="hidden" id="commentStarModify" name='commentStar'>
 			        <input class="yeong-commentInput" type='text' id="commentContent" name='commentContent' placeholder="한줄평을  수정해주세요">
 					
 					<input class="yeong-commentInput" type="hidden" id="movieNo" name='movieNo'>
-			        <input class="yeong-commentInput" type="hidden" id="commentStar" name='commentStar'>
 			        <sec:authentication property="principal" var="pinfo"/>
  	                	<sec:authorize access="isAuthenticated()">
 			        		<input class="yeong-commentInput" type="hidden" id='memberId' name='memberId' value='memberId' readonly="readonly" value="${pinfo.username }">
@@ -167,7 +203,7 @@
 				</div>
 				<div class="modal-footer justify-content-center">
 					<button type="button" id="modalModify" class="btn btn-primary">수정</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+					<button type="button" data-oper="cancel" id="modalCancel"class="btn btn-secondary" data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>
@@ -193,6 +229,11 @@
 	
 	<script src="/resources/js/commentReply.js"></script>
 	<script>
+	
+	
+	
+	
+	
 	$('#star_grade a').click(function(){
 		$(this).parent().children("a").removeClass("on");
 		$(this).addClass("on").prevAll("a").addClass("on");
@@ -217,11 +258,71 @@
 	});
 	
 	
+	$('#star_grade_modify a').click(function(){
+		$(this).parent().children("a").removeClass("on");
+		$(this).addClass("on").prevAll("a").addClass("on");
+		
+		return false;
+	});
+	
+	$('.starModify1').on("click",function(e){	
+  		$('#commentStarModify').val(1);
+	});
+	$('.starModify2').on("click",function(e){	
+  		$('#commentStarModify').val(2);
+	});
+	$('.starModify3').on("click",function(e){	
+  		$('#commentStarModify').val(3);
+	});
+	$('.starModify4').on("click",function(e){	
+  		$('#commentStarModify').val(4);
+	});
+	$('.starModify5').on("click",function(e){	
+  		$('#commentStarModify').val(5);
+	});
+	
+	
 	</script>
 	<script>
+		$(function(){
+			var totalStar = '<fmt:formatNumber value="${totalComment}" type="pattern" pattern="0.00" />';
+			var totalComment = totalStar * 100;
+	    	console.log(" 평균 : " + totalComment);
+	    	
+	    	var total = $(".total");
+	    	var str = "";
+	    	
+	    	if(totalComment >= 0 && totalComment < 20){
+	    		$('.starTotal1').addClass("on").prevAll("a").addClass("on");
+	    		str += "<h2 class='starTotalTitle yeong-starRed'>★</h2>";
+	    		total.html(str);
+	    	} else if(totalComment >= 20 && totalComment < 40){
+	    		$('.starTotal2').addClass("on").prevAll("a").addClass("on");
+	    		str += "<h2 class='starTotalTitle yeong-starRed'>★★</h2>";
+	    		total.html(str);
+	    	} else if(totalComment >= 40 && totalComment < 60){
+	    		$('.starTotal3').addClass("on").prevAll("a").addClass("on");
+	    		str += "<h2 class='starTotalTitle yeong-starRed'>★★★</h2>";
+	    		total.html(str);
+	    	} else if(totalComment >= 60 && totalComment < 80){
+	    		$('.starTotal4').addClass("on").prevAll("a").addClass("on");
+	    		str += "<h2 class='starTotalTitle yeong-starRed'>★★★★</h2>";
+	    		total.html(str);
+	    	} else if(totalComment >= 80 && totalComment < 100){
+	    		$('.starTotal5').addClass("on").prevAll("a").addClass("on");
+	    		str += "<h2 class='starTotalTitle yeong-starRed'>★★★★★</h2>";
+	    		total.html(str);
+	    	} 
+	    	
+		});
 		
 	
 	    $(function(){
+	    	
+	    	
+	    	
+	    	
+	    	
 	    	var movieNo = '<c:out value="${movie.movieNo}"/>';
 	    	
 	    	$.getJSON("/movie/getAttachList", {movieNo: movieNo}, function(result){
@@ -296,6 +397,7 @@
 	    	showList(1);
 
 	    	function showList(page){
+	    		
 	    		commentService.getList({movieNo : movieNo, pageNum:pageNum||1}, //페이지 번호가 없을경우 1로설정
 	    			function(replyCnt, list){
 	    			var str = "";
@@ -310,7 +412,6 @@
 	    			
 	    			//댓글목록이 없으면 replyUL의 내용을 비우고 중단
 	    			if(list == null || list.length == 0){
-//	     				replyUL.html("");
 	    				//마지막페이지에 댓글이1개 일때 삭제하면 그전페이지로 이동
 	    				if(pageNum>1){
 	    					pageNum = pageNum - 1;
@@ -332,32 +433,21 @@
 	    					list[i].commentStar = "★★★★★";
 	    				} 
 						
-	    				console.log("로그인한 아이디  :" + memberId);
-	    				console.log("작성한 아이디 : " + list[i].memberId );
 	    				var adminId = '<c:out value="admin"/>';
-	    				console.log(adminId);
 	    				
 	    				var auth = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}';
-	    				console.log(auth);
 	    				
 	    				var adminAuth = '<c:out value="[ROLE_ADMIN, ROLE_MEMBER]"/>';
 	    				var memberAuth = '<c:out value="[ROLE_MEMBER]"/>';
-	    				console.log(adminAuth);
 	    				
-						if(auth == adminAuth){
-							console.log("권한 같다");
-						}
-	    				
-	    				if(memberId == list[i].memberId){
-	    					console.log("같다");
-	    				}
-	    			
 						str += "<tr data-commentNo='"+list[i].commentNo+"'>";
 						str += "  <td scope='row' class='yeongth10 yeong-starRed'>" + list[i].commentStar + "</td>";
 						str += "  <td class='yeongth10'>" + list[i].memberId + "</td>";
 						str += "  <td scope='col' class='yeongth60'>" + list[i].commentContent + "</td>";
-						if(auth == adminAuth){
-							str += "    <td colspan='2' class='yeongth20'><a href='#' id='commentDelete' class='custom-red' data-commentNo='"+list[i].commentNo+"'>삭제</a></td>";	
+						if(auth == adminAuth && memberId == list[i].memberId){
+							str += "  	<td colspan='2' class='yeongth20'>";
+							str += "  		<a href='#' class='custom-blue' id='commentUpdate' data-commentNo='"+list[i].commentNo+"'>수정</a>";
+							str += "        <a href='#' id='commentDelete' class='custom-red' data-commentNo='"+list[i].commentNo+"'>삭제</a>";
 						}else if(memberId == list[i].memberId){
 							str += "  	<td colspan='2' class='yeongth20'>";
 							str += "  		<a href='#' class='custom-blue' id='commentUpdate' data-commentNo='"+list[i].commentNo+"'>수정</a>";
@@ -460,18 +550,33 @@
 	    	});
 	    	
 	    	commentRegisterBtn.on("click", function(e){
-	            var comment = {
-	                  commentStar : inputStar.val(),
-	                  commentContent : inputContent.val(),
-	                  movieNo : movieNo,
-	                  memberId : inputMemberId.val()
-	            };
-	            commentService.add(comment, function(result){
-	               alert(result);
-	               inputContent.val("");
-	               pageNum = 1;			// 등록할때 페이지번호가 1로 가게할려고
-	               showList(pageNum);
-	            });
+	    		var commentStar = $('#commentStar').val();
+		  		var commentContent = $('#commentContent').val();
+		  		
+	    		if( commentStar == "" || commentStar.length < 0){
+			 	    alert('별점을 선택해주세요');
+			 	    $('#commentStar').focus();
+			 	    return;
+			    } else if( commentContent == "" || commentContent.length < 0){
+			    	alert('한줄평을 입력해주세요');
+			 	    $('#commentContent').focus();
+			 	   return;
+			    } else{
+		            var comment = {
+		                  commentStar : inputStar.val(),
+		                  commentContent : inputContent.val(),
+		                  movieNo : movieNo,
+		                  memberId : inputMemberId.val()
+		            };
+		            commentService.add(comment, function(result){
+		               alert(result);
+		               inputStar.val("");
+		               inputContent.val("");
+		               $(".star1").parent().children("a").removeClass("on"); // 등록하면 별점 초기화
+		               pageNum = 1;			// 등록할때 페이지번호가 1로 가게할려고
+		               showList(pageNum);
+		            });
+			    }
 	        });
 	    	
 	    	$(document).on("click", "#commentUpdate", function(e){
@@ -485,6 +590,18 @@
 	    	   		console.log(data.commentDate);
 	    	   		console.log(data.commentNo);
 	    	   		
+	    	   		if(data.commentStar == 1){
+	    	   			$('.starModify1').addClass("on").prevAll("a").addClass("on");
+    				} else if(data.commentStar == 2){
+    					$('.starModify2').addClass("on").prevAll("a").addClass("on");
+    				} else if(data.commentStar == 3){
+    					$('.starModify3').addClass("on").prevAll("a").addClass("on");
+    				} else if(data.commentStar == 4){
+    					$('.starModify4').addClass("on").prevAll("a").addClass("on");
+    				} else if(data.commentStar == 5){
+    					$('.starModify5').addClass("on").prevAll("a").addClass("on");
+    				} 
+	    	   		
 	    	   		modal.data("commentNo", data.commentNo);
 	    	   		console.log(modal.data('commentNo'));
 	    	   		
@@ -493,12 +610,8 @@
 	    	    	modalmemberId .val(data.memberId);
 	    	    	modalcommentDate.val(data.commentDate);	
 	    	    	modalmovieNo.val(data.movieNo);	
-	    	    	
-// 	    	   		modalInputReplyDate.val(replyService.displayTime(data.replyDate)).attr("readonly", "readonly");	
 	    	   		
 	    	   		modal.data("commentNo", data.commentNo);
-	    	   		
-// 	    	   		modal.find("button[id != 'modalCloseBtn']").hide();	
 	    			
 	    			$('#exampleModal').modal('show');
 	    	   		
@@ -510,6 +623,7 @@
 	    	
 	      	//댓글 수정 버튼 이벤트 처리 - 동적이게 처리할필요없음 .on("click"
 	        $(document).on("click", "#modalModify", function(e){
+
 	        	console.log(modal.data('commentNo'));
 	        	
 	        	commentService.update({
@@ -520,7 +634,7 @@
 	    		}, function(result){
 	    			alert("수정완료");
 	    			
-	    			modal.modal("hide");				
+	    			modal.modal("hide");			
 	    	        showList(pageNum);
 	    			
 	    		}, function(err){

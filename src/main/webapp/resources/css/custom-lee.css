@@ -407,3 +407,61 @@
 	float: right;
 	margin-bottom: 10px;
 }
+
+#star_grade_modify a{
+	text-decoration: none;
+	color: gray;
+}
+#star_grade_modify a.on{
+	color: red;
+}
+
+.yeongth_movie30{
+	width: 20%;
+}
+.yeongth_movie70{
+	width: 80%;
+}
+
+@media (max-width: 767px) {
+	.yeongth_movie30{
+		width: 30%;
+	}
+	.yeongth_movie70{
+		width: 100%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.yeongth_movie30{
+		width: 20%;
+	}
+	.yeongth_movie70{
+		width: 80%;
+	}
+}
+
+.yeongth_movieGetTilte{
+	font-weight: bold;
+}
+
+.starTotalTitle{
+	float: left;
+	margin-right: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

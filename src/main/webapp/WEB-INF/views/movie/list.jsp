@@ -48,7 +48,13 @@
     <div class="container">
         <div class="row">
 		    <div class="movie_area" id="movieContArea">
+		    	<c:set var = "sum" value = "0" />
 		    	<c:forEach items="${moveList }" var="moveList">
+		    		<c:set var= "sum" value="${sum + moveList.yesterdayNum}"/>
+		    		
+		    	</c:forEach>
+		    	<c:forEach items="${moveList }" var="moveList">
+		    		
 			        <div class="single_movie uploadDiv" id="${moveList.movieNo}">
 			        	<div class="uploadResult">
 	       					<ul>
@@ -58,7 +64,7 @@
 			            <div class="ovrer">
 			            	<a href="${moveList.movieNo }" class="move">
 			                  	  ${moveList.movieTitle }<br>
-			                  	  ${moveList.movieNo}
+			                  	  <fmt:formatNumber value="${(moveList.yesterdayNum / sum) * 100 } " type="pattern" pattern="0.00" /> %
 			                </a>
 			            </div>
 			        </div>

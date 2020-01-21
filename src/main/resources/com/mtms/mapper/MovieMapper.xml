@@ -35,7 +35,7 @@
 		<![CDATA[
         	 SELECT * FROM (
            		 SELECT /*+INDEX_DESC(movie PK_MOVIE) */
-              		 rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary
+              		 rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary, yesterdayNum
            		 FROM movie 
             	 WHERE 
       	]]> 
@@ -43,7 +43,7 @@
       	<include refid="criteria"></include>
      	<![CDATA[     
             rownum <= #{pageNum} * #{amount}
-            ) WHERE mno > (#{pageNum} - 1) * #{amount}
+            ) WHERE mno > (#{pageNum} - 1) * #{amount} ORDER BY yesterdayNum DESC
       	]]>
 	</select>
 	
@@ -68,5 +68,14 @@
 	   	insert into movie(movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary)
 		values(#{movieNo}, #{movieTitle}, #{movieManager}, #{movieMainActor}, #{movieSupportActor}, #{movieGenre}, #{movieGrade}, #{runningTime}, #{openDate}, #{summary})
 	</insert>
+	
+	<!-- 예매율 구하기 -->
+	<select id="sumMovie" resultType="int">
+		SELECT SUM(yesterdayNum) FROM movie
+	</select>
+
+	<select id="sumGetMovie" resultType="int">
+		SELECT SUM(yesterdayNum) FROM movie WHERE movieNo = #{movieNo }
+	</select>
 	
 </mapper>

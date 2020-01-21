@@ -77,7 +77,7 @@
 					</div>
 					<div class="form-group">
 						<label for="openDate">개봉일</label>
-						<input id="datepicker" placeholder="개봉일" name="openDate" value="<fmt:formatDate value="${movie.openDate }" pattern="yyyy.MM.dd"/>">
+						<input id="datepicker" placeholder="개봉일" name="openDate" value="<fmt:formatDate value="${movie.openDate }" pattern="MM/dd/yyyy"/>">
 					</div>
 					
 					<div class="form-group">
@@ -108,12 +108,29 @@
 			  </div>
 		  </div>
 	  </div>
-	
+		
+	<form id='operForm' action="/movie/get" method="get">
+		<input type="hidden" id="movieNo" name="movieNo" value='<c:out value="${movie.movieNo }"/>'>
+		
+		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
+		<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'>
+         		<!--  검색 조건과 키워드 파라미터 추가 -->
+        <input type="hidden" id="type" name="type" value='<c:out value="${cri.type }"/>'>
+        <input type="hidden" id="keyword" name="keyword" value='<c:out value="${cri.keyword }"/>'>
+	</form><br>
 	<script>
 	
 	$(function(){
 		var formObj = $("form[role='form']");
 		console.log(formObj);
+		
+		var openDate = $('#datepicker').val();
+  		console.log("openDate =  " + openDate);
+  		
+  		var fmtDate = '<fmt:formatDate value="${movie.openDate }" pattern="MM/dd/yyyy"/>';
+  		
+  		console.log(fmtDate);
+  		
 // 	    $("button[type='submit']").on("click",function(e){
 	    $('#regButton').on("click",function(e){	
 	  		
@@ -125,6 +142,12 @@
 	  		var movieGenre = $('#movieGenre').val();
 	  		var runningTime = $('#runningTime').val();
 	  		var poster = $('#poster').val();
+	  		
+	  		var openDate = $('#datepicker').val();
+	  		console.log("openDate =  " + openDate);
+	  		
+	  		var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;
 		    
 		    if( movieTitle == "" || movieTitle.length < 0){
 		 	    $('#title').text('영화 제목을 입력해주세요');
@@ -141,12 +164,9 @@
 		    } else if( runningTime == "" || runningTime.length < 0){
 		 	    $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
 		 	    $('#runningTime').focus();
-		    } 
-// 		    else if( uploadFile == "" || uploadFile.length < 0){
-// 		 	    $('#picture').text('포스터를 선택해주세요');
-// 		 	    $('#uploadFile').focus();
-// 		    } 
-		    else {
+		    } else {
+		    	var str = "";
+		    	
 		    	$(".uploadResult ul li").each(function(i, obj){
 					var jobj = $(obj);
 					
@@ -157,6 +177,7 @@
 				});
 		    	formObj.append(str).submit();
 		    }
+		    
 	    }); //끝
 	
 	(function(){	
@@ -296,9 +317,13 @@
 		
 	    $('#cancel').on("click", function() {
 	        var result = confirm(" 취소하시겠습니까? ");
+	        var operForm = $("#operForm");
 	        
 	        if(result) {
-	        	location.href="/movie/list";
+		    	operForm.attr("action", "/movie/get")
+		    	operForm.submit();
+		    	
+// 	        	location.href="/movie/list";
 	        }else{
 	        	return;
 	        }

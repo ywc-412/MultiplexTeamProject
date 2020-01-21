@@ -25,14 +25,11 @@ public interface CommentMapper {
 	//한줄평 삭제
 	public int delete(int commentNo);
 	
-	
 	//한줄평 등록
 	public int insert(CommentVO comment);
 	
 	//한줄평 조회
 	public CommentVO read(int commentNo);
-	
-	
 	
 	//한줄평 갯수
 	public int commentCount(Criteria cri);
@@ -40,7 +37,10 @@ public interface CommentMapper {
 	//한줄평 조회(페이징)
 	public List<CommentVO> commentList(@Param("cri") Criteria cri);
 	
+//	<평점 평균>
+	public int sumStar(int movieNo);
 	
+	public int sumComment(int movieNo);
 	
 	
 }

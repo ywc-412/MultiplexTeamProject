@@ -63,4 +63,19 @@
 	<select id="read" resultType="com.mtms.domain.CommentVO">
 		SELECT * FROM commentReply WHERE commentNo = #{commentNo }
 	</select>
+	
+	<!-- 평균 평점 구하기 -->
+	<select id="sumStar" resultType="int">
+		SELECT SUM(commentStar) FROM commentReply WHERE movieNo = #{movieNo }
+	</select>
+	
+	<select id="sumComment" resultType="int">
+		SELECT COUNT(*) FROM commentReply WHERE movieNo = #{movieNo }
+	</select>
+	
+	
+	
+	
+	
+	
 </mapper>

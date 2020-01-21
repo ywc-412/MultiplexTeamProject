@@ -31,6 +31,18 @@ public interface MovieService {
 	
 	//영화 첨부파일
 	public List<MovieAttachVO> getAttachList(int movieNo);
+
+	//평균 평점
+	public int totalStar(int movieNo);
+	
+	//평균 평점
+	public int totalComment(int movieNo);
+	
+	//예매율
+	public int totalMovie(int movieNo);
+	
+	//예매율
+	public int totalGetMovie(int movieNo);
 	
 
 }

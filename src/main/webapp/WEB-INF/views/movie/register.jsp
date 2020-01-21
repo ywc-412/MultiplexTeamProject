@@ -110,7 +110,10 @@
 	<script>
 	$(function(){
 		var formObj = $("form[role='form']");
-		console.log(formObj);
+
+		var openDate = $('#datepicker').val();
+  		console.log("openDate =  " + openDate);
+  		
 // 	    $("button[type='submit']").on("click",function(e){
 	    $('#regButton').on("click",function(e){	
 	    	
@@ -130,6 +133,9 @@
 	  		var movieGenre = $('#movieGenre').val();
 	  		var runningTime = $('#runningTime').val();
 	  		var poster = $('#poster').val();
+	  		
+	  		var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;
 		    
 		    if( movieTitle == "" || movieTitle.length < 0){
 		 	    $('#title').text('영화 제목을 입력해주세요');
@@ -146,12 +152,9 @@
 		    } else if( runningTime == "" || runningTime.length < 0){
 		 	    $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
 		 	    $('#runningTime').focus();
-		    } 
-// 		    else if( uploadFile == "" || uploadFile.length < 0){
-// 		 	    $('#picture').text('포스터를 선택해주세요');
-// 		 	    $('#uploadFile').focus();
-// 		    } 
-		    else {
+		    } else if(files.length == 0){
+		    	alert('파일을 선택해주세요');
+		    } else {
 		    	$(".uploadResult ul li").each(function(i, obj){
 					var jobj = $(obj);
 					

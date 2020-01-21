@@ -2,12 +2,14 @@ package com.mtms.service;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MovieAttachVO;
 import com.mtms.domain.MovieVO;
+import com.mtms.mapper.CommentMapper;
 import com.mtms.mapper.MovieAttachMapper;
 import com.mtms.mapper.MovieMapper;
 
@@ -21,6 +23,7 @@ public class MovieServiceImpl implements MovieService{
 	
 	private MovieMapper movieMapper;
 	private MovieAttachMapper movieAttachMapper;
+	private CommentMapper commentMapper;
 	
 	//영화 등록
 	@Transactional
@@ -78,8 +81,24 @@ public class MovieServiceImpl implements MovieService{
 	//영화 상세보기
 	@Override
 	public MovieVO get(int movieNo) {
+		
 		MovieVO mvo = movieMapper.read(movieNo);
+		
 		return mvo;
+	}
+	
+	//별점 평균구하기
+	@Override
+	public int totalStar(int movieNo) {
+		
+		return commentMapper.sumStar(movieNo);
+	}
+	
+	//별점 평균구하기
+	@Override
+	public int totalComment(int movieNo) {
+		
+		return commentMapper.sumComment(movieNo);
 	}
 	
 	//영화 페이징 조회
@@ -111,6 +130,20 @@ public class MovieServiceImpl implements MovieService{
 		
 		return movieAttachMapper.findByNo(movieNo);
 	}
+
+	@Override
+	public int totalMovie(int movieNo) {
+		
+		return movieMapper.sumMovie(movieNo);
+	}
+
+	@Override
+	public int totalGetMovie(int movieNo) {
+
+		return movieMapper.sumGetMovie(movieNo);
+	}
+
+	
 
 	
 	

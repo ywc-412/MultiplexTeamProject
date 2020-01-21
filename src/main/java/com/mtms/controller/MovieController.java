@@ -63,6 +63,22 @@ public class MovieController {
 	@GetMapping("get")
 	public void get(Model model, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
 		System.out.println("컨트롤러 상세보기 get");
+		
+		//평균 평점
+		int totalStar = movieService.totalStar(movieNo);
+		int totalComment = movieService.totalComment(movieNo);
+		double avgStar = totalComment / (double) totalStar;
+		int percentStar = (int) (avgStar*100);
+		
+		//예매율
+		int totalMovie = movieService.totalMovie(movieNo);
+		int totalGetMovie = movieService.totalGetMovie(movieNo);
+		double avgMovie = totalGetMovie / (double) totalMovie;
+		int percentMovie = (int) (avgMovie*100);
+		
+		model.addAttribute("percentMovie", percentMovie);
+		model.addAttribute("percentComment", percentStar);
+		model.addAttribute("totalComment", avgStar);
 		model.addAttribute("movie", movieService.get(movieNo));
 	}
 	
@@ -116,7 +132,6 @@ public class MovieController {
 	}
 	
 	//영화 등록 창 보여주기
-//	@Secured("{ROLE_ADMIN}")
 //	@PreAuthorize("isAuthenticated()")
 	@GetMapping("register")
 	public void register() {
