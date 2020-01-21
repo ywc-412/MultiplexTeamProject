@@ -1,60 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ include file="../include/header.jsp" %>
-    
-    <c:if test="${!empty registerComplete}">
-		<script>
-			alert('${registerComplete}');
-		</script>
-	</c:if>
-	<c:if test="${!empty suggestRemoveComplete}">
-		<script>
-			alert('${suggestRemoveComplete}');
-		</script>
-	</c:if>
-<!--board-start-->
-	<section id="tabs" class="project-tab">
-		<div class="container">
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ include file="../include/header.jsp"%>
+
+<div class="whole-wrap">
+	<div class="container box_1170">
+		<div class="section-top-border">
 			<div class="row">
-				<div class="col-md-12">
-					<div class="custom-board-title">
-						<h3 class="custom-font-bold">건의사항</h3>
-					</div>
-					
-					<div class="custom-search-position">
-						<a href="/suggest/register" class="boxed-btn3">등록</a>
-						<!--search-start-->
-						<div class="">
-							
-							<form id="searchForm" action="/suggest/list" method="get">
-								<button value="${pageMaker.cri.keyword }" type="submit" class="btn btn-primary btn-sm  float-right">검색</button>
-			                	<c:set var="type" value="${pageMaker.cri.type }"/>
-			
-								<input type="text" name="keyword" placeholder="검색어를 입력하세요" class="input-group-btn  float-right">
-								<div class="default-select custom-text-left custom-margin-choi float-right" style="margin: 4px; margin-top: -6px;" id="default-select">
-									<select name='type'>
-										<option value="" <c:out value="${pageMaker.cri.type==null?'selected':'' }"/>>--</option>
-										<option value="T" <c:out value="${pageMaker.cri.type=='T'?'selected':'' }"/>>제목</option>
-										<option value="W" <c:out value="${pageMaker.cri.type=='W'?'selected':'' }"/>>작성자</option>
-										<option value="TW" <c:out value="${pageMaker.cri.type=='TW'?'selected':'' }"/>>제목, 작성자</option>
-									</select>
-								</div>
-								<input type="hidden" name='pageNum' value="${pageMaker.cri.pageNum }">
-								<input type="hidden" name='amount' value="${pageMaker.cri.amount }">
-							</form>
-						</div>
-					</div>
-					<br><br>
-					<!--search-end-->
-					<!-- include start-->
-						<%@ include file="../include/suggestListInclude.jsp" %>
-					<!-- include end -->
-				</div>
+
+				<!-- 마이페이지 인클루드....start -- row 밑에서 include-->
+				<%@ include file="../include/myPageMenu.jsp"%>
+				<!-- 마이페이지 인클루드....end -->
+
+				<%@ include file="../include/suggestListInclude.jsp" %>
 			</div>
 		</div>
-	</section>
-	<!--board-end-->
-	<!-- Modal -->
+	</div>
+</div>
 <div id="modal" class="searchModal">
 	<div class="search-modal-content">
 		<div class="page-header">
@@ -141,7 +105,5 @@
 		})
 		
 	</script>
-					
-					
-	
-	<%@ include file="../include/footer.jsp" %>
+
+<%@ include file="../include/footer.jsp"%>

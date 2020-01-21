@@ -20,12 +20,10 @@
 							</div>
 							<div class="float-left custom-margin-sg-reg">비밀글</div>
 							<div class="float-left" id="pwHere">
-								<!-- pw input append 자리 -->
 								<input type="hidden" class="form-control custom-sg-pw-input" id="suggestPw" name="suggestPw" placeholder="비밀번호를 입력해주세요">
 							</div>
 							<div id="pwChkHidden">
-								<!-- pw chk hidden append 자리 -->
-								<input type="hidden" class="form-control custom-sg-pw-input" value="0" id="suggestPwChk" name="suggestPwChk">
+								<input type="hidden" class="form-control custom-sg-pw-input" id="suggestPrivateChk" name="suggestPrivateChk" value="0">
 							</div>
 						</div>
 						<br><br>
@@ -57,7 +55,8 @@
 	$(function() {
 		$('#suggestPw').val("");
 		var currentDate = new Date();
-
+		console.log($('#suggestPwChk').val());
+		
 		var msg = currentDate.getFullYear() + ".";
 		msg += (currentDate.getMonth() + 1) + ".";
 		msg += currentDate.getDate();
@@ -65,15 +64,17 @@
 		$('current').append(msg);
 		
 		$('input#primary-checkbox').on("click", function(e){
-			$('#pwChkHidden').html("");
+			
 			if($("input#primary-checkbox").is(":checked") == true) {
 				$('#suggestPw').attr("type","password");
-				$('#pwChkHidden').val("1");
+				$('#suggestPrivateChk').val("1");
+				console.log($('#suggestPrivateChk').val());
 				$('#suggestPw').show();
 			}else{
 				$('#suggestPw').attr("type","hidden");
 				$('#suggestPw').val("");
-				$('#pwChkHidden').val("0");
+				$('#suggestPrivateChk').val("0");
+				console.log($('#suggestPrivateChk').val());
 				$('#suggestPw').hide();
 			}
 		});

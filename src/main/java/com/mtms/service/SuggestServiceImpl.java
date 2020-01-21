@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.SuggestVO;
@@ -28,21 +29,22 @@ public class SuggestServiceImpl implements SuggestService{
 	}
 
 	@Override
+	@Transactional
 	public SuggestVO getSuggest(int suggestNo) {
-		// TODO Auto-generated method stub
-		return null;
+		suggestMapper.updateViewCount(suggestNo);
+		return suggestMapper.getSuggest(suggestNo);
 	}
 
 	@Override
 	public int removeSuggest(int suggestNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return suggestMapper.deleteSuggest(suggestNo);
 	}
 
 	@Override
-	public int modifySuggest(SuggestVO svo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int modifySuggest(SuggestVO suggestVO) {
+		
+		return suggestMapper.updateSuggest(suggestVO);
 	}
 
 	@Override

@@ -1,44 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@ include file="../include/header.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="../include/header.jsp"%>
 <section id="tabs" class="project-tab">
-		<div class="container">
-			<div class="row custom-mobile">
-				<div class="col-md-12">
-					<div class="custom-board-title">
-						<h3 class="custom-font-bold">건의사항</h3>
-					</div>
-					<div class="custom-sg-title">
-						<p class="float-left custom-sg-font">건의사항 상세보기 제목입니다.!</p>
+	<div class="container">
+		<div class="row custom-mobile">
+			<div class="col-md-12">
+				<div class="custom-board-title">
+					<h3 class="custom-font-bold">건의사항</h3>
+				</div>
+				<div class="custom-sg-title">
+					<p class="float-left custom-sg-font">${suggest.suggestTitle}</p>
+					<c:if test="${suggest.suggestPrivateChk == true }">
 						<p class="float-right custom-sg-font2">비밀글</p>
-						<p class="float-right custom-sg-font2">작성자: ywc412</p>
-					</div>
-					<div class="view_area">
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-						<p>공지사항 내용</p>
-					</div>
-					<hr>
-					<div class="pull-right">
-						<a href="/mtms/noticeList.html">
-							<button type="submit" class="btn btn-primary btn-sm">LIST</button>
-						</a>
-						<a href="/mtms/noticeModi.html">
-							<button type="submit" class="btn btn-primary btn-sm">수정</button>
-						</a>
-						<button type="submit" class="btn btn-danger btn-sm">삭제</button>
-					</div>
+					</c:if>
+					<p class="float-right custom-sg-font2">작성자: ${suggest.memberId}</p>
+					<p class="float-right custom-sg-font2">조회수: ${suggest.suggestView}</p>
+				</div>
+				<div class="view_area">
+					${suggest.suggestContent}
+				</div>
+				<form action="/suggest/remove" method="post" id="removeForm">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+					<input type="hidden" name="suggestNo" value="${suggest.suggestNo}"/>
+				</form>
+				<hr>
+				<div class="pull-right">
+					<button type="button" class="btn btn-primary btn-sm">LIST</button>
+					<button type="button" class="btn btn-primary btn-sm" id="suggestModifyBtn">수정</button>
+					<button type="button" class="btn btn-danger btn-sm" id="suggestRemoveBtn">삭제</button>
 				</div>
 			</div>
 		</div>
-	</section>
-	<%@ include file="../include/footer.jsp" %>
+	</div>
+</section>
+
+<script>
+	$(function(){
+		$('#suggestRemoveBtn').on("click", function(e){
+			var result = confirm('삭제하시겠습니까?');
+			
+			if(result == true){
+				$('#removeForm').submit();
+			}
+			
+		});
+		
+		$('#suggestModifyBtn').on("click", function(e){
+			$('#removeForm').attr("method","get");
+			$('#removeForm').attr("action","/suggest/modify");
+			$('#removeForm').submit();
+		});
+		
+	})
+</script>
+
+<%@ include file="../include/footer.jsp"%>
