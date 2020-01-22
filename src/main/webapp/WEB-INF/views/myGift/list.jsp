@@ -47,7 +47,7 @@
 									
 										 
 										
-									<td><a href="/myGift/get?myGiftNo=${mygift.myGiftNo}">${mygift.giftList[0].giftName}</a></td>
+									<td><a class="move" href="${mygift.myGiftNo}">${mygift.giftList[0].giftName}</a></td>
 									
 									<td>${mygift.giftList[0].giftPrice}</td>
 									<td><c:set var="status" value="${mygift.status}"/>
@@ -60,7 +60,7 @@
 									<td><fmt:formatDate value="${mygift.expireDate}" pattern="yyyy.MM.dd"/></td>
 									<td><c:set var="extendChk" value="${mygift.extendChk}"/>
 										<c:choose>
-											<c:when test="${status eq 0}">가능</c:when>	      									
+											<c:when test="${extendChk eq 0}">가능</c:when>	      									     									
 	      									<c:otherwise>불가능</c:otherwise>							
     									</c:choose></td>	
     																							
@@ -100,6 +100,10 @@
 							</div>
 							</div>
 							<!--paging-end-->
+								<form id="actionForm" action="/myGift/list" method="get">
+									<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}"> 
+									<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+								</form>
                 <!--board-end-->
             </div>
         </div>
@@ -107,7 +111,27 @@
 </div>
 </div>
 <script>
+$(function() {  
 
+$('.move').click(
+		function(e) {
+			e.preventDefault();
+			//actionForm에 hidden으로 name 속성 추가 값은 noticeNo 지정, value 속성 추가 값은 ~~ 지정한 후 append
+			$('#actionForm').append(
+					"<input type='hidden' name='myGiftNo' value='"
+							+ $(this).attr("href") + "'>");
+			$('#actionForm').attr("action", "/myGift/get");
+
+			$('#actionForm').submit();
+		});
+});
+
+$('.page-item a').click(function(e) {
+	e.preventDefault();
+	$('#pageNum').val($(this).attr('href'));
+	$('#actionForm').submit();
+
+});
 </script>
 
 <%@include file="../include/footer.jsp" %>

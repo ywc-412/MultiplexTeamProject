@@ -55,29 +55,31 @@
 			<br>
 		</div>
 		<!-- 버튼 s -->
-		<div class="">
-			<button class="btn btn-primary float-left custom-button-gift" data-oper='list'>LIST</button>
-			
-			<form method="post" action="/gift/remove" role="form">				
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
-				<input value="${gift.giftNo}" name="giftNo" type="hidden">				
-				<button type="submit" class="btn btn-danger float-right custom-button-gift" data-oper="remove">삭제</button>
-			</form>
-			
-			<form action="/gift/modify" id="operForm" method="get">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
-				<input value="${gift.giftNo}" name="giftNo" type="hidden">		
-				<button type="submit" class="btn btn-primary float-right custom-button-gift" data-oper='modify' onclick="location.href='/gift/modify?giftNo=${gift.giftNo}'">수정</button>
-			</form>
-			
-			<form action="/mygift/register" id="payForm" method="post">
+	
+		<button class="btn btn-primary float-left custom-button-gift" data-oper='list'>LIST</button>
+				<div class="float-right">
+		<form action="/mygift/register" id="payForm" method="post">
 				<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
 				<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
 				<input type="hidden" name="giftSet" id="giftSet" value="${gift.giftSet}"> 
 				<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
 				<input type="hidden" name="totalPrice">
-				<input type="button" id="payment" class="btn btn-primary float-right custom-button-gift" value="구입"/>
+				<input type="button" id="payment" class="btn btn-primary  custom-button-gift" value="구입"/>
 			</form>
+					<form action="/gift/modify" id="operForm" method="get">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+				<input value="${gift.giftNo}" name="giftNo" type="hidden">		
+				<button type="submit" class="btn btn-primary  custom-button-gift" data-oper='modify' onclick="location.href='/gift/modify?giftNo=${gift.giftNo}'">수정</button>
+			</form>
+			
+			<form method="post" action="/gift/remove" role="form">				
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+				<input value="${gift.giftNo}" name="giftNo" type="hidden">				
+				<button type="submit" class="btn btn-danger custom-button-gift" data-oper="remove">삭제</button>
+			</form>
+			</div>
+	
+			
 			
 			<form action="/gift/paying" method="post" id="payRealForm">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
@@ -88,7 +90,7 @@
 			</form>
 			
 			
-		</div>
+		
 		<!-- 버튼 e -->
 	</div>
 </section>

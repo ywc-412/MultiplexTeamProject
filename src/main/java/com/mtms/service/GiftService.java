@@ -10,7 +10,7 @@ import com.mtms.domain.MyGiftVO;
 public interface GiftService {
 	public void register(GiftVO gift); 						//기프티콘 등록
 	
-	public List<GiftVO> getList(); 							//기프티콘 조회
+	public List<GiftVO> getList(); 				//기프티콘 조회
 	
 	public GiftVO pay(int giftNo, MyGiftVO myGift);			//기프티콘 결제완료
 	

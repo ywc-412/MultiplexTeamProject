@@ -30,23 +30,34 @@
 	
 	
 	<select id="getListWithPaging" resultMap="MyGift">
-		SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo, myGift.expireDate, myGift.status, myGift.extendChk FROM gift, myGift WHERE gift.giftNo = myGift.giftNo AND memberId = myGift.memberId
+		<![CDATA[SELECT rn, giftNo, giftName, giftPrice, memberId, myGiftNo, expireDate, status, extendChk 
+				 FROM (SELECT rownum rn, gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo,
+  							    myGift.expireDate, myGift.status, myGift.extendChk
+					   FROM gift, myGift
+    				   WHERE rownum <= #{pageNum} * #{amount} AND gift.giftNo = myGift.giftNo AND memberId = 'jj')
+				 WHERE rn > (#{pageNum}-1) * #{amount}]]>
 	</select>
 
 	
 	<select id="read" resultMap="MyGift">
-		SELECT gift.giftNo, gift.giftName, gift.giftPrice, gift.giftSet, myGift.memberId, myGift.mygiftNo, myGift.expireDate, myGift.status, myGift.extendChk FROM gift, myGift WHERE myGift.mygiftNo = #{myGift.mygiftNo} AND gift.giftNo = myGift.giftNo AND memberId = myGift.memberId
+		SELECT gift.giftNo, gift.giftName, gift.giftPrice, gift.giftSet, myGift.memberId, myGift.mygiftNo, 
+			   myGift.buyingDate, myGift.expireDate, myGift.status, myGift.extendChk 
+		FROM gift, myGift 
+		WHERE myGift.mygiftNo = #{myGift.mygiftNo} AND gift.giftNo = myGift.giftNo AND memberId = myGift.memberId
 	</select>
 	
-	<update id="update">
-	
+	<update id="extend">
+		UPDATE myGift
+		SET expireDate = SYSDATE + (INTERVAL '1' MONTH),
+			extendChk = 1
+		WHERE myGiftNo = #{myGiftNo} AND memberId = 'jj'
 	</update>
 	
 	<delete id="delete">
 	
 	</delete>
 	
-	<select id="getTotalCount" resultType="com.mtms.domain.MyGiftVO">
-	
+	<select id="getTotalCount" resultType="int">
+		<![CDATA[SELECT count(*) FROM myGift WHERE mygiftNo > 0 ]]>	
 	</select>
 </mapper>

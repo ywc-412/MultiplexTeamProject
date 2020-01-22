@@ -9,6 +9,7 @@
 		<div class="container">
 			<!--<div class="row">-->
 			<div class="row no-mean">
+			
 				<div class="col-md-12">
 					<div class="custom-board-title">
 						<h3 class="custom-font-bold">공지사항</h3>
@@ -134,7 +135,6 @@ $('.move').click(
 //페이지번호 링크 처리
 $('.page-item a').click(function(e) {
 	e.preventDefault();
-
 	$('#pageNum').val($(this).attr('href'));
 	$('#actionForm').submit();
 });

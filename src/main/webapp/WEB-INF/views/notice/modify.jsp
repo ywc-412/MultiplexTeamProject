@@ -32,7 +32,7 @@
 					<input type="hidden" name="keyword" value="${ cri.keyword }" />
                 <div class="form-group text-center">
                     <button data-oper="modify" type="submit" class="btn btn-primary btn-sm">수정</button>
-                    <button data-oper="list" type="submit" class="btn btn-secondary btn-sm">취소</button>
+                    <button data-oper="list" type="button" class="btn btn-secondary btn-sm">취소</button>
                 </div>
                 </form>
             </div>
@@ -48,6 +48,10 @@
 	      e.preventDefault();
 	      var operation = $(this).data("oper");
 	      if(operation === 'list'){	//목록 버튼
+	    	
+	    			if(confirm("정말로 취소하시겠습니까?") == true) { 
+	    				
+	    	
 	         formObj.attr("action", "/notice/list").attr("method", "get");
 	         var pageNumTag = $("input[name='pageNum']").clone();
 	         var amountTag = $("input[name='amount']").clone();
@@ -60,6 +64,9 @@
 	         formObj.append(keywordTag);
 	         
 	         formObj.submit();
+	    			}else {
+  	 		   false;
+  	 	   }
 	      } else if(operation === 'modify') {
 	    	  if (!modifyForm.find("input[name='noticeTitle']").val() || !modifyForm.find("textarea[name='noticeContent']").val()) {
 					alert("내용을 입력해주세요");
@@ -75,12 +82,7 @@
 	   		
 	   });
 	   
-	 
-			
-			
-			$("button[type='submit']").click(function(){
-				
-			});
+	
 		
 	   
 </script>

@@ -14,23 +14,22 @@
 					<h3 class="custom-font-bold">공지사항</h3>
 				</div>
 				<ul class="custom-notice">
-					<li><span name="noticeTitle"><c:out
-								value='${notice.noticeTitle}' /></span></li>
-					<li>등록일 : <fmt:formatDate pattern="yyyy.MM.dd"
-							value="${notice.noticeDate}" /></li>
+					<li><span name="noticeTitle"><c:out value='${notice.noticeTitle}' /></span></li>
+					<li>등록일 : <fmt:formatDate pattern="yyyy.MM.dd" value="${notice.noticeDate}" /></li>
 					<li>조회수 : <c:out value='${notice.noticeView}' /></li>
 				</ul>
 				<div class="view_area">
 					<p>
-						<span class="custom-font-only-bold" name="noticeContent"><c:out
-								value='${notice.noticeContent}' /></span>
+						<span class="custom-font-only-bold" name="noticeContent">
+						<c:out value='${notice.noticeContent}' /></span>
 					</p>
+				
 				</div>
-
 				<hr>
+				
 				<div class="">
-				<button type="button" data-oper="list"
-					class="btn btn-primary float-left custom-button-gift">LIST</button>		
+				
+				<button type="button" data-oper="list" class="btn btn-primary float-left custom-button-gift">LIST</button>		
 						<sec:authorize access="isAuthenticated()">		
 					<form action="/notice/modify" id="operForm" method="get">
 						<input type="hidden" id="noticeNo" name="noticeNo"
@@ -52,8 +51,9 @@
 					</form>
 					</sec:authorize>
 				</div>
-			</div>
-		</div>
+			
+		
+	</div>
 	</div>
 </section>
 <!--board-end-->

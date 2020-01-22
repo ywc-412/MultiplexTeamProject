@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mtms.mapper.GiftAttachMapper;
 import com.mtms.mapper.GiftMapper;
 import com.mtms.mapper.MyGiftMapper;
+import com.mtms.domain.Criteria;
 import com.mtms.domain.GiftAttachVO;
 import com.mtms.domain.GiftVO;
 import com.mtms.domain.MyGiftVO;

@@ -7,36 +7,33 @@
 
 <!--board-start-->
 <section id="tabs" class="project-tab">
-	<div class="custom-container">
-		<div class="row custom-mobile">
+	<div class="custom-container" >
+		<div class="row custom-mobile" >
 			<div class="col-md-12">
 				<div class="custom-board-title">
 					<h3 class="custom-font-bold">기프티콘</h3>
 				</div>
 				<a id="regGift" class="btn btn-primary btn-sm">등록</a>
-				<!--search-start-->
-				<div class="pull-right">
-					<input type="text" placeholder="검색어를 입력하세요"
-						class="input-group-btn ">
-					<button type="submit" class="btn btn-primary btn-sm">검색</button>
-				</div>
-				<!--search-end-->
+				
 				<!--first-line-s-->
-				<div class="container">
+				<div class="container" >
 					<div class="custom-gift-divide-border">
-						<h4 class="custom-divide">팝콘</h4>
+						<h4 class="custom-divide">food</h4>
 					</div>
-					<div class="row">
+					<div class="row-gift" >
 
 						<!-- data-start -->
-						<div class="product-content">
-							<div class="col-md-3 col-sm-6">
+					
+					
+							<!-- <div class="col-md-3 col-sm-6" style="float: right;"> -->
+							<div class="custom-col-md-3">
 								
-									
+								<div class="custom-gift-items">	
+								
 								<div class="gift_area" id="giftArea">
 									<c:forEach items="${list}" var="gift">	
-								 <div class="single_gift uploadDiv" id="${gift.giftNo}">
-									<div class="uploadResult">
+								 <div class="single_gift uploadDiv" id="${gift.giftNo}" >
+									<div class="uploadResult"> 
 										<ul>
 											<!-- 사진 -->
 										</ul>
@@ -48,15 +45,17 @@
 										</div>
 									</c:forEach> 
 									</div>
+									</div>
 							</div>
 						</div>
-
+						
 						<!-- data-end -->
 
 					</div>
 					<!--first-line-e-->
 
-				</div>
+
+				
 			</div>
 		</div>
 		</div>
@@ -77,14 +76,14 @@
 			 
 				filePath = filePath.replace(new RegExp(/\\/g), "/");
 				console.log(filePath);
-				li += "<a class='move'><img class='move' src='/giftUpload/display?giftFileName="+filePath+"'></a>"						  		
+				li += "<img class='giftImg' src='/giftUpload/display?giftFileName="+filePath+"'>"						  		
 					  		$this.find(".uploadResult").find("ul").append(li);
 				
 				console.log(li);
 			});//END JSON	
 		});
 		})(); 
-	
+
 $('#regGift').click(function() {
 	self.location = "/gift/register";
 });

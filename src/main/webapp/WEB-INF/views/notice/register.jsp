@@ -24,7 +24,7 @@
                 <hr>
                 <div class="form-group text-center">               
                     <button type="submit"  id="register" class="btn btn-primary btn-sm">등록</button>
-                    <button type="button"  class="btn btn-secondary btn-sm" onclick="location.href='/notice/list'">취소</button>   
+                    <button type="button"  id="cancel" class="btn btn-secondary btn-sm">취소</button>   
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                 
                 </div>
                 </form>
@@ -52,6 +52,14 @@ var registerForm = $("#registerForm");
 	    	   }
 			
 		});
+	});
+	
+	$("#cancel").click(function(){
+		if(confirm("정말로 취소하시겠습니까?") == true) { 
+			self.location = "/notice/list";
+		}else {
+ 		   false;
+ 	   }
 	});
 </script>
 
