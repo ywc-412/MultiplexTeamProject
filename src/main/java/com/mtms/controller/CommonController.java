@@ -42,7 +42,7 @@ public class CommonController {
 
 	}
 
-	@RequestMapping(value = "/sendSms.do")
+	@RequestMapping(value = "/sendSms", method = RequestMethod.POST)
 	public String sendSms(HttpServletRequest request) throws Exception {
 
 		String api_key = "NCSOQVNBTVYZZZ7I";
@@ -50,7 +50,7 @@ public class CommonController {
 		Coolsms coolsms = new Coolsms(api_key, api_secret);
 
 		HashMap<String, String> set = new HashMap<String, String>();
-		set.put("to", "너의번호"); // 수신번호
+		set.put("to", "01041895485"); // 수신번호
 		
 		set.put("from", (String) request.getParameter("from")); // 발신번호
 		set.put("text", (String) request.getParameter("text")); // 문자내용
@@ -75,6 +75,8 @@ public class CommonController {
 			System.out.println(result.get("message")); // 에러메시지
 		}
 
-		return "redirect:/member/client";
+		request.setAttribute("memberId", request.getParameter("memberId"));
+		
+		return "redirect:/member/clientInfo";
 	}
 }
