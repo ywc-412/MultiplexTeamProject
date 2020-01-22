@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mtms.service.Coolsms;
+import com.mtms.domain.Coolsms;
 
 import lombok.extern.log4j.Log4j;
 
@@ -44,13 +45,13 @@ public class CommonController {
 	@RequestMapping(value = "/sendSms.do")
 	public String sendSms(HttpServletRequest request) throws Exception {
 
-		String api_key = "<너의키>";
-		String api_secret = "<너의키>";
+		String api_key = "NCSOQVNBTVYZZZ7I";
+		String api_secret = "4JVN8VRZEHNTP6GU79TLNQDWATDYTW7O";
 		Coolsms coolsms = new Coolsms(api_key, api_secret);
 
 		HashMap<String, String> set = new HashMap<String, String>();
 		set.put("to", "너의번호"); // 수신번호
-
+		
 		set.put("from", (String) request.getParameter("from")); // 발신번호
 		set.put("text", (String) request.getParameter("text")); // 문자내용
 		set.put("type", "sms"); // 문자 타입
@@ -74,6 +75,6 @@ public class CommonController {
 			System.out.println(result.get("message")); // 에러메시지
 		}
 
-		return "redirect:main.do";
+		return "redirect:/member/client";
 	}
 }

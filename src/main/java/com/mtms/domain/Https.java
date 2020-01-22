@@ -1,3 +1,4 @@
+package com.mtms.domain;
 import java.io.*;
 import java.net.URL;
 import java.net.URLEncoder;
