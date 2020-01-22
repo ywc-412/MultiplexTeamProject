@@ -35,12 +35,12 @@ public class ReserveServiceImpl implements ReserveService{
 	@Override
 	public List<ReserveVO> getList(String memberId, Criteria cri) {
 		// 회원별 예매내역 조회 (내 예매내역)
-		System.out.println("r si memberId : " + memberId);
-		System.out.println("r si cri - page : " + cri.getPageNum());
-		System.out.println("r si cri - amount : " + cri.getAmount());
+//		System.out.println("r si memberId : " + memberId);
+//		System.out.println("r si cri - page : " + cri.getPageNum());
+//		System.out.println("r si cri - amount : " + cri.getAmount());
 		
 		List<ReserveVO> list = reserveMapper.getList(memberId, cri);
-		System.out.println("r si list size : " + list.size());
+//		System.out.println("r si list size : " + list.size());
 		return list;
 	}
 

@@ -13,5 +13,6 @@ public class ScheduleVO {
 	private String screen;			// 상영관
 	private int movieNo;			// 영화번호 // FK
 	
-	private MovieVO movieVO; // member - auth 부분 참고해서 영화이름 가져오기
+	private String movieTitle;
+	private List<MovieVO> movieVO; // member - auth 부분 참고해서 영화이름 가져오기
 }
