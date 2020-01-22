@@ -46,7 +46,7 @@
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
 				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
 				<c:set var="loop_flag" value="true"/>
 				<hr>
@@ -59,14 +59,14 @@
 		</c:if>
 	</c:forEach>
 	
-	<c:set var="loop_flag" value="false"/>
+	<c:set var="loop_flag2" value="false"/>
 	<c:forEach items="${schedule2 }" var="s">
-		<c:if test="${not loop_flag }">
+		<c:if test="${not loop_flag2 }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
 				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
-				<c:set var="loop_flag" value="true"/>
+				<c:set var="loop_flag2" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
 					<c:forEach items="${schedule2 }" var="s2">
@@ -77,14 +77,14 @@
 		</c:if>
 	</c:forEach>
 	
-	<c:set var="loop_flag" value="false"/>
+	<c:set var="loop_flag3" value="false"/>
 	<c:forEach items="${schedule3 }" var="s">
-		<c:if test="${not loop_flag }">
+		<c:if test="${not loop_flag3 }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
 				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
-				<c:set var="loop_flag" value="true"/>
+				<c:set var="loop_flag3" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
 					<c:forEach items="${schedule3 }" var="s3">

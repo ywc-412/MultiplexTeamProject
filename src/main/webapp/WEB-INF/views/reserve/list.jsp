@@ -35,7 +35,7 @@
 	                            <td>${r.seat }</td>
 	                            <td>
 	                            	<c:choose>
-	                            		<c:when test="${r.status == 0 }"><button class="btn btn-primary">취소</button></c:when>
+	                            		<c:when test="${r.status == 0 }"><button class="btn btn-primary">예매취소</button></c:when>
 	                            		<c:when test="${r.status == 1 }">
 	                            			<form id="reviewForm" action="/review/register">
 	                            				<input type="hidden" name="movieNo" value="${r.movieNo }">
@@ -50,8 +50,7 @@
                         </c:forEach>
                         </tbody>
                     </table>
-                </div>
-                <div class="custom-gift-pagination custom-th-size2">
+                     <div class="custom-gift-pagination custom-th-size2">
                     <div class="custom-pagination">
                         <nav aria-label="Page navigation example">
                             <ul class="blog-pagination">
@@ -59,18 +58,18 @@
                                     <a class="page-link" href="#" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
-                                </li>
-	                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">7</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">9</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">10</a></li>
-	                                <li class="page-item">
+	                            </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                                <li class="page-item"><a class="page-link" href="#">9</a></li>
+                                <li class="page-item"><a class="page-link" href="#">10</a></li>
+	                            <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
@@ -79,6 +78,8 @@
                         </nav>
                     </div>
                 </div>
+                </div>
+               
                </div>
               </div>
              </div>
