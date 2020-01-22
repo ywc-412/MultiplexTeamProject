@@ -32,9 +32,14 @@ public class ReviewReportController {
 	private ReviewReportService reviweReportService;
 	
 	@PostMapping("remove")
-	 public String remove(int reviewNo,RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+	public String remove(Integer reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+		if (reviweReportService.remove(reviewNo)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
 
-		return null;
+		return "redirect:/report/review/list";
 	}
 	
 //	@PostMapping("modify")
@@ -51,7 +56,6 @@ public class ReviewReportController {
 	
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
-		log.info("list 가 출력 되고 있어ㅓㅓ어어어어어 list()");
 		model.addAttribute("list",reviweReportService.getList(cri) );
 		
 		int total = reviweReportService.getTotalCount(cri);
@@ -60,22 +64,20 @@ public class ReviewReportController {
 	
 	@GetMapping("register")
 	public void register(HttpServletRequest request,Model model) {
-		
 		String reviewNo1 = request.getParameter("reviewNo");
 		int reviewNo = Integer.parseInt(reviewNo1);
 		String reviewTitle = request.getParameter("reviewTitle");
 		
-		ReviewReportVO vo = new ReviewReportVO();
-		vo.setReviewNo(reviewNo);
-		vo.setReviewTitle(reviewTitle);
+		ReviewReportVO rrvo = new ReviewReportVO();
+		rrvo.setReviewNo(reviewNo);
+		rrvo.setReviewTitle(reviewTitle);
 		
-		model.addAttribute("rvo", vo);
+		model.addAttribute("rvo", rrvo);
 		
 	}
 	
 	@PostMapping("register")
 	public String register(ReviewReportVO rrvo, RedirectAttributes rttr) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@들어왔다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		log.info("reviewController register()");
 		reviweReportService.register(rrvo);
 		System.out.println(rrvo);

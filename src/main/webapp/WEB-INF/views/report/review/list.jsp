@@ -45,7 +45,6 @@
 					<th>신고자ID<!-- Rendering engine --></th>
 					<th>신고내용<!-- Browser --></th>
 					<th>리뷰제목<!-- Platform(s) --></th>
-					<th>처리결과<!-- Engine version --></th>
 					<th>삭제<!-- CSS grade --></th>
 				</tr>
 			</thead>
@@ -55,8 +54,12 @@
 					<td><c:out value="${rrvo.memberId }"/></td>
 					<td><c:out value="${rrvo.reviewReportContent }"/></td>
 					<td><c:out value="${rrvo.reviewTitle }"/></td>
-					<td><c:out value="${rrvo.reviewReportResult }"/></td>
-					<td><input type="checkbox"></td>
+					<td>
+					<form action="/report/reply/remove" method="post" id="removeForm">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+						<input type="checkbox" value="reviewNo">
+						</form>
+						</td> 
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -100,5 +103,9 @@ $(".paginate_button a").on("click", function(e) {
 			 $('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
 			 $('#actionForm').submit();
 	  });
+$("#reportRemove").on("click", function (e){
+	$("#removeForm").submit();
+});	  
+	  
 });
 </script>

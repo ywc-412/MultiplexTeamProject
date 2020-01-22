@@ -127,7 +127,7 @@ $(function(){
 						</div> <!-- /.modal-header END -->
 				         <div class="modal-body">
 				            <div class="form-group">
-				     
+				     		<input type="hidden" name="replyNo">
 				               <label>replyContent</label>
 				               <input class="form-control" name='replyContent'>
 				            </div> <!-- /.form-group END -->
@@ -142,12 +142,14 @@ $(function(){
 				            </div> <!-- /.form-group END -->
 				         </div> <!-- /.modal-body END -->
 				         <div class="modal-footer">
-				         	<form method="get" action="/report/reply/register">
-							<input type="hidden" name="replyNo" value='<c:out value="${revo.replyNo }"/>'>
-							<input type="hidden" name="replyContent" value='<c:out value="${revo.replyContent }"/>'>
-							<input type="hidden" name="memberId" value="악성댓글">
-							<button id="replyReport" class="btn btn-danger" type="submit">댓글신고</button>
-						</form>	  
+				         	<form method="get" action="/report/reply/register" id="replyRegForm">
+					         	<div id="replyHere">
+					         	
+					         	</div>
+								<input type="hidden" name="replyContent" id="replyContent" value='<c:out value="${revo.replyContent }"/>'>
+								<input type="hidden" name="memberId" value="악성댓글">
+								<button id="replyReport" class="btn btn-danger" type="submit">댓글신고</button>
+							</form>	  
 				            <button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
 				            <button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
 				            <button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
@@ -171,6 +173,20 @@ $(function(){
 <%@ include file="../include/footer.jsp"%>
 <script src="/resources/js/reply.js"></script>
 <script>
+
+	console.log($('input#replyContent').val());
+
+	$(function(){
+		$('#replyReport').on("click", function(e){
+			e.preventDefault();
+			var replyNo = $(".modal").data("rno");
+			$('#replyHere').append("<input type='hidden' name='replyNo' id='replyNo' value='"+ replyNo +"'/>");
+			$('#replyRegForm').submit();
+		});
+	})
+
+
+
 $(function(){
 console.log(replyService);
 var reviewNo = '<c:out value="${rvo.reviewNo}"/>';

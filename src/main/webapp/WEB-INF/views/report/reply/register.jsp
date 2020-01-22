@@ -9,7 +9,7 @@
 	</div>
 	<div class="title_under"></div>
 <!-- 	계시판명 END -->
-	<form action="/report/review/register" method="post">
+	<form action="/report/reply/register" method="post">
 		<div class="high_margin"></div>
 		<div class="movie_title_style">
 			<div class="movie_get_title">${revo.replyContent }</div>

@@ -26,13 +26,13 @@ public class ReviewReportServiceImpl implements ReviewReportService{
 
 	@Override
 	public int getTotalCount(Criteria cri) {
-		// TODO Auto-generated method stub
+		//전체 게시물의 수를 확인
 		return reviewReportMapper.getTotalCount(cri);
 	}
 
 	@Override
 	public List<ReviewReportVO> getList(Criteria cri) {
-		// TODO Auto-generated method stub
+		//게시물 리스트 출력및 페이징을 위한 메소드
 		return reviewReportMapper.getListWithPaging(cri);
 	}
 
@@ -49,7 +49,7 @@ public class ReviewReportServiceImpl implements ReviewReportService{
 //	}
 
 	@Override
-	public boolean remove(int reviewNo) {
+	public boolean remove(Integer reviewNo) {
 		// TODO Auto-generated method stub
 		return false;
 	}

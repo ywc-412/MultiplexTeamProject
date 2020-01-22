@@ -19,7 +19,6 @@
 	           c.memberId,
 	           c.reviewNo,
 	           c.reviewReportContent,
-	           c.reviewReportResult,
 	           c.reviewReportDate
     from 
         (
@@ -28,7 +27,6 @@
                        a.memberId,
                        a.reviewNo,
                        a.reviewReportContent,
-                       a.reviewReportResult,
                        a.reviewReportDate,
                        b.reviewTitle
         from reviewReport a,
@@ -46,9 +44,9 @@
 	VALUES(seq_reviewReport.NEXTVAL, #{memberId}, #{reviewNo},#{reviewReportContent})
 	</insert>
 	
-<!-- 	<delete id="delete"> -->
-	
-<!-- 	</delete> -->
+	<delete id="delete">
+	 DELETE reviewReport WHERE reviewNo = #{reviewNo}
+	</delete>
 	
 <!-- 	<select id="read" resultType="com.mtms.domain.ReviewReportVO"> -->
 	
