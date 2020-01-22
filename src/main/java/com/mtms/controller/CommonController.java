@@ -4,16 +4,15 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mtms.domain.Coolsms;
+import com.mtms.domain.simple.JSONObject;
 
 import lombok.extern.log4j.Log4j;
 
@@ -50,14 +49,14 @@ public class CommonController {
 		Coolsms coolsms = new Coolsms(api_key, api_secret);
 
 		HashMap<String, String> set = new HashMap<String, String>();
-		set.put("to", "01041895485"); // 수신번호
-		
-		set.put("from", (String) request.getParameter("from")); // 발신번호
+		set.put("to", (String) request.getParameter("to")); // 수신번호
+
+		set.put("from", "01041895485"); // 발신번호
 		set.put("text", (String) request.getParameter("text")); // 문자내용
 		set.put("type", "sms"); // 문자 타입
 
 		System.out.println(set);
-
+		
 		JSONObject result = coolsms.send(set); // 보내기&전송결과받기
 
 		if ((boolean) result.get("status") == true) {
@@ -75,8 +74,6 @@ public class CommonController {
 			System.out.println(result.get("message")); // 에러메시지
 		}
 
-		request.setAttribute("memberId", request.getParameter("memberId"));
-		
-		return "redirect:/member/clientInfo";
+		return "redirect:/member/client";
 	}
 }

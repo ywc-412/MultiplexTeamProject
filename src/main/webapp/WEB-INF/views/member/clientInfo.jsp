@@ -138,7 +138,7 @@
 								</div> 
 								<br>
 								<div class="mt-10 custom-input text-center">
-									<button type="button" class="boxed-btn3" id="pwModBtn">전송</button>
+									<button type="button" class="boxed-btn3" id="sendMsgBtn">전송</button>
 									<button type="button" class="boxed-btn3" id="closeBtn3">닫기</button>
 								</div>
 							</form>
@@ -160,10 +160,9 @@
 			
 			var phoneFull = phoneFirst + phoneSecond + phoneThird;
 			
-			$('#pwModBtn').on("click", function(e){
+			$('#sendMsgBtn').on("click", function(e){
 				e.preventDefault();
 				$('#memberPhoneNumberHere').append("<input type='hidden' name='to' value='"+phoneFull+"'/>");
-				$('#memberPhoneNumberHere').append("<input type='hidden' name='from' value='"+phoneFull+"'/>");
 				$('#completeForm').submit();
 			});
 			
