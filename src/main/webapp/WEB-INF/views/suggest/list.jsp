@@ -22,7 +22,7 @@
 					</div>
 					
 					<div class="custom-search-position">
-						<a href="/suggest/register" class="boxed-btn3">등록</a>
+						<a href="/suggest/register" class="boxed-btn3" id="registerA">등록</a>
 						<!--search-start-->
 						<div class="">
 							
@@ -88,9 +88,22 @@
 	</div>
 </div>
 <!-- Modal -->
-	
+<sec:authorize access="isAuthenticated()">
+	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+</sec:authorize>
 	<script>
 		$(function(){
+			$('#registerA').on("click", function(e){
+				e.preventDefault();
+				var userConnect = '<c:out value="${userId}"/>';
+				if(!userConnect){
+					alert('로그인이 필요한 서비스입니다');
+					return;
+				}else{
+					location.href="/suggest/register";
+				}
+			});
+			
 			var actionForm = $('#actionForm');
 			
 			$(document).on("click", ".page-item a", function(e){
@@ -130,7 +143,6 @@
 					}
 				});
 			});
-			
 			
 			
 			$('#closeBtn3').on("click", function(e){

@@ -15,7 +15,7 @@
 <c:if test="${!empty error} ">
 	<script>
 		alert('아이디와 비밀번호를 확인해주세요');
-	</script>	
+	</script>
 </c:if>
 
 <div class="offers_area padding_top">
@@ -36,47 +36,65 @@
 					</div>
 					<div class="">
 						<button class="btn btn-primary custom-button" id="loginBtn">로그인</button>
-						<button class="btn btn-secondary custom-button" id="findIdBtn">ID 찾기</button>
-						<button class="btn btn-secondary custom-button" id="findPwBtn2">PW 찾기</button>
+						<button class="btn btn-secondary custom-button" id="findIdBtn">ID
+							찾기</button>
+						<button class="btn btn-secondary custom-button" id="findPwBtn2">PW
+							찾기</button>
 						<button class="btn btn-secondary custom-button" id="joinBtn2">회원가입</button>
 					</div>
 					<div>
-						<br>
-						<a href="${url }">
-							<img src="/resources/img/naverLogin.PNG" style="width: 45%; height: 45%; cursor:pointer"/>
+						<br> <a href="${url }"> <img
+							src="/resources/img/naverLogin.PNG"
+							style="width: 45%; height: 45%; cursor: pointer" />
 						</a>
-					</div> 
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+					</div>
+					<input type="hidden" name="${_csrf.parameterName }"
+						value="${_csrf.token }">
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-
 <script>
-	$(function(){
-		$('#loginBtn').on("click", function(e){
+	function onSignIn(googleUser) {
+		// Useful data for your client-side scripts:
+		var profile = googleUser.getBasicProfile();
+		console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+		console.log('Full Name: ' + profile.getName());
+		console.log('Given Name: ' + profile.getGivenName());
+		console.log('Family Name: ' + profile.getFamilyName());
+		console.log("Image URL: " + profile.getImageUrl());
+		console.log("Email: " + profile.getEmail());
+
+		// The ID token you need to pass to your backend:
+		var id_token = googleUser.getAuthResponse().id_token;
+		console.log("ID Token: " + id_token);
+	};
+</script>
+<script>
+	$(function() {
+		$('#loginBtn').on("click", function(e) {
 			e.preventDefault();
-			
+
 			$("form").submit();
 		});
-		
-		$('#findIdBtn').on("click", function(e){
+
+		$('#findIdBtn').on("click", function(e) {
 			e.preventDefault();
-			location.href="/member/findId";
+			location.href = "/member/findId";
 		});
-		
-		$('#findPwBtn2').on("click", function(e){
+
+		$('#findPwBtn2').on("click", function(e) {
 			e.preventDefault();
-			location.href="/member/findPw";
+			location.href = "/member/findPw";
 		});
-		
-		$('#joinBtn2').on("click", function(e){
+
+		$('#joinBtn2').on("click", function(e) {
 			e.preventDefault();
-			location.href="/member/join";
+			location.href = "/member/join";
 		});
 	})
-	
 </script>
 
 <%@ include file="include/footer.jsp"%>

@@ -80,6 +80,12 @@ public class MemberController {
 	public String findPw(MemberVO memberVO, RedirectAttributes rttr) {
 		// 비밀번호 찾기화면에서 포스트 매핑
 		MemberVO memberIdVo = memberService.findPwByEmail(memberVO);
+		
+		if(memberIdVo == null) {
+			rttr.addFlashAttribute("findNull", "해당 정보가 없습니다");
+			return "redirect:/member/findPw";
+		}
+		
 		String memberId = memberIdVo.getMemberId();
 		
 		if(memberId != null) {
@@ -92,6 +98,7 @@ public class MemberController {
 				// 비밀번호 찾고 customLogin 페이지로 이동
 	}
 	
+	@PreAuthorize("hasAnyRole({'ROLE_ADMIN', 'ROLE_MEMBER'})")
 	@PostMapping("/findPwComplete")
 	public String findPwComplete(MemberVO memberVO, RedirectAttributes rttr) {
 		int result = memberService.findPw(memberVO);
@@ -105,6 +112,7 @@ public class MemberController {
 		
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/client")
 	public void list(Criteria cri, Model model){
 		// 멤버 리스트 조회 컨트롤러 // 전체 회원 목록 조회
@@ -115,6 +123,7 @@ public class MemberController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/clientInfo")
 	public void clientGet(String memberId, Model model) {
 		model.addAttribute("member", memberService.getMember(memberId));
@@ -129,6 +138,7 @@ public class MemberController {
 		model.addAttribute("memberInfo", memberVO);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/client/remove")
 	public String adminRemoveMember(String memberId, RedirectAttributes rttr) {
 		
@@ -139,6 +149,7 @@ public class MemberController {
 		return "redirect:/member/client";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("/remove")
 	public String removeMember(MemberVO memberVO, RedirectAttributes rttr) {
 		int result = memberService.removeMember(memberVO);
@@ -154,6 +165,7 @@ public class MemberController {
 		return "redirect:/logout";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("/myInfoMod")
 	public String modifyMember(MemberVO memberVO, RedirectAttributes rttr) {
 		// 회원 수정 , 컨트롤러
@@ -170,6 +182,7 @@ public class MemberController {
 		return "redirect:/member/myInfoMod";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER') and principal.username == #memberId")
 	@GetMapping("/myInfoMod")
 	public void modifyMember(String memberId, Model model) {
 		MemberVO memberVO = memberService.getMember(memberId);
@@ -177,6 +190,7 @@ public class MemberController {
 		model.addAttribute("memberInfo", memberVO);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")// 나중에 principal.username 도 해야함
 	@GetMapping("/mySuggest")
 	public void mySuggest(Criteria cri, Model model) {
 		model.addAttribute("list", suggestService.getSuggestListWithPaging(cri));

@@ -43,7 +43,8 @@ public class CommonController {
 	public void loginError() {
 
 	}
-
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/sendSms", method = RequestMethod.POST)
 	public String sendSms(HttpServletRequest request) throws Exception {
 
