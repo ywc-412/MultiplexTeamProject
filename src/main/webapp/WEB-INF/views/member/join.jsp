@@ -84,10 +84,10 @@
 						</div>
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneSecond" id="memberPhoneSecond"
-							class="single-input custom-text-left custom-input-size-phone">
+							class="single-input custom-text-left custom-input-size-phone" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneThird" id="memberPhoneThird"
-							class="single-input custom-text-left custom-input-size-phone">
+							class="single-input custom-text-left custom-input-size-phone" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
 						<div class="custom-red-font custom-text-right"
 							id="memberPhoneErrorMsg"></div>
 					</div>
@@ -113,6 +113,12 @@
 </div>
 <script type="text/javascript" src="/resources/js/memberFind.js"></script>
 <script>
+	function maxLengthCheck(object){
+	    if (object.value.length > object.maxLength){
+	     	object.value = object.value.slice(0, object.maxLength);
+	   	}
+	}
+	
 	$(function() {
 		var registerResult = false;
 		
