@@ -67,8 +67,9 @@
 					<br>
 					<div class="mt-10 custom-input">
 						<div>주소</div>
+						<button type="button" id="postcodify_search_button">검색</button>
 						<input type="text" name="memberAddress" id="memberAddress"
-							class="single-input custom-text-right">
+							class="postcodify_address single-input custom-text-right">
 						<div class="custom-red-font custom-text-right"
 							id="memberAddressErrorMsg"></div>
 					</div>
@@ -111,6 +112,7 @@
 		</div>
 	</div>
 </div>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script type="text/javascript" src="/resources/js/memberFind.js"></script>
 <script>
 	function maxLengthCheck(object){
@@ -120,6 +122,11 @@
 	}
 	
 	$(function() {
+		$("#postcodify_search_button").on("click", function(e){
+			e.preventDefault();
+			$("#postcodify_search_button").postcodifyPopUp();
+		});
+		
 		var registerResult = false;
 		
 		// id 정규표현식
