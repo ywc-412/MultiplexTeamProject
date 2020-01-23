@@ -48,7 +48,10 @@
 	 DELETE reviewReport WHERE reviewNo = #{reviewNo}
 	</delete>
 	
-<!-- 	<select id="read" resultType="com.mtms.domain.ReviewReportVO"> -->
-	
-<!-- 	</select> -->
+	<select id="read" resultType="com.mtms.domain.ReviewReportVO">
+		 SELECT b.reviewTitle,a.reviewReportNo,a.memberId,a.reviewNo,a.reviewReportContent,a.reviewReportDate 
+			 FROM reviewReport a, review b
+			 WHERE a.reviewNo = b.reviewNo and
+			 reviewReportNo = #{reviewReportNo}
+	</select>
 </mapper>

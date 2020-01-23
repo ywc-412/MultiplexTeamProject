@@ -52,13 +52,11 @@
 				<c:forEach items="${list }" var="rpvo">
 					<tr class="odd gradeX">
 						<td><c:out value="${rpvo.memberId }" /></td>
-						<td><c:out value="${rpvo.replyReportContent }" /></td>
+						<td><a class="getGo" href="${rpvo.replyReportNo}">
+                            		${rpvo.replyReportContent }</a></td>
 						<td><c:out value="${rpvo.replyContent }" /></td>
 						<td>
-						<form action="/report/reply/remove" method="post" id="removeForm">
-						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 						<input type="checkbox" value="${rpvo.replyNo }">
-						</form>
 						</td>
 					</tr>
 				</c:forEach>
@@ -66,6 +64,7 @@
 		</table>
 		<!-- END 게시물 출력 테이블 -->
 	</div>
+	<form method="get" id="getReview"></form>
 	<!--           table_position -->
 	<!-- 페이지 번호 출력 -->
 	<div class="pull-right">
@@ -107,9 +106,12 @@ $(".paginate_button a").on("click", function(e) {
 			 $('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
 			 $('#actionForm').submit();
 	  });
-$("#reportRemove").on("click", function (e){
-	$("#removeForm").submit();
-});
-	  
+$(".getGo").on("click", function(e) {
+	 e.preventDefault();
+	 $("#getReview").append("<input type='hidden' name='replyReportNo' value='"+ $(this).attr("href")+"'>");
+	 $("#getReview").attr("action", "/report/reply/get");
+	 $("#getReview").submit();
+	
+	});	  
 });
 </script>

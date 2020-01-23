@@ -67,9 +67,7 @@ public class ReviewController {
 	
 	@GetMapping("list")
 	public void getList(Criteria cri,Model model) {
-		log.info("list 가 출력 되고 있어ㅓㅓ어어어어어 list()");
 		model.addAttribute("list", service.getList(cri));
-//		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 		
 		int total = service.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));

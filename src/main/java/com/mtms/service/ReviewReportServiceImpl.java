@@ -51,13 +51,13 @@ public class ReviewReportServiceImpl implements ReviewReportService{
 	@Override
 	public boolean remove(Integer reviewNo) {
 		// TODO Auto-generated method stub
-		return false;
+		return reviewReportMapper.delete(reviewNo) == 1;
 	}
 
 	@Override
-	public ReviewReportVO get(int reportNo) {
+	public ReviewReportVO get(int reviewReportNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return reviewReportMapper.read(reviewReportNo);
 	}
 
 	@Override

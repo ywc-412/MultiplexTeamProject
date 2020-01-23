@@ -49,15 +49,15 @@ public class ReviewReplyReportServiceImpl implements ReviewReplyReportService{
 //	}
 
 	@Override
-	public boolean remove(int replyNo) {
+	public boolean remove(Integer replyNo) {
 		// TODO Auto-generated method stub
-		return false;
+		return reviewReplyReportMapper.delete(replyNo) == 1;
 	}
 
 	@Override
 	public ReplyReportVO get(int replyReportNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return reviewReplyReportMapper.read(replyReportNo);
 	}
 
 	@Override

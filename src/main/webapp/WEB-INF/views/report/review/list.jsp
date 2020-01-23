@@ -52,8 +52,10 @@
 			<c:forEach items="${list }" var="rrvo">
 				<tr class="odd gradeX">
 					<td><c:out value="${rrvo.memberId }"/></td>
-					<td><c:out value="${rrvo.reviewReportContent }"/></td>
-					<td><c:out value="${rrvo.reviewTitle }"/></td>
+					<td><a class="getGo" href="${rrvo.reviewReportNo}">
+                            		${rrvo.reviewReportContent }</a></td>
+					<td><a class="move" href="${rrvo.reviewNo}">
+                            		${rrvo.reviewTitle }</a></td>
 					<td>
 					<form action="/report/reply/remove" method="post" id="removeForm">
 						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
@@ -91,10 +93,21 @@
                 	<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
                 	<!-- 검색 조건과 키워드 파라미터 추가 -->
     			</form>
-				
-    </div>
+    			
+<!--신고받은 리뷰글의 상세보기 화면으로 이동하기위한 form -->
+
+<!-- END 신고받은 리뷰글의 상세보기 화면으로 이동하기위한 form  END -->
+	<form method="get" id="getReview"></form>
+
+
+
+
+</div>
 		<!-- 전체마진 END -->
 <%@ include file="../../include/footer.jsp"%>
+
+
+
 <script>
 //페이지 번호 링트 처리
 $(function(){
@@ -106,6 +119,21 @@ $(".paginate_button a").on("click", function(e) {
 $("#reportRemove").on("click", function (e){
 	$("#removeForm").submit();
 });	  
-	  
+
+
+$(".move").on("click", function(e) {
+	 e.preventDefault();
+	 $("#getReview").append("<input type='hidden' name='reviewNo' value='"+ $(this).attr("href")+"'>");
+	 $("#getReview").attr("action", "/review/get");
+	 $("#getReview").submit();
+});
+$(".getGo").on("click", function(e) {
+	 e.preventDefault();
+	 $("#getReview").append("<input type='hidden' name='reviewReportNo' value='"+ $(this).attr("href")+"'>");
+	 $("#getReview").attr("action", "/report/review/get");
+	 $("#getReview").submit();
+	
+	});
+
 });
 </script>

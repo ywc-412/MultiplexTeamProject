@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
@@ -50,8 +51,8 @@ public class ReviewReportController {
 	
 //	@GetMapping({"get", "modify"})
 	@GetMapping("get")
-	public void get(int reviewReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
-		
+	public void get(@RequestParam("reviewReportNo")int reviewReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
+		model.addAttribute("rrvo",reviweReportService.get(reviewReportNo));
 	}
 	
 	@GetMapping("list")

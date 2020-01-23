@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
@@ -31,10 +32,14 @@ public class ReplyReportController {
 	private ReviewReplyReportService replyReportService;
 
 	@PostMapping("remove")
-	public String remove(int ReplyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		System.out.println("삭제까지 도착");
-		return "redirect:/report/reply/list";
+	public String remove(Integer replyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+		if (replyReportService.remove(replyNo)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
 
+		return "redirect:/report/reply/list";
 	}
 
 //	@PostMapping("modify")
@@ -44,8 +49,8 @@ public class ReplyReportController {
 //	}
 //	@GetMapping({"get", "modify"})
 	@GetMapping("get")
-	public void get(int ReplyReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
-
+	public void get(@RequestParam("replyReportNo")int replyReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
+		model.addAttribute("rpvo",replyReportService.get(replyReportNo));
 	}
 
 	@GetMapping("list")

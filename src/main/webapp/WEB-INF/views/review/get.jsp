@@ -5,19 +5,27 @@
 <%@ include file="../include/header.jsp"%>
 <script>
 $(function(){
-	//수정버튼 클릭하였을떄!
     var operForm = $("#operForm");
-    
+    var removeModal = $("#removeModal"); //모달창 찾아옴
+    var formRemove = $(".formRemove");
+
     $("button[data-oper='modify']").on("click", function (e){
-    	operForm.attr("action", "/review/modify").submit();
+     	operForm.attr("action", "/review/modify").submit();
     });
-  	 
     $("button[data-oper='list']").on("click", function (e){
     	operForm.find("#reviewNo").remove();
     	operForm.attr("action", "/review/list")
     	operForm.submit();
     });
-    
+    $("#reviewRemove").on("click", function (e){
+    	removeModal.modal('show');
+    });
+    $("#okBtn").on("click", function (e){
+    	formRemove.submit();
+    });
+    $("#noBgtn").on("click", function (e){
+    	removeModal.hide();
+    });
 });
 //END 전체 function
 </script>
@@ -52,12 +60,12 @@ $(function(){
 	 <div class="button_position">
 	 		<button type="submit" class="btn btn-default" data-oper ="modify">수정</button>
 				
-				<form method="post" action="/review/remove">
+				<form method="post" action="/review/remove" class="formRemove">
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
+				</form>
 				<button id="reviewRemove" class="btn btn-danger" type="submit">
 				삭제</button>
-				</form>
 				<form method="get" action="/report/review/register">
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 				<input type="hidden" name="reviewTitle" value='<c:out value="${rvo.reviewTitle }"/>'>
@@ -169,6 +177,29 @@ $(function(){
 </div>
 </div>
 </div>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<div class="modal" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	삭제하시겠습니가?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="okBtn">확인</button> 
+        <button type="button" class="btn btn-secondary" id="noBtn" data-dismiss="modal">취소</button>
+	 </div>
+    </div>
+  </div>
+</div>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- 전체마진 END -->
 <%@ include file="../include/footer.jsp"%>
 <script src="/resources/js/reply.js"></script>
@@ -278,7 +309,7 @@ replyPageFooter.on("click", "li a", function(e){
 });
 
 //모달창으로 새로운 댓글의 추가버튼
-var modal = $(".modal"); //모달창 찾아옴
+var modal = $("#myModal"); //모달창 찾아옴
 var modalInputReply = modal.find("input[name='replyContent']");	//모달창 각각의 이름으로 찾아옴
 var modalInputReplyer = modal.find("input[name='memberId']");
 var modalInputReplyDate = modal.find("input[name='replyDate']");

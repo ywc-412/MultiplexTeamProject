@@ -41,11 +41,14 @@
 	VALUES(seq_replyReport.NEXTVAL, #{memberId}, #{replyNo},#{replyReportContent})
 	</insert>
 	
-<!-- 	<delete id="delete"> -->
+	<delete id="delete">
+	 	DELETE replyReport WHERE replyNo = #{replyNo}
+	</delete>
 	
-<!-- 	</delete> -->
-	
-<!-- 	<select id="read" resultType="com.mtms.domain.ReplyReportVO"> -->
-	
-<!-- 	</select> -->
+	<select id="read" resultType="com.mtms.domain.ReplyReportVO">
+		 SELECT b.replyContent,a.replyReportNo,a.memberId,a.replyNo,a.replyReportContent,a.replyReportDate 
+			 FROM replyReport a, reply b
+			 WHERE a.replyNo = b.replyNo and
+			 replyReportNo = #{replyReportNo}
+	</select>
 </mapper>
