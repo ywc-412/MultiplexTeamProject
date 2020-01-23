@@ -2,6 +2,8 @@ package com.mtms.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +35,8 @@ public class CommentReportController {
 	private CommentService commentService;
 	private MovieService movieService;
 	
-	//한줄평 신고 상세보기(보여주기) 
+	//한줄평 신고 상세보기(보여주기)
+	@Secured("ROLE_ADMIN")
 	@GetMapping("get")
 	public void get(Model model, @RequestParam("commentNo") int commentNo, @RequestParam("commentReportNo") int commentReportNo, @ModelAttribute("cri") Criteria cri) {
 		
@@ -58,7 +61,7 @@ public class CommentReportController {
 	
 	//한줄평 신고 등록 창 보여주기
 	@GetMapping("register")
-//	@PreAuthorize("isAuthenticated()")
+	@Secured("ROLE_MEMBER")
 	public void register(Model model, @RequestParam("commentNo") int commentNo, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
 		
 		log.info("controller 신고 register");
@@ -67,8 +70,8 @@ public class CommentReportController {
 	}
 	
 	//한줄평 신고 등록 처리
+	@Secured("ROLE_MEMBER")
 	@PostMapping("register")
-//	@PreAuthorize("isAuthenticated()")
 	public String register(CommentReportVO commentReport, @RequestParam("movieNo") int movieNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		
 		log.info("Controller register()");
@@ -84,11 +87,12 @@ public class CommentReportController {
 	}
 	
 	//한줄평 신고 전체 조회
+	@Secured("ROLE_ADMIN")
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
 		log.info("Controller list ");
 
-		model.addAttribute("comment", commentService.getCommentList(cri));
+		model.addAttribute("comment", commentService.getCommentList());
 		model.addAttribute("commentReport", commentReportService.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, commentReportService.getTotal(cri)));
 		

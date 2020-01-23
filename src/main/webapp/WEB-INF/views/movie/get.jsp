@@ -95,7 +95,8 @@
          		<!--  검색 조건과 키워드 파라미터 추가 -->
         <input type="hidden" id="type" name="type" value='<c:out value="${cri.type }"/>'>
         <input type="hidden" id="keyword" name="keyword" value='<c:out value="${cri.keyword }"/>'>
-<!--         <input type="hidden" id="commentNo" name="commentNo" value=''> -->
+        <input type="hidden" id="commentNo" name="commentNo" value=''>
+        <input type="hidden" id="memberId" name="memberId" value=''>
 	</form><br>
     
     <hr class="clear">
@@ -118,7 +119,7 @@
 			    <h2 class="total">
 				</h2>
                 <h2 class="yeong-allStar">
-                   	( ${percentComment } %  ${ avgStar })
+                	<fmt:formatNumber value="${totalComment}" type="pattern" pattern="0.00" />
                 </h2>
             </div>
 	    </div>
@@ -229,11 +230,6 @@
 	
 	<script src="/resources/js/commentReply.js"></script>
 	<script>
-	
-	
-	
-	
-	
 	$('#star_grade a').click(function(){
 		$(this).parent().children("a").removeClass("on");
 		$(this).addClass("on").prevAll("a").addClass("on");
@@ -285,30 +281,39 @@
 	</script>
 	<script>
 		$(function(){
+	      	 
 			var totalStar = '<fmt:formatNumber value="${totalComment}" type="pattern" pattern="0.00" />';
-			var totalComment = totalStar * 100;
-	    	console.log(" 평균 : " + totalComment);
+	    	console.log(" 평균 : " + totalStar);
+	    	var totalStarZero = isNaN(totalStar);
+	    	console.log(totalStarZero);
 	    	
 	    	var total = $(".total");
+	    	var starZero = $(".yeong-allStar");
 	    	var str = "";
+	    	var zero = "";
 	    	
-	    	if(totalComment >= 0 && totalComment < 20){
+	    	if(totalStarZero){
+	    		str += "<h2 class='starTotalTitle yeong-starRed'></h2>";
+	    		zero += "0";
+	    		total.html(str);
+	    		starZero.html(zero);
+	    	} else if(totalStar <= 1){
 	    		$('.starTotal1').addClass("on").prevAll("a").addClass("on");
 	    		str += "<h2 class='starTotalTitle yeong-starRed'>★</h2>";
 	    		total.html(str);
-	    	} else if(totalComment >= 20 && totalComment < 40){
+	    	} else if(totalStar > 1 && totalStar <= 2){
 	    		$('.starTotal2').addClass("on").prevAll("a").addClass("on");
 	    		str += "<h2 class='starTotalTitle yeong-starRed'>★★</h2>";
 	    		total.html(str);
-	    	} else if(totalComment >= 40 && totalComment < 60){
+	    	} else if(totalStar > 2 && totalStar <= 3){
 	    		$('.starTotal3').addClass("on").prevAll("a").addClass("on");
 	    		str += "<h2 class='starTotalTitle yeong-starRed'>★★★</h2>";
 	    		total.html(str);
-	    	} else if(totalComment >= 60 && totalComment < 80){
+	    	} else if(totalStar > 3 && totalStar <= 4){
 	    		$('.starTotal4').addClass("on").prevAll("a").addClass("on");
 	    		str += "<h2 class='starTotalTitle yeong-starRed'>★★★★</h2>";
 	    		total.html(str);
-	    	} else if(totalComment >= 80 && totalComment < 100){
+	    	} else if(totalStar > 4){
 	    		$('.starTotal5').addClass("on").prevAll("a").addClass("on");
 	    		str += "<h2 class='starTotalTitle yeong-starRed'>★★★★★</h2>";
 	    		total.html(str);
@@ -318,11 +323,6 @@
 		
 	
 	    $(function(){
-	    	
-	    	
-	    	
-	    	
-	    	
 	    	var movieNo = '<c:out value="${movie.movieNo}"/>';
 	    	
 	    	$.getJSON("/movie/getAttachList", {movieNo: movieNo}, function(result){
@@ -344,27 +344,43 @@
 	    	
 	    	var operForm = $("#operForm");
 	    	var cno = $("#commentNo");
+	    	var mId = $("#memberId");
 		    
 		    $("button[data-oper='modify']").on("click", function (e){
+		    	operForm.find("#memberId").remove();
 		    	operForm.attr("action", "/movie/modify").submit();
 		    });
 		  	 
 		    $("button[data-oper='list']").on("click", function (e){
+		    	operForm.find("#memberId").remove();
 		    	operForm.find("#movieNo").remove();
 		    	operForm.attr("action", "/movie/list")
 		    	operForm.submit();
 		    });
 		    
 		    $("button[data-oper='remove']").on("click", function (e){
+		    	operForm.find("#memberId").remove();
 		    	operForm.attr("action", "/movie/remove").submit();
 		    });
 		    
 		    $(document).on("click", "#commentReport", function(e){
+		    	var memberId = null;
+		    	
+		    	<sec:authorize access="isAuthenticated()">
+		    		memberId = '<sec:authentication property="principal.username" />';
+		    	</sec:authorize>
+	    	
+		    	console.log(memberId);
+		    	if(memberId == null){
+		  			alert("로그인이 필요한 시스템입니다.");
+		  			return;
+		  		}
 		    	
 		    	var cmno = $(this).data("commentno");
 		    	console.log(cmno);
 		    	cno.attr("value", cmno);
 		    	operForm.attr("action", "/report/comment/register").submit();
+		    	
 		    });
 		    
 		    var result = '<c:out value="${result}"/>';
@@ -548,12 +564,15 @@
 	    	$(document).ajaxSend(function(e, xhr, options){	//전송 전 추가 헤더 설정
 	    		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 	    	});
-	    	
+	
 	    	commentRegisterBtn.on("click", function(e){
 	    		var commentStar = $('#commentStar').val();
 		  		var commentContent = $('#commentContent').val();
 		  		
-	    		if( commentStar == "" || commentStar.length < 0){
+		  		if(memberId == null){
+		  			alert("로그인이 필요한 시스템입니다.");
+		  			return;
+		  		} else if( commentStar == "" || commentStar.length < 0){
 			 	    alert('별점을 선택해주세요');
 			 	    $('#commentStar').focus();
 			 	    return;
@@ -569,10 +588,15 @@
 		                  memberId : inputMemberId.val()
 		            };
 		            commentService.add(comment, function(result){
-		               alert(result);
+		            	if(result == "success"){
+		            		alert("한줄평이 등록되었습니다.");
+		            	} else if(result == "already"){
+		            		alert("이미 해당 영화에 대한 한줄평을 작성했습니다.");
+		            	}
 		               inputStar.val("");
 		               inputContent.val("");
 		               $(".star1").parent().children("a").removeClass("on"); // 등록하면 별점 초기화
+		               location.reload();
 		               pageNum = 1;			// 등록할때 페이지번호가 1로 가게할려고
 		               showList(pageNum);
 		            });
@@ -607,11 +631,11 @@
 	    	   		
 	    	    	modalInputStar.val(data.commentStar);		
 	    	    	modalInputContent.val(data.commentContent);
-	    	    	modalmemberId .val(data.memberId);
+	    	    	modalmemberId.val(data.memberId);
 	    	    	modalcommentDate.val(data.commentDate);	
 	    	    	modalmovieNo.val(data.movieNo);	
 	    	   		
-	    	   		modal.data("commentNo", data.commentNo);
+// 	    	   		modal.data("commentNo", data.commentNo);
 	    			
 	    			$('#exampleModal').modal('show');
 	    	   		

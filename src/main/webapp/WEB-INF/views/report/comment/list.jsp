@@ -30,12 +30,12 @@
 						<th scope="col" class="yeongth10">삭제</th>
 					</tr>
 				</thead>
-				
 				<c:forEach items="${commentReport }" var="commentReport">
                         <tr class="odd gradeX">
                         	<td scope="col" class="yeongth10">${commentReport.memberId }</td>
                         	<td scope="col" class="yeongth35" id="commentReport" data-commentReportNo=${commentReport.commentReportNo }>${commentReport.commentReportContent }</td>
                         	<c:forEach items="${comment }" var="comment">
+                        	
                         		<c:if test="${comment.commentNo eq commentReport.commentNo }">
 				                    <td scope="col" class="yeongth35">${comment.commentContent }</td>
 				                </c:if>
@@ -50,7 +50,7 @@
                         		</c:if>
                        		</c:forEach>
                         </tr>
-                        </c:forEach>
+                </c:forEach>
 			</table>
 		</div>
     </div>
@@ -95,10 +95,9 @@
     <c:forEach items="${commentReport }" var="commentReport">
 	    <c:forEach items="${comment }" var="comment">
 	        <c:if test="${comment.commentNo eq commentReport.commentNo }">
-			    <form id="actionForm" action="/report/comment/get" method="get">
+			    <form id="actionForm" action="/report/comment/list" method="get">
 			   		<input type="hidden" id="pageNum" name="pageNum" value="${pageMaker.cri.pageNum }">
 			   		<input type="hidden" id="amount" name="amount" value="${pageMaker.cri.amount }">
-			   		<input type="hidden" id="commentNo" name="commentNo" value="${commentReport.commentNo }">
 			    </form>
 	    	</c:if>
 	    </c:forEach>
@@ -124,6 +123,12 @@
     	    console.log(result);
     	    $('#myModal').modal('show');
         }
+        
+        $(".paginate_button a").on("click", function(e) {
+			e.preventDefault(); //a태그라서 동작안되게 막아줌
+			$('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
+			$('#actionForm').submit();
+		});
 		
 	 	$(document).on("click", "#commentReport", function(e){
 			 e.preventDefault();

@@ -34,16 +34,16 @@
 	<select id="getListWithPaging" resultType="com.mtms.domain.MovieVO">
 		<![CDATA[
         	 SELECT * FROM (
-           		 SELECT /*+INDEX_DESC(movie PK_MOVIE) */
+           		 SELECT /*+INDEX_ASC(movie IDX_YESTERDAYNUM) */
               		 rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary, yesterdayNum
-           		 FROM movie 
+           		 FROM movie
             	 WHERE 
       	]]> 
       	<!-- 보관해 둔 쿼리 사용 -->
       	<include refid="criteria"></include>
      	<![CDATA[     
             rownum <= #{pageNum} * #{amount}
-            ) WHERE mno > (#{pageNum} - 1) * #{amount} ORDER BY yesterdayNum DESC
+            ) WHERE mno > (#{pageNum} - 1) * #{amount}
       	]]>
 	</select>
 	
@@ -78,6 +78,15 @@
 		SELECT SUM(yesterdayNum) FROM movie WHERE movieNo = #{movieNo }
 	</select>
 	
+	<!-- 내 한줄평 영화명 불러오기 -->
+	<select id="movieList" resultType="com.mtms.domain.MovieVO">
+     	<![CDATA[
+            SELECT /*+INDEX_DESC(movie PK_MOVIE) */
+				rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary, yesterdayNum
+				FROM movie
+       ]]> 
+    </select>
+	
 	<!-- 한나 -->
 	<select id="getMovieName" resultType="com.mtms.domain.MovieVO">
       SELECT movieNo, movieTitle FROM movie WHERE movieTitle LIKE '%'||#{movieName}||'%'
@@ -90,9 +99,5 @@
    <select id="getMovie" resultType="String">
       SELECT movieTitle FROM movie WHERE movieNo = #{movieNo}
    </select>
-	
-	<select id="getMovie" resultType="String">
-		SELECT movieTitle FROM movie WHERE movieNo = #{movieNo}
-	</select>
 	
 </mapper>

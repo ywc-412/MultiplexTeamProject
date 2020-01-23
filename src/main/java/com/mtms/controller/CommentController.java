@@ -1,14 +1,11 @@
 package com.mtms.controller;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.CommentPageDTO;
 import com.mtms.domain.CommentVO;
 import com.mtms.domain.Criteria;
+import com.mtms.domain.PageDTO;
 import com.mtms.service.CommentService;
 
 import lombok.AllArgsConstructor;
@@ -34,22 +31,26 @@ public class CommentController {
 	
 	private CommentService commentService;
 	
-	//회원 별 한줄평 조회
-	@GetMapping("mylist")
-	public void mylist(Criteria cri, Model model, String memberId) {
-		
-	}
-	
 	//한줄평 등록 - AJAX
 	@PostMapping(value = "new", consumes = "application/json"				
 							  , produces = { MediaType.TEXT_PLAIN_VALUE })	
 	public ResponseEntity<String> register(@RequestBody CommentVO comment){
 		// JSON 데이터를 RVO 객체로 변환할 거라 @RequestBody 사용
-		int insertCount = commentService.register(comment);
-		System.out.println("Reply INSERT COUNT " + insertCount);
-		// result가 1이면(성공) : ResponseEntity로 success 와 OK 보냄
-		return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		
+		int checkRegister = commentService.registerComment(comment.getMovieNo(), comment.getMemberId());
+		if(checkRegister > 0) {
+			System.out.println("이미 이 영화에 대한 한줄평을 등록한 회원");
+			return new ResponseEntity<>("already", HttpStatus.OK);
+		} else {
+			int insertCount = commentService.register(comment);
+			
+			System.out.println("Reply INSERT COUNT " + insertCount);
+			
+			// result가 1이면(성공) : ResponseEntity로 success 와 OK 보냄
+			return insertCount == 1 ? 
+					new ResponseEntity<>("success", HttpStatus.OK) : 
+						new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	//한줄평 전체 조회 - AJAX

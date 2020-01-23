@@ -25,13 +25,9 @@
     <!-- 새로 만든거  -->
     <select id="commentList" resultType="com.mtms.domain.CommentVO">
      	<![CDATA[
-        	SELECT * FROM (
-           		SELECT /*+INDEX_DESC(commentReply PK_COMMENTREPLY) */
+     		SELECT /*+INDEX_DESC(commentReply PK_COMMENTREPLY) */
                 rownum rn, commentNo, memberId, commentContent, commentStar, commentDate
-            	FROM commentReply 
-           			WHERE
-            			rownum <= #{cri.pageNum} * #{cri.amount}
-            			) WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount}
+            	FROM commentReply
        ]]> 
     </select>
      
@@ -66,15 +62,43 @@
 	
 	<!-- 평균 평점 구하기 -->
 	<select id="sumStar" resultType="int">
-		SELECT SUM(commentStar) FROM commentReply WHERE movieNo = #{movieNo }
+		SELECT NVL(SUM(commentStar),0) FROM commentReply WHERE movieNo = #{movieNo }
 	</select>
 	
 	<select id="sumComment" resultType="int">
 		SELECT COUNT(*) FROM commentReply WHERE movieNo = #{movieNo }
 	</select>
 	
+	<!-- 이미 작성한 사람 체크 -->
+	<select id="insertComment" resultType="int">
+		SELECT COUNT(*) FROM commentReply WHERE movieNo = #{movieNo } AND memberId =  #{memberId }
+	</select>
 	
+	<select id="insertReport" resultType="int">
+		SELECT COUNT(*) FROM commentReport WHERE commentNo = #{commentNo } AND memberId =  #{memberId }
+	</select>
 	
+	<!-- 내가 쓴 한줄평 -->
+	<select id="myCommentTotal" resultType="int">
+      <![CDATA[
+         SELECT COUNT(*) FROM commentReply WHERE memberId =  #{memberId }
+     ]]>
+   </select>
+	
+	<select id="myCommentListWithPaging" resultType="com.mtms.domain.CommentVO">
+     	<![CDATA[
+        	SELECT * FROM (
+           		SELECT /*+INDEX_DESC(commentReply PK_COMMENTREPLY) */
+                rownum cno, commentNo, movieNo, memberId, commentContent, commentStar, commentDate
+            	FROM commentReply 
+           			WHERE memberId =  #{memberId } AND
+            			rownum <= #{cri.pageNum} * #{cri.amount}
+            			) WHERE cno > (#{cri.pageNum} - 1) * #{cri.amount}
+       ]]> 
+     </select>
+     
+     
+     
 	
 	
 	

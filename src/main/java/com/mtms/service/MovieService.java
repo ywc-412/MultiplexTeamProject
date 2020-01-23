@@ -26,6 +26,9 @@ public interface MovieService {
 
 	public List<MovieAttachVO> attachGetList();
 	
+	//영화 페이지 전체 조회
+	public List<MovieVO> myMovieList();
+	
 	//영화 총페이지
 	public int getTotal(Criteria cri);
 	
@@ -43,6 +46,9 @@ public interface MovieService {
 	
 	//예매율
 	public int totalGetMovie(int movieNo);
+	
+	//전체예매율
+	public int totalMovie();
 	
 	//한나
 	// 한나 -> 영화명 검색

@@ -21,9 +21,13 @@
     
     <div class="container">
     	<form role="form" action="/report/comment/register" method="post" id="frm">
+    		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
     		<div class="form-group">
 				<label for="memberId"></label>
-				<input type="text" class="form-control" id="memberId" name="memberId" readonly="readonly" value="dudwn">
+				<sec:authentication property="principal" var="pinfo"/>
+                	<sec:authorize access="isAuthenticated()">
+                		<input type="text" class="form-control" id="memberId" name="memberId" readonly="readonly" value="${pinfo.username }">
+                	</sec:authorize>
 			</div>
 			<div class="form-group">
 				<label for="commentContent"></label>

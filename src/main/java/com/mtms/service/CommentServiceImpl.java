@@ -31,13 +31,6 @@ public class CommentServiceImpl implements CommentService{
 		return commentMapper.getListWithPaging(cri, movieNo);
 	}
 	
-	//내 한줄평 조회
-	@Override
-	public List<CommentVO> myList(Criteria cri, String memberId) {
-		
-		return null;
-	}
-	
 	//한줄평 수정
 	@Override
 	public int modify(CommentVO comment) {
@@ -75,13 +68,37 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public CommentPageDTO getListCommentPage(Criteria cri) {
 		
-		return new CommentPageDTO(commentMapper.commentCount(cri), commentMapper.commentList(cri));
+		return new CommentPageDTO(commentMapper.commentCount(cri), commentMapper.commentList());
 	}
 
 	@Override
-	public List<CommentVO> getCommentList(Criteria cri) {
+	public List<CommentVO> getCommentList() {
 		
-		return commentMapper.commentList(cri);
+		return commentMapper.commentList();
+	}
+
+	@Override
+	public int registerComment(int movieNo, String memberId) {
+
+		return commentMapper.insertComment(movieNo, memberId);
+	}
+
+	@Override
+	public int registerReport(int commentNo, String memberId) {
+		
+		return commentMapper.insertReport(commentNo, memberId);
+	}
+
+	@Override
+	public List<CommentVO> myGetList(Criteria cri, String memberId) {
+
+		return commentMapper.myCommentListWithPaging(cri, memberId);
+	}
+
+	@Override
+	public int myGetTotal(String memberId) {
+
+		return commentMapper.myCommentTotal(memberId);
 	}
 
 	

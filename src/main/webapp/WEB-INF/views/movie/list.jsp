@@ -48,23 +48,16 @@
     <div class="container">
         <div class="row">
 		    <div class="movie_area" id="movieContArea">
-		    	<c:set var = "sum" value = "0" />
 		    	<c:forEach items="${moveList }" var="moveList">
-		    		<c:set var= "sum" value="${sum + moveList.yesterdayNum}"/>
-		    		
-		    	</c:forEach>
-		    	<c:forEach items="${moveList }" var="moveList">
-		    		
 			        <div class="single_movie uploadDiv" id="${moveList.movieNo}">
 			        	<div class="uploadResult">
 	       					<ul>
-	       						
 	        				</ul>
      					</div>
 			            <div class="ovrer">
 			            	<a href="${moveList.movieNo }" class="move">
 			                  	  ${moveList.movieTitle }<br>
-			                  	  <fmt:formatNumber value="${(moveList.yesterdayNum / sum) * 100 } " type="pattern" pattern="0.00" /> %
+			                  	  <fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 } " type="pattern" pattern="0.0" /> %
 			                </a>
 			            </div>
 			        </div>
@@ -117,9 +110,6 @@
    		<input type="hidden" id="keyword" name="keyword" value='<c:out value="${pageMaker.cri.keyword }"/>'>
     </form>
   
-    
-    
-<%--    		<c:if test="${attachList.movieNo eq moveList.movieNo}"> --%>
 	    <script>	
 	    $(function(){
 	    	
@@ -156,11 +146,7 @@
 	      	 function checkModal(result){
 	    	    if(result === '' || history.state){
 	    		    return;
-	    	    }
-// 	    	    if(parseInt(result) > 0){
-// 	    		    $(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
-// 	    	    }
-		    	 console.log(result);
+	    	    }console.log(result);
 		    	 $('#myModal').modal('show');
 	         }
 		      

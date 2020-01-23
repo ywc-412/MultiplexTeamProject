@@ -332,6 +332,9 @@
 .yeongth10{
 	width: 10%;
 }
+.yeongth15{
+	width: 15%;
+}
 .yeongth05{
 	width: 5%;
 }
@@ -452,7 +455,61 @@
 
 
 
+.yeongth_myComment05{
+	width: 5%;
+}
+.yeongth_myComment10{
+	width: 10%;
+}
+.yeongth_myComment35{
+	width: 35%;
+}
+.yeongth_myComment15{
+	width: 15%;
+}
+.yeongth_myComment20{
+	width: 20%;
+}
+.yeongth_myComment30{
+	width: 30%;
+}
 
+
+@media (max-width: 767px) {
+	.yeongth_myComment05{
+		width: 10%;
+	}
+	.yeongth_myComment10{
+		width: 10%;
+	}
+	.yeongth_myComment35{
+		width: 25%;
+	}
+	.yeongth_myComment15{
+		width: 10%;
+	}
+	.yeongth_myComment20{
+		width: 10%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.yeongth_myComment05{
+		width: 10%;
+	}
+	.yeongth_myComment10{
+		width: 10%;
+	}
+	.yeongth_myComment35{
+		width: 25%;
+	}
+	.yeongth_myComment15{
+		width: 10%;
+	}
+	.yeongth_myComment20{
+		width: 20%;
+	}
+}
 
 
 

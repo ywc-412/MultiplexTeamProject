@@ -124,6 +124,12 @@ public class MovieServiceImpl implements MovieService{
 		return movieAttachMapper.attachList();
 	}
 	
+	@Override
+	public List<MovieVO> myMovieList() {
+
+		return movieMapper.movieList();
+	}
+	
 	//영화 첨부파일
 	@Override
 	public List<MovieAttachVO> getAttachList(int movieNo){
@@ -142,6 +148,14 @@ public class MovieServiceImpl implements MovieService{
 
 		return movieMapper.sumGetMovie(movieNo);
 	}
+	
+	//전체 예매율
+	@Override
+	public int totalMovie() {
+		
+		return movieMapper.sumMovie();
+	}
+		
 
 	// 한나 - 스케줄 : 영화 이름으로 검색
     @Override
@@ -162,6 +176,10 @@ public class MovieServiceImpl implements MovieService{
     public String getMovie(int movieNo) {
        return movieMapper.getMovie(movieNo);
     }
+
+	
+
+    
 	
 
 	

@@ -101,7 +101,6 @@ var commentService = (function(){
 			});
 	}
 	
-	
 	return {
 		getList : getList,
 		add : add,

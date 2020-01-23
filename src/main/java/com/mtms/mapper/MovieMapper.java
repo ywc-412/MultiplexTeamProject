@@ -14,6 +14,9 @@ public interface MovieMapper {
 	//영화 전체조회(페이징)
 	public List<MovieVO> getListWithPaging(Criteria cri);
 	
+	//영화 리스트
+	public List<MovieVO> movieList();
+	
 	//영화 수정
 	public int update(MovieVO movie);
 	
@@ -31,6 +34,9 @@ public interface MovieMapper {
 	
 
 	public int sumGetMovie(int movieNo);
+	
+	//전체예매율
+	public int sumMovie();
 	
 	
 	//한나

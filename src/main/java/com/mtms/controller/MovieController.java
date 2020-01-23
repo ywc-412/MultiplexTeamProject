@@ -81,7 +81,7 @@ public class MovieController {
 		model.addAttribute("totalComment", avgStar);
 		model.addAttribute("movie", movieService.get(movieNo));
 	}
-	
+
 	//영화 수정 보여주기
 	@GetMapping("modify")
 	public void modify(Model model, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
@@ -132,7 +132,7 @@ public class MovieController {
 	}
 	
 	//영화 등록 창 보여주기
-//	@PreAuthorize("isAuthenticated()")
+	@Secured("ROLE_ADMIN")
 	@GetMapping("register")
 	public void register() {
 		log.info("controller 영화 register");
@@ -140,8 +140,7 @@ public class MovieController {
 		
 	//영화 등록 처리
 	@PostMapping("register")
-//	@Secured("{ROLE_ADMIN}")
-//	@PreAuthorize("isAuthenticated()")
+	@Secured("ROLE_ADMIN")
 	public String register(MovieVO movie, RedirectAttributes rttr) {
 		log.info("controller 영화 register");
 		
@@ -160,6 +159,9 @@ public class MovieController {
 	public void list(Criteria cri, Model model) {
 		System.out.println("컨트롤러 영화조회");
 		
+		int totalMovie = movieService.totalMovie();
+		
+		model.addAttribute("totalMovie", totalMovie);
 		model.addAttribute("attachList", movieService.attachGetList());
 		model.addAttribute("moveList", movieService.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, movieService.getTotal(cri)));
