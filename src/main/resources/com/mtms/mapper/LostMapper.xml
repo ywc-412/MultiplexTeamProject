@@ -4,34 +4,48 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.LostMapper">
 	<select id="getTotalCount" resultType="int">
-	
+	<![CDATA[
+     	SELECT COUNT(*) FROM lost WHERE    
+     	lostNo > 0 
+     ]]>
 	</select>
 	
 	<select id="getListWithPaging" resultType="com.mtms.domain.LostVO">
-	
+		<![CDATA[
+			SELECT
+			lostNo,lostTitle,lostContent,lostDate,lostView
+			from 
+				(
+				select /*+INDEX_DESC(review PK_review )*/
+				rownum rn,lostNo,lostTitle,lostContent,lostDate,lostView
+				from 
+				lost
+				where
+            rownum <= #{pageNum} * #{amount}
+            ) WHERE rn > (#{pageNum} - 1) * #{amount}
+      ]]> 
 	</select>
 	
-	<select id="insertSelectKey" resultType="com.mtms.domain.LostVO">
 	
-	</select>
 	
-	<select id="insert" resultType="com.mtms.domain.LostVO">
+<insert id="insert">
+  	INSERT INTO lost(lostNo,lostTitle,lostContent)
+	VALUES(seq_review.NEXTVAL, #{lostTitle}, #{lostContent})
+  </insert>
 	
-	</select>
+<!-- 	<update id="update"> -->
 	
-	<update id="update">
+<!-- 	</update> -->
 	
-	</update>
+<!-- 	<delete id="delete"> -->
 	
-	<delete id="delete">
+<!-- 	</delete> -->
 	
-	</delete>
+<!-- 	<select id="read" resultType="com.mtms.domain.LostVO"> -->
 	
-	<select id="read" resultType="com.mtms.domain.LostVO">
+<!-- 	</select> -->
 	
-	</select>
+<!-- 	<update id="updateView"> -->
 	
-	<update id="updateView">
-	
-	</update>
+<!-- 	</update> -->
 </mapper>

@@ -54,7 +54,7 @@
     </div>
   </div>
 </div>
-
+<!-- END modal -->
 
 </div>
 <!-- 전체마진 END -->

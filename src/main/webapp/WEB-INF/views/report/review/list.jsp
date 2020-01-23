@@ -100,6 +100,26 @@
 	<form method="get" id="getReview"></form>
 
 
+<div class="modal fade" id="reportModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	삭제 하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="okBtn">확인</button> 
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	 </div>
+    </div>
+  </div>
+</div>
+<!-- END modal -->
 
 
 </div>
@@ -111,15 +131,19 @@
 <script>
 //페이지 번호 링트 처리
 $(function(){
+	var reportModal1 = $("#reportModal1");
 $(".paginate_button a").on("click", function(e) {
 			 e.preventDefault(); //a태그라서 동작안되게 막아줌
 			 $('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
 			 $('#actionForm').submit();
 	  });
 $("#reportRemove").on("click", function (e){
+// 	$("#removeForm").submit();
+	reportModal1.modal('show');
+});	  
+$("#okBtn").on("click", function (e){
 	$("#removeForm").submit();
 });	  
-
 
 $(".move").on("click", function(e) {
 	 e.preventDefault();

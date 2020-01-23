@@ -45,7 +45,7 @@ public class LostController {
 	
 	@GetMapping("register")
 	public void register() {
-		
+		System.out.println("들오와라");
 	}
 	
 	@PostMapping("register")
