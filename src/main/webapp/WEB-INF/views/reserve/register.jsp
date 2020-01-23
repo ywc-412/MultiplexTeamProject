@@ -21,8 +21,8 @@
 						<div class="">
 							<ul class="hanna_ul_list">
 								<c:forEach items="${movieList }" var="m">
-									<li id="movieClick" value="${m.movieVO.movieNo }">
-										${m.movieVO.movieTitle }
+									<li id="movieClick" value="${m.movieNo }">
+										${m.movieTitle }
 									</li>
 								</c:forEach>
 							</ul>
@@ -172,7 +172,7 @@
 		$(document).on("click", "#timeClick", function(e){
 			var scheduleTime = $(this).html();
 			$("input[name=scheduleTime]").val(scheduleTime);
-			alert("영화 : " + $("input[name=movieTitle]").val() + "\n상영 날짜 : " + $("input[name=scheduleDate]").val() + "\n상영 시간 : " + $("input[name=scheduleTime]").val() + "을 선택하셨습니다.");
+// 			alert("영화 : " + $("input[name=movieTitle]").val() + "\n상영 날짜 : " + $("input[name=scheduleDate]").val() + "\n상영 시간 : " + $("input[name=scheduleTime]").val() + "을 선택하셨습니다.");
 		}); // END timeClick
 		
 	})
