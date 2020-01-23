@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>accessErrorPage</h3>
+	<script>
+		alert('잘못된 접근입니다.');
+		history.back();
+	</script>
 </body>
 </html>

@@ -45,16 +45,9 @@ public class ReserveController {
 	@GetMapping("list")
 	public void list(Model model, String memberId, Criteria cri) {
 		// 회원 별 예매내역 조회
-		System.out.println("r con - cri pagenum : " + cri.getPageNum());
-		System.out.println("r con - cri amount: " + cri.getAmount());
-		System.out.println("r con - memberId : " + memberId);
 		List<ReserveVO> list = reserveService.getList(memberId, cri);
-		System.out.println("r con - list size : " + list.size());
-
 		model.addAttribute("reserveList", list);
-
 		int total = reserveService.getTotal(memberId, cri);
-		System.out.println("r con - get total : " + total );
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
@@ -85,7 +78,6 @@ public class ReserveController {
 		
 		List<ScheduleVO> list = scheduleService.getMovie(startDate, endDate, time);
 		
-		System.out.println("controller list size : " + list.size());
 		model.addAttribute("movieList", list);
 	}
 	
@@ -126,13 +118,9 @@ public class ReserveController {
 	@PostMapping("seat")
 	public void seat(ScheduleVO svo, String movieTitle, Model model) {
 		// 예매하기 (시간) -> 예매하기 (좌석)
-//		System.out.println("/reserve/seat");
 		int movieNo = svo.getMovieNo();
 		String scheduleDate = svo.getScheduleDate();
 		String scheduleTime = svo.getScheduleTime();
-//		System.out.println("movieNo : " + movieNo);
-//		System.out.println("scheduleDate : " + scheduleDate);
-//		System.out.println("scheduleTime : " + scheduleTime);
 		
 		// 좌석 정보 가져오기
 			// 영화 번호, 상영 날짜, 상영 시간으로 스케줄 번호 가져오기
@@ -161,17 +149,7 @@ public class ReserveController {
 			rand2 = rand2 - 1000;
 		}
 		String reserveNo = year + "-" + day + "-" + rand1 + "-" + rand2;
-		
-//		System.out.println("reserveNo : " + reserveNo);
 		rvo.setReserveNo(reserveNo);
-//		System.out.println("RESERVE CONTROLLER / RESERVE");
-		// 예매번호 추가해줘야함 (생성)
-//		System.out.println("scheduleNo : " + rvo.getScheduleNo());
-//		System.out.println("memberId : " + rvo.getMemberId());
-//		System.out.println("seat : " + rvo.getSeat());
-//		System.out.println("adultNum : " + rvo.getAdultNum());
-//		System.out.println("teenNum : " + rvo.getTeenNum());
-//		System.out.println("status : " + rvo.getStatus());
 		
 		// 예매 테이블에 insert
 		reserveService.register(rvo);

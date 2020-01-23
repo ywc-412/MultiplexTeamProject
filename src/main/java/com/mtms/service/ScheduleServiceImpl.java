@@ -29,36 +29,44 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
+	public int checkSchedule(String scheduleDate, String screen) {
+		// 스케줄 등록 전 해당 날짜, 상영관에 스케줄이 있는 지 확인
+		if(scheduleMapper.checkSchedule(scheduleDate, screen) < 6) {
+			// 스케줄이 존재하지않으면 1을 보냄
+			return 1;
+		} else { // 스케줄이 존재 : 0 보냄
+			return 0;
+		}
+	}
+
+	@Override
 	public boolean modify(int scheduleNo) {
-		// TODO Auto-generated method stub
 		// mapper.update
 		return false;
 	}
 
 	@Override
-	public boolean remove(int scheduleNo) {
-		// TODO Auto-generated method stub
-		// mapper.delete
-		return false;
+	public void remove(String[] scheduleNo) {
+		for(int i=0; i<scheduleNo.length; i++) {
+			scheduleMapper.delete(Integer.parseInt(scheduleNo[i]));
+		}
 	}
 
 	@Override
 	public List<ScheduleVO> get(String scheduleDate, String screen){
-		System.out.println("★ScheduleServiceImpl - get");
-		System.out.println("scheduleDate : " + scheduleDate);
-		System.out.println("scheduleScreen : " + screen);
-		List<ScheduleVO> list = scheduleMapper.get(scheduleDate, screen);
-		System.out.println("service list size : " + list.size());
-		return list;
+		return scheduleMapper.get(scheduleDate, screen);
 	}
+	
+//	@Override
+//	public List<ScheduleVO> getAll(String scheduleDate){
+//		// 날짜별 상영스케줄 전체 조회
+//		return scheduleMapper.getAll(scheduleDate);
+//	}
 
 	@Override
 	public boolean removeDay(String scheduleDate) {
 		// 날짜별 상영스케줄 전체 삭제
-		System.out.println("★ScheduleServiceImpl - removeDay");
-		System.out.println("schedule : " + scheduleDate);
 		if(scheduleMapper.deleteAll(scheduleDate) > 0) {
-			// deleteAll이 성공하면 true 보냄
 			return true;
 		} else {
 			return false;
@@ -74,18 +82,13 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Override
 	public List<String> getDay(int movieNo, String startDate, String endDate, String time) {
 		// 해당 영화의 상영 날짜 받아오기
-		List<String> list = scheduleMapper.getDay(movieNo, startDate, endDate, time);
-		for(int i=0; i<list.size(); i++) {
-			System.out.println("impl / day / size " + list.get(i));
-		}
-		return list;
+		return scheduleMapper.getDay(movieNo, startDate, endDate, time);
 	}
 
 	@Override
 	public List<String> getTime(int movieNo, String scheduleDate, String time) {
 		// 해당 영화, 해당 날짜의 상영 시간 조회
-		List<String> list = scheduleMapper.getTime(movieNo, scheduleDate, time);
-		return list;
+		return scheduleMapper.getTime(movieNo, scheduleDate, time);
 	}
 
 	@Override
@@ -97,9 +100,6 @@ public class ScheduleServiceImpl implements ScheduleService{
 	@Override
 	public int getScheduleNo(int movieNo, String scheduleDate, String scheduleTime) {
 		// 시간선택->좌석선택에서 좌석 상태 끌어오기 위해서 상영스케줄 번호 가져오기
-		System.out.println("scheduleservice impl - movieNo : " + movieNo);
-		System.out.println("- scheduleDate : " + scheduleDate);
-		System.out.println("- scheduleTime : " + scheduleTime);
 		return scheduleMapper.getScheduleNo(movieNo, scheduleDate, scheduleTime);
 	}
 
