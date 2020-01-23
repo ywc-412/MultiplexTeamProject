@@ -21,4 +21,5 @@ public interface CommentReportService {
 	
 	//페이지 총 갯수
 	public int getTotal(Criteria cri);
+	
 }

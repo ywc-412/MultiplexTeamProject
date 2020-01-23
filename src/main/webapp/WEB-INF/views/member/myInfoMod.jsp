@@ -86,10 +86,13 @@
 							id="memberPhoneErrorMsg"></div>
 					</div>
 					<br>
-					<button class="boxed-btn3 text-center" id="infoModifyBtn">수정 완료</button>
-					<button class="boxed-btn3 text-center">취소</button>
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				</form>
+				<form action="/member/myInfo" method="get" id="cancelForm">
+					<input type="hidden" name="memberId" value="<sec:authentication property="principal.username"/>">
+				</form>
+				<button class="boxed-btn3 text-center" id="infoModifyBtn">수정 완료</button>
+				<button class="boxed-btn3 text-center" id="infoModifyCancelBtn">취소</button>
 			</div>
 		</div>
 	</div>
@@ -97,6 +100,10 @@
 	<script type="text/javascript" src="/resources/js/memberFind.js"></script>
 	<script>
 		$(function(){
+			
+			$('#infoModifyCancelBtn').on("click", function(e){
+				$('#cancelForm').submit();
+			});
 			
 			var memberPhoneFirst = '${memberPhoneFirst}';
 			
@@ -153,6 +160,8 @@
 			$('input#memberPwChk').keyup(function(e) {
 				if($(this).val() != $('input#memberPw').val()){
 					$('#memberPwChkErrorMsg').html('비밀번호 항목과 일치하지 않습니다.');
+				}else if(!$('input#memberPwChk').val()){
+					$('#memberPwChkErrorMsg').html('필수 항목입니다.');
 				}else {
 					$('#memberPwChkErrorMsg').html('비밀번호 확인 되었습니다.');
 				}
@@ -204,6 +213,8 @@
 				if($('input#memberPwChk').val() != $('input#memberPw').val()){
 					$('#memberPwChkErrorMsg').html('비밀번호 항목과 일치하지 않습니다.');
 					registerResult = false;
+				}else if(!$('input#memberPwChk').val()){
+					$('#memberPwChkErrorMsg').html('필수 항목입니다.');
 				}else {
 					$('#memberPwChkErrorMsg').html('비밀번호 확인 되었습니다.');
 				}

@@ -116,16 +116,31 @@
 	$(function() {
 		var registerResult = false;
 		
-		//id 중복 처리..
-		$('input#memberId').blur(function(){
+		// id 정규표현식
+		var idReg =  /^[A-Za-z0-9+]{4,12}$/; 
+		$('input#memberId').keyup(function(e){
+			vv = $(this).val();
 			var memberId = $('input#memberId').val();
-			memberDuplicatedService.getId(memberId, function(result){
-				if(result.memberId != memberId){
-					$('#memberIdErrorMsg').html('사용 가능한 아이디 입니다');
-				}else{
-					$('#memberIdErrorMsg').html('중복된 아이디 입니다');	
-				}
-			});
+			
+			var idTest = idReg.test(vv);
+			
+			if (idTest == true) {
+				$('#memberIdErrorMsg').html('');
+			}else{
+				$('#memberIdErrorMsg').html('아이디는  영문자 또는 숫자로 입력해주세요(4자~12자)');
+			}
+			
+			if(memberId.length >= 6){// 6자리 이상 들어가면 중복 아이디 확인 ajax 실행
+				memberDuplicatedService.getId(memberId, function(result){
+					if(result.memberId == memberId){
+						$('#memberIdErrorMsg').html('중복된 아이디 입니다');
+					}else if(idTest == false){
+						$('#memberIdErrorMsg').html('아이디는  영문자 또는 숫자로 입력해주세요(4자~12자)');
+					}else if(idTest == true && result.memberId != memberId) {
+						$('#memberIdErrorMsg').html('사용 가능한 아이디 입니다');
+					}
+				});
+			}
 		});
 		
 		// email 중복 처리 해야함

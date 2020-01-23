@@ -10,7 +10,7 @@
 	<c:set var="to" value="<%=new Date(new Date().getTime())%>"/>
 	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
 	<c:set var="tonext" value="<%=new Date(new Date().getTime() + 60*60*48*1000)%>"/>
-	
+
 	<div class="hanna_head">
 		<h3>TIME TABLE </h3>
 		<h4>
@@ -46,7 +46,7 @@
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
 				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
 				<c:set var="loop_flag" value="true"/>
 				<hr>
@@ -59,14 +59,14 @@
 		</c:if>
 	</c:forEach>
 	
-	<c:set var="loop_flag" value="false"/>
+	<c:set var="loop_flag2" value="false"/>
 	<c:forEach items="${schedule2 }" var="s">
-		<c:if test="${not loop_flag }">
+		<c:if test="${not loop_flag2 }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
 				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
-				<c:set var="loop_flag" value="true"/>
+				<c:set var="loop_flag2" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
 					<c:forEach items="${schedule2 }" var="s2">
@@ -77,14 +77,14 @@
 		</c:if>
 	</c:forEach>
 	
-	<c:set var="loop_flag" value="false"/>
+	<c:set var="loop_flag3" value="false"/>
 	<c:forEach items="${schedule3 }" var="s">
-		<c:if test="${not loop_flag }">
+		<c:if test="${not loop_flag3 }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
 				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
-				<c:set var="loop_flag" value="true"/>
+				<c:set var="loop_flag3" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
 					<c:forEach items="${schedule3 }" var="s3">
@@ -108,11 +108,13 @@
 	</form>
 	
     <!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
-    <div class="hanna_container">
-	   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록</button>
-		<button class="hanna_button" id="scheduleModBtn" style="cursor : pointer;">시간표 수정</button>
-		<button class="hanna_button delete_button" id="scheduleDelBtn" style="cursor : pointer;">시간표 삭제</button>
-    </div>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	    <div class="hanna_container">
+		   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록</button>
+			<button class="hanna_button" id="scheduleModBtn" style="cursor : pointer;">시간표 수정</button>
+			<button class="hanna_button delete_button" id="scheduleDelBtn" style="cursor : pointer;">시간표 삭제</button>
+	    </div>
+    </sec:authorize>
     
     	<script>
     	

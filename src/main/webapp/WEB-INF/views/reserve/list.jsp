@@ -34,27 +34,23 @@
 	                            <td><c:set var="sdate" value="${r.scheduleDate }"/>${fn:substring(sdate,4,6) }.${fn:substring(sdate,6,8) } / ${r.scheduleTime } </td>
 	                            <td>${r.seat }</td>
 	                            <td>
-	                            	<c:if test="${r.status == 1 }">
+	                            	<c:choose>
+	                            		<c:when test="${r.status == 0 }"><button class="btn btn-primary">예매취소</button></c:when>
+	                            		<c:when test="${r.status == 1 }">
 	                            			<form id="reviewForm" action="/review/register">
 	                            				<input type="hidden" name="movieNo" value="${r.movieNo }">
 			                            		<button class="btn btn-primary">리뷰작성</button>
 	                            			</form>
-	                            	</c:if>
-	                            	<c:if test="${r.status == 0 }">
-	                            		<button class="btn btn-primary">취소</button>
-	                            	</c:if>
-	                            	<c:if test="${r.status == 2 }">
-	                            		환불완료
-	                            	</c:if>
-	                            
+										</c:when>
+	                            		<c:when test="${r.status == 2 }">취소완료</c:when>
+	                            		<c:when test="${r.status == 3 }">취소불가</c:when>
+	                            	</c:choose>
 	                            </td>
-	                            
 	                        </tr>
                         </c:forEach>
                         </tbody>
                     </table>
-                </div>
-                <div class="custom-gift-pagination custom-th-size2">
+                     <div class="custom-gift-pagination custom-th-size2">
                     <div class="custom-pagination">
                         <nav aria-label="Page navigation example">
                             <ul class="blog-pagination">
@@ -62,18 +58,18 @@
                                     <a class="page-link" href="#" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
-                                </li>
-	                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">7</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">9</a></li>
-	                                <li class="page-item"><a class="page-link" href="#">10</a></li>
-	                                <li class="page-item">
+	                            </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                                <li class="page-item"><a class="page-link" href="#">9</a></li>
+                                <li class="page-item"><a class="page-link" href="#">10</a></li>
+	                            <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
@@ -82,6 +78,8 @@
                         </nav>
                     </div>
                 </div>
+                </div>
+               
                </div>
               </div>
              </div>

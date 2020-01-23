@@ -3,23 +3,39 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.CommentReportMapper">
-	<select id="getTotalCount" resultType="int">
 	
-	</select>
+	<select id="getTotalCount" resultType="int">
+      <![CDATA[
+         SELECT COUNT(*) FROM commentReport WHERE commentReportNo > 0 
+     ]]>
+   </select>
 	
 	<select id="getListWithPaging" resultType="com.mtms.domain.CommentReportVO">
-	
-	</select>
-	
+      <![CDATA[
+         SELECT * FROM (
+            SELECT /*+INDEX_DESC(commentReport PK_COMMENTREPORT) */ 
+                rownum rn, commentReportNo, commentNo, commentReportContent, memberId, commentReportResult, commentReportDate
+             FROM commentReport
+             WHERE
+  			 rownum <= #{pageNum} * #{amount} 
+             ) WHERE rn > (#{pageNum} - 1) * #{amount}
+      ]]>    
+    </select>
+    
 	<delete id="delete">
-	
+		DELETE FROM commentReport WHERE commentReportNo = #{commentReportNo }
 	</delete>
 	
 	<select id="read" resultType="com.mtms.domain.CommentReportVO">
-	
+		SELECT * FROM commentReport WHERE commentReportNo = #{commentReportNo}
 	</select>
 	
 	<insert id="insert">
+		<selectKey keyProperty="commentReportNo" order="BEFORE" resultType="int">
+   			SELECT seq_commentreport.nextval FROM dual
+	   	</selectKey>
+	   		insert into commentReport(commentReportNo, commentNo, commentReportContent, memberId, commentReportResult, commentReportDate) 
+	   		values(#{commentReportNo}, #{commentNo}, #{commentReportContent}, #{memberId}, #{commentReportResult}, SYSDATE)
 	
 	</insert>
 </mapper>

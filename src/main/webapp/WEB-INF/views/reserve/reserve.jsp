@@ -15,7 +15,7 @@
 			<img class="custom_moveImg" src="/resources/img/instragram/winter.jpg" alt="">			
 		</div>
 		<div class="reserve_success_info">
-			<h3> ${schedule.movieVO.movieTitle } </h3>
+			<h3> ${schedule.movieTitle } </h3>
 			<hr>
 			
 			<style>

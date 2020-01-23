@@ -96,7 +96,7 @@
 									</sec:authorize>
 									<sec:authorize access="isAuthenticated()">
 										<button class="btn btn-primary pull-right" id="logoutBtn">로그아웃</button>
-									
+										
 										<sec:authorize access="hasRole('ROLE_MEMBER')">
 											<button class="btn btn-primary pull-right" id="myPageBtn">마이페이지</button>
 										</sec:authorize>

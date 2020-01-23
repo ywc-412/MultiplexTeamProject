@@ -12,4 +12,6 @@ public class CommentReportVO {
 	private String memberId;				// 회원 아이디
 	private int commentReportResult;	// 한줄평 신고 결과
 	private Date commentReportDate;			// 한줄평 신고 날짜
+	
+	private CommentVO comment;
 }
