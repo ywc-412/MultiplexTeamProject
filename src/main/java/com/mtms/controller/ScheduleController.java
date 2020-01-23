@@ -1,9 +1,11 @@
 package com.mtms.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mtms.domain.MovieVO;
 import com.mtms.domain.ScheduleVO;
 import com.mtms.service.ScheduleService;
 import com.mtms.service.SeatService;
@@ -37,45 +40,94 @@ public class ScheduleController {
 	private SeatService seatService;
 
 	@GetMapping("register")
-	public void register() {
+	public void register(Model model, String scheduleDate) {
 		// 상영스케줄 등록 화면으로 이동
+		List<ScheduleVO> list1, list2, list3;
+		if(scheduleDate == null) {
+			Date tomorrow = new Date(new Date().getTime() + 60*60*24*1000);
+			SimpleDateFormat all = new SimpleDateFormat("yyyyMMdd");
+			SimpleDateFormat month = new SimpleDateFormat("MM");
+			SimpleDateFormat date = new SimpleDateFormat("dd");
+			String tomoMonth = month.format(tomorrow);
+			String tomoDate = date.format(tomorrow);
+			model.addAttribute("selMonth", tomoMonth);
+			model.addAttribute("selDate", tomoDate);
+	
+			list1 = scheduleService.get(all.format(tomorrow), "1관 3층");
+			list2 = scheduleService.get(all.format(tomorrow), "2관 3층");
+			list3 = scheduleService.get(all.format(tomorrow), "3관 3층");
+		} else {
+			list1 = scheduleService.get(scheduleDate, "1관 3층");
+			list2 = scheduleService.get(scheduleDate, "2관 3층");
+			list3 = scheduleService.get(scheduleDate, "3관 3층");
+			
+			String month = scheduleDate.substring(4, 6);
+			String date = scheduleDate.substring(6, 8);
+			
+			model.addAttribute("selMonth", month);
+			model.addAttribute("selDate", date);
+		}
+		model.addAttribute("schedule1", list1);
+		model.addAttribute("schedule2", list2);
+		model.addAttribute("schedule3", list3);
 	}
 	
 	@PostMapping("register")
-	public void register(ScheduleVO scheduleVO, String[] time, Model model) {
+	public void register(ScheduleVO scheduleVO, String[] time, String[] regSeq, Model model) {
 		// 상영스케줄 등록 화면에서 상영스케줄 insert
 		// 모달창에서 '추가' 버튼 누르는 순간에 등록하는 거라서 VO 하나씩 가지고 감
-		for(int i=0; i<time.length; i++) {
-			
-			ScheduleVO svo = new ScheduleVO();
-			svo.setScheduleDate(scheduleVO.getScheduleDate());
-			svo.setMovieNo(scheduleVO.getMovieNo());
-			svo.setScreen(scheduleVO.getScreen());
-			svo.setScheduleTime(time[i]);
-			
-			scheduleService.register(svo);
+		
+		// 해당 날짜, 상영관에 스케줄이 있는 지 확인
+		int chkResult = scheduleService.checkSchedule(scheduleVO.getScheduleDate(), scheduleVO.getScreen());
+		
+		String month = scheduleVO.getScheduleDate().substring(4, 6);
+		String date = scheduleVO.getScheduleDate().substring(6, 8);
+		
+		List<String> listSeq = new ArrayList<String>();
+		for(int i=0; i<regSeq.length; i++) {
+			listSeq.add(regSeq[i]);
 		}
-		model.addAttribute("oneSchedule", scheduleService.get(scheduleVO.getScheduleDate(), scheduleVO.getScreen()));
+		
+		if(chkResult == 1) { // 스케줄이 존재하지 않음 -> 등록가능
+			for(int i=0; i<time.length; i++) {	
+				ScheduleVO svo = new ScheduleVO();
+				svo.setScheduleDate(scheduleVO.getScheduleDate());
+				System.out.println("register : sdate : " + scheduleVO.getScheduleDate());
+				svo.setMovieNo(scheduleVO.getMovieNo());
+				svo.setScreen(scheduleVO.getScreen());
+				svo.setScheduleTime(time[i]);
+				
+				scheduleService.register(svo);
+				int curSeq = scheduleService.getSeq();
+				seatService.register(curSeq);
+				listSeq.add(String.valueOf(curSeq));
+			}
+		} else {
+			model.addAttribute("msg", "해당 날짜, 상영관에 스케줄이 존재합니다.");
+		}
+		
+		List<ScheduleVO> list1 = scheduleService.get(scheduleVO.getScheduleDate(), "1관 3층");
+		List<ScheduleVO> list2 = scheduleService.get(scheduleVO.getScheduleDate(), "2관 3층");
+		List<ScheduleVO> list3 = scheduleService.get(scheduleVO.getScheduleDate(), "3관 3층");
+		model.addAttribute("schedule1", list1);
+		model.addAttribute("schedule2", list2);
+		model.addAttribute("schedule3", list3);
+		model.addAttribute("listSeq", listSeq);
+		model.addAttribute("selMonth", month);
+		model.addAttribute("selDate", date);
 	}
 	
-//	@GetMapping("modify")
-//	public void modify(Date scheduleDate) {
-//		// 상영스케줄 수정 화면으로 이동		
-//	}
-	
-	@PostMapping("modify")
-	public void modify(ScheduleVO scheduleVO) {
-		// 상영스케줄 수정 화면에서 상영스케줄 update
-		// 모달창에서 '수정'버튼 누르는 순간에 수정 VO
-		// 모달창 뜰 때, hidden으로 날짜 값 모달 창에 보내야해
-		// service.modify
+	@PostMapping("cancel")
+	public String cancel(String[] regSeq, RedirectAttributes rttr) {
+		// 방금 등록했던 스케줄 다시 삭제
+		scheduleService.remove(regSeq);
+		return "redirect:/schedule/get";
 	}
 	
 	@PostMapping("remove")
 	public String remove(String scheduleDate, RedirectAttributes rttr) {
 		// 상영스케줄 삭제 (하루치)
 		// scheduleDate 같은 게 여러 개니까 한번에 삭제~
-		// service.remove
 		System.out.println("SCHEDULE CONTROLLER - REMOVE");
 		System.out.println("DATE : " + scheduleDate);
 		
@@ -103,46 +155,28 @@ public class ScheduleController {
 	@GetMapping({"get", "modify"})
 	public void get(Model model, String scheduleDate) {
 		// 날짜별 상영스케줄 조회
-		System.out.println("SCHEDULE CONTROLLER - GET");
+		List<ScheduleVO> list1, list2, list3;
+		
+		// 오늘 날짜 구하기
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
+		String formatToday = date.format(today);
+		
 		// scheduleDate 값이 null로 들어오면 -> 오늘 날짜의 상영시간표 가져오기
-		if(scheduleDate == null) {
-			System.out.println("schedule controller - today");
-			
-			// 오늘 날짜 구하기
-			Date today = new Date();
-			SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
-			String formatToday = date.format(today);
+		if(scheduleDate == null || scheduleDate.equals(formatToday)) {
 			scheduleDate = formatToday;
-
-//			System.out.println("오늘 날짜 : " + scheduleDate);
-			List<ScheduleVO> list1 = scheduleService.get(scheduleDate, "1관 3층");
-			List<ScheduleVO> list2 = scheduleService.get(scheduleDate, "2관 3층");
-			List<ScheduleVO> list3 = scheduleService.get(scheduleDate, "3관 3층");
-
-			System.out.println("controller - list1 : " + list1.size());
-			System.out.println("controller - list2 : " + list2.size());
-			System.out.println("controller - list3 : " + list3.size());
-
-			model.addAttribute("schedule1", list1);
-			model.addAttribute("schedule2", list2);
-			model.addAttribute("schedule3", list3);
-			
+			list1 = scheduleService.get(scheduleDate, "1관 3층");
+			list2 = scheduleService.get(scheduleDate, "2관 3층");
+			list3 = scheduleService.get(scheduleDate, "3관 3층");
 		} else {
-			System.out.println("schedule controller - otherday");
-			
 			// 선택한 날짜의 상영스케줄 조회
-			List<ScheduleVO> list1 = scheduleService.get(scheduleDate, "1관 3층");
-			List<ScheduleVO> list2 = scheduleService.get(scheduleDate, "2관 3층");
-			List<ScheduleVO> list3 = scheduleService.get(scheduleDate, "3관 3층");
-			
-			System.out.println("controller - list1 : " + list1.size());
-			System.out.println("controller - list2 : " + list2.size());
-			System.out.println("controller - list3 : " + list3.size());
-
-			model.addAttribute("schedule1", list1);
-			model.addAttribute("schedule2", list2);
-			model.addAttribute("schedule3", list3);
+			list1 = scheduleService.get(scheduleDate, "1관 3층");
+			list2 = scheduleService.get(scheduleDate, "2관 3층");
+			list3 = scheduleService.get(scheduleDate, "3관 3층");
 		}
+		model.addAttribute("schedule1", list1);
+		model.addAttribute("schedule2", list2);
+		model.addAttribute("schedule3", list3);
 	}
 	
 }

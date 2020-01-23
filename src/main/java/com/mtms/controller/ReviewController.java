@@ -27,6 +27,7 @@ public class ReviewController {
 	private ReviewService service;
 	private MovieService movieService;
 	
+<<<<<<< HEAD
 	@PostMapping("remove")
 	public String remove(int reviewNo,@ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) {
@@ -39,6 +40,15 @@ public class ReviewController {
 		rttr.addAttribute("amount", cri.getAmount());
 		
 		return "redirect:/review/list";
+=======
+	private ReviewService reviewService;
+	private MovieService movieService;
+	
+	@PostMapping("remove")	
+	 public String remove(int reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+		return null;
+		//삭제처리 하기위한 메소드
+>>>>>>> master
 	}
 	
 	@PostMapping("modify")
@@ -75,10 +85,17 @@ public class ReviewController {
 	}
 
 	@GetMapping("register")
+<<<<<<< HEAD
 	   public void register(int movieNo, Model model) {
 	      model.addAttribute("movieTitle", movieService.getMovie(movieNo));
 	      model.addAttribute("movieNo", movieNo);
 	   }
+=======
+	public void register(int movieNo, Model model) {
+		model.addAttribute("movieTitle", movieService.getMovie(movieNo));
+		model.addAttribute("movieNo", movieNo);
+	}
+>>>>>>> master
 	
 	@PostMapping("register")
 	public String register(ReviewVO rvo, RedirectAttributes rttr) {

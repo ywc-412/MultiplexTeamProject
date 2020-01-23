@@ -26,6 +26,7 @@ public class CommentReportServiceImpl implements CommentReportService{
 	@Override
 	public void register(CommentReportVO commentReport) {
 		
+		commentReportMapper.insert(commentReport);
 	}
 	
 	//제거
@@ -38,22 +39,22 @@ public class CommentReportServiceImpl implements CommentReportService{
 	//상세보기
 	@Override
 	public CommentReportVO get(int commentReportNo) {
-		
-		return null;
+		CommentReportVO cvo = commentReportMapper.read(commentReportNo);
+		return cvo;
 	}
 	
 	//전체목록 조회(페이징)
 	@Override
 	public List<CommentReportVO> getList(Criteria cri){
 		
-		return null;
+		return commentReportMapper.getListWithPaging(cri);
 	}
 	
 	//페이지 총 갯수
 	@Override
 	public int getTotal(Criteria cri) {
 		
-		return 0;
+		return commentReportMapper.getTotalCount(cri);
 	}
 	
 }

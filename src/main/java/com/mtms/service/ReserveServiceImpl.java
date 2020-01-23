@@ -10,6 +10,7 @@ import com.mtms.mapper.MemberMapper;
 import com.mtms.mapper.MovieMapper;
 import com.mtms.mapper.ReserveMapper;
 import com.mtms.mapper.ScheduleMapper;
+import com.mtms.domain.Criteria;
 import com.mtms.domain.ReserveVO;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -20,30 +21,36 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ReserveServiceImpl implements ReserveService{
 	
-//	@Setter(onMethod_ = @Autowired)
 	private ReserveMapper reserveMapper;
-	private MovieMapper movieMapper;
-	private MemberMapper memberMapper;
-	private ScheduleMapper scheduleMapper;
 
 	@Override
 	public ReserveVO get(String reserveNo) {
-		// TODO Auto-generated method stub
-		// mapper.read
-		return null;
+		// 예매 완료! 페이지로 보내기
+		return reserveMapper.read(reserveNo);
 	}
 
 	@Override
-	public List<ReserveVO> getList(String memberId) {
-		// TODO Auto-generated method stub
-		//mapper.getList
-		return null;
+	public List<ReserveVO> getList(String memberId, Criteria cri) {
+		// 회원별 예매내역 조회 (내 예매내역)
+		return reserveMapper.getList(memberId, cri);
+	}
+	
+	@Override
+	public List<ReserveVO> getListAdm(String memberId) {
+		// 회원별 예매내역 조회 (관리자 / 최신순 20개)
+		return reserveMapper.getListAdm(memberId);
 	}
 
+	@Override
+	public int getTotal(String memberId, Criteria cri) {
+		// 회원별 총 예매 수 (페이징)
+		return reserveMapper.getTotalCount(memberId, cri);
+	}
+	
 	@Override
 	public void register(ReserveVO rvo) {
-		// TODO Auto-generated method stub
-		// mapper.insert
+		// 예매내역에 등록하기^^
+		reserveMapper.insert(rvo);
 	}
 
 	@Override
@@ -52,4 +59,6 @@ public class ReserveServiceImpl implements ReserveService{
 		//mapper.update
 		return false;
 	}
+
+
 }

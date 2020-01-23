@@ -2,6 +2,7 @@ package com.mtms.service;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,9 +41,24 @@ public class MemberServiceImpl implements MemberService{
 	public String findId(MemberVO memberVO) {
 		return memberMapper.selectId(memberVO);
 	}
-
+	
+	@Override
+	public MemberVO findPwByEmail(MemberVO memberVO) {
+		
+		return memberMapper.findPw(memberVO);
+	}
+	
 	@Override
 	public int findPw(MemberVO memberVO) {
+		
+		String get = memberVO.getMemberId();
+		
+		
+		String password = memberVO.getMemberPw();
+		String encodedPassword = bcryptpwEncoder.encode(password);
+		memberVO.setMemberPw(encodedPassword);
+		
+		
 		return memberMapper.updatePw(memberVO);
 	}
 
@@ -51,19 +67,47 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.getMemberList(cri);
 	}
 
+	
+	@Override
+	public int getTotalCount(Criteria cri) {
+		return memberMapper.getTotalCount(cri);
+	}
+	
+	// 내 정보 상세보기 메서드
 	@Override
 	public MemberVO getMember(String memberId) {
 		return memberMapper.getMember(memberId);
 	}
 
 	@Override
-	public int removeMember(String memberId) {
-		return memberMapper.deleteMember(memberId);
+	public int removeMember(MemberVO memberVO) {
+		
+		String memberId = memberVO.getMemberId();
+		
+		String memberRealId [] = memberId.split(",");
+		
+		
+		String resultPw = memberMapper.memberPw(memberRealId[0]);
+		
+		if(resultPw != null) {
+			boolean result = bcryptpwEncoder.matches(memberVO.getMemberPw(), resultPw);
+			if(result == false) {
+				return -1;
+			}
+		}
+		
+		return memberMapper.deleteMember(memberRealId[0]);
 	}
 
 	@Override
 	public int modifyMember(MemberVO memberVO) {
-		return 0;
+		
+		String password = memberVO.getMemberPw();
+		String encodedPassword = bcryptpwEncoder.encode(password);
+		memberVO.setMemberPw(encodedPassword);
+		
+		
+		return memberMapper.updateMember(memberVO);
 	}
 
 	@Override
@@ -74,7 +118,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO duplicatedEmail(String totalEmail) {
 		
-		System.out.println("service" + totalEmail);
 		
 		String totalMemberEmail[] = totalEmail.split("@");
 		
@@ -83,4 +126,14 @@ public class MemberServiceImpl implements MemberService{
 				
 		return memberMapper.duplicatedEmail(memberEmail, memberEmailSecond);
 	}
+
+	@Override
+	public int removeMember(String memberId) {
+		
+		return memberMapper.deleteMember(memberId);
+	}
+
+	
+
+	
 }

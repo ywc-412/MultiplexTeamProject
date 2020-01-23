@@ -10,7 +10,7 @@ public interface SuggestMapper {
 	// 건의사항 등록
 	public void insertSuggestSelectKey(SuggestVO svo);
 	// 건의사항 조회
-	public List<SuggestVO> getSuggestList();
+	public List<SuggestVO> getSuggestList(Criteria cri);
 	// 건의사항 상세 보기
 	public SuggestVO getSuggest(int suggestNo);
 	// 건의사항 삭제
@@ -19,4 +19,6 @@ public interface SuggestMapper {
 	public int updateSuggest(SuggestVO svo);
 	
 	public int getTotalCount(Criteria cri);
+	
+	public int updateViewCount(int suggestNo);
 }

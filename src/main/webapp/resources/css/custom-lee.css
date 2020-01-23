@@ -14,6 +14,10 @@
 	height:480px;
 }
 
+.yeong_registerImg{
+	height:150px;
+}
+
 @media (max-width: 767px) {
 	.movie_area .single_movie {
 		width: 50%
@@ -127,6 +131,7 @@
 .pagination{
 	margin-top: 10px;
 	margin-bottom: 10px;
+	margin-left: 5px;
 }
 
 .movie-container-left{
@@ -210,9 +215,10 @@
 .custom-red{
 	color: red;
 	position: relative;
+	margin-right: 5px;
 }
 .custom-blue{
-	margin-right: 10px;
+	margin-right: 5px;
 	color: blue;
 	position: relative;
 }
@@ -236,9 +242,9 @@
 	width: 70%;
 }
 .yeong-star{
-	margin-left: 20px;
+	margin-left: 10px;
 	margin-right: 20px;
-	font-size: 25px;
+	font-size: 22px;
 }
 .yeong-allStar{
 	font-size: 30px;
@@ -326,8 +332,20 @@
 .yeongth10{
 	width: 10%;
 }
+.yeongth15{
+	width: 15%;
+}
+.yeongth05{
+	width: 5%;
+}
 .yeongth60{
 	width: 65%;
+}
+.yeongth30{
+	width: 30%;
+}
+.yeongth35{
+	width: 35%;
 }
 
 @media (max-width: 767px) {
@@ -369,3 +387,138 @@
 .yeong-margin{
 	margin-bottom: 20px;
 }
+
+.yeong-small{
+	color: red;
+	float: right;
+}
+.yeong-span{
+	margin-left: 30px;
+}
+.yeong-starRed{
+	color: red;
+}
+#star_grade a{
+	text-decoration: none;
+	color: gray;
+}
+#star_grade a.on{
+	color: red;
+}
+
+.yeong-right{
+	float: right;
+	margin-bottom: 10px;
+}
+
+#star_grade_modify a{
+	text-decoration: none;
+	color: gray;
+}
+#star_grade_modify a.on{
+	color: red;
+}
+
+.yeongth_movie30{
+	width: 20%;
+}
+.yeongth_movie70{
+	width: 80%;
+}
+
+@media (max-width: 767px) {
+	.yeongth_movie30{
+		width: 30%;
+	}
+	.yeongth_movie70{
+		width: 100%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.yeongth_movie30{
+		width: 20%;
+	}
+	.yeongth_movie70{
+		width: 80%;
+	}
+}
+
+.yeongth_movieGetTilte{
+	font-weight: bold;
+}
+
+.starTotalTitle{
+	float: left;
+	margin-right: 20px;
+}
+
+
+
+.yeongth_myComment05{
+	width: 5%;
+}
+.yeongth_myComment10{
+	width: 10%;
+}
+.yeongth_myComment35{
+	width: 35%;
+}
+.yeongth_myComment15{
+	width: 15%;
+}
+.yeongth_myComment20{
+	width: 20%;
+}
+.yeongth_myComment30{
+	width: 30%;
+}
+
+
+@media (max-width: 767px) {
+	.yeongth_myComment05{
+		width: 10%;
+	}
+	.yeongth_myComment10{
+		width: 10%;
+	}
+	.yeongth_myComment35{
+		width: 25%;
+	}
+	.yeongth_myComment15{
+		width: 10%;
+	}
+	.yeongth_myComment20{
+		width: 10%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.yeongth_myComment05{
+		width: 10%;
+	}
+	.yeongth_myComment10{
+		width: 10%;
+	}
+	.yeongth_myComment35{
+		width: 25%;
+	}
+	.yeongth_myComment15{
+		width: 10%;
+	}
+	.yeongth_myComment20{
+		width: 20%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

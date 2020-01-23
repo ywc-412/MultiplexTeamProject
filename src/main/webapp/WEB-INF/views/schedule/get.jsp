@@ -10,17 +10,16 @@
 	<c:set var="to" value="<%=new Date(new Date().getTime())%>"/>
 	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
 	<c:set var="tonext" value="<%=new Date(new Date().getTime() + 60*60*48*1000)%>"/>
-	
+
 	<div class="hanna_head">
 		<h3>TIME TABLE </h3>
 		<h4>
-			<c:set var="loop_flag" value="false"/>
-			<c:forEach items="${schedule1 }" var ="s">
-				<c:if test="${not loop_flag }">
-					<fmt:formatDate value="${s.scheduleDate }" pattern="yyyy/MM/dd"/>
-					<c:set var="loop_flag" value="true"/>
-				</c:if>
-			</c:forEach>
+			<c:if test="${param.scheduleDate == null}">
+				<fmt:formatDate value='${to }' pattern='yyyyMMdd'/>
+			</c:if>
+			<c:if test="${param.scheduleDate != null }">
+				${param.scheduleDate }
+			</c:if>
 		</h4>
 	</div>
 	
@@ -47,49 +46,49 @@
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
-				<div class="hanna_schedule_screen"> 1관 3층 </div><br>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
+				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
 				<c:set var="loop_flag" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule1 }" var="s" >
-							<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+					<c:forEach items="${schedule1 }" var="s1" >
+							<div class="hanna_schedule_time"> ${s1.scheduleTime } </div>
 					</c:forEach>
 				</div>
 			</div>
 		</c:if>
 	</c:forEach>
 	
-	<c:set var="loop_flag" value="false"/>
+	<c:set var="loop_flag2" value="false"/>
 	<c:forEach items="${schedule2 }" var="s">
-		<c:if test="${not loop_flag }">
+		<c:if test="${not loop_flag2 }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
-				<div class="hanna_schedule_screen"> 2관 3층 </div><br>
-				<c:set var="loop_flag" value="true"/>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
+				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
+				<c:set var="loop_flag2" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule2 }" var="s">
-						<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+					<c:forEach items="${schedule2 }" var="s2">
+						<div class="hanna_schedule_time"> ${s2.scheduleTime } </div>
 					</c:forEach>
 				</div>
 			</div>
 		</c:if>
 	</c:forEach>
 	
-	<c:set var="loop_flag" value="false"/>
+	<c:set var="loop_flag3" value="false"/>
 	<c:forEach items="${schedule3 }" var="s">
-		<c:if test="${not loop_flag }">
+		<c:if test="${not loop_flag3 }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie"> ${s.movieVO.movieTitle } </div>
-				<div class="hanna_schedule_screen"> 3관 3층 </div><br>
-				<c:set var="loop_flag" value="true"/>
+				<div class="hanna_schedule_movie"> ${s.movieTitle } </div>
+				<div class="hanna_schedule_screen"> ${s.screen } </div><br>
+				<c:set var="loop_flag3" value="true"/>
 				<hr>
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule3 }" var="s">
-						<div class="hanna_schedule_time"> ${s.scheduleTime } </div>
+					<c:forEach items="${schedule3 }" var="s3">
+						<div class="hanna_schedule_time"> ${s3.scheduleTime } </div>
 					</c:forEach>
 				</div>
 			</div>
@@ -99,21 +98,23 @@
 
 	<!-- 해당 날짜 받아오기 : 삭제할 때 form으로 보내기 -->
 	<form id="actionForm" action="/schedule/remove" method="post">
-		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-		<c:if test="${param.scheduleDate == null }">
-			<input type="hidden" name="scheduleDate" value="<fmt:formatDate value="${to }" pattern="yyyyMMdd"/>"/>
+		<c:if test="${param.scheduleDate == null}">
+			<input type="hidden" name="scheduleDate" value="<fmt:formatDate value='${to }' pattern='yyyyMMdd'/>"/>
 		</c:if>
 		<c:if test="${param.scheduleDate != null }">
-			<input type="hidden" name="scheduleDate" value="${param.scheduleDate }" />
+			<input type="hidden" name="scheduleDate" value="${param.scheduleDate }"/>
 		</c:if>
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">				
 	</form>
 	
     <!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
-    <div class="hanna_container">
-	   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록</button>
-		<button class="hanna_button" id="scheduleModBtn" style="cursor : pointer;">시간표 수정</button>
-		<button class="hanna_button delete_button" id="scheduleDelBtn" style="cursor : pointer;">시간표 삭제</button>
-    </div>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	    <div class="hanna_container">
+		   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록</button>
+			<button class="hanna_button" id="scheduleModBtn" style="cursor : pointer;">시간표 수정</button>
+			<button class="hanna_button delete_button" id="scheduleDelBtn" style="cursor : pointer;">시간표 삭제</button>
+	    </div>
+    </sec:authorize>
     
     	<script>
     	
@@ -156,8 +157,5 @@
 		});
 	
 	</script>
-	
-	
-	
 	
 <%@ include file="../include/footer.jsp" %>

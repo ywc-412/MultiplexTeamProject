@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.SuggestVO;
@@ -23,44 +24,37 @@ public class SuggestServiceImpl implements SuggestService{
 	private MemberMapper memberMapper;
 
 	@Override
-	public void registerSuggest(SuggestVO svo) {
-		// TODO Auto-generated method stub
-		
+	public void registerSuggest(SuggestVO suggestVO) {
+		suggestMapper.insertSuggestSelectKey(suggestVO);
 	}
 
 	@Override
+	@Transactional
 	public SuggestVO getSuggest(int suggestNo) {
-		// TODO Auto-generated method stub
-		return null;
+		suggestMapper.updateViewCount(suggestNo);
+		return suggestMapper.getSuggest(suggestNo);
 	}
 
 	@Override
 	public int removeSuggest(int suggestNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return suggestMapper.deleteSuggest(suggestNo);
 	}
 
 	@Override
-	public int modifySuggest(SuggestVO svo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int modifySuggest(SuggestVO suggestVO) {
+		
+		return suggestMapper.updateSuggest(suggestVO);
 	}
-
-//	@Override
-//	public List<SuggestVO> getSuggestList(Criteria cri) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 	@Override
 	public List<SuggestVO> getSuggestListWithPaging(Criteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return suggestMapper.getSuggestList(cri);
 	}
 
 	@Override
 	public int getTotalCount(Criteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
+		return suggestMapper.getTotalCount(cri);
 	}
 }

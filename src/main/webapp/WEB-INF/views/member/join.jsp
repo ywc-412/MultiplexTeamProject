@@ -12,7 +12,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row justify-content-lg-center" name="regForm">
+		<div class="row justify-content-lg-center" id="regForm">
 			<div class="col-lg-8 col-md-8">
 				<form method="post" action="/member/join" role="form" id="joinForm">
 					<div class="mt-10 custom-input">
@@ -54,7 +54,7 @@
 						<div class="custom-text-left custom-my-auto">@</div>
 						<div class="default-select custom-text-left" id="default-select">
 							<select name="memberEmailSecond" id="memberEmailSecond">
-								<option value="">-직접 입력-</option>
+								<option value="">선택</option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="hamail.net">hanmail.net</option>
@@ -113,17 +113,34 @@
 </div>
 <script type="text/javascript" src="/resources/js/memberFind.js"></script>
 <script>
-	$(function(){
-		//id 중복 처리..
-		$('input#memberId').blur(function(){
+	$(function() {
+		var registerResult = false;
+		
+		// id 정규표현식
+		var idReg =  /^[A-Za-z0-9+]{4,12}$/; 
+		$('input#memberId').keyup(function(e){
+			vv = $(this).val();
 			var memberId = $('input#memberId').val();
-			memberDuplicatedService.getId(memberId, function(result){
-				if(result.memberId != memberId){
-					$('#memberIdErrorMsg').html('사용 가능한 아이디 입니다');
-				}else{
-					$('#memberIdErrorMsg').html('중복된 아이디 입니다');	
-				}
-			});
+			
+			var idTest = idReg.test(vv);
+			
+			if (idTest == true) {
+				$('#memberIdErrorMsg').html('');
+			}else{
+				$('#memberIdErrorMsg').html('아이디는  영문자 또는 숫자로 입력해주세요(4자~12자)');
+			}
+			
+			if(memberId.length >= 6){// 6자리 이상 들어가면 중복 아이디 확인 ajax 실행
+				memberDuplicatedService.getId(memberId, function(result){
+					if(result.memberId == memberId){
+						$('#memberIdErrorMsg').html('중복된 아이디 입니다');
+					}else if(idTest == false){
+						$('#memberIdErrorMsg').html('아이디는  영문자 또는 숫자로 입력해주세요(4자~12자)');
+					}else if(idTest == true && result.memberId != memberId) {
+						$('#memberIdErrorMsg').html('사용 가능한 아이디 입니다');
+					}
+				});
+			}
 		});
 		
 		// email 중복 처리 해야함
@@ -141,11 +158,6 @@
 				}
 			});
 		});
-	})
-</script>
-<script>
-	$(function() {
-		var registerResult = false;
 		
 		var regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 
@@ -190,15 +202,16 @@
 				e.preventDefault();
 			}
 			
-			$('#memberIdErrorMsg').html('');
-			$('#memberNameErrorMsg').html('');
-			$('#memberPwErrorMsg').html('');
-			$('#memberPwChkErrorMsg').html('');
-			$('#memberEmailErrorMsg').html('');
-			$('#memberAddressErrorMsg').html('');
-			$('#memberPhoneErrorMsg').html('');
-			$('#memberBirthErrorMsg').html('');
-
+			var memberIdErrorMsg = $('#memberIdErrorMsg').html('');
+			var memberNameErrorMsg = $('#memberNameErrorMsg').html('');
+			var memberPwErrorMsg = $('#memberPwErrorMsg').html('');
+			var memberPwChkErrorMsg = $('#memberPwChkErrorMsg').html('');
+			var memberEmailErrorMsg = $('#memberEmailErrorMsg').html('');
+			var memberAddressErrorMsg = $('#memberAddressErrorMsg').html('');
+			var memberPhoneErrorMsg = $('#memberPhoneErrorMsg').html('');
+			var memberBirthErrorMsg = $('#memberBirthErrorMsg').html('');
+			
+			
 			//memberId select 해서 없으면 중복된 id 처리해야함
 			if (!memberId) {
 				$('#memberIdErrorMsg').html('필수 항목입니다');
@@ -270,6 +283,30 @@
 				registerResult = true;
 			}
 			
+			v = $('input#memberPw').val();
+
+			if (regex.test(v)) {
+				$('#memberPwErrorMsg').html('사용 가능합니다!');
+				$(this).focus();
+			}else{
+				registerResult = false;
+				$('#memberPwErrorMsg').html('영어 대소문자/숫자/특수문자의 조합으로 8자리 이상으로 입력해주세요');
+				var offset = $("#memberIdNav").offset();
+				$('html, body').animate({
+					scrollTop : offset.top
+				}, 400);
+			}
+				
+			if($('input#memberPwChk').val() != $('input#memberPw').val()){
+				$('#memberPwChkErrorMsg').html('비밀번호 항목과 일치하지 않습니다.');
+				registerResult = false;
+				var offset = $("#memberIdNav").offset();
+				$('html, body').animate({
+					scrollTop : offset.top
+				}, 400);
+			}else {
+				$('#memberPwChkErrorMsg').html('비밀번호 확인 되었습니다.');
+			}
 			
 			if(registerResult){
 				$('#joinForm').submit();

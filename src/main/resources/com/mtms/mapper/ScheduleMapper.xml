@@ -4,29 +4,51 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ScheduleMapper">
 
+	<!--  상영스케줄 등록 -->
 	<insert id="insert">
-		INSERT INTO schedule VALUES (seq_schedule.nextval, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo})
+		<selectKey keyProperty="scheduleNo" order="BEFORE" resultType="Integer">
+			SELECT seq_schedule.nextval FROM dual
+		</selectKey>
+			INSERT INTO schedule VALUES (#{scheduleNo}, #{scheduleDate}, #{scheduleTime}, #{screen}, #{movieNo})
 	</insert>
 	
+	<!-- 해당 날짜의 해당 관에 상영 시간대가 있는 지 확인 -->
+	<select id="checkSchedule" resultType="int">
+		SELECT COUNT(*) FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} AND screen = #{screen}
+	</select>
+	
+	<!-- 방금 삽입한 스케줄의 번호 가져오기 -->
+	<select id="getSeq" resultType="int">
+		SELECT seq_schedule.currval FROM dual
+	</select>
+	
+	<!-- 영화번호, 날짜, 시간으로 스케줄 번호 알아오기 -->
+	<select id="getScheduleNo" resultType="int">
+		SELECT scheduleNo FROM schedule WHERE movieNo=#{movieNo} AND to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} AND scheduleTime = #{scheduleTime}
+	</select>
+
 <!-- 	<update id="update"> -->
 <!-- 	</update> -->
 	
-<!-- 	<delete id="delete"> -->
-<!-- 	</delete> -->
+	<!-- 등록하다 취소 시 등록했던 상영스케줄 삭제 -->
+	<delete id="delete">
+		DELETE FROM schedule WHERE scheduleNo = #{scheduleNo}
+	</delete>
 
+	<!--  해당날짜의 상영스케줄 모두 삭제 -->
 	<delete id="deleteAll">
 		DELETE FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
 	</delete>
 	
 	<resultMap type="com.mtms.domain.ScheduleVO" id="scheduleMap">
 		<!-- property VO에 있는 이름 column 디비에 있는 이름 -->
-		<id property="movieNo" column="movieNo"/> <!-- 조인 칼럼 -->
+		<id property="movieNo" column="movieNo"/> <!-- 조인 칼럼  -->
 		<result property="scheduleNo" column="scheduleNo"/>
 		<result property="scheduleDate" column="scheduleDate"/>
 		<result property="scheduleTime" column="scheduleTime"/>
 		<result property="screen" column="screen"/>
 		<result property="movieNo" column="movieNo"/>
-		<collection property="movieVO" resultMap="movieMap"/>
+		<association property="movieVO" resultMap="movieMap"/>
 	</resultMap>
 	
 	<resultMap type="com.mtms.domain.MovieVO" id="movieMap">
@@ -34,9 +56,47 @@
 		<result property="movieTitle" column="movieTitle"/>
 	</resultMap>
 	
-	<select id="get" resultMap="scheduleMap">
-		SELECT to_char(s.scheduleDate, 'yyyymmdd'), s.scheduleTime, m.movieTitle FROM schedule s, movie m
-		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo
+	<!-- 스케줄번호로 스케줄 정보 알아오기 -->
+	<select id="getSchedule" resultType="com.mtms.domain.ScheduleVO">
+		SELECT to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen, s.movieNo, m.movieTitle
+		FROM schedule s, movie m WHERE scheduleNo = #{scheduleNo} AND s.movieNo = m.movieNo
+	</select>
+	
+	<!-- 해당 영화에 대한 상영스케줄 날짜 가져오기  -->
+	<select id="getDay" resultType="java.lang.String">
+		SELECT DISTINCT to_char(s.scheduleDate, 'yyyymmdd') FROM schedule s, movie m
+		WHERE #{movieNo} = s.movieNo
+		AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate}	AND #{endDate}
+<!-- 		AND scheduleTime > #{time} -->
+		ORDER BY to_char(s.scheduleDate, 'yyyymmdd')
+	</select>
+	
+	<!-- 해당 영화, 날짜에 대한 상영 시간 가져오기  -->
+	<select id="getTime" resultType="java.lang.String">
+		SELECT DISTINCT scheduleTime FROM schedule
+		WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
+		 and scheduleTime > #{time}
+		ORDER BY scheduleTime
+	</select>
+	
+	<!-- 현재 상영중인 영화 목록 가져오기 -->
+	<select id="getMovie" resultType="com.mtms.domain.ScheduleVO">
+		SELECT DISTINCT m.movieTitle, m.movieNo FROM movie m, schedule s 
+		WHERE s.movieNo = m.movieNo AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate} AND #{endDate}
+<!-- 		AND scheduleTime > #{time} -->
+	</select>
+	
+	<!-- 날짜별 상영스케줄 조회 -->
+<!-- 	<select id="get" resultMap="scheduleMap"> -->
+	<select id="get" resultType="com.mtms.domain.ScheduleVO">
+		SELECT m.movieTitle, to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen FROM schedule s, movie m
+		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo ORDER BY scheduleTime
+	</select>
+	
+	<!-- 날짜별 상영스케줄 조회 (전체) -->
+	<select id="getAll" resultType="com.mtms.domain.ScheduleVO">
+		SELECT m.movieTitle, to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen FROM schedule s, movie m
+		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.movieNo = m.movieNo ORDER BY screen, scheduleTime
 	</select>
 
 </mapper>

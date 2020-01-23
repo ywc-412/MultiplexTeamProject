@@ -3,19 +3,88 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ReserveMapper">
+
+	<!-- 예매 완료 후 예매 완료 페이지로 갈 때 예매 정보 불러옴 -->
 	<select id="read" resultType="com.mtms.domain.ReserveVO">
+		SELECT * FROM reserve WHERE reserveNo = #{reserveNo}
+	</select>
 	
+	<select id="getTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM reserve WHERE memberId=#{memberId}
+		]]>
 	</select>
 	
 	<select id="getList" resultType="com.mtms.domain.ReserveVO">
-	
+		<![CDATA[
+			SELECT c.reserveNo as reserveNo,
+						c.seat as seat,
+						c.scheduleNo as scheduleNo,
+						c.adultNum as adultNum,
+						c.teenNum as teenNum,
+						c.status as status,
+						to_char(c.scheduleDate, 'yyyymmdd') as scheduleDate,
+						c.scheduleTime as scheduleTime,
+						c.movieNo as movieNo,
+						c.movieTitle as movieTitle
+			FROM (
+				SELECT rownum rn,
+							r.*,
+							s.scheduleNo as originscheduleNo,
+							s.scheduleDate,
+							s.scheduleTime,
+							s.screen,
+							s.movieNo,
+							m.movieTitle
+				FROM reserve r, schedule s, movie m
+				WHERE memberId=#{memberId} and r.scheduleNo = s.scheduleNo and s.movieNo = m.movieNo
+				AND rownum <= 1 * 10 ORDER BY status
+			) c
+			WHERE c.rn > (1 - 1) * 10 
+		]]>
 	</select>
 	
-	<insert id="insert">
+	<select id="getListAdm" resultType="com.mtms.domain.ReserveVO">
+		<!-- 영화제목, 관람일시 -->	
+		<![CDATA[
+			SELECT m.movieTitle, to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate FROM movie m, schedule s, reserve r
+			WHERE r.scheduleNo = s.scheduleNo and s.movieNo = m.movieNo and memberId=#{memberId} and rownum <= 20
+		]]>
+	</select>
 	
+	<!-- 상영시간이 지난 영화 상태 변경 (관람완료) -->
+	<update id="changeStatus">
+		<![CDATA[
+			UPDATE reserve SET status = 1
+			WHERE reserveNo IN (
+				SELECT r.reserveNo FROM reserve r, schedule s
+				WHERE r.scheduleNo = s.scheduleNo AND
+							to_char(scheduleDate, 'yyyyMMdd') <= #{scheduleDate}
+				AND		scheduleTime < #{time} and status IN (0, 3) )
+			]]>
+	</update>
+	
+	<!-- 상영시간 30분 전 : 상태 변경 (status = 3 : 취소불가) -->
+	<update id="beforeStatus">
+		<![CDATA[
+			UPDATE reserve SET status = 3
+			WHERE reserveNo IN (
+				SELECT reserveNo FROM reserve r, schedule s
+				WHERE r.scheduleNo = s.scheduleNo AND
+					to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} AND
+					(to_date(scheduleTime, 'HH24:MI') - to_date(#{time}, 'HH24:MI'))*24*60 < 30
+					AND status = 0 )
+		]]>
+	</update>
+	
+
+	<!-- 예매 완료 시 예매 테이블에 등록 -->
+	<insert id="insert">
+		INSERT INTO reserve VALUES (#{reserveNo}, #{memberId}, #{seat}, #{scheduleNo}, #{adultNum}, #{teenNum}, #{status})
 	</insert>
 	
-	<update id="update">
+<!-- 	<update id="update"> -->
 	
-	</update>
+<!-- 	</update> -->
+
 </mapper>

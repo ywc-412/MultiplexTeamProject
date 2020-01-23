@@ -2,14 +2,15 @@
 CREATE TABLE member (
     memberId VARCHAR2(20),
     memberPw VARCHAR2(500) NOT NULL,
-    memberName VARCHAR2(15) NOT NULL,
+    memberName VARCHAR2(40) NOT NULL,
     memberAddress VARCHAR2(100) NOT NULL,
     memberPhoneFirst VARCHAR2(20) NOT NULL,
     memberPhoneSecond varchar2(20) not null,
     memberPhoneThird varchar2(20) not null,
     memberBirth DATE NOT NULL,
     memberEmail VARCHAR2(100) NOT NULL,
-    memberEmailSecond varchar2(100) not null
+    memberEmailSecond varchar2(100) not null,
+    memberRegDate DATE DEFAULT sysdate
 );
 
 CREATE TABLE auth(
@@ -34,7 +35,7 @@ CREATE TABLE suggest(
 CREATE TABLE RESERVE (
    reserveNo VARCHAR2(30) NOT NULL,
    memberId VARCHAR2(20) NOT NULL,
-   seat VARCHAR2(20) NOT NULL,
+   seat VARCHAR2(40) NOT NULL,
    scheduleNo NUMBER(10) NOT NULL,
    adultNum NUMBER(1) DEFAULT 0,
    teenNum NUMBER(1) DEFAULT 0,
@@ -114,7 +115,8 @@ CREATE TABLE movie (
     runningTime NUMBER(10)  NOT NULL,
     summary VARCHAR2(3000),
     openDate DATE,
-    yesterdayNum NUMBER(10) DEFAULT 0
+    todayNum NUMBER(10) DEFAULT 0,
+    yesterdayNum NUMBER(10)
 );
 
 CREATE TABLE commentReply (
@@ -127,12 +129,12 @@ CREATE TABLE commentReply (
 );
 
 CREATE TABLE commentReport (
-commentReportNo NUMBER(10),
-commentNo NUMBER(10) NOT NULL,
-commentReportContent VARCHAR2(3000) NOT NULL,
-memberId VARCHAR2(20)  NOT NULL,
-commentReportResult NUMBER(1) DEFAULT 0,
-commentReportDate DATE DEFAULT SYSDATE
+    commentReportNo NUMBER(10),
+    commentNo NUMBER(10) NOT NULL,
+    commentReportContent VARCHAR2(3000) NOT NULL,
+    memberId VARCHAR2(20)  NOT NULL,
+    commentReportResult NUMBER(1) DEFAULT 0,
+    commentReportDate DATE DEFAULT SYSDATE
 );
 
 -- 영주 SQL END
@@ -207,13 +209,15 @@ ALTER TABLE replyReport ADD CONSTRAINT PK_replyReport PRIMARY KEY (replyReportNo
 -- 영우 알터 START
 ALTER TABLE auth ADD CONSTRAINT FK_AUTH_MEMBER FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 ALTER TABLE suggest ADD CONSTRAINT fk_suggest_memberId foreign key (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
+ALTER TABLE suggest ADD CONSTRAINT pk_suggest_suggestNo PRIMARY KEY (suggestNo);
+CREATE INDEX idx_member_memberRegDate ON MEMBER(memberRegDate);
 -- 영우 알터 END
 
 -- 영주 ALTER START
 ALTER TABLE movieAttach ADD CONSTRAINT fk_movieAttach_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo) ON DELETE CASCADE;
 ALTER TABLE commentReply ADD CONSTRAINT fk_commentReply_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo) ON DELETE CASCADE;
 ALTER TABLE commentReply ADD CONSTRAINT fk_commentReply_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
-ALTER TABLE commentReport ADD CONSTRAINT fk_commentReport_commentReply FOREIGN KEY (commentNo) REFERENCES commentReply(commentNo) ON DELETE SET NULL;
+ALTER TABLE commentReport ADD CONSTRAINT fk_commentReport_commentReply FOREIGN KEY (commentNo) REFERENCES commentReply(commentNo) ON DELETE CASCADE;
 ALTER TABLE commentReport ADD CONSTRAINT fk_commentReport_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 -- 영주 ALTER END
 
@@ -236,8 +240,8 @@ ALTER TABLE review ADD CONSTRAINT FK_review_movie FOREIGN KEY (movieNo)REFERENCE
 ALTER TABLE reply ADD CONSTRAINT FK_reply_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 ALTER TABLE reply ADD CONSTRAINT FK_reply_review FOREIGN KEY (reviewNo) REFERENCES review(reviewNo) ON DELETE CASCADE;
 ALTER TABLE reviewReport ADD CONSTRAINT FK_reviewReport_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
-ALTER TABLE reviewReport ADD CONSTRAINT FK_reviewReport_review FOREIGN KEY (reviewNo) REFERENCES review(reviewNo) ON DELETE SET NULL;
-ALTER TABLE replyReport ADD CONSTRAINT FK_replyReport_reply FOREIGN KEY (replyNo) REFERENCES reply(replyNo) ON DELETE SET NULL;
+ALTER TABLE reviewReport ADD CONSTRAINT FK_reviewReport_review FOREIGN KEY (reviewNo) REFERENCES review(reviewNo) ON DELETE CASCADE;
+ALTER TABLE replyReport ADD CONSTRAINT FK_replyReport_reply FOREIGN KEY (replyNo) REFERENCES reply(replyNo) ON DELETE CASCADE;
 ALTER TABLE replyReport ADD CONSTRAINT FK_replyReport_member FOREIGN KEY (memberId) REFERENCES member(memberId) ON DELETE CASCADE;
 -- 홍이 ALTER END
 --ALTER END-------------------------------------------------------------------------------
@@ -258,5 +262,5 @@ CREATE SEQUENCE seq_replyReport;
 CREATE SEQUENCE seq_lost;
 CREATE SEQUENCE seq_reply;
 CREATE SEQUENCE seq_review;
-CREATE SEQUENCE SEQ_SUGGEST;
+CREATE SEQUENCE seq_suggest;
 

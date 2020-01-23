@@ -2,6 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp"%>
 
+<c:if test="${!empty findMemberId }">
+	<script>
+		alert('회원님의 아이디는 ' + '${findMemberId}' + '입니다');
+	</script>
+</c:if>
+<c:if test="${!empty findPw}">
+	<script>
+		alert('${findPw}');
+	</script>
+</c:if>
+<c:if test="${!empty error} ">
+	<script>
+		alert('아이디와 비밀번호를 확인해주세요');
+	</script>	
+</c:if>
+
 <div class="offers_area padding_top">
 	<div class="container">
 		<div class="row">
@@ -19,11 +35,17 @@
 							class="single-input custom-text-right custom-input-color">
 					</div>
 					<div class="">
-						<button class="btn btn-primary custom-button">로그인</button>
-						<button class="btn btn-secondary custom-button">ID 찾기</button>
-						<button class="btn btn-secondary custom-button">PW 찾기</button>
-						<button class="btn btn-secondary custom-button">회원가입</button>
+						<button class="btn btn-primary custom-button" id="loginBtn">로그인</button>
+						<button class="btn btn-secondary custom-button" id="findIdBtn">ID 찾기</button>
+						<button class="btn btn-secondary custom-button" id="findPwBtn2">PW 찾기</button>
+						<button class="btn btn-secondary custom-button" id="joinBtn2">회원가입</button>
 					</div>
+					<div>
+						<br>
+						<a href="${url }">
+							<img src="/resources/img/naverLogin.PNG" style="width: 45%; height: 45%; cursor:pointer"/>
+						</a>
+					</div> 
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				</form>
 			</div>
@@ -32,11 +54,29 @@
 </div>
 
 <script>
-	$('.custom-button').on("click", function(e){
-		e.preventDefault();
+	$(function(){
+		$('#loginBtn').on("click", function(e){
+			e.preventDefault();
+			
+			$("form").submit();
+		});
 		
-		$("form").submit();
-	});
+		$('#findIdBtn').on("click", function(e){
+			e.preventDefault();
+			location.href="/member/findId";
+		});
+		
+		$('#findPwBtn2').on("click", function(e){
+			e.preventDefault();
+			location.href="/member/findPw";
+		});
+		
+		$('#joinBtn2').on("click", function(e){
+			e.preventDefault();
+			location.href="/member/join";
+		});
+	})
+	
 </script>
 
 <%@ include file="include/footer.jsp"%>

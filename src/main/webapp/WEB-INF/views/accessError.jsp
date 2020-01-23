@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예매완료</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+	<script>
+		alert('잘못된 접근입니다.');
+		history.back();
+	</script>
 </body>
 </html>
