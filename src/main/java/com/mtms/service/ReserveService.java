@@ -14,6 +14,9 @@ public interface ReserveService {
 	// 회원별 예매내역 가져오기
 	public List<ReserveVO> getList(String memberId, Criteria cri);
 	
+	// 관리자 - 회원별 예매내역 가져오기 ( 최근 20개 )
+	public List<ReserveVO> getListAdm(String memberId);
+	
 	// 회원별 총 예매 수 (페이징)
 	public int getTotal(String memberId, Criteria cri);
 	

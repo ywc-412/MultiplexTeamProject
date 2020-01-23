@@ -18,9 +18,9 @@ public interface ScheduleMapper {
 
 //	// 상영스케줄 수정
 //	public int update(int scheduleNo);
-//	
-//	// 상영스케줄 삭제
-//	public int delete(int scheduleNo);
+	
+	// 상영스케줄 삭제
+	public int delete(int scheduleNo);
 	
 	// 삭제) 날짜별 상영스케줄 삭제
 	public int deleteAll(@Param("scheduleDate") String scheduleDate);

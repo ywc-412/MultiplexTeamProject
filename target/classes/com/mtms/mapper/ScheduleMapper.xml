@@ -30,8 +30,9 @@
 <!-- 	<update id="update"> -->
 <!-- 	</update> -->
 	
-<!-- 	<delete id="delete"> -->
-<!-- 	</delete> -->
+	<delete id="delete">
+		DELETE FROM schedule WHERE scheduleNo = #{scheduleNo}
+	</delete>
 
 	<!--  해당날짜의 상영스케줄 모두 삭제 -->
 	<delete id="deleteAll">

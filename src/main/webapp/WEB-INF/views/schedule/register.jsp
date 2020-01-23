@@ -154,8 +154,18 @@
 	<!-- 등록된 상영시간표 표시 END -->
 	
 	<div class="hanna_container">
-		<a href="#" class="hanna_button">등록</a>
-		<a href="#" class="hanna_button">취소</a>
+		<Button class="hanna_button" id="addFinBtn">등록</Button>
+		<form id="seqForm" method="post" action="/schedule/cancel">
+		<!-- 취소 클릭 시 등록한 시간표 다시 삭제하기 -->
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+			<c:if test="${empty listSeq}">
+				<input type="hidden" name="regSeq" value="">
+			</c:if>
+			<c:forEach items="${listSeq }" var="seq">
+				<input type="hidden" name="regSeq" value="${seq }">
+			</c:forEach>
+			<Button class="hanna_button" id="addCanBtn">취소</Button>
+		</form>
 	</div>
 
     <!-- Schedule Add Modal -->
@@ -190,6 +200,12 @@
 						<input type="text" class="hanna_add_time" name="time">
 						<input type="text" class="hanna_add_time" name="time">
 						<input type="text" class="hanna_add_time" name="time">
+						<c:if test="${empty listSeq}">
+							<input type="hidden" name="regSeq" value="">
+						</c:if>
+						<c:forEach items="${listSeq }" var="seq" varStatus="status">
+							<input type="hidden" name="regSeq" value="${seq }">
+						</c:forEach>
 				</form>
 				</div>
 				<div class="modal-footer justify-content-center">
@@ -326,6 +342,18 @@
 		}
 
 		$(function() {
+			
+			$("#addCanBtn").on("click", function(){
+				if(confirm("정말 취소하시겠습니까?")){
+					$("#seqForm").submit();
+				}
+			}); // 취소 버튼 클릭 시
+			
+			$("#addFinBtn").on("click", function(){
+				location.href="/schedule/get";
+			}); // 등록 버튼 클릭 시
+			
+			
 			$("#searchMovie").on("click", function(){
 				// 검색 버튼 클릭 시 ajax로 영화명 받아오기
 				var movieName = $("#movieName").val();
@@ -354,6 +382,7 @@
 			var canScheduleBtn = $("#modalCanBtn");
 			
 			addScheduleBtn.on("click", function(){
+// 				$("#seqForm").
 				$("#addForm").submit();
 			}); // 스케줄 추가 버튼 클릭 END
 

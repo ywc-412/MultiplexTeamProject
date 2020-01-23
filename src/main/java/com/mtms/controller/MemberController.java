@@ -119,7 +119,7 @@ public class MemberController {
 	@GetMapping("/clientInfo")
 	public void clientGet(String memberId, Model model) {
 		model.addAttribute("member", memberService.getMember(memberId));
-		model.addAttribute("reserveList", reserveService.getList(memberId, new Criteria(1,10)));
+		model.addAttribute("reserveList", reserveService.getListAdm(memberId));
 	}
 	
 	@GetMapping("/myInfo")

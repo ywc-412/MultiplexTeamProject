@@ -46,9 +46,10 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public boolean remove(int scheduleNo) {
-		// mapper.delete
-		return false;
+	public void remove(String[] scheduleNo) {
+		for(int i=0; i<scheduleNo.length; i++) {
+			scheduleMapper.delete(Integer.parseInt(scheduleNo[i]));
+		}
 	}
 
 	@Override
@@ -56,10 +57,11 @@ public class ScheduleServiceImpl implements ScheduleService{
 		return scheduleMapper.get(scheduleDate, screen);
 	}
 	
-	@Override
-	public List<ScheduleVO> getAll(String scheduleDate){
-		return scheduleMapper.getAll(scheduleDate);
-	}
+//	@Override
+//	public List<ScheduleVO> getAll(String scheduleDate){
+//		// 날짜별 상영스케줄 전체 조회
+//		return scheduleMapper.getAll(scheduleDate);
+//	}
 
 	@Override
 	public boolean removeDay(String scheduleDate) {

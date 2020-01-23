@@ -42,7 +42,6 @@ public class ScheduleController {
 	@GetMapping("register")
 	public void register(Model model, String scheduleDate) {
 		// 상영스케줄 등록 화면으로 이동
-		System.out.println("scheduleDate : " + scheduleDate);
 		List<ScheduleVO> list1, list2, list3;
 		if(scheduleDate == null) {
 			Date tomorrow = new Date(new Date().getTime() + 60*60*24*1000);
@@ -74,7 +73,7 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("register")
-	public void register(ScheduleVO scheduleVO, String[] time, Model model) {
+	public void register(ScheduleVO scheduleVO, String[] time, String[] regSeq, Model model) {
 		// 상영스케줄 등록 화면에서 상영스케줄 insert
 		// 모달창에서 '추가' 버튼 누르는 순간에 등록하는 거라서 VO 하나씩 가지고 감
 		
@@ -83,6 +82,11 @@ public class ScheduleController {
 		
 		String month = scheduleVO.getScheduleDate().substring(4, 6);
 		String date = scheduleVO.getScheduleDate().substring(6, 8);
+		
+		List<String> listSeq = new ArrayList<String>();
+		for(int i=0; i<regSeq.length; i++) {
+			listSeq.add(regSeq[i]);
+		}
 		
 		if(chkResult == 1) { // 스케줄이 존재하지 않음 -> 등록가능
 			for(int i=0; i<time.length; i++) {	
@@ -94,7 +98,9 @@ public class ScheduleController {
 				svo.setScheduleTime(time[i]);
 				
 				scheduleService.register(svo);
-				seatService.register(scheduleService.getSeq());
+				int curSeq = scheduleService.getSeq();
+				seatService.register(curSeq);
+				listSeq.add(String.valueOf(curSeq));
 			}
 		} else {
 			model.addAttribute("msg", "해당 날짜, 상영관에 스케줄이 존재합니다.");
@@ -106,21 +112,16 @@ public class ScheduleController {
 		model.addAttribute("schedule1", list1);
 		model.addAttribute("schedule2", list2);
 		model.addAttribute("schedule3", list3);
+		model.addAttribute("listSeq", listSeq);
 		model.addAttribute("selMonth", month);
 		model.addAttribute("selDate", date);
 	}
 	
-//	@GetMapping("modify")
-//	public void modify(Date scheduleDate) {
-//		// 상영스케줄 수정 화면으로 이동		
-//	}
-	
-	@PostMapping("modify")
-	public void modify(ScheduleVO scheduleVO) {
-		// 상영스케줄 수정 화면에서 상영스케줄 update
-		// 모달창에서 '수정'버튼 누르는 순간에 수정 VO
-		// 모달창 뜰 때, hidden으로 날짜 값 모달 창에 보내야해
-		// service.modify
+	@PostMapping("cancel")
+	public String cancel(String[] regSeq, RedirectAttributes rttr) {
+		// 방금 등록했던 스케줄 다시 삭제
+		scheduleService.remove(regSeq);
+		return "redirect:/schedule/get";
 	}
 	
 	@PostMapping("remove")

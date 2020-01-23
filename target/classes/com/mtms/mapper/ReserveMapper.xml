@@ -44,6 +44,14 @@
 		]]>
 	</select>
 	
+	<select id="getListAdm" resultType="com.mtms.domain.ReserveVO">
+		<!-- 영화제목, 관람일시 -->	
+		<![CDATA[
+			SELECT m.movieTitle, to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate FROM movie m, schedule s, reserve r
+			WHERE r.scheduleNo = s.scheduleNo and s.movieNo = m.movieNo and memberId=#{memberId} and rownum <= 20
+		]]>
+	</select>
+	
 	<!-- 상영시간이 지난 영화 상태 변경 (관람완료) -->
 	<update id="changeStatus">
 		<![CDATA[
