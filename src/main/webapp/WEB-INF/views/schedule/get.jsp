@@ -10,7 +10,7 @@
 	<c:set var="to" value="<%=new Date(new Date().getTime())%>"/>
 	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
 	<c:set var="tonext" value="<%=new Date(new Date().getTime() + 60*60*48*1000)%>"/>
-	
+
 	<div class="hanna_head">
 		<h3>TIME TABLE </h3>
 		<h4>
@@ -108,11 +108,13 @@
 	</form>
 	
     <!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
-    <div class="hanna_container">
-	   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록</button>
-		<button class="hanna_button" id="scheduleModBtn" style="cursor : pointer;">시간표 수정</button>
-		<button class="hanna_button delete_button" id="scheduleDelBtn" style="cursor : pointer;">시간표 삭제</button>
-    </div>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	    <div class="hanna_container">
+		   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록</button>
+			<button class="hanna_button" id="scheduleModBtn" style="cursor : pointer;">시간표 수정</button>
+			<button class="hanna_button delete_button" id="scheduleDelBtn" style="cursor : pointer;">시간표 삭제</button>
+	    </div>
+    </sec:authorize>
     
     	<script>
     	

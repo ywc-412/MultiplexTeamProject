@@ -32,37 +32,7 @@
 							<option value="12" <c:if test="${selMonth == 12 }">selected</c:if>>12</option>
 						</select> / 
 						<select id="selectDay" onchange="dayChange(this)">
-<%-- 							<option value="01" <c:if test="${selDate == 01 }">selected</c:if>>1</option> --%>
-<%-- 							<option value="02" <c:if test="${selDate == 02 }">selected</c:if>>2</option> --%>
-<%-- 							<option value="03" <c:if test="${selDate == 03 }">selected</c:if>>3</option> --%>
-<%-- 							<option value="04" <c:if test="${selDate == 04 }">selected</c:if>>4</option> --%>
-<%-- 							<option value="05" <c:if test="${selDate == 05 }">selected</c:if>>5</option> --%>
-<%-- 							<option value="06" <c:if test="${selDate == 06 }">selected</c:if>>6</option> --%>
-<%-- 							<option value="07" <c:if test="${selDate == 07 }">selected</c:if>>7</option> --%>
-<%-- 							<option value="08" <c:if test="${selDate == 08 }">selected</c:if>>8</option> --%>
-<%-- 							<option value="09" <c:if test="${selDate == 09 }">selected</c:if>>9</option> --%>
-<%-- 							<option value="10" <c:if test="${selDate == 10 }">selected</c:if>>10</option> --%>
-<%-- 							<option value="11" <c:if test="${selDate == 11 }">selected</c:if>>11</option> --%>
-<%-- 							<option value="12" <c:if test="${selDate == 12 }">selected</c:if>>12</option> --%>
-<%-- 							<option value="13" <c:if test="${selDate == 13 }">selected</c:if>>13</option> --%>
-<%-- 							<option value="14" <c:if test="${selDate == 14 }">selected</c:if>>14</option> --%>
-<%-- 							<option value="15" <c:if test="${selDate == 15 }">selected</c:if>>15</option> --%>
-<%-- 							<option value="16" <c:if test="${selDate == 16 }">selected</c:if>>16</option> --%>
-<%-- 							<option value="17" <c:if test="${selDate == 17 }">selected</c:if>>17</option> --%>
-<%-- 							<option value="18" <c:if test="${selDate == 18 }">selected</c:if>>18</option> --%>
-<%-- 							<option value="19" <c:if test="${selDate == 19 }">selected</c:if>>19</option> --%>
-<%-- 							<option value="20" <c:if test="${selDate == 20 }">selected</c:if>>20</option> --%>
-<%-- 							<option value="21" <c:if test="${selDate == 21 }">selected</c:if>>21</option> --%>
-<%-- 							<option value="22" <c:if test="${selDate == 22 }">selected</c:if>>22</option> --%>
-<%-- 							<option value="23" <c:if test="${selDate == 23 }">selected</c:if>>23</option> --%>
-<%-- 							<option value="24" <c:if test="${selDate == 24 }">selected</c:if>>24</option> --%>
-<%-- 							<option value="25" <c:if test="${selDate == 25 }">selected</c:if>>25</option> --%>
-<%-- 							<option value="26" <c:if test="${selDate == 26 }">selected</c:if>>26</option> --%>
-<%-- 							<option value="27" <c:if test="${selDate == 27 }">selected</c:if>>27</option> --%>
-<%-- 							<option value="28" <c:if test="${selDate == 28 }">selected</c:if>>28</option> --%>
-<%-- 							<option value="29" <c:if test="${selDate == 29 }">selected</c:if>>29</option> --%>
-<%-- 							<option value="30" <c:if test="${selDate == 30 }">selected</c:if>>30</option> --%>
-<%-- 							<option value="31" <c:if test="${selDate == 31 }">selected</c:if>>31</option> --%>
+							<!-- 선택된 달의 day들 출력 (28 / 30 / 31) -->
 						</select>
 						<input type="hidden" name="scheduleDate">
 					</form>
@@ -97,19 +67,19 @@
 		</script>
 	</c:if>
 	
-	<!-- 등록된 상영시간표 표시 - 여러 개 생겨야함 -->
+	<!-- 등록된 상영시간표 표시 -->
 	<c:set var="loop_flag" value="false"/>
 	<c:forEach items="${schedule1 }" var="s1" varStatus="status">
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle">${s1.movieTitle }</div>
-				<div class="hanna_schedule_screen" id="screen">${s1.screen }</div>
+				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle" value="sc1" value2="${s1.movieNo }">${s1.movieTitle }</div>
+				<div class="hanna_schedule_screen" id="screen1">${s1.screen }</div>
 				<c:set var="loop_flag" value="true"/>
 				<hr>	
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule1 }" var="os">
-						<div class="hanna_schedule_time" id="time">${os.scheduleTime }</div>
+					<c:forEach items="${schedule1 }" var="os" varStatus="status">
+						<div class="hanna_schedule_time" id="time1${status.count }">${os.scheduleTime }</div>
 					</c:forEach>
 				</div>
 			</div>
@@ -121,13 +91,13 @@
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle">${s1.movieTitle }</div>
-				<div class="hanna_schedule_screen" id="screen">${s1.screen }</div>
+				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle" value="sc2" value2="${s1.movieNo }">${s1.movieTitle }</div>
+				<div class="hanna_schedule_screen" id="screen2">${s1.screen }</div>
 				<c:set var="loop_flag" value="true"/>
 				<hr>	
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule2 }" var="os">
-						<div class="hanna_schedule_time" id="time">${os.scheduleTime }</div>
+					<c:forEach items="${schedule2 }" var="os" varStatus="status">
+						<div class="hanna_schedule_time" id="time2${status.count }">${os.scheduleTime }</div>
 					</c:forEach>
 				</div>
 			</div>
@@ -139,13 +109,13 @@
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle">${s1.movieTitle }</div>
-				<div class="hanna_schedule_screen" id="screen">${s1.screen }</div>
+				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle" value="sc3" value2="${s1.movieNo }">${s1.movieTitle }</div>
+				<div class="hanna_schedule_screen" id="screen3">${s1.screen }</div>
 				<c:set var="loop_flag" value="true"/>
 				<hr>	
 				<div class="hanna_schedule_time_wrap">
-					<c:forEach items="${schedule3 }" var="os">
-						<div class="hanna_schedule_time" id="time">${os.scheduleTime }</div>
+					<c:forEach items="${schedule3 }" var="os" varStatus="status">
+						<div class="hanna_schedule_time" id="time3${status.count }">${os.scheduleTime }</div>
 					</c:forEach>
 				</div>
 			</div>
@@ -227,6 +197,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
+					<form id="modifyForm" method="post">
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<div>영화명&nbsp&nbsp
 						<input type="text" name="movieTitle" readOnly="readonly">
@@ -240,18 +211,17 @@
 						</select>
 					</div> <br>
 					<div>상영시간</div>
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
+						<input type="text" class="hanna_add_time" name="time" id="modifyTime1">
+						<input type="text" class="hanna_add_time" name="time" id="modifyTime2">
+						<input type="text" class="hanna_add_time" name="time" id="modifyTime3">
+						<input type="text" class="hanna_add_time" name="time" id="modifyTime4">
+						<input type="text" class="hanna_add_time" name="time" id="modifyTime5">
+						<input type="text" class="hanna_add_time" name="time" id="modifyTime6">
+					</form>
 				</div>
-				<form id="modifyForm" method="post">
-				</form>
 				<div class="modal-footer justify-content-center">
-					<button type="submit" class="hanna_button">수정</button>
-					<button type="button" class="hanna_button delete_button">삭제</button>
+					<button type="submit" class="hanna_button" id="modifyBtn">수정</button>
+					<button type="button" class="hanna_button delete_button" id="modifyDel">삭제</button>
 					<button type="button" class="hanna_button" data-dismiss="modal">취소</button>
 				</div>
 			</div>
@@ -382,28 +352,69 @@
 			var canScheduleBtn = $("#modalCanBtn");
 			
 			addScheduleBtn.on("click", function(){
-// 				$("#seqForm").
 				$("#addForm").submit();
 			}); // 스케줄 추가 버튼 클릭 END
 
-// 			// 수정모달창에 값 넘기기
-// 			var modifyModal = $("#scheduleModifyModal");
-// 			var modifyModalMovie = modifyModal.find("input[name='movieTitle']");
-// 			var modifyModalScreen = modifyModal.find("select[name='screenNo']");
-// 			var modifyModalTime1 = modifyModal.find("input[name='time']");
-// 			var modifyModalTime2 = modifyModal.find("input[name='time']");
-// 			var modifyModalTime3 = modifyModal.find("input[name='time']");
-// 			var modifyModalTime4 = modifyModal.find("input[name='time']");
-// 			var modifyModalTime5 = modifyModal.find("input[name='time']");
-// 			var modifyModalTime6 = modifyModal.find("input[name='time']");
+			// 수정모달창에 값 넘기기
+			var modifyModal = $("#scheduleModifyModal");
+			var modifyModalMovie = modifyModal.find("input[name='movieTitle']");
+			var modifyModalMovieNo = modifyModal.find("input[name='movieNo']");
+			var modifyModalScreen = modifyModal.find("input[name='screen']");
+			var modifyModalTime1 = modifyModal.find("input[id='modifyTime1']");
+			var modifyModalTime2 = modifyModal.find("input[id='modifyTime2']");
+			var modifyModalTime3 = modifyModal.find("input[id='modifyTime3']");
+			var modifyModalTime4 = modifyModal.find("input[id='modifyTime4']");
+			var modifyModalTime5 = modifyModal.find("input[id='modifyTime5']");
+			var modifyModalTime6 = modifyModal.find("input[id='modifyTime6']");
+
+			$(document).on("click", "#movieTitle", function(e){
+				var scNo = $(this).attr("value");
+				modifyModalMovieNo.val($(this).attr("value2"));
+				modifyModalMovie.val($(this).html());
+				var str = "";
+				if(scNo == "sc1"){
+// 					str += "<option value='1관 3층' selected>1관 3층</option>";
+// 					str += "<option value='2관 3층'>2관 3층</option>";
+// 					str += "<option value='3관 3층'>3관 3층</option>";
+					modifyModalTime1.val($('#time11').html());
+					modifyModalTime2.val($('#time12').html());
+					modifyModalTime3.val($('#time13').html());
+					modifyModalTime4.val($('#time14').html());
+					modifyModalTime5.val($('#time15').html());
+					modifyModalTime6.val($('#time16').html());
+				} else if (scNo == "sc2"){
+// 					str += "<option value='1관 3층'>1관 3층</option>";
+// 					str += "<option value='2관 3층' selected>2관 3층</option>";
+// 					str += "<option value='3관 3층'>3관 3층</option>";
+					modifyModalTime1.val($('#time21').html());
+					modifyModalTime2.val($('#time22').html());
+					modifyModalTime3.val($('#time23').html());
+					modifyModalTime4.val($('#time24').html());
+					modifyModalTime5.val($('#time25').html());
+					modifyModalTime6.val($('#time26').html());
+				} else if (scNo == "sc3"){
+// 					str += "<option value='1관 3층'>1관 3층</option>";
+// 					str += "<option value='2관 3층'>2관 3층</option>";
+// 					str += "<option value='3관 3층' selected>3관 3층</option>";
+					modifyModalTime1.val($('#time31').html());
+					modifyModalTime2.val($('#time32').html());
+					modifyModalTime3.val($('#time33').html());
+					modifyModalTime4.val($('#time34').html());
+					modifyModalTime5.val($('#time35').html());
+					modifyModalTime6.val($('#time36').html());
+				}
+// 				modifyModalScreen.append(str);
+				$('#scheduleModifyModal').modal('show');
+			});
+
+			$(document).on("click", "#modifyBtn", function(e){
+				alert("modifyBtn");
+			});
 			
-// 			$('#movieTitle').on("click", function(){
-// 				modifyModalTime.val($('#time').html());
-// 				modifyModalScreen.val($('#screenNo').html());
-// 				modifyModalMovie.val($('#movieTitle').html());
-				
-// 				$('#scheduleModifyModal').modal('show');
-// 			});
+			$(document).on("click", "#modifyDel", function(e){
+				alert("del Btn");
+			});
+			
 			
 		})
 	</script>
