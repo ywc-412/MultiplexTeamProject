@@ -45,9 +45,9 @@ public class MyGiftServiceImpl implements MyGiftService{
 	}
 
 	@Override
-	public boolean refund(int myGiftNo) {		//내 기프티콘 환불
-		// TODO Auto-generated method stub
-		return false;
+	public boolean refund(MyGiftVO myGift) {		//내 기프티콘 환불
+		log.info("MyGift ServiceImpl refund()");
+		return myGiftMapper.refund(myGift) == 1;
 	}
 
 	@Override
@@ -59,4 +59,5 @@ public class MyGiftServiceImpl implements MyGiftService{
 	public void myInsertSelectKey(MyGiftVO myGift) {	//내 기프티콘 목록 생성
 		myGiftMapper.myInsertSelectKey(myGift);		
 	}
+
 }

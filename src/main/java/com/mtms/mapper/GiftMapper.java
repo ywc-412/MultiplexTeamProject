@@ -15,7 +15,8 @@ public interface GiftMapper {
 	
 	public int update(GiftVO gift); //기프티콘 수정
 	
-	public int delete(int giftNo); //기프티콘 삭제
+	public int deleteChk(GiftVO gift); //기프티콘 삭제
+	//public int delete(int giftNo); //기프티콘 삭제
 	
 	public GiftVO pay(int giftNo);	//기프티콘 결제완료	
 }

@@ -52,7 +52,7 @@
 					</sec:authorize>
 				</div>
 			
-		
+		</div>
 	</div>
 	</div>
 </section>

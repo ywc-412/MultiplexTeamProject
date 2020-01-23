@@ -15,7 +15,7 @@ public interface MyGiftService {
 	
 	public boolean extend(MyGiftVO myGift); 				//내 기프티콘 기간연장
 	
-	public boolean refund(int myGiftNo); 					//내 기프티콘 환불
+	public boolean refund(MyGiftVO myGift); 					//내 기프티콘 환불
 
 	public int getTotalCount(Criteria cri); 				//내 기프티콘 총 갯수
 }

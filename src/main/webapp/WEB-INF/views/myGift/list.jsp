@@ -39,7 +39,10 @@
 							<th>만료일자</th>
 							<th>기간연장</th>
 						</tr>
-						
+					<jsp:useBean id="toDay" class="java.util.Date" />
+					<fmt:formatDate value='${toDay}' pattern='yyyyMMdd' var="nowDate"/>
+
+
 						
 						<c:forEach items="${mygift}" var="mygift" varStatus="status">
 							<tbody>
@@ -47,21 +50,24 @@
 									
 										 
 										
-									<td><a class="move" href="${mygift.myGiftNo}">${mygift.giftList[0].giftName}</a></td>
-									
+									<td><a class="move" href="${mygift.myGiftNo}">${mygift.giftList[0].giftName}</a></td>									
 									<td>${mygift.giftList[0].giftPrice}</td>
-									<td><c:set var="status" value="${mygift.status}"/>
+									
+									
+									
+									<td class=""><c:set var="status" value="${mygift.status}" />
 										<c:choose>
-											<c:when test="${status eq 0}">사용가능</c:when>
-	      									<c:when test="${status eq 1}">사용완료</c:when>		
-					    					<c:when test="${status eq 2}">기간만료</c:when>
-	      									<c:otherwise>환불완료</c:otherwise>							
+											<c:when test="${status eq 0}">사용가능</c:when>		
+					    					<c:when test="${status eq 1}">기간만료</c:when>
+					    					<c:when test="${status eq 2}">환불완료</c:when>
+	      									<c:otherwise></c:otherwise>							
     									</c:choose></td>
 									<td><fmt:formatDate value="${mygift.expireDate}" pattern="yyyy.MM.dd"/></td>
 									<td><c:set var="extendChk" value="${mygift.extendChk}"/>
 										<c:choose>
 											<c:when test="${extendChk eq 0}">가능</c:when>	      									     									
-	      									<c:otherwise>불가능</c:otherwise>							
+											<c:when test="${extendChk eq 1}">불가능</c:when>	      									     									
+	      									<c:otherwise></c:otherwise>							
     									</c:choose></td>	
     																							
 								</tr>
@@ -70,8 +76,7 @@
 						
 					</table>
 
-					<!--paging-start-->
-                <div class="custom-gift-pagination custom-th-size2">
+					<!--paging-start-->               
 							<div class="custom-pagination">
 								<nav aria-label="Page navigation example">
 									<!--<ul class="blog-pagination">-->
@@ -98,7 +103,7 @@
 									</ul>
 								</nav>
 							</div>
-							</div>
+						
 							<!--paging-end-->
 								<form id="actionForm" action="/myGift/list" method="get">
 									<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}"> 
@@ -111,8 +116,8 @@
 </div>
 </div>
 <script>
-$(function() {  
 
+$(function() {  
 $('.move').click(
 		function(e) {
 			e.preventDefault();
@@ -132,6 +137,9 @@ $('.page-item a').click(function(e) {
 	$('#actionForm').submit();
 
 });
+
+
+
 </script>
 
 <%@include file="../include/footer.jsp" %>

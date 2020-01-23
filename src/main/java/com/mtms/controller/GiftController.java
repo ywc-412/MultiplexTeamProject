@@ -90,11 +90,9 @@ public class GiftController {
 	
 	//기프티콘 삭제
 	@PostMapping("remove")	
-	public String remove(@RequestParam("giftNo") int giftNo, RedirectAttributes rttr) {
+	public String remove(GiftVO gift, RedirectAttributes rttr) {
 		log.warn("Gift Controller remove()");
-		List<GiftAttachVO> attachList = giftService.getAttachList(giftNo); 
-		if(giftService.remove(giftNo)) {
-			deleteFiles(attachList);
+		if(giftService.deleteChk(gift)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/gift/list";		
@@ -122,22 +120,22 @@ public class GiftController {
 	
 	
 	
-	//첨부파일 포함한 게시글 삭제
-	private void deleteFiles(List<GiftAttachVO> attachList) {
-		log.warn("Gift deleteFiles,,,,");
-		if(attachList == null || attachList.size() == 0) {
-			return;
-		}
-		attachList.forEach(attach -> {
-			try {
-				Path file = Paths.get("c:\\upload\\" + attach.getGiftUploadPath() /* + "\\" */+ attach.getGiftUuid() + "_" + attach.getGiftFileName());
-				log.info(file);
-				Files.deleteIfExists(file);
-			} catch (Exception e) {
-				log.error(e.getMessage());
-			}
-		});
-	}
+//	//첨부파일 포함한 게시글 삭제
+//	private void deleteFiles(List<GiftAttachVO> attachList) {
+//		log.warn("Gift deleteFiles,,,,");
+//		if(attachList == null || attachList.size() == 0) {
+//			return;
+//		}
+//		attachList.forEach(attach -> {
+//			try {
+//				Path file = Paths.get("c:\\upload\\" + attach.getGiftUploadPath() /* + "\\" */+ attach.getGiftUuid() + "_" + attach.getGiftFileName());
+//				log.info(file);
+//				Files.deleteIfExists(file);
+//			} catch (Exception e) {
+//				log.error(e.getMessage());
+//			}
+//		});
+//	}
 	
 	@PostMapping("paying")
 	private String paying(GiftVO gift, MyGiftVO myGift, RedirectAttributes rttr) {

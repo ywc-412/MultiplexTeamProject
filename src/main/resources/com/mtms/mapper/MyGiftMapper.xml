@@ -37,7 +37,6 @@
     				   WHERE rownum <= #{pageNum} * #{amount} AND gift.giftNo = myGift.giftNo AND memberId = 'jj')
 				 WHERE rn > (#{pageNum}-1) * #{amount}]]>
 	</select>
-
 	
 	<select id="read" resultMap="MyGift">
 		SELECT gift.giftNo, gift.giftName, gift.giftPrice, gift.giftSet, myGift.memberId, myGift.mygiftNo, 
@@ -53,11 +52,27 @@
 		WHERE myGiftNo = #{myGiftNo} AND memberId = 'jj'
 	</update>
 	
-	<delete id="delete">
+	<update id="refund">
+		UPDATE myGift
+		SET status = 2,
+			expireDate = '',
+			extendChk = 2
+		WHERE myGiftNo = #{myGiftNo} AND memberId = 'jj'
+	</update>
 	
-	</delete>
+	<!-- <delete id="delete">
+		DELETE FROM myGift WHERE myGiftNo = #{myGiftNo} AND memberId = 'jj'
+	</delete> -->
 	
 	<select id="getTotalCount" resultType="int">
 		<![CDATA[SELECT count(*) FROM myGift WHERE mygiftNo > 0 ]]>	
 	</select>
+	
+	<update id="expireChk">
+	<![CDATA[UPDATE myGift 
+			 SET status = 1,
+    			extendChk = 1
+			 WHERE to_char(expireDate, 'yy/MM/dd') <= #{expireDate} AND memberId = 'jj']]>
+	</update>
+	
 </mapper>

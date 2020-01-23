@@ -28,8 +28,9 @@ public class MyGiftController {
 	@GetMapping("list")//내 기프티콘 목록조회
 	public void list(Criteria cri, Model model) {
 		log.info("Gift Controller list()");
-		model.addAttribute("mygift", myGiftService.getListWithPaging(cri));
 		
+		model.addAttribute("mygift", myGiftService.getListWithPaging(cri));
+
 		int total = myGiftService.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
@@ -45,7 +46,7 @@ public class MyGiftController {
 		System.out.println("hi! jj");
 		log.warn("Gift Controller extend()");
 		if(myGiftService.extend(myGift)) {
-			rttr.addAttribute("result", "success");
+			rttr.addFlashAttribute("result", "success");
 		}
 		rttr.addAttribute("myGiftNo",myGift.getMyGiftNo());
 		rttr.addAttribute("pageNum",cri.getPageNum());
@@ -54,14 +55,16 @@ public class MyGiftController {
 		return "redirect:/myGift/list";	
 	}
 	
-//	@GetMapping("extend")	//내 기프티콘 기간연장(G)
-//	public void extend() {
-//		
-//	}
-	
 	@PostMapping("refund")	//내 기프티콘 환불
-	public String refund(int myGiftNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		return null;	
+	public String refund(MyGiftVO myGift, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		if(myGiftService.refund(myGift)) {
+			rttr.addAttribute("result", "success");
+		}
+		rttr.addAttribute("myGiftNo",myGift.getMyGiftNo());
+		rttr.addAttribute("pageNum",cri.getPageNum());
+		rttr.addAttribute("amount",cri.getAmount());
+		
+		return "redirect:/myGift/list";	
 	} 
 
 	

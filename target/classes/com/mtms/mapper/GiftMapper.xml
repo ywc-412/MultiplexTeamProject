@@ -13,7 +13,7 @@
 	
 	<!-- 기프티콘 조회 -->
 	<select id="getList" resultType="com.mtms.domain.GiftVO">
-		<![CDATA[SELECT * FROM gift WHERE giftNo > 0]]>
+		<![CDATA[SELECT * FROM gift WHERE giftNo > 0 AND giftDeleteChk = 0]]>
 	</select>
 	
 	<!-- 기프티콘 상세보기 -->
@@ -30,9 +30,11 @@
 	</update>
 	
 	<!-- 기프티콘 삭제 -->
-	<delete id="delete">
-		DELETE FROM gift WHERE giftNo = #{giftNo}			
-	</delete>
+	<update id="deleteChk">
+		UPDATE gift
+		SET giftDeleteChk = 1
+		WHERE giftNo = #{giftNo}			
+	</update>
 	
 	<!-- 기프티콘 결제완료 -->
 	<select id="pay" resultType="com.mtms.domain.GiftVO">

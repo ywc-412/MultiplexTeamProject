@@ -69,7 +69,7 @@
 					<form action="/gift/modify" id="operForm" method="get">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
 				<input value="${gift.giftNo}" name="giftNo" type="hidden">		
-				<button type="submit" class="btn btn-primary  custom-button-gift" data-oper='modify' onclick="location.href='/gift/modify?giftNo=${gift.giftNo}'">수정</button>
+				<button type="submit" class="btn btn-primary  custom-button-gift" data-oper='modify'>수정</button>
 			</form>
 			
 			<form method="post" action="/gift/remove" role="form">				

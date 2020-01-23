@@ -81,10 +81,9 @@ public class GiftServiceImpl implements GiftService{
 	//기프티콘 삭제	
 	@Transactional
 	@Override
-	public boolean remove(int giftNo) {		
+	public boolean deleteChk(GiftVO gift) {		
 		log.warn("Gift ServiceImpl remove,,");
-		giftAttachMapper.deleteAll(giftNo);
-		return giftMapper.delete(giftNo) == 1;
+		return giftMapper.deleteChk(gift) == 1;
 	}
 	
 	//기프티콘 사진 등록

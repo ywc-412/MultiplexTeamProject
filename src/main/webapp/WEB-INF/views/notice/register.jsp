@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+
 <%@include file="../include/header.jsp" %>
 
 <!--board-start-->
@@ -12,6 +13,7 @@
                 <div class="custom-board-title">
                     <h3 class="custom-font-bold">공지사항 등록</h3>
                 </div>
+                
                 <form id="registerForm" role="form" action="/notice/register" method="post">
                 <div class="form-group">
                     <label>제목</label>
@@ -28,6 +30,7 @@
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                 
                 </div>
                 </form>
+                
             </div>
         </div>
     </div>
@@ -61,6 +64,7 @@ var registerForm = $("#registerForm");
  		   false;
  	   }
 	});
+	
 </script>
 
 <%@include file="../include/footer.jsp" %>
