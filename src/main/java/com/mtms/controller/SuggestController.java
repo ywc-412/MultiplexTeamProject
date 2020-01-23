@@ -1,5 +1,7 @@
 package com.mtms.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,7 @@ public class SuggestController {
 	
 	@PostMapping("register")
 	public String register(SuggestVO suggestVO, RedirectAttributes rttr) {
+		
 		rttr.addFlashAttribute("registerComplete", "건의사항이 등록되었습니다!");
 		suggestService.registerSuggest(suggestVO);
 		
