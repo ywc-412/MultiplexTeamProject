@@ -73,13 +73,15 @@
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle" value="sc1" value2="${s1.movieNo }">${s1.movieTitle }</div>
+				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle"
+					value="sc1" value2="${s1.movieNo }" >${s1.movieTitle }</div>
 				<div class="hanna_schedule_screen" id="screen1">${s1.screen }</div>
 				<c:set var="loop_flag" value="true"/>
 				<hr>	
 				<div class="hanna_schedule_time_wrap">
 					<c:forEach items="${schedule1 }" var="os" varStatus="status">
 						<div class="hanna_schedule_time" id="time1${status.count }">${os.scheduleTime }</div>
+						<input type="hidden" id="1scheduleNo${status.count }" value="${os.scheduleNo }"/>
 					</c:forEach>
 				</div>
 			</div>
@@ -91,13 +93,15 @@
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle" value="sc2" value2="${s1.movieNo }">${s1.movieTitle }</div>
+				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle"
+					value="sc2" value2="${s1.movieNo }" >${s1.movieTitle }</div>
 				<div class="hanna_schedule_screen" id="screen2">${s1.screen }</div>
 				<c:set var="loop_flag" value="true"/>
 				<hr>	
 				<div class="hanna_schedule_time_wrap">
 					<c:forEach items="${schedule2 }" var="os" varStatus="status">
 						<div class="hanna_schedule_time" id="time2${status.count }">${os.scheduleTime }</div>
+						<input type="hidden" id="2scheduleNo${status.count }" value="${os.scheduleNo }"/>
 					</c:forEach>
 				</div>
 			</div>
@@ -109,13 +113,15 @@
 		<c:if test="${not loop_flag }">
 			<div class="hanna_container">
 				<br>
-				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle" value="sc3" value2="${s1.movieNo }">${s1.movieTitle }</div>
+				<div class="hanna_schedule_movie" style="cursor:pointer;" id="movieTitle"
+					value="sc3" value2="${s1.movieNo }" >${s1.movieTitle }</div>
 				<div class="hanna_schedule_screen" id="screen3">${s1.screen }</div>
 				<c:set var="loop_flag" value="true"/>
 				<hr>	
 				<div class="hanna_schedule_time_wrap">
 					<c:forEach items="${schedule3 }" var="os" varStatus="status">
 						<div class="hanna_schedule_time" id="time3${status.count }">${os.scheduleTime }</div>
+						<input type="hidden" id="3scheduleNo${status.count }" value="${os.scheduleNo }"/>
 					</c:forEach>
 				</div>
 			</div>
@@ -197,19 +203,27 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="modifyForm" method="post">
+					<form id="modifyForm" method="post" action="/schedule/modify">
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<div>영화명&nbsp&nbsp
 						<input type="text" name="movieTitle" readOnly="readonly">
 						<input type="hidden" name="movieNo">
+						<input type="hidden" name="scheduleDate">
+						<input type="hidden" name="screen">
+						<input type="hidden" name="no" id="scheduleNo1">
+						<input type="hidden" name="no" id="scheduleNo2">
+						<input type="hidden" name="no" id="scheduleNo3">
+						<input type="hidden" name="no" id="scheduleNo4">
+						<input type="hidden" name="no" id="scheduleNo5">
+						<input type="hidden" name="no" id="scheduleNo6">
 					</div> <br>
-					<div>상영관&nbsp&nbsp
-						<select name="screen">
-							<option value="1관 3층">1관 3층</option>
-							<option value="2관 3층">2관 3층</option>
-							<option value="3관 3층">3관 3층</option>
-						</select>
-					</div> <br>
+<!-- 					<div>상영관&nbsp&nbsp -->
+<!-- 						<select name="screen"> -->
+<!-- 							<option value="1관 3층">1관 3층</option> -->
+<!-- 							<option value="2관 3층">2관 3층</option> -->
+<!-- 							<option value="3관 3층">3관 3층</option> -->
+<!-- 						</select> -->
+<!-- 					</div> <br> -->
 					<div>상영시간</div>
 						<input type="text" class="hanna_add_time" name="time" id="modifyTime1">
 						<input type="text" class="hanna_add_time" name="time" id="modifyTime2">
@@ -367,55 +381,81 @@
 			var modifyModalTime5 = modifyModal.find("input[id='modifyTime5']");
 			var modifyModalTime6 = modifyModal.find("input[id='modifyTime6']");
 
+			var modifyModalNo1 = modifyModal.find("input[id='scheduleNo1']");
+			var modifyModalNo2 = modifyModal.find("input[id='scheduleNo2']");
+			var modifyModalNo3 = modifyModal.find("input[id='scheduleNo3']");
+			var modifyModalNo4 = modifyModal.find("input[id='scheduleNo4']");
+			var modifyModalNo5 = modifyModal.find("input[id='scheduleNo5']");
+			var modifyModalNo6 = modifyModal.find("input[id='scheduleNo6']");
+
 			$(document).on("click", "#movieTitle", function(e){
 				var scNo = $(this).attr("value");
 				modifyModalMovieNo.val($(this).attr("value2"));
 				modifyModalMovie.val($(this).html());
-				var str = "";
+				var today = new Date();
+				var yyyy = today.getFullYear();
+				
+				$('#scheduleModifyModal').find("input[name='scheduleDate']").val(yyyy+$('#selectMon').val()+$('#selectDay').val());
+
 				if(scNo == "sc1"){
-// 					str += "<option value='1관 3층' selected>1관 3층</option>";
-// 					str += "<option value='2관 3층'>2관 3층</option>";
-// 					str += "<option value='3관 3층'>3관 3층</option>";
+					modifyModalScreen.val('1관 3층');
 					modifyModalTime1.val($('#time11').html());
 					modifyModalTime2.val($('#time12').html());
 					modifyModalTime3.val($('#time13').html());
 					modifyModalTime4.val($('#time14').html());
 					modifyModalTime5.val($('#time15').html());
 					modifyModalTime6.val($('#time16').html());
+					modifyModalNo1.val($('#1scheduleNo1').val());
+					modifyModalNo2.val($('#1scheduleNo2').val());
+					modifyModalNo3.val($('#1scheduleNo3').val());
+					modifyModalNo4.val($('#1scheduleNo4').val());
+					modifyModalNo5.val($('#1scheduleNo5').val());
+					modifyModalNo6.val($('#1scheduleNo6').val());
 				} else if (scNo == "sc2"){
-// 					str += "<option value='1관 3층'>1관 3층</option>";
-// 					str += "<option value='2관 3층' selected>2관 3층</option>";
-// 					str += "<option value='3관 3층'>3관 3층</option>";
+					modifyModalScreen.val('2관 3층');
 					modifyModalTime1.val($('#time21').html());
 					modifyModalTime2.val($('#time22').html());
 					modifyModalTime3.val($('#time23').html());
 					modifyModalTime4.val($('#time24').html());
 					modifyModalTime5.val($('#time25').html());
 					modifyModalTime6.val($('#time26').html());
+					modifyModalNo1.val($('#2scheduleNo1').val());
+					modifyModalNo2.val($('#2scheduleNo2').val());
+					modifyModalNo3.val($('#2scheduleNo3').val());
+					modifyModalNo4.val($('#2scheduleNo4').val());
+					modifyModalNo5.val($('#2scheduleNo5').val());
+					modifyModalNo6.val($('#2scheduleNo6').val());
 				} else if (scNo == "sc3"){
-// 					str += "<option value='1관 3층'>1관 3층</option>";
-// 					str += "<option value='2관 3층'>2관 3층</option>";
-// 					str += "<option value='3관 3층' selected>3관 3층</option>";
+					modifyModalScreen.val('3관 3층');
 					modifyModalTime1.val($('#time31').html());
 					modifyModalTime2.val($('#time32').html());
 					modifyModalTime3.val($('#time33').html());
 					modifyModalTime4.val($('#time34').html());
 					modifyModalTime5.val($('#time35').html());
 					modifyModalTime6.val($('#time36').html());
+					modifyModalNo1.val($('#3scheduleNo1').val());
+					modifyModalNo2.val($('#3scheduleNo2').val());
+					modifyModalNo3.val($('#3scheduleNo3').val());
+					modifyModalNo4.val($('#3scheduleNo4').val());
+					modifyModalNo5.val($('#3scheduleNo5').val());
+					modifyModalNo6.val($('#3scheduleNo6').val());
 				}
-// 				modifyModalScreen.append(str);
 				$('#scheduleModifyModal').modal('show');
 			});
 
 			$(document).on("click", "#modifyBtn", function(e){
-				alert("modifyBtn");
+				if(confirm("수정하시겠습니까?")){
+					$("#modifyForm").attr("action", "/schedule/modify");
+					$("#modifyForm").submit();
+				}
 			});
 			
 			$(document).on("click", "#modifyDel", function(e){
-				alert("del Btn");
+				if(confirm("삭제하시겠습니까?")){
+					$("#modifyForm").attr("action", "/schedule/delete");
+					$("#modifyForm").submit();
+				}
 			});
-			
-			
 		})
 	</script>
 	

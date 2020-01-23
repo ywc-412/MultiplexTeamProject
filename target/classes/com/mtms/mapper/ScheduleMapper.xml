@@ -27,12 +27,22 @@
 		SELECT scheduleNo FROM schedule WHERE movieNo=#{movieNo} AND to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} AND scheduleTime = #{scheduleTime}
 	</select>
 
-<!-- 	<update id="update"> -->
-<!-- 	</update> -->
+	<!-- 상영스케줄 수정 -->
+	<update id="update">
+<!-- 		UPDATE schedule SET scheduleTime = #{scheduleTime} -->
+<!-- 		WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} AND screen = #{screen} AND rownum = #{num} -->
+		UPDATE schedule SET scheduleTime = #{scheduleTime}
+		WHERE scheduleNo = #{scheduleNo}
+	</update>
 	
 	<!-- 등록하다 취소 시 등록했던 상영스케줄 삭제 -->
 	<delete id="delete">
 		DELETE FROM schedule WHERE scheduleNo = #{scheduleNo}
+	</delete>
+	
+	<!-- 스케줄 삭제 : 클릭하여 삭제 -->
+	<delete id="deleteScreen">
+		DELETE FROM schedule WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} and screen = #{screen}
 	</delete>
 
 	<!--  해당날짜의 상영스케줄 모두 삭제 -->
@@ -89,7 +99,7 @@
 	<!-- 날짜별 상영스케줄 조회 -->
 <!-- 	<select id="get" resultMap="scheduleMap"> -->
 	<select id="get" resultType="com.mtms.domain.ScheduleVO">
-		SELECT m.movieTitle, to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen FROM schedule s, movie m
+		SELECT m.movieTitle, to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleNo, s.scheduleTime, s.screen FROM schedule s, movie m
 		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.screen = #{screen} and s.movieNo = m.movieNo ORDER BY scheduleTime
 	</select>
 	
