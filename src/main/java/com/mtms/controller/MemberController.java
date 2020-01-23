@@ -35,7 +35,7 @@ public class MemberController {
 	private SuggestService suggestService;
 	private ReserveService reserveService;
 	
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
+	
 	@GetMapping("/join")
 	public void join() {
 		// 회원가입 화면 들어가기 위한 컨트롤러
@@ -50,7 +50,6 @@ public class MemberController {
 		rttr.addFlashAttribute("regMsg", "환영합니다!");
 		
 		return "redirect:/";
-		
 	}
 	
 	@GetMapping("/findId")

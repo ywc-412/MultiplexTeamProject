@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +26,11 @@ public class CommonController {
 
 		model.addAttribute("msg", "아이디와 비밀번호를 확인해주세요");
 	}
-
+	
+	@PreAuthorize("!isAuthenticated()")
 	@GetMapping("/customLogin")
 	public void loginInput(String error, String logout, Model model) {
-		model.addAttribute("loginSuccess", "환영합니다");
+		log.info(error);
 	}
 
 	@GetMapping("/logout")
