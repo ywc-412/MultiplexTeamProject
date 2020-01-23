@@ -4,16 +4,15 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mtms.domain.Coolsms;
+import com.mtms.domain.simple.JSONObject;
 
 import lombok.extern.log4j.Log4j;
 
@@ -42,7 +41,7 @@ public class CommonController {
 
 	}
 
-	@RequestMapping(value = "/sendSms.do")
+	@RequestMapping(value = "/sendSms", method = RequestMethod.POST)
 	public String sendSms(HttpServletRequest request) throws Exception {
 
 		String api_key = "NCSOQVNBTVYZZZ7I";
@@ -50,14 +49,14 @@ public class CommonController {
 		Coolsms coolsms = new Coolsms(api_key, api_secret);
 
 		HashMap<String, String> set = new HashMap<String, String>();
-		set.put("to", "너의번호"); // 수신번호
-		
-		set.put("from", (String) request.getParameter("from")); // 발신번호
+		set.put("to", (String) request.getParameter("to")); // 수신번호
+
+		set.put("from", "01041895485"); // 발신번호
 		set.put("text", (String) request.getParameter("text")); // 문자내용
 		set.put("type", "sms"); // 문자 타입
 
 		System.out.println(set);
-
+		
 		JSONObject result = coolsms.send(set); // 보내기&전송결과받기
 
 		if ((boolean) result.get("status") == true) {
