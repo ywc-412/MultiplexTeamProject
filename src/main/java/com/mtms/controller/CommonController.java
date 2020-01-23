@@ -33,6 +33,7 @@ public class CommonController {
 		log.info(error);
 	}
 
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/logout")
 	public void logoutGet() {
 		log.info("custom logout");

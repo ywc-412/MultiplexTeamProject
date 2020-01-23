@@ -10,10 +10,11 @@
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<bean id="customUserDetailsService" class="com.mtms.security.CustomUserDetailsService"></bean>
 	<bean id="customAccessDeniedHandler" class="com.mtms.security.CustomAccessDeniedHandler"></bean>
+	<bean id="customLoginSuccessHandler" class="com.mtms.security.CustomLoginSuccessHandler"></bean>
 	
 	<security:http>
 	
-		<security:form-login login-page="/customLogin" default-target-url="/" authentication-failure-url="/customLoginError" />
+		<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccessHandler" default-target-url="/" authentication-failure-url="/customLoginError" />
 		
 		<security:logout logout-url="/logout" invalidate-session="true" />
 		
