@@ -27,7 +27,6 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-
 	<context:component-scan
 		base-package="com.mtms.controller" />
 	<!-- exception 은 web과 관련된 부분이라 servlet-context.xml에 넣음 -->

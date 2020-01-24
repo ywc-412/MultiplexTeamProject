@@ -66,16 +66,17 @@
 					</div>
 					<br>
 					<div class="mt-10 custom-input">
-						<div>주소</div>
-						<button type="button" id="postcodify_search_button">검색</button>
+						<div class="float-left">주소</div>
+						<button type="button" id="postcodify_search_button" class="btn btn-primary btn-sm">검색</button>
 						<input type="text" name="memberAddress" id="memberAddress"
-							class="postcodify_address single-input custom-text-right">
+							class="postcodify_address single-input custom-text-right" placeholder="상세주소는 입력받지 않습니다" readonly>
 						<div class="custom-red-font custom-text-right"
 							id="memberAddressErrorMsg"></div>
 					</div>
 					<br>
 					<div class="mt-10 custom-input align-middle">
 						<div>핸드폰</div>
+						<button type="button" class="btn btn-primary btn-sm" id='phoneAuthBtn'>인증하기</button>
 						<div class="default-select custom-text-left">
 							<select name="memberPhoneFirst" id="memberPhoneFirst">
 								<option value="010">010</option>
@@ -102,7 +103,7 @@
 							<div class="custom-red-font custom-text-right"
 							id="memberBirthErrorMsg"></div>
 							<div class="col-xl-12 text-right">
-								<button type="submit" class="boxed-btn3">회원가입</button>
+								<button type="submit" class="boxed-btn3" id="regBtn1">회원가입</button>
 							</div>
 						</div>
 					</div>
@@ -110,6 +111,41 @@
 				</form>
 			</div>
 		</div>
+	</div>
+</div>
+<div id="modal" class="searchModal">
+	<div class="search-modal-content">
+		<div class="page-header">
+			<h4>핸드폰 본인인증</h4>
+			<hr>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-12">
+						<form action="/member/temp" method="post" id="phoneAuthForm">
+							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+							<div class="mt-10 custom-input">
+								<button class="btn btn-primary btn-sm" id="sendAuthNum">인증번호 보내기</button><br><br>
+								<div>인증번호를 입력해주세요</div><br>
+								<input type="password" id="memberPwChk"
+									class="single-input custom-text-right">
+								<div class="custom-red-font custom-text-right"
+									id="memberPwChkErrorMsg"></div>
+							</div><br>
+							<div class="mt-10 custom-input">
+							</div>
+							<input type="hidden" name="memberId" value="${findMemberId}">
+							<div class="mt-10 custom-input text-center">
+								<button type="button" class="boxed-btn3" id="pwModBtn">확인</button>
+								<button type="button" class="boxed-btn3" id="closeBtn4">닫기</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
 	</div>
 </div>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -122,10 +158,26 @@
 	}
 	
 	$(function() {
-		$("#postcodify_search_button").on("click", function(e){
-			e.preventDefault();
-			$("#postcodify_search_button").postcodifyPopUp();
+		
+		$('#phoneAuthBtn').on("click", function(e){
+			$('#modal').show();
+			
+			$('#sendAuthNum').on("click",function(e){
+				e.preventDefault();
+				// 여기에 이제 인증 번호 보내는 로직..하고 문자 보내기..
+			});
+			
+			$('#closeBtn4').on("click", function(e){
+				$('#modal').hide();
+			});
 		});
+		
+		
+		
+		$("#postcodify_search_button").postcodifyPopUp(function(e){
+			e.preventDefault();
+		});
+		
 		
 		var registerResult = false;
 		
@@ -198,7 +250,7 @@
 		
 		
 
-		$('.boxed-btn3').on("click", function(e) {
+		$('#regBtn1').on("click", function(e) {
 			var memberId = $('input#memberId').val();
 			var memberName = $('input#memberName').val();
 			var memberPw = $('input#memberPw').val();
