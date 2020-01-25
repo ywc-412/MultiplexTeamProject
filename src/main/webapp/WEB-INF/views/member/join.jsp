@@ -181,10 +181,10 @@
 			if (idTest == true) {
 				$('#memberIdErrorMsg').html('');
 			}else{
-				$('#memberIdErrorMsg').html('아이디는  영문자 또는 숫자로 입력해주세요(4자~12자)');
+				$('#memberIdErrorMsg').html('아이디는 영문자 또는 숫자로 입력해주세요(4자~12자)');
 			}
 			
-			if(memberId.length >= 6){// 6자리 이상 들어가면 중복 아이디 확인 ajax 실행
+			if(memberId.length >= 4){// 6자리 이상 들어가면 중복 아이디 확인 ajax 실행
 				memberDuplicatedService.getId(memberId, function(result){
 					if(result.memberId == memberId){
 						$('#memberIdErrorMsg').html('중복된 아이디 입니다');
@@ -223,7 +223,7 @@
 				$('#memberPwErrorMsg').html('사용 가능합니다!');
 				$(this).focus();
 			}else{
-				$('#memberPwErrorMsg').html('영어 대소문자/숫자/특수문자의 조합으로 8자리 이상으로 입력해주세요');
+				$('#memberPwErrorMsg').html('영어/숫자/특수문자의 조합으로 8자리 이상으로 입력해주세요');
 			}
 			
 		});
@@ -266,7 +266,7 @@
 			var memberPhoneErrorMsg = $('#memberPhoneErrorMsg').html('');
 			var memberBirthErrorMsg = $('#memberBirthErrorMsg').html('');
 			
-			
+			var idReg =  /^[A-Za-z0-9+]{4,12}$/; 
 			//memberId select 해서 없으면 중복된 id 처리해야함
 			if (!memberId) {
 				$('#memberIdErrorMsg').html('필수 항목입니다');
@@ -334,6 +334,13 @@
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
+			}else if(idReg.test($('input#memberId').val()) == false){
+				vv = $(this).val();
+				var idTest = idReg.test(vv);
+				console.log(idTest);
+				$('#memberIdErrorMsg').html('아이디는 영문자 또는 숫자로 입력해주세요(4자~12자)');
+			}else if(!$('#phoneAuthChk').val()){
+				$('#memberPhoneErrorMsg').html('휴대폰 인증이 필요합니다');
 			}else{
 				registerResult = true;
 			}
