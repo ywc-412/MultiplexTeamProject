@@ -42,13 +42,6 @@
 							찾기</button>
 						<button class="btn btn-secondary custom-button" id="joinBtn2">회원가입</button>
 					</div>
-					<div>
-						<br> <a href="${url }"> <img
-							src="/resources/img/naverLogin.PNG"
-							style="width: 45%; height: 45%; cursor: pointer" />
-						</a>
-						<div class="g-signin2" data-onsuccess="onSignIn"></div>
-					</div>
 					<input type="hidden" name="${_csrf.parameterName }"
 						value="${_csrf.token }">
 				</form>

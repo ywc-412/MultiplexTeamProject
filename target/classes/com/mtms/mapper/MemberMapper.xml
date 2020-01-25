@@ -145,4 +145,16 @@
 			memberPhoneThird = #{memberPhoneThird}
 		WHERE memberId = #{memberId}
 	</update>
+	
+	<insert id="phoneAuthInsert">
+		INSERT INTO smsAuth VALUES(#{authPhone}, #{authNumber}, sysdate)
+	</insert>
+	
+	<select id="phoneAuthSelect" resultType="com.mtms.domain.PhoneAuthVO">
+		SELECT * FROM smsAuth WHERE authPhone = #{authPhone} AND authNumber = #{authNumber}
+	</select>
+	
+	<delete id="phoneAuthDelete">
+		DELETE FROM smsAuth WHERE authPhone = #{authPhone}
+	</delete>
 </mapper>

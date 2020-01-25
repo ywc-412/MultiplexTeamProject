@@ -2,17 +2,16 @@ package com.mtms.service;
 
 import java.util.List;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
+import com.mtms.domain.PhoneAuthVO;
 import com.mtms.mapper.MemberMapper;
 
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
@@ -50,9 +49,6 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public int findPw(MemberVO memberVO) {
-		
-		String get = memberVO.getMemberId();
-		
 		
 		String password = memberVO.getMemberPw();
 		String encodedPassword = bcryptpwEncoder.encode(password);
@@ -131,6 +127,22 @@ public class MemberServiceImpl implements MemberService{
 	public int removeMember(String memberId) {
 		
 		return memberMapper.deleteMember(memberId);
+	}
+
+	@Override
+	public int phoneAuthInsert(PhoneAuthVO paVO) {
+		
+		return memberMapper.phoneAuthInsert(paVO);
+	}
+
+	@Override
+	public PhoneAuthVO phoneAuthSelect(String authPhone, String authNumber) {
+		return memberMapper.phoneAuthSelect(authPhone, authNumber);
+	}
+
+	@Override
+	public int phoneAuthDelete(String authPhone) {
+		return memberMapper.phoneAuthDelete(authPhone);
 	}
 
 	

@@ -67,16 +67,19 @@
 					<br>
 					<div class="mt-10 custom-input">
 						<div class="float-left">주소</div>
-						<button type="button" id="postcodify_search_button" class="btn btn-primary btn-sm">검색</button>
+						<button type="button" id="postcodify_search_button"
+							class="btn btn-primary btn-sm">검색</button>
 						<input type="text" name="memberAddress" id="memberAddress"
-							class="postcodify_address single-input custom-text-right" placeholder="상세주소는 입력받지 않습니다" readonly>
+							class="postcodify_address single-input custom-text-right"
+							placeholder="상세주소는 입력받지 않습니다" readonly>
 						<div class="custom-red-font custom-text-right"
 							id="memberAddressErrorMsg"></div>
 					</div>
 					<br>
 					<div class="mt-10 custom-input align-middle">
 						<div>핸드폰</div>
-						<button type="button" class="btn btn-primary btn-sm" id='phoneAuthBtn'>인증하기</button>
+						<button type="button" class="btn btn-primary btn-sm"
+							id='phoneAuthBtn'>인증하기</button>
 						<div class="default-select custom-text-left">
 							<select name="memberPhoneFirst" id="memberPhoneFirst">
 								<option value="010">010</option>
@@ -86,98 +89,84 @@
 						</div>
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneSecond" id="memberPhoneSecond"
-							class="single-input custom-text-left custom-input-size-phone" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+							class="single-input custom-text-left custom-input-size-phone"
+							max="9999" maxlength="4">
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneThird" id="memberPhoneThird"
-							class="single-input custom-text-left custom-input-size-phone" max="9999" maxlength="4" oninput="maxLengthCheck(this)">
+							class="single-input custom-text-left custom-input-size-phone"
+							max="9999" maxlength="4">
 						<div class="custom-red-font custom-text-right"
 							id="memberPhoneErrorMsg"></div>
+						<input type="hidden" id="phoneAuthChk" value=""/>
 					</div>
 					<br>
 					<div class="mt-10 custom-input">
 						<div>생년월일</div>
 						<div class="row">
 							<div class="col-xl-6">
-								<input id="datepicker" placeholder="생년월일" name="memberBirth">
+								<input id="datepicker" placeholder="생년월일" name="memberBirth" autocomplete="off">
 							</div>
 							<div class="custom-red-font custom-text-right"
-							id="memberBirthErrorMsg"></div>
+								id="memberBirthErrorMsg"></div>
 							<div class="col-xl-12 text-right">
 								<button type="submit" class="boxed-btn3" id="regBtn1">회원가입</button>
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+					<input type="hidden" name="${_csrf.parameterName }"
+						value="${_csrf.token }">
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<div id="modal" class="searchModal">
-	<div class="search-modal-content">
-		<div class="page-header">
-			<h4>핸드폰 본인인증</h4>
-			<hr>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="row">
-					<div class="col-sm-12">
-						<form action="/member/temp" method="post" id="phoneAuthForm">
-							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-							<div class="mt-10 custom-input">
-								<button class="btn btn-primary btn-sm" id="sendAuthNum">인증번호 보내기</button><br><br>
-								<div>인증번호를 입력해주세요</div><br>
-								<input type="password" id="memberPwChk"
-									class="single-input custom-text-right">
-								<div class="custom-red-font custom-text-right"
-									id="memberPwChkErrorMsg"></div>
-							</div><br>
-							<div class="mt-10 custom-input">
-							</div>
-							<input type="hidden" name="memberId" value="${findMemberId}">
-							<div class="mt-10 custom-input text-center">
-								<button type="button" class="boxed-btn3" id="pwModBtn">확인</button>
-								<button type="button" class="boxed-btn3" id="closeBtn4">닫기</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<hr>
-	</div>
-</div>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script type="text/javascript" src="/resources/js/memberFind.js"></script>
+
 <script>
-	function maxLengthCheck(object){
-	    if (object.value.length > object.maxLength){
-	     	object.value = object.value.slice(0, object.maxLength);
-	   	}
-	}
+	function popup(url){
+        var name = "본인인증 서비스";
+        var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+        window.open(url, name, option);
+    }
 	
 	$(function() {
 		
-		$('#phoneAuthBtn').on("click", function(e){
-			$('#modal').show();
-			
-			$('#sendAuthNum').on("click",function(e){
-				e.preventDefault();
-				// 여기에 이제 인증 번호 보내는 로직..하고 문자 보내기..
-			});
-			
-			$('#closeBtn4').on("click", function(e){
-				$('#modal').hide();
-			});
-		});
 		
+		$('#phoneAuthBtn').on("click", function(e){
+			e.preventDefault();
+			var phoneRegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+			
+			var phoneAuthNullChk = false;	// 인증 버튼 눌렀을때 핸드폰 번호 널값 처리
+			
+			var phoneFirst = $('select#memberPhoneFirst').val();
+			var phoneSecond = $('input#memberPhoneSecond').val();
+			var phoneThird = $('input#memberPhoneThird').val();
+			var phone = phoneFirst + phoneSecond + phoneThird;
+			var regForPhoneNum = phoneFirst +"-"+ phoneSecond + "-" + phoneThird;
+			var url = "/phoneAuthPopup?phone=" + phone;
+			
+			if(!phoneFirst){
+				$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+			}else if(!phoneSecond){
+				$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+			}else if(!phoneThird){
+				$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+			}else if(!phoneRegExp.test(regForPhoneNum)){
+				$('#memberPhoneErrorMsg').html('번호 형식에 맞지않습니다');
+			}else{
+				$('#memberPhoneErrorMsg').html('');
+				phoneAuthNullChk = true;
+				if(phoneAuthNullChk == true){
+					popup(url);
+				}
+			}
+		});
 		
 		
 		$("#postcodify_search_button").postcodifyPopUp(function(e){
 			e.preventDefault();
 		});
-		
 		
 		var registerResult = false;
 		
@@ -251,6 +240,7 @@
 		
 
 		$('#regBtn1').on("click", function(e) {
+			console.log('phoneAuthChk reg: ' + $('input#phoneAuthChk').val());
 			var memberId = $('input#memberId').val();
 			var memberName = $('input#memberName').val();
 			var memberPw = $('input#memberPw').val();
@@ -383,20 +373,6 @@
 </script>
 
 <%@ include file="../include/footer.jsp"%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

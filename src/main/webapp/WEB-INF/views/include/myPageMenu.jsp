@@ -10,11 +10,11 @@
 				<div class="">
 					<ul class="unordered-list">
 						<li><a href="/member/myInfo" id="myInfoMove">내 정보 조회</a></li>
-						<li><a href="/reserve/list?memberId=hue9404" id="myReserveMove">예매 내역</a></li>
+						<li><a href="/reserve/list" id="myReserveMove">예매 내역</a></li>
 						<li>내 리뷰</li>
 						<li>내 한줄평</li>
 						<li>내 기프티콘</li>
-						<li>내 건의사항</li>
+						<li><a href="/member/mySuggst" id="mySuggestMove">내 건의사항</a></li>
 					</ul>
 				</div>
 			</div>
@@ -34,6 +34,11 @@
 		$('#myReserveMove').on("click", function(e){
 			e.preventDefault();
 			location.href="/reserve/list?memberId=${loginUsername}";
+		});
+		
+		$("#mySuggestMove").on("click", function(e){
+			e.preventDefault();
+			location.href="/member/mySuggest?keyword=${loginUsername}&type=W&pageNum=1&amount=10";
 		});
 	});
 </script>
