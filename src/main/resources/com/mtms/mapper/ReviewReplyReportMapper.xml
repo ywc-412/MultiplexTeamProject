@@ -42,7 +42,7 @@
 	</insert>
 	
 	<delete id="delete">
-	 	DELETE replyReport WHERE replyNo = #{replyNo}
+	 	DELETE reply WHERE replyNo = #{replyNo}
 	</delete>
 	
 	<select id="read" resultType="com.mtms.domain.ReplyReportVO">
