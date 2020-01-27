@@ -122,7 +122,7 @@ CREATE TABLE movie (
     summary VARCHAR2(3000),
     openDate DATE,
     todayNum NUMBER(10) DEFAULT 0,
-    yesterdayNum NUMBER(10)
+    yesterdayNum NUMBER(10) DEFAULT 0
 );
 
 CREATE TABLE commentReply (

@@ -22,7 +22,7 @@
                      </div>
                      <div class="gj-text-align-center"><br>
                         <p class="custom-movie-title-font">${moveList.movieTitle }</p>
-                        <fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 } " type="pattern" pattern="0.0" /> %
+<%--                         <fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 } " type="pattern" pattern="0.0" /> % --%>
                      </div>
                   </div>
                </div>
