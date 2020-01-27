@@ -40,6 +40,7 @@ public class ScheduleController {
 	private ScheduleService scheduleService;
 	private SeatService seatService;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("register")
 	public void register(Model model, String scheduleDate) {
 		// 상영스케줄 등록 화면으로 이동
@@ -73,6 +74,7 @@ public class ScheduleController {
 		model.addAttribute("schedule3", list3);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("register")
 	public void register(ScheduleVO scheduleVO, String[] time, String[] regSeq, Model model) {
 		// 상영스케줄 등록 화면에서 상영스케줄 insert
@@ -118,6 +120,7 @@ public class ScheduleController {
 		model.addAttribute("selDate", date);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("cancel")
 	public String cancel(String[] regSeq, RedirectAttributes rttr) {
 		// 방금 등록했던 스케줄 다시 삭제
@@ -125,6 +128,7 @@ public class ScheduleController {
 		return "redirect:/schedule/get";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("delete")
 	public String delete(ScheduleVO scheduleVO, RedirectAttributes rttr) {
 		// 상영스케줄 삭제 (1관 : 6개의 스케줄)
@@ -132,6 +136,7 @@ public class ScheduleController {
 		return "redirect:/schedule/register?scheduleDate="+scheduleVO.getScheduleDate();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("modify")
 	public String modify(ScheduleVO scheduleVO, String[] time, String[] no, RedirectAttributes rttr) {
 		System.out.println("modify");
@@ -143,6 +148,7 @@ public class ScheduleController {
 		return "redirect:/schedule/register?scheduleDate="+scheduleVO.getScheduleDate();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("remove")
 	public String remove(String scheduleDate, RedirectAttributes rttr) {
 		// 상영스케줄 삭제 (하루치)
@@ -171,7 +177,7 @@ public class ScheduleController {
 		return "redirect:/schedule/get";
 	}
 	
-	@GetMapping({"get", "modify"})
+	@GetMapping("get")
 	public void get(Model model, String scheduleDate) {
 		// 날짜별 상영스케줄 조회
 		List<ScheduleVO> list1, list2, list3;
