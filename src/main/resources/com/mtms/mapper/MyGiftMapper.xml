@@ -36,7 +36,7 @@
 				 FROM (SELECT rownum rn, X.* 
 				 	   FROM (SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo, myGift.expireDate, myGift.status, myGift.extendChk
                              FROM gift, myGift
-                             WHERE gift.giftNo = myGift.giftNo AND myGift.memberId = 'jj' ORDER BY myGift.status ASC, myGift.expireDate ASC
+                             WHERE gift.giftNo = myGift.giftNo AND myGift.memberId = 'hue9404' ORDER BY myGift.status ASC, myGift.expireDate ASC
                    ) X WHERE rownum <= #{cri.pageNum} * #{cri.amount})
 				 WHERE rn > (#{cri.pageNum}-1) * #{cri.amount}]]>
 	</select>

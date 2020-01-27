@@ -40,16 +40,29 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public boolean modify(int scheduleNo) {
-		// mapper.update
-		return false;
+//	public void modify(String scheduleDate, String screen, String[] time) {
+	public void modify(String[] no, String[] time) {
+		String scheduleTime;
+		int scheduleNo;
+		for(int i=0; i<time.length; i++) {
+			scheduleTime = time[i];
+			scheduleNo = Integer.parseInt(no[i]);
+			int result = scheduleMapper.update(scheduleTime, scheduleNo);
+		}
 	}
 
 	@Override
 	public void remove(String[] scheduleNo) {
+		// 등록하다가 취소 시 - 추가했던 스케줄 삭제
 		for(int i=0; i<scheduleNo.length; i++) {
 			scheduleMapper.delete(Integer.parseInt(scheduleNo[i]));
 		}
+	}
+
+	@Override
+	public void deleteScreen(String scheduleDate, String screen) {
+		// 영화명 클릭해서 삭제 (상영날짜, 스크린 넘어옴)
+		scheduleMapper.deleteScreen(scheduleDate, screen);
 	}
 
 	@Override
@@ -102,4 +115,5 @@ public class ScheduleServiceImpl implements ScheduleService{
 		// 예매 결과) 스케줄 번호로 스케줄 정보 알아오기
 		return scheduleMapper.getSchedule(scheduleNo);
 	}
+
 }
