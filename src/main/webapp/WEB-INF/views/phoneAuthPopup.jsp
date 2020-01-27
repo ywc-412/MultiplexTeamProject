@@ -45,6 +45,11 @@
 			<input type="text" class="single-input float-left" id="authNumber" style="width: 200px; background-color: aqua;"/>
 			<button class="btn btn-primary btn-sm" id="authChkBtn">확인</button>
 		</div><br>
+		<div style="margin-left: 30px;">
+			<div class="custom-red-font custom-text-right" id="memberPhoneErrorMsg">
+				<p style="color: red; font-weight: bold;"><span class="countTimeMinute"></span><span class="countTimeSecond"></span></p>
+			</div>
+		</div>
 		<form action="/sendSmsPhoneAuth" method="post" id="sendForm">
 			<div id="needForAuth">
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
@@ -54,6 +59,40 @@
 	
 	<script>
 		$(function(){
+			var sendPhoneAuthMsgChk = '${sendPhoneAuthMsgChk}';
+			
+			if(sendPhoneAuthMsgChk){
+				var minute = 5;
+				var second = 0;
+				$(".countTimeMinute").html(minute + ":");
+				$(".countTimeSecond").html(second);
+				
+				var timer = setInterval(function () {
+					// 설정
+					$(".countTimeMinute").html(minute + ":");
+					$(".countTimeSecond").html(second);
+
+					if(second == 0 && minute == 0 && hour == 0){
+						alert('인증시간이 만료되었습니다');
+						clearInterval(timer); /* 타이머 종료 */
+					}else{
+						second--;
+						// 분처리
+						if(second < 0){
+							minute--;
+							second = 59;
+						}
+						//시간처리
+						if(minute < 0){
+							if(hour > 0){
+								hour--;
+								minute = 59;
+							}
+						}
+					}
+		    	}, 1000); /* millisecond 단위의 인터벌 */
+			}
+			
 			$('#phoneAuthSendBtn').on("click", function(e){
 				e.preventDefault();
 				var phone = new URLSearchParams(location.search).get('phone');
@@ -68,6 +107,7 @@
 				$('#sendForm').submit();
 				
 				alert('회원님에게 인증 번호를 보내드렸습니다. 5분 이내에 입력해주세요');
+				
 			});
 			
 			$('#authChkBtn').on("click", function(e){

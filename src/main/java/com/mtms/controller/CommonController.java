@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Coolsms;
 import com.mtms.domain.PhoneAuthVO;
@@ -100,7 +101,7 @@ public class CommonController {
 	}
 	
 	@RequestMapping(value = "/sendSmsPhoneAuth", method = RequestMethod.POST)
-	public String sendSmsPhoneAuth(HttpServletRequest request, PhoneAuthVO paVO, Model model) throws Exception {
+	public String sendSmsPhoneAuth(HttpServletRequest request, PhoneAuthVO paVO, RedirectAttributes rttr) throws Exception {
 
 		int resultService = memberSerivce.phoneAuthInsert(paVO);
 		
@@ -121,7 +122,9 @@ public class CommonController {
 		System.out.println(set);
 		
 		JSONObject result = coolsms.send(set); // 보내기&전송결과받기
-
+		
+		rttr.addFlashAttribute("sendPhoneAuthMsgChk", "sendPhoneAuthMsgChk");
+		
 		if ((boolean) result.get("status") == true) {
 			// 메시지 보내기 성공 및 전송결과 출력
 			System.out.println("성공");

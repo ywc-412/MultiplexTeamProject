@@ -24,11 +24,6 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpSession session) {
 		
-		Object userSession = session.getId();
-		
-		
-		System.out.println("userSession : " + userSession);
-		
 		return "index";
 	}
 	
