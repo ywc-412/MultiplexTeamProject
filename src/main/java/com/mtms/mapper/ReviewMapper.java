@@ -5,17 +5,19 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.mtms.domain.Criteria;
+import com.mtms.domain.ReviewReportVO;
 import com.mtms.domain.ReviewVO;
 
 public interface ReviewMapper {
-	public void updateReplyCnt(@Param("reviewNo ") int ReviewNo,@Param("amount") int amount);
-	public int getTotalCount(Criteria cri);
-	public List<ReviewVO> getListWithPaging(Criteria cri);
+	
 	public void insertSelectKey(ReviewVO rvo);							
-	public void insert(ReviewVO rvo);
+	public void updateReplyCnt(@Param("reviewNo") int reviewNo, @Param("amount") int amount); //댓글 총 갯수
 	public int update(ReviewVO rvo);
 	public int delete(int reviewNo);
 	public ReviewVO read(int reviewNo);
+	public List<ReviewVO> getList();
 	public int updateView(int reviewNo);
-
+	public List<ReviewVO> getListWithPaging(Criteria cri);
+	public int getTotalCount(Criteria cri);
+	public ReviewVO movieSelect(int reviewNo);
 }

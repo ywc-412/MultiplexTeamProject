@@ -1,94 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.MovieMapper">
 
-	<sql id="criteria">
-    	<trim prefix="(" suffix=") AND  " prefixOverrides="OR">
-        	<foreach item='type' collection="typeArr">
-            	<trim prefix="OR">
-                	<choose>
-                    	<when test="type =='T'.toString()">
-                       		movieTitle like '%'||#{keyword}||'%'
-                     	</when>
-                     	<when test="type =='C'.toString()">
-                      		movieManager like '%'||#{keyword}||'%'
-                   	  	</when>
-                  	</choose>
-               	</trim>
+   <sql id="criteria">
+       <trim prefix="(" suffix=") AND  " prefixOverrides="OR">
+           <foreach item='type' collection="typeArr">
+               <trim prefix="OR">
+                   <choose>
+                       <when test="type =='T'.toString()">
+                             movieTitle like '%'||#{keyword}||'%'
+                        </when>
+                        <when test="type =='C'.toString()">
+                            movieManager like '%'||#{keyword}||'%'
+                           </when>
+                     </choose>
+                  </trim>
             </foreach>
         </trim>
     </sql>
         
-	<select id="getTotalCount" resultType="int">
-		<![CDATA[
-     		SELECT COUNT(*) FROM movie WHERE    
-     	]]>
-      	<include refid="criteria"></include>
-     	<![CDATA[ 
-     		movieNo > 0 
-     	]]>
-	</select>
-	
-	<select id="getListWithPaging" resultType="com.mtms.domain.MovieVO">
-		<![CDATA[
-        	 SELECT * FROM (
-           		 SELECT /*+INDEX_ASC(movie IDX_YESTERDAYNUM) */
-              		 rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary, yesterdayNum
-           		 FROM movie
-            	 WHERE 
-      	]]> 
-      	<!-- 보관해 둔 쿼리 사용 -->
-      	<include refid="criteria"></include>
-     	<![CDATA[     
+   <select id="getTotalCount" resultType="int">
+      <![CDATA[
+           SELECT COUNT(*) FROM movie WHERE    
+        ]]>
+         <include refid="criteria"></include>
+        <![CDATA[ 
+           movieNo > 0 
+        ]]>
+   </select>
+   
+   <select id="getListWithPaging" resultType="com.mtms.domain.MovieVO">
+      <![CDATA[
+            SELECT * FROM (
+                  SELECT /*+INDEX_ASC(movie IDX_YESTERDAYNUM) */
+                     rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary, yesterdayNum
+                  FROM movie
+                WHERE 
+         ]]> 
+         <!-- 보관해 둔 쿼리 사용 -->
+         <include refid="criteria"></include>
+        <![CDATA[     
             rownum <= #{pageNum} * #{amount}
             ) WHERE mno > (#{pageNum} - 1) * #{amount}
-      	]]>
-	</select>
-	
-	<update id="update">
-		UPDATE movie
-   		SET movieTitle = #{movieTitle}, movieManager = #{movieManager}, movieMainActor = #{movieMainActor}, movieSupportActor = #{movieSupportActor}, movieGenre = #{movieGenre}, movieGrade = #{movieGrade}, runningTime = #{runningTime}, openDate = #{openDate}, summary = #{summary}
-   		WHERE movieNo = #{movieNo}
-	</update>
-	
-	<delete id="delete">
-		delete movie where movieNo = #{movieNo}
-	</delete>
-	
-	<select id="read" resultType="com.mtms.domain.MovieVO">
-		SELECT * FROM movie WHERE movieNo = #{movieNo}
-	</select>
-	
-	<insert id="insert">
-		<selectKey keyProperty="movieNo" order="BEFORE" resultType="int">
-	   		SELECT seq_movie.nextval FROM dual
-	   	</selectKey>
-	   	insert into movie(movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary)
-		values(#{movieNo}, #{movieTitle}, #{movieManager}, #{movieMainActor}, #{movieSupportActor}, #{movieGenre}, #{movieGrade}, #{runningTime}, #{openDate}, #{summary})
-	</insert>
-	
-	<!-- 예매율 구하기 -->
-	<select id="sumMovie" resultType="int">
-		SELECT SUM(yesterdayNum) FROM movie
-	</select>
+         ]]>
+   </select>
+   
+   <update id="update">
+      UPDATE movie
+         SET movieTitle = #{movieTitle}, movieManager = #{movieManager}, movieMainActor = #{movieMainActor}, movieSupportActor = #{movieSupportActor}, movieGenre = #{movieGenre}, movieGrade = #{movieGrade}, runningTime = #{runningTime}, openDate = #{openDate}, summary = #{summary}
+         WHERE movieNo = #{movieNo}
+   </update>
+   
+   <delete id="delete">
+      delete movie where movieNo = #{movieNo}
+   </delete>
+   
+   <select id="read" resultType="com.mtms.domain.MovieVO">
+      SELECT * FROM movie WHERE movieNo = #{movieNo}
+   </select>
+   
+   <insert id="insert">
+      <selectKey keyProperty="movieNo" order="BEFORE" resultType="int">
+            SELECT seq_movie.nextval FROM dual
+         </selectKey>
+         insert into movie(movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary)
+      values(#{movieNo}, #{movieTitle}, #{movieManager}, #{movieMainActor}, #{movieSupportActor}, #{movieGenre}, #{movieGrade}, #{runningTime}, #{openDate}, #{summary})
+   </insert>
+   
+   <!-- 예매율 구하기 -->
+   <select id="sumMovie" resultType="int">
+      SELECT SUM(yesterdayNum) FROM movie
+   </select>
 
-	<select id="sumGetMovie" resultType="int">
-		SELECT SUM(yesterdayNum) FROM movie WHERE movieNo = #{movieNo }
-	</select>
-	
-	<!-- 내 한줄평 영화명 불러오기 -->
-	<select id="movieList" resultType="com.mtms.domain.MovieVO">
-     	<![CDATA[
+   <select id="sumGetMovie" resultType="int">
+      SELECT SUM(yesterdayNum) FROM movie WHERE movieNo = #{movieNo }
+   </select>
+   
+   <!-- 내 한줄평 영화명 불러오기 -->
+   <select id="movieList" resultType="com.mtms.domain.MovieVO">
+        <![CDATA[
             SELECT /*+INDEX_DESC(movie PK_MOVIE) */
-				rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary, yesterdayNum
-				FROM movie
+            rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary, yesterdayNum
+            FROM movie
        ]]> 
     </select>
-	
-	<!-- 한나 -->
-	<select id="getMovieName" resultType="com.mtms.domain.MovieVO">
+   
+   <!-- 한나 -->
+   <select id="getMovieName" resultType="com.mtms.domain.MovieVO">
       SELECT movieNo, movieTitle FROM movie WHERE movieTitle LIKE '%'||#{movieName}||'%'
    </select>
    
@@ -99,5 +99,5 @@
    <select id="getMovie" resultType="String">
       SELECT movieTitle FROM movie WHERE movieNo = #{movieNo}
    </select>
-	
+   
 </mapper>

@@ -8,7 +8,6 @@ import com.mtms.domain.LostVO;
 public interface LostService {
 	public int getTotalCount(Criteria cri);
 	public List<LostVO> getList(Criteria cri);
-	public List<LostVO> getList();
 	public boolean modify(LostVO lvo);
 	public boolean remove(int lostNo);
 	public LostVO get(int lostNo);
