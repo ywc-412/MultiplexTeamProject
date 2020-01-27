@@ -84,7 +84,7 @@ String[] words = replyNo.split(",");
 	public String register(ReplyReportVO rpvo, RedirectAttributes rttr) {
 		replyReportService.register(rpvo);
 		rttr.addFlashAttribute("result", rpvo.getReplyReportNo());
-		return "redirect:/report/reply/list";
+		return "redirect:/review/list";
 
 	}
 

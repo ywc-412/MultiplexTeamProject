@@ -92,7 +92,7 @@ public class ReviewReportController {
 		System.out.println(rrvo);
 		System.out.println("부적절? : "+rrvo);
 		rttr.addFlashAttribute("result",rrvo.getReviewReportNo());
-		return "redirect:/report/review/list";
+		return "redirect:/review/list";
 		
 	}
 }

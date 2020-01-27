@@ -45,7 +45,7 @@
 	</insert>
 	
 	<delete id="delete">
-	 DELETE reviewReport WHERE reviewNo = #{reviewNo}
+	 DELETE review WHERE reviewNo = #{reviewNo}
 	</delete>
 	
 	<select id="read" resultType="com.mtms.domain.ReviewReportVO">
