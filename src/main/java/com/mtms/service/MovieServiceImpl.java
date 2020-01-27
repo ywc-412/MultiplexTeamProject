@@ -101,6 +101,13 @@ public class MovieServiceImpl implements MovieService{
 		return commentMapper.sumComment(movieNo);
 	}
 	
+	//인덱스 조회
+	@Override
+	public List<MovieVO> getIndexList(){
+		
+		return movieMapper.indexList();
+	}
+	
 	//영화 페이징 조회
 	@Override
 	public List<MovieVO> getList(Criteria cri){
@@ -176,6 +183,20 @@ public class MovieServiceImpl implements MovieService{
     public String getMovie(int movieNo) {
        return movieMapper.getMovie(movieNo);
     }
+    
+    //어제예매수변경
+	@Override
+	public boolean modifyYesterday() {
+		
+		return movieMapper.updateYesterday() == 1;
+	}
+
+	//오늘 예매수 변경
+	@Override
+	public boolean modifyToday() {
+
+		return movieMapper.updateToday() == 1;
+	}
 
 	
 

@@ -8,6 +8,15 @@ import com.mtms.domain.MovieVO;
 
 public interface MovieService {
 	
+	//어제 예매수 변경
+	public boolean modifyYesterday();
+	
+	//오늘 예매수 변경
+	public boolean modifyToday();
+
+	//영화 페이징
+	public List<MovieVO> getIndexList(); 
+	
 	//영화 수정
 	public boolean modify(MovieVO movie);
 	

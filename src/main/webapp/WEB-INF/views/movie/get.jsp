@@ -192,7 +192,7 @@
 				        <a href="#" class="starModify5">★</a>
 					</span>
 					<input class="yeong-commentInput" type="hidden" id="commentStarModify" name='commentStar'>
-			        <input class="yeong-commentInput" type='text' id="commentContent" name='commentContent' placeholder="한줄평을  수정해주세요">
+			        <input class="yeong-commentInput" type='text' id="commentContentModify" name='commentContent' placeholder="한줄평을  수정해주세요">
 					
 					<input class="yeong-commentInput" type="hidden" id="movieNo" name='movieNo'>
 			        <sec:authentication property="principal" var="pinfo"/>
@@ -580,6 +580,11 @@
 			    	alert('한줄평을 입력해주세요');
 			 	    $('#commentContent').focus();
 			 	   return;
+			    } else if(commentContent.length > 50){
+			    	alert('한줄평을 50자 이내로 입력해주세요');
+			    	$('#commentContent').val("");
+			 	    $('#commentContent').focus();
+			 	   return;
 			    } else{
 		            var comment = {
 		                  commentStar : inputStar.val(),
@@ -634,8 +639,6 @@
 	    	    	modalmemberId.val(data.memberId);
 	    	    	modalcommentDate.val(data.commentDate);	
 	    	    	modalmovieNo.val(data.movieNo);	
-	    	   		
-// 	    	   		modal.data("commentNo", data.commentNo);
 	    			
 	    			$('#exampleModal').modal('show');
 	    	   		
@@ -649,6 +652,23 @@
 	        $(document).on("click", "#modalModify", function(e){
 
 	        	console.log(modal.data('commentNo'));
+	        	var commentStarModify = $('#commentStarModify').val();
+		  		var commentContentModify = $('#commentContentModify').val();
+		  		
+	        	if( commentStarModify == "" || commentStarModify.length < 0){
+			 	    alert('별점을 선택해주세요');
+			 	    $('#commentStarModify').focus();
+			 	    return;
+			    } else if( commentContentModify == "" || commentContentModify.length < 0){
+			    	alert('한줄평을 입력해주세요');
+			 	    $('#commentContentModify').focus();
+			 	   return;
+			    } else if(commentContentModify.length > 50){
+			    	alert('한줄평을 50자 이내로 입력해주세요');
+			    	$('#commentContentModify').val("");
+			 	    $('#commentContentModify').focus();
+			 	   return;
+			    } 
 	        	
 	        	commentService.update({
 	        		commentNo : modal.data('commentNo'),
@@ -693,7 +713,9 @@
 		             
 		             commentService.remove(commentNo, originalReplyer, function(result){
 		                alert(result);
+// 		                location.reload();
 		                showList(pageNum);
+		                
 		             });
 		      });
 	        

@@ -118,7 +118,7 @@
 				        <a href="#" class="starModify5">★</a>
 					</span>
 					<input class="yeong-commentInput" type="hidden" id="commentStarModify" name='commentStar'>
-			        <input class="yeong-commentInput" type='text' id="commentContent" name='commentContent' placeholder="한줄평을  수정해주세요">
+			        <input class="yeong-commentInput" type='text' id="commentContentModify" name='commentContent' placeholder="한줄평을  수정해주세요">
 					
 					<input class="yeong-commentInput" type="hidden" id="movieNo" name='movieNo'>
 			        <sec:authentication property="principal" var="pinfo"/>
@@ -203,7 +203,6 @@
 	var modalmovieNo = modal.find("input[name='movieNo']");
 	
 	var modalModify = $("#modalModify");
-	var commentDelete = $("#commentDelete");
 	
 	var memberId = null; //로그인한 아이디
 	
@@ -215,11 +214,15 @@
 	var csrfHeaderName = "${_csrf.headerName}";	//CSRF 토큰 관련 변수 추가
 	var csrfTokenValue = "${_csrf.token}";
 	
+	$(document).ajaxSend(function(e, xhr, options){	//전송 전 추가 헤더 설정
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});
+	
     $(function(){
 	    $(document).on("click", "#myCommentUpdate", function(e){
 	    	console.log($(this).data("commentno"));
 	    	
-			commentService.get($(this).data("commentno"), function(data){
+	    	commentService.get($(this).data("commentno"), function(data){
 				console.log("gg");
     	   		console.log(data.commentStar);
     	   		console.log(data.commentContent);
@@ -261,6 +264,24 @@
 
         	console.log(modal.data('commentNo'));
         	
+        	var commentStarModify = $('#commentStarModify').val();
+	  		var commentContentModify = $('#commentContentModify').val();
+	  		
+	  		if( commentStarModify == "" || commentStarModify.length < 0){
+		 	    alert('별점을 선택해주세요');
+		 	    $('#commentStarModify').focus();
+		 	    return;
+		    } else if( commentContentModify == "" || commentContentModify.length < 0){
+		    	alert('한줄평을 입력해주세요');
+		 	    $('#commentContentModify').focus();
+		 	   return;
+		    } else if(commentContentModify.length > 50){
+		    	alert('한줄평을 50자 이내로 입력해주세요');
+		    	$('#commentContentModify').val("");
+		 	    $('#commentContentModify').focus();
+		 	   return;
+		    } 
+        	
         	commentService.update({
         		commentNo : modal.data('commentNo'),
         		commentStar : modalInputStar.val(),
@@ -270,11 +291,33 @@
     			alert("수정완료");
     			
     			modal.modal("hide");
+    			location.reload();
     			
     		}, function(err){
     			console.log(err);
     		});
         });
+	  
+	  
+        $(document).on("click", "#myCommentDelete", function(e){
+	    	  var commentNo = $(this).data('commentno');
+	    	  console.log(commentNo);
+	    	  
+	    	  e.preventDefault();
+	    	  
+// 	        	if(!memberId){
+// 	                // 로그인하지 않은 경우
+// 	                alert('로그인 후 삭제가 가능합니다.');
+// 	                return ;
+// 	             }
+	             var originalReplyer = modalmemberId.val();
+	             console.log(originalReplyer);
+	             
+	             commentService.remove(commentNo, originalReplyer, function(result){
+	                alert(result);
+	    			location.reload();
+	             });
+	      });
 	  
 	  
     });

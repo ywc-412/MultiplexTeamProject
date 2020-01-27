@@ -3,6 +3,7 @@ package com.mtms.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,6 +71,7 @@ public class CommentController {
 	
 	//한줄평 삭제 - AJAX
 //	@PreAuthorize("principal.username == #rvo.replyer") //수정필요
+    @Secured("ROLE_MEMBER")
 	@DeleteMapping(value = "{commentNo}", produces = { MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(@RequestBody CommentVO commentVO, @PathVariable("commentNo") int commentNo){
 		
@@ -77,6 +79,7 @@ public class CommentController {
 	}
 	
 	//한줄평 수정 - AJAX
+	@Secured("ROLE_MEMBER")
 	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH },
 					value = "{commentNo}",
 					consumes = "application/json",

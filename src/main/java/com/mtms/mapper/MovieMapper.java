@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Param;
 
 public interface MovieMapper {
 	
+	//인덱스 리스트indexList
+	public List<MovieVO> indexList();
+	
 	//게시글 총페이지
 	public int getTotalCount(Criteria cri);
 	
@@ -37,6 +40,12 @@ public interface MovieMapper {
 	
 	//전체예매율
 	public int sumMovie();
+	
+	//어제 예매수 변경
+	public int updateYesterday();
+	
+	//오늘 예매수 변경
+	public int updateToday();
 	
 	
 	//한나

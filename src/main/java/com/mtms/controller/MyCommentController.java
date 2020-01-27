@@ -36,5 +36,5 @@ public class MyCommentController {
 		model.addAttribute("pageMaker", new PageDTO(cri, commentService.myGetTotal(memberId)));
 
 	}
-
+	
 }

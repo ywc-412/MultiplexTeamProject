@@ -120,6 +120,7 @@
 	    		var str = "";
 	    		
 	    		$.get("/movie/getAttachList", {movieNo : $(this).attr("id") }, function(result) {
+	    			console.log($(this).attr("id"));
 	    			
 	    			var fileCallPath = encodeURIComponent( result[0].movieUploadPath + "/s_" + result[0].movieUuid + "_" + result[0].movieFileName);
 					var originPath = result[0].movieUploadPath + "\\" + result[0].movieUuid + "_" + result[0].movieFileName;

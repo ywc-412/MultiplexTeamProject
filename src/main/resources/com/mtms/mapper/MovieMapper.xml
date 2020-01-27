@@ -47,6 +47,26 @@
       	]]>
 	</select>
 	
+	<!-- 인덱스 페이지 -->
+	<select id="indexList" resultType="com.mtms.domain.MovieVO">
+		<![CDATA[
+           	SELECT /*+INDEX_ASC(movie IDX_YESTERDAYNUM) */
+              	 rownum mno, movieNo, movieTitle, movieManager, movieMainActor, movieSupportActor, movieGenre, movieGrade, runningTime, openDate, summary, yesterdayNum
+           	 FROM movie 
+           	 WHERE rownum <= 3
+      	]]> 
+	</select>
+	
+	<!-- 오늘 예매수 어제 예매수로 변경 -->
+	<update id="updateYesterday">
+		UPDATE movie SET yesterdayNum = todayNum
+	</update>
+	
+	<!-- 오늘 예매수 0으로 변경 -->
+	<update id="updateToday">
+		UPDATE movie SET todayNum = 0
+	</update>
+	
 	<update id="update">
 		UPDATE movie
    		SET movieTitle = #{movieTitle}, movieManager = #{movieManager}, movieMainActor = #{movieMainActor}, movieSupportActor = #{movieSupportActor}, movieGenre = #{movieGenre}, movieGrade = #{movieGrade}, runningTime = #{runningTime}, openDate = #{openDate}, summary = #{summary}
