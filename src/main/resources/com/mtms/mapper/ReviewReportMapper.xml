@@ -3,23 +3,55 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ReviewReportMapper">
-	<select id="getTotalCount" resultType="int">
+<select id="getTotalCount" resultType="int">
+	  <![CDATA[
+     	SELECT COUNT(*) FROM reviewReport WHERE    
+     	reviewReportNo > 0 
+     ]]>
+   </select>
 	
-	</select>
-	
-	<select id="getListWithPaging" resultType="com.mtms.domain.ReviewReportVO">
-	
-	</select>
-	
+
+<select id="getListWithPaging" resultType="com.mtms.domain.ReviewReportVO">
+		<![CDATA[
+			 SELECT 
+			   c.reviewTitle,
+	           c.reviewReportNo,
+	           c.memberId,
+	           c.reviewNo,
+	           c.reviewReportContent,
+	           c.reviewReportDate
+    from 
+        (
+        select rownum rn,
+                       a.reviewReportNo,
+                       a.memberId,
+                       a.reviewNo,
+                       a.reviewReportContent,
+                       a.reviewReportDate,
+                       b.reviewTitle
+        from reviewReport a,
+             review b
+        where a.reviewNo = b.reviewNo 
+        and rownum <= #{pageNum} * #{amount}
+    ) c 
+    WHERE c.rn > (#{pageNum} - 1) * #{amount}
+      ]]> 
+   </select>
+		
+ 
 	<insert id="insert">
-	
+  	INSERT INTO reviewReport(reviewReportNo, memberId, reviewNo,reviewReportContent)
+	VALUES(seq_reviewReport.NEXTVAL, #{memberId}, #{reviewNo},#{reviewReportContent})
 	</insert>
 	
 	<delete id="delete">
-	
+	 DELETE reviewReport WHERE reviewNo = #{reviewNo}
 	</delete>
 	
 	<select id="read" resultType="com.mtms.domain.ReviewReportVO">
-	
+		 SELECT b.reviewTitle,a.reviewReportNo,a.memberId,a.reviewNo,a.reviewReportContent,a.reviewReportDate 
+			 FROM reviewReport a, review b
+			 WHERE a.reviewNo = b.reviewNo and
+			 reviewReportNo = #{reviewReportNo}
 	</select>
 </mapper>

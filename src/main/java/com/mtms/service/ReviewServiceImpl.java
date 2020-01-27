@@ -2,76 +2,72 @@ package com.mtms.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mtms.mapper.MemberMapper;
-import com.mtms.mapper.ReviewMapper;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.ReviewVO;
+import com.mtms.mapper.ReviewMapper;
 
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
-@AllArgsConstructor
 @Log4j
-public class ReviewServiceImpl implements ReviewService{
-	@Setter(onMethod_ = @Autowired)
+@AllArgsConstructor
+public class ReviewServiceImpl implements ReviewService {
 	private ReviewMapper reviewMapper;
-//	private MemberMapper memberMapper;
-
-	@Override
-	public int getTotalCount(Criteria cri) {
-
-		return 0;
-	}
-
-	@Override
-	public List<ReviewVO> getList(Criteria cri) {
-		return null;
-	}
-
-	@Override
-	public List<ReviewVO> getList() {
-
-		return null;
-	}
 
 	@Override
 	public boolean modify(ReviewVO rvo) {
- 
-		return false;
+
+		return reviewMapper.update(rvo) == 1;
 	}
 
 	@Override
 	public boolean remove(int reviewNo) {
-
-		return false;
+		// TODO Auto-generated method stub
+		return reviewMapper.delete(reviewNo) == 1;
 	}
 
 	@Override
-//	@Transactional
+	@Transactional
 	public ReviewVO get(int reviewNo) {
-//		reviewMapper.updateView(reviewNo);
+		// TODO Auto-generated method stub
+		reviewMapper.updateView(reviewNo);
 		return reviewMapper.read(reviewNo);
-		
 	}
+
+//	@Override
+//	public void register(ReviewVo rvo) {
+//		// TODO Auto-generated method stub
+//		reviewMapper.insert(rvo);
+//		
+//	}
 
 	@Override
 	public void register(ReviewVO rvo) {
-		
+		reviewMapper.insertSelectKey(rvo);
+
 	}
 
-	
+	@Override
+	public List<ReviewVO> getList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return reviewMapper.getListWithPaging(cri);
+	}
 
+	@Override
+	public int getTotalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return reviewMapper.getTotalCount(cri);
+	}
 
-
-
-
-
-
+	@Override
+	public ReviewVO movieSelect(int reviewNo) {
+		// TODO Auto-generated method stub
+		System.out.println("서비스임플 무비이름 들어왔나?");
+		return reviewMapper.movieSelect(reviewNo);
+	}
 
 }

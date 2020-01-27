@@ -13,8 +13,13 @@
 						<li><a href="/reserve/list" id="myReserveMove">예매 내역</a></li>
 						<li>내 리뷰</li>
 						<li>내 한줄평</li>
+<<<<<<< HEAD
+						<li><a href="/myGift/list?memberId=jj">내 기프티콘</a></li>
+						<li>내 건의사항</li>
+=======
 						<li>내 기프티콘</li>
 						<li><a href="/member/mySuggst" id="mySuggestMove">내 건의사항</a></li>
+>>>>>>> 493aa29422c45e48cc87cc3fbb8cd39a28fd27ce
 					</ul>
 				</div>
 			</div>

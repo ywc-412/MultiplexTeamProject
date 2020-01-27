@@ -4,7 +4,7 @@
 
 <%@include file="../include/header.jsp" %>
 
-<!--board-start-->
+<!--board s -->
 <section id="tabs" class="project-tab">
     <div class="container">
         <div class="custom-gift-divide-border">
@@ -13,20 +13,43 @@
         <div class="section-top-border">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="/mtms/img/popcorn.jpg" alt="" class="img-fluid">
+                    <div class="gift_area" id="giftArea">
+                    <div class="single_gift uploadDiv" id="${gift.giftNo}" >               
+						<div class="uploadResult"> 
+							<ul>							
+								<!-- 사진 -->
+							</ul>
+						</div>
+               	 	</div>
+               	 	</div>
                 </div>
-                <div class="col-md-9 mt-sm-20">
-                    <p>품목 : 카라멜팝콘 (M)</p>
-                    <p>금액 : 6,000원</p>
-                    <p>구성 : 카라멜팝콘</p>
-                    <p>구입일자 : 2020.01.13</p>
-                    <p>만료일자 : 2020.02.12</p>
-                </div>
+                <div class="col-md-9 mt-sm-20">               		
+                    <p>품목 : <c:out value="${gift.giftNo}" /></p>
+                    <p>품목 : <c:out value="${gift.giftName}" /></p>
+                    <p>금액 : <c:out value="${gift.giftPrice}" /></p>
+                    <p>구성 : <c:out value="${gift.giftSet}" /></p>                
+                </div>                
             </div>
             <div class="custom-gift-divide-border"></div>
         </div>
     </div>
 </section>
-<!--board-end-->
+<!--board e -->
 
+<script>
+//즉시 실행함수 - 첨부파일 목록 가져오기
+(function(){
+	$("#giftArea").find(".single_gift").each(function(){	
+		var $this = $(this);			
+		var li = ""; 		
+		$.get("/myGift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {
+		 console.log(data);				
+			var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;	 
+			filePath = filePath.replace(new RegExp(/\\/g), "/");
+			console.log(filePath);
+			li += "<img class='giftImg' src='/giftUpload/display?giftFileName="+filePath+"'>"						  		
+				  		$this.find(".uploadResult").find("ul").append(li);
+		});//END JSON	
+	});
+</script>
 <%@include file="../include/footer.jsp" %>

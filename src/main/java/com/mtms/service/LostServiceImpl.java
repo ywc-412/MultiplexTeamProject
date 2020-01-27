@@ -9,58 +9,52 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mtms.domain.Criteria;
 import com.mtms.domain.LostVO;
 import com.mtms.mapper.LostMapper;
+import com.mtms.mapper.ReviewMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
-@AllArgsConstructor
 @Log4j
-public class LostServiceImpl implements LostService{
-
+@AllArgsConstructor
+public  class LostServiceImpl implements LostService{
 	private LostMapper lostMapper;
 
 	@Override
 	public int getTotalCount(Criteria cri) {
-//		public int getTotalCount(Criteria cri) 
-		return 0;
+		// TODO Auto-generated method stub
+		return lostMapper.getTotalCount(cri);
 	}
 
 	@Override
 	public List<LostVO> getList(Criteria cri) {
-//		public List<LostVo> getList(Criteria cri)
-		return null;
-	}
-
-	@Override
-	public List<LostVO> getList() {
-//		public List<LostVo> getList() 
-		return null;
+		// TODO Auto-generated method stub
+		return lostMapper.getListWithPaging(cri);
 	}
 
 	@Override
 	public boolean modify(LostVO lvo) {
-//		public boolean modify(LostVo lvo)
-		return false;
+		// TODO Auto-generated method stub
+		return lostMapper.update(lvo) == 1;
 	}
 
 	@Override
-	@Transactional
 	public boolean remove(int lostNo) {
-//		public boolean remove(LostVo lvo) 
-		return false;
+		// TODO Auto-generated method stub
+		return lostMapper.delete(lostNo) == 1;
 	}
 
 	@Override
 	public LostVO get(int lostNo) {
-			lostMapper.updateView(lostNo);
+		lostMapper.updateView(lostNo);
 		return lostMapper.read(lostNo);
 	}
 
 	@Override
 	public void register(LostVO lvo) {
 		// TODO Auto-generated method stub
-		
+		lostMapper.insert(lvo);
 	}
+
 }

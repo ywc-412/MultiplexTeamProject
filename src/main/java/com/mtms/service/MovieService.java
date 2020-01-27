@@ -68,6 +68,6 @@ public interface MovieService {
    
     // 희홍 -> 영화명 가져오기
     public String getMovie(int movieNo);
-	
+
 
 }

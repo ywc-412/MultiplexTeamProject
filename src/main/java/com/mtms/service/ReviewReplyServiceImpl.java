@@ -16,8 +16,8 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
-@AllArgsConstructor
 @Log4j
+@AllArgsConstructor
 public class ReviewReplyServiceImpl implements ReviewReplyService{
 	@Setter(onMethod_ = @Autowired)
 	private ReviewReplyMapper reviewReplyMapper;
@@ -26,37 +26,38 @@ public class ReviewReplyServiceImpl implements ReviewReplyService{
 
 	@Override
 	public ReplyPageDTO getListPage(Criteria cri, int reviewNo) {
-//		public ReplyPageDTO getListPage(Criteria cri, Long reviewNo)
-		return null;
+		return new ReplyPageDTO(reviewReplyMapper.getCountByReplyNo(reviewNo), reviewReplyMapper.getListWithPaging(cri, reviewNo));
 	}
 
 	@Override
-	public List<ReplyVO> getList(Criteria cri, int replyReportNo) {
+	public List<ReplyVO> getList(Criteria cri, int reviewNo) {
 //		public List<ReplyVO> getList(Criteria cri, Long reviewNo) 
-		return null;
+		return reviewReplyMapper.getListWithPaging(cri, reviewNo);
 	}
 
 	@Override
 	public int modify(ReplyVO revo) {
 //		public int modify(ReplyVO revo)
-		return 0;
+		return reviewReplyMapper.update(revo);
 	}
 
 	@Override
 	public int remove(int replyNo) {
-//		public int remove(Long replyNo)
-		return 0;
+		ReplyVO revo = reviewReplyMapper.read(replyNo);
+		
+		reviewMapper.updateReplyCnt(revo.getReviewNo(), -1);
+		return reviewReplyMapper.delete(replyNo);
 	}
 
 	@Override
 	public ReplyVO get(int replyNo) {
 //		public ReplyVO get(Long replyNo)
-		return null;
+		return reviewReplyMapper.read(replyNo);
 	}
 
 	@Override
 	public int register(ReplyVO revo) {
-//		public int register(ReplyVO revo)
-		return 0;
+		reviewMapper.updateReplyCnt(revo.getReviewNo(), 1);
+		return reviewReplyMapper.insert(revo);
 	}
 }

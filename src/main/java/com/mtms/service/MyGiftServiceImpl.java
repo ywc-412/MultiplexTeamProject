@@ -18,46 +18,44 @@ import lombok.extern.log4j.Log4j;
 
 @Service
 @AllArgsConstructor
-@Log4j
 public class MyGiftServiceImpl implements MyGiftService{
 
 	private MyGiftMapper myGiftMapper;	
-	private GiftAttachMapper giftAttachMapper;	
-	private MemberMapper memberMapper;
-	private GiftMapper giftMapper;
 	
+	//내 기프티콘 목록 생성
 	@Override
-	public void register(MyGiftVO gift) {	//내 기프티콘 등록
-		// TODO Auto-generated method stub	
+	public void myInsertSelectKey(MyGiftVO myGift) {	
+		myGiftMapper.myInsertSelectKey(myGift);		
 	}
 	
+	//내 기프티콘 조회
 	@Override
-	public List<MyGiftVO> getListWithPaging(Criteria cri) {	//내 기프티콘 조회
-		// TODO Auto-generated method stub
-		return null;
+	public List<MyGiftVO> getListWithPaging(Criteria cri, String memberId) {	
+		return myGiftMapper.getListWithPaging(cri, memberId);
+	}
+	
+	//내 기프티콘 상세보기
+	@Override
+	public List<MyGiftVO> get(int myGiftNo, String memberId) {					
+		return myGiftMapper.read(myGiftNo, memberId);
+	}
+	
+	//내 기프티콘 연장
+	@Override
+	public boolean extend(MyGiftVO myGift, String memberId) {					
+		return myGiftMapper.extend(myGift, memberId) == 1;
+	}
+	
+	//내 기프티콘 환불
+	@Override
+	public boolean refund(MyGiftVO myGift, String memberId) {	
+		return myGiftMapper.refund(myGift, memberId) == 1;
+	}
+	
+	//내 기프티콘 총 갯수
+	@Override
+	public int getTotalCount(Criteria cri, String memberId) {	
+		return myGiftMapper.getTotalCount(cri, memberId);
 	}
 
-	@Override
-	public MyGiftVO get(int myGiftNo) {			//내 기프티콘 상세보기
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean extend(MyGiftVO myGift) {	//내 기프티콘 연장
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean refund(int myGiftNo) {		//내 기프티콘 환불
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int getTotalCount(Criteria cri) {	//내 기프티콘 총 갯수
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

@@ -155,7 +155,7 @@ public class MovieServiceImpl implements MovieService{
 
 		return movieMapper.sumGetMovie(movieNo);
 	}
-	
+
 	//전체 예매율
 	@Override
 	public int totalMovie() {
@@ -198,12 +198,6 @@ public class MovieServiceImpl implements MovieService{
 		return movieMapper.updateToday() == 1;
 	}
 
-	
-
-    
-	
-
-	
 	
 	
 }

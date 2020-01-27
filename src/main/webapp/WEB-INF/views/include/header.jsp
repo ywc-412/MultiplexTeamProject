@@ -7,6 +7,7 @@
 <html class="no-js" lang="zxx">
 
 <head>
+<<<<<<< HEAD
 	<meta charset="utf-8">
 	<meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="841929901504-rjhbj9a4obp0vp06ib87f52fiq2rg29r.apps.googleusercontent.com">
@@ -15,9 +16,40 @@
 	<title>S_CINEMA</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+=======
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>S_CINEMA</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+>>>>>>> hong
 
+<<<<<<< HEAD
+   <!-- <link rel="manifest" href="site.webmanifest"> -->
+   <link rel="shortcut icon" type="image/x-icon" href="img/favicon2.png">
+   <!-- Place favicon.ico in the root directory -->
+   <script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+   <!-- CSS here -->
+   <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+   <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/resources/css/magnific-popup.css">
+   <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+   <link rel="stylesheet" href="/resources/css/themify-icons.css">
+   <link rel="stylesheet" href="/resources/css/nice-select.css">
+   <link rel="stylesheet" href="/resources/css/flaticon.css">
+   <link rel="stylesheet" href="/resources/css/gijgo.css">
+   <link rel="stylesheet" href="/resources/css/animate.css">
+   <link rel="stylesheet" href="/resources/css/slicknav.css">
+   <link rel="stylesheet" href="/resources/css/style.css">
+   <link rel="stylesheet" href="/resources/css/custom-choi.css">
+   <link rel="stylesheet" href="/resources/css/custom-jj.css">
+   <link rel="stylesheet" href="/resources/css/custom-hanna.css">
+   <link rel="stylesheet" href="/resources/css/custom-hong.css">
+   <link rel="stylesheet" href="/resources/css/custom-lee.css">
+   <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+=======
 	<!-- <link rel="manifest" href="site.webmanifest"> -->
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon2.png">
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/img/favicon2.png">
 	<!-- Place favicon.ico in the root directory -->
 	<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
 	<!-- CSS here -->
@@ -38,12 +70,18 @@
 	<link rel="stylesheet" href="/resources/css/custom-hong.css">
 	<link rel="stylesheet" href="/resources/css/custom-lee.css">
 	<!-- <link rel="stylesheet" href="css/responsive.css"> -->
+	
+	<!-- iamport API -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+>>>>>>> 2eab1067ca94b316eba59c19c678e0d6e0463d0a
 </head>
 
 <body>
-	<!--[if lte IE 9]>
+   <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
+
 
 	<!-- header-start -->
 	<header>
@@ -74,7 +112,6 @@
 										<li><a class='${list == null? "" : "active"}' href="/suggest/list">건의사항</a></li>
 										<li><a class="" href="/notice/list">공지사항</a></li>
 										<li><a class="" href="/lost/list">습득물</a></li>
-										
 									</ul>
 								</nav>
 							</div>
@@ -156,3 +193,4 @@
 		})
 		
 	</script>
+
