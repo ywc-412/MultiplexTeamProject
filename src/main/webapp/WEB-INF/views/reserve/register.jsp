@@ -88,8 +88,8 @@
 	<script>
 	
 	
-	
 	$(document).ready(function(){
+		
 		
 		$(document).on("click", "#goSeatBtn", function(e){
 			
