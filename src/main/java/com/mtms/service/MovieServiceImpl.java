@@ -160,7 +160,6 @@ public class MovieServiceImpl implements MovieService{
    @Override
    public int totalMovie() {
       
-	  
 	   int result = movieMapper.sumMovie();
 	   System.out.println(result);
 	   if(result == 0) {
