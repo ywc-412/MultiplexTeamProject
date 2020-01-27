@@ -35,6 +35,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ywc41/Desktop/MultiplexTeamProject/개발문서/javaSDK-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/javawork/MultiplexTeamProject/개발문서/javaSDK-2.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
