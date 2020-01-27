@@ -1,151 +1,91 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/header.jsp"%>
 
-<!--board-start-->
+<!--board s -->
 <section id="tabs" class="project-tab">
-    <div class="custom-container">
-        <div class="row custom-mobile">
-            <div class="col-md-12">
-                <div class="custom-board-title">
-                    <h3 class="custom-font-bold">기프티콘</h3>
-                </div>
-                <a href="/mtms/giftReg.html" class="btn btn-primary btn-sm">등록</a>
-                <!--search-start-->
-                <div class="pull-right">
-                    <input type="text" placeholder="검색어를 입력하세요" class="input-group-btn ">
-                    <button type="submit" class="btn btn-primary btn-sm">검색</button>
-                </div>
-                <!--search-end-->
-                <!--first-line-s-->
-                <div class="container">
-                    <div class="custom-gift-divide-border">
-                        <h4 class="custom-divide">팝콘</h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid9">
-                                <div class="product-image9">
-                                    <a href="#">
-                                        <img class="pic-1" src="/mtms/img/popcorn.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">달콤팝콘(M)</a></h3>
-                                    <div class="price"> 5,500원</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid9">
-                                <div class="product-image9">
-                                    <a href="#">
-                                        <img class="pic-1" src="/mtms/img/popcorn2.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">고소팝콘(M)</a></h3>
-                                    <div class="price">4,500원</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid9">
-                                <div class="product-image9">
-                                    <a href="#">
-                                        <img class="pic-2" src="/mtms/img/popcorn3.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">카라멜&치즈팝콘(L)</a></h3>
-                                    <div class="price">6,000원</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid9">
-                                <div class="product-image9">
-                                    <a href="#">
-                                        <img class="pic-1" src="/mtms/img/popcorn4.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">바질어니언팝콘(L)</a></h3>
-                                    <div class="price">6,000원</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--first-line-e-->
-                <!--second-line-s-->
-                <div class="container">
-                    <br>
-                    <div class="custom-gift-divide-border">
-                        <h4 class="custom-divide">음료</h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid9">
-                                <div class="product-image9">
-                                    <a href="#">
-                                        <img class="pic-1" src="/mtms/img/soda.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">탄산음료(M)</a></h3>
-                                    <div class="price"> 2,200원</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid9">
-                                <div class="product-image9">
-                                    <a href="#">
-                                        <img class="pic-1" src="/mtms/img/americano.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">아메리카노(ICE)</a></h3>
-                                    <div class="price">4,500원</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid9">
-                                <div class="product-image9">
-                                    <a href="#">
-                                        <img class="pic-1" src="/mtms/img/icetea.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">아이스티(M)</a></h3>
-                                    <div class="price">3,500원</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-grid9">
-                                <div class="product-image9">
-                                    <a href="#">
-                                        <img class="pic-1" src="/mtms/img/orange.jpg">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="#">오렌지에이드(M)</a></h3>
-                                    <div class="price">3,500원</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--second-line-e-->
-            </div>
-        </div>
-    </div>
+	<div class="custom-container" >
+		<div class="row custom-mobile" >
+			<div class="col-md-12">
+				<div class="custom-board-title">
+					<h3 class="custom-font-bold">기프티콘</h3>
+				</div>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<a id="regGift" class="btn btn-primary btn-sm">등록</a>
+				</sec:authorize>
+					<div class="container" >
+					<div class="custom-gift-divide-border">
+						<h4 class="custom-divide">food</h4>
+					</div>
+					<!-- data s -->
+					<div class="row-gift">									
+						<div class="custom-col-md-3">								
+							<div class="custom-gift-items">									
+								<div class="gift_area" id="giftArea">
+								<c:forEach items="${list}" var="gift">	
+						 		<div class="single_gift uploadDiv" id="${gift.giftNo}" >
+									<div class="uploadResult"> 
+										<ul>
+											<!-- 사진 -->
+										</ul>
+									</div>									
+								<a class="move" href="${gift.giftNo}">
+								 	<span><c:out value="${gift.giftName}"/></span><br>																																	 
+									 <span><fmt:formatNumber value="${gift.giftPrice}" pattern="###,###"/>원</span>
+								</a> 
+								</div>
+								</c:forEach> 
+								</div>
+							</div>
+						</div>
+					</div>																	
+					</div>
+					<!-- data e -->
+						<form id="actionForm" action="/gift/list" method="get">
+							<input type="hidden" name="memberId" value="${principal.username}">
+						</form>	
+			</div>
+		</div>
+	</div>
 </section>
 <!--board-end-->
 
-<%@include file="../include/footer.jsp" %> 
+<script>
+//즉시 실행함수 - 첨부파일 목록 가져오기
+	$(function() {  
+		$('.move').click(
+				function(e) {
+					e.preventDefault();
+					//actionForm에 hidden으로 name 속성 추가 값은 noticeNo 지정, value 속성 추가값 지정 후 append
+					$('#actionForm').append(
+							"<input type='hidden' name='giftNo' value='" + $(this).attr("href") + "'>");								
+					$('#actionForm').attr("action", "/gift/get");
+					$('#actionForm').submit();
+				});
+		});
+
+		(function(){
+			$("#giftArea").find(".single_gift").each(function(){	
+			
+				var $this = $(this);		
+				var li = ""; 
+				
+				$.get("/gift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {				
+					var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;		 
+					filePath = filePath.replace(new RegExp(/\\/g), "/");
+					console.log(filePath);
+					li += "<img class='giftImg' src='/giftUpload/display?giftFileName="+filePath+"'>"						  		
+						  		$this.find(".uploadResult").find("ul").append(li);
+				});
+			});
+		})(); 
+
+	$('#regGift').click(function() {
+		self.location = "/gift/register";
+	});
+</script>
+
+<%@include file="../include/footer.jsp"%>

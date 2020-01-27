@@ -211,6 +211,9 @@ li:hover {
 }
 
 .custom-pagination{
+<<<<<<< HEAD
+	width: 400px;
+=======
 	width: 300px;
 }
 
@@ -261,4 +264,5 @@ li:hover {
 .custom-button-size3{
 	width: 60px;
 	height: 30px;
+>>>>>>> master
 }

@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&display=swap");
+
+@import url('https://fonts.googleapis.com/css?family=Gothic+A1|Nanum+Gothic&display=swap');
+
 .page-item, .page-link {
     border: none !important;
     font-size: 10px;
@@ -37,6 +42,9 @@
     padding-bottom: 3%;
 }
 
+.custom-font-only-bold {
+    font-weight: bold;
+}
 
 .custom-font-bold {
     font-weight: bold;
@@ -59,7 +67,7 @@
 
 
 .blog-pagination {
-    padding-left: 23%;
+    padding-left: 50%;
 }
 
 
@@ -83,7 +91,7 @@ label {
 
 
 .custom-divide-border-top {
-    margin-top: 5%;
+  
     padding-top: 3%;
     border-top: 1px solid lightgrey;
 }
@@ -106,6 +114,7 @@ label {
 .custom-pull-right {
     margin-top: 2%;
     margin-left: 50%;
+	float: left;
 }
 
 
@@ -248,7 +257,7 @@ label {
 .product-grid9 .product-content {
     padding: 12px 12px 0;
     overflow: hidden;
-    position: relative
+    
 }
 
 
@@ -347,9 +356,15 @@ input:disabled {
 
 
 .custom-price {
-    margin-left: 40%;
+    margin-left: 37%;
 }
 
+    .custom-th-size2 {
+        width: 600px;
+        font-size: 0.9em;
+        position: relative;
+        right: 18%;
+    }
 
 @media (max-width: 767px) {
     .custom-th-size {
@@ -394,9 +409,66 @@ input:disabled {
 
 
 .custom-button-gift {
-    margin-right: 1%;
+    margin-right: 8px;
+    margin-left: 4px;
 }
 
 .custom-gift-pagination {
     padding-left: 10%;
 }
+
+
+
+
+.giftName, .giftPrice, .totalPrice {
+	background: transparent;
+	border: white;
+	font-weight: bold;
+	outline:none;
+}
+
+.imgmg {
+	float: left;
+}
+
+.typeChk {
+	padding-top: 3px;
+	padding-bottom: 6px;
+}
+
+.view_area {
+	padding-top : 1%;
+	padding-left: 2%;
+	height : 400px;
+	font-weight: bold;
+
+}
+.single_gift {
+	float: right;
+
+}
+
+
+.giftImg {
+	width: 130px;
+/* 	padding-left: 20%; */
+	background-color: white;
+	
+}
+
+.single_gift {
+	background-color:lightgra;
+	width: 130px;
+	text-align: center;
+	float: left;
+	margin: 15px
+
+}
+
+.custom-col-md-3 {
+	float: left;
+	padding: 30px;
+}
+
+
+

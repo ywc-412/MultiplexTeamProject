@@ -36,9 +36,16 @@
 		</attributes>
 	</classpathentry>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/ywc41/Desktop/MultiplexTeamProject/개발문서/javaSDK-2.2.jar"/>
 =======
 	<classpathentry kind="lib" path="C:/Users/hong/Desktop/multiflex/개발문서/javaSDK-2.2.jar"/>
 >>>>>>> hong
+=======
+	<classpathentry kind="lib" path="C:/Users/JJ/Documents/MultiplexTeamProject/개발문서/javaSDK-2.2.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/ywc41/Desktop/MultiplexTeamProject/개발문서/javaSDK-2.2.jar"/>
+>>>>>>> 493aa29422c45e48cc87cc3fbb8cd39a28fd27ce
+>>>>>>> 2eab1067ca94b316eba59c19c678e0d6e0463d0a
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
