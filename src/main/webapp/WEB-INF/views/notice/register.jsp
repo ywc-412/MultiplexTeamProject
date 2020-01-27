@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
 <%@include file="../include/header.jsp" %>
 
 <!--board-start-->
@@ -12,8 +11,7 @@
             <div class="col-md-12">
                 <div class="custom-board-title">
                     <h3 class="custom-font-bold">공지사항 등록</h3>
-                </div>
-                
+                </div>               
                 <form id="registerForm" role="form" action="/notice/register" method="post">
                 <div class="form-group">
                     <label>제목</label>
@@ -29,8 +27,7 @@
                     <button type="button"  id="cancel" class="btn btn-secondary btn-sm">취소</button>   
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                 
                 </div>
-                </form>
-                
+                </form>              
             </div>
         </div>
     </div>
@@ -40,20 +37,17 @@
 <script>
 var formObj = $("form[role='form']");
 var registerForm = $("#registerForm");
-	$(function(e){
-		
-		
+	$(function(e){				
 		$("button[type='submit']").click(function(){
 			if (!registerForm.find("input[name='noticeTitle']").val() || !registerForm.find("textarea[name='noticeContent']").val()) {
 				alert("내용을 입력해주세요");
 				return false;
 			} 
 			 if(confirm("정말로 등록하시겠습니까?") == true) { 
-			formObj.submit();
+				 registerForm.submit();
 			 } else {
-	    		   false;
-	    	   }
-			
+	    		   return false;
+	    	   }		
 		});
 	});
 	

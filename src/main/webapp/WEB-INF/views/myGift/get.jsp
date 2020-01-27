@@ -4,23 +4,25 @@
 
 <%@include file="../include/header.jsp" %>
 
-<!--board-start-->
+<!--board s-->
 <section id="tabs" class="project-tab">
-
-
     <div class="container">
         <div class="custom-gift-divide-border">
-         
-        
-            <h3 class="custom-font-bold">${mygift[0].giftList[0].giftName}</h3> 
-                  
-        </div>
-        
+            <h3 class="custom-font-bold">${mygift[0].giftList[0].giftName}</h3>                  
+        </div>       
         <div class="section-top-border">
             <div class="row">
                 <div class="col-md-3">
-                    <!-- <img src="/mtms/img/popcorn.jpg" alt="" class="img-fluid"> -->
-                </div>
+	                <div class="gift_area" id="giftArea">
+	                    <div class="single_gift uploadDiv" id="${mygift[0].giftList[0].giftNo}" >                  
+							<div class="uploadResult"> 
+								<ul>							
+									<!-- 사진 -->
+								</ul>
+							</div>
+	               	 	</div>
+	               	 </div>
+               	 </div>
                 <div class="col-md-9 mt-sm-20">            
                     <p>금액 : ${mygift[0].giftList[0].giftPrice}</p>
                     <p>구성 : ${mygift[0].giftList[0].giftSet}</p>
@@ -49,20 +51,39 @@
 			<div class="custom-gift-divide-border"></div>
 			<br>
 			<form id="listForm" action="/myGift/list" method="get">
-			<input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}"> 
-			<input type="hidden" name="amount" value="${cri.amount}">
+				<input type='hidden' name="memberId" value="${mygift[0].memberId}"/>
+				<input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}"> 
+				<input type="hidden" name="amount" value="${cri.amount}">
 			</form>
 			<button type="button" class="btn btn-primary float-left custom-button-gift"  id="listBtn">LIST</button>
-			<div class="pull-right">
-				<button type="button" class="btn btn-primary custom-button-gift" id="extendBtn">기간연장</button>
-				<button type="button" class="btn btn-primary custom-button-gift" id="refundBtn">환불</button>
-			</div>
-
+			<c:if test="${!empty mygift[0].expireDate}">
+				<div class="pull-right">
+					<button type="button" class="btn btn-primary custom-button-gift" id="extendBtn">기간연장</button>
+					<button type="button" class="btn btn-primary custom-button-gift" id="refundBtn">환불</button>
+				</div>
+			</c:if>
 		</div>
     </div>
 </section>
-<!--board-end-->
+<!--board e-->
 <script>
+
+//즉시 실행함수 - 첨부파일 목록 가져오기
+(function(){
+	$("#giftArea").find(".single_gift").each(function(){	
+		var $this = $(this);			
+		var li = ""; 		
+		$.get("/myGift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {
+		 console.log(data);				
+			var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;
+		 
+			filePath = filePath.replace(new RegExp(/\\/g), "/");
+			console.log(filePath);
+			li += "<img class='giftImg' src='/giftUpload/display?giftFileName="+filePath+"'>"						  		
+				  		$this.find(".uploadResult").find("ul").append(li);
+		});//END JSON	
+	});
+	})(); 
 
 	$(function() {
 		var extendForm = $("#extendForm");
@@ -78,6 +99,7 @@
 		$('#refundBtn').on("click", function(e) {
 			e.preventDefault();
 			console.log("clicked");
+			console.log("${mygift[0].memberId}");
 			refundForm.submit();
 		});
 		
@@ -86,18 +108,7 @@
 			console.log("clicked");
 			listForm.submit();
 		});
-		
-		
-		
 	});
-	
-	$(function() {
-		if('${mygift[0].expireDate}' == '') {
-			$('#extendBtn').hide();
-			$('#refundBtn').hide();
-			$('#expireNotice').hide();
-		} 
-	})();
 	
 </script>
 <%@include file="../include/footer.jsp" %>

@@ -40,16 +40,13 @@ public class GiftController {
 	//기프티콘 목록
 	@GetMapping("list")	
 	public void list(Model model) {
-		log.info("Gift Controller list()");
 		model.addAttribute("list", giftService.getList());
-		model.addAttribute("pic", giftService.giftPicList());
-		
+		model.addAttribute("pic", giftService.giftPicList());		
 	}
 	
 	//기프티콘 상세보기
 	@GetMapping("get")	
 	public void get(@RequestParam("giftNo") int giftNo, Model model) {
-		log.info("GiftController get()");
 		model.addAttribute("gift", giftService.get(giftNo));
 	}
 	
@@ -104,71 +101,25 @@ public class GiftController {
 		log.warn("Gift AttachList,,,," + giftNo);
 		return new ResponseEntity<>(giftService.getAttachList(giftNo), HttpStatus.OK);
 	}
-
-	
-	//사진 목록
-//	@GetMapping("giftPicList")	
-//	@ResponseBody	//json으로 값을 보낼꺼기 때문에  ResponseBody, ResponseEntity 필요함
-//	public ResponseEntity<List<GiftAttachVO>> getAttachPicList() {		
-//		//log.warn("Gift AttachPicList,,,,");
-//		
-//		List<GiftAttachVO> list = giftService.giftPicList();
-//		
-//		
-//		return new ResponseEntity<>(list, HttpStatus.OK);
-//	}
-	
-	
-	
-//	//첨부파일 포함한 게시글 삭제
-//	private void deleteFiles(List<GiftAttachVO> attachList) {
-//		log.warn("Gift deleteFiles,,,,");
-//		if(attachList == null || attachList.size() == 0) {
-//			return;
-//		}
-//		attachList.forEach(attach -> {
-//			try {
-//				Path file = Paths.get("c:\\upload\\" + attach.getGiftUploadPath() /* + "\\" */+ attach.getGiftUuid() + "_" + attach.getGiftFileName());
-//				log.info(file);
-//				Files.deleteIfExists(file);
-//			} catch (Exception e) {
-//				log.error(e.getMessage());
-//			}
-//		});
-//	}
 	
 	@PostMapping("paying")
 	private String paying(GiftVO gift, MyGiftVO myGift, RedirectAttributes rttr) {
-		// insert 하고, select 가 동시에 되야하는거지..
 		// myGift에 내가 주문한 기프티콘을 insert한다. 
-		System.out.println("giftNo : " + gift.getGiftNo());
-		System.out.println("GiftName : " + gift.getGiftName());
-		System.out.println("GiftPrice : " + gift.getGiftPrice());
-		System.out.println("GiftSet : " + gift.getGiftSet());
 		
 		myGiftService.myInsertSelectKey(myGift);
-		//rttr.addFlashAttribute("result", myGift.getMyGiftNo());	
 		rttr.addAttribute("giftNo", gift.getGiftNo());	
 		rttr.addAttribute("GiftName", gift.getGiftName());	
 		rttr.addAttribute("giftPrice", gift.getGiftPrice());	
 		rttr.addAttribute("GiftSet", gift.getGiftSet());	
-		
+		rttr.addAttribute("memberId", myGift.getMemberId());
 		
 		return "redirect:/gift/pay";	
 	}
-
 	
 	@GetMapping("pay")
 	private void pay(@RequestParam("giftNo") int giftNo, @RequestParam("GiftName") String GiftName, @RequestParam("giftPrice") int giftPrice, @RequestParam("GiftSet") String GiftSet, Model model) {
 		model.addAttribute("gift", giftService.get(giftNo));
 		model.addAttribute("pic", giftService.giftPicList());
 	}
-//	
-//	@PostMapping("pay")
-//	private String pay(MyGiftVO myGift, RedirectAttributes rttr) {
-//		log.warn("Gift Controller pay post,,,,");
-//		giftService.myInsertSelectKey(myGift);
-//		return "redirect:/mygift/list";
-//	}
 	
 }

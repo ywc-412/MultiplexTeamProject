@@ -409,7 +409,8 @@ input:disabled {
 
 
 .custom-button-gift {
-    margin-right: 1%;
+    margin-right: 8px;
+    margin-left: 4px;
 }
 
 .custom-gift-pagination {
@@ -464,12 +465,10 @@ input:disabled {
 
 }
 
-.single_gift .uploadDiv {
-	
-}
-
 .custom-col-md-3 {
 	float: left;
 	padding: 30px;
 }
+
+
 

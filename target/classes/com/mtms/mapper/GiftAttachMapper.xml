@@ -6,7 +6,7 @@
 	<!-- 사진 파일 등록하기 -->
 	<insert id="insert">
 		INSERT INTO giftAttach (giftUuid, giftUploadPath, giftFileName, giftNo)
-		VALUES(#{giftUuid}, #{giftUploadPath}, #{giftFileName}, #{giftNo})
+			   VALUES(#{giftUuid}, #{giftUploadPath}, #{giftFileName}, #{giftNo})
 	</insert>
 	
 	<!-- 해당 게시물의 사진 조회 -->

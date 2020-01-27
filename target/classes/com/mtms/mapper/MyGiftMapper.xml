@@ -2,77 +2,81 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.MyGiftMapper">
-	 <insert id="myInsertSelectKey">
-	  	<selectKey keyProperty="myGiftNo" order="BEFORE" resultType="int">
-	  		SELECT seq_mygift.nextval FROM dual
-	  	</selectKey>
-	  		INSERT INTO myGift VALUES(#{memberId}, #{giftNo}, #{myGiftNo}, 0 , SYSDATE, SYSDATE + (INTERVAL '1' MONTH), 0)
-	  </insert> 
-	
 
+	<!-- 내 기프티콘 목록 생성 -->
+	<insert id="myInsertSelectKey">
+	  <selectKey keyProperty="myGiftNo" order="BEFORE" resultType="int">
+  		SELECT seq_mygift.nextval FROM dual
+  	  </selectKey>
+  		INSERT INTO myGift 
+  			   VALUES(#{memberId}, #{giftNo}, #{myGiftNo}, 0 , SYSDATE, SYSDATE + (INTERVAL '1' MONTH), 0)
+    </insert>
+	   
+	<!-- 내 기프티콘 조회 -->
  	<resultMap type="com.mtms.domain.GiftVO" id="Gift">
-		<result column="giftNo" property="giftNo" />
-		<result column="giftName" property="giftName" />
+		<result column="giftNo"    property="giftNo" />
+		<result column="giftName"  property="giftName" />
 		<result column="giftPrice" property="giftPrice" />
-		<result column="giftSet" property="giftSet" />
+		<result column="giftSet"   property="giftSet" />
 	</resultMap>
 	
 	<resultMap type="com.mtms.domain.MyGiftVO" id="MyGift">
-		<result column="memberId" property="memberId" />
-		<result column="giftNo" property="giftNo" />
-		<result column="myGiftNo" property="myGiftNo" />
-		<result column="status" property="status" />
+		<result column="memberId"   property="memberId" />
+		<result column="giftNo"     property="giftNo" />
+		<result column="myGiftNo"   property="myGiftNo" />
+		<result column="status"     property="status" />
 		<result column="buyingDate" property="buyingDate" />
 		<result column="expireDate" property="expireDate" />
-		<result column="extendChk" property="extendChk" />
+		<result column="extendChk"  property="extendChk" />
 		<collection property="giftList" resultMap="Gift"/>
 	</resultMap>
 	
-	
 	<select id="getListWithPaging" resultMap="MyGift">
-		<![CDATA[SELECT rn, giftNo, giftName, giftPrice, memberId, myGiftNo, expireDate, status, extendChk 
-				 FROM (SELECT rownum rn, gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo,
-  							    myGift.expireDate, myGift.status, myGift.extendChk
-					   FROM gift, myGift
-    				   WHERE rownum <= #{pageNum} * #{amount} AND gift.giftNo = myGift.giftNo AND memberId = 'jj')
-				 WHERE rn > (#{pageNum}-1) * #{amount}]]>
+		<![CDATA[SELECT rn, giftNo, giftName, giftPrice, memberId, myGiftNo, status, expireDate, extendChk 
+				 FROM (SELECT rownum rn, X.* 
+				 	   FROM (SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo, myGift.expireDate, myGift.status, myGift.extendChk
+                             FROM gift, myGift
+                             WHERE gift.giftNo = myGift.giftNo AND myGift.memberId = 'jj' ORDER BY myGift.status ASC, myGift.expireDate ASC
+                   ) X WHERE rownum <= #{cri.pageNum} * #{cri.amount})
+				 WHERE rn > (#{cri.pageNum}-1) * #{cri.amount}]]>
 	</select>
 	
+	<!-- 내 기프티콘 상세보기 -->
 	<select id="read" resultMap="MyGift">
-		SELECT gift.giftNo, gift.giftName, gift.giftPrice, gift.giftSet, myGift.memberId, myGift.mygiftNo, 
+		SELECT gift.giftNo, gift.giftName, gift.giftPrice, gift.giftSet, myGift.memberId, myGift.myGiftNo, 
 			   myGift.buyingDate, myGift.expireDate, myGift.status, myGift.extendChk 
 		FROM gift, myGift 
-		WHERE myGift.mygiftNo = #{myGift.mygiftNo} AND gift.giftNo = myGift.giftNo AND memberId = myGift.memberId
+		WHERE myGift.myGiftNo = #{myGiftNo} AND memberId = #{memberId}
 	</select>
 	
+	<!-- 내 기프티콘 기간연장 -->
 	<update id="extend">
 		UPDATE myGift
 		SET expireDate = SYSDATE + (INTERVAL '1' MONTH),
 			extendChk = 1
-		WHERE myGiftNo = #{myGiftNo} AND memberId = 'jj'
+		WHERE myGiftNo = #{myGift.myGiftNo} AND memberId = #{memberId}
 	</update>
 	
+	<!-- 내 기프티콘 환불 -->
 	<update id="refund">
 		UPDATE myGift
 		SET status = 2,
 			expireDate = '',
 			extendChk = 2
-		WHERE myGiftNo = #{myGiftNo} AND memberId = 'jj'
+		WHERE myGiftNo = #{myGift.myGiftNo} AND memberId = #{memberId}
 	</update>
 	
-	<!-- <delete id="delete">
-		DELETE FROM myGift WHERE myGiftNo = #{myGiftNo} AND memberId = 'jj'
-	</delete> -->
-	
+	<!-- 내 기프티콘 총 갯수 -->
 	<select id="getTotalCount" resultType="int">
-		<![CDATA[SELECT count(*) FROM myGift WHERE mygiftNo > 0 ]]>	
+		<![CDATA[SELECT count(*) FROM myGift WHERE mygiftNo > 0 AND memberId = #{memberId}]]>	
 	</select>
 	
+	<!-- 내 기프티콘 만료 체크 -->
 	<update id="expireChk">
 	<![CDATA[UPDATE myGift 
 			 SET status = 1,
     			extendChk = 1
-			 WHERE to_char(expireDate, 'yy/MM/dd') <= #{expireDate} AND memberId = 'jj']]>
+			 WHERE to_char(expireDate, 'yy/MM/dd') <= #{expireDate} AND memberId = #{memberId}]]>
 	</update>
 	
 </mapper>

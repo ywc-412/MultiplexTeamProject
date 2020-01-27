@@ -20,16 +20,12 @@ public class GiftTask {
 	
 	@Scheduled(cron = "30 0 0 * * *")
 	public void expireChk() throws Exception {
-		SimpleDateFormat format1 = new SimpleDateFormat("yy/MM/dd");	
-		//SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");	
-		
+		SimpleDateFormat format1 = new SimpleDateFormat("yy/MM/dd");			
 		Date now = new Date();
 		
 		String expireDate = format1.format(now);
-		//String expireTime = format2.format(now);
 		
-		System.out.println("@expired - date : " + expireDate);
-		//System.out.println("@expired - time : " + expireTime);
+		log.info("@expired - date : " + expireDate);
 		
 		myGiftMapper.expireChk(expireDate);
 	}

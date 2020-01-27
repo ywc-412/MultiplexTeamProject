@@ -53,7 +53,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 등록(P)
-	@PreAuthorize("isAuthenticated() and hasRole('ROLE_MEMBER')")	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")	
 	@PostMapping("register")	
 	public String register(NoticeVO notice, RedirectAttributes rttr) {	
 		log.info("Notice Controller register,,");
@@ -69,7 +69,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 수정(P)
-	@PreAuthorize("principal.username == #board.writer")
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("modify")	
 	public String modify(NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("Notice Controller modify post,,");
@@ -80,7 +80,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 삭제
-	@PreAuthorize("principal.username == #writer")
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("remove")	
 	public String remove(int noticeNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("Notice Controller modify post,,");

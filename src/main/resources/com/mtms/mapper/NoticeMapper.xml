@@ -9,10 +9,10 @@
   		SELECT seq_notice.nextval from dual
   		</selectKey>	
 		INSERT INTO notice (noticeNo, noticeTitle, noticeContent) 
-		VALUES(#{noticeNo}, #{noticeTitle}, #{noticeContent})
+			   VALUES(#{noticeNo}, #{noticeTitle}, #{noticeContent})
 	</insert>
 	
-	<!-- 쿼리 보관  -->
+	<!-- 쿼리 보관 (검색) -->
 	<sql id="criteria">
 	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 	 	<foreach collection="typeArr" item="type">
@@ -33,9 +33,10 @@
 	<!-- 공지사항 조회 -->
 	<select id="getListWithPaging" resultType="com.mtms.domain.NoticeVO">
 		<![CDATA[SELECT * FROM ( SELECT /*+INDEX_DESC(notice pk_notice)*/ 
-								rownum rn, noticeNo, noticeTitle, noticeContent, noticeView, noticeDate FROM notice WHERE]]>		
+								rownum rn, noticeNo, noticeTitle, noticeContent, noticeView, noticeDate FROM notice 
+				 WHERE]]>		
 		 <include refid="criteria"></include>
-  		<![CDATA[ rownum <= #{pageNum} * #{amount}) where rn > (#{pageNum}-1) * #{amount} ]]>
+  		<![CDATA[ rownum <= #{pageNum} * #{amount}) WHERE rn > (#{pageNum}-1) * #{amount} ]]>
 	</select>
 	
 	<!-- 공지사항 상세보기 -->
@@ -63,6 +64,7 @@
 		<![CDATA[noticeNo > 0]]>		
 	</select>
 	
+	<!-- 공지사항 조회수 -->
 	<update id="viewUpdate">
 		UPDATE notice
 		SET noticeView = noticeView + 1

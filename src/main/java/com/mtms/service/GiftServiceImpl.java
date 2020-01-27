@@ -18,8 +18,8 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
-@Log4j
 public class GiftServiceImpl implements GiftService{
+	
 	@Setter(onMethod_ = @Autowired)
 	private GiftMapper giftMapper;
 	
@@ -33,10 +33,8 @@ public class GiftServiceImpl implements GiftService{
 	@Transactional
 	@Override
 	public void register(GiftVO gift) {		
-		log.warn(gift);
 		giftMapper.insertSelectKey(gift);			
-		List<GiftAttachVO> attachList = gift.getAttachList();		
-		log.warn(attachList);		
+		List<GiftAttachVO> attachList = gift.getAttachList();			
 		//첨부파일이 없으면 중단
 		if(attachList == null || attachList.size() <=0) {
 			return;
@@ -44,7 +42,6 @@ public class GiftServiceImpl implements GiftService{
 		//첨부파일이 있으면 giftAttach에 insert
 		attachList.forEach(gvo -> {
 			gvo.setGiftNo(gift.getGiftNo());
-			System.out.println("giftNo");
 			giftAttachMapper.insert(gvo);
 		});
 	}
@@ -52,7 +49,6 @@ public class GiftServiceImpl implements GiftService{
 	//기프티콘 조회
 	@Override
 	public List<GiftVO> getList() {		
-		log.info("getList..........");
 		return giftMapper.getList();
 	}
 	
@@ -66,7 +62,6 @@ public class GiftServiceImpl implements GiftService{
 	@Transactional
 	@Override
 	public boolean modify(GiftVO gift) {	
-		log.info("Gift ServiceImpl modify,,,,");
 		giftAttachMapper.deleteAll(gift.getGiftNo());
 		boolean modifyResult = giftMapper.update(gift) == 1;
 		if(modifyResult && gift.getAttachList() != null & gift.getAttachList().size() > 0) {
@@ -82,31 +77,26 @@ public class GiftServiceImpl implements GiftService{
 	@Transactional
 	@Override
 	public boolean deleteChk(GiftVO gift) {		
-		log.warn("Gift ServiceImpl remove,,");
 		return giftMapper.deleteChk(gift) == 1;
 	}
-	
-	//기프티콘 사진 등록
+
+	//해당 기프티콘 사진 붙이기
 	@Override
 	public List<GiftAttachVO> getAttachList(int giftNo) {	
-		log.warn("getAttachList giftNo : " + giftNo);
 		return giftAttachMapper.findBygiftNo(giftNo);
 	}
 	
-	//기프티콘 사진 붙이기
+	//기프티콘 사진 목록
 	@Override
 	public List<GiftAttachVO> giftPicList() {
-		//log.warn("giftPicList..........");
 		return giftAttachMapper.giftPicList();
 	}
 	
+	//기프티콘 결제완료
 	@Transactional
 	@Override
 	public GiftVO pay(int giftNo, MyGiftVO myGift) {
-		log.warn("Gift ServiceImpl pay,,");
-		return giftMapper.pay(giftNo);
-		
+		return giftMapper.pay(giftNo);		
 	}
-
 
 }

@@ -17,23 +17,21 @@
 				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<!-- 사진 s -->
 							<div class="uploadResult">
 								<ul>
-
+									<!-- 사진 -->
 								</ul>
 							</div>
-							<!-- 사진 e -->
 						</div>
 					</div>
 				</div>
-				<!-- 내용 s -->
+				<!-- data s -->
 				<div class="col-md-9 mt-sm-20">
 					<div class="form-group">
 						<label>No&emsp; : &ensp;</label><span name="giftNo"><c:out value="${gift.giftNo}" /></span>
 					</div>
 					<div class="form-group">
-						<label>가격&ensp; : &ensp;</label><input pattern="###,###" name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly>
+						<label>가격&ensp; : &ensp;</label><input type="hidden" name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly><fmt:formatNumber  pattern="###,###" value="${gift.giftPrice}" />&nbsp;원
 					</div>
 					<div class="form-group">
 						<label>구성&ensp; : &ensp;</label><span name="giftSet"><c:out value="${gift.giftSet}" /></span>
@@ -42,119 +40,123 @@
 						<span class="minus bg-dark">-</span> 
 							<input type="number" class="num-count" id="qty" name="qty" value="1">
 						<span class="plus bg-dark">+</span>
-						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly></span>
+						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly>원</span>
 					</div>
 				</div>
-				<!-- 내용 e -->
+				<!-- data e -->
 			</div>
 		</div>
 		<div class="custom-divide-border-top">
 			<span class="custom-pull-right">
 				<label>총 구매금액&emsp; : &emsp;</label><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly>
-			</span><br>	
-			<br>
-		</div>
-		<!-- 버튼 s -->
-	
-		<button class="btn btn-primary float-left custom-button-gift" data-oper='list'>LIST</button>
-				<div class="float-right">
-		<form action="/mygift/register" id="payForm" method="post">
-				<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
-				<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
-				<input type="hidden" name="giftSet" id="giftSet" value="${gift.giftSet}"> 
-				<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
-				<input type="hidden" name="totalPrice">
-				<input type="button" id="payment" class="btn btn-primary  custom-button-gift" value="구입"/>
-			</form>
-					<form action="/gift/modify" id="operForm" method="get">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
-				<input value="${gift.giftNo}" name="giftNo" type="hidden">		
-				<button type="submit" class="btn btn-primary  custom-button-gift" data-oper='modify'>수정</button>
-			</form>
-			
-			<form method="post" action="/gift/remove" role="form">				
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
-				<input value="${gift.giftNo}" name="giftNo" type="hidden">				
-				<button type="submit" class="btn btn-danger custom-button-gift" data-oper="remove">삭제</button>
-			</form>
-			</div>
-	
-			
-			
-			<form action="/gift/paying" method="post" id="payRealForm">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
-				<input type="hidden" name="memberId" value="jj">
-				<div id="payHere">
-					
-				</div>
-			</form>
-			
-			
+			</span>
+			<br><br>			
+		</div><br>
+	<!-- 버튼 s -->		
+	<div class="float-left">
+		<button class="btn btn-primary float-left custom-button-gift pull-left" data-oper='list'>LIST</button>
+	</div>		
+	<div class="float-right">	
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<form action="/gift/modify" id="operForm" method="get" style="float: left">
+			<input value="${gift.giftNo}" name="giftNo" type="hidden">		
+			<button type="submit" class="btn btn-primary custom-button-gift" data-oper='modify'>수정</button>
+		</form>
 		
-		<!-- 버튼 e -->
-	</div>
+		<form method="post" action="/gift/remove" role="form"  style="float: left">				
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+			<input value="${gift.giftNo}" name="giftNo" type="hidden">				
+			<button type="submit" class="btn btn-danger custom-button-gift" data-oper="remove">삭제</button>
+		</form>
+		</sec:authorize>
+		<form action="/mygift/register" id="payForm" method="post" style="float: left">
+			<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
+			<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
+			<input type="hidden" name="giftSet" id="giftSet" value="${gift.giftSet}"> 
+			<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
+			<input type="hidden" name="totalPrice">
+			<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
+		</form>
+	</div>	
+	<!-- 버튼 e -->	
+		<form action="/gift/paying" method="post" id="payRealForm">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+			<input type="hidden" name="memberId" id="memberInput" value="<sec:authentication property='principal.username'/>">
+			<div id="payHere">
+				<!-- 결제 -->
+			</div>
+		</form>			
+	</div>	
 </section>
 <!-- board e -->
+<sec:authorize access="isAuthenticated()">
+	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+</sec:authorize>
 
 <script>
-	
+
 //결제
-$(function(){
-	$('#payment').on("click", function(){
-		var giftNo = ${gift.giftNo};
-		var giftName = $('#giftName').val();
-		var giftPrice = $('.totalPrice').val();
-		var giftSet = $('#giftSet').val();
-		payment(giftNo, giftName, giftPrice, giftSet);
-	});
-})
+	$(function(){
+		$('#payment').on("click", function(e){
+			e.preventDefault();
+			var userConnect = '<c:out value="${userId}"/>';
+			if(!userConnect) {
+				alert('로그인이 필요한 서비스입니다.');
+				return;
+			}
+			var giftNo = ${gift.giftNo};
+			var giftName = $('#giftName').val();
+			var giftPrice = $('.totalPrice').val();
+			var giftSet = $('#giftSet').val();
+			payment(giftNo, giftName, giftPrice, giftSet);
+		});
+	})
 
 
 
-function payment(giftNo, giftName, giftPrice, giftSet) {	
+	function payment(giftNo, giftName, giftPrice, giftSet) {	
 	
-	var IMP = window.IMP; // 생략가능
-	IMP.init('imp92933704'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp92933704'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	
+		IMP.request_pay({
+			pg: 'inicis', // version 1.1.0부터 지원.
+			pay_method: 'card',
+			merchant_uid: 'merchant_' + new Date().getTime()+30,
+			name: giftName,
+			amount: 10,
+			buyer_email: 'iamport@siot.do',
+			buyer_name: '박진주',
+			buyer_tel: '010-6626-2818',
+			buyer_addr: '서울특별시 강남구 삼성동',
+			buyer_postcode: '123-456'
+		}, function(rsp) {
+			if (rsp.success) {
+				//컨트롤러로 값
+				var msg = '결제가 완료되었습니다.';
+				msg += '고유ID : ' + rsp.imp_uid;
+				msg += '상품명 : ' + rsp.name;
+				msg += '상점 거래ID : ' + rsp.merchant_uid;
+				msg += '결제 금액 : ' + rsp.paid_amount;
+				msg += '카드 승인번호 : ' + rsp.apply_num;
+				// payHere에 input hidden append 를 시켜주고 그걸 form
+				var str = "<input type='hidden' value='"+ giftNo +"' name='giftNo'/>";
+				str += "<input type='hidden' value='"+ giftName +"' name='giftName'/>";
+				str += "<input type='hidden' value='"+ giftPrice +"' name='giftPrice'/>";
+				str += "<input type='hidden' value='"+ giftSet +"' name='giftSet'/>";
+				//str += "<input type='hidden' value='"+ memberId +"' name='memberId'/>";
+				
+				$('#payHere').append(str);
+				$('#payRealForm').submit(); 
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+				$('#payHere').html("");
+			}
+			alert(msg);			
+		});
+	}
 
-	IMP.request_pay({
-		pg: 'inicis', // version 1.1.0부터 지원.
-		pay_method: 'card',
-		merchant_uid: 'merchant_' + new Date().getTime()+30,
-		name: giftName,
-		amount: 10,
-		buyer_email: 'iamport@siot.do',
-		buyer_name: '박진주',
-		buyer_tel: '010-6626-2818',
-		buyer_addr: '서울특별시 강남구 삼성동',
-		buyer_postcode: '123-456'
-	}, function(rsp) {
-		if (rsp.success) {
-			//컨트롤러로 값
-			var msg = '결제가 완료되었습니다.';
-			msg += '고유ID : ' + rsp.imp_uid;
-			msg += '상품명 : ' + rsp.name;
-			msg += '상점 거래ID : ' + rsp.merchant_uid;
-			msg += '결제 금액 : ' + rsp.paid_amount;
-			msg += '카드 승인번호 : ' + rsp.apply_num;
-			// payHere에 input hidden append 를 시켜주고 그걸 form
-			var str = "<input type='hidden' value='"+ giftNo +"' name='giftNo'/>";
-			str += "<input type='hidden' value='"+ giftName +"' name='giftName'/>";
-			str += "<input type='hidden' value='"+ giftPrice +"' name='giftPrice'/>";
-			str += "<input type='hidden' value='"+ giftSet +"' name='giftSet'/>";
-			
-			$('#payHere').append(str);
-			$('#payRealForm').submit(); 
-		} else {
-			var msg = '결제에 실패하였습니다.';
-			msg += '에러내용 : ' + rsp.error_msg;
-			$('#payHere').html("");
-		}
-		alert(msg);			
-	});
-}
-	
-	
-	
 	//form 전송
 	$(function(){
 	   var formObj = $("form");
@@ -216,8 +218,7 @@ function payment(giftNo, giftName, giftPrice, giftSet) {
                 $('.totalPrice').val(parseInt($('.giftPrice').val() * 1));
             }
         });
-    });
-    
+    });   
     
 </script>
 

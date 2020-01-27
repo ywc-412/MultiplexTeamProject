@@ -12,7 +12,6 @@
 				<div class="custom-board-title">
 					<h3 class="custom-font-bold">기프티콘 등록</h3>
 				</div>
-				<!-- 사진 s -->
 				<div class="form-group">
 					<label>사진</label><br>
 					<div class="custom-photo">
@@ -21,31 +20,26 @@
 				</div>				
 				<div class="uploadResult">
 					<ul>
+						<!-- 사진 -->
 					</ul>
-				</div>
-				<!-- 사진 e -->
-				<!-- 내용 입력 s -->
+				</div>				
 				<form action="/gift/register" method="post" role="form">
 					<div class="form-group">
-						<label>이름</label> 
-						<input class="form-control" name="giftName">
+						<label>이름</label><input class="form-control" name="giftName">
 					</div>
 					<div class="form-group">
-						<label>가격</label> 
-						<input class="form-control" name="giftPrice">
+						<label>가격</label><input class="form-control" name="giftPrice">
 					</div>
 					<div class="form-group">
-						<label>구성</label> 
-						<input class="form-control" name="giftSet">
+						<label>구성</label><input class="form-control" name="giftSet">
 					</div>
 					<hr>
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-primary btn-sm">등록</button>
-						<button type="button" class="btn btn-secondary btn-sm" onclick="registerCancel()">취소</button>
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<button type="submit" class="btn btn-primary btn-sm">등록</button>
+						<button type="button" class="btn btn-secondary btn-sm" onclick="registerCancel()">취소</button>						
 					</div>
-				</form>
-				<!-- 내용 입력 e -->				
+				</form>				
 			</div>
 		</div>
 	</div>
@@ -74,11 +68,7 @@
 				tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("filename") + "'>";
 				tags += "<input type='hidden' name='attachList["+i+"].giftUuid' value='" + o.data("uuid") + "'>";
 				tags += "<input type='hidden' name='attachList["+i+"].giftUploadPath' value='" + o.data("path") + "'>";
-			});	//each
-			alert(tags);
-			
-			console.log(tags);
-			
+			});	//each			
 			$("form[role='form']").append(tags).submit();
 		});//END form
 		
