@@ -1,9 +1,6 @@
 package com.mtms.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mtms.domain.Criteria;
@@ -32,20 +27,23 @@ public class SuggestController {
 	
 	private SuggestService suggestService;
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@GetMapping("register")
 	public void register() {
 		// 건의사항 등록 화면으로 이동
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("register")
 	public String register(SuggestVO suggestVO, RedirectAttributes rttr) {
+		
 		rttr.addFlashAttribute("registerComplete", "건의사항이 등록되었습니다!");
 		suggestService.registerSuggest(suggestVO);
-		
-		
+			
 		return "redirect:/suggest/list";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER') and principal.username == #suggestVO.memberId")
 	@PostMapping("modify")
 	public String modify(SuggestVO suggestVO, RedirectAttributes rttr) {
 		// 건의사항 수정
@@ -73,6 +71,7 @@ public class SuggestController {
 		model.addAttribute("suggest", suggestService.getSuggest(suggestNo));
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER') and principal.username == #suggestVO.memberId")
 	@PostMapping("remove")
 	public String remove(int suggestNo, RedirectAttributes rttr) {
 		// 건의사항 게시글 삭제

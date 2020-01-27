@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp" %>
 
+
 	<div class="offers_area padding_top">
 		<div class="container">
 			<div class="row">
@@ -39,7 +40,10 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
 	<!-- offers_area_end -->
-
-
 	<%@ include file="include/footer.jsp" %>
+	
+	

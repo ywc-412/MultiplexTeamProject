@@ -66,15 +66,20 @@
 					</div>
 					<br>
 					<div class="mt-10 custom-input">
-						<div>주소</div>
+						<div class="float-left">주소</div>
+						<button type="button" id="postcodify_search_button"
+							class="btn btn-primary btn-sm" style="margin-left: 8px;">검색</button>
 						<input type="text" name="memberAddress" id="memberAddress"
-							class="single-input custom-text-right">
+							class="postcodify_address single-input custom-text-right"
+							placeholder="상세주소는 입력받지 않습니다" readonly>
 						<div class="custom-red-font custom-text-right"
 							id="memberAddressErrorMsg"></div>
 					</div>
 					<br>
 					<div class="mt-10 custom-input align-middle">
 						<div>핸드폰</div>
+						<button type="button" class="btn btn-primary btn-sm"
+							id='phoneAuthBtn' style="margin-left: 8px;">인증하기</button>
 						<div class="default-select custom-text-left">
 							<select name="memberPhoneFirst" id="memberPhoneFirst">
 								<option value="010">010</option>
@@ -84,36 +89,90 @@
 						</div>
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneSecond" id="memberPhoneSecond"
-							class="single-input custom-text-left custom-input-size-phone">
+							class="single-input custom-text-left custom-input-size-phone"
+							max="9999" maxlength="4">
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneThird" id="memberPhoneThird"
-							class="single-input custom-text-left custom-input-size-phone">
+							class="single-input custom-text-left custom-input-size-phone"
+							max="9999" maxlength="4">
 						<div class="custom-red-font custom-text-right"
 							id="memberPhoneErrorMsg"></div>
+						<input type="hidden" id="phoneAuthChk" value=""/>
 					</div>
 					<br>
 					<div class="mt-10 custom-input">
 						<div>생년월일</div>
 						<div class="row">
 							<div class="col-xl-6">
-								<input id="datepicker" placeholder="생년월일" name="memberBirth">
+								<input id="datepicker" placeholder="생년월일" name="memberBirth" autocomplete="off">
 							</div>
 							<div class="custom-red-font custom-text-right"
-							id="memberBirthErrorMsg"></div>
+								id="memberBirthErrorMsg"></div>
 							<div class="col-xl-12 text-right">
-								<button type="submit" class="boxed-btn3">회원가입</button>
+								<button type="submit" class="boxed-btn3" id="regBtn1">회원가입</button>
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+					<input type="hidden" name="${_csrf.parameterName }"
+						value="${_csrf.token }">
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script type="text/javascript" src="/resources/js/memberFind.js"></script>
+
 <script>
+	function popup(url){
+        var name = "본인인증 서비스";
+        var popupX = (window.screen.width/2)-(200/2);
+ 	    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+     	var popupY= (window.screen.height / 2) - (300 / 2);
+     	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+        var option = "width = 500, height = 300, left = "+popupX+", top = "+popupY;
+        window.open(url, name, option);
+    }
+	
 	$(function() {
+		
+		
+		$('#phoneAuthBtn').on("click", function(e){
+			e.preventDefault();
+			var phoneRegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+			
+			var phoneAuthNullChk = false;	// 인증 버튼 눌렀을때 핸드폰 번호 널값 처리
+			
+			var phoneFirst = $('select#memberPhoneFirst').val();
+			var phoneSecond = $('input#memberPhoneSecond').val();
+			var phoneThird = $('input#memberPhoneThird').val();
+			var phone = phoneFirst + phoneSecond + phoneThird;
+			var regForPhoneNum = phoneFirst +"-"+ phoneSecond + "-" + phoneThird;
+			var url = "/phoneAuthPopup?phone=" + phone;
+			
+			if(!phoneFirst){
+				$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+			}else if(!phoneSecond){
+				$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+			}else if(!phoneThird){
+				$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+			}else if(!phoneRegExp.test(regForPhoneNum)){
+				$('#memberPhoneErrorMsg').html('번호 형식에 맞지않습니다');
+			}else{
+				$('#memberPhoneErrorMsg').html('');
+				phoneAuthNullChk = true;
+				if(phoneAuthNullChk == true){
+					popup(url);
+				}
+			}
+		});
+		
+		
+		$("#postcodify_search_button").postcodifyPopUp(function(e){
+			e.preventDefault();
+		});
+		
 		var registerResult = false;
 		
 		// id 정규표현식
@@ -127,10 +186,10 @@
 			if (idTest == true) {
 				$('#memberIdErrorMsg').html('');
 			}else{
-				$('#memberIdErrorMsg').html('아이디는  영문자 또는 숫자로 입력해주세요(4자~12자)');
+				$('#memberIdErrorMsg').html('아이디는 영문자 또는 숫자로 입력해주세요(4자~12자)');
 			}
 			
-			if(memberId.length >= 6){// 6자리 이상 들어가면 중복 아이디 확인 ajax 실행
+			if(memberId.length >= 4){// 6자리 이상 들어가면 중복 아이디 확인 ajax 실행
 				memberDuplicatedService.getId(memberId, function(result){
 					if(result.memberId == memberId){
 						$('#memberIdErrorMsg').html('중복된 아이디 입니다');
@@ -169,7 +228,7 @@
 				$('#memberPwErrorMsg').html('사용 가능합니다!');
 				$(this).focus();
 			}else{
-				$('#memberPwErrorMsg').html('영어 대소문자/숫자/특수문자의 조합으로 8자리 이상으로 입력해주세요');
+				$('#memberPwErrorMsg').html('영어/숫자/특수문자의 조합으로 8자리 이상으로 입력해주세요');
 			}
 			
 		});
@@ -185,7 +244,8 @@
 		
 		
 
-		$('.boxed-btn3').on("click", function(e) {
+		$('#regBtn1').on("click", function(e) {
+			console.log('phoneAuthChk reg: ' + $('input#phoneAuthChk').val());
 			var memberId = $('input#memberId').val();
 			var memberName = $('input#memberName').val();
 			var memberPw = $('input#memberPw').val();
@@ -211,7 +271,7 @@
 			var memberPhoneErrorMsg = $('#memberPhoneErrorMsg').html('');
 			var memberBirthErrorMsg = $('#memberBirthErrorMsg').html('');
 			
-			
+			var idReg =  /^[A-Za-z0-9+]{4,12}$/; 
 			//memberId select 해서 없으면 중복된 id 처리해야함
 			if (!memberId) {
 				$('#memberIdErrorMsg').html('필수 항목입니다');
@@ -279,6 +339,13 @@
 				$('html, body').animate({
 					scrollTop : offset.top
 				}, 400);
+			}else if(idReg.test($('input#memberId').val()) == false){
+				vv = $(this).val();
+				var idTest = idReg.test(vv);
+				console.log(idTest);
+				$('#memberIdErrorMsg').html('아이디는 영문자 또는 숫자로 입력해주세요(4자~12자)');
+			}else if(!$('#phoneAuthChk').val()){
+				$('#memberPhoneErrorMsg').html('휴대폰 인증이 필요합니다');
 			}else{
 				registerResult = true;
 			}
@@ -318,20 +385,6 @@
 </script>
 
 <%@ include file="../include/footer.jsp"%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
