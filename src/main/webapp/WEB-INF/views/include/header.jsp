@@ -10,8 +10,8 @@
 <<<<<<< HEAD
 	<meta charset="utf-8">
 	<meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="841929901504-rjhbj9a4obp0vp06ib87f52fiq2rg29r.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+	   <meta name="google-signin-client_id" content="841929901504-rjhbj9a4obp0vp06ib87f52fiq2rg29r.apps.googleusercontent.com">
+	   <script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>S_CINEMA</title>
 	<meta name="description" content="">
@@ -74,7 +74,10 @@
 	<!-- iamport API -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<<<<<<< HEAD
 >>>>>>> 2eab1067ca94b316eba59c19c678e0d6e0463d0a
+=======
+>>>>>>> master
 </head>
 
 <body>

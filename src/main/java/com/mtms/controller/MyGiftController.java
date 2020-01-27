@@ -36,6 +36,10 @@ public class MyGiftController {
 	@GetMapping("list")//내 기프티콘 목록조회
 	public void list(Criteria cri, @RequestParam("memberId") String memberId, Model model) {
 		log.info("Gift Controller list()");
+<<<<<<< HEAD
+=======
+		System.out.println("memberId : " + memberId);
+>>>>>>> master
 		
 		model.addAttribute("mygift", myGiftService.getListWithPaging(cri, memberId));
 

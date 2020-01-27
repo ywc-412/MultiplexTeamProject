@@ -25,6 +25,7 @@ public class Criteria {
 		return type == null?new String[] {} : type.split("");
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public String getListLink() {
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
 			.queryParam("pageNum", this.pageNum)
@@ -34,6 +35,8 @@ public class Criteria {
 			
 			return builder.toUriString();
 =======
+=======
+>>>>>>> master
 	
 	public String getListLink() {
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
@@ -43,7 +46,10 @@ public class Criteria {
 				.queryParam("keyword", this.getKeyword());
 		
 		return builder.toUriString();
+<<<<<<< HEAD
 >>>>>>> 2eab1067ca94b316eba59c19c678e0d6e0463d0a
+=======
+>>>>>>> master
 	}
 }
 	

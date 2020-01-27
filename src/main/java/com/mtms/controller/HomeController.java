@@ -28,6 +28,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class HomeController {
+<<<<<<< HEAD
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private MovieService movieService;
 	
@@ -60,3 +61,37 @@ public class HomeController {
 	}
 	
 }
+=======
+   private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+   private MovieService movieService;
+   
+//   @RequestMapping(value = "/", method = RequestMethod.GET)
+//   public String home(Model model) {
+//      
+//      return "index";
+//   }
+   
+   //영화 전체 조회
+   @GetMapping("/")
+   public String indexList(Model model) {
+      System.out.println("인덱스 영화조회");
+      
+//      int totalMovie = movieService.totalMovie();
+//      
+//      model.addAttribute("totalMovie", totalMovie);
+      model.addAttribute("attachList", movieService.attachGetList());
+      model.addAttribute("moveList", movieService.getIndexList());
+
+      return "index";
+   }
+   
+   //사진 보여주기
+   @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+   @ResponseBody
+   public ResponseEntity<List<MovieAttachVO>> getAttachList(int movieNo) {
+      System.out.println("무비사진");
+      return new ResponseEntity<>(movieService.getAttachList(movieNo), HttpStatus.OK);
+   }
+   
+}
+>>>>>>> master

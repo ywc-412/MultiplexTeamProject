@@ -21,7 +21,11 @@ public interface ScheduleService {
 	public int checkSchedule(String scheduleDate, String screen);
 	
 	// 상영스케줄 수정
-	public boolean modify(int scheduleNo);
+//	public void modify(String scheduleDate, String screen, String[] time);
+	public void modify(String[] no, String[] time);
+	
+	// 상영스케줄 삭제 (클릭해서 삭제 - Date, screen)
+	public void deleteScreen(String scheduleDate, String screen);
 	
 	// 상영스케줄 삭제 (등록하다 취소 시)
 	public void remove(String[] scheduleNo);

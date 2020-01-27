@@ -322,7 +322,11 @@ var modalModBtn = $("#modalModBtn");	//버튼 각각 id로 찾아옴
 var modalRemoveBtn = $("#modalRemoveBtn");
 var modalRegisterBtn = $("#modalRegisterBtn");
 var replyReport = $("#replyReport");
+<<<<<<< HEAD
 var memberId = 'ghdrm12'; //로그인한 아이디
+=======
+var memberId = 'hue9404'; //로그인한 아이디
+>>>>>>> master
 
 // <sec:authorize access="isAuthenticated()">
 // 	replyer = '<sec:authentication property="principal.username" />';

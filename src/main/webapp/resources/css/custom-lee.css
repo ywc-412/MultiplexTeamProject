@@ -1,307 +1,307 @@
 .movie_area {
-	display: block;
-	overflow: hidden
+   display: block;
+   overflow: hidden
 }
 
 .movie_area .single_movie {
-	width: 25%;
-	float: left;
-	position: relative;
-	overflow: hidden
+   width: 25%;
+   float: left;
+   position: relative;
+   overflow: hidden
 }
 
 .yeong_moveImg{
-	height:480px;
+   height:480px;
 }
 
 .yeong_registerImg{
-	height:150px;
+   height:150px;
 }
 
 @media (max-width: 767px) {
-	.movie_area .single_movie {
-		width: 50%
-	}
-	.yeong_moveImg{
-		height:320px;
-	}
+   .movie_area .single_movie {
+      width: 50%
+   }
+   .yeong_moveImg{
+      height:320px;
+   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.movie_area .single_movie {
-		width: 50%
-	}
-	.yeong_moveImg{
-		height:400px;
-	}
+   .movie_area .single_movie {
+      width: 50%
+   }
+   .yeong_moveImg{
+      height:400px;
+   }
 }
 
 .movie_area .single_movie img {
-	width: 100%;
-	-webkit-transform: scaleX(1);
-	-moz-transform: scaleX(1);
-	-ms-transform: scaleX(1);
-	transform: scaleX(1);
-	-webkit-transition: .5s;
-	-moz-transition: .5s;
-	-o-transition: .5s;
-	transition: .5s
+   width: 100%;
+   -webkit-transform: scaleX(1);
+   -moz-transform: scaleX(1);
+   -ms-transform: scaleX(1);
+   transform: scaleX(1);
+   -webkit-transition: .5s;
+   -moz-transition: .5s;
+   -o-transition: .5s;
+   transition: .5s
 }
 
 .movie_area .single_movie .ovrer {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.2);
-	-webkit-transform: translateX(-80%);
-	-moz-transform: translateX(-80%);
-	-ms-transform: translateX(-80%);
-	transform: translateX(-80%);
-	-webkit-transition: .5s;
-	-moz-transition: .5s;
-	-o-transition: .5s;
-	transition: .5s;
-	opacity: 0;
-	visibility: hidden
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.2);
+   -webkit-transform: translateX(-80%);
+   -moz-transform: translateX(-80%);
+   -ms-transform: translateX(-80%);
+   transform: translateX(-80%);
+   -webkit-transition: .5s;
+   -moz-transition: .5s;
+   -o-transition: .5s;
+   transition: .5s;
+   opacity: 0;
+   visibility: hidden
 }
 
 .movie_area .single_movie .ovrer a {
-	color: #fff;
-	position: absolute;
-	left: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	right: 0;
-	text-align: center;
-	font-size: 34px;
-	-webkit-transform: translateY(-50%);
-	-moz-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%)
+   color: #fff;
+   position: absolute;
+   left: 0;
+   top: 50%;
+   transform: translateY(-50%);
+   right: 0;
+   text-align: center;
+   font-size: 34px;
+   -webkit-transform: translateY(-50%);
+   -moz-transform: translateY(-50%);
+   -ms-transform: translateY(-50%);
+   transform: translateY(-50%)
 }
 
 .movie_area .single_movie:hover .ovrer {
-	-webkit-transform: translateX(0%);
-	-moz-transform: translateX(0%);
-	-ms-transform: translateX(0%);
-	transform: translateX(0%);
-	opacity: 1;
-	visibility: visible
+   -webkit-transform: translateX(0%);
+   -moz-transform: translateX(0%);
+   -ms-transform: translateX(0%);
+   transform: translateX(0%);
+   opacity: 1;
+   visibility: visible
 }
 
 .movie_area .single_movie:hover img {
-	-webkit-transform: scaleX(1.1);
-	-moz-transform: scaleX(1.1);
-	-ms-transform: scaleX(1.1);
-	transform: scaleX(1.1)
+   -webkit-transform: scaleX(1.1);
+   -moz-transform: scaleX(1.1);
+   -ms-transform: scaleX(1.1);
+   transform: scaleX(1.1)
 }
 
 .yeong-movieTitle{
-	margin-top: 40px;
-	padding-bottom: 20px;
+   margin-top: 40px;
+   padding-bottom: 20px;
 }
 
 .movie_register{
-	margin-bottom: 20px;
+   margin-bottom: 20px;
 }
 
 .movie_search{
-	text-align: right;
-	margin-bottom: 20px;
-	margin-left: auto;
+   text-align: right;
+   margin-bottom: 20px;
+   margin-left: auto;
 }
 
 .yeong_select{
-	margin-right: 10px;
-	padding-left: 20px;
-	padding-right: 40px;
+   margin-right: 10px;
+   padding-left: 20px;
+   padding-right: 40px;
 }
 
 .yeong_input{
-	height: 40px;
-	margin-right: 5px;
+   height: 40px;
+   margin-right: 5px;
 }
 
 .btn-primary{
-	margin-right: 10px;
+   margin-right: 10px;
 }
 
 .pagination{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	margin-left: 5px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   margin-left: 5px;
 }
 
 .movie-container-left{
-	margin-top: 10px;
-	margin-bottom: 30px;
-	width: 40%;
-	float: left;
+   margin-top: 10px;
+   margin-bottom: 30px;
+   width: 40%;
+   float: left;
 }
 
 .movie-container-right{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	width: 60%;
-	float: right;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   width: 60%;
+   float: right;
 }
 
 @media (max-width: 767px) {
-	.movie-container-left{
-		margin-top: 10px;
-		margin-bottom: 10px;
-		width: 20%;
-		float: left;
-	}
-	.yeong_moveImg{
-		height:250px;
-	}
+   .movie-container-left{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 20%;
+      float: left;
+   }
+   .yeong_moveImg{
+      height:250px;
+   }
 }
 
 @media (max-width: 767px) {
-	.movie-container-right{
-		margin-left: 90px;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		width: 50%;
-		float: left;
-	}
+   .movie-container-right{
+      margin-left: 90px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 50%;
+      float: left;
+   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.movie-container-left{
-		margin-top: 10px;
-		margin-bottom: 10px;
-		width: 30%;
-		float: left;
-	}
+   .movie-container-left{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 30%;
+      float: left;
+   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.movie-container-right{
-		margin-top: 10px;
-		margin-bottom: 10px;
-		width: 50%;
-		float: right;
-	}
+   .movie-container-right{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 50%;
+      float: right;
+   }
 }
 
 .footer{
-	clear: both;
+   clear: both;
 }
 
 .movie-get-title{
-	text-align: right;
+   text-align: right;
 }
 
 .clear{
-	clear: both;
-	margin-bottom: 30px;
+   clear: both;
+   margin-bottom: 30px;
 }
 .yeong-center{
-	margin-bottom: 30px;
-	text-align: center!important;
+   margin-bottom: 30px;
+   text-align: center!important;
 }
 .yeong-list{
-	width: 90px;
+   width: 90px;
 }
 
 .score_area{
-	margin-top: 20px;
-	margin-bottom: 20px;
+   margin-top: 20px;
+   margin-bottom: 20px;
 }
 .custom-red{
-	color: red;
-	position: relative;
-	margin-right: 5px;
+   color: red;
+   position: relative;
+   margin-right: 5px;
 }
 .custom-blue{
-	margin-right: 5px;
-	color: blue;
-	position: relative;
+   margin-right: 5px;
+   color: blue;
+   position: relative;
 }
 .custom-table{
-	position: absolute;
+   position: absolute;
 }
 .table td, .table th{
-	vertical-align: middle;
-	
+   vertical-align: middle;
+   
 }
 
 .comment_register{
-	width: 100%;
-	text-align: right;
-	margin-top: 20px;
-	margin-bottom: 40px;
-	margin-left: auto;
-	margin-right: 40px;
+   width: 100%;
+   text-align: right;
+   margin-top: 20px;
+   margin-bottom: 40px;
+   margin-left: auto;
+   margin-right: 40px;
 }
 .yeong-commentInput{
-	width: 70%;
+   width: 70%;
 }
 .yeong-star{
-	margin-left: 10px;
-	margin-right: 20px;
-	font-size: 22px;
+   margin-left: 10px;
+   margin-right: 20px;
+   font-size: 22px;
 }
 .yeong-allStar{
-	font-size: 30px;
+   font-size: 30px;
 }
 
 @media (max-width: 767px) {
-	.yeong-list{
-		width: 50px;
-	}
-	.comment_register{
-		width: 100%;
-		text-align: right;
-		margin-bottom: 20px;
-		margin-left: auto;
-		margin-right: 40px;
-	}
-	.yeong-commentInput{
-		width: 40%;
-		height: 40px;
-	}
-	.yeong-star{
-		margin-left: 20px;
-		margin-right: 20px;
-		font-size: 20px;
-	}
-	.yeong-allStar{
-		font-size: 20px;
-	}
+   .yeong-list{
+      width: 50px;
+   }
+   .comment_register{
+      width: 100%;
+      text-align: right;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: 40px;
+   }
+   .yeong-commentInput{
+      width: 40%;
+      height: 40px;
+   }
+   .yeong-star{
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 20px;
+   }
+   .yeong-allStar{
+      font-size: 20px;
+   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.comment_register{
-	width: 100%;
-	text-align: right;
-	margin-top: 20px;
-	margin-bottom: 40px;
-	margin-left: auto;
-	margin-right: 40px;
-	}
-	.yeong-commentInput{
-		width: 350px;
-	}
-	.yeong-star{
-		margin-left: 20px;
-		margin-right: 20px;
-		font-size: 25px;
-	}
-	.yeong-allStar{
-		font-size: 25px;
-	}
+   .comment_register{
+   width: 100%;
+   text-align: right;
+   margin-top: 20px;
+   margin-bottom: 40px;
+   margin-left: auto;
+   margin-right: 40px;
+   }
+   .yeong-commentInput{
+      width: 350px;
+   }
+   .yeong-star{
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 25px;
+   }
+   .yeong-allStar{
+      font-size: 25px;
+   }
 }
 
 .yeong-red{
-	color: red;
+   color: red;
 }
 .yeong-form-control{
-	color: #7e7e7e;
+   color: #7e7e7e;
 }
 
 
@@ -313,209 +313,213 @@
 }
 
 .mycomment-left{
-	margin-top: 40px;
-	margin-bottom: 10px;
-	width: 20%;
-	float: left;
+   margin-top: 40px;
+   margin-bottom: 10px;
+   width: 20%;
+   float: left;
 }
 
 .mycomment-left-right{
-	margin-top: 40px;
-	margin-bottom: 10px;
-	width: 80%;
-	float: right;
+   margin-top: 40px;
+   margin-bottom: 10px;
+   width: 80%;
+   float: right;
 }
 
 .yeongth20{
-	width: 25%;
+   width: 25%;
 }
 .yeongth10{
-	width: 10%;
+   width: 10%;
 }
 .yeongth15{
-	width: 15%;
+   width: 15%;
 }
 .yeongth05{
-	width: 5%;
+   width: 5%;
 }
 .yeongth60{
-	width: 65%;
+   width: 65%;
 }
 .yeongth30{
-	width: 30%;
+   width: 30%;
 }
 .yeongth35{
-	width: 35%;
+   width: 35%;
 }
 
 @media (max-width: 767px) {
-	.yeongth20{
-		width: 30%;
-		font-size: 10px;
-	}
-	.yeongth10{
-		width: 10%;
-		font-size: 10px;
-	}
-	.yeongth60{
-		width: 60%;
-		font-size: 10px;
-	}
-	.yeong-myfont{
-		font-size: 10px;
-	}
+   .yeongth20{
+      width: 30%;
+      font-size: 10px;
+   }
+   .yeongth10{
+      width: 10%;
+      font-size: 10px;
+   }
+   .yeongth60{
+      width: 60%;
+      font-size: 10px;
+   }
+   .yeong-myfont{
+      font-size: 10px;
+   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.yeongth20{
-		width: 30%;
-		font-size: 13px;
-	}
-	.yeongth10{
-		width: 10%;
-		font-size: 13px;
-	}
-	.yeongth60{
-		width: 60%;
-		font-size: 13px;
-	}
-	.yeong-myfont{
-		font-size: 13px;
-	}
+   .yeongth20{
+      width: 30%;
+      font-size: 13px;
+   }
+   .yeongth10{
+      width: 10%;
+      font-size: 13px;
+   }
+   .yeongth60{
+      width: 60%;
+      font-size: 13px;
+   }
+   .yeong-myfont{
+      font-size: 13px;
+   }
 }
 
 .yeong-margin{
-	margin-bottom: 20px;
+   margin-bottom: 20px;
 }
 
 .yeong-small{
-	color: red;
-	float: right;
+   color: red;
+   float: right;
 }
 .yeong-span{
-	margin-left: 30px;
+   margin-left: 30px;
 }
 .yeong-starRed{
-	color: red;
+   color: red;
 }
 #star_grade a{
-	text-decoration: none;
-	color: gray;
+   text-decoration: none;
+   color: gray;
 }
 #star_grade a.on{
-	color: red;
+   color: red;
 }
 
 .yeong-right{
-	float: right;
-	margin-bottom: 10px;
+   float: right;
+   margin-bottom: 10px;
 }
 
 #star_grade_modify a{
-	text-decoration: none;
-	color: gray;
+   text-decoration: none;
+   color: gray;
 }
 #star_grade_modify a.on{
-	color: red;
+   color: red;
 }
 
 .yeongth_movie30{
-	width: 20%;
+   width: 20%;
 }
 .yeongth_movie70{
-	width: 80%;
+   width: 80%;
 }
 
 @media (max-width: 767px) {
-	.yeongth_movie30{
-		width: 30%;
-	}
-	.yeongth_movie70{
-		width: 100%;
-	}
+   .yeongth_movie30{
+      width: 30%;
+   }
+   .yeongth_movie70{
+      width: 100%;
+   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.yeongth_movie30{
-		width: 20%;
-	}
-	.yeongth_movie70{
-		width: 80%;
-	}
+   .yeongth_movie30{
+      width: 20%;
+   }
+   .yeongth_movie70{
+      width: 80%;
+   }
 }
 
 .yeongth_movieGetTilte{
-	font-weight: bold;
+   font-weight: bold;
 }
 
 .starTotalTitle{
-	float: left;
-	margin-right: 20px;
+   float: left;
+   margin-right: 20px;
 }
 
 
 
 .yeongth_myComment05{
-	width: 5%;
+   width: 5%;
 }
 .yeongth_myComment10{
-	width: 10%;
+   width: 10%;
 }
 .yeongth_myComment35{
-	width: 35%;
+   width: 35%;
 }
 .yeongth_myComment15{
-	width: 15%;
+   width: 15%;
 }
 .yeongth_myComment20{
-	width: 20%;
+   width: 20%;
 }
 .yeongth_myComment30{
-	width: 30%;
+   width: 30%;
 }
 
 
 @media (max-width: 767px) {
-	.yeongth_myComment05{
-		width: 10%;
-	}
-	.yeongth_myComment10{
-		width: 10%;
-	}
-	.yeongth_myComment35{
-		width: 25%;
-	}
-	.yeongth_myComment15{
-		width: 10%;
-	}
-	.yeongth_myComment20{
-		width: 10%;
-	}
+   .yeongth_myComment05{
+      width: 10%;
+   }
+   .yeongth_myComment10{
+      width: 10%;
+   }
+   .yeongth_myComment35{
+      width: 25%;
+   }
+   .yeongth_myComment15{
+      width: 10%;
+   }
+   .yeongth_myComment20{
+      width: 10%;
+   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.yeongth_myComment05{
-		width: 10%;
-	}
-	.yeongth_myComment10{
-		width: 10%;
-	}
-	.yeongth_myComment35{
-		width: 25%;
-	}
-	.yeongth_myComment15{
-		width: 10%;
-	}
-	.yeongth_myComment20{
-		width: 20%;
-	}
+   .yeongth_myComment05{
+      width: 10%;
+   }
+   .yeongth_myComment10{
+      width: 10%;
+   }
+   .yeongth_myComment35{
+      width: 25%;
+   }
+   .yeongth_myComment15{
+      width: 10%;
+   }
+   .yeongth_myComment20{
+      width: 20%;
+   }
+}
+
+
+.yeong_offers_area{
+   padding-top: 20px;
 }
 
 
 .yeong_offers_area{
 	padding-top: 20px;
 }
-
 
 
 

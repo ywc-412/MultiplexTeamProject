@@ -16,11 +16,15 @@ public interface ScheduleMapper {
 	// 등록) 해당 날짜, 관에 상영시간대가 있는 지 확인
 	public int checkSchedule(@Param("scheduleDate") String scheduleDate, @Param("screen") String screen);
 
-//	// 상영스케줄 수정
-//	public int update(int scheduleNo);
+	// 상영스케줄 수정
+//	public int update(@Param("scheduleDate") String scheduleDate, @Param("screen") String screen, @Param("scheduleTime") String scheduleTime, @Param("num") int num);
+	public int update(@Param("scheduleTime") String scheduleTime, @Param("scheduleNo") int scheduleNo);
 	
-	// 상영스케줄 삭제
+	// 상영스케줄 삭제 - 등록하다가 취소 시
 	public int delete(int scheduleNo);
+	
+	// 상영스케줄 삭제 - 상영날짜, 스크린
+	public int deleteScreen(@Param("scheduleDate") String scheduleDate, @Param("screen") String screen);
 	
 	// 삭제) 날짜별 상영스케줄 삭제
 	public int deleteAll(@Param("scheduleDate") String scheduleDate);
