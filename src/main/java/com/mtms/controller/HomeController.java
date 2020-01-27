@@ -42,9 +42,9 @@ public class HomeController {
    public String indexList(Model model) {
       System.out.println("인덱스 영화조회");
       
-      int totalMovie = movieService.totalMovie();
-      
-      model.addAttribute("totalMovie", totalMovie);
+//      int totalMovie = movieService.totalMovie();
+//      
+//      model.addAttribute("totalMovie", totalMovie);
       model.addAttribute("attachList", movieService.attachGetList());
       model.addAttribute("moveList", movieService.getIndexList());
 
