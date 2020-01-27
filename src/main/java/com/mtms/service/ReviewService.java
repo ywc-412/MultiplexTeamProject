@@ -14,4 +14,5 @@ public interface ReviewService {
 //	public List<ReviewVo> getList();
 	public List<ReviewVO> getList(Criteria cri);
 	public int getTotalCount(Criteria cri);
+	public ReviewVO movieSelect(int reviewNo);
 }

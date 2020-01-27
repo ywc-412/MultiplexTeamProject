@@ -52,12 +52,6 @@ public interface MovieService {
 	
 	//한나
 	// 한나 -> 영화명 검색
-<<<<<<< HEAD
-	public List<MovieVO> getMovieName(String movieName);
-	
-	// 희홍 -> 영화명 가져오기
-	   public String getMovie(int movieNo);
-=======
     public List<MovieVO> getMovieName(String movieName);
    
     // 한나 -> 예매시 영화의 오늘 관객수 +1
@@ -65,7 +59,6 @@ public interface MovieService {
    
     // 희홍 -> 영화명 가져오기
     public String getMovie(int movieNo);
-	
->>>>>>> master
+
 
 }

@@ -35,7 +35,6 @@ public class ReviewReplyController {
 		// ResponseEntity : 응답할 때 메세지와 상태코드값 같이 보낼 수 있음
 		public ResponseEntity<String> create(@RequestBody ReplyVO revo){
 			// JSON 데이터를 RVO 객체로 변환할 거라 @RequestBody 사용
-			System.out.println("댓글 추가 : "+revo);
 			
 			int insertCount = replyService.register(revo);
 			
@@ -51,10 +50,9 @@ public class ReviewReplyController {
 	                          								   MediaType.APPLICATION_JSON_UTF8_VALUE } )
 	    											// URL의 일부를 파라미터로 사용하는 PathVariable
 	    public ResponseEntity<ReplyPageDTO> getList( @PathVariable("page") int page, @PathVariable("reviewNo") int reviewNo ) {
-	        System.out.println("댓글 list 컨트롤러 들어왔다.");
 	        // 댓글의 페이지수를 받아서 10개씩 페이징할 것
 	        Criteria cri = new Criteria(page, 10);
-	        System.out.println("Controller - getList - cri : " + cri);
+
 	        // service에서 받아온 리스트의 값과 OK를 함께 넘김
 //	        return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
 	        return new ResponseEntity<>(replyService.getListPage(cri,reviewNo ), HttpStatus.OK);
@@ -64,7 +62,6 @@ public class ReviewReplyController {
 		@GetMapping(value = "{replyNo}", produces = { MediaType.APPLICATION_XML_VALUE,
 												  MediaType.APPLICATION_JSON_UTF8_VALUE} )		
 		public ResponseEntity<ReplyVO> get(@PathVariable("replyNo") int replyNo){
-			System.out.println("댓글 상세보기 : "+replyNo);
 			return new ResponseEntity<>(replyService.get(replyNo),HttpStatus.OK);
 			
 		}

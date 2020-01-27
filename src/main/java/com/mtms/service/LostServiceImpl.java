@@ -36,19 +36,19 @@ public  class LostServiceImpl implements LostService{
 	@Override
 	public boolean modify(LostVO lvo) {
 		// TODO Auto-generated method stub
-		return false;
+		return lostMapper.update(lvo) == 1;
 	}
 
 	@Override
 	public boolean remove(int lostNo) {
 		// TODO Auto-generated method stub
-		return false;
+		return lostMapper.delete(lostNo) == 1;
 	}
 
 	@Override
 	public LostVO get(int lostNo) {
-		// TODO Auto-generated method stub
-		return null;
+		lostMapper.updateView(lostNo);
+		return lostMapper.read(lostNo);
 	}
 
 	@Override

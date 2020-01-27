@@ -1,5 +1,6 @@
 package com.mtms.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -27,11 +28,9 @@ public class ReviewController {
 	private ReviewService service;
 	private MovieService movieService;
 	
-<<<<<<< HEAD
 	@PostMapping("remove")
 	public String remove(int reviewNo,@ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) {
-		log.info("BoardController remove()");
 		
 		if(service.remove(reviewNo)) {
 			rttr.addFlashAttribute("result", "success");
@@ -40,22 +39,12 @@ public class ReviewController {
 		rttr.addAttribute("amount", cri.getAmount());
 		
 		return "redirect:/review/list";
-=======
-	private ReviewService reviewService;
-	private MovieService movieService;
-	
-	@PostMapping("remove")	
-	 public String remove(int reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		return null;
-		//삭제처리 하기위한 메소드
->>>>>>> master
 	}
 	
 	@PostMapping("modify")
 	public String modify(ReviewVO rvo, @ModelAttribute("cri")Criteria cri,
 			RedirectAttributes rttr) {
 		
-		log.info("review 수정 제발 되라 modify()"+rvo);
 		if(service.modify(rvo)) {
 			rttr.addFlashAttribute("result", "success");
 		}
@@ -69,40 +58,32 @@ public class ReviewController {
 	@GetMapping({"get","modify"})
 	public void get(@RequestParam("reviewNo") int reviewNo,@ModelAttribute("cri")
 		Criteria cri,Model model)  {
-		log.info("들어온건가들어온건가들어온건가들어온건가들어온건가들어온건가들어온건가들어온건가들어온건가");
+		System.out.println("controller reivewNo: " + reviewNo);
 		model.addAttribute("rvo", service.get(reviewNo));
-		System.out.println("컨트롤러 리뷰 번호 : "+service.get(reviewNo));
+		model.addAttribute("rvo1", service.movieSelect(reviewNo));
+	
+		
 	}
 
 	
 	@GetMapping("list")
 	public void getList(Criteria cri,Model model) {
 		model.addAttribute("list", service.getList(cri));
-		
 		int total = service.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		
 	}
-
+//	@PreAuthorize("isAuthenticated()") 로그인 여부 
 	@GetMapping("register")
-<<<<<<< HEAD
 	   public void register(int movieNo, Model model) {
 	      model.addAttribute("movieTitle", movieService.getMovie(movieNo));
 	      model.addAttribute("movieNo", movieNo);
 	   }
-=======
-	public void register(int movieNo, Model model) {
-		model.addAttribute("movieTitle", movieService.getMovie(movieNo));
-		model.addAttribute("movieNo", movieNo);
-	}
->>>>>>> master
 	
 	@PostMapping("register")
-	public String register(ReviewVO rvo, RedirectAttributes rttr) {
-		log.info("reviewController register()");
+	public String register(ReviewVO rvo, RedirectAttributes rttr,int movieNo) {
 		service.register(rvo);
-		System.out.println(rvo);
 		rttr.addFlashAttribute("result",rvo.getReviewNo());
+		rttr.addFlashAttribute("list", movieService.getMovie(movieNo));
 		return "redirect:/review/list";
 	}
 }

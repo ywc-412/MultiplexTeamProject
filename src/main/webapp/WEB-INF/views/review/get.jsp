@@ -30,11 +30,13 @@ $(function(){
 //END 전체 function
 </script>
 
-<div class="side_margin">
-	<div class="row">
-		<div class="review_title">리뷰</div>
-	</div>
-	<div class="title_under"></div>
+<div class="container">
+			<!--<div class="row">-->
+			<div class="row no-mean">
+				<div class="col-md-12">
+					<div class="custom-board-title">
+						<h3 class="custom-font-bold">리뷰</h3>
+					</div>
 	<div class="get_title_style">
 		<div class="get_title">	<c:out value="${rvo.reviewTitle }"/></div>
 	
@@ -46,7 +48,7 @@ $(function(){
 		</div>
 	</div>
 	<div class="movie_title_style">
-		<div class="movie_get_title">영화제목</div>
+		<div class="movie_get_title">${rvo1.movieTitle }</div>
 	</div>
 	<textarea rows="10" cols="100" class="review_textarea" readonly="readonly">
 	<c:out value="${rvo.reviewContent }"/>
@@ -58,7 +60,7 @@ $(function(){
 	 
 	 <button data-oper="list" class="btn btn-info">List</button>
 	 <div class="button_position">
-	 		<button type="submit" class="btn btn-default" data-oper ="modify">수정</button>
+	 		<button type="submit" class="btn btn-primary" data-oper ="modify">수정</button>
 				
 				<form method="post" action="/review/remove" class="formRemove">
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
@@ -173,6 +175,8 @@ $(function(){
 
 
 
+</div>
+</div>
 </div>
 </div>
 </div>

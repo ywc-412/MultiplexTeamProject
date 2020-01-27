@@ -42,12 +42,6 @@ public interface MovieMapper {
 	//한나
 	
 	// 한나 - 영화 이름으로 검색
-<<<<<<< HEAD
-	public List<MovieVO> getMovieName(@Param("movieName") String movieName);
-	
-	// 희홍 - 영화 번호로 영화 이름 알아오기
-	   public String getMovie(@Param("movieNo") int movieNo);
-=======
     public List<MovieVO> getMovieName(@Param("movieName") String movieName);
    
     // 한나 - 예매 시 관객수 +
@@ -55,6 +49,5 @@ public interface MovieMapper {
    
     // 희홍 - 영화 번호로 영화 이름 알아오기
     public String getMovie(@Param("movieNo") int movieNo);
->>>>>>> master
 
 }

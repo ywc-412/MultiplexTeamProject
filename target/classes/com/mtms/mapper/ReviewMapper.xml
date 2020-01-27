@@ -104,5 +104,10 @@
    		UPDATE review
    		SET replycnt = replycnt + #{amount} where reviewNo = #{reviewNo}
    </update>
+   <select id="movieSelect" resultType="com.mtms.domain.ReviewVO">
+   	select m.movieTitle
+		from review r,movie m
+		where r.movieNo = m.movieNo and reviewNo = #{reviewNo}
+   </select>
 </mapper>
 

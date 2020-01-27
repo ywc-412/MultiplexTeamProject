@@ -19,5 +19,5 @@ public interface ReviewMapper {
 	public int updateView(int reviewNo);
 	public List<ReviewVO> getListWithPaging(Criteria cri);
 	public int getTotalCount(Criteria cri);
-	
+	public ReviewVO movieSelect(int reviewNo);
 }

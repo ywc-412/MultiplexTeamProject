@@ -148,14 +148,7 @@ public class MovieServiceImpl implements MovieService{
 
 		return movieMapper.sumGetMovie(movieNo);
 	}
-	
-<<<<<<< HEAD
-	// 희홍 - 영화번호로 영화명 가져오기
-	   @Override
-	   public String getMovie(int movieNo) {
-	      return movieMapper.getMovie(movieNo);
-	   }
-=======
+
 	//전체 예매율
 	@Override
 	public int totalMovie() {
@@ -184,13 +177,6 @@ public class MovieServiceImpl implements MovieService{
        return movieMapper.getMovie(movieNo);
     }
 
-	
-
-    
-	
-
-	
->>>>>>> master
 	
 	
 }

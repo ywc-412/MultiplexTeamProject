@@ -56,7 +56,10 @@
                             		${rpvo.replyReportContent }</a></td>
 						<td><c:out value="${rpvo.replyContent }" /></td>
 						<td>
-						<input type="checkbox" value="${rpvo.replyNo }">
+						<form action="/report/reply/remove" method="post" id="removeForm">
+							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+							<input type="checkbox" name="replyNo" value="${rpvo.replyNo }">
+						</form>
 						</td>
 					</tr>
 				</c:forEach>
@@ -94,13 +97,33 @@
 			name="amount" value="${pageMaker.cri.amount}">
 		<!-- 검색 조건과 키워드 파라미터 추가 -->
 	</form>
-
+<div class="modal fade" id="reportModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	삭제 하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="okBtn">확인</button> 
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	 </div>
+    </div>
+  </div>
+</div>
+<!-- END modal -->
 </div>
 <!-- 전체마진 END -->
 <%@ include file="../../include/footer.jsp"%>
 <script>
 //페이지 번호 링트 처리
 $(function(){
+	var reportModal1 = $("#reportModal1");
 $(".paginate_button a").on("click", function(e) {
 			 e.preventDefault(); //a태그라서 동작안되게 막아줌
 			 $('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
@@ -111,7 +134,41 @@ $(".getGo").on("click", function(e) {
 	 $("#getReview").append("<input type='hidden' name='replyReportNo' value='"+ $(this).attr("href")+"'>");
 	 $("#getReview").attr("action", "/report/reply/get");
 	 $("#getReview").submit();
-	
+	 
 	});	  
+$("#reportRemove").on("click", function (e){
+// 	$("#removeForm").submit();
+	checkbox_for();
+	reportModal1.modal('show');
+	
 });
+$("#okBtn").on("click", function (e){
+	$("#removeForm").submit();
+});	  
+});
+function checkbox_for()
+{
+	var chkbox = $("input[name=replyNo]");
+	var send_array = Array();
+	var send_cnt = 0;
+	var replyNo_val;
+	
+	for(i=0;i<chkbox.length;i++) 
+	{
+	    if (chkbox[i].checked == true){
+	        send_array[send_cnt] = chkbox[i].value;
+	        send_cnt++;
+	    }
+	    replyNo_val = send_array + ",";
+	}
+	
+	alert("chkbox : " + chkbox);
+	alert("send_cnt : " + send_cnt);
+	alert("send_array : " + send_array);
+	
+	alert("replyNo_val : " + replyNo_val);
+	
+	$('input[name=replyNo]').val(replyNo_val);
+	alert($('input[name=replyNo]').val());
+}
 </script>

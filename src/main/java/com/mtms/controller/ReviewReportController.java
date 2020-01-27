@@ -33,10 +33,18 @@ public class ReviewReportController {
 	private ReviewReportService reviweReportService;
 	
 	@PostMapping("remove")
-	public String remove(Integer reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		if (reviweReportService.remove(reviewNo)) {
-			rttr.addFlashAttribute("result", "success");
+	public String remove(@RequestParam("reviewNo") String reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+		System.out.println("일단 리뷰신고 에 들어왔다."+reviewNo);
+		String[] words = reviewNo.split(",");
+		
+		for (String wo : words ){
+			System.out.println(wo);
+			int reviewNo1 = Integer.parseInt(wo);
+			if (reviweReportService.remove(reviewNo1)){ 
+				rttr.addFlashAttribute("result","success"); 
+			}
 		}
+		
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 
