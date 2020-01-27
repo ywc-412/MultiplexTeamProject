@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -122,6 +123,24 @@ public class ScheduleController {
 		// 방금 등록했던 스케줄 다시 삭제
 		scheduleService.remove(regSeq);
 		return "redirect:/schedule/get";
+	}
+	
+	@PostMapping("delete")
+	public String delete(ScheduleVO scheduleVO, RedirectAttributes rttr) {
+		// 상영스케줄 삭제 (1관 : 6개의 스케줄)
+		scheduleService.deleteScreen(scheduleVO.getScheduleDate(), scheduleVO.getScreen());
+		return "redirect:/schedule/register?scheduleDate="+scheduleVO.getScheduleDate();
+	}
+	
+	@PostMapping("modify")
+	public String modify(ScheduleVO scheduleVO, String[] time, String[] no, RedirectAttributes rttr) {
+		System.out.println("modify");
+		for(int i=0; i<no.length; i++) {
+			System.out.println("no : " + no[i]);
+		}
+		
+		scheduleService.modify(no, time);
+		return "redirect:/schedule/register?scheduleDate="+scheduleVO.getScheduleDate();
 	}
 	
 	@PostMapping("remove")
