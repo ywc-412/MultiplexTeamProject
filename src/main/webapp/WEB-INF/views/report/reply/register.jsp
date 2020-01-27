@@ -17,7 +17,7 @@
 		<div class="high_margin"></div>
 		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 		<input type="text" id="content_register" name="replyReportContent">
-		<input type="hidden" name="memberId" value="홍홍">
+		<input type="hidden" name="memberId" value="hue9404">
 		<input type="hidden" name="replyNo" value="${revo.replyNo }">
 		</form>
 			<div class="title_under2"></div>

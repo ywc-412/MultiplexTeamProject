@@ -77,7 +77,8 @@ CREATE TABLE gift(
     giftNo NUMBER(10),
     giftName VARCHAR2(100) NOT NULL,
     giftPrice NUMBER(10) NOT NULL,
-    giftSet VARCHAR(200) NOT NULL
+    giftSet VARCHAR(200) NOT NULL,
+    giftDeleteChk NUMBER(1) DEFAULT 0
 );
 
 CREATE TABLE myGift(
@@ -152,7 +153,8 @@ CREATE TABLE review(
     reviewTitle varchar2(300) not null,
     reviewContent varchar2(3000) not null,
     reviewDate Date default sysdate,
-    reviewView number(5) default 0
+    reviewView number(5) default 0,
+    replycnt number(10) default 0
 );
 
 CREATE TABLE reply(
@@ -192,7 +194,6 @@ CREATE TABLE lost(
 
 --ALTER-------------------------------------------------------------------------------
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY(memberId);
-
 ALTER TABLE movieAttach ADD CONSTRAINT pk_movieAttach PRIMARY KEY (movieUuid) ;
 ALTER TABLE movie ADD CONSTRAINT pk_movie PRIMARY KEY (movieNo);
 ALTER TABLE commentReply ADD CONSTRAINT pk_commentReply PRIMARY KEY (commentNo);
@@ -268,4 +269,7 @@ CREATE SEQUENCE seq_lost;
 CREATE SEQUENCE seq_reply;
 CREATE SEQUENCE seq_review;
 CREATE SEQUENCE seq_suggest;
+
+CREATE INDEX idx_yesterdayNum ON movie(yesterdayNum DESC, movieNo DESC);
+create index idx_reply on reply (reviewNo desc,replyNo asc);
 

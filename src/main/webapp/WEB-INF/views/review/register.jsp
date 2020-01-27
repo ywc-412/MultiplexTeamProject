@@ -15,7 +15,7 @@
 	
 	<input type="text" id="content_register" name="reviewContent">
 	<div class="form-group">
-	<input type="hidden" value="로옹로옹" name="memberId">
+	<input type="hidden" value="hue9404" name="memberId">
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</div>
 	<div class="title_under2"></div>
