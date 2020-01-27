@@ -30,6 +30,7 @@
 <!-- 	<update id="update"> -->
 <!-- 	</update> -->
 	
+	<!-- 등록하다 취소 시 등록했던 상영스케줄 삭제 -->
 	<delete id="delete">
 		DELETE FROM schedule WHERE scheduleNo = #{scheduleNo}
 	</delete>
@@ -56,7 +57,7 @@
 	</resultMap>
 	
 	<!-- 스케줄번호로 스케줄 정보 알아오기 -->
-	<select id="getSchedule" resultMap="scheduleMap">
+	<select id="getSchedule" resultType="com.mtms.domain.ScheduleVO">
 		SELECT to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen, s.movieNo, m.movieTitle
 		FROM schedule s, movie m WHERE scheduleNo = #{scheduleNo} AND s.movieNo = m.movieNo
 	</select>
@@ -74,12 +75,12 @@
 	<select id="getTime" resultType="java.lang.String">
 		SELECT DISTINCT scheduleTime FROM schedule
 		WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
-<!-- 		 and scheduleTime > #{time} -->
+		 and scheduleTime > #{time}
 		ORDER BY scheduleTime
 	</select>
 	
 	<!-- 현재 상영중인 영화 목록 가져오기 -->
-	<select id="getMovie" resultMap="scheduleMap">
+	<select id="getMovie" resultType="com.mtms.domain.ScheduleVO">
 		SELECT DISTINCT m.movieTitle, m.movieNo FROM movie m, schedule s 
 		WHERE s.movieNo = m.movieNo AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate} AND #{endDate}
 <!-- 		AND scheduleTime > #{time} -->

@@ -50,7 +50,7 @@ public class SuggestTestData {
                pstmt.setString(5, "010");
                pstmt.setString(6, "4189");
                pstmt.setString(7, "5485");
-               pstmt.setString(8, "ywc412");
+               pstmt.setString(8, "ywc412"+i);
                pstmt.setString(9,"naver.com");
             }
             pstmt.executeUpdate();

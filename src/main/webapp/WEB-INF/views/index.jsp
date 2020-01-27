@@ -30,8 +30,11 @@
 			</div>
 		</div>
 	</div>
-	<!-- offers_area_end -->
 	
+	
+	
+	<!-- offers_area_end -->
+
 	<!-- 실제 클릭하면 동작하는 부분 처리 -->
     <form id="actionForm" action="/movie/get" method="get">
     
@@ -69,5 +72,6 @@
 		});
 		</script>
 
-
 	<%@ include file="include/footer.jsp" %>
+	
+	

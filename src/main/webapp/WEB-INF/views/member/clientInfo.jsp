@@ -163,7 +163,14 @@
 			$('#sendMsgBtn').on("click", function(e){
 				e.preventDefault();
 				$('#memberPhoneNumberHere').append("<input type='hidden' name='to' value='"+phoneFull+"'/>");
-				$('#completeForm').submit();
+				
+				if(!$('input#text').val()){
+					alert('메시지 내용을 입력해주세요');
+					return;
+				}else{
+					$('#completeForm').submit();
+				}
+				
 			});
 			
 			$('#clientRemoveBtn').on("click", function(e) {

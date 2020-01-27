@@ -77,7 +77,6 @@ public class ReserveController {
 		String time = format.format(now);
 		
 		List<ScheduleVO> list = scheduleService.getMovie(startDate, endDate, time);
-		
 		model.addAttribute("movieList", list);
 	}
 	

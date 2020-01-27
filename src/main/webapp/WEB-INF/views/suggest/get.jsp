@@ -33,22 +33,41 @@
 		</div>
 	</div>
 </section>
+<sec:authorize access="isAuthenticated()">
+	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+</sec:authorize>
 
 <script>
+	
+	
 	$(function(){
 		$('#suggestRemoveBtn').on("click", function(e){
-			var result = confirm('삭제하시겠습니까?');
+			var userConnect = '<c:out value="${userId}"/>';
 			
-			if(result == true){
-				$('#removeForm').submit();
+			if(!userConnect){
+				alert('로그인이 필요한 서비스입니다');
+				return;
+			}else{
+				var result = confirm('삭제하시겠습니까?');
+				
+				if(result == true){
+					$('#removeForm').submit();
+				}
 			}
-			
 		});
 		
 		$('#suggestModifyBtn').on("click", function(e){
-			$('#removeForm').attr("method","get");
-			$('#removeForm').attr("action","/suggest/modify");
-			$('#removeForm').submit();
+			var userConnect = '<c:out value="${userId}"/>';
+			
+			if(!userConnect){
+				alert('로그인이 필요한 서비스입니다');
+				return;
+			}else{
+				$('#removeForm').attr("method","get");
+				$('#removeForm').attr("action","/suggest/modify");
+				$('#removeForm').submit();
+			}
+			
 		});
 		
 	})

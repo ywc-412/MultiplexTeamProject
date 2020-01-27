@@ -56,12 +56,6 @@ public class ScheduleServiceImpl implements ScheduleService{
 	public List<ScheduleVO> get(String scheduleDate, String screen){
 		return scheduleMapper.get(scheduleDate, screen);
 	}
-	
-//	@Override
-//	public List<ScheduleVO> getAll(String scheduleDate){
-//		// 날짜별 상영스케줄 전체 조회
-//		return scheduleMapper.getAll(scheduleDate);
-//	}
 
 	@Override
 	public boolean removeDay(String scheduleDate) {

@@ -50,10 +50,10 @@
 						</div>
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneSecond" id="memberPhoneSecond"
-							class="single-input custom-text-left custom-input-size-phone">
+							class="single-input custom-text-left custom-input-size-phone" max="9999" maxlength="4">
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneThird" id="memberPhoneThird"
-							class="single-input custom-text-left custom-input-size-phone">
+							class="single-input custom-text-left custom-input-size-phone" max="9999" maxlength="4">
 						<div class="custom-red-font custom-text-right"
 							id="memberPhoneErrorMsg"></div>
 					</div>
@@ -73,16 +73,17 @@
 <script>
 	$(function() {
 		$('.boxed-btn3').on("click", function(e) {
-			console.log('click');
-
 			e.preventDefault();
-
+			
+			var phoneRegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+			
 			var memberEmail = $('input#memberEmail').val();
 			var memberEmailSecond = $('select#memberEmailSecond').val();
 			var memberPhoneFirst = $('select#memberPhoneFirst').val();
 			var memberPhoneSecond = $('input#memberPhoneSecond').val();
 			var memberPhoneThird = $('input#memberPhoneThird').val();
-
+			var regForPhoneNum = memberPhoneFirst +"-"+ memberPhoneSecond + "-" + memberPhoneThird;
+			
 			$('#memberEmailErrorMsg').html('');
 			$('#memberPhoneErrorMsg').html('');
 
@@ -96,6 +97,8 @@
 				$('#memberPhoneErrorMsg').html('필수 항목입니다');
 			} else if (!memberPhoneThird) {
 				$('#memberPhoneErrorMsg').html('필수 항목입니다');
+			} else if(!phoneRegExp.test(regForPhoneNum)){
+				$('#memberPhoneErrorMsg').html('번호 형식에 맞지않습니다');
 			} else{
 				$('#findIdForm').submit();
 			}
