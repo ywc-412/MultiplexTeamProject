@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
+import com.mtms.domain.PhoneAuthVO;
 
 public interface MemberService {
 	// 회원 가입 서비스 메서드
@@ -31,4 +32,9 @@ public interface MemberService {
 	
 	public int removeMember(String memberId);
 	
+	public int phoneAuthInsert(PhoneAuthVO paVO);
+	
+	public PhoneAuthVO phoneAuthSelect(String authPhone, String authNumber);
+	
+	public int phoneAuthDelete(String authPhone);
 }

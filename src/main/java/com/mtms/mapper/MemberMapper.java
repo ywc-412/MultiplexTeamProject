@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mtms.domain.Criteria;
 import com.mtms.domain.MemberVO;
+import com.mtms.domain.PhoneAuthVO;
 
 public interface MemberMapper {
 	// 권한을 찾기 위한 read 메서드
@@ -38,4 +39,10 @@ public interface MemberMapper {
 	
 	// 회원 비밀번호 비교하기 위해서 memberPw 를 가져옴
 	public String memberPw(String memberId);
+	
+	public int phoneAuthInsert(PhoneAuthVO paVO);
+	
+	public PhoneAuthVO phoneAuthSelect(@Param("authPhone") String authPhone, @Param("authNumber")String authNumber);
+	
+	public int phoneAuthDelete(String authPhone);
 }

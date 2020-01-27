@@ -40,7 +40,10 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
 	<!-- offers_area_end -->
-
-
 	<%@ include file="include/footer.jsp" %>
+	
+	
