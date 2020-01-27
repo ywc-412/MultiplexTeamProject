@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-
+<c:if test="${!empty findNull}">
+	<script>
+		alert('${findNull}');
+	</script>
+</c:if>
 <c:if test="${!empty findMemberIdError}">
 	<script>
 		alert('${findMemberIdError}');
@@ -63,10 +67,10 @@
 						</div>
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneSecond" id="memberPhoneSecond"
-							class="single-input custom-text-left custom-input-size-phone">
+							class="single-input custom-text-left custom-input-size-phone" max="9999" maxlength="4">
 						<div class="custom-text-left custom-my-auto">-</div>
 						<input type="text" name="memberPhoneThird" id="memberPhoneThird"
-							class="single-input custom-text-left custom-input-size-phone">
+							class="single-input custom-text-left custom-input-size-phone" max="9999" maxlength="4">
 						<div class="custom-red-font custom-text-right"
 							id="memberPhoneErrorMsg"></div>
 					</div>
@@ -172,30 +176,23 @@
 			var memberPwErrorMsg = $('#memberPwErrorMsg').html('');
 			var memberPwChkErrorMsg = $('#memberPwChkErrorMsg').html('');
 			
+			v = $('input#memberPw').val();
 			
 			if (!memeberPw) {
 				$('#memberPwErrorMsg').html('필수 항목입니다');
 			} else if (!memberPwChk) {
 				$('#memberPwChkErrorMsg').html('필수 항목입니다');
-			} else{
-				registerResult = true;
-			}
-			
-			v = $('input#memberPw').val();
-
-			if (regex.test(v)) {
+			} else if(regex.test(v)){
 				$('#memberPwErrorMsg').html('사용 가능합니다!');
 				$('input#memberPw').focus();
 				registerResult = true;
-			}else{
+			} else if(!regex.test(v)){
 				$('#memberPwErrorMsg').html('영어 대소문자/숫자/특수문자의 조합으로 8자리 이상으로 입력해주세요');
 				registerResult = false;
-			}
-			
-			if($('input#memberPwChk').val() == $('input#memberPw').val()){
+			}else if($('input#memberPwChk').val() == $('input#memberPw').val()){
 				$('#memberPwChkErrorMsg').html('비밀번호 확인 되었습니다.');
 				registerResult = true;
-			}else {
+			}else{
 				$('#memberPwChkErrorMsg').html('비밀번호 항목과 일치하지 않습니다.');
 				registerResult = false;
 			}
@@ -208,7 +205,9 @@
 		
 		$('#findPwBtn').on("click", function(e) {
 			e.preventDefault();
-
+			
+			var phoneRegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+			
 			var memberId = $('input#memberId').val();
 			var memberEmail = $('input#memberEmail').val();
 			var memberEmailSecond = $('select#memberEmailSecond').val();
@@ -219,7 +218,9 @@
 			var memberIdErrorMsg = $('#memberIdErrorMsg').html('');
 			var memberEmailErrorMsg = $('#memberEmailErrorMsg').html('');
 			var memberPhoneErrorMsg = $('#memberPhoneErrorMsg').html('');
-
+			
+			var regForPhoneNum = memberPhoneFirst +"-"+ memberPhoneSecond + "-" + memberPhoneThird;
+			
 			if (!memberId) {
 				$('#memberIdErrorMsg').html('필수 항목입니다');
 			} else if (!memberEmail) {
@@ -232,6 +233,8 @@
 				$('#memberPhoneErrorMsg').html('필수 항목입니다');
 			} else if (!memberPhoneThird) {
 				$('#memberPhoneErrorMsg').html('필수 항목입니다');
+			} else if(!phoneRegExp.test(regForPhoneNum)){
+				$('#memberPhoneErrorMsg').html('번호 형식에 맞지않습니다');
 			} else {
 				$('#findPwForm').submit();
 			}

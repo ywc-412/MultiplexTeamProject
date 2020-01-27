@@ -28,6 +28,11 @@ CREATE TABLE suggest(
     suggestView NUMBER(5) DEFAULT 0 NOT NULL
 );
 
+CREATE TABLE smsAuth(
+    authPhone varchar(200) not null,
+    authNumber varchar(30) not null,
+    authDate DATE default sysdate
+);
 -- ¿µ¿ì SQL END
 
 

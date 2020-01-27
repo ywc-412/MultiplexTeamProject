@@ -8,6 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
+	<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="841929901504-rjhbj9a4obp0vp06ib87f52fiq2rg29r.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>S_CINEMA</title>
 	<meta name="description" content="">
@@ -116,7 +119,9 @@
 			</div>
 		</div>
 	</header>
-										
+	<sec:authorize access="isAuthenticated()">
+		<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+	</sec:authorize>									
 										
 	<script>
 		$(function(){
@@ -127,8 +132,14 @@
 			});
 			
 			$('#myPageBtn').on("click", function(e){
-				e.preventDefault();
-				$('#headerForm').submit();
+				var userConnect = '<c:out value="${userId}"/>';
+				
+				if(!userConnect){
+					alert('로그인이 필요한 서비스입니다');	
+				}else{
+					e.preventDefault();
+					$('#headerForm').submit();
+				}
 			});
 			
 			$('#loginBtn').on("click", function(e){
