@@ -20,6 +20,11 @@
 		</listener-class>
 	</listener>
 	
+	<error-page>
+    	<error-code>404</error-code>
+    	<location>/error404</location>
+	</error-page>
+
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

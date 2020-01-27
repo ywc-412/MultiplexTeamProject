@@ -140,6 +140,11 @@ public class CommonController {
 		return "redirect:/phoneAuthPopup?phone="+paVO.getAuthPhone();
 	}
 	
+	@GetMapping("/error404")
+	public void error404() {
+		
+	}
+	
 	@GetMapping(value="/{authPhone}/{authNumber}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<PhoneAuthVO> get(@PathVariable("authPhone") String authPhone, @PathVariable("authNumber") String authNumber){
 		

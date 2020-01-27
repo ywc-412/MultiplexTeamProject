@@ -68,7 +68,7 @@
 					<div class="mt-10 custom-input">
 						<div class="float-left">주소</div>
 						<button type="button" id="postcodify_search_button"
-							class="btn btn-primary btn-sm">검색</button>
+							class="btn btn-primary btn-sm" style="margin-left: 8px;">검색</button>
 						<input type="text" name="memberAddress" id="memberAddress"
 							class="postcodify_address single-input custom-text-right"
 							placeholder="상세주소는 입력받지 않습니다" readonly>
@@ -79,7 +79,7 @@
 					<div class="mt-10 custom-input align-middle">
 						<div>핸드폰</div>
 						<button type="button" class="btn btn-primary btn-sm"
-							id='phoneAuthBtn'>인증하기</button>
+							id='phoneAuthBtn' style="margin-left: 8px;">인증하기</button>
 						<div class="default-select custom-text-left">
 							<select name="memberPhoneFirst" id="memberPhoneFirst">
 								<option value="010">010</option>
@@ -126,7 +126,12 @@
 <script>
 	function popup(url){
         var name = "본인인증 서비스";
-        var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+        var popupX = (window.screen.width/2)-(200/2);
+ 	    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+     	var popupY= (window.screen.height / 2) - (300 / 2);
+     	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+        var option = "width = 500, height = 300, left = "+popupX+", top = "+popupY;
         window.open(url, name, option);
     }
 	
