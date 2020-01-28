@@ -58,21 +58,39 @@ $(function(){
 <!-- 	버튼위치 style -->
 	<div class="buttln_style">
 	 
-	 <button data-oper="list" class="btn btn-info">List</button>
+	 <button data-oper="list" class="btn btn-info" id="list_style">List</button>
 	 <div class="button_position">
-	 		<button type="submit" class="btn btn-primary" data-oper ="modify">수정</button>
-				
-				<form method="post" action="/review/remove" class="formRemove">
+			<sec:authentication property="principal" var="pinfo" />
+			<sec:authorize access="isAuthenticated()">
+				<!-- 로그인을 한건가 -->
+				<c:if test="${pinfo.username eq rvo.memberId }">
+					<!-- 내가 작성한건가 -->
+					<button type="submit" class="btn btn-primary" data-oper="modify">수정</button>
+				</c:if>
+			</sec:authorize>
+
+					<form method="post" action="/review/remove" class="formRemove">
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 				</form>
-				<button id="reviewRemove" class="btn btn-danger" type="submit">
-				삭제</button>
+				 <sec:authentication property="principal" var="pinfo"/>
+                <sec:authorize access="isAuthenticated()">	<!-- 로그인을 한건가 -->
+                	<c:if test="${pinfo.username eq rvo.memberId }">	<!-- 내가 작성한건가 -->
+						<button id="reviewRemove" class="btn btn-danger" type="submit">
+						삭제</button>
+				</c:if>
+				</sec:authorize>
 				<form method="get" action="/report/review/register">
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 				<input type="hidden" name="reviewTitle" value='<c:out value="${rvo.reviewTitle }"/>'>
-				<input type="hidden" name="memberId" value="로옹로옹">
-			<button id="reviewReport" class="btn btn-danger" type="submit">신고</button>
+				<input type="hidden" name="memberId"  value="<sec:authentication property="principal.username" />">
+				<sec:authentication property="principal" var="pinfo" />
+					<sec:authorize access="isAuthenticated()">
+						<!-- 로그인을 한건가 -->
+						<c:if test="${pinfo.username ne rvo.memberId }">
+							<button id="reviewReport" class="btn btn-danger" type="submit">신고</button>
+						</c:if>
+					</sec:authorize>
 			</form>
 			
 		</div>
@@ -95,16 +113,17 @@ $(function(){
 
 <!-- 리뷰 댓글 목록 -->
 	            <div class='row'>
+	            <sec:authentication property="principal" var="pinfo" />
+					<sec:authorize access="isAuthenticated()">
 	             <button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">댓글 등록</button>
+	             </sec:authorize>
 	               <div class="col-lg-12">
 	                  <!--  /.panel -->
 	                  <div class="panel panel-default">
 	                     <div class="panel-heading">
 	                        <i class="fa fa-comments fa-fw"></i> Reply
 	                        <!-- 댓글 달기 버튼 생성 -->
-<%-- 	                        <sec:authorize access="isAuthenticated()"> --%>
-<!-- 	                        	<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">new Reply</button> -->
-<%-- 	                        </sec:authorize> --%>
+	                      
 	                     </div>
 	                     <!-- /.panel-heading -->
 	                     <div class="panel-body">
@@ -128,7 +147,7 @@ $(function(){
 	                     
 <!-- 리뷰 댓글 목록END -->
 <!-- Modal --> 
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
 				   <div class="modal-dialog">
 				      <div class="modal-content">
 				         <div class="modal-header">
@@ -156,14 +175,20 @@ $(function(){
 					         	<div id="replyHere">
 					         	
 					         	</div>
-								<input type="hidden" name="replyContent" id="replyContent" value='<c:out value="${revo.replyContent }"/>'>
-								<input type="hidden" name="memberId" value="악성댓글">
-								<button id="replyReport" class="btn btn-danger" type="submit">댓글신고</button>
-							</form>	  
-				            <button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
-				            <button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
-				            <button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
-				            <button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					         	<sec:authentication property="principal" var="pinfo" />
+								<sec:authorize access="isAuthenticated()"> <!-- 로그인을 한건가 -->	 
+									<input type="hidden" name="replyContent" id="replyContent" value='<c:out value="${revo.replyContent }"/>'>
+									<input type="hidden" name="memberId"  value="<sec:authentication property="principal.username" />">
+									<button id="replyReport" class="btn btn-danger" type="button">신고</button>
+								</sec:authorize>
+							</form>
+							<sec:authentication property="principal" var="pinfo" />
+							<sec:authorize access="isAuthenticated()"> <!-- 로그인을 한건가 -->
+	  						 <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
+					          <button id='modalRemoveBtn' type="button" class="btn btn-danger">삭제</button> 
+					         </sec:authorize>
+					            <button id='modalRegisterBtn' type="button" class="btn btn-primary">등록</button>
+					            <button id='modalCloseBtn' type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				            <!-- data-dismiss="modal" 창닫기 -->
 				         </div> <!-- /.modal-footer END -->
 				      </div> <!-- /.modal-content END -->
@@ -205,24 +230,21 @@ $(function(){
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- 전체마진 END -->
+<sec:authorize access="isAuthenticated()">
+	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+</sec:authorize>
 <%@ include file="../include/footer.jsp"%>
 <script src="/resources/js/reply.js"></script>
 <script>
 
-	console.log($('input#replyContent').val());
 
 	$(function(){
-		$('#replyReport').on("click", function(e){
-			e.preventDefault();
-			var replyNo = $(".modal").data("rno");
-			$('#replyHere').append("<input type='hidden' name='replyNo' id='replyNo' value='"+ replyNo +"'/>");
-			$('#replyRegForm').submit();
-		});
-	})
-
-
-
-$(function(){
+		var memberId = null; 
+		<sec:authorize access="isAuthenticated()">
+			memberId = '<sec:authentication property="principal.username" />';
+		</sec:authorize>
+		
+		
 console.log(replyService);
 var reviewNo = '<c:out value="${rvo.reviewNo}"/>';
 console.log('r' + reviewNo);
@@ -322,12 +344,23 @@ var modalModBtn = $("#modalModBtn");	//버튼 각각 id로 찾아옴
 var modalRemoveBtn = $("#modalRemoveBtn");
 var modalRegisterBtn = $("#modalRegisterBtn");
 var replyReport = $("#replyReport");
-var memberId = 'hue9404'; //로그인한 아이디
+// var memberId = "<sec:authentication property='principal.username' />"; //로그인한 아이디
 
-// <sec:authorize access="isAuthenticated()">
-// 	replyer = '<sec:authentication property="principal.username" />';
-// </sec:authorize>
-
+$('#replyReport').on("click", function(e){
+			e.preventDefault();
+			var replyNo = $(".modal").data("rno");
+			 var originalReplyer = modalInputReplyer.val();
+			$('#replyHere').append("<input type='hidden' name='replyNo' id='replyNo' value='"+ replyNo +"'/>");
+			 if(memberId == originalReplyer){
+		          // 자신의 댓글이 아닌 경우
+		          alert('나의 댓글은 신고가 불가능합니다.');
+		          modal.modal("hide");
+		          return ;
+		       }else{
+					$('#replyRegForm').submit();
+		       }
+		});
+		
 var csrfHeaderName = "${_csrf.headerName}";	//CSRF 토큰 관련 변수 추가
 var csrfTokenValue = "${_csrf.token}";	//CSRF
 
@@ -338,6 +371,7 @@ $(document).ajaxSend(function(e, xhr, options){	//전송 전 추가 헤더 설�
 
 //새 댓글추가 버튼 누르면 실행
 $("#addReplyBtn").on("click", function(e){
+ 
 	modal.find("input").val("");						//input타입을 찾아서 value값을 공백으로
 	//replyer를 폼에 추가
 	modal.find("input[name='memberId']").val(memberId);
@@ -361,7 +395,7 @@ modalRegisterBtn.on("click", function(e){
 	
     //reply.js add호출
     replyService.add(reply, function(result){
-       alert(result);					//알림창 result에 success
+       					//알림창 result에 success
       
        modal.find("input").val("");		//input태그를 찾아서 value값을 공백으로 한다
        modal.modal("hide");				//모달창을 숨긴다
@@ -375,7 +409,7 @@ modalRegisterBtn.on("click", function(e){
 
 //댓글이 클릭이 되면 조회
 	$(".chat").on("click", 'li', function(e){	//UL밑에 li 클릭하면
-	alert($(this).data('rno'));			//댓글 클릭시 rno 출력
+		//댓글 클릭시 rno 출력
 
 	console.log("111" +$(this).data("rno"));
 	
@@ -408,14 +442,22 @@ modalRegisterBtn.on("click", function(e){
 			replyContent : modalInputReply.val()
 			
 		}, function(result){
+			 var originalReplyer = modalInputReplyer.val();
+	          if(memberId != originalReplyer){
+	             // 자신의 댓글이 아닌 경우
+	             alert('자신의 댓글만 수정 가능합니다.');
+	             modal.modal("hide");
+	             return ;
+	          }else{
 			alert("수정완료");
 			
 			modal.modal("hide");				
 	        showList(pageNum);
-			
+	          }
 		}, function(err){
 			console.log(err);
 		});
+	    	 
     });
     //END 수정 버튼 이벤트 처리
     
@@ -427,17 +469,16 @@ modalRegisterBtn.on("click", function(e){
 //           modal.modal("hide");
 //           return ;
 //        }
-//        var originalReplyer = modalInputReplyer.val();
-//        if(memberId != originalReplyer){
-//           // 자신의 댓글이 아닌 경우
-//           alert('자신의 댓글만 삭제 가능합니다.');
-//           modal.modal("hide");
-//           return ;
-//        }
+       var originalReplyer = modalInputReplyer.val();
+       if(memberId != originalReplyer){
+          // 자신의 댓글이 아닌 경우
+          alert('자신의 댓글만 삭제 가능합니다.');
+          modal.modal("hide");
+          return ;
+       }
        var replyNo = modal.data("rno");
 //        replyService.remove(replyNo, originalReplyer, function(result){  나중에 원래 쓸것
     	replyService.remove(replyNo, memberId, function(result){
-          alert(result);
           modal.modal("hide");
           showList(pageNum);
        });

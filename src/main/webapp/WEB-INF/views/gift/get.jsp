@@ -54,7 +54,7 @@
 		</div><br>
 	<!-- 버튼 s -->		
 	<div class="float-left">
-		<button class="btn btn-primary float-left custom-button-gift pull-left" data-oper='list'>LIST</button>
+		<button class="btn btn-primary float-left custom-button-gift pull-left" id="list">LIST</button>
 	</div>		
 	<div class="float-right">	
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -69,21 +69,26 @@
 			<button type="submit" class="btn btn-danger custom-button-gift" data-oper="remove">삭제</button>
 		</form>
 		</sec:authorize>
-		<sec:authorize access="hasRole('ROLE_MEMBER')">
+		
 		<form action="/mygift/register" id="payForm" method="post" style="float: left">
 			<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
 			<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
 			<input type="hidden" name="giftSet" id="giftSet" value="${gift.giftSet}"> 
 			<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
 			<input type="hidden" name="totalPrice">
+			<sec:authorize access="hasRole('ROLE_MEMBER')">
 			<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
+			</sec:authorize>
 		</form>
-		</sec:authorize>
+		
 	</div>	
 	<!-- 버튼 e -->	
+
 		<form action="/gift/paying" method="post" id="payRealForm">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+			<sec:authorize access="isAuthenticated()">
 			<input type="hidden" name="memberId" id="memberInput" value="<sec:authentication property='principal.username'/>">
+			</sec:authorize>
 			<div id="payHere">
 				<!-- 결제 -->
 			</div>
@@ -91,9 +96,9 @@
 	</div>	
 </section>
 <!-- board e -->
-<sec:authorize access="isAuthenticated()">
-	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
-</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+	</sec:authorize>
 
 <script>
 
@@ -171,9 +176,7 @@
 	    	   } else {
 	    		   false;
 	    	   }
-	      }else if (operation === 'list') {
-				formObj.attr("action", "/gift/list").attr("method", "get"); 
-				formObj.submit();
+	      
 	      }else if(operation === 'modify'){
 	         formObj.attr("action", "/gift/modify");
 	         formObj.submit();
@@ -218,6 +221,10 @@
             }
         });
     });   
+    
+    $("#list").click(function(){ 
+    	self.location='/gift/list';
+    });
     
 </script>
 

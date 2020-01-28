@@ -1,5 +1,6 @@
  package com.mtms.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,6 @@ public class LostController {
 	
 	@PostMapping("modify")
 	public String modify(LostVO lvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		System.out.println("로스트 모디파이 들어왔다"+lvo);
 		if(lostService.modify(lvo)) {
 			rttr.addFlashAttribute("result", "success");
 		}
@@ -54,7 +54,6 @@ public class LostController {
 	
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
-		System.out.println("로스트 리스티로 들어온다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		model.addAttribute("list", lostService.getList(cri));
 		int total = lostService.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
@@ -66,8 +65,8 @@ public class LostController {
 	}
 	
 	@PostMapping("register")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")	
 	public String register(LostVO lvo, RedirectAttributes rttr) {
-		System.out.println("로스트 컨트롤러 register에 들어온다.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		lostService.register(lvo);
 		rttr.addFlashAttribute("result",lvo.getLostNo());
 		return "redirect:/lost/list";

@@ -177,8 +177,6 @@ public class MemberController {
 		// 회원 수정 , 컨트롤러
 		int result = memberService.modifyMember(memberVO);
 		
-		System.out.println("result : " + result);
-		
 		if(result == 1) {
 			rttr.addFlashAttribute("updateSuccess", "수정되었습니다");
 			rttr.addAttribute("memberId", memberVO.getMemberId());

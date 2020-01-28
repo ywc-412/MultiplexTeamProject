@@ -14,16 +14,15 @@
 	
 	<input type="text" id="content_register" name="lostContent">
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-	
+	</form>
 	<div class="title_under2"></div>
 <!-- 	버튼위치 style -->
 	<div class="buttln_style">
 	 <button type="button" id="reviewList" class="btn btn-primary">등록</button>
-	 <button id="censle" class="btn btn-primary">취소</button>
-	 </div>
-<!-- 	END 버튼위치 style -->
-</form>
+	<button id="censle" class="btn btn-primary">취소</button>
+  </div>
 
+  <!-- 	END 버튼위치 style -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -44,7 +43,6 @@
     </div>
   </div>
 </div>
-
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 
@@ -74,8 +72,8 @@ $(function(){
 		e.preventDefault();
 		$("#registerModal").modal('hide');
 	});
-	
-	
-	
+	$("#censle").on("click",function(e){
+		location.href="/lost/list";
+	});
 });
 </script>

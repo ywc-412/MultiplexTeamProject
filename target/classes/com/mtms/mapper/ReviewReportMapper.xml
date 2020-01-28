@@ -38,20 +38,20 @@
       ]]> 
    </select>
       
- 
-   <insert id="insert">
-     INSERT INTO reviewReport(reviewReportNo, memberId, reviewNo,reviewReportContent)
-   VALUES(seq_reviewReport.NEXTVAL, #{memberId}, #{reviewNo},#{reviewReportContent})
-   </insert>
-   
-   <delete id="delete">
-    DELETE review WHERE reviewNo = #{reviewNo}
-   </delete>
-   
-   <select id="read" resultType="com.mtms.domain.ReviewReportVO">
-       SELECT b.reviewTitle,a.reviewReportNo,a.memberId,a.reviewNo,a.reviewReportContent,a.reviewReportDate 
-          FROM reviewReport a, review b
-          WHERE a.reviewNo = b.reviewNo and
-          reviewReportNo = #{reviewReportNo}
-   </select>
+
+	<insert id="insert">
+  	INSERT INTO reviewReport(reviewReportNo, memberId, reviewNo,reviewReportContent)
+	VALUES(seq_reviewReport.NEXTVAL, #{memberId}, #{reviewNo},#{reviewReportContent})
+	</insert>
+	
+	<delete id="delete">
+	 DELETE review WHERE reviewNo = #{reviewNo}
+	</delete>
+	
+	<select id="read" resultType="com.mtms.domain.ReviewReportVO">
+		 SELECT b.reviewTitle,a.reviewReportNo,a.memberId,a.reviewNo,a.reviewReportContent,a.reviewReportDate 
+			 FROM reviewReport a, review b
+			 WHERE a.reviewNo = b.reviewNo and
+			 reviewReportNo = #{reviewReportNo}
+	</select>
 </mapper>

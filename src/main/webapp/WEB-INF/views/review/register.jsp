@@ -9,13 +9,13 @@
 <!-- 	계시판명 END -->
 	<form action="/review/register" method="post" class="registerForm">
 	<input type="text" id="title_register" value="영화명 : ${movieTitle }" readOnly="readOnly" style="cursor : Default;"><br>
-   <input type="hidden" value="${movieNo }" name="movieNo">
+     <input type="hidden" value="${movieNo }" name="movieNo">
 	
 	<input type="text" id="movie_register"  name="reviewTitle"><br>
 	
 	<input type="text" id="content_register" name="reviewContent">
 	<div class="form-group">
-	<input type="hidden" value="hue9404" name="memberId">
+	<input type="hidden" name="memberId" value='<sec:authentication property="principal.username" />'>
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</div>
 	<div class="title_under2"></div>

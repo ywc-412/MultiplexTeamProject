@@ -3,12 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ include file="../include/header.jsp"%>
-<div class="side_margin">
-	<div class="row">
-		<div class="review_title">습득물</div>
-		
-	</div>
-	<div class="title_under"></div>
+<div class="container">
+			<!--<div class="row">-->
+			<div class="row no-mean">
+				<div class="col-md-12">
+					<div class="custom-board-title">
+						<h3 class="custom-font-bold">습득물</h3>
+					</div>
 	<form action="/lost/register" method="get" class="formRegister"></form>
 	<div class="buttln_style">
 	 <span class="button_position">
@@ -16,8 +17,8 @@
 	</span>
 	 </div>
 <!-- 	END 버튼위치 style -->
-		<div class="table_position">
-		  <table class="table table-striped table-bordered table-hover">	   
+		<div class="tab-content text-center" id="nav-tabContent">
+		  <table class="table custom-th-size">	   	   
                     <thead>
                         <tr>
                             <th>제목<!-- Rendering engine --></th>
@@ -42,21 +43,26 @@
           </div>
 <!--           table_position -->
 <!-- 페이지 번호 출력 -->
-	              <ul class="pagination">
-	                 <c:if test="${pageMaker.prev }">
-	                    <li class="paginate_button previous">
-	                       <a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
-	                 </c:if>
-	                 <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-	                    <li class='paginate_button ${pageMaker.cri.pageNum == num ? "active":"" }'>
-	                       <a class="page-link" href="${num}">${num }</a></li>
-	                 </c:forEach>
-	                 <c:if test="${pageMaker.next }">
-	                    <li class="paginate_button next">
-	                       <a class="page-link" href="${pageMaker.endPage + 1 }">Next</a></li>
-	                 </c:if>
-	              </ul>
-
+	                 <!-- 페이지 번호 출력 -->
+	<div class="pagination justify-content-center clear">
+		<ul class="pagination">
+			<c:if test="${pageMaker.prev }">
+				<li class="paginate_button previous"><a class="page-link"
+					href="${pageMaker.startPage -1 }">Previous</a></li>
+			</c:if>
+			<c:forEach var="num" begin="${pageMaker.startPage }"
+				end="${pageMaker.endPage }">
+				<li
+					class='paginate_button ${pageMaker.cri.pageNum == num ? "active":"" }'>
+					<a class="page-link" href="${num}">${num }</a>
+				</li>
+			</c:forEach>
+			<c:if test="${pageMaker.next }">
+				<li class="paginate_button next"><a class="page-link"
+					href="${pageMaker.endPage + 1 }">Next</a></li>
+			</c:if>
+		</ul>
+	</div>
 	 <!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 -->
                 <form id="actionForm" action="/lost/list" method="get">
 	           		<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}">
@@ -65,6 +71,8 @@
                 	<input type="hidden" name="type" value="${pageMaker.cri.type}">
                 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
     			</form>
+    			</div>
+    			</div>
     			</div>
 		<!-- 전체마진 END -->
 <%@ include file="../include/footer.jsp"%>

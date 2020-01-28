@@ -22,7 +22,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 		
 		session.setAttribute("s_cineS", "s_cine_"+(int)(Math.random()*999999));
 		
-		System.out.println(session.getAttribute("s_cineS"));
 		response.sendRedirect("/");
 	}
 	

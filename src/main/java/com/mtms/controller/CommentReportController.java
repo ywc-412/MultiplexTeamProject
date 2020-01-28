@@ -102,14 +102,10 @@ public class CommentReportController {
    @GetMapping("deleteAll")
    public String deleteAll(@RequestParam("checkComment") String checkComment, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 //         commentService
-//      System.out.println("COMMENT CONTROLLER - CHECKCOMMENT : " + checkComment);
       
       String[] arrComment = checkComment.toString().split(",");
       for( int i=0; i<arrComment.length; i++) {
-//         System.out.println(Integer.parseInt(arrComment[i]));
-         
-         int result = commentService.remove(Integer.parseInt(arrComment[i]));
-//         System.out.println(result);
+         commentService.remove(Integer.parseInt(arrComment[i]));
          
       }
       

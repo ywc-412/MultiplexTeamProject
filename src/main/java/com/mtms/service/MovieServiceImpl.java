@@ -153,7 +153,7 @@ public class MovieServiceImpl implements MovieService{
    //전체 예매율
    @Override
    public int totalMovie() {
-      
+
 	   Integer result = movieMapper.sumMovie();
 	   System.out.println(result);
 	   if(result == null) {

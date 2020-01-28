@@ -17,7 +17,7 @@
 	<div class="high_margin"></div>
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	<input type="text" id="content_register" name="reviewReportContent">
-	<input type="hidden" name="memberId" value="홍홍">
+	<input type="hidden" name="memberId"  value="<sec:authentication property="principal.username" />">
 	<input type="hidden" name="reviewNo" value="${rvo.reviewNo }">
 	</form>
 		<div class="title_under2"></div>
@@ -51,7 +51,9 @@
 </div>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
+<sec:authorize access="isAuthenticated()">
+	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+</sec:authorize>
 </div>
 <!-- 전체마진 END -->
 <%@ include file="../../include/footer.jsp"%>
