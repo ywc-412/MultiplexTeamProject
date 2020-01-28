@@ -3,38 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../include/header.jsp"%>
-<div class="side_margin">
-	<div class="row">
-		<div class="review_title">관리자 페이지</div>
-
-	</div>
-	<div class="title_under"></div>
-	<!-- 검색 조건 및 키워드 입력 부분 -->
-	<div class="row">
-		<div class="col-lg-12"></div>
-	</div>
-	<!-- 왼쪽 메뉴바 START -->
-	<div class="left_menu">
-		<div class="left_menu_position">
-			<div class="left_menu_title"></div>
-			<ul class="user_manager">
-				회원 관리
-				<li class="unser_ma"></li>
-				<li class="unser_ma"></li>
-			</ul>
-			<ul class="user_manager">
-				신고관리
-				<li class="unser_ma">리뷰 신고 관리</li>
-				<li class="unser_ma">리뷰 댓글 신고 관리</li>
-				<li class="unser_ma">한줄평 신고 관리</li>
-			</ul>
-
+<div class="container">
+    	<div class="mycomment-left">
+		    <h3 class="mb-20">관리자 페이지</h3>
+			<div class="">
+				<ul class="unordered-list">
+					<li class="yeong-myfont">내 정보 조회</li>
+					<li class="yeong-myfont">예매 내역</li>
+				</ul>
+			</div>
 		</div>
-	</div>
-
-	<!-- 왼쪽 메뉴바 START END-->
-
-	<div class="high_margin"></div>
 	<div class="table_position1">
 		<span class="button_position">
 			<button id="reportRemove" class="btn btn-danger">삭제</button>
@@ -66,7 +44,6 @@
 			</tbody>
 		</table>
 		<!-- END 게시물 출력 테이블 -->
-	</div>
 	<form method="get" id="getReview"></form>
 	<!--           table_position -->
 	<!-- 페이지 번호 출력 -->
@@ -88,6 +65,7 @@
 					href="${pageMaker.endPage + 1 }">Next</a></li>
 			</c:if>
 		</ul>
+	</div>
 	</div>
 	<!-- END 페이지 번호 출력 -->
 	<!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 -->
