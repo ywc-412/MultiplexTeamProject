@@ -106,5 +106,10 @@
 		SELECT m.movieTitle, to_char(s.scheduleDate, 'yyyymmdd') as scheduleDate, s.scheduleTime, s.screen FROM schedule s, movie m
 		WHERE to_char(s.scheduleDate, 'yyyymmdd') = #{scheduleDate} and s.movieNo = m.movieNo ORDER BY screen, scheduleTime
 	</select>
+	
+	<!-- 해당 영화가 스케줄에 등록되어있는 지 확인 (영화 삭제 불가) -->
+	<select id="movieChk">
+		SELECT COUNT(*) FROM schedule WHERE movieNo = #{movieNo}	
+	</select>
 
 </mapper>
