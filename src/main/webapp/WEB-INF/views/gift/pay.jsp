@@ -41,8 +41,9 @@
 (function(){
 	$("#giftArea").find(".single_gift").each(function(){	
 		var $this = $(this);			
-		var li = ""; 		
-		$.get("/myGift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {
+		var li = ""; 	
+		
+		$.get("/gift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {
 		 console.log(data);				
 			var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;	 
 			filePath = filePath.replace(new RegExp(/\\/g), "/");
@@ -51,5 +52,6 @@
 				  		$this.find(".uploadResult").find("ul").append(li);
 		});//END JSON	
 	});
+	})();
 </script>
 <%@include file="../include/footer.jsp" %>

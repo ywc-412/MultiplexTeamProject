@@ -55,11 +55,13 @@
 				<input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}"> 
 				<input type="hidden" name="amount" value="${cri.amount}">
 			</form>
-			<button type="button" class="btn btn-primary float-left custom-button-gift"  id="listBtn">LIST</button>
+			<button type="button" class="btn btn-primary float-left custom-button-gift" id="listBtn">LIST</button>
 			<c:if test="${!empty mygift[0].expireDate}">
 				<div class="pull-right">
-					<button type="button" class="btn btn-primary custom-button-gift" id="extendBtn">기간연장</button>
-					<button type="button" class="btn btn-primary custom-button-gift" id="refundBtn">환불</button>
+					<c:if test="${mygift[0].extendChk == 0}">
+						<button type="button" class="btn btn-primary custom-button-gift" id="extendBtn">기간연장</button>
+					</c:if>
+						<button type="button" class="btn btn-primary custom-button-gift" id="refundBtn">환불</button>
 				</div>
 			</c:if>
 		</div>

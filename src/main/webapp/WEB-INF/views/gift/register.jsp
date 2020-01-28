@@ -23,20 +23,20 @@
 						<!-- 사진 -->
 					</ul>
 				</div>				
-				<form action="/gift/register" method="post" role="form">
+				<form id="registerForm" action="/gift/register" method="post" role="form">
 					<div class="form-group">
-						<label>이름</label><input class="form-control" name="giftName">
+						<label>이름</label><input class="form-control" name="giftName" id="giftName">
 					</div>
 					<div class="form-group">
-						<label>가격</label><input class="form-control" name="giftPrice">
+						<label>가격</label><input class="form-control" name="giftPrice" id="giftPrice">
 					</div>
 					<div class="form-group">
-						<label>구성</label><input class="form-control" name="giftSet">
+						<label>구성</label><input class="form-control" name="giftSet" id="giftSet">
 					</div>
 					<hr>
 					<div class="form-group text-center">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-						<button type="submit" class="btn btn-primary btn-sm">등록</button>
+						<button type="button" class="btn btn-primary btn-sm" id="regBtn">등록</button>
 						<button type="button" class="btn btn-secondary btn-sm" onclick="registerCancel()">취소</button>						
 					</div>
 				</form>				
@@ -57,19 +57,29 @@
 	}
 	
 	//form 전송 
-	$(function(e){
+	$(function(){
 		var formObj = $("form[role='form']");
-		$("button[type='submit']").click(function(e){
-			e.preventDefault();	//첨부파일 관련 처리를 할 수 있도록 기본 동작 막음			
-			console.log('submit clicked!');				
+		$("#regBtn").click(function(){					
 			var tags = "";			
-			$('.uploadResult ul li').each(function(i,obj){
-				var o = $(obj);
-				tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("filename") + "'>";
-				tags += "<input type='hidden' name='attachList["+i+"].giftUuid' value='" + o.data("uuid") + "'>";
-				tags += "<input type='hidden' name='attachList["+i+"].giftUploadPath' value='" + o.data("path") + "'>";
-			});	//each			
-			$("form[role='form']").append(tags).submit();
+			var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;	
+			
+			if ($("#giftName").val() == "" || $("#giftPrice").val() == "" || $("#giftSet").val() == "") {
+				alert("내용을 입력해주세요");	
+			} else if(files.length == 0) {
+				alert('파일을 선택해주세요');
+			} else {								 
+				$('.uploadResult ul li').each(function(i,obj){
+					var o = $(obj);
+					tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("filename") + "'>";
+					tags += "<input type='hidden' name='attachList["+i+"].giftUuid' value='" + o.data("uuid") + "'>";
+					tags += "<input type='hidden' name='attachList["+i+"].giftUploadPath' value='" + o.data("path") + "'>";
+				});	//each	
+				
+				if(confirm("정말로 등록하시겠습니까?") == true) { 
+					formObj.append(tags).submit();
+				}
+			}
 		});//END form
 		
 	//파일의 확장자와 크기를 설정하고 이를 검사하는 함수

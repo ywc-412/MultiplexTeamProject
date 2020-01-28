@@ -33,7 +33,7 @@
 										</ul>
 									</div>									
 								<a class="move" href="${gift.giftNo}">
-								 	<span><c:out value="${gift.giftName}"/></span><br>																																	 
+								 	 <span><c:out value="${gift.giftName}"/></span><br>																																	 
 									 <span><fmt:formatNumber value="${gift.giftPrice}" pattern="###,###"/>원</span>
 								</a> 
 								</div>
@@ -45,7 +45,7 @@
 					</div>
 					<!-- data e -->
 						<form id="actionForm" action="/gift/list" method="get">
-							<input type="hidden" name="memberId" value="${principal.username}">
+
 						</form>	
 			</div>
 		</div>

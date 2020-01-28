@@ -22,10 +22,10 @@
                     <textarea class="form-control" rows="3" name="noticeContent"></textarea>
                 </div>
                 <hr>
-                <div class="form-group text-center">               
+                <div class="form-group text-center">    
+                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">           
                     <button type="submit"  id="register" class="btn btn-primary btn-sm">등록</button>
-                    <button type="button"  id="cancel" class="btn btn-secondary btn-sm">취소</button>   
-                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                 
+                    <button type="button"  id="cancel" class="btn btn-secondary btn-sm">취소</button>                                     
                 </div>
                 </form>              
             </div>

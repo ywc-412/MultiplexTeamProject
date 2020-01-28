@@ -1,17 +1,11 @@
 package com.mtms.controller;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +47,6 @@ public class GiftController {
 	//기프티콘 등록(P)
 	@PostMapping("register")	
 	public String register(GiftVO gift, RedirectAttributes rttr) {
-		log.info("Gift Controller register modify,,," + gift);
 		if(gift.getAttachList() != null) {
 			gift.getAttachList().forEach(attach -> log.warn(attach));
 		}		
@@ -65,7 +58,7 @@ public class GiftController {
 	//기프티콘 등록(G)
 	@GetMapping("register")	
 	public void register() {
-		log.warn("Gift Controller register get,,,");
+		
 	}
 	
 	//기프티콘 수정(P)
@@ -98,7 +91,6 @@ public class GiftController {
 	//기프티콘 사진 붙이기	
 	@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)	
 	public ResponseEntity<List<GiftAttachVO>> getAttachList(int giftNo) {		
-		log.warn("Gift AttachList,,,," + giftNo);
 		return new ResponseEntity<>(giftService.getAttachList(giftNo), HttpStatus.OK);
 	}
 	
