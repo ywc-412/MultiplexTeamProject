@@ -33,13 +33,13 @@
 	
 	<select id="getListWithPaging" resultMap="MyGift">
 		<![CDATA[SELECT rn, giftNo, giftName, giftPrice, memberId, myGiftNo, status, expireDate, extendChk 
-				 FROM (SELECT rownum rn, X.* 
-				 	   FROM (SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo, myGift.expireDate, myGift.status, myGift.extendChk
+				 FROM (SELECT rownum rn, X.* FROM (SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo, myGift.expireDate, myGift.status, myGift.extendChk
                              FROM gift, myGift
-                             WHERE gift.giftNo = myGift.giftNo AND myGift.memberId = 'hue9404' ORDER BY myGift.status ASC, myGift.expireDate ASC
+                             WHERE gift.giftNo = myGift.giftNo AND myGift.memberId = #{memberId} ORDER BY myGift.status ASC, myGift.expireDate ASC, myGift.extendChk ASC
                    ) X WHERE rownum <= #{cri.pageNum} * #{cri.amount})
 				 WHERE rn > (#{cri.pageNum}-1) * #{cri.amount}]]>
-	</select>
+	</select> 
+
 	
 	<!-- 내 기프티콘 상세보기 -->
 	<select id="read" resultMap="MyGift">

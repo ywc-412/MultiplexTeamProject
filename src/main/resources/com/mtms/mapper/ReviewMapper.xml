@@ -39,24 +39,42 @@
 
 <select id="getListWithPaging" resultType="com.mtms.domain.ReviewVO">
 		<![CDATA[
-			SELECT
-			movieNo,reviewTitle,memberId,reviewView,reviewDate, reviewNo
-			from 
-				(
-				select /*+INDEX_DESC(review PK_review )*/
-				rownum rn,movieNo,reviewTitle,memberId,reviewView,reviewDate,reviewNo
-				from 
-				review
-				where
+			 SELECT 
+            c.movieTitle,
+           c.reviewNo,
+           c.memberId,
+           c.movieNo,
+           c.reviewTitle,
+           c.reviewContent,
+           c.reviewView,
+           c.reviewDate
+    from 
+        (
+       select /*+INDEX_ASC(review PK_review )*/
+                rownum rn,
+                    b.movieTitle,
+                       a.reviewNo,
+                       a.movieNo,
+                        a.memberId,
+                       a.reviewTitle,
+                       a.reviewContent,
+                       a.reviewView,
+                       a.reviewDate
+                       
+        from review a,
+             movie b
+        where
 				
       ]]> 
       	
       	<!-- 보관해 둔 쿼리 사용 -->
       	<include refid="criteria"></include>
       
-      <![CDATA[     
-            rownum <= #{pageNum} * #{amount}
-            ) WHERE rn > (#{pageNum} - 1) * #{amount}
+      <![CDATA[ 
+      		a.movieNo = b.movieNo     
+           and rownum <= #{pageNum} * #{amount}
+            )c
+             WHERE c.rn > (#{pageNum} - 1) * #{amount}
       ]]> 
    </select>
 

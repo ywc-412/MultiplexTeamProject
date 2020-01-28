@@ -28,11 +28,11 @@
 				<form role="form" method="post" action="/login">
 					<div class="mt-10 custom-input-size-login">
 						<input type="text" name="username"
-							class="single-input custom-text-right custom-input-color" id="userIdInput">
+							class="single-input custom-text-right custom-input-color" id="userIdInput" maxlength="25">
 					</div>
 					<div class="mt-10 custom-input-size-login">
 						<input type="password" name="password"
-							class="single-input custom-text-right custom-input-color" id="userPassword">
+							class="single-input custom-text-right custom-input-color" id="userPassword" maxlength="60">
 					</div>
 					<div class="">
 						<button class="btn btn-primary custom-button" id="loginBtn">로그인</button>

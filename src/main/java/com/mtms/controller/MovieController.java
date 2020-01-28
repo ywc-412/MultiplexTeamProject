@@ -41,7 +41,6 @@ public class MovieController {
 
    //첨부 파일 삭제 메서드 - 영화사진 
    private void deleteFiles(List<MovieAttachVO> attachList) {
-      log.info("delete attach files");
       
       attachList.forEach(attach -> {
          try {
@@ -53,7 +52,6 @@ public class MovieController {
                Files.delete(thumbNail); //썸네일파일 삭제
             }
          } catch (IOException e) {
-            log.error("delete file error" + e.getMessage());
             e.printStackTrace();
          }
       });
@@ -62,7 +60,6 @@ public class MovieController {
    //영화 상세보기(보여주기)
    @GetMapping("get")
    public void get(Model model, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
-      System.out.println("컨트롤러 상세보기 get");
       
       //평균 평점
       int totalStar = movieService.totalStar(movieNo);
@@ -85,7 +82,6 @@ public class MovieController {
    //영화 수정 보여주기
    @GetMapping("modify")
    public void modify(Model model, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
-      System.out.println("컨트롤러 상세보기 modify");
       model.addAttribute("movie", movieService.get(movieNo));
    }
    
@@ -93,9 +89,6 @@ public class MovieController {
 //   @PreAuthorize("principal.username == #memo.id") //수정필요
    @PostMapping("modify")
    public String modify(MovieVO movie, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-      
-      System.out.println("컨트롤러 모디파이");
-      
       if(movieService.modify(movie)) {
          rttr.addFlashAttribute("result", "success");
       }
@@ -112,7 +105,6 @@ public class MovieController {
    //영화  삭제 처리
    @GetMapping("remove")
    public String remove(@RequestParam("movieNo") int movieNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
-      System.out.println("컨트롤러 제거");
       
       //첨부파일이 있는경우 파일 삭제 메서드 호출
       List<MovieAttachVO> attachList = movieService.getAttachList(movieNo);
@@ -135,14 +127,12 @@ public class MovieController {
    @Secured("ROLE_ADMIN")
    @GetMapping("register")
    public void register() {
-      log.info("controller 영화 register");
    }
       
    //영화 등록 처리
    @PostMapping("register")
    @Secured("ROLE_ADMIN")
    public String register(MovieVO movie, RedirectAttributes rttr) {
-      log.info("controller 영화 register");
       
       //첨부파일 있을때 처리
       if(movie.getAttachList() != null) {
@@ -157,9 +147,9 @@ public class MovieController {
    //영화 전체 조회
    @GetMapping("list")
    public void list(Criteria cri, Model model) {
-      System.out.println("컨트롤러 영화조회");
       
       int totalMovie = movieService.totalMovie();
+      System.out.println(totalMovie);
       
       model.addAttribute("totalMovie", totalMovie);
       model.addAttribute("attachList", movieService.attachGetList());
@@ -171,7 +161,6 @@ public class MovieController {
    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
    @ResponseBody
    public ResponseEntity<List<MovieAttachVO>> getAttachList(int movieNo) {
-      System.out.println("무비사진");
       return new ResponseEntity<>(movieService.getAttachList(movieNo), HttpStatus.OK);
    }
    
@@ -180,7 +169,6 @@ public class MovieController {
          produces = { MediaType.APPLICATION_XML_VALUE,
                         MediaType.APPLICATION_JSON_UTF8_VALUE})
    public ResponseEntity<List<MovieVO>> getName(@PathVariable("movieName") String movieName){
-      System.out.println("MOVIE CONTROLLER - GETNAME");
       return new ResponseEntity<>(movieService.getMovieName(movieName), HttpStatus.OK);
    }
    

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="section_title text-center yeong-movieTitle">
-                    <h3>영화 뿌</h3>
+                    <h3>영화 랭킹</h3>
                 </div>
             </div>
         </div>
@@ -57,7 +57,24 @@
                      <div class="ovrer">
                         <a href="${moveList.movieNo }" class="move">
                                 ${moveList.movieTitle }<br>
-                                <fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 } " type="pattern" pattern="0.0" /> %
+								<c:catch var="movieTotal">
+									<c:set value="${0 + totalMovie}" />
+								</c:catch>
+								<c:choose>
+									<c:when test="${moveList.yesterdayNum == 0}">
+										0.0 %
+									</c:when>
+									<c:when test="${not empty totalMovie}">
+										<fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 }" type="pattern" pattern="0.0" /> %
+									</c:when>
+									<c:otherwise>
+										<fmt:formatNumber type="currency" currencySymbol="$" maxFractionDigits="2" minFractionDigits="2"  >
+											????
+										</fmt:formatNumber>
+									</c:otherwise>
+								</c:choose>
+								
+<%--                                 <fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 } " type="pattern" pattern="0.0" /> % --%>
                          </a>
                      </div>
                  </div>
@@ -110,7 +127,7 @@
          <input type="hidden" id="keyword" name="keyword" value='<c:out value="${pageMaker.cri.keyword }"/>'>
     </form>
   
-       <script>   
+       <script>
        $(function(){
           
           $("#movieContArea").find(".single_movie").each(function() {
@@ -175,7 +192,7 @@
                return false;
             } 
             if(!searchForm.find("input[name='keyword']").val()){   //키워드를 입력하지 않았을때
-               alert('키워드를 선택하세요');
+               alert('내용을 입력하세요');
                return false;
             }
             //검색 결과 페이지 번호가 1이 되도록 처리

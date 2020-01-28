@@ -68,9 +68,9 @@
 								<nav>
 									<ul id="navigation">
 										<li><a class="" href="/movie/list">영화</a></li>
-										<li><a class="" href="/reserve/register">예매 <i class="ti-angle-down"></i></a>
+										<li><a class="/reserve/register" href="" id="goReserve">예매 <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="/reserve/register">영화 예매</a></li>
+												<li><a href="/reserve/register" id="goReserve">영화 예매</a></li>
 												<li><a href="/schedule/get">상영시간표</a></li>
 											</ul>
 										</li>
@@ -136,10 +136,23 @@
 				var userConnect = '<c:out value="${userId}"/>';
 				
 				if(!userConnect){
-					alert('로그인이 필요한 서비스입니다');	
+					alert('로그인이 필요한 서비스입니다');
 				}else{
 					e.preventDefault();
 					$('#headerForm').submit();
+				}
+			});
+			
+			$(document).on("click", "#goReserve", function(e){
+				var userConnect = '<c:out value="${userId}"/>';
+				
+				if(!userConnect){
+					alert('로그인이 필요한 서비스입니다');	
+					e.preventDefault();
+					location.href="/customLogin";
+				}else{
+					e.preventDefault();
+					location.href="/reserve/register";
 				}
 			});
 			

@@ -22,7 +22,22 @@
                      </div>
                      <div class="gj-text-align-center"><br>
                         <p class="custom-movie-title-font">${moveList.movieTitle }</p>
-<%--                         <fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 } " type="pattern" pattern="0.0" /> % --%>
+                       		<c:catch var="movieTotal">
+								<c:set value="${0 + totalMovie}" />
+							</c:catch>
+							<c:choose>
+								<c:when test="${moveList.yesterdayNum == 0}">
+									0.0 %
+								</c:when>
+								<c:when test="${not empty totalMovie}">
+									<fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 }" type="pattern" pattern="0.0" /> %
+								</c:when>
+								<c:otherwise>
+									<fmt:formatNumber type="currency" currencySymbol="$" maxFractionDigits="2" minFractionDigits="2"  >
+										????
+									</fmt:formatNumber>
+								</c:otherwise>
+							</c:choose>
                      </div>
                   </div>
                </div>

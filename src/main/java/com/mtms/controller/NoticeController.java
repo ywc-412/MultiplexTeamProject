@@ -30,60 +30,56 @@ public class NoticeController {
 	//공지사항 목록조회
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
-		log.info("Notice Controller list,,,");
 		model.addAttribute("list", noticeService.getList(cri));
 		
 		int total = noticeService.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
-	//공지사항 상세보기 , 공지사항 수정(G)
+	//공지사항 상세보기 
 	@GetMapping("get")	
 	public void get(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
-		log.info("Notice Controller Get,,,");
 		noticeService.viewUpdate(noticeNo);
 		model.addAttribute("notice", noticeService.get(noticeNo));
 		
-	}
-	
-	@GetMapping("modify")	
-	public void modiGet(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
-		log.info("Notice Controller Get,,,");
-		model.addAttribute("notice", noticeService.get(noticeNo));
 	}
 	
 	//공지사항 등록(P)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")	
 	@PostMapping("register")	
 	public String register(NoticeVO notice, RedirectAttributes rttr) {	
-		log.info("Notice Controller register,,");
 		noticeService.register(notice);
 		rttr.addFlashAttribute("result", notice.getNoticeNo());
 		return "redirect:/notice/list";
 	}
 	
 	//공지사항 등록(G)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("register")	
 	public void register() {
-		log.info("Notice Controller register get,,");
+
 	}
 	
 	//공지사항 수정(P)
-	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("modify")	
 	public String modify(NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.info("Notice Controller modify post,,");
 		if(noticeService.modify(notice)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/notice/list" + cri.getListLink();	
 	}
+
+	//공지사항 수정(G)
+	@GetMapping("modify")	
+	public void modiGet(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
+		model.addAttribute("notice", noticeService.get(noticeNo));
+	}
 	
 	//공지사항 삭제
-	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("remove")	
 	public String remove(int noticeNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.info("Notice Controller modify post,,");
 		if(noticeService.remove(noticeNo)) {
 			rttr.addFlashAttribute("result", "success");
 		}

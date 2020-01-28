@@ -1,9 +1,5 @@
 package com.mtms.controller;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -11,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,10 +45,11 @@ public class GiftController {
 		model.addAttribute("gift", giftService.get(giftNo));
 	}
 	
+	
 	//기프티콘 등록(P)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("register")	
 	public String register(GiftVO gift, RedirectAttributes rttr) {
-		log.info("Gift Controller register modify,,," + gift);
 		if(gift.getAttachList() != null) {
 			gift.getAttachList().forEach(attach -> log.warn(attach));
 		}		
@@ -63,15 +59,16 @@ public class GiftController {
 	}
 	
 	//기프티콘 등록(G)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("register")	
 	public void register() {
-		log.warn("Gift Controller register get,,,");
+		
 	}
 	
 	//기프티콘 수정(P)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("modify")	
 	public String modify(GiftVO gift, RedirectAttributes rttr) {
-		log.info("Gift Controller modify post,," + gift);
 		if(giftService.modify(gift)) {
 			rttr.addAttribute("result", "success");
 		}
@@ -79,16 +76,16 @@ public class GiftController {
 	}
 	
 	//기프티콘 수정(G)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("modify")	
 	public void modify(int giftNo, Model model) {
-		log.info("Gift Controller modify Get,,");
 		model.addAttribute("gift", giftService.get(giftNo));
 	}
 	
 	//기프티콘 삭제
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("remove")	
 	public String remove(GiftVO gift, RedirectAttributes rttr) {
-		log.warn("Gift Controller remove()");
 		if(giftService.deleteChk(gift)) {
 			rttr.addFlashAttribute("result", "success");
 		}
@@ -98,7 +95,6 @@ public class GiftController {
 	//기프티콘 사진 붙이기	
 	@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)	
 	public ResponseEntity<List<GiftAttachVO>> getAttachList(int giftNo) {		
-		log.warn("Gift AttachList,,,," + giftNo);
 		return new ResponseEntity<>(giftService.getAttachList(giftNo), HttpStatus.OK);
 	}
 	

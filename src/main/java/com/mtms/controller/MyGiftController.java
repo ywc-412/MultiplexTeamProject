@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,27 +34,29 @@ public class MyGiftController {
 	private MyGiftService myGiftService;
 	private GiftService giftService;
 	
-	@GetMapping("list")//내 기프티콘 목록조회
-	public void list(Criteria cri, @RequestParam("memberId") String memberId, Model model) {
-		log.info("Gift Controller list()");
-		System.out.println("memberId : " + memberId);
-		
+	//내 기프티콘 목록조회
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@GetMapping("list")
+	public void list(Criteria cri, @RequestParam("memberId") String memberId, Model model) {	
 		model.addAttribute("mygift", myGiftService.getListWithPaging(cri, memberId));
 
 		int total = myGiftService.getTotalCount(cri, memberId);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
-	@GetMapping("get")	//내 기프티콘 상세보기
+	//내 기프티콘 상세보기
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@GetMapping("get")	
 	public void get(@RequestParam("myGiftNo") int myGiftNo, @RequestParam("memberId") String memberId, @ModelAttribute("cri") Criteria cri, Model model) {
 		model.addAttribute("mygift", myGiftService.get(myGiftNo, memberId));
 		model.addAttribute("cri", cri);
 		model.addAttribute("pic", giftService.giftPicList());
 	}
 	
-	@PostMapping("extend")	//내 기프티콘 기간연장(P)
+	//내 기프티콘 기간연장(P)
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@PostMapping("extend")	
 	public String extend(MyGiftVO myGift, @RequestParam("memberId") String memberId, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.warn("Gift Controller extend()");
 		if(myGiftService.extend(myGift, memberId)) {
 			rttr.addFlashAttribute("result", "success");
 		}
@@ -65,7 +68,9 @@ public class MyGiftController {
 		return "redirect:/myGift/list";	
 	}
 	
-	@PostMapping("refund")	//내 기프티콘 환불
+	//내 기프티콘 환불
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@PostMapping("refund")	
 	public String refund(MyGiftVO myGift, @RequestParam("memberId") String memberId, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		if(myGiftService.refund(myGift, memberId)) {
 			rttr.addAttribute("result", "success");
@@ -81,7 +86,6 @@ public class MyGiftController {
 	//기프티콘 사진 붙이기	
 	@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)	
 	public ResponseEntity<List<GiftAttachVO>> getAttachList(int giftNo) {		
-		log.warn("Gift AttachList,,,," + giftNo);
 		return new ResponseEntity<>(giftService.getAttachList(giftNo), HttpStatus.OK);
 	}
 	

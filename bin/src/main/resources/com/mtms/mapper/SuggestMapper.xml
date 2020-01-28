@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mtms.mapper.SuggestMapper">
+	<sql id="criteria1">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							suggestTitle LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							memberId LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	
+	<insert id="insertSuggestSelectKey">
+		<selectKey keyProperty="suggestNo" order="BEFORE" resultType="int">
+			SELECT seq_suggest.nextval FROM dual
+		</selectKey>
+		INSERT INTO suggest(suggestNo, memberId, 
+							suggestTitle, suggestContent, 
+							suggestPrivateChk, suggestPw, 
+							suggestView) 
+		VALUES(#{suggestNo}, #{memberId}, #{suggestTitle}, #{suggestContent},
+				#{suggestPrivateChk}, #{suggestPw}, #{suggestView})
+	</insert>
+	
+	<select id="getSuggestList" resultType="com.mtms.domain.SuggestVO">
+		<![CDATA[
+			SELECT * FROM (
+				SELECT /*+INDEX_DESC(suggest PK_SUGGEST_SUGGESTNO) */
+					rownum rn, suggestNo, memberId, suggestTitle, suggestContent, suggestPrivateChk, suggestPw, suggestView
+				FROM suggest
+				WHERE 
+		]]>
+			<include refid="criteria1"></include>
+ 		<![CDATA[			
+				rownum <=#{pageNum}*#{amount} 
+			) WHERE rn > (#{pageNum} - 1 ) *  #{amount}
+		]]>
+	</select>
+	
+	<select id="getSuggest" resultType="com.mtms.domain.SuggestVO">
+		SELECT suggestNo, memberId, suggestTitle, suggestContent, suggestPrivateChk, suggestPw, suggestView FROM suggest WHERE suggestNo = #{suggestNo}
+	</select>
+	
+	<update id="updateViewCount">
+		UPDATE suggest SET suggestView = (suggestView+1) WHERE suggestNo = #{suggestNo}
+	</update>
+	
+	<delete id="deleteSuggest">
+		DELETE FROM suggest WHERE suggestNo = #{suggestNo}
+	</delete>
+	
+	<update id="updateSuggest">
+		UPDATE suggest SET suggestTitle = #{suggestTitle}, suggestContent = #{suggestContent} WHERE suggestNo = #{suggestNo}
+	</update>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT count(*) 
+		FROM suggest WHERE
+		<include refid="criteria1"></include>
+		<![CDATA[
+			suggestNo>0
+		]]>
+	</select>
+</mapper>

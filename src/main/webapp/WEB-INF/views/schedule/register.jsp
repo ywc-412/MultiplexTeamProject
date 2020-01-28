@@ -130,9 +130,9 @@
 	<!-- 등록된 상영시간표 표시 END -->
 	
 	<div class="hanna_container">
-		<Button class="hanna_button" id="addFinBtn">등록</Button>
+		<Button class="hanna_button" id="addFinBtn">완료</Button>
 		<form id="seqForm" method="post" action="/schedule/cancel">
-		<!-- 취소 클릭 시 등록한 시간표 다시 삭제하기 -->
+			<!-- 취소 클릭 시 등록한 시간표 다시 삭제하기 -->
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			<c:if test="${empty listSeq}">
 				<input type="hidden" name="regSeq" value="">
@@ -334,8 +334,10 @@
 			}); // 취소 버튼 클릭 시
 			
 			$("#addFinBtn").on("click", function(){
-				location.href="/schedule/get";
-			}); // 등록 버튼 클릭 시
+				if(confirm("완료하시겠습니까?")){
+					location.href="/schedule/get";
+				}
+			}); // 완료 버튼 클릭 시
 			
 			
 			$("#searchMovie").on("click", function(){

@@ -1,6 +1,6 @@
 -- ¿µ¿ì SQL START
 CREATE TABLE member (
-    memberId VARCHAR2(20),
+    memberId VARCHAR2(30),
     memberPw VARCHAR2(500) NOT NULL,
     memberName VARCHAR2(40) NOT NULL,
     memberAddress VARCHAR2(100) NOT NULL,

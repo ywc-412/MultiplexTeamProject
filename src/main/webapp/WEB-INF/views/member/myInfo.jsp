@@ -140,6 +140,14 @@
 
 <script>
 	$(function() {
+		var memberIdValidate = '${memberInfo.memberId}';
+		var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
+		
+		if(memberIdValidate != principalUsernmae){
+			location.href='/accessError';
+		}
+		
+		
 		$('#myInfoModifyBtn').on("click", function(e) {
 			e.preventDefault();
 

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mtms.mapper.MemberMapper">
+
+	<resultMap type="com.mtms.domain.MemberVO" id="memberMap">
+	      <!-- property VO에 있는 이름 column 디비에 있는 이름 -->
+	      <id property="memberId" column="memberid" /> <!-- 여기(id부분)는 조인조건인 컬럼명 써준다 -->
+	      <result property="memberPw" column="memberpw" />
+	      <result property="memberName" column="membername" />
+	      <result property="memberAddress" column="memberaddress" />
+	      <result property="memberPhoneFirst" column="memberphonefirst" />
+	      <result property="memberPhoneSecond" column="memberphonesecond" />
+	      <result property="memberPhoneSecond" column="memberphonethird" />
+	      <result property="memberBirth" column="memberbirth" />
+	      <result property="memberEmail" column="memberemail" />
+	      <result property="memberEmailSecond" column="memberemailsecond" />
+	      <collection property="authList" resultMap="authMap" >
+	      </collection>
+   </resultMap>
+   
+   <resultMap type="com.mtms.domain.AuthVO" id="authMap">
+      <result property="memberId" column="memberId" />
+      <result property="memberAuth" column="memberauth" />
+   </resultMap>
+	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='I'.toString()">
+							memberId LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='N'.toString()">
+							memberName LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="read" resultMap="memberMap">
+		SELECT 
+			mem.memberid, memberpw, membername, memberaddress, memberphonefirst, 
+			memberphonesecond, memberphonethird, memberbirth,
+			memberemail, memberemailsecond, memberauth
+		FROM 
+			member mem LEFT OUTER JOIN auth auth on mem.memberid = auth.memberid
+		WHERE
+			mem.memberid = #{memberId}
+	</select>
+	
+	<insert id="insertAuth">
+		INSERT INTO auth VALUES(#{memberId}, 'ROLE_MEMBER')
+	</insert>
+	
+	<select id="duplicatedId" resultType="com.mtms.domain.MemberVO">
+		SELECT memberId FROM member WHERE memberId=#{memberId}
+	</select>
+	
+	<select id="duplicatedEmail" resultType="com.mtms.domain.MemberVO">
+		SELECT memberEmail, memberEmailSecond 
+		FROM member 
+		WHERE memberEmail = #{memberEmail} and memberEmailSecond = #{memberEmailSecond}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO 
+			member 
+		VALUES(#{memberId}, #{memberPw}, #{memberName},
+				#{memberAddress},#{memberPhoneFirst},#{memberPhoneSecond},
+				#{memberPhoneThird}, #{memberBirth}, #{memberEmail},
+				#{memberEmailSecond}, sysdate)
+	</insert>
+	
+	<select id="selectId" resultType="String">
+		SELECT memberId FROM member WHERE memberEmail=#{memberEmail} AND memberEmailSecond =#{memberEmailSecond}
+	</select>
+	
+	<select id="findPw" resultType="com.mtms.domain.MemberVO">
+		SELECT memberId
+		FROM member
+		WHERE 
+			memberId = #{memberId} AND
+			memberEmail=#{memberEmail} AND
+			memberEmailSecond=#{memberEmailSecond} AND
+			memberPhoneFirst = #{memberPhoneFirst} AND
+			memberPhoneSecond = #{memberPhoneSecond} AND
+			memberPhoneThird = #{memberPhoneThird}
+	</select>
+	
+	<update id="updatePw">
+		UPDATE member SET memberPw = #{memberPw} WHERE memberId = #{memberId}
+	</update>
+
+	<select id="getMemberList" resultType="com.mtms.domain.MemberVO">
+		<![CDATA[
+			SELECT memberId, memberName, memberRegDate
+			FROM(
+				SELECT /*+INDEX_DESC(member idx_member_memberRegDate) */
+					rownum rn, memberId, memberName, memberRegDate
+				FROM member WHERE
+		]]>
+			<include refid="criteria"></include>
+		<![CDATA[
+				rownum <= #{pageNum}*#{amount}
+		)
+		WHERE rn>(#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT count(*) 
+		FROM member WHERE
+		<include refid="criteria"></include>
+		<![CDATA[
+			rownum>0
+		]]>
+	</select>
+	
+	<select id="getMember" resultType="com.mtms.domain.MemberVO">
+		SELECT memberId, memberName, memberAddress, memberEmail, memberEmailSecond, 
+			memberPhoneFirst, memberPhoneSecond, memberPhoneThird, 
+			memberBirth, memberRegDate
+		FROM member 
+		WHERE memberId = #{memberId}
+	</select>
+	
+	<delete id="deleteMember">
+		DELETE FROM member WHERE memberId=#{memberId}
+	</delete>
+	
+	<select id="memberPw" resultType="String">
+		SELECT memberPw
+		FROM member
+		WHERE memberId = #{memberId}
+	</select>
+	
+	<update id="updateMember">
+		UPDATE member 
+		SET memberPw = #{memberPw}, memberPhoneFirst = #{memberPhoneFirst}, 
+			memberPhoneSecond = #{memberPhoneSecond},
+			memberPhoneThird = #{memberPhoneThird}
+		WHERE memberId = #{memberId}
+	</update>
+	
+	<insert id="phoneAuthInsert">
+		INSERT INTO smsAuth VALUES(#{authPhone}, #{authNumber}, sysdate)
+	</insert>
+	
+	<select id="phoneAuthSelect" resultType="com.mtms.domain.PhoneAuthVO">
+		SELECT * FROM smsAuth WHERE authPhone = #{authPhone} AND authNumber = #{authNumber}
+	</select>
+	
+	<delete id="phoneAuthDelete">
+		DELETE FROM smsAuth WHERE authPhone = #{authPhone}
+	</delete>
+</mapper>

@@ -27,12 +27,12 @@
 						<div class="">
 							
 							<form id="searchForm" action="/suggest/list" method="get">
-								<button value="${pageMaker.cri.keyword }" type="submit" class="btn btn-primary btn-sm  float-right">검색</button>
+								<button value="${pageMaker.cri.keyword }" type="submit" class="btn btn-primary btn-sm float-right" id="searchBtn">검색</button>
 			                	<c:set var="type" value="${pageMaker.cri.type }"/>
 			
-								<input type="text" name="keyword" placeholder="검색어를 입력하세요" class="input-group-btn  float-right">
+								<input type="text" name="keyword" id="keywordInput" placeholder="검색어를 입력하세요" class="input-group-btn  float-right" value="${pageMaker.cri.keyword }">
 								<div class="default-select custom-text-left custom-margin-choi float-right" style="margin: 4px; margin-top: -6px;" id="default-select">
-									<select name='type'>
+									<select name='type' id="selectType">
 										<option value="" <c:out value="${pageMaker.cri.type==null?'selected':'' }"/>>--</option>
 										<option value="T" <c:out value="${pageMaker.cri.type=='T'?'selected':'' }"/>>제목</option>
 										<option value="W" <c:out value="${pageMaker.cri.type=='W'?'selected':'' }"/>>작성자</option>
@@ -147,6 +147,21 @@
 </sec:authorize>
 	<script>
 		$(function(){
+			
+			$('#searchBtn').on("click", function(e){
+				e.preventDefault();
+				
+				if(!$('#selectType').val()){
+					alert('검색 조건을 선택해주세요');
+					return;
+				}else if(!$('#keywordInput').val()){
+					alert('검색어를 입력해주세요');
+					return;
+				}else{
+					$('#searchForm').submit();
+				}
+			});
+			
 			$('#registerA').on("click", function(e){
 				e.preventDefault();
 				var userConnect = '<c:out value="${userId}"/>';
@@ -180,7 +195,7 @@
 				$('#modal').show();
 				
 				var realPassword = $(this).attr('value');
-				var inputSuggestNo = "<input type='hidden' name='suggestNo' value='"+$(this).attr("href") +"'>"
+				var inputSuggestNo = "<input type='hidden' name='suggestNo' value='"+$(this).attr("href") +"'>";
 				
 				$('#suggestPwBtn').on("click", function(e){
 					

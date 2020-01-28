@@ -29,14 +29,14 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/report/reply/*")
 public class ReplyReportController {
 
-	private ReviewReplyReportService replyReportService;
+   private ReviewReplyReportService replyReportService;
 
-	@PostMapping("remove")
-	public String remove(@RequestParam("replyNo") String replyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+   @PostMapping("remove")
+   public String remove(@RequestParam("replyNo") String replyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 String[] words = replyNo.split(",");
+
 		
 		for (String wo : words ){
-			System.out.println(wo);
 			int replyNo1 = Integer.parseInt(wo);
 		if (replyReportService.remove(replyNo1)) {
 			rttr.addFlashAttribute("result", "success");
@@ -89,3 +89,4 @@ String[] words = replyNo.split(",");
 	}
 
 }
+

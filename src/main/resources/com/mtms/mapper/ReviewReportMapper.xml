@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtms.mapper.ReviewReportMapper">
 <select id="getTotalCount" resultType="int">
-	  <![CDATA[
-     	SELECT COUNT(*) FROM reviewReport WHERE    
-     	reviewReportNo > 0 
+     <![CDATA[
+        SELECT COUNT(*) FROM reviewReport WHERE    
+        reviewReportNo > 0 
      ]]>
    </select>
-	
+   
 
 <select id="getListWithPaging" resultType="com.mtms.domain.ReviewReportVO">
-		<![CDATA[
-			 SELECT 
-			   c.reviewTitle,
-	           c.reviewReportNo,
-	           c.memberId,
-	           c.reviewNo,
-	           c.reviewReportContent,
-	           c.reviewReportDate
+      <![CDATA[
+          SELECT 
+            c.reviewTitle,
+              c.reviewReportNo,
+              c.memberId,
+              c.reviewNo,
+              c.reviewReportContent,
+              c.reviewReportDate
     from 
         (
         select rownum rn,
@@ -37,8 +37,8 @@
     WHERE c.rn > (#{pageNum} - 1) * #{amount}
       ]]> 
    </select>
-		
- 
+      
+
 	<insert id="insert">
   	INSERT INTO reviewReport(reviewReportNo, memberId, reviewNo,reviewReportContent)
 	VALUES(seq_reviewReport.NEXTVAL, #{memberId}, #{reviewNo},#{reviewReportContent})

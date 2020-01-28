@@ -34,9 +34,7 @@
 						<h4 class="mb-20">날짜 선택</h4>
 						<div class="">
 							<ul class="hanna_ul_list" id="date">
-<!-- 								<li>1월 1일</li> -->
-<!-- 								<li>1월 2일</li> -->
-<!-- 								<li>1월 3일</li> -->
+								<!-- 날짜 표시 -->
 							</ul>
 						</div>
 					</div>
@@ -46,31 +44,14 @@
 						<h4 class="mb-20">시간 선택</h4>
 						<div class="">
 							<ul class="hanna_ul_list" id="time">
-<!-- 								<li>10:00</li> -->
-<!-- 								<li>12:00</li> -->
-<!-- 								<li>14:00</li> -->
-<!-- 								<li>16:00</li> -->
-<!-- 								<li>18:00</li> -->
-<!-- 								<li>20:00</li> -->
+								<!-- 시간 표시 -->
 							</ul>
 						</div>
 					</div>
 				</div>
-<!-- 				<div class="col-md-2"> -->
-<!-- 					<div class="single-defination"> -->
-<!-- 						<h4 class="mb-20">나의 선택</h4> -->
-<!-- 						<div class=""> -->
-<!-- 							<ul class="hanna_ul_list"> -->
-<!-- 								<li>영화 : </li> -->
-<!-- 								<li>날짜 : </li> -->
-<!-- 								<li>시간 : </li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-xl-12 text-right">
 				<form id="timeForm" action="/reserve/seat" method="post">
@@ -78,7 +59,15 @@
 					<input type="hidden" name="movieTitle" >
 					<input type="hidden" name="scheduleDate" >
 					<input type="hidden" name="scheduleTime" >
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">	
+						<div>
+							<ul style = "list-style-type : none;">
+								<li id="selectMovie"></li>
+								<li id="selectDate"></li>
+								<li id="selectTime"></li>
+							</ul>
+						</div>
+						<br>
 					<button id="goSeatBtn" class="hanna_button2">>좌석선택</button>
 				</form>
 			</div>
@@ -86,7 +75,6 @@
 	</div> <!-- END hanna_container -->
 	
 	<script>
-	
 	
 	
 	$(document).ready(function(){
@@ -122,8 +110,9 @@
 		$(document).on("click", "#movieClick", function(e){
 			// 영화 버튼 클릭 시 ajax로 상영 날짜 받아오기
 			var movieNo = $(this).val();
+			var movieTitle = $(this).html()
 			$("input[name=movieNo]").val(movieNo);
-			$("input[name=movieTitle]").val($(this).html());
+			$("input[name=movieTitle]").val(movieTitle);
 			var str ="";
 			if(movieNo != null){
 				$.getJSON("/reserve/getDay/"+movieNo+".json",
@@ -137,7 +126,10 @@
 							$("#date").html(str); // 상영 날짜 list 출력
 							$("#time").html(""); // 영화를 새로 선택하면 상영 시간 지워줌
 							$("input[name=scheduleDate]").val(""); // 영화 새로 선택하면 상영날짜 값 지워줌
-							$("input[name=scheduleTime]").val(""); // .. 시간 지워줌
+							$("input[name=scheduleTime]").val(""); // 시간 지워줌
+							$("#selectMovie").html("영화 : " + movieTitle);
+							$("#selectDate").html("");
+							$("#selectTime").html("");
 						}).fail(function(xhr, status, error){
 							if(error){
 								error();
@@ -161,6 +153,8 @@
 							}
 							$("#time").html(str); // 상영 시간 list 출력
 							$("input[name=scheduleTime]").val(""); // .. 시간 지워줌
+							$("#selectDate").html("날짜 : " + scheduleDate.substring(4, 6) + "/" + scheduleDate.substring(6, 8));
+							$("#selectTime").html("");
 				}).fail(function(xhr, status, error){
 					if(error){
 						error();
@@ -172,7 +166,7 @@
 		$(document).on("click", "#timeClick", function(e){
 			var scheduleTime = $(this).html();
 			$("input[name=scheduleTime]").val(scheduleTime);
-// 			alert("영화 : " + $("input[name=movieTitle]").val() + "\n상영 날짜 : " + $("input[name=scheduleDate]").val() + "\n상영 시간 : " + $("input[name=scheduleTime]").val() + "을 선택하셨습니다.");
+			$("#selectTime").html("시간 : " + scheduleTime);
 		}); // END timeClick
 		
 	})

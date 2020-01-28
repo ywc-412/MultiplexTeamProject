@@ -40,7 +40,7 @@ public class CommentController {
       
       int checkRegister = commentService.registerComment(comment.getMovieNo(), comment.getMemberId());
       if(checkRegister > 0) {
-         System.out.println("이미 이 영화에 대한 한줄평을 등록한 회원");
+//         System.out.println("이미 이 영화에 대한 한줄평을 등록한 회원");
          return new ResponseEntity<>("already", HttpStatus.OK);
       } else {
          int insertCount = commentService.register(comment);
@@ -61,7 +61,7 @@ public class CommentController {
                                      // URL의 일부를 파라미터로 사용하는 PathVariable
     public ResponseEntity<CommentPageDTO> getList(@PathVariable("pageNum") int pageNum, @PathVariable("movieNo") int movieNo ) {
       
-       System.out.println("컨트롤러 댓글 페이징");
+//       System.out.println("컨트롤러 댓글 페이징");
         // 댓글의 페이지수를 받아서 10개씩 페이징할 것
        Criteria cri = new Criteria(pageNum, 10);
        

@@ -16,4 +16,8 @@
 		UPDATE seat SET seatStatus = 1 WHERE seatNo IN (${seats}) AND scheduleNo = #{scheduleNo}
 	</update>
 	
+	<update id="cancelStatus">
+		UPDATE seat SET seatStatus = 0 WHERE seatNo IN (${seats}) AND scheduleNo = #{scheduleNo}
+	</update>
+	
 </mapper>

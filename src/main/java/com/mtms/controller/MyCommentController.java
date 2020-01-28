@@ -26,10 +26,7 @@ public class MyCommentController {
    
    //회원 별 한줄평 조회
    @GetMapping("myList")
-   public void mylist(Model model, Criteria cri, String memberId) {
-      System.out.println("씨바333");
-      System.out.println(memberId);
-      
+   public void mylist(Model model, Criteria cri, String memberId) {      
       //한줄평이랑 같이 불러와서 영화명 불러오기
       model.addAttribute("movie", movieService.myMovieList());
       model.addAttribute("comment", commentService.myGetList(cri, memberId));

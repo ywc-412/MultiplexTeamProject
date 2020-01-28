@@ -80,6 +80,7 @@ public class ReviewController {
 	   }
 	
 	@PostMapping("register")
+	@PreAuthorize("isAuthenticated()") //로그인을 햇냐
 	public String register(ReviewVO rvo, RedirectAttributes rttr,int movieNo) {
 		service.register(rvo);
 		rttr.addFlashAttribute("result",rvo.getReviewNo());

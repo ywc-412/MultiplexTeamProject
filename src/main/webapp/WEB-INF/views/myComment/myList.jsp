@@ -8,24 +8,26 @@
 
 <div class="container">
        <div class="mycomment-left">
-          <h3 class="mb-20">마이페이지</h3>
-         <div class="">
-            <ul class="unordered-list">
-               <li class="yeong-myfont">내 정보 조회</li>
-               <li class="yeong-myfont">예매 내역</li>
-               <li class="yeong-myfont">내 리뷰</li>
-               <li class="custom-active yeong-myfont">내 한줄평</li>
-               <li class="yeong-myfont">내 기프티콘</li>
-               <li class="yeong-myfont">내 건의사항</li>
-            </ul>
-         </div>
+<!--           <h3 class="mb-20">마이페이지</h3> -->
+<!--          <div class=""> -->
+<!--             <ul class="unordered-list"> -->
+<!--                <li class="yeong-myfont">내 정보 조회</li> -->
+<!--                <li class="yeong-myfont">예매 내역</li> -->
+<!--                <li class="yeong-myfont">내 리뷰</li> -->
+<!--                <li class="custom-active yeong-myfont">내 한줄평</li> -->
+<!--                <li class="yeong-myfont">내 기프티콘</li> -->
+<!--                <li class="yeong-myfont">내 건의사항</li> -->
+<!--             </ul> -->
+<!--          </div> -->
+
+	  <%@ include file="../include/myPageMenu.jsp"%>
       </div>
       <div class="mycomment-left-right">
          <table class="table table-hover">
             <thead>
                <tr>
-                  <th scope="col" class="yeongth_myComment20">영화명</th>
-                  <th scope="col" class="yeongth_myComment05">별점</th>
+                  <th scope="col" class="yeongth_myComment15">영화명</th>
+                  <th scope="col" class="yeongth_myComment10">별점</th>
                   <th scope="col" class="yeongth_myComment35">한줄평</th>
                   <th scope="col" class="yeongth_myComment10">등록일</th>
                   <th colspan="2" scope="col" class="yeongth_myComment20">버튼</th>
@@ -35,24 +37,24 @@
                         <tr class="odd gradeX">
                            <c:forEach items="${movie }" var="movie">
                               <c:if test="${comment.movieNo eq movie.movieNo }">
-                                <td scope="col" class="yeongth_myComment20">${movie.movieTitle}</td>
+                                <td scope="col" class="yeongth_myComment15">${movie.movieTitle}</td>
                             </c:if>
                            </c:forEach>
                              <c:choose>
                          <c:when test="${comment.commentStar == 1}">
-                            <td scope="col" class="yeongth_myComment05 yeong-starRed" id="commentStar">★</td>
+                            <td scope="col" class="yeongth_myComment10 yeong-starRed" id="commentStar">★</td>
                          </c:when>
                          <c:when test="${comment.commentStar == 2}">
-                            <td scope="col" class="yeongth_myComment05 yeong-starRed" id="commentStar">★★</td>
+                            <td scope="col" class="yeongth_myComment10 yeong-starRed" id="commentStar">★★</td>
                          </c:when>
                          <c:when test="${comment.commentStar == 3}">
-                            <td scope="col" class="yeongth_myComment05 yeong-starRed" id="commentStar">★★★</td>
+                            <td scope="col" class="yeongth_myComment10 yeong-starRed" id="commentStar">★★★</td>
                          </c:when>
                          <c:when test="${comment.commentStar == 4}">
-                            <td scope="col" class="yeongth_myComment05 yeong-starRed" id="commentStar">★★★★</td>
+                            <td scope="col" class="yeongth_myComment10 yeong-starRed" id="commentStar">★★★★</td>
                          </c:when>
                           <c:otherwise>
-                             <td scope="col" class="yeongth_myComment05 yeong-starRed" id="commentStar">★★★★★</td>
+                             <td scope="col" class="yeongth_myComment10 yeong-starRed" id="commentStar">★★★★★</td>
                           </c:otherwise>
                       </c:choose>
                            <td scope="col" class="yeongth_myComment35">${comment.commentContent }</td>

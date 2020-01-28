@@ -30,6 +30,7 @@ public class ReviewReplyController {
 	private ReviewReplyService replyService;
 	
 	//댓글 달기
+		@PreAuthorize("isAuthenticated()")
 		@PostMapping(value = "new", consumes = "application/json"				// 전달받는 객체
 								  , produces = { MediaType.TEXT_PLAIN_VALUE })	// 전달하는 객체..?
 		// ResponseEntity : 응답할 때 메세지와 상태코드값 같이 보낼 수 있음

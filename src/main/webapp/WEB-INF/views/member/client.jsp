@@ -41,18 +41,18 @@
 						<div class="col-lg-12">
 							<form id='searchForm' action="/member/client" method="get">
 								<div class="default-select custom-text-left custom-margin-choi" id="default-select">
-									<select name='type'>
+									<select name='type' id="keywordSelect">
 										<option value="" <c:out value="${pageMaker.cri.type==null?'selected':'' }"/>>--</option>
 										<option value="I" <c:out value="${pageMaker.cri.type=='I'?'selected':'' }"/>>회원 아이디</option>
 										<option value="N" <c:out value="${pageMaker.cri.type=='N'?'selected':'' }"/>>회원 이름</option>
 										<option value="IN" <c:out value="${pageMaker.cri.type=='IN'?'selected':'' }"/>>회원 ID, 회원 이름</option>
 									</select>
 								</div>
-								<input type="text" class="single-input custom-text-left custom-input-size custom-margin-choi" name="keyword" value="${pageMaker.cri.keyword }">
+								<input type="text" id="keywordInput" class="single-input custom-text-left custom-input-size custom-margin-choi" name="keyword" value="${pageMaker.cri.keyword }">
 								<input type="hidden" name='pageNum' value="${pageMaker.cri.pageNum }">
 								<input type="hidden" name='amount' value="${pageMaker.cri.amount }">
 								<div class="custom-text-left">
-									<button class="boxed-btn custom-button-size3">회원 검색</button>
+									<button class="btn btn-primary btn-sm" id="clientSearchBtn">회원 검색</button>
 								</div>
 							</form>
 						</div><br><br>
@@ -105,6 +105,18 @@
 </div>
 <script>
 	$(function(){
+		
+		$('#clientSearchBtn').on("click", function(e){
+			e.preventDefault();
+			if(!$('#keywordSelect').val()){
+				alert('검색 조건을 선택해주세요');
+			}else if(!$('#keywordInput').val()){
+				alert('검색어를 입력해주세요');
+			}else{
+				$('#searchForm').submit();
+			}
+		});
+		
 		var actionForm = $('#actionForm');
 		
 		$('.page-item a').on("click", function(e){
