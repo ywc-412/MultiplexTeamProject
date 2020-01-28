@@ -66,7 +66,6 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public ReviewVO movieSelect(int reviewNo) {
 		// TODO Auto-generated method stub
-		System.out.println("서비스임플 무비이름 들어왔나?");
 		return reviewMapper.movieSelect(reviewNo);
 	}
 

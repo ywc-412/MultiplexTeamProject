@@ -155,9 +155,7 @@ public class MovieServiceImpl implements MovieService{
    public int totalMovie() {
 
 	   Integer result = movieMapper.sumMovie();
-	   System.out.println(result);
 	   if(result == null) {
-		   System.out.println("gg");
 		   return 0;
 	   }else if(result == 0) {
 		   return 0;
