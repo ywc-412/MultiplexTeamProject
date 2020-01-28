@@ -44,7 +44,7 @@
                     <tbody>
 						<c:forEach items="${list }" var="rvo">
 						<tr class="odd gradeX">
-							<td><c:out value="${rvo.movieNo }"/></td>
+							<td><c:out value="${rvo.movieTitle }"/></td>
 							<td><a class="move" href="${rvo.reviewNo}">
                             		${rvo.reviewTitle }</a></td>
                             <td><c:out value="${rvo.memberId }"/></td>

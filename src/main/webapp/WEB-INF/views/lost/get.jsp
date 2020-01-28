@@ -3,17 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../include/header.jsp"%>
-<div class="side_margin">
-	<div class="row">
-		<div class="review_title">습득물</div>
-	</div>
-	<div class="title_under"></div>
+<div class="container">
+			<!--<div class="row">-->
+			<div class="row no-mean">
+				<div class="col-md-12">
+					<div class="custom-board-title">
+						<h3 class="custom-font-bold">습득물</h3>
+					</div>
 	<div class="get_title_style">
 		<div class="get_title" name="lostTitle">${lvo.lostTitle }</div>
 		<div class="title_under_div">
-			<span class="title_under_ex2" name="lostDate"><fmt:formatDate pattern="yyyy-MM-dd"
-							value="${lvo.lostDate }"/></span> 
-			<span class="title_under_ex2" name="lostView">${lvo.lostView }</span>
+			작성일 : <span class="title_under_ex2" name="lostDate"><fmt:formatDate pattern="yyyy-MM-dd"
+							value="${lvo.lostDate }"/></span>
+			조회수 : <span class="title_under_ex2" name="lostView">${lvo.lostView }</span>
 		</div>
 	</div>
 	<textarea rows="10" cols="100" class="review_textarea" name="lostContent" readonly="readonly">
@@ -24,8 +26,10 @@
 	<div class="buttln_style">
 		<button id="reviewList" class="btn btn-primary">LIST</button>
 		<span class="button_position">
+		<sec:authorize access="hasRole('ROLE_ADMIN')">	
 			<button id="reviewModify" class="btn btn-primary">수정</button>
 			<button id="reviewRemove" class="btn btn-danger">삭제</button>
+			</sec:authorize>
 		</span>
 	</div>
 	<!-- 	END 버튼위치 style -->
@@ -56,6 +60,8 @@
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 </div>
+</div>
+</div>
 <!-- 전체마진 END -->
 <%@ include file="../include/footer.jsp"%>
 <script>
@@ -78,6 +84,8 @@ $(function(){
 			$("#formGet").submit();
 		})
 	});
-	
+	$("#reviewList").on("click",function(e){
+		location.href="/lost/list";
+	})
 });
 </script>

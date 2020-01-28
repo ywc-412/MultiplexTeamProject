@@ -36,7 +36,6 @@ public class ReplyReportController {
 String[] words = replyNo.split(",");
 		
 		for (String wo : words ){
-			System.out.println(wo);
 			int replyNo1 = Integer.parseInt(wo);
 		if (replyReportService.remove(replyNo1)) {
 			rttr.addFlashAttribute("result", "success");
@@ -84,7 +83,7 @@ String[] words = replyNo.split(",");
 	public String register(ReplyReportVO rpvo, RedirectAttributes rttr) {
 		replyReportService.register(rpvo);
 		rttr.addFlashAttribute("result", rpvo.getReplyReportNo());
-		return "redirect:/report/reply/list";
+		return "redirect:/review/list";
 
 	}
 
