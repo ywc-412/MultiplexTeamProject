@@ -9,7 +9,7 @@
 			<div class="">
 				<ul class="unordered-list">
 					<li><a href="/member/client">회원 관리</a></li>
-					<li>리뷰 신고 관리
+					<li><a href="/report/review/list">리뷰 신고 관리</a>
 						<ul>
 							<li><a href="/report/review/list" class="custom-active">리뷰 신고 관리</a></li>
 							<li><a href="/report/reply/list">리뷰 댓글 신고 관리</a></li>

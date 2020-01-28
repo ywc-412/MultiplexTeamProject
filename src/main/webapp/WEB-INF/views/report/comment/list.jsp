@@ -6,6 +6,12 @@
 
 <%@ include file="../../include/header.jsp" %>
 
+<style>
+tr, td {
+	cursor : default;
+}
+</style>
+
 
 <div class="container">
        <div class="mycomment-left">
@@ -13,7 +19,7 @@
 			<div class="">
 				<ul class="unordered-list">
 					<li><a href="/member/client" >회원 관리</a></li>
-					<li>리뷰 신고 관리
+					<li><a href="/report/review/list">리뷰 신고 관리</a>
 						<ul>
 							<li><a href="/report/review/list">리뷰 신고 관리</a></li>
 							<li><a href="/report/reply/list">리뷰 댓글 신고 관리</a></li>
@@ -26,7 +32,7 @@
       <div class="mycomment-left-right">
          <input type="checkbox" id="allCheck" name="allCheck"><label for="allCheck">모두선택</label>
          <button data-oper="remove" class='btn btn-danger yeong-right' id="selectDelete">선택 삭제</button>
-         <table class="table table-hover">
+         <table class="table table-hover" style="cursor : Default;">
             <thead>
                <tr>
                   <th scope="col" class="yeongth10">신고자ID</th>
@@ -39,7 +45,7 @@
             <c:forEach items="${commentReport }" var="commentReport">
                         <tr class="odd gradeX">
                            <td scope="col" class="yeongth10">${commentReport.memberId }</td>
-                           <td scope="col" class="yeongth35" id="commentReport" data-commentReportNo=${commentReport.commentReportNo } data-commentNo=${commentReport.commentNo }>${commentReport.commentReportContent }</td>
+                           <td scope="col" class="yeongth35" id="commentReport" style="cursor : pointer;" data-commentReportNo=${commentReport.commentReportNo } data-commentNo=${commentReport.commentNo }>${commentReport.commentReportContent }</td>
                            <c:forEach items="${comment }" var="comment">
                            
                               <c:if test="${comment.commentNo eq commentReport.commentNo }">
