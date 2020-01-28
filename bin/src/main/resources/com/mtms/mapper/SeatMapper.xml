@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mtms.mapper.SeatMapper">
+
+	<select id="getStatus" resultType="com.mtms.domain.SeatVO">
+		SELECT seatNo, seatStatus FROM seat WHERE scheduleNo = #{scheduleNo} ORDER BY seatNo
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO seat(scheduleNo, seatNo) VALUES (#{scheduleNo}, #{seatNo})
+	</insert>
+	
+	<update id="modifyStatus">
+		UPDATE seat SET seatStatus = 1 WHERE seatNo IN (${seats}) AND scheduleNo = #{scheduleNo}
+	</update>
+	
+</mapper>

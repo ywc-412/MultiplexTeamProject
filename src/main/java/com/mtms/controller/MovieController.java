@@ -149,6 +149,7 @@ public class MovieController {
    public void list(Criteria cri, Model model) {
       
       int totalMovie = movieService.totalMovie();
+      System.out.println(totalMovie);
       
       model.addAttribute("totalMovie", totalMovie);
       model.addAttribute("attachList", movieService.attachGetList());

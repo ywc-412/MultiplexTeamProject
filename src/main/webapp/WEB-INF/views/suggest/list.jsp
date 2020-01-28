@@ -180,7 +180,7 @@
 				$('#modal').show();
 				
 				var realPassword = $(this).attr('value');
-				var inputSuggestNo = "<input type='hidden' name='suggestNo' value='"+$(this).attr("href") +"'>"
+				var inputSuggestNo = "<input type='hidden' name='suggestNo' value='"+$(this).attr("href") +"'>";
 				
 				$('#suggestPwBtn').on("click", function(e){
 					

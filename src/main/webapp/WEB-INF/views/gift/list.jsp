@@ -33,7 +33,7 @@
 										</ul>
 									</div>									
 								<a class="move" href="${gift.giftNo}">
-								 	<span><c:out value="${gift.giftName}"/></span><br>																																	 
+								 	 <span><c:out value="${gift.giftName}"/></span><br>																																	 
 									 <span><fmt:formatNumber value="${gift.giftPrice}" pattern="###,###"/>원</span>
 								</a> 
 								</div>
@@ -45,7 +45,7 @@
 					</div>
 					<!-- data e -->
 						<form id="actionForm" action="/gift/list" method="get">
-							<input type="hidden" name="memberId" value="${principal.username}">
+
 						</form>	
 			</div>
 		</div>
@@ -76,7 +76,6 @@
 				$.get("/gift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {				
 					var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;		 
 					filePath = filePath.replace(new RegExp(/\\/g), "/");
-					console.log(filePath);
 					li += "<img class='giftImg' src='/giftUpload/display?giftFileName="+filePath+"'>"						  		
 						  		$this.find(".uploadResult").find("ul").append(li);
 				});

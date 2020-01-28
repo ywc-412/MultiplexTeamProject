@@ -34,10 +34,7 @@ public class MyGiftController {
 	private GiftService giftService;
 	
 	@GetMapping("list")//내 기프티콘 목록조회
-	public void list(Criteria cri, @RequestParam("memberId") String memberId, Model model) {
-		log.info("Gift Controller list()");
-		System.out.println("memberId : " + memberId);
-		
+	public void list(Criteria cri, @RequestParam("memberId") String memberId, Model model) {	
 		model.addAttribute("mygift", myGiftService.getListWithPaging(cri, memberId));
 
 		int total = myGiftService.getTotalCount(cri, memberId);
@@ -53,7 +50,6 @@ public class MyGiftController {
 	
 	@PostMapping("extend")	//내 기프티콘 기간연장(P)
 	public String extend(MyGiftVO myGift, @RequestParam("memberId") String memberId, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.warn("Gift Controller extend()");
 		if(myGiftService.extend(myGift, memberId)) {
 			rttr.addFlashAttribute("result", "success");
 		}
@@ -81,7 +77,6 @@ public class MyGiftController {
 	//기프티콘 사진 붙이기	
 	@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)	
 	public ResponseEntity<List<GiftAttachVO>> getAttachList(int giftNo) {		
-		log.warn("Gift AttachList,,,," + giftNo);
 		return new ResponseEntity<>(giftService.getAttachList(giftNo), HttpStatus.OK);
 	}
 	

@@ -13,7 +13,7 @@
 						<li><a href="/reserve/list" id="myReserveMove">예매 내역</a></li>
 						<li><a href="/myReview/list">내 리뷰</a></li>
 						<li>내 한줄평</li>
-						<li><a href="/myGift/list?memberId=hue9404">내 기프티콘</a></li>
+						<li><a href="/myGift/list" id="myGiftMove">내 기프티콘</a></li>
 						<li><a href="/member/mySuggst" id="mySuggestMove">내 건의사항</a></li>
 					</ul>
 				</div>
@@ -34,6 +34,11 @@
 		$('#myReserveMove').on("click", function(e){
 			e.preventDefault();
 			location.href="/reserve/list?memberId=${loginUsername}";
+		});
+		
+		$('#myGiftMove').on("click", function(e){
+			e.preventDefault();
+			location.href="/myGift/list?memberId=${loginUsername}";
 		});
 		
 		$("#mySuggestMove").on("click", function(e){
