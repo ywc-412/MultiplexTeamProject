@@ -30,7 +30,6 @@ public class DuplicatedMemberController {
 	
 	@GetMapping(value="/email/{totalEmail}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<MemberVO> getEmail(@PathVariable("totalEmail") String totalEmail){
-		System.out.println("controller : " + totalEmail);
 		
 		return new ResponseEntity<>(memberService.duplicatedEmail(totalEmail), HttpStatus.OK);
 	}

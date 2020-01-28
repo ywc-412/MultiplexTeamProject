@@ -76,7 +76,6 @@ public class UploadMovieFileController {
 	public ResponseEntity<List<MovieAttachVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		
 		log.info("uploadAjaxPost");	//pptx나 excel은 json으로 받아서 실패가 뜨나 저장은된다 이오류는 잡아줘야한다
-		System.out.println("uploadAjaxPost");
 		List<MovieAttachVO> list = new ArrayList<MovieAttachVO>();
 		String uploadFolder = "C:\\upload\\movie"; //사진을 저장할 위치
 		
@@ -104,7 +103,6 @@ public class UploadMovieFileController {
 			
 			//중복안되게 uuid 붙여서 이름 변경
 			uploadFileName = uuid.toString() + "_" + uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-			System.out.println(uploadFileName);
 			File saveFile = new File(uploadPath, uploadFileName);
 			
 			try {
