@@ -456,11 +456,14 @@
                    var adminAuth = '<c:out value="[ROLE_ADMIN, ROLE_MEMBER]"/>';
                    var memberAuth = '<c:out value="[ROLE_MEMBER]"/>';
                    
+                   console.log(auth);
+                   console.log(list[i].memberId);
+                   
                   str += "<tr data-commentNo='"+list[i].commentNo+"'>";
                   str += "  <td scope='row' class='yeongth10 yeong-starRed'>" + list[i].commentStar + "</td>";
                   str += "  <td class='yeongth10'>" + list[i].memberId + "</td>";
                   str += "  <td scope='col' class='yeongth60'>" + list[i].commentContent + "</td>";
-                  if(auth == adminAuth && memberId == list[i].memberId){
+                  if(auth == adminAuth){
                      str += "     <td colspan='2' class='yeongth20'>";
                      str += "        <a href='#' class='custom-blue' id='commentUpdate' data-commentNo='"+list[i].commentNo+"'>수정</a>";
                      str += "        <a href='#' id='commentDelete' class='custom-red' data-commentNo='"+list[i].commentNo+"'>삭제</a>";

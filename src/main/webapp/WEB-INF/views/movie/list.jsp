@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="section_title text-center yeong-movieTitle">
-                    <h3>영화 뿌</h3>
+                    <h3>영화 랭킹</h3>
                 </div>
             </div>
         </div>
@@ -57,15 +57,20 @@
                      <div class="ovrer">
                         <a href="${moveList.movieNo }" class="move">
                                 ${moveList.movieTitle }<br>
-                                <c:catch var="movieTotal">
+								<c:catch var="movieTotal">
 									<c:set value="${0 + totalMovie}" />
 								</c:catch>
 								<c:choose>
-									<c:when test="${not empty movieTotal}">
-										${totalMovie}
+									<c:when test="${moveList.yesterdayNum == 0}">
+										0.0 %
+									</c:when>
+									<c:when test="${not empty totalMovie}">
+										<fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 }" type="pattern" pattern="0.0" /> %
 									</c:when>
 									<c:otherwise>
-										<fmt:formatNumber type="currency" currencySymbol="$" maxFractionDigits="2" minFractionDigits="2" >${(moveList.yesterdayNum / totalMovie) * 100 }</fmt:formatNumber>
+										<fmt:formatNumber type="currency" currencySymbol="$" maxFractionDigits="2" minFractionDigits="2"  >
+											????
+										</fmt:formatNumber>
 									</c:otherwise>
 								</c:choose>
 								
