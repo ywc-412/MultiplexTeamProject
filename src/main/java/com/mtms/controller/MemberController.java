@@ -198,7 +198,8 @@ public class MemberController {
 	@GetMapping("/mySuggest")
 	public void mySuggest(Criteria cri, Model model) {
 		model.addAttribute("list", suggestService.getSuggestListWithPaging(cri));
-		
+
+		model.addAttribute("mySuggest", "mySuggests");
 		int total = suggestService.getTotalCount(cri);
 		
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
