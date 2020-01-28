@@ -15,21 +15,19 @@
 	</div>
 	<!-- 왼쪽 메뉴바 START -->
 	<div class="left_menu">
-		<div class="left_menu_position">
-			<div class="left_menu_title"></div>
-			<ul class="user_manager">
-				회원 관리
-				<li class="unser_ma"></li>
-				<li class="unser_ma"></li>
-			</ul>
-			<ul class="user_manager">
-				신고관리
-				<li class="unser_ma">리뷰 신고 관리</li>
-				<li class="unser_ma">리뷰 댓글 신고 관리</li>
-				<li class="unser_ma">한줄평 신고 관리</li>
-			</ul>
-
-		</div>
+		<h3 class="mb-20">관리자 페이지</h3>
+			<div class="">
+				<ul class="unordered-list">
+					<li><a href="/member/client">회원 관리</a></li>
+					<li>리뷰 신고 관리
+						<ul>
+							<li><a href="/report/review/list">리뷰 신고 관리</a></li>
+							<li><a href="/report/reply/list" class="custom-active">리뷰 댓글 신고 관리</a></li>
+							<li><a href="/report/comment/list">한줄평 신고 관리</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 	</div>
 
 	<!-- 왼쪽 메뉴바 START END-->

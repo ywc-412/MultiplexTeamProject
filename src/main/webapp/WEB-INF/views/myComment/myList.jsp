@@ -303,22 +303,20 @@
      
         $(document).on("click", "#myCommentDelete", function(e){
             var commentNo = $(this).data('commentno');
-            console.log(commentNo);
             
             e.preventDefault();
             
-//               if(!memberId){
-//                    // 로그인하지 않은 경우
-//                    alert('로그인 후 삭제가 가능합니다.');
-//                    return ;
-//                 }
                 var originalReplyer = modalmemberId.val();
-                console.log(originalReplyer);
                 
-                commentService.remove(commentNo, originalReplyer, function(result){
-                   alert(result);
-                location.reload();
-                });
+                if(confirm('삭제하시겠습니까?')){
+	                commentService.remove(commentNo, originalReplyer, function(result){
+	                    if(result == 'success'){
+	                    	alert('한줄평 삭제가 완료되었습니다.');
+		               		 location.reload();
+	                    }
+	                    showList(pageNum);
+	                });
+                }
          });
      
      

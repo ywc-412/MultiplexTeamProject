@@ -12,12 +12,12 @@
 		    <h3 class="mb-20">관리자 페이지</h3>
 			<div class="">
 				<ul class="unordered-list">
-					<li>회원 관리</li>
+					<li><a href="/member/client">회원 관리</a></li>
 					<li>리뷰 신고 관리
 						<ul>
-							<li>리뷰 신고 관리</li>
-							<li>리뷰 댓글 신고 관리</li>
-							<li class="custom-active">한줄평 신고 관리</li>
+							<li><a href="/report/review/list">리뷰 신고 관리</a></li>
+							<li><a href="/report/reply/list">리뷰 댓글 신고 관리</a></li>
+							<li><a href="/report/comment/list" class="custom-active">한줄평 신고 관리</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -143,7 +143,7 @@
 			var commentreportno = $(this).data("commentreportno");
 				
 			 $("#actionForm").append("<input type='hidden' name='commentReportNo' value='"+ $(this).data("commentreportno")+"'>");
-// 			 $("#actionForm").append("<input type='hidden' name='commentNo' value='"+ $(this).attr("href")+"'>");
+			 $("#actionForm").append("<input type='hidden' name='commentNo' value='"+ $(this).attr("href")+"'>");
 			 $("#actionForm").attr("action", "/report/comment/get");
 			 $("#actionForm").submit();
 		});

@@ -20,12 +20,12 @@
 								<h3 class="mb-20">관리자페이지</h3>
 								<div class="">
 									<ul class="unordered-list">
-										<li class="custom-active">회원 관리</li>
+										<li><a href="/member/client" class="custom-active">회원 관리</a></li>
 										<li>리뷰 신고 관리
 											<ul>
-												<li>리뷰 신고 관리</li>
-												<li>리뷰 댓글 신고 관리</li>
-												<li>한줄평 신고 관리</li>
+												<li><a href="/report/review/list">리뷰 신고 관리</a></li>
+												<li><a href="/report/reply/list">리뷰 댓글 신고 관리</a></li>
+												<li><a href="/report/comment/list">한줄평 신고 관리</a></li>
 											</ul>
 										</li>
 									</ul>
