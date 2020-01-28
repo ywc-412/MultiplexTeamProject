@@ -43,9 +43,10 @@
 						</div>
 					</div>																	
 					</div>
+						
 					<!-- data e -->
 						<form id="actionForm" action="/gift/list" method="get">
-
+				
 						</form>	
 			</div>
 		</div>
@@ -63,6 +64,7 @@
 					$('#actionForm').append(
 							"<input type='hidden' name='giftNo' value='" + $(this).attr("href") + "'>");								
 					$('#actionForm').attr("action", "/gift/get");
+					
 					$('#actionForm').submit();
 				});
 		});
