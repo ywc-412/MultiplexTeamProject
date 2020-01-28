@@ -106,7 +106,6 @@
 		 var formData = new FormData();	//jQuery를 이용하는 경우 파일 업로드는 FormData라는 객체를 이용. 쉽게 말하면 가상의 <form>태그
 		 var inputFile = $("input[name='uploadFile']");
 		 var files = inputFile[0].files;		
-		 console.log(files);
 		 
 		 /* add filedata to formdata */
 		 for (var i = 0; i < files.length; i++) {
@@ -129,7 +128,6 @@
 			dataType : 'json',	//반환된 정보를 처리하도록 추가
 			success : function(result) {	
 				alert("upload ok");
-				console.log(result);
 				showUpLoadedFile(result)
 			},error : function(error) {
 				alert("upload not ok");								
@@ -157,7 +155,6 @@
 	$(".uploadResult").on("click", "button", function(e){
 		var targetFile = $(this).data("file");
 		var type = $(this).data("type");
-		console.log(targetFile);
 		
 		var targetLi = $(this).closest("li");
 		$.ajax({
@@ -169,7 +166,6 @@
 			dataType: 'text',
 			type: 'POST',
 			success: function(result){
-				console.log('remove clicked!');
 				targetLi.remove();
 			}, error : function(error){
 				alert(error);

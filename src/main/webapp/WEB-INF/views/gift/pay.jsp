@@ -43,8 +43,7 @@
 		var $this = $(this);			
 		var li = ""; 	
 		
-		$.get("/gift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {
-		 console.log(data);				
+		$.get("/gift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {					
 			var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;	 
 			filePath = filePath.replace(new RegExp(/\\/g), "/");
 			console.log(filePath);

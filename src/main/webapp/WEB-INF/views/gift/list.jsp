@@ -76,7 +76,6 @@
 				$.get("/gift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {				
 					var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;		 
 					filePath = filePath.replace(new RegExp(/\\/g), "/");
-					console.log(filePath);
 					li += "<img class='giftImg' src='/giftUpload/display?giftFileName="+filePath+"'>"						  		
 						  		$this.find(".uploadResult").find("ul").append(li);
 				});

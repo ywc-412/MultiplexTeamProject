@@ -40,7 +40,7 @@
 						<span class="minus bg-dark">-</span> 
 							<input type="number" class="num-count" id="qty" name="qty" value="1">
 						<span class="plus bg-dark">+</span>
-						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly>원</span>
+						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly></span>
 					</div>
 				</div>
 				<!-- data e -->
@@ -146,7 +146,6 @@
 				str += "<input type='hidden' value='"+ giftName +"' name='giftName'/>";
 				str += "<input type='hidden' value='"+ giftPrice +"' name='giftPrice'/>";
 				str += "<input type='hidden' value='"+ giftSet +"' name='giftSet'/>";
-				//str += "<input type='hidden' value='"+ memberId +"' name='memberId'/>";
 				
 				$('#payHere').append(str);
 				$('#payRealForm').submit(); 
@@ -186,7 +185,7 @@
 	//첨부파일 목록 가져오기
 	(function() {	
 		$.getJSON("/gift/getAttachList", { giftNo : ${gift.giftNo}}, function(data) {
-					console.log(data);
+					
 			var li = "";
 			$(data).each(function(index, obj){								
 				//이미지이면 그대로 표시				
@@ -207,13 +206,11 @@
         $('.num-count').prop('disabled', true);
         $(document).on('click', '.plus', function () {
             $('.num-count').val(parseInt($('.num-count').val()) + 1);
-            $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));         
-            console.log($('.totalPrice').val());
+            $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));                 
         });
         $(document).on('click', '.minus', function () {
             $('.num-count').val(parseInt($('.num-count').val()) - 1);
             $('.totalPrice').val(parseInt($('.totalPrice').val() - $('.giftPrice').val()));
-            console.log($('.totalPrice').val());
             if ($('.num-count').val() == 0) {
                 $('.num-count').val(1);
                 alert("1개 이상 구입 가능");

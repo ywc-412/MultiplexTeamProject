@@ -75,12 +75,11 @@
 	$("#giftArea").find(".single_gift").each(function(){	
 		var $this = $(this);			
 		var li = ""; 		
-		$.get("/myGift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {
-		 console.log(data);				
+		$.get("/myGift/getAttachList",{giftNo : $(this).attr("id")}, function(data) {			
 			var filePath = data[0].giftUploadPath+ "\\" + data[0].giftUuid + "_" + data[0].giftFileName;
 		 
 			filePath = filePath.replace(new RegExp(/\\/g), "/");
-			console.log(filePath);
+
 			li += "<img class='giftImg' src='/giftUpload/display?giftFileName="+filePath+"'>"						  		
 				  		$this.find(".uploadResult").find("ul").append(li);
 		});//END JSON	
@@ -94,20 +93,16 @@
 
 		$('#extendBtn').on("click", function(e) {
 			e.preventDefault();
-			console.log("clicked");
 			extendForm.submit();
 		});
 		
 		$('#refundBtn').on("click", function(e) {
 			e.preventDefault();
-			console.log("clicked");
-			console.log("${mygift[0].memberId}");
 			refundForm.submit();
 		});
 		
 		$('#listBtn').on("click", function(e) {
 			e.preventDefault();
-			console.log("clicked");
 			listForm.submit();
 		});
 	});
