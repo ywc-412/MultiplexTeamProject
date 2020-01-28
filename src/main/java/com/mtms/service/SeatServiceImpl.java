@@ -28,10 +28,7 @@ public class SeatServiceImpl implements SeatService {
 
 	@Override
 	public int modifyStatus(String seats, int scheduleNo) {
-		// 예매 완료된 좌석의 상태 변경
-		System.out.println("seat si - modifystatus : " + seats);
-		System.out.println("seat si - scheduleNo : " + scheduleNo);
-		
+		// 예매 완료된 좌석의 상태 변경		
 		return seatMapper.modifyStatus(seats, scheduleNo);
 	}
 

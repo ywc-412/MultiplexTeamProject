@@ -29,63 +29,63 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/report/reply/*")
 public class ReplyReportController {
 
-	private ReviewReplyReportService replyReportService;
+   private ReviewReplyReportService replyReportService;
 
-	@PostMapping("remove")
-	public String remove(@RequestParam("replyNo") String replyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+   @PostMapping("remove")
+   public String remove(@RequestParam("replyNo") String replyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 String[] words = replyNo.split(",");
-		
-		for (String wo : words ){
-			System.out.println(wo);
-			int replyNo1 = Integer.parseInt(wo);
-		if (replyReportService.remove(replyNo1)) {
-			rttr.addFlashAttribute("result", "success");
-		}
-	}
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
+      
+      for (String wo : words ){
+         System.out.println(wo);
+         int replyNo1 = Integer.parseInt(wo);
+      if (replyReportService.remove(replyNo1)) {
+         rttr.addFlashAttribute("result", "success");
+      }
+   }
+      rttr.addAttribute("pageNum", cri.getPageNum());
+      rttr.addAttribute("amount", cri.getAmount());
 
-		return "redirect:/report/reply/list";
-	}
+      return "redirect:/report/reply/list";
+   }
 
-//	@PostMapping("modify")
-//	public String modify(ReplyReportVO rpvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-//		return null;
-//		
-//	}
-//	@GetMapping({"get", "modify"})
-	@GetMapping("get")
-	public void get(@RequestParam("replyReportNo")int replyReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
-		model.addAttribute("rpvo",replyReportService.get(replyReportNo));
-	}
+//   @PostMapping("modify")
+//   public String modify(ReplyReportVO rpvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+//      return null;
+//      
+//   }
+//   @GetMapping({"get", "modify"})
+   @GetMapping("get")
+   public void get(@RequestParam("replyReportNo")int replyReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
+      model.addAttribute("rpvo",replyReportService.get(replyReportNo));
+   }
 
-	@GetMapping("list")
-	public void list(Criteria cri, Model model) {
-		model.addAttribute("list", replyReportService.getList(cri));
+   @GetMapping("list")
+   public void list(Criteria cri, Model model) {
+      model.addAttribute("list", replyReportService.getList(cri));
 
-		int total = replyReportService.getTotalCount(cri);
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
-	}
+      int total = replyReportService.getTotalCount(cri);
+      model.addAttribute("pageMaker", new PageDTO(cri, total));
+   }
 
-	@GetMapping("register")
-	public void register(HttpServletRequest request, Model model) {
-		String replyNo1 = request.getParameter("replyNo");
-		int replyNo = Integer.parseInt(replyNo1);
-		String replyContent = request.getParameter("replyContent");
+   @GetMapping("register")
+   public void register(HttpServletRequest request, Model model) {
+      String replyNo1 = request.getParameter("replyNo");
+      int replyNo = Integer.parseInt(replyNo1);
+      String replyContent = request.getParameter("replyContent");
 
-		ReplyReportVO rpvo = new ReplyReportVO();
-		rpvo.setReplyNo(replyNo);
-		rpvo.setReplyContent(replyContent);
+      ReplyReportVO rpvo = new ReplyReportVO();
+      rpvo.setReplyNo(replyNo);
+      rpvo.setReplyContent(replyContent);
 
-		model.addAttribute("revo", rpvo);
-	}
+      model.addAttribute("revo", rpvo);
+   }
 
-	@PostMapping("register")
-	public String register(ReplyReportVO rpvo, RedirectAttributes rttr) {
-		replyReportService.register(rpvo);
-		rttr.addFlashAttribute("result", rpvo.getReplyReportNo());
-		return "redirect:/report/reply/list";
+   @PostMapping("register")
+   public String register(ReplyReportVO rpvo, RedirectAttributes rttr) {
+      replyReportService.register(rpvo);
+      rttr.addFlashAttribute("result", rpvo.getReplyReportNo());
+      return "redirect:/review/list";
 
-	}
+   }
 
 }

@@ -95,7 +95,6 @@ public class ScheduleController {
 			for(int i=0; i<time.length; i++) {	
 				ScheduleVO svo = new ScheduleVO();
 				svo.setScheduleDate(scheduleVO.getScheduleDate());
-				System.out.println("register : sdate : " + scheduleVO.getScheduleDate());
 				svo.setMovieNo(scheduleVO.getMovieNo());
 				svo.setScreen(scheduleVO.getScreen());
 				svo.setScheduleTime(time[i]);
@@ -139,11 +138,6 @@ public class ScheduleController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("modify")
 	public String modify(ScheduleVO scheduleVO, String[] time, String[] no, RedirectAttributes rttr) {
-		System.out.println("modify");
-		for(int i=0; i<no.length; i++) {
-			System.out.println("no : " + no[i]);
-		}
-		
 		scheduleService.modify(no, time);
 		return "redirect:/schedule/register?scheduleDate="+scheduleVO.getScheduleDate();
 	}
@@ -153,9 +147,6 @@ public class ScheduleController {
 	public String remove(String scheduleDate, RedirectAttributes rttr) {
 		// 상영스케줄 삭제 (하루치)
 		// scheduleDate 같은 게 여러 개니까 한번에 삭제~
-		System.out.println("SCHEDULE CONTROLLER - REMOVE");
-		System.out.println("DATE : " + scheduleDate);
-		
 		// 오늘 날짜 구하기
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
@@ -163,14 +154,11 @@ public class ScheduleController {
 		
 		if(scheduleDate.equals(formatToday)) {
 			// 삭제하는 날짜와 오늘 날짜가 같은 경우 삭제 불가능
-			System.out.println("오늘 날짜의 스케줄은 삭제가 불가능합니다.");
 			rttr.addFlashAttribute("result", "todaySchedule");
 		} else {
 			if(scheduleService.removeDay(scheduleDate)) {
-				System.out.println("상영스케줄 삭제 성공");
 				rttr.addFlashAttribute("result", "removeSuccess");
 			} else {
-				System.out.println("상영스케줄 삭제 실패");
 				rttr.addFlashAttribute("result", "removeFail");
 			}
 		}

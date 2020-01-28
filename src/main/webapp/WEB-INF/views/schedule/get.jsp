@@ -12,7 +12,7 @@
 	<c:set var="tonext" value="<%=new Date(new Date().getTime() + 60*60*48*1000)%>"/>
 
 	<div class="hanna_head">
-		<h3>TIME TABLE </h3>
+<!-- 		<h3>TIME TABLE </h3> -->
 		<h4>
 			<c:if test="${param.scheduleDate == null}">
 				<fmt:formatDate value='${to }' pattern='yyyyMMdd'/>

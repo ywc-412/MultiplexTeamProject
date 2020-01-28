@@ -29,12 +29,8 @@ public class MovieServiceImpl implements MovieService{
    @Transactional
    @Override
    public void register(MovieVO movie) {
-      log.info("영화 register " + movie);
-      System.out.println(movie.getMovieNo());
-      
       movieMapper.insert(movie);
 
-      System.out.println(movie.getMovieNo());
       
       List<MovieAttachVO> attachList = movie.getAttachList();
       //첨부파일 없을 때 처리
@@ -111,7 +107,6 @@ public class MovieServiceImpl implements MovieService{
    //영화 페이징 조회
    @Override
    public List<MovieVO> getList(Criteria cri){
-      System.out.println("무비 리스트");
       
       return movieMapper.getListWithPaging(cri);
    }
@@ -126,7 +121,6 @@ public class MovieServiceImpl implements MovieService{
    //영화 페이징 조회
    @Override
    public List<MovieAttachVO> attachGetList(){
-      System.out.println("무비 리스트");
       
       return movieAttachMapper.attachList();
    }
@@ -173,8 +167,6 @@ public class MovieServiceImpl implements MovieService{
    // 한나 - 스케줄 : 영화 이름으로 검색
     @Override
     public List<MovieVO> getMovieName(String movieName) {
-       System.out.println("★Movie Service Impl - getMovieName");
-       System.out.println("movieName : " + movieName);
        return movieMapper.getMovieName(movieName);
     }
 
