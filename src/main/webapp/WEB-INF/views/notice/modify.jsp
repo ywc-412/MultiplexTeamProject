@@ -23,17 +23,17 @@
                 </div>
                 <div class="form-group">
                     <label>내용</label>
-                    <textarea class="form-control" rows="6" name="noticeContent" ><c:out value="${notice.noticeContent}"/></textarea>
+                    <textarea class="form-control" rows="6" name="noticeContent" id="custom-notice-content"><c:out value="${notice.noticeContent}"/></textarea>
                 </div>
                 <hr>
-                <input type="hidden"  name="pageNum" value="${cri.pageNum }">
-				<input type="hidden" name="amount" value="${cri.amount}">
+                	<input type="hidden"  name="pageNum" value="${cri.pageNum }">
+					<input type="hidden" name="amount" value="${cri.amount}">
 					<input type="hidden" name="type" value="${ cri.type }" /> 
 					<input type="hidden" name="keyword" value="${ cri.keyword }" />
                 <div class="form-group text-center">
                 
                     <button data-oper="modify" type="submit" class="btn btn-primary btn-sm">수정</button>
-                    <button data-oper="list" type="button" class="btn btn-secondary btn-sm">취소</button>
+                    <button data-oper="cancel" type="button" class="btn btn-secondary btn-sm">취소</button>
                 </div>
                 </form>
             </div>
@@ -48,7 +48,7 @@
    $('button').on("click", function(e){
       e.preventDefault();
       var operation = $(this).data("oper");
-      if(operation === 'list'){	//목록 버튼	    	
+      if(operation === 'cancel'){	//목록 버튼	    	
     		if(confirm("정말로 취소하시겠습니까?") == true) {     	
 		         formObj.attr("action", "/notice/list").attr("method", "get");
 		         var pageNumTag = $("input[name='pageNum']").clone();

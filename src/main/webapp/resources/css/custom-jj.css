@@ -470,5 +470,8 @@ input:disabled {
 	padding: 30px;
 }
 
+#custom-notice-content {
+	height : 300px
+}
 
 

@@ -14,6 +14,9 @@ public interface SeatMapper {
 	// 예매완료된 좌석의 상태 1로 변경
 	public int modifyStatus(@Param("seats") String seats, @Param("scheduleNo") int scheduleNo);
 	
+	// 예매취소된 좌석의 상태 0으로 변경
+	public int cancelStatus(@Param("seats") String seats, @Param("scheduleNo") int scheduleNo);
+	
 	// 좌석 추가 - fin
 	public void insert(@Param("scheduleNo") int scheduleNo, @Param("seatNo") String seatNo);
 	

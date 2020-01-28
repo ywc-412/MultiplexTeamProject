@@ -18,7 +18,7 @@
 					<div class="mt-10 custom-input">
 						<div>아이디</div>
 						<input type="text" name="memberId" id="memberId"
-							class="single-input custom-text-right">
+							class="single-input custom-text-right" maxlength="75">
 						<div class="custom-red-font custom-text-right"
 							id="memberIdErrorMsg"></div>
 					</div>
@@ -26,7 +26,7 @@
 					<div class="mt-10 custom-input">
 						<div class="">이름</div>
 						<input type="text" name="memberName" id="memberName"
-							class="single-input custom-text-right">
+							class="single-input custom-text-right" maxlength="50">
 						<div class="custom-red-font custom-text-right"
 							id="memberNameErrorMsg"></div>
 					</div>
@@ -34,7 +34,7 @@
 					<div class="mt-10 custom-input">
 						<div>비밀번호</div>
 						<input type="password" name="memberPw" id="memberPw"
-							class="single-input custom-text-right">
+							class="single-input custom-text-right" maxlength="150">
 						<div class="custom-red-font custom-text-right"
 							id="memberPwErrorMsg"></div>
 					</div>
@@ -42,7 +42,7 @@
 					<div class="mt-10 custom-input">
 						<div>비밀번호 확인</div>
 						<input type="password" id="memberPwChk"
-							class="single-input custom-text-right">
+							class="single-input custom-text-right" maxlength="150">
 						<div class="custom-red-font custom-text-right"
 							id="memberPwChkErrorMsg"></div>
 					</div>
@@ -50,7 +50,7 @@
 					<div class="mt-10 custom-input">
 						<div>이메일</div>
 						<input type="text" name="memberEmail" id="memberEmail"
-							class="single-input custom-text-left custom-input-size">
+							class="single-input custom-text-left custom-input-size" maxlength="50">
 						<div class="custom-text-left custom-my-auto">@</div>
 						<div class="default-select custom-text-left" id="default-select">
 							<select name="memberEmailSecond" id="memberEmailSecond">

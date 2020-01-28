@@ -35,7 +35,17 @@
 	                            <td>${r.seat }</td>
 	                            <td>
 	                            	<c:choose>
-	                            		<c:when test="${r.status == 0 }"><button class="btn btn-primary">예매취소</button></c:when>
+	                            		<c:when test="${r.status == 0 }">
+	                            			<form id="reserveCanForm" action="/reserve/refund" method="post">
+												<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+	                            				<input type="hidden" name="reserveNo" value="${r.reserveNo }">
+	                            				<sec:authorize access="isAuthenticated()">
+													<input type="hidden" name="memberId"
+														value="<sec:authentication property="principal.username"/>">
+												</sec:authorize>
+	                            				<button class="btn btn-primary" id="reserveCanBtn">예매취소</button>
+	                            			</form>
+	                            		</c:when>
 	                            		<c:when test="${r.status == 1 }">
 	                            			<form id="reviewForm" action="/review/register">
 	                            				<input type="hidden" name="movieNo" value="${r.movieNo }">
@@ -60,15 +70,15 @@
                                     </a>
 	                            </li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                                <li class="page-item"><a class="page-link" href="#">10</a></li>
+<!--                                 <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" href="#">4</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" href="#">5</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" href="#">6</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" href="#">7</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" href="#">8</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" href="#">9</a></li> -->
+<!--                                 <li class="page-item"><a class="page-link" href="#">10</a></li> -->
 	                            <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
@@ -84,6 +94,16 @@
               </div>
              </div>
             </div>
-			
+            
+            <script>
+	            $(function() {
+					$("#reserveCanBtn").on("click", function(){
+						if(confirm("정말 환불하시겠습니까?")){
+							$("#reserveCanForm").submit();
+						}
+					});
+	            });
+					
+			</script>
 
 <%@ include file="../include/footer.jsp"%>

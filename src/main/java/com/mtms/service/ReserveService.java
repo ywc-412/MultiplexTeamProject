@@ -24,6 +24,6 @@ public interface ReserveService {
 	public void register(ReserveVO rvo);
 	
 	// 예매 수정하기 (환불완료라던가..)
-	public boolean refund(String reserveNum);
+	public void refund(String reserveNo);
 
 }

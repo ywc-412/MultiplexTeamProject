@@ -64,7 +64,7 @@ public class CommentReportController {
    @Secured("ROLE_MEMBER")
    public void register(Model model, @RequestParam("commentNo") int commentNo, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
       
-      log.info("controller 신고 register");
+//      log.info("controller 신고 register");
       model.addAttribute("movie", movieService.get(movieNo));
       model.addAttribute("comment", commentService.get(commentNo));
    }
@@ -74,7 +74,7 @@ public class CommentReportController {
    @PostMapping("register")
    public String register(CommentReportVO commentReport, @RequestParam("movieNo") int movieNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
       
-      log.info("Controller register()");
+//      log.info("Controller register()");
       
       commentReportService.register(commentReport);
       
@@ -90,7 +90,7 @@ public class CommentReportController {
    @Secured("ROLE_ADMIN")
    @GetMapping("list")
    public void list(Criteria cri, Model model) {
-      log.info("Controller list ");
+//      log.info("Controller list ");
 
       model.addAttribute("comment", commentService.getCommentList());
       model.addAttribute("commentReport", commentReportService.getList(cri));
@@ -102,14 +102,14 @@ public class CommentReportController {
    @GetMapping("deleteAll")
    public String deleteAll(@RequestParam("checkComment") String checkComment, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 //         commentService
-      System.out.println("COMMENT CONTROLLER - CHECKCOMMENT : " + checkComment);
+//      System.out.println("COMMENT CONTROLLER - CHECKCOMMENT : " + checkComment);
       
       String[] arrComment = checkComment.toString().split(",");
       for( int i=0; i<arrComment.length; i++) {
-         System.out.println(Integer.parseInt(arrComment[i]));
+//         System.out.println(Integer.parseInt(arrComment[i]));
          
          int result = commentService.remove(Integer.parseInt(arrComment[i]));
-         System.out.println(result);
+//         System.out.println(result);
          
       }
       

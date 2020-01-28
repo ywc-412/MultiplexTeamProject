@@ -26,21 +26,23 @@
 				<hr>				
 				<div class="">			
 				<button type="button" data-oper="list" class="btn btn-primary float-left custom-button-gift">LIST</button>		
+				<div class="float-right">
 					<sec:authorize access="hasRole('ROLE_ADMIN')">		
-						<form action="/notice/modify" id="operForm" method="get">
+						<form action="/notice/modify" id="operForm" method="get" style="float: left">
 							<input type="hidden" id="noticeNo" name="noticeNo" value="${notice.noticeNo}"> 
 							<input type="hidden" name="pageNum" value="${cri.pageNum}"> 
 							<input type="hidden" name="amount" value="${cri.amount}"> 
 							<input type="hidden" name="type" value="${cri.type}"> 
 							<input type="hidden" name="keyword" value="${cri.keyword}">
-							<button data-oper="modify" class="btn btn-primary float-right custom-button-gift">수정</button>
+							<button data-oper="modify" class="btn btn-primary custom-button-gift">수정</button>
 						</form>					
-						<form role="form" action="/notice/remove" method="post">
+						<form role="form" action="/notice/remove" method="post" style="float: left">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> 
 							<input type="hidden" name="noticeNo" value="${notice.noticeNo}">
-							<button type="submit" data-oper="remove" class="btn btn-danger float-right custom-button-gift">삭제</button>
+							<button type="submit" data-oper="remove" class="btn btn-danger custom-button-gift">삭제</button>
 						</form>
 					</sec:authorize>
+				</div>
 				</div>		
 			</div>
 		</div>

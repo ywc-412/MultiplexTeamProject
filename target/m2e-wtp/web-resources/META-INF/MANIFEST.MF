@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: hong
 =======
 Built-By: yeongjoo
@@ -8,6 +9,9 @@ Built-By: yeongjoo
 =======
 Built-By: hanna
 >>>>>>> 3c213a5088f7f9bf465bcd69e11a7b22659ce3af
+=======
+Built-By: yeongjoo
+>>>>>>> bac39a022cebe65c8a0f5390da4c4b420a648d84
 Build-Jdk: 1.8.0_221
 Created-By: Maven Integration for Eclipse
 

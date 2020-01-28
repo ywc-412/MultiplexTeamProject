@@ -77,9 +77,7 @@
 	 $("input[type='file']").change(function(e){
 		 var formData = new FormData();	//jQuery를 이용하는 경우 파일 업로드는 FormData라는 객체를 이용. 쉽게 말하면 가상의 <form>태그
 		 var inputFile = $("input[name='uploadFile']");
-		 var files = inputFile[0].files;
-		
-		 console.log(files);		
+		 var files = inputFile[0].files;		
 		
 		 /* add filedata to formdata */
 		 for (var i = 0; i < files.length; i++) {
@@ -101,8 +99,7 @@
 			type : 'POST',
 			dataType : 'json',	//반환된 정보를 처리하도록 추가
 			success : function(result) {	
-				alert("upload ok");
-				console.log(result);						
+				alert("upload ok");					
 				showUpLoadedFile(result);
 			},error : function(error) {
 				alert("upload not ok");
@@ -150,8 +147,7 @@
 			
 		(function() {
 			var giftNo = ${gift.giftNo};
-			$.getJSON("/gift/getAttachList", { giftNo : giftNo}, function(data) {
-				console.log(data)							
+			$.getJSON("/gift/getAttachList", { giftNo : giftNo}, function(data) {							
 				var li = "";
 				$(data).each(function(index, obj){								
 					//이미지이면 그대로 표시				
@@ -162,7 +158,7 @@
 				});
 						$('.uploadResult ul').append(li);		
 					}).fail(function(xhr, status, err) {
-						console.log(err);					
+											
 			});//END JSON	
 		})();
 </script>

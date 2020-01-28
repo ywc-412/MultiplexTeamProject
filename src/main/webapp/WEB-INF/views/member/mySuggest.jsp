@@ -85,7 +85,6 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-sm-12">
-						
 						<input type="hidden" name="${_csrf.parameterName }"
 							value="${_csrf.token }">
 						<div class="mt-10 custom-input">
@@ -99,7 +98,6 @@
 							<button type="button" class="boxed-btn3" id="suggestPwBtn">입력</button>
 							<button type="button" class="boxed-btn3" id="closeBtn3">닫기</button>
 						</div>
-						
 					</div>
 				</div>
 			</div>

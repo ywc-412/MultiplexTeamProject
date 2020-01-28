@@ -12,7 +12,7 @@
 	<br><br>
 	<div class="hanna_container">
 		<div class="reserve_success_pic">
-			<img class="custom_moveImg" src="/resources/img/instragram/winter.jpg" alt="">			
+			<!-- 예매한 영화의 포스터 -->
 		</div>
 		<div class="reserve_success_info">
 			<h3> ${schedule.movieTitle } </h3>
@@ -37,6 +37,32 @@
 	</div> <!-- hanna_container END -->
 	
 	<hr><hr>
+	
+	<script>
+	
+	$(function(){
+        var movieNo = '<c:out value="${schedule.movieNo}"/>';
+        
+        $.getJSON("/movie/getAttachList", {movieNo: movieNo}, function(result){
+           console.log(result);
+           var str = "";
+           
+           $(result).each(function(i, attach){
+              var fileCallPath = encodeURIComponent( attach.movieUploadPath + "/s_" + attach.movieUuid + "_" + attach.movieFileName);
+             var originPath = attach.movieUploadPath + "\\" + attach.movieUuid + "_" + attach.movieFileName;
+             originPath = originPath.replace(new RegExp(/\\/g), "/");
+             
+             str += "<img class='yeong_moveImg' src='/movieUpload/display?movieFileName=" + originPath + "'>"
+              
+           });
+           $(".reserve_success_pic").html(str);
+        }).fail(function(xhr, status, err){
+           console.log(err);
+        });
+	});
+	
+	
+	</script>
 
 
 

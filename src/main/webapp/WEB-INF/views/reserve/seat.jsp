@@ -70,17 +70,22 @@
 		
 		<div class="row">
 			<div class="col-xl-12 text-right">
+					
 				<form id="seatForm" action="/reserve/reserve" method="post">
 					<input type="hidden" name="scheduleDate" value="${reserveTime.scheduleDate }">
 					<input type="hidden" name="scheduleNo" value="${scheduleNo }">
-					<input type="hidden" name="memberId" value="hue9404">
-<%-- 					<sec:authentication property="principal.username" />로 로그인한 아이디 가져오기 --%>
+					
+					<sec:authorize access="isAuthenticated()">
+						<input type="hidden" name="memberId" id="memberId"
+							value="<sec:authentication property="principal.username"/>">
+					</sec:authorize>
+					
 					<input type="hidden" name="adultNum">
 					<input type="hidden" name="teenNum">
 					<input type="hidden" name="seat">
 					<input type="hidden" name="status" value="0">
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
-					<button id="goReserve" class="hanna_button2">>결제하기</button>
+					<button id="goPayment" class="hanna_button2">>결제하기</button>
 				</form>
 			</div>
 		</div>
@@ -88,11 +93,24 @@
 	
 	<script>
 	
-// 		function payment(adultNum, teenNum){
-		$('#goReserve').click(function(e){
+
+		$('#goPayment').click(function(e){
 			e.preventDefault();
 			var adultNum = Number($('#adultNum').html());
 			var teenNum = Number($('#teenNum').html());
+			var clickedNum = $("input[type=checkbox]:checked").length;
+			
+			if(adultNum+teenNum < 1){
+				alert('인원을 선택 후 이용해주세요.');
+				return ;
+			}
+			
+			if(adultNum+teenNum != clickedNum){
+				alert('인원수에 맞게 좌석을 선택 후 이용해주세요.');
+				return ;
+			}
+						
+			var buyerName = $('#memberId').html();
 			
 			var IMP = window.IMP;
 			IMP.init('imp75857452');
@@ -103,19 +121,13 @@
 				name : "s-cinema", //결제 내용 이름
 				amount : adultNum * 10 + teenNum * 9, // 결제금액
 				buyer_email : 'iamport@siot.do',
-				buyer_name : 'hanna', 
+				buyer_name : buyerName,
 				buyer_tel : '010-5287-5061',
 				buyer_addr : '인천시',
 				buyer_postcode : '12345',
 				m_redirect_url : 'https://www.yourdomain.com/payments/complete'
 			}, function(rsp){
 				if(rsp.success){
-					// controller로 값 보내기
-// 					var msg = '결제가 완료되었습니다.';
-// 					msg += '고유ID : ' + rsp.imp_uid;
-// 					msg += '상점 거래 ID : ' + rsp.merchant_uid;
-// 					msg += '결제 금액 : ' + rsp.paid_amount;
-// 					msg += '카드 승인번호 : ' + rsp.apply_num;
 					$("input[name=adultNum]").val(adultNum);
 					$("input[name=teenNum]").val(teenNum);
 					
@@ -132,7 +144,7 @@
 					
 				} else {
 					var msg = '결제가 실패되었습니다.';
-					msg += '에러 내용 : ' + rsp.error_msg;
+					msg += '\n에러 내용 : ' + rsp.error_msg;
 					alert(msg);
 				}
 			});

@@ -43,7 +43,7 @@ public class SuggestController {
 		return "redirect:/suggest/list";
 	}
 	
-	@PreAuthorize("hasRole('ROLE_MEMBER') and principal.username == #suggestVO.memberId")
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("modify")
 	public String modify(SuggestVO suggestVO, RedirectAttributes rttr) {
 		// 건의사항 수정
@@ -65,13 +65,20 @@ public class SuggestController {
 		
 	}
 	
-	@GetMapping({"get", "modify"})
+	@GetMapping("get")
 	public void get(int suggestNo, @ModelAttribute("cri") Criteria cri, Model model) {
 		// 건의사항 게시글 상세보기 화면으로 이동
 		model.addAttribute("suggest", suggestService.getSuggest(suggestNo));
 	}
 	
-	@PreAuthorize("hasRole('ROLE_MEMBER') and principal.username == #suggestVO.memberId")
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@GetMapping("modify")
+	public void modifyGet(int suggestNo, @ModelAttribute("cri") Criteria cri, Model model) {
+		// 건의사항 게시글 상세보기 화면으로 이동
+		model.addAttribute("suggest", suggestService.getSuggest(suggestNo));
+	}
+	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("remove")
 	public String remove(int suggestNo, RedirectAttributes rttr) {
 		// 건의사항 게시글 삭제

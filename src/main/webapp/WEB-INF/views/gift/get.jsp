@@ -40,7 +40,7 @@
 						<span class="minus bg-dark">-</span> 
 							<input type="number" class="num-count" id="qty" name="qty" value="1">
 						<span class="plus bg-dark">+</span>
-						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly>원</span>
+						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly></span>
 					</div>
 				</div>
 				<!-- data e -->
@@ -54,7 +54,7 @@
 		</div><br>
 	<!-- 버튼 s -->		
 	<div class="float-left">
-		<button class="btn btn-primary float-left custom-button-gift pull-left" data-oper='list'>LIST</button>
+		<button class="btn btn-primary float-left custom-button-gift pull-left" id="list">LIST</button>
 	</div>		
 	<div class="float-right">	
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -69,19 +69,26 @@
 			<button type="submit" class="btn btn-danger custom-button-gift" data-oper="remove">삭제</button>
 		</form>
 		</sec:authorize>
+		
 		<form action="/mygift/register" id="payForm" method="post" style="float: left">
 			<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
 			<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
 			<input type="hidden" name="giftSet" id="giftSet" value="${gift.giftSet}"> 
 			<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
 			<input type="hidden" name="totalPrice">
+			<sec:authorize access="hasRole('ROLE_MEMBER')">
 			<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
+			</sec:authorize>
 		</form>
+		
 	</div>	
 	<!-- 버튼 e -->	
+
 		<form action="/gift/paying" method="post" id="payRealForm">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+			<sec:authorize access="isAuthenticated()">
 			<input type="hidden" name="memberId" id="memberInput" value="<sec:authentication property='principal.username'/>">
+			</sec:authorize>
 			<div id="payHere">
 				<!-- 결제 -->
 			</div>
@@ -89,9 +96,9 @@
 	</div>	
 </section>
 <!-- board e -->
-<sec:authorize access="isAuthenticated()">
-	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
-</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+	</sec:authorize>
 
 <script>
 
@@ -144,7 +151,6 @@
 				str += "<input type='hidden' value='"+ giftName +"' name='giftName'/>";
 				str += "<input type='hidden' value='"+ giftPrice +"' name='giftPrice'/>";
 				str += "<input type='hidden' value='"+ giftSet +"' name='giftSet'/>";
-				//str += "<input type='hidden' value='"+ memberId +"' name='memberId'/>";
 				
 				$('#payHere').append(str);
 				$('#payRealForm').submit(); 
@@ -170,9 +176,7 @@
 	    	   } else {
 	    		   false;
 	    	   }
-	      }else if (operation === 'list') {
-				formObj.attr("action", "/gift/list").attr("method", "get"); 
-				formObj.submit();
+	      
 	      }else if(operation === 'modify'){
 	         formObj.attr("action", "/gift/modify");
 	         formObj.submit();
@@ -184,7 +188,7 @@
 	//첨부파일 목록 가져오기
 	(function() {	
 		$.getJSON("/gift/getAttachList", { giftNo : ${gift.giftNo}}, function(data) {
-					console.log(data);
+					
 			var li = "";
 			$(data).each(function(index, obj){								
 				//이미지이면 그대로 표시				
@@ -205,13 +209,11 @@
         $('.num-count').prop('disabled', true);
         $(document).on('click', '.plus', function () {
             $('.num-count').val(parseInt($('.num-count').val()) + 1);
-            $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));         
-            console.log($('.totalPrice').val());
+            $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));                 
         });
         $(document).on('click', '.minus', function () {
             $('.num-count').val(parseInt($('.num-count').val()) - 1);
             $('.totalPrice').val(parseInt($('.totalPrice').val() - $('.giftPrice').val()));
-            console.log($('.totalPrice').val());
             if ($('.num-count').val() == 0) {
                 $('.num-count').val(1);
                 alert("1개 이상 구입 가능");
@@ -219,6 +221,10 @@
             }
         });
     });   
+    
+    $("#list").click(function(){ 
+    	self.location='/gift/list';
+    });
     
 </script>
 

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
-
 <c:if test="${! empty updateFail}">
 	<script>
 		alert('${updateFail}');
@@ -55,6 +54,8 @@
 					<br>
 					<div class="mt-10 custom-input">
 						<div>핸드폰</div>
+						<button type="button" class="btn btn-primary btn-sm"
+							id='phoneAuthBtn' style="margin-left: 8px;">인증하기</button>
 						<div class="default-select custom-text-left" id="default-select">
 							<select name="memberPhoneFirst" id="memberPhoneFirst">
 								<c:choose>
@@ -84,6 +85,7 @@
 							class="single-input custom-text-left custom-input-size-phone" value="${memberInfo.memberPhoneThird}">
 						<div class="custom-red-font custom-text-right"
 							id="memberPhoneErrorMsg"></div>
+						<input type="hidden" id="phoneAuthChk" value=""/>
 					</div>
 					<br>
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
@@ -100,6 +102,56 @@
 	<script type="text/javascript" src="/resources/js/memberFind.js"></script>
 	<script>
 		$(function(){
+			var memberIdValidate = '${memberInfo.memberId}';
+			var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
+			
+			if(memberIdValidate != principalUsernmae){
+				location.href='/accessError';
+			}
+			
+			function popup(url){
+		        var name = "본인인증 서비스";
+		        var popupX = (window.screen.width/2)-(200/2);
+		 	    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+		     	var popupY= (window.screen.height / 2) - (300 / 2);
+		     	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+		        var option = "width = 500, height = 300, left = "+popupX+", top = "+popupY;
+		        window.open(url, name, option);
+		    }
+			
+			$('#phoneAuthBtn').on("click", function(e){
+				e.preventDefault();
+				var phoneRegExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+				
+				var phoneAuthNullChk = false;	// 인증 버튼 눌렀을때 핸드폰 번호 널값 처리
+				
+				var phoneFirst = $('select#memberPhoneFirst').val();
+				var phoneSecond = $('input#memberPhoneSecond').val();
+				var phoneThird = $('input#memberPhoneThird').val();
+				var phone = phoneFirst + phoneSecond + phoneThird;
+				var regForPhoneNum = phoneFirst +"-"+ phoneSecond + "-" + phoneThird;
+				var url = "/phoneAuthPopup?phone=" + phone;
+				
+				if(!phoneFirst){
+					$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+				}else if(!phoneSecond){
+					$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+				}else if(!phoneThird){
+					$('#memberPhoneErrorMsg').html('핸드폰 번호를 입력해주세요');
+				}else if(!phoneRegExp.test(regForPhoneNum)){
+					$('#memberPhoneErrorMsg').html('번호 형식에 맞지않습니다');
+				}else{
+					$('#memberPhoneErrorMsg').html('');
+					phoneAuthNullChk = true;
+					if(phoneAuthNullChk == true){
+						popup(url);
+					}
+				}
+			});
+			
+			
+			
 			
 			$('#infoModifyCancelBtn').on("click", function(e){
 				$('#cancelForm').submit();
@@ -197,6 +249,8 @@
 					$('#memberPhoneErrorMsg').html('필수 항목입니다');
 				}else if(!memberPhoneThird) {
 					$('#memberPhoneErrorMsg').html('필수 항목입니다');
+				}else if(!$('#phoneAuthChk').val()){
+					$('#memberPhoneErrorMsg').html('휴대폰 인증이 필요합니다');
 				}else{
 					registerResult = true;
 				}

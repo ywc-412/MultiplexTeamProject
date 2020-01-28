@@ -48,9 +48,8 @@
 						</c:forEach>					
 					</table>
 					<!--paging s -->               
-						<div class="custom-pagination">
+						<div class="custom-pagination2">
 							<nav aria-label="Page navigation example">
-								<!--<ul class="blog-pagination">-->
 								<ul class="blog-pagination text-center custom-th-size2">
 								<c:if test="${pageMaker.prev}">
 									<li class="page-item previous">
