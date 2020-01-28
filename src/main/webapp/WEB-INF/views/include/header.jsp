@@ -76,7 +76,7 @@
 										</li>
 										<li><a class="" href="/review/list">리뷰</a></li>
 										<li><a class="" href="/gift/list">기프티콘</a></li>
-										<li><a class='${list == null? "" : "active"}' href="/suggest/list">건의사항</a></li>
+										<li><a class='' href="/suggest/list">건의사항</a></li>
 										<li><a class="" href="/notice/list">공지사항</a></li>
 										<li><a class="" href="/lost/list">습득물</a></li>
 									</ul>

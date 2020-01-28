@@ -116,8 +116,8 @@ li:hover {
 }
 
 .custom-active {
-	text-decoration: underline;
-	text-underline-position: under;
+	font-weight: 1000;
+	font-size: 1.25em;
 }
 
 .custom-col-md {

@@ -11,7 +11,6 @@
 	<div class="container box_1170">
 		<div class="section-top-border">
 			<div class="row">
-
 				<!-- 마이페이지 인클루드....start -- row 밑에서 include-->
 				<%@ include file="../include/myPageMenu.jsp"%>
 				<!-- 마이페이지 인클루드....end -->
