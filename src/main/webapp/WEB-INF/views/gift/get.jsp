@@ -76,9 +76,7 @@
 			<input type="hidden" name="giftSet" id="giftSet" value="${gift.giftSet}"> 
 			<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
 			<input type="hidden" name="totalPrice">
-			<sec:authorize access="hasRole('ROLE_MEMBER')">
 			<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
-			</sec:authorize>
 		</form>
 		
 	</div>	
