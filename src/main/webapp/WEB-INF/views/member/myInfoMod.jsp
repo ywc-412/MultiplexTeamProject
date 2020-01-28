@@ -106,7 +106,7 @@
 			var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
 			
 			if(memberIdValidate != principalUsernmae){
-				alert('접근 권한 오류');
+				location.href='/accessError';
 			}
 			
 			function popup(url){

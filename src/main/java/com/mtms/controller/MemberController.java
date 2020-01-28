@@ -35,12 +35,13 @@ public class MemberController {
 	private SuggestService suggestService;
 	private ReserveService reserveService;
 	
-	
+	@PreAuthorize("isAnonymous()")
 	@GetMapping("/join")
 	public void join() {
 		// 회원가입 화면 들어가기 위한 컨트롤러
 	}
 	
+	@PreAuthorize("isAnonymous()")
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, RedirectAttributes rttr) {
 		// 입력 화면에서 form action /member/join
@@ -52,11 +53,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@PreAuthorize("isAnonymous()")
 	@GetMapping("/findId")
 	public void findId() {
 		// 아이디 찾기 화면 들어가기 위한 컨트롤러
 	}
 	
+	@PreAuthorize("isAnonymous()")
 	@PostMapping("/findId")
 	public String findId(MemberVO memberVO, RedirectAttributes rttr) {
 		// 아이디 찾기 화면에서 form action /member/findId
@@ -70,12 +73,14 @@ public class MemberController {
 		return "redirect:/member/findId";	
 	}
 	
+	@PreAuthorize("isAnonymous()")
 	@GetMapping("/findPw")
 	public void findPw() {
 		
 		// 비밀번호 찾기 화면 들어가기 위한 컨트롤러
 	}
 	
+	@PreAuthorize("isAnonymous()")
 	@PostMapping("/findPw")
 	public String findPw(MemberVO memberVO, RedirectAttributes rttr) {
 		// 비밀번호 찾기화면에서 포스트 매핑
@@ -130,6 +135,7 @@ public class MemberController {
 		model.addAttribute("reserveList", reserveService.getListAdm(memberId));
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@GetMapping("/myInfo")
 	public void get(String memberId, Model model) {
 		//회원 상세보기 컨트롤러	
@@ -182,7 +188,7 @@ public class MemberController {
 		return "redirect:/member/myInfoMod";
 	}
 	
-	@PreAuthorize("hasRole('ROLE_MEMBER') and principal.username == #memberId")
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@GetMapping("/myInfoMod")
 	public void modifyMember(String memberId, Model model) {
 		MemberVO memberVO = memberService.getMember(memberId);
@@ -190,7 +196,7 @@ public class MemberController {
 		model.addAttribute("memberInfo", memberVO);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_MEMBER')")// 나중에 principal.username 도 해야함
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@GetMapping("/mySuggest")
 	public void mySuggest(Criteria cri, Model model) {
 		model.addAttribute("list", suggestService.getSuggestListWithPaging(cri));

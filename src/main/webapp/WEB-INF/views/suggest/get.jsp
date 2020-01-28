@@ -20,7 +20,7 @@
 					${suggest.suggestContent}
 				</div>
 				<form action="/suggest/remove" method="post" id="removeForm">
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+					<input type='hidden' name='${_csrf.parameterName }' value='${_csrf.token }'>
 					<input type="hidden" name="suggestNo" value="${suggest.suggestNo}"/>
 				</form>
 				<hr>
