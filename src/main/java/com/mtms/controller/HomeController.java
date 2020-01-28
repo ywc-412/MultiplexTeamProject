@@ -40,7 +40,6 @@ public class HomeController {
    //영화 전체 조회
    @GetMapping("/")
    public String indexList(Model model) {
-      System.out.println("인덱스 영화조회");
       
 //      int totalMovie = movieService.totalMovie();
 //      
@@ -55,7 +54,6 @@ public class HomeController {
    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
    @ResponseBody
    public ResponseEntity<List<MovieAttachVO>> getAttachList(int movieNo) {
-      System.out.println("무비사진");
       return new ResponseEntity<>(movieService.getAttachList(movieNo), HttpStatus.OK);
    }
    

@@ -57,7 +57,18 @@ public class ReserveController {
 	@PostMapping("refund")
 	public String refund(String reserveNo, String memberId, RedirectAttributes rttr ) {
 		// 예매 수정하기 (환불)
+		// 예매 내역 상태(status) 변경 : 취소완료
 		reserveService.refund(reserveNo);
+		
+		ReserveVO rvo = reserveService.get(reserveNo);
+		// 영화 관객수 --
+		ScheduleVO svo = scheduleService.getSchedule(rvo.getScheduleNo());
+		int number = rvo.getAdultNum()+rvo.getTeenNum();
+		movieService.audience(svo.getMovieNo(), -number);
+		
+		// 좌석 상태 변경
+		seatService.cancelStatus(rvo.getSeat(), rvo.getScheduleNo());
+		
 		return "redirect:/reserve/list?memberId=" + memberId;
 	}
 	

@@ -171,10 +171,10 @@ public class MovieServiceImpl implements MovieService{
        return movieMapper.getMovieName(movieName);
     }
 
-    // 한나 - 예매 : 예매 시 관객수 ++
+    // 한나 - 예매 : 예매 시 관객수 ++ / 취소 시 관객수 --
     @Override
     public void audience(int movieNo, int audienceNum) {
-       movieMapper.audience(movieNo, audienceNum);
+      movieMapper.audience(movieNo, audienceNum);
     }
 
     // 희홍 - 영화번호로 영화명 가져오기

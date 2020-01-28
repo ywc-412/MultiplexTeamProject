@@ -31,6 +31,12 @@ public class SeatServiceImpl implements SeatService {
 		// 예매 완료된 좌석의 상태 변경		
 		return seatMapper.modifyStatus(seats, scheduleNo);
 	}
+	
+	@Override
+	public int cancelStatus(String seats, int scheduleNo) {
+		// 예매 취소된 좌석의 상태 변경
+		return seatMapper.cancelStatus(seats, scheduleNo);
+	}
 
 	@Override
 	public void register(int scheduleNo) {
@@ -57,10 +63,5 @@ public class SeatServiceImpl implements SeatService {
 		return false;
 	}
 
-	@Override
-	public boolean modify(List<SeatVO> seatList) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

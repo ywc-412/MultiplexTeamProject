@@ -15,10 +15,12 @@
 <!-- 		<h3>TIME TABLE </h3> -->
 		<h4>
 			<c:if test="${param.scheduleDate == null}">
-				<fmt:formatDate value='${to }' pattern='yyyyMMdd'/>
+				<fmt:formatDate value='${to }' pattern='yyyy/MM/dd'/>
 			</c:if>
 			<c:if test="${param.scheduleDate != null }">
-				${param.scheduleDate }
+				<c:set var="scheduleDate" value="${param.scheduleDate }"/>
+				${fn:substring(scheduleDate, 0, 4) }/${fn:substring(scheduleDate, 4, 6) }/${fn:substring(scheduleDate, 6, 8) }
+		
 			</c:if>
 		</h4>
 	</div>
@@ -110,8 +112,7 @@
     <!-- 관리자에게만 보임 : 시간표 등록/수정/삭제 버튼 -->
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
 	    <div class="hanna_container">
-		   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록</button>
-			<button class="hanna_button" id="scheduleModBtn" style="cursor : pointer;">시간표 수정</button>
+		   	<button class="hanna_button" id="scheduleRegBtn" style="cursor : pointer;">시간표 등록/수정</button>
 			<button class="hanna_button delete_button" id="scheduleDelBtn" style="cursor : pointer;">시간표 삭제</button>
 	    </div>
     </sec:authorize>
