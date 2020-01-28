@@ -53,11 +53,12 @@ public class ReserveController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("refund")
-	public String refund(String reserveNo, Model model, RedirectAttributes rttr ) {
+	public String refund(String reserveNo, String memberId, RedirectAttributes rttr ) {
 		// 예매 수정하기 (환불)
-		// service.refund
-		return reserveNo;
+		reserveService.refund(reserveNo);
+		return "redirect:/reserve/list?memberId=" + memberId;
 	}
 	
 	@PreAuthorize("hasRole('ROLE_MEMBER')")

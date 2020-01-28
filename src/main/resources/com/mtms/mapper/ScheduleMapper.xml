@@ -29,8 +29,6 @@
 
 	<!-- 상영스케줄 수정 -->
 	<update id="update">
-<!-- 		UPDATE schedule SET scheduleTime = #{scheduleTime} -->
-<!-- 		WHERE to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} AND screen = #{screen} AND rownum = #{num} -->
 		UPDATE schedule SET scheduleTime = #{scheduleTime}
 		WHERE scheduleNo = #{scheduleNo}
 	</update>

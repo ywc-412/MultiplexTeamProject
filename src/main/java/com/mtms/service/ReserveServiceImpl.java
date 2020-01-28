@@ -54,10 +54,11 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 
 	@Override
-	public boolean refund(String reserveNo) {
-		// TODO Auto-generated method stub
-		//mapper.update
-		return false;
+	public void refund(String reserveNo) {
+		// 예매 환불 - status 변경
+		System.out.println("reserve impl : " + reserveNo);
+		int a = 	reserveMapper.update(reserveNo);
+		System.out.println(" ? : " + a);
 	}
 
 
