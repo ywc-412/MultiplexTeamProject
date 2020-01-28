@@ -34,6 +34,7 @@ public class ReplyReportController {
    @PostMapping("remove")
    public String remove(@RequestParam("replyNo") String replyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 String[] words = replyNo.split(",");
+
       
       for (String wo : words ){
          int replyNo1 = Integer.parseInt(wo);
