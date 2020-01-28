@@ -58,7 +58,6 @@ public class ReviewController {
 	@GetMapping({"get","modify"})
 	public void get(@RequestParam("reviewNo") int reviewNo,@ModelAttribute("cri")
 		Criteria cri,Model model)  {
-		System.out.println("controller reivewNo: " + reviewNo);
 		model.addAttribute("rvo", service.get(reviewNo));
 		model.addAttribute("rvo1", service.movieSelect(reviewNo));
 	
