@@ -154,9 +154,12 @@ public class MovieServiceImpl implements MovieService{
    @Override
    public int totalMovie() {
       
-	   int result = movieMapper.sumMovie();
+	   Integer result = movieMapper.sumMovie();
 	   System.out.println(result);
-	   if(result == 0) {
+	   if(result == null) {
+		   System.out.println("gg");
+		   return 0;
+	   }else if(result == 0) {
 		   return 0;
 	   }else {
 		   return movieMapper.sumMovie();

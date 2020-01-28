@@ -39,7 +39,7 @@ public interface MovieMapper {
    public int sumGetMovie(int movieNo);
    
    //전체예매율
-   public int sumMovie();
+   public Integer sumMovie();
    
    //어제 예매수 변경
    public int updateYesterday();
