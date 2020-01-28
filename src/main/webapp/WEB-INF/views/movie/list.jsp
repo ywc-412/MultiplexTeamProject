@@ -128,34 +128,6 @@
     </form>
   
        <script>
-       
-//        $(function(){
-           
-//            var totalMovie = '<fmt:formatNumber value="${totalMovie}" type="pattern" pattern="0.00" />';
-//             console.log(" 무비평균 : " + totalMovie);
-//             var totalMovieZero = isNaN(totalMovie);
-//             console.log(totalMovieZero);
-            
-//             var total = $(".total");
-//             var starZero = $(".yeong-allStar");
-//             var str = "";
-//             var zero = "";
-            
-//             if(totalStarZero){
-//                str += "<h2 class='starTotalTitle yeong-starRed'></h2>";
-//                zero += "0";
-//                total.html(str);
-//                starZero.html(zero);
-//             } else if(totalStar <= 1){
-//                $('.starTotal1').addClass("on").prevAll("a").addClass("on");
-//                str += "<h2 class='starTotalTitle yeong-starRed'>★</h2>";
-//                total.html(str);
-//             } 
-            
-//         });
-       
-       
-       
        $(function(){
           
           $("#movieContArea").find(".single_movie").each(function() {
@@ -220,7 +192,7 @@
                return false;
             } 
             if(!searchForm.find("input[name='keyword']").val()){   //키워드를 입력하지 않았을때
-               alert('키워드를 선택하세요');
+               alert('내용을 입력하세요');
                return false;
             }
             //검색 결과 페이지 번호가 1이 되도록 처리
