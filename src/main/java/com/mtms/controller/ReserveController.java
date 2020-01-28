@@ -51,6 +51,7 @@ public class ReserveController {
 		model.addAttribute("reserveList", list);
 		int total = reserveService.getTotal(memberId, cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("myReserveList", "myReserveList");
 	}
 	
 	@PreAuthorize("hasRole('ROLE_MEMBER')")

@@ -60,33 +60,35 @@
                         </c:forEach>
                         </tbody>
                     </table>
+                    
                      <div class="custom-gift-pagination custom-th-size2">
-                    <div class="custom-pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul class="blog-pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-	                            </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-<!--                                 <li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" href="#">4</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" href="#">5</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" href="#">6</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" href="#">7</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" href="#">8</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" href="#">9</a></li> -->
-<!--                                 <li class="page-item"><a class="page-link" href="#">10</a></li> -->
-	                            <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    
+	                    <div class="pagination justify-content-center">
+					       <ul class="pagination">
+					             <c:if test="${pageMaker.prev }">
+					                <li class="paginate_button previous">
+					                   <a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
+					          </c:if>
+					          <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+					                <li class='paginate_button ${pageMaker.cri.pageNum == num ? "active":"" }'>
+					                  <a class="page-link" href="${num}">${num }</a></li>
+					          </c:forEach>
+					          <c:if test="${pageMaker.next }">
+					                <li class="paginate_button next">
+					                   <a class="page-link" href="${pageMaker.endPage + 1 }">Next</a></li>
+					          </c:if>
+					       </ul>
+					    </div>
+					    <!-- 실제 클릭하면 동작하는 부분 처리 -->
+					    <form id="actionForm" action="/reserve/list" method="get">
+					    	<sec:authorize access="isAuthenticated()">
+								<input type="hidden" name="memberId" id="memberId"
+									value="<sec:authentication property="principal.username"/>">
+							</sec:authorize>
+							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
+					         <input type="hidden" id="pageNum" name="pageNum" value="${pageMaker.cri.pageNum }">
+					         <input type="hidden" id="amount" name="amount" value="${pageMaker.cri.amount }">
+					    </form>
                 </div>
                 </div>
                
@@ -102,6 +104,13 @@
 							$("#reserveCanForm").submit();
 						}
 					});
+	            });
+	            
+	          //페이지 번호 링크 처리
+	          $(document).on("click", ".paginate_button a", function(e){
+	               e.preventDefault();
+	               $('#pageNum').val($(this).attr('href'));   //내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
+	               $('#actionForm').submit();
 	            });
 					
 			</script>

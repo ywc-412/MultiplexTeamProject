@@ -38,9 +38,9 @@
 							m.movieTitle
 				FROM reserve r, schedule s, movie m
 				WHERE memberId=#{memberId} and r.scheduleNo = s.scheduleNo and s.movieNo = m.movieNo
-				AND rownum <= 1 * 10 ORDER BY status
+				AND rownum <= #{cri.pageNum} * 10 ORDER BY status
 			) c
-			WHERE c.rn > (1 - 1) * 10 
+			WHERE c.rn > (#{cri.pageNum} - #{cri.amount}) * 10 
 		]]>
 	</select>
 	

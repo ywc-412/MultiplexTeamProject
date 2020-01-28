@@ -10,11 +10,11 @@
 				<div class="">
 					<ul class="unordered-list">
 						<li><a href="/member/myInfo" id="myInfoMove">내 정보 조회</a></li>
-						<li><a href="/reserve/list" id="myReserveMove">예매 내역</a></li>
-						<li><a href="/myReview/list">내 리뷰</a></li>
-						<li><a href="/myComment/myList">내 한줄평</a></li>
-						<li><a href="/myGift/list" id="myGiftMove">내 기프티콘</a></li>
-						<li><a href="/member/mySuggst" id="mySuggestMove">내 건의사항</a></li>
+						<li><a class= '${myReserveList == null? "" : "active"}' href="/reserve/list" id="myReserveMove">예매 내역</a></li>
+		                  <li><a class= '${myReviewList == null? "" : "active"}' href="/myReview/list">내 리뷰</a></li>
+		                  <li><a class= '${myCommentList == null? "" : "active"}' href="/myComment/myList" id="myComment">한줄평</a></li>
+						<li><a class='${myGift == null? "" : "active" }' href="/myGift/list" id="myGiftMove">내 기프티콘</a></li>
+						<li><a class='${mySuggest == null? "" : "active" }' href="/member/mySuggst" id="mySuggestMove">내 건의사항</a></li>
 					</ul>
 				</div>
 			</div>
