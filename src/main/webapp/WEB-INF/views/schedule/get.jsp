@@ -145,10 +145,7 @@
 				self.location.href="/schedule/register";
 				// 시간표 등록 화면으로 이동
 			});
-			$("#scheduleModBtn").click(function(){
-				// 시간표 수정 버튼 눌렀을 때
-				self.location.href="/schedule/modify";
-			});
+			
 			$("#scheduleDelBtn").click(function(){
 				// 시간표 삭제 버튼 눌렀을 때
 				if(confirm("삭제하시겠습니까?")){

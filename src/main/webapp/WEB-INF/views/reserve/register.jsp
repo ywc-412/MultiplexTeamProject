@@ -52,7 +52,6 @@
 			</div>
 		</div>
 
-		
 		<div class="row">
 			<div class="col-xl-12 text-right">
 				<form id="timeForm" action="/reserve/seat" method="post">
@@ -63,9 +62,9 @@
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">	
 						<div>
 							<ul style = "list-style-type : none;">
-								<li id="selectMovie">영화 : </li>
-								<li id="selectDate">날짜 : </li>
-								<li id="selectTime">시간 : </li>
+								<li id="selectMovie"></li>
+								<li id="selectDate"></li>
+								<li id="selectTime"></li>
 							</ul>
 						</div>
 						<br>
@@ -79,7 +78,6 @@
 	
 	
 	$(document).ready(function(){
-		
 		
 		$(document).on("click", "#goSeatBtn", function(e){
 			
