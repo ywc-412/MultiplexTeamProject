@@ -692,34 +692,38 @@
            
            
             $(document).on("click", "#commentDelete", function(e){
-               var commentNo = $(this).data('commentno');
-               console.log(commentNo);
+            	var result = confirm("삭제 하시겠습니까? ");
+                
+                if(result) {
+                	var commentNo = $(this).data('commentno');
+                    console.log(commentNo);
+                    
+                    e.preventDefault();
+                    
+                      if(!memberId){
+                           // 로그인하지 않은 경우
+                           alert('로그인 후 삭제가 가능합니다.');
+                           return ;
+                      }
+                      var originalReplyer = inputMemberId.val();
+                        
+                      if(memberId != originalReplyer){
+                           // 자신의 댓글이 아닌 경우
+                           alert('자신의 댓글만 삭제 가능합니다.');
+                           return ;
+                      }
+                        
+                      commentService.remove(commentNo, originalReplyer, function(result){
+                           alert(result);
+//                            location.reload();
+                           showList(pageNum);
+                           
+                      });
+                }else{
+                   return;
+                }
+                
                
-               e.preventDefault();
-               
-                 if(!memberId){
-                      // 로그인하지 않은 경우
-                      alert('로그인 후 삭제가 가능합니다.');
-                      return ;
-                   }
-                   var originalReplyer = inputMemberId.val();
-                   console.log(originalReplyer);
-                   console.log(memberId);
-   
-                   console.log(originalReplyer + " + " + memberId);
-                   
-                   if(memberId != originalReplyer){
-                      // 자신의 댓글이 아닌 경우
-                      alert('자신의 댓글만 삭제 가능합니다.');
-                      return ;
-                   }
-                   
-                   commentService.remove(commentNo, originalReplyer, function(result){
-                      alert(result);
-//                       location.reload();
-                      showList(pageNum);
-                      
-                   });
             });
            
            
