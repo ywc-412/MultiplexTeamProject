@@ -83,7 +83,7 @@
 	<select id="getTime" resultType="java.lang.String">
 		SELECT DISTINCT scheduleTime FROM schedule
 		WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
-		 and scheduleTime > #{time}
+<!-- 		 and scheduleTime > #{time} -->
 		ORDER BY scheduleTime
 	</select>
 	
