@@ -20,7 +20,7 @@
 <!--             </ul> -->
 <!--          </div> -->
 
-	  <%@ include file="../include/myPageMenu.jsp"%>
+     <%@ include file="../include/myPageMenu.jsp"%>
       </div>
       <div class="mycomment-left-right">
          <table class="table table-hover">
@@ -302,23 +302,22 @@
      
      
         $(document).on("click", "#myCommentDelete", function(e){
-        	
-        	var result = confirm("삭제 하시겠습니까? ");
+            var commentNo = $(this).data('commentno');
             
-            if(result) {
-            	var commentNo = $(this).data('commentno');
-                console.log(commentNo);
+            e.preventDefault();
+            
+                var originalReplyer = modalmemberId.val();
                 
-                e.preventDefault();
-                    
-                commentService.remove(commentNo, originalReplyer, function(result){
-                     alert(result);
-                     location.reload();
-                       
-                });
-            }else{
-               return;
-            }
+                if(confirm('삭제하시겠습니까?')){
+                   commentService.remove(commentNo, originalReplyer, function(result){
+                       if(result == 'success'){
+                          alert('한줄평 삭제가 완료되었습니다.');
+                            location.reload();
+                       }
+                       showList(pageNum);
+                   });
+                }
+         });
      
      
     });

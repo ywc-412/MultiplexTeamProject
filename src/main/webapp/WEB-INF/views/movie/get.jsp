@@ -359,8 +359,10 @@
           });
           
           $("button[data-oper='remove']").on("click", function (e){
-             operForm.find("#memberId").remove();
-             operForm.attr("action", "/movie/remove").submit();
+             if(confirm('영화를 삭제하시겠습니까?')){
+                operForm.find("#memberId").remove();
+                operForm.attr("action", "/movie/remove").submit();
+             }
           });
           
           $(document).on("click", "#commentReport", function(e){
@@ -417,7 +419,6 @@
              commentService.getList({movieNo : movieNo, pageNum:pageNum||1}, //페이지 번호가 없을경우 1로설정
                 function(replyCnt, list){
                 var str = "";
-                console.log("?");
                 //page번호가 -1로 전달되면 마지막페이지를 호출하게된다 
                 if(pageNum == -1){
                    //Math.ceil() 소숫점 이하 올림 -> 댓글갯수에따라 페이지번호 결정
@@ -612,16 +613,9 @@
            });
           
           $(document).on("click", "#commentUpdate", function(e){
-              console.log($(this).data("commentno"));
               
              commentService.get($(this).data("commentno"), function(data){      //rno값 보낸다
-                console.log("gg");
-                   console.log(data.commentStar);
-                   console.log(data.commentContent);
-                   console.log(data.memberId);
-                   console.log(data.commentDate);
-                   console.log(data.commentNo);
-                   
+
                    if(data.commentStar == 1){
                       $('.starModify1').addClass("on").prevAll("a").addClass("on");
                 } else if(data.commentStar == 2){
@@ -635,7 +629,6 @@
                 } 
                    
                    modal.data("commentNo", data.commentNo);
-                   console.log(modal.data('commentNo'));
                    
                  modalInputStar.val(data.commentStar);      
                  modalInputContent.val(data.commentContent);
@@ -692,38 +685,36 @@
            
            
             $(document).on("click", "#commentDelete", function(e){
-            	var result = confirm("삭제 하시겠습니까? ");
-                
-                if(result) {
-                	var commentNo = $(this).data('commentno');
-                    console.log(commentNo);
-                    
-                    e.preventDefault();
-                    
-                      if(!memberId){
-                           // 로그인하지 않은 경우
-                           alert('로그인 후 삭제가 가능합니다.');
-                           return ;
-                      }
-                      var originalReplyer = inputMemberId.val();
-                        
-                      if(memberId != originalReplyer){
-                           // 자신의 댓글이 아닌 경우
-                           alert('자신의 댓글만 삭제 가능합니다.');
-                           return ;
-                      }
-                        
-                      commentService.remove(commentNo, originalReplyer, function(result){
-                           alert(result);
-//                            location.reload();
-                           showList(pageNum);
-                           
-                      });
-                }else{
-                   return;
-                }
-                
+               var commentNo = $(this).data('commentno');
+               console.log(commentNo);
                
+               e.preventDefault();
+               
+                 if(!memberId){
+                      // 로그인하지 않은 경우
+                      alert('로그인 후 삭제가 가능합니다.');
+                      return ;
+                   }
+                   var originalReplyer = inputMemberId.val();
+                   console.log(originalReplyer);
+                   console.log(memberId);
+   
+                   console.log(originalReplyer + " + " + memberId);
+                   
+                   if(memberId != originalReplyer){
+                      // 자신의 댓글이 아닌 경우
+                      alert('자신의 댓글만 삭제 가능합니다.');
+                      return ;
+                   }
+                   
+                   if(confirm('삭제하시겠습니까?')){
+                      commentService.remove(commentNo, originalReplyer, function(result){
+                         if(result == 'success'){
+                            alert('한줄평이 삭제되었습니다.');
+                            location.reload();
+                         }
+                      });
+                   }
             });
            
            

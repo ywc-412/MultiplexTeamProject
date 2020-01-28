@@ -17,12 +17,12 @@
 								<h3 class="mb-20">관리자페이지</h3>
 								<div class="">
 									<ul class="unordered-list">
-										<li class="custom-active">회원 관리</li>
-										<li>리뷰 신고 관리
+										<li><a href="/member/client" class="custom-active">회원 관리</a></li>
+										<li><a href="/report/review/list">리뷰 신고 관리</a>
 											<ul>
-												<li>리뷰 신고 관리</li>
-												<li>리뷰 댓글 신고 관리</li>
-												<li>한줄평 신고 관리</li>
+												<li><a href="/report/review/list">리뷰 신고 관리</a></li>
+												<li><a href="/report/reply/list">리뷰 댓글 신고 관리</a></li>
+												<li><a href="/report/comment/list">한줄평 신고 관리</a></li>
 											</ul>
 										</li>
 									</ul>
@@ -67,48 +67,32 @@
 							<br>
 							<div class="mt-10 custom-input">
 								<div>해당 회원의 예매내역은 다음과 같습니다.</div>
+								
+								
 							</div>
+							<!--예매내역-->
+								<div class="row justify-content-lg-center custom-table-margin2">
+									<div class="row col-md-12" style="margin : 0px; padding : 0px; position : relative; left : -100px; ">
+										<!--여기 테이블-->
+											<table class="table custom-table-align">
+												<tr>
+													<th style="width : 150px; margin : auto; ">영화 제목</th>
+													<th style="width : 150px; margin : auto; ">관람 일시</th>
+												</tr>
+												<c:forEach items="${reserveList }" var="r">	
+													<tr>
+														<td style="width : 150px; margin : auto; ">${r.movieTitle }</td>
+														<td style="width : 150px; margin : auto; "><c:set var="sdate" value="${r.scheduleDate }" />${fn:substring(sdate,0,4)}.${fn:substring(sdate,4,6) }.${fn:substring(sdate,6,8) }</td>
+													</tr>
+												</c:forEach>
+											</table>
+											
+									</div>
+								</div>
 						</div>
 					</div>
 				</div>
-				<!--예매내역-->
-				<div class="row justify-content-lg-center custom-table-margin2">
-					<div class="row col-md-12">
-						<!--여기 테이블-->
-						<div>
-							<table class="table custom-table-align ">
-								<tr>
-									<th class="custom-table-size2">영화 제목</th>
-									<th class="custom-table-size2">관람 일시</th>
-								</tr>
-								<c:forEach items="${reserveList }" var="r">
-									<tr>
-										<td>${r.movieTitle }</td>
-										<td><c:set var="sdate" value="${r.scheduleDate }" />${fn:substring(sdate,0,4)}.${fn:substring(sdate,4,6) }.${fn:substring(sdate,6,8) }</td>
-									</tr>
-								</c:forEach>
-							</table>
-						</div>
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">6</a></li>
-							<li class="page-item"><a class="page-link" href="#">7</a></li>
-							<li class="page-item"><a class="page-link" href="#">8</a></li>
-							<li class="page-item"><a class="page-link" href="#">9</a></li>
-							<li class="page-item"><a class="page-link" href="#">10</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
