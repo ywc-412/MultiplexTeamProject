@@ -73,8 +73,12 @@
 				<form id="seatForm" action="/reserve/reserve" method="post">
 					<input type="hidden" name="scheduleDate" value="${reserveTime.scheduleDate }">
 					<input type="hidden" name="scheduleNo" value="${scheduleNo }">
-					<input type="hidden" name="memberId" value="hue9404">
-<%-- 					<sec:authentication property="principal.username" />로 로그인한 아이디 가져오기 --%>
+					
+					<sec:authorize access="isAuthenticated()">
+						<input type="hidden" name="memberId" id="memberId"
+							value="<sec:authentication property="principal.username"/>">
+					</sec:authorize>
+					
 					<input type="hidden" name="adultNum">
 					<input type="hidden" name="teenNum">
 					<input type="hidden" name="seat">
@@ -93,6 +97,7 @@
 			e.preventDefault();
 			var adultNum = Number($('#adultNum').html());
 			var teenNum = Number($('#teenNum').html());
+			var buyerName = $('#memberId').html();
 			
 			var IMP = window.IMP;
 			IMP.init('imp75857452');
@@ -103,7 +108,7 @@
 				name : "s-cinema", //결제 내용 이름
 				amount : adultNum * 10 + teenNum * 9, // 결제금액
 				buyer_email : 'iamport@siot.do',
-				buyer_name : 'hanna', 
+				buyer_name : buyerName,
 				buyer_tel : '010-5287-5061',
 				buyer_addr : '인천시',
 				buyer_postcode : '12345',

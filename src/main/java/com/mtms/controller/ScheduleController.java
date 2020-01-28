@@ -40,6 +40,7 @@ public class ScheduleController {
 	private ScheduleService scheduleService;
 	private SeatService seatService;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("register")
 	public void register(Model model, String scheduleDate) {
 		// 상영스케줄 등록 화면으로 이동
@@ -73,6 +74,7 @@ public class ScheduleController {
 		model.addAttribute("schedule3", list3);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("register")
 	public void register(ScheduleVO scheduleVO, String[] time, String[] regSeq, Model model) {
 		// 상영스케줄 등록 화면에서 상영스케줄 insert
@@ -93,7 +95,6 @@ public class ScheduleController {
 			for(int i=0; i<time.length; i++) {	
 				ScheduleVO svo = new ScheduleVO();
 				svo.setScheduleDate(scheduleVO.getScheduleDate());
-				System.out.println("register : sdate : " + scheduleVO.getScheduleDate());
 				svo.setMovieNo(scheduleVO.getMovieNo());
 				svo.setScreen(scheduleVO.getScreen());
 				svo.setScheduleTime(time[i]);
@@ -118,6 +119,7 @@ public class ScheduleController {
 		model.addAttribute("selDate", date);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("cancel")
 	public String cancel(String[] regSeq, RedirectAttributes rttr) {
 		// 방금 등록했던 스케줄 다시 삭제
@@ -125,6 +127,7 @@ public class ScheduleController {
 		return "redirect:/schedule/get";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("delete")
 	public String delete(ScheduleVO scheduleVO, RedirectAttributes rttr) {
 		// 상영스케줄 삭제 (1관 : 6개의 스케줄)
@@ -132,24 +135,18 @@ public class ScheduleController {
 		return "redirect:/schedule/register?scheduleDate="+scheduleVO.getScheduleDate();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("modify")
 	public String modify(ScheduleVO scheduleVO, String[] time, String[] no, RedirectAttributes rttr) {
-		System.out.println("modify");
-		for(int i=0; i<no.length; i++) {
-			System.out.println("no : " + no[i]);
-		}
-		
 		scheduleService.modify(no, time);
 		return "redirect:/schedule/register?scheduleDate="+scheduleVO.getScheduleDate();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("remove")
 	public String remove(String scheduleDate, RedirectAttributes rttr) {
 		// 상영스케줄 삭제 (하루치)
 		// scheduleDate 같은 게 여러 개니까 한번에 삭제~
-		System.out.println("SCHEDULE CONTROLLER - REMOVE");
-		System.out.println("DATE : " + scheduleDate);
-		
 		// 오늘 날짜 구하기
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
@@ -157,21 +154,18 @@ public class ScheduleController {
 		
 		if(scheduleDate.equals(formatToday)) {
 			// 삭제하는 날짜와 오늘 날짜가 같은 경우 삭제 불가능
-			System.out.println("오늘 날짜의 스케줄은 삭제가 불가능합니다.");
 			rttr.addFlashAttribute("result", "todaySchedule");
 		} else {
 			if(scheduleService.removeDay(scheduleDate)) {
-				System.out.println("상영스케줄 삭제 성공");
 				rttr.addFlashAttribute("result", "removeSuccess");
 			} else {
-				System.out.println("상영스케줄 삭제 실패");
 				rttr.addFlashAttribute("result", "removeFail");
 			}
 		}
 		return "redirect:/schedule/get";
 	}
 	
-	@GetMapping({"get", "modify"})
+	@GetMapping("get")
 	public void get(Model model, String scheduleDate) {
 		// 날짜별 상영스케줄 조회
 		List<ScheduleVO> list1, list2, list3;

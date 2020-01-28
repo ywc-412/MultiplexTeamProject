@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class ReserveController {
 	private SeatService seatService;
 	private MovieService movieService;
 
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@GetMapping("list")
 	public void list(Model model, String memberId, Criteria cri) {
 		// 회원 별 예매내역 조회
@@ -51,13 +53,15 @@ public class ReserveController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("refund")
-	public String refund(String reserveNo, Model model, RedirectAttributes rttr ) {
+	public String refund(String reserveNo, String memberId, RedirectAttributes rttr ) {
 		// 예매 수정하기 (환불)
-		// service.refund
-		return reserveNo;
+		reserveService.refund(reserveNo);
+		return "redirect:/reserve/list?memberId=" + memberId;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@GetMapping("register")
 	public void register(Model model) {
 		// 초기화면 -> 예매하기 (시간) 화면으로 이동
@@ -114,6 +118,7 @@ public class ReserveController {
 		return new ResponseEntity<>(scheduleService.getTime(movieNo, scheduleDate, time), HttpStatus.OK);
 	}
 
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("seat")
 	public void seat(ScheduleVO svo, String movieTitle, Model model) {
 		// 예매하기 (시간) -> 예매하기 (좌석)
@@ -132,6 +137,7 @@ public class ReserveController {
 		model.addAttribute("seatStatus", seatStatus);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("reserve")
 	public void reserve(Model model, ReserveVO rvo, String scheduleDate) {
 		// 예매하기 (좌석)

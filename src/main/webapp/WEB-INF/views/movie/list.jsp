@@ -57,7 +57,19 @@
                      <div class="ovrer">
                         <a href="${moveList.movieNo }" class="move">
                                 ${moveList.movieTitle }<br>
-                                <fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 } " type="pattern" pattern="0.0" /> %
+                                <c:catch var="movieTotal">
+									<c:set value="${0 + totalMovie}" />
+								</c:catch>
+								<c:choose>
+									<c:when test="${not empty movieTotal}">
+										${totalMovie}
+									</c:when>
+									<c:otherwise>
+										<fmt:formatNumber type="currency" currencySymbol="$" maxFractionDigits="2" minFractionDigits="2" >${(moveList.yesterdayNum / totalMovie) * 100 }</fmt:formatNumber>
+									</c:otherwise>
+								</c:choose>
+								
+<%--                                 <fmt:formatNumber value="${(moveList.yesterdayNum / totalMovie) * 100 } " type="pattern" pattern="0.0" /> % --%>
                          </a>
                      </div>
                  </div>
@@ -110,7 +122,35 @@
          <input type="hidden" id="keyword" name="keyword" value='<c:out value="${pageMaker.cri.keyword }"/>'>
     </form>
   
-       <script>   
+       <script>
+       
+//        $(function(){
+           
+//            var totalMovie = '<fmt:formatNumber value="${totalMovie}" type="pattern" pattern="0.00" />';
+//             console.log(" 무비평균 : " + totalMovie);
+//             var totalMovieZero = isNaN(totalMovie);
+//             console.log(totalMovieZero);
+            
+//             var total = $(".total");
+//             var starZero = $(".yeong-allStar");
+//             var str = "";
+//             var zero = "";
+            
+//             if(totalStarZero){
+//                str += "<h2 class='starTotalTitle yeong-starRed'></h2>";
+//                zero += "0";
+//                total.html(str);
+//                starZero.html(zero);
+//             } else if(totalStar <= 1){
+//                $('.starTotal1').addClass("on").prevAll("a").addClass("on");
+//                str += "<h2 class='starTotalTitle yeong-starRed'>★</h2>";
+//                total.html(str);
+//             } 
+            
+//         });
+       
+       
+       
        $(function(){
           
           $("#movieContArea").find(".single_movie").each(function() {

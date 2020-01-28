@@ -60,7 +60,7 @@
 				SELECT r.reserveNo FROM reserve r, schedule s
 				WHERE r.scheduleNo = s.scheduleNo AND
 							to_char(scheduleDate, 'yyyyMMdd') <= #{scheduleDate}
-				AND		scheduleTime < #{time} and status IN (0, 3) )
+				AND		scheduleTime <= #{time} and status IN (0, 3) )
 			]]>
 	</update>
 	
@@ -83,8 +83,10 @@
 		INSERT INTO reserve VALUES (#{reserveNo}, #{memberId}, #{seat}, #{scheduleNo}, #{adultNum}, #{teenNum}, #{status})
 	</insert>
 	
-<!-- 	<update id="update"> -->
-	
-<!-- 	</update> -->
+	<!-- 예매 취소 시 상태 변경 -->
+	<update id="update">
+		UPDATE reserve SET status = 2
+		WHERE reserveNo = #{reserveNo}
+	</update>
 
 </mapper>
