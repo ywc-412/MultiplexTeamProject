@@ -11,8 +11,8 @@
 					<ul class="unordered-list">
 						<li><a href="/member/myInfo" id="myInfoMove">내 정보 조회</a></li>
 						<li><a class= '${myReserveList == null? "" : "active"}' href="/reserve/list" id="myReserveMove">예매 내역</a></li>
-		                  <li><a class= '${myReviewList == null? "" : "active"}' href="/myReview/list">내 리뷰</a></li>
-		                  <li><a class= '${myCommentList == null? "" : "active"}' href="/myComment/myList" id="myComment">한줄평</a></li>
+		                  <li><a class= '${myReviewList == null? "" : "active"}' href="/myReview/list" id="myReviewMove">내 리뷰</a></li>
+		                  <li><a class= '${myCommentList == null? "" : "active"}' href="/myComment/myList" id="myCommentMove">한줄평</a></li>
 						<li><a class='${myGift == null? "" : "active" }' href="/myGift/list" id="myGiftMove">내 기프티콘</a></li>
 						<li><a class='${mySuggest == null? "" : "active" }' href="/member/mySuggst" id="mySuggestMove">내 건의사항</a></li>
 					</ul>
@@ -40,10 +40,24 @@
 			e.preventDefault();
 			location.href="/myGift/list?memberId=${loginUsername}";
 		});
-		
+
 		$("#mySuggestMove").on("click", function(e){
 			e.preventDefault();
 			location.href="/member/mySuggest?keyword=${loginUsername}&type=W&pageNum=1&amount=10";
 		});
+
+		$("#myReviewMove").on("click", function(e){
+			e.preventDefault();
+			location.href="/myReview/list?memberId=${loginUsername}";
+		});
+
+		$("#myCommentMove").on("click", function(e){
+			e.preventDefault();
+			location.href="/myComment/myList?memberId=${loginUsername}";
+		});
+		
+		
+		
+		
 	});
 </script>

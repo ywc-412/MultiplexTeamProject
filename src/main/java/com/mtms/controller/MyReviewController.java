@@ -23,7 +23,7 @@ public class MyReviewController {
 	private MyReviewService service;
 	
 	@GetMapping("list")
-	public void getList(Criteria cri,Model model,@RequestParam("memberId")String memberId) {
+	public void getList(Criteria cri,Model model,@RequestParam("memberId") String memberId) {
 		model.addAttribute("list", service.getList(cri,memberId));
 		int total = service.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
