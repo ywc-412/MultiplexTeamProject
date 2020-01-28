@@ -36,17 +36,12 @@ public class NoticeController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
-	//공지사항 상세보기 , 공지사항 수정(G)
+	//공지사항 상세보기 
 	@GetMapping("get")	
 	public void get(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
 		noticeService.viewUpdate(noticeNo);
 		model.addAttribute("notice", noticeService.get(noticeNo));
 		
-	}
-	
-	@GetMapping("modify")	
-	public void modiGet(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
-		model.addAttribute("notice", noticeService.get(noticeNo));
 	}
 	
 	//공지사항 등록(P)
@@ -59,13 +54,14 @@ public class NoticeController {
 	}
 	
 	//공지사항 등록(G)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("register")	
 	public void register() {
 
 	}
 	
 	//공지사항 수정(P)
-	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("modify")	
 	public String modify(NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		if(noticeService.modify(notice)) {
@@ -73,9 +69,15 @@ public class NoticeController {
 		}
 		return "redirect:/notice/list" + cri.getListLink();	
 	}
+
+	//공지사항 수정(G)
+	@GetMapping("modify")	
+	public void modiGet(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
+		model.addAttribute("notice", noticeService.get(noticeNo));
+	}
 	
 	//공지사항 삭제
-	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("remove")	
 	public String remove(int noticeNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		if(noticeService.remove(noticeNo)) {

@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label>내용</label>
-                    <textarea class="form-control" rows="3" name="noticeContent"></textarea>
+                    <textarea class="form-control" rows="3" name="noticeContent" id="custom-notice-content"></textarea>
                 </div>
                 <hr>
                 <div class="form-group text-center">    
