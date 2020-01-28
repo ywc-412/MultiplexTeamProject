@@ -57,7 +57,7 @@ public class SuggestController {
 	public void list(Criteria cri, Model model) {
 		// 건의사항 게시글 전체 조회
 		model.addAttribute("list", suggestService.getSuggestListWithPaging(cri));
-		
+		model.addAttribute("mySuggest", "mySuggest");
 		int total = suggestService.getTotalCount(cri);
 		
 		
