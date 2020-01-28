@@ -64,7 +64,6 @@ public class GiftController {
 	//기프티콘 수정(P)
 	@PostMapping("modify")	
 	public String modify(GiftVO gift, RedirectAttributes rttr) {
-		log.info("Gift Controller modify post,," + gift);
 		if(giftService.modify(gift)) {
 			rttr.addAttribute("result", "success");
 		}
@@ -74,14 +73,12 @@ public class GiftController {
 	//기프티콘 수정(G)
 	@GetMapping("modify")	
 	public void modify(int giftNo, Model model) {
-		log.info("Gift Controller modify Get,,");
 		model.addAttribute("gift", giftService.get(giftNo));
 	}
 	
 	//기프티콘 삭제
 	@PostMapping("remove")	
 	public String remove(GiftVO gift, RedirectAttributes rttr) {
-		log.warn("Gift Controller remove()");
 		if(giftService.deleteChk(gift)) {
 			rttr.addFlashAttribute("result", "success");
 		}

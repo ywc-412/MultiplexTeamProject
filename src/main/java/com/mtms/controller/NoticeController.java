@@ -30,7 +30,6 @@ public class NoticeController {
 	//공지사항 목록조회
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
-		log.info("Notice Controller list,,,");
 		model.addAttribute("list", noticeService.getList(cri));
 		
 		int total = noticeService.getTotalCount(cri);
@@ -40,7 +39,6 @@ public class NoticeController {
 	//공지사항 상세보기 , 공지사항 수정(G)
 	@GetMapping("get")	
 	public void get(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
-		log.info("Notice Controller Get,,,");
 		noticeService.viewUpdate(noticeNo);
 		model.addAttribute("notice", noticeService.get(noticeNo));
 		
@@ -48,7 +46,6 @@ public class NoticeController {
 	
 	@GetMapping("modify")	
 	public void modiGet(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
-		log.info("Notice Controller Get,,,");
 		model.addAttribute("notice", noticeService.get(noticeNo));
 	}
 	
@@ -56,7 +53,6 @@ public class NoticeController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")	
 	@PostMapping("register")	
 	public String register(NoticeVO notice, RedirectAttributes rttr) {	
-		log.info("Notice Controller register,,");
 		noticeService.register(notice);
 		rttr.addFlashAttribute("result", notice.getNoticeNo());
 		return "redirect:/notice/list";
@@ -65,14 +61,13 @@ public class NoticeController {
 	//공지사항 등록(G)
 	@GetMapping("register")	
 	public void register() {
-		log.info("Notice Controller register get,,");
+
 	}
 	
 	//공지사항 수정(P)
 	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("modify")	
 	public String modify(NoticeVO notice, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.info("Notice Controller modify post,,");
 		if(noticeService.modify(notice)) {
 			rttr.addFlashAttribute("result", "success");
 		}
@@ -83,7 +78,6 @@ public class NoticeController {
 	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("remove")	
 	public String remove(int noticeNo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.info("Notice Controller modify post,,");
 		if(noticeService.remove(noticeNo)) {
 			rttr.addFlashAttribute("result", "success");
 		}
