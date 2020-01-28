@@ -12,8 +12,14 @@
 		    <h3 class="mb-20">관리자 페이지</h3>
 			<div class="">
 				<ul class="unordered-list">
-					<li class="yeong-myfont">내 정보 조회</li>
-					<li class="yeong-myfont">예매 내역</li>
+					<li>회원 관리</li>
+					<li>리뷰 신고 관리
+						<ul>
+							<li>리뷰 신고 관리</li>
+							<li>리뷰 댓글 신고 관리</li>
+							<li class="custom-active">한줄평 신고 관리</li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>

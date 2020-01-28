@@ -41,9 +41,9 @@ public class HomeController {
    @GetMapping("/")
    public String indexList(Model model) {
       
-//      int totalMovie = movieService.totalMovie();
-//      
-//      model.addAttribute("totalMovie", totalMovie);
+      int totalMovie = movieService.totalMovie();
+      
+      model.addAttribute("totalMovie", totalMovie);
       model.addAttribute("attachList", movieService.attachGetList());
       model.addAttribute("moveList", movieService.getIndexList());
 
