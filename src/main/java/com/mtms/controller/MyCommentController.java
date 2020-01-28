@@ -31,7 +31,7 @@ public class MyCommentController {
       model.addAttribute("movie", movieService.myMovieList());
       model.addAttribute("comment", commentService.myGetList(cri, memberId));
       model.addAttribute("pageMaker", new PageDTO(cri, commentService.myGetTotal(memberId)));
-
+      model.addAttribute("myCommentList", "myCommentList");
    }
    
 }

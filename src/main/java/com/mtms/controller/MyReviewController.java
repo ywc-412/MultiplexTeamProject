@@ -27,5 +27,6 @@ public class MyReviewController {
 		model.addAttribute("list", service.getList(cri,memberId));
 		int total = service.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("myReviewList", "myReviewList");
 	}
 }
