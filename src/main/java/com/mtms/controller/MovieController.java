@@ -160,6 +160,7 @@ public class MovieController {
       System.out.println("컨트롤러 영화조회");
       
       int totalMovie = movieService.totalMovie();
+      System.out.println(totalMovie);
       
       model.addAttribute("totalMovie", totalMovie);
       model.addAttribute("attachList", movieService.attachGetList());
