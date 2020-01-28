@@ -162,8 +162,17 @@
 			});
 			
 			$('#logoutBtn').on("click", function(e){
+				
 				e.preventDefault();
-				location.href="/logout";
+				var logoutConfirm = confirm('로그아웃 하시겠습니까?');
+				
+				if(logoutConfirm == true){
+					location.href="/logout";
+				}else{
+					return;
+				}
+				
+				
 			});
 			
 			$('#adminPageBtn').on("click", function(e){
