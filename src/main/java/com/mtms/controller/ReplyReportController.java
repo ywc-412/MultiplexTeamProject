@@ -34,7 +34,7 @@ public class ReplyReportController {
    @PostMapping("remove")
    public String remove(@RequestParam("replyNo") String replyNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 String[] words = replyNo.split(",");
-<<<<<<< HEAD
+
 		
 		for (String wo : words ){
 			int replyNo1 = Integer.parseInt(wo);
@@ -89,60 +89,4 @@ String[] words = replyNo.split(",");
 	}
 
 }
-=======
-      
-      for (String wo : words ){
-         System.out.println(wo);
-         int replyNo1 = Integer.parseInt(wo);
-      if (replyReportService.remove(replyNo1)) {
-         rttr.addFlashAttribute("result", "success");
-      }
-   }
-      rttr.addAttribute("pageNum", cri.getPageNum());
-      rttr.addAttribute("amount", cri.getAmount());
 
-      return "redirect:/report/reply/list";
-   }
-
-//   @PostMapping("modify")
-//   public String modify(ReplyReportVO rpvo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-//      return null;
-//      
-//   }
-//   @GetMapping({"get", "modify"})
-   @GetMapping("get")
-   public void get(@RequestParam("replyReportNo")int replyReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
-      model.addAttribute("rpvo",replyReportService.get(replyReportNo));
-   }
-
-   @GetMapping("list")
-   public void list(Criteria cri, Model model) {
-      model.addAttribute("list", replyReportService.getList(cri));
-
-      int total = replyReportService.getTotalCount(cri);
-      model.addAttribute("pageMaker", new PageDTO(cri, total));
-   }
-
-   @GetMapping("register")
-   public void register(HttpServletRequest request, Model model) {
-      String replyNo1 = request.getParameter("replyNo");
-      int replyNo = Integer.parseInt(replyNo1);
-      String replyContent = request.getParameter("replyContent");
-
-      ReplyReportVO rpvo = new ReplyReportVO();
-      rpvo.setReplyNo(replyNo);
-      rpvo.setReplyContent(replyContent);
-
-      model.addAttribute("revo", rpvo);
-   }
-
-   @PostMapping("register")
-   public String register(ReplyReportVO rpvo, RedirectAttributes rttr) {
-      replyReportService.register(rpvo);
-      rttr.addFlashAttribute("result", rpvo.getReplyReportNo());
-      return "redirect:/review/list";
-
-   }
-
-}
->>>>>>> bac39a022cebe65c8a0f5390da4c4b420a648d84

@@ -34,7 +34,7 @@
     ) c 
     WHERE c.rn > (#{pageNum} - 1) * #{amount}
       ]]> 
-<<<<<<< HEAD
+
 	</select>
 	
 	<insert id="insert">
@@ -53,23 +53,4 @@
 			 replyReportNo = #{replyReportNo}
 	</select>
 </mapper>
-=======
-   </select>
-   
-   <insert id="insert">
-     INSERT INTO replyReport(replyReportNo, memberId, replyNo,replyReportContent)
-   VALUES(seq_replyReport.NEXTVAL, #{memberId}, #{replyNo},#{replyReportContent})
-   </insert>
-   
-   <delete id="delete">
-       DELETE reply WHERE replyNo = #{replyNo}
-   </delete>
-   
-   <select id="read" resultType="com.mtms.domain.ReplyReportVO">
-       SELECT b.replyContent,a.replyReportNo,a.memberId,a.replyNo,a.replyReportContent,a.replyReportDate 
-          FROM replyReport a, reply b
-          WHERE a.replyNo = b.replyNo and
-          replyReportNo = #{replyReportNo}
-   </select>
-</mapper>
->>>>>>> bac39a022cebe65c8a0f5390da4c4b420a648d84
+
