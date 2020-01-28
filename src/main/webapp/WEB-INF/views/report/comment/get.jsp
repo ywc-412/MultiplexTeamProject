@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="section_title text-center yeong-movieTitle">
-                    <h3>한줄평 신고하기</h3>
+                    <h3>한줄평 신고 조회</h3>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
          </div>
          <div class="form-group">
              <label for="reportContent"></label>
-             <textarea class="form-control" id="commentReportContent" name="commentReportContent" rows="10" placeholder="신고 사유를 입력해주세요"></textarea>
+             <textarea class="form-control" id="commentReportContent" name="commentReportContent" readonly="readonly" rows="10" placeholder="${commentReport.commentReportContent }"></textarea>
             <small id="content" class="yeong-small"></small>
          </div>
          
@@ -49,7 +49,7 @@
            
            <div class="col-xl-12">
                <div class="section_title text-center">
-                  <button type="button" id="reportBtn" class="btn btn-danger yeong-margin">신고</button>
+                  <button type="button" id="reportBtn" class="btn btn-danger yeong-margin">삭제</button>
                   <button type="button" id="cancel" class="btn btn-secondary yeong-margin">취소</button>
              </div>
           </div>
@@ -64,15 +64,16 @@
       console.log(formObj);
        $('#reportBtn').on("click",function(e){   
            
-           var commentReportContent = $('#commentReportContent').val();
-          
-          if( commentReportContent == "" || commentReportContent.length < 0){
-              $('#content').text('신고사유를 입력해주세요');
-              $('#commentReportContent').focus();
-          }
-          else {
-             formObj.submit();
-          }
+         var result = confirm("삭제 하시겠습니까? ");
+           
+           if(result) {
+              formObj.find("#reportContent").remove();
+              formObj.find("#commentContent").remove();
+              formObj.attr("method", "get")
+              formObj.attr("action", "/report/comment/remove").submit();
+           }else{
+              return;
+           }
           
        });
    
@@ -85,7 +86,7 @@
               formObj.find("#reportContent").remove();
               formObj.find("#commentContent").remove();
               formObj.attr("method", "get")
-              formObj.attr("action", "/movie/get").submit();
+              formObj.attr("action", "/report/comment/list").submit();
            }else{
               return;
            }
