@@ -15,7 +15,7 @@
 				<div class="form-group">
 					<label>사진</label><br>
 					<div class="custom-photo">
-						<input type="file" name="uploadFile" multiple>
+						<input type="file" name="uploadFile">
 					</div>
 				</div>				
 				<div class="uploadResult">
@@ -65,10 +65,8 @@
 			var inputFile = $("input[name='uploadFile']");
 			var files = inputFile[0].files;	
 			
-			if ($("#giftName").val() == "" || $("#giftPrice").val() == "" || $("#giftSet").val() == "") {
+			if ($("#giftName").val() == "" || $("#giftPrice").val() == "") {
 				alert("내용을 입력해주세요");	
-			} else if($("uploadResult").val() == "") {
-				alert('파일을 선택해주세요');
 			} else {								 
 				$('.uploadResult ul li').each(function(i,obj){
 					var o = $(obj);
@@ -106,11 +104,9 @@
 	$("input[type='file']").change(function(e){
 		 var formData = new FormData();	//jQuery를 이용하는 경우 파일 업로드는 FormData라는 객체를 이용. 쉽게 말하면 가상의 <form>태그
 		 var inputFile = $("input[name='uploadFile']");
-		 var files = inputFile[0].files;		
-		 
-		 /* add filedata to formdata */
-		 for (var i = 0; i < files.length; i++) {
-		 	alert('giftFileName : ' + files[i].name + '\nsize : ' + files[i].size);
+		 var files = inputFile[0].files;	 
+
+		for (var i = 0; i < files.length; i++) {
 		 	if(!checkExtension(files[i].name, files[i].size)) {					
 				return false;
 			} 

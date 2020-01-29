@@ -10,6 +10,7 @@ public class GiftVO {
 	private String giftName;	// 기프티콘 품목이름
 	private int giftPrice;		// 기프티콘 가격
 	private String giftSet;		// 기프티콘 구성
+	private int giftDeleteChk;	// 기프티콘 삭제 확인
 	
 	private List<GiftAttachVO> attachList; //기프티콘 품목사진
 }

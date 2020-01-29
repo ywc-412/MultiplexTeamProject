@@ -20,7 +20,7 @@
 					<div class="form-group">
 					<label>사진</label><br>
 					<div class="custom-photo">
-						<input type="file" name="uploadFile" multiple>
+						<input type="file" name="uploadFile">
 					</div>
 					</div>
 					<hr>				
@@ -33,7 +33,7 @@
 						<label>이름</label> <input class="form-control" name="giftName" id="giftName" value='<c:out value="${gift.giftName}"/>'>							
 					</div>
 					<div class="form-group">
-						<label>가격</label> <input class="form-control" name="giftPrice" id="giftPrice" value='<c:out value="${gift.giftPrice}"/>'>						
+						<label>가격</label> <input class="form-control" name="giftPrice" id="giftPrice" maxlength="6" value='<c:out value="${gift.giftPrice}"/>'>						
 						<small class="pull-right">숫자만 입력가능</small>
 					</div>
 					<div class="form-group text-center">

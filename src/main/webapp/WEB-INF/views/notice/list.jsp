@@ -20,6 +20,7 @@
 					<div class="pull-right">
 						<form id="searchForm" action="/notice/list" method="get">							
 						<select name="type" class="typeChk">
+							<option value="" <c:out value="${pageMaker.cri.type==null?'selected':'' }"/>>--</option>
 							<option value="T" <c:out value="${ pageMaker.cri.type =='T'?'selected':''}"/>>제목</option>
 							<option value="C" <c:out value="${ pageMaker.cri.type =='C'?'selected':''}"/>>내용</option>
 						</select>
@@ -48,10 +49,9 @@
 							</tbody>
 							</c:forEach>
 						</table>							
-						<!-- paging s -->
-						<div class="custom-pagination">
-							<nav aria-label="Page navigation example">
-								<ul class="blog-pagination text-center custom-th-size2">
+					<!-- paging s -->
+					<div class="pagination justify-content-center">
+						<ul class="pagination">
 								<c:if test="${pageMaker.prev}">
 									<li class="page-item previous">
 										<a class="page-link"href="${pageMaker.startPage-1}" aria-label="Previous"> 
@@ -71,8 +71,7 @@
 										</a>
 									</li>
 								</c:if>
-								</ul>
-							</nav>
+							</ul>
 						</div>
 						<!--paging e -->
 							<form id="actionForm" action="/notice/list" method="get">
