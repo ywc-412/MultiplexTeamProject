@@ -88,7 +88,7 @@
                <div class="form-group uploadDiv">
                   <label for="uploadFile">포스터</label><br>
                   <div class="custom-file">
-                      <input class="yeong-input" type="file" id="uploadFile" name="uploadFile" multiple="multiple">
+                      <input class="yeong-input" type="file" id="uploadFile" name="uploadFile" accept="image/gif, image/jpg, image/png, image/jpeg">
                       <small id="picture" class="yeong-small"></small>
                       <div class="uploadResult">
                              <ul>
