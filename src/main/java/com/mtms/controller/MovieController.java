@@ -82,6 +82,7 @@ public class MovieController {
    }
 
    //영화 수정 보여주기
+   @Secured("ROLE_ADMIN")
    @GetMapping("modify")
    public void modify(Model model, @RequestParam("movieNo") int movieNo, @ModelAttribute("cri") Criteria cri) {
       model.addAttribute("movie", movieService.get(movieNo));
@@ -89,6 +90,7 @@ public class MovieController {
    
    //영화 수정 처리
 //   @PreAuthorize("principal.username == #memo.id") //수정필요
+   @Secured("ROLE_ADMIN")
    @PostMapping("modify")
    public String modify(MovieVO movie, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
       if(movieService.modify(movie)) {
@@ -105,6 +107,7 @@ public class MovieController {
    }
    
    //영화  삭제 처리
+   @Secured("ROLE_ADMIN")
    @GetMapping("remove")
    public String remove(@RequestParam("movieNo") int movieNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
 
