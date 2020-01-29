@@ -142,8 +142,10 @@
 <!-- Modal -->
 <sec:authorize access="isAuthenticated()">
 	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+	<sec:authentication property="principal" var="auth"/>
 </sec:authorize>
 	<script>
+		
 		$(function(){
 			
 			$('#searchBtn').on("click", function(e){
@@ -191,10 +193,19 @@
 			
 			$(document).on("click", "#necessaryPw", function(e){
 				e.preventDefault();
+				
+				var inputSuggestNo = "<input type='hidden' name='suggestNo' value='"+$(this).attr("href") +"'>";
+				
+				if('${auth.authorities}' == '[ROLE_ADMIN]'){
+					actionForm.append(inputSuggestNo);
+					actionForm.attr("action", "/suggest/get");
+					actionForm.submit();
+				}
+				
 				$('#modal').show();
 				
 				var realPassword = $(this).attr('value');
-				var inputSuggestNo = "<input type='hidden' name='suggestNo' value='"+$(this).attr("href") +"'>";
+				
 				
 				$('#suggestPwBtn').on("click", function(e){
 					
