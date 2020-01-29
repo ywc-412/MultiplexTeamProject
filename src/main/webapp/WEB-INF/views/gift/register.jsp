@@ -28,7 +28,8 @@
 						<label>이름</label><input class="form-control" name="giftName" id="giftName">
 					</div>
 					<div class="form-group">
-						<label>가격</label><input class="form-control" name="giftPrice" id="giftPrice">
+						<label>가격</label><input class="form-control" name="giftPrice" id="giftPrice" maxlength="6">
+						 <small class="pull-right">숫자만 입력가능</small>
 					</div>
 					<div class="form-group">
 						<label>구성</label><input class="form-control" name="giftSet" id="giftSet">
@@ -172,7 +173,13 @@
 			}
 		});
 	});
+	
+	//금액 숫자 입력
+    $('#giftPrice').on("keyup", function() {
+        $(this).val($(this).val().replace(/[^0-9]/g,""));
+    });
 });
+	
 </script>
 
 <%@ include file="../include/footer.jsp" %>

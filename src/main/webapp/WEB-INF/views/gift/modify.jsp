@@ -34,6 +34,7 @@
 					</div>
 					<div class="form-group">
 						<label>가격</label> <input class="form-control" name="giftPrice" id="giftPrice" value='<c:out value="${gift.giftPrice}"/>'>						
+						<small class="pull-right">숫자만 입력가능</small>
 					</div>
 					<div class="form-group text-center">
 						<button type="button" class="btn btn-primary btn-sm" id="modifyBtn">수정</button>
@@ -170,7 +171,11 @@
 				return false;
 			}
 		});
-			
+		
+		//금액 숫자 입력
+	    $('#giftPrice').on("keyup", function() {
+	        $(this).val($(this).val().replace(/[^0-9]/g,""));
+	    });
 
 </script>
 
