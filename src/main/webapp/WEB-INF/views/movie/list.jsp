@@ -30,7 +30,7 @@
          <div class='movie_search'>
              <form id="searchForm" action="/movie/list" method="get">
                 <select name='type' class="typeChk">
-                      <option value="" <c:out value="${pageMaker.cri.type ==null?'selected':'' }"/>> 검색 조건 지정 </option>
+                      <option value="" <c:out value="${pageMaker.cri.type ==null?'selected':'' }"/>> -- </option>
                      <option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
                         <option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }"/>>감독</option>
                 </select>
