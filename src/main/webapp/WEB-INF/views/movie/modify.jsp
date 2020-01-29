@@ -82,7 +82,7 @@
                
                <div class="form-group">
                    <label for="summary">줄거리</label>
-                   <textarea class="form-control" id="summary" name="summary" rows="3" placeholder="${movie.summary }"></textarea>
+                   <textarea class="form-control" id="summary" name="summary" rows="3">${movie.summary }</textarea>
                </div>
                
                <div class="form-group uploadDiv">

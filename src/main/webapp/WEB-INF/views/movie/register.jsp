@@ -157,11 +157,9 @@
           } else if( runningTime == "" || runningTime.length < 0){
               $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
               $('#runningTime').focus();
-          } 
-//           else if(files.length == 0){
-//              alert('파일을 선택해주세요');
-//           } 
-          else {
+          } else if(files.length == 0){
+             alert('파일을 선택해주세요');
+          } else {
              $(".uploadResult ul li").each(function(i, obj){
                var jobj = $(obj);
                
