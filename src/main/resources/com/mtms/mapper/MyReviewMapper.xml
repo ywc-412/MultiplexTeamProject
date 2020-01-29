@@ -37,9 +37,7 @@
         from review a,
              movie b
         where
-				
-   
-      		a.movieNo = b.movieNo     
+      		a.movieNo = b.movieNo  and memberId = #{memberId}
            and rownum <= #{cri.pageNum} * #{cri.amount}
             )c
              WHERE c.rn > (#{cri.pageNum} - 1) * #{cri.amount}
