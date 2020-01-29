@@ -65,6 +65,10 @@ $(function(){
 	$("#reviewRemove").on("click",function(e){
 		e.preventdefault
 		modal.modal('show');
-	})
+	});
+	$("#reviewList").on("click",function(e){
+		e.preventdefault
+		location.href="/report/review/list";
+	});
 });
 </script>

@@ -108,6 +108,8 @@
 </div>
 <!-- END modal -->
 </div>
+</div>
+
 <!-- 전체마진 END -->
 <%@ include file="../../include/footer.jsp"%>
 <script>
@@ -152,13 +154,9 @@ function checkbox_for()
 	    replyNo_val = send_array + ",";
 	}
 	
-	alert("chkbox : " + chkbox);
-	alert("send_cnt : " + send_cnt);
-	alert("send_array : " + send_array);
 	
 	alert("replyNo_val : " + replyNo_val);
 	
 	$('input[name=replyNo]').val(replyNo_val);
-	alert($('input[name=replyNo]').val());
 }
 </script>
