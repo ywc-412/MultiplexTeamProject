@@ -83,7 +83,7 @@ public class SuggestController {
 		// 건의사항 게시글 삭제
 		suggestService.removeSuggest(suggestNo);
 		
-		rttr.addFlashAttribute("suggestRemoveComplete", suggestNo + "번 건의사항이 삭제되었습니다.");
+		rttr.addFlashAttribute("suggestRemoveComplete", "해당 건의사항이 삭제되었습니다.");
 		
 		return "redirect:/suggest/list";
 	}

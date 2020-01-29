@@ -237,6 +237,7 @@
 				var memberPwChkErrorMsg = $('#memberPwChkErrorMsg').html('');
 				var memberPhoneErrorMsg = $('#memberPhoneErrorMsg').html('');
 				
+				v = $('input#memberPw').val();
 				
 				//memberId select 해서 없으면 중복된 id 처리해야함
 				if(!memberPw) {
@@ -255,8 +256,7 @@
 					registerResult = true;
 				}
 				
-				v = $('input#memberPw').val();
-
+				
 				if (regex.test(v)) {
 					$('#memberPwErrorMsg').html('사용 가능합니다!');
 				}else{
@@ -273,8 +273,12 @@
 					$('#memberPwChkErrorMsg').html('비밀번호 확인 되었습니다.');
 				}
 				
-				if(registerResult){
-					$('#myInfoModifyForm').submit();
+				var modifyInfoConfirm = confirm('수정 하시겠습니까?');
+				
+				if(modifyInfoconfirm == true){
+					if(registerResult){
+						$('#myInfoModifyForm').submit();
+					}
 				}
 				
 				

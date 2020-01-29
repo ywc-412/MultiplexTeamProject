@@ -76,7 +76,9 @@
 	</insert>
 	
 	<select id="selectId" resultType="String">
-		SELECT memberId FROM member WHERE memberEmail=#{memberEmail} AND memberEmailSecond =#{memberEmailSecond}
+		SELECT memberId FROM member WHERE memberEmail=#{memberEmail} AND memberEmailSecond =#{memberEmailSecond} AND 
+										memberPhoneFirst = #{memberPhoneFirst} AND memberPhoneSecond = #{memberPhoneSecond}
+										AND memberPhoneThird = #{memberPhoneThird}
 	</select>
 	
 	<select id="findPw" resultType="com.mtms.domain.MemberVO">
