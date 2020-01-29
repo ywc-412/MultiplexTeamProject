@@ -18,6 +18,7 @@
 		<result column="giftName"  property="giftName" />
 		<result column="giftPrice" property="giftPrice" />
 		<result column="giftSet"   property="giftSet" />
+		<result column="giftDeleteChk"   property="giftDeleteChk" />
 	</resultMap>
 	
 	<resultMap type="com.mtms.domain.MyGiftVO" id="MyGift">

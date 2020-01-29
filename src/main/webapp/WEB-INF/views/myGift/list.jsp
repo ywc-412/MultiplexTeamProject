@@ -14,8 +14,8 @@
 				<!-- 마이페이지 인클루드....end -->
 				
                 <!-- board s -->
-                <div class="tab-content" id="nav-tabContent">
-					<table class="table custom-th-size">				
+                <div class="hanna_container" style="width : 100%; padding : 0px; margin : 0px;">
+					<table class="table" style="width : 100%;">				
 						<tr>
 							<th>이름</th>
 							<th>가격</th>
@@ -48,9 +48,8 @@
 						</c:forEach>					
 					</table>
 					<!--paging s -->               
-						<div class="custom-pagination2">
-							<nav aria-label="Page navigation example">
-								<ul class="blog-pagination text-center custom-th-size2">
+						<div class="pagination justify-content-center">
+      						 <ul class="pagination">
 								<c:if test="${pageMaker.prev}">
 									<li class="page-item previous">
 										<a class="page-link"href="${pageMaker.startPage-1}" aria-label="Previous"> 
@@ -70,9 +69,8 @@
 										</a>
 									</li>
 								</c:if>
-								</ul>
-							</nav>
-						</div>
+							</ul>
+    					</div>
 					<!--paging e -->
 						<form id="actionForm" action="/myGift/list" method="get">
 							<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}"> 

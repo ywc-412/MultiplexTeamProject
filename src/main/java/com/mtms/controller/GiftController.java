@@ -2,6 +2,7 @@ package com.mtms.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,16 +21,18 @@ import com.mtms.domain.MyGiftVO;
 import com.mtms.service.GiftService;
 import com.mtms.service.MyGiftService;
 
-import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@AllArgsConstructor
 @RequestMapping("/gift/")
 public class GiftController {
 	
+	@Setter(onMethod_ = @Autowired)	
 	private GiftService giftService;
+	
+	@Setter(onMethod_ = @Autowired)
 	private MyGiftService myGiftService;
 	
 	//기프티콘 목록
@@ -43,15 +46,14 @@ public class GiftController {
 	@GetMapping("get")	
 	public void get(@RequestParam("giftNo") int giftNo, Model model) {
 		model.addAttribute("gift", giftService.get(giftNo));
-	}
-	
+	}	
 	
 	//기프티콘 등록(P)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("register")	
 	public String register(GiftVO gift, RedirectAttributes rttr) {
 		if(gift.getAttachList() != null) {
-			gift.getAttachList().forEach(attach -> log.warn(attach));
+			gift.getAttachList().forEach(attach -> log.info(attach));
 		}		
 		giftService.register(gift);
 		rttr.addFlashAttribute("result", gift.getGiftNo());	//추가적으로 새롭게 등록된 기프티콘 번호를 함께 전달
@@ -99,21 +101,19 @@ public class GiftController {
 	}
 	
 	@PostMapping("paying")
-	private String paying(GiftVO gift, MyGiftVO myGift, RedirectAttributes rttr) {
+	public String paying(GiftVO gift, MyGiftVO myGift, RedirectAttributes rttr) {
 		// myGift에 내가 주문한 기프티콘을 insert한다. 
-		
 		myGiftService.myInsertSelectKey(myGift);
 		rttr.addAttribute("giftNo", gift.getGiftNo());	
 		rttr.addAttribute("GiftName", gift.getGiftName());	
 		rttr.addAttribute("giftPrice", gift.getGiftPrice());	
 		rttr.addAttribute("GiftSet", gift.getGiftSet());	
-		rttr.addAttribute("memberId", myGift.getMemberId());
-		
+		rttr.addAttribute("memberId", myGift.getMemberId());	
 		return "redirect:/gift/pay";	
 	}
 	
 	@GetMapping("pay")
-	private void pay(@RequestParam("giftNo") int giftNo, @RequestParam("GiftName") String GiftName, @RequestParam("giftPrice") int giftPrice, @RequestParam("GiftSet") String GiftSet, Model model) {
+	public void pay(@RequestParam("giftNo") int giftNo, @RequestParam("GiftName") String GiftName, @RequestParam("giftPrice") int giftPrice, @RequestParam("GiftSet") String GiftSet, Model model) {
 		model.addAttribute("gift", giftService.get(giftNo));
 		model.addAttribute("pic", giftService.giftPicList());
 	}
