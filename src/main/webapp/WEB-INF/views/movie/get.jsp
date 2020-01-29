@@ -383,6 +383,7 @@
                  alert("로그인이 필요한 시스템입니다.");
                  return;
               }
+             //신고한번 했냐 안했냐 물어보기
              
              var cmno = $(this).data("commentno");
              console.log(cmno);
