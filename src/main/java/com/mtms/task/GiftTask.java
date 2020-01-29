@@ -18,7 +18,8 @@ public class GiftTask {
 	
 	private MyGiftMapper myGiftMapper;
 	
-	@Scheduled(cron = "30 0 0 * * *")
+	//내 기프티콘 만료일자가 되면 현재상태가 '사용가능'에서'기간만료'로 변경됨
+	@Scheduled(cron = "59 59 23 * * *")
 	public void expireChk() throws Exception {
 		SimpleDateFormat format1 = new SimpleDateFormat("yy/MM/dd");			
 		Date now = new Date();

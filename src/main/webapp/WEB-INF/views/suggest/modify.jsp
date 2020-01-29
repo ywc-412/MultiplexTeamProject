@@ -54,10 +54,18 @@
 		
 		$('#suggestModifyCancel').on("click", function(e){
 			e.preventDefault();
-			$('#modForm').attr("action","/suggest/get");
-			$('#modForm').attr("method","get");
-			$('#modForm').submit();
-		})
+			
+			var modifyCancleConfirm = confirm('취소하시겠습니까?');
+			
+			if(modifyCancleConfirm == false){
+				return;
+			}else{
+				$('#modForm').attr("action","/suggest/get");
+				$('#modForm').attr("method","get");
+				$('#modForm').submit();
+			}
+		
+		});
 		
 		
 	})

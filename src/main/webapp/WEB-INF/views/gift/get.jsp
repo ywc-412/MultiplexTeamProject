@@ -70,7 +70,7 @@
 		</form>
 		</sec:authorize>
 		
-		<sec:authorize access="hasRole('ROLE_MEMBER')">
+		<sec:authorize access="isAnonymous() or hasRole('ROLE_MEMBER')">
 		<form action="/mygift/register" id="payForm" method="post" style="float: left">
 			<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
 			<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
@@ -108,6 +108,7 @@
 			var userConnect = '<c:out value="${userId}"/>';
 			if(!userConnect) {
 				alert('로그인이 필요한 서비스입니다.');
+				location.href="/customLogin";
 				return;
 			}
 			var giftNo = ${gift.giftNo};
