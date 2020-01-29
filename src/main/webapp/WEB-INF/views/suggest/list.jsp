@@ -22,15 +22,15 @@
 					</div>
 					
 					<div class="custom-search-position">
-						<a href="/suggest/register" class="boxed-btn3" id="registerA">등록</a>
+						<a href="/suggest/register" class="btn btn-primary float-left" id="registerA">등록</a>
 						<!--search-start-->
 							<form id="searchForm" action="/suggest/list" method="get">
 								<button value="${pageMaker.cri.keyword }" type="submit" class="btn btn-primary btn-sm float-right" id="searchBtn">검색</button>
 			                	<c:set var="type" value="${pageMaker.cri.type }"/>
 			
 								<input type="text" name="keyword" id="keywordInput" placeholder="검색어를 입력하세요" class="input-group-btn  float-right" value="${pageMaker.cri.keyword }">
-								<div class="default-select custom-text-left custom-margin-choi float-right" style="margin: 4px; margin-top: -6px;" id="default-select">
-									<select name='type' id="selectType">
+								<div class="custom-text-left custom-margin-choi float-right" >
+									<select name='type' id="selectType" class="typeChk">
 										<option value="" <c:out value="${pageMaker.cri.type==null?'selected':'' }"/>>--</option>
 										<option value="T" <c:out value="${pageMaker.cri.type=='T'?'selected':'' }"/>>제목</option>
 										<option value="W" <c:out value="${pageMaker.cri.type=='W'?'selected':'' }"/>>작성자</option>
@@ -49,8 +49,8 @@
 							<table class="table custom-th-size4">
 								<tr>
 									<th style="width: 100px;">글번호</th>
-									<th>건의사항 제목</th>
-									<th>작성자</th>
+									<th style="width: 700px;">건의사항 제목</th>
+									<th style="width: 200px;">작성자</th>
 								</tr>
 								<c:forEach items="${list}" var="list">
 									<tr>
@@ -73,25 +73,27 @@
 								</c:forEach>
 							</table>
 							<!--paging-start-->
-							<ul class="pagination justify-content-center">
-								<c:if test="${pageMaker.prev}">
-									<li class="page-item"><a class="page-link"
-										href="${pageMaker.startPage -1}" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span></a></li>
-								</c:if>
-								<c:forEach var="num" begin="${pageMaker.startPage}"
-									end="${pageMaker.endPage}">
-									<li
-										class='page-item ${pageMaker.cri.pageNum == num? "custom-active-choi" : "" } '><a
-										href="${num}">${num}</a></li>
-								</c:forEach>
-								<c:if test="${pageMaker.next }">
-									<li class="page-item"><a class="page-link"
-										href="${pageMaker.endPage +1}" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
-									</a></li>
-								</c:if>
-							</ul>
+							<div class="pagination justify-content-center clear">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item"><a class="page-link"
+											href="${pageMaker.startPage -1}" aria-label="Previous"> <span
+												aria-hidden="true">&laquo;</span></a></li>
+									</c:if>
+									<c:forEach var="num" begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}">
+										<li
+											class='page-item ${pageMaker.cri.pageNum == num? "" : "" } '><a
+											href="${num}">${num}</a></li>
+									</c:forEach>
+									<c:if test="${pageMaker.next }">
+										<li class="page-item"><a class="page-link"
+											href="${pageMaker.endPage +1}" aria-label="Next"> <span
+												aria-hidden="true">&raquo;</span>
+										</a></li>
+									</c:if>
+								</ul>
+							</div>
 							<!--paging-end-->
 							<form id='actionForm' action="/suggest/list" method="get">
 								<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}" />
