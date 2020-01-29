@@ -19,10 +19,14 @@
 				</ul>
 			</div>
 		</div>
-	<div class="table_position1">
+		<div class="mycomment-left-right">
 		<span class="button_position">
 			<button id="reportRemove" class="btn btn-danger">삭제</button>
 		</span>
+	<div class="table_position1">
+	
+			
+
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
