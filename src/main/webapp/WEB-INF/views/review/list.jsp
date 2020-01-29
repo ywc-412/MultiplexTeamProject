@@ -107,8 +107,10 @@ $(function(){
 	 if(!searchForm.find("option:selected").val()){	//검색 조건을 지정안했을때
 		 alert('검색종류를 선택하세요');
 		 return false;
-	 } 
-
+	 }else if(!($("#keyword").val())){
+			alert('내용을 입력해주세요.'); 
+			 return false;
+	 }
 	 //검색 결과 페이지 번호가 1이 되도록 처리
 	 searchForm.find("input[name='pageNum']").val("1");
 	 e.preventDefault();

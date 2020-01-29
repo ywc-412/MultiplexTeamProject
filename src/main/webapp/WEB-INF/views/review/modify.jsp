@@ -60,6 +60,8 @@
 </div>
 </div>
 </div>
+</section>
+
 <!-- 전체마진 END -->
 <script>
 $(document).ready(function(){
@@ -75,8 +77,13 @@ $(document).ready(function(){
 			self.location = "/review/list";
 			return;
 		}
-// 		
-		modifyModal.show();
+		if(!($("#movie_register1").val())){
+			alert('제목을 입력해주세요');
+		} else if(!($("#content_register").val())){
+			alert('내용을 입력해주세요');
+		}else{
+			modifyModal.show();
+		}
 	}); //button 처리 END
 	$("#modifyBtn").on("click",function(e){
 		formObj.submit();

@@ -44,7 +44,7 @@
         </button>
       </div>
       <div class="modal-body">
-        	수정하시겠습니까?
+        	삭제하시겠습니까?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="okBtn">확인</button> 
@@ -69,12 +69,8 @@ $(function(){
 	var getModal = $("#getModal");
 	$("#reviewModify").on("click",function(e){
 		e.preventDefault();
-		$(".modal-body").html('수정하시겠습니까?');
-		getModal.modal('show');	
-		$("#okBtn").on("click",function(e){
 			$("#formGet").attr("method","get");
 			$("#formGet").attr("action","/lost/modify").submit();
-		});
 	});
 	$("#reviewRemove").on("click",function(e){
 		e.preventDefault();
@@ -86,6 +82,9 @@ $(function(){
 	});
 	$("#reviewList").on("click",function(e){
 		location.href="/lost/list";
-	})
+	});
+	$("#noBtn").on("click",function(e){
+		getModal.modal('hide');
+	});
 });
 </script>

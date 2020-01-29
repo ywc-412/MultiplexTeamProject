@@ -10,7 +10,7 @@
 					<div class="custom-board-title">
 						<h3 class="custom-font-bold">습득물</h3>
 					</div>
-					 <form id="searchForm" action="/review/list" method="get">
+					 <form id="searchForm" action="/lost	/list" method="get">
                          <select name='type' id="select_box">
                                <option value="" <c:out value="${pageMaker.cri.type ==null?'selected':'' }"/>> 검색 조건 </option>
                                <option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }"/>>제목</option>
@@ -103,14 +103,17 @@ $(function(){
 	 if(!searchForm.find("option:selected").val()){	//검색 조건을 지정안했을때
 		 alert('검색종류를 선택하세요');
 		 return false;
-	 } 
-
+	 }else if(!($("#keyword").val())){
+			alert('내용을 입력해주세요.'); 
+			 return false;
+	 }
 	 //검색 결과 페이지 번호가 1이 되도록 처리
 	 searchForm.find("input[name='pageNum']").val("1");
 	 e.preventDefault();
 	 
 	 searchForm.submit();
   });//END 컴색처리
+  
 $(".paginate_button a").on("click", function(e) {
 			 e.preventDefault(); //a태그라서 동작안되게 막아줌
 			 $('#pageNum').val($(this).attr('href'));	//내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌

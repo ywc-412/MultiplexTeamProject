@@ -14,7 +14,7 @@
 	<form action="/lost/modify" method="post" id="formModify">
 	<input type="hidden" name="lostNo" value="${lvo.lostNo }">
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-	<input type="text" id="lost_register" value="${lvo.lostTitle }" 제목" name="lostTitle"><br>
+	<input type="text" id="lost_register" value="${lvo.lostTitle }"  name="lostTitle"><br>
 	
 	<input type="text" id="content_register" name="lostContent" value="${lvo.lostContent }">
 	
@@ -66,13 +66,23 @@ $(function(){
 	var modifyModal = $("#modifyModal");
 	$("#reviewList").on("click",function(e){
 		e.preventDefault();
-		modifyModal.modal('show');
+		
+		if(!($("#lost_register").val())){
+			alert('제목을 입력해주세요');
+		} else if(!($("#content_register").val())){
+			alert('내용을 입력해주세요');
+		}else{
+			modifyModal.modal('show');
+		}
 	});
 	$("#okBtn").on("click",function(e){
 		$("#formModify").submit();
 	});
 	$("#noBtn").on("click",function(e){
 		modifyModal.modal('hide');
+	});
+	$("#censle").on("click",function(e){
+		location.href="/lost/list";
 	});
 })
 </script>

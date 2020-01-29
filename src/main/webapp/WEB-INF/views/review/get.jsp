@@ -60,7 +60,14 @@ $(function(){
 	<div class="buttln_style">
 	 
 	 <button data-oper="list" class="btn btn-info" id="list_style">List</button>
-	 <div class="button_position">
+<!-- 	버튼위치 style -->
+	<div class="buttln_style">
+	
+					<form method="post" action="/review/remove" class="formRemove">
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
+				</form>
+		<span class="button_position">
 			<sec:authentication property="principal" var="pinfo" />
 			<sec:authorize access="isAuthenticated()">
 				<!-- 로그인을 한건가 -->
@@ -69,18 +76,14 @@ $(function(){
 					<button type="submit" class="btn btn-primary" data-oper="modify">수정</button>
 				</c:if>
 			</sec:authorize>
-
-					<form method="post" action="/review/remove" class="formRemove">
-				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
-				</form>
-				 <sec:authentication property="principal" var="pinfo"/>
+			<sec:authentication property="principal" var="pinfo"/>
                 <sec:authorize access="isAuthenticated()">	<!-- 로그인을 한건가 -->
                 	<c:if test="${pinfo.username eq rvo.memberId }">	<!-- 내가 작성한건가 -->
 						<button id="reviewRemove" class="btn btn-danger" type="submit">
 						삭제</button>
 				</c:if>
 				</sec:authorize>
+				
 				<form method="get" action="/report/review/register">
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 				<input type="hidden" name="reviewTitle" value='<c:out value="${rvo.reviewTitle }"/>'>
@@ -93,10 +96,12 @@ $(function(){
 						</c:if>
 					</sec:authorize>
 			</form>
+			</span>
+	</div>
+	<!-- 	END 버튼위치 style -->
+				
 			
 		</div>
-		
-	 </div>
 <!-- 	END 버튼위치 style -->
 
 		<form id='operForm' action="/review/modify" method="get">
