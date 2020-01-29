@@ -35,7 +35,7 @@
 		<![CDATA[SELECT rn, giftNo, giftName, giftPrice, memberId, myGiftNo, status, expireDate, extendChk 
 				 FROM (SELECT rownum rn, X.* FROM (SELECT gift.giftNo, gift.giftName, gift.giftPrice, myGift.memberId, myGift.myGiftNo, myGift.expireDate, myGift.status, myGift.extendChk
                              FROM gift, myGift
-                             WHERE gift.giftNo = myGift.giftNo AND myGift.memberId = #{memberId} ORDER BY myGift.status ASC, myGift.expireDate ASC, myGift.extendChk ASC
+                             WHERE gift.giftNo = myGift.giftNo AND myGift.memberId = #{memberId} ORDER BY myGift.status ASC, myGift.expireDate ASC
                    ) X WHERE rownum <= #{cri.pageNum} * #{cri.amount})
 				 WHERE rn > (#{cri.pageNum}-1) * #{cri.amount}]]>
 	</select> 

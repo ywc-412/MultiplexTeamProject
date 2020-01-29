@@ -70,6 +70,7 @@
 		</form>
 		</sec:authorize>
 		
+		<sec:authorize access="hasRole('ROLE_MEMBER')">
 		<form action="/mygift/register" id="payForm" method="post" style="float: left">
 			<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
 			<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
@@ -78,7 +79,7 @@
 			<input type="hidden" name="totalPrice">
 			<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
 		</form>
-		
+		</sec:authorize>
 	</div>	
 	<!-- 버튼 e -->	
 

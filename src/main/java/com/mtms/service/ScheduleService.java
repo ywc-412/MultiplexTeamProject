@@ -53,5 +53,8 @@ public interface ScheduleService {
 	
 	// 예매 결과) 스케줄 번호로 스케줄 정보 알아오기
 	public ScheduleVO getSchedule(int scheduleNo);
+	
+	// 영화 삭제 시 해당 영화가 스케줄에 등록되어있는 지 확인
+	public boolean movieChk(int movieNo);
 
 }

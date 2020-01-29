@@ -6,6 +6,16 @@
 
 <%@ include file="../include/header.jsp" %>
 
+<!-- msg값 넘어오면 alert 창 띄우기 -->
+	<c:if test="${msg != null}">
+		<script>
+			// 영화 삭제 불가능한 경우
+			$(document).ready(function(){
+				alert("해당 영화의 상영스케줄이 존재하는 경우 삭제가 불가능합니다.");
+			});
+		</script>
+	</c:if>
+
 <!-- 제목 -->
     <div class="container">
         <div class="row">
