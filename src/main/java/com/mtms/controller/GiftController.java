@@ -101,9 +101,12 @@ public class GiftController {
 	}
 	
 	@PostMapping("paying")
-	public String paying(GiftVO gift, MyGiftVO myGift, RedirectAttributes rttr) {
+	public String paying(GiftVO gift, MyGiftVO myGift, int qty, RedirectAttributes rttr) {
 		// myGift에 내가 주문한 기프티콘을 insert한다. 
-		myGiftService.myInsertSelectKey(myGift);
+		System.out.println(qty);
+		for(int i=1; i <= qty; i++) {
+			myGiftService.myInsertSelectKey(myGift);
+		}
 		rttr.addAttribute("giftNo", gift.getGiftNo());	
 		rttr.addAttribute("GiftName", gift.getGiftName());	
 		rttr.addAttribute("giftPrice", gift.getGiftPrice());	
