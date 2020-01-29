@@ -211,8 +211,6 @@
          var filetype = filepoint.toLowerCase();
          console.log(filetype);
          
-         var modifyFile = $("input[name='yeong_registerImg']");
-         console.log(modifyFile);
          
          if(files.length == 0){
             alert('파일을 선택해주세요');
@@ -299,6 +297,7 @@
             },
             success : function(result){
                alert(result);
+               $("#uploadFile").val("");
                targetLi.remove();
             },
             error : function(error){

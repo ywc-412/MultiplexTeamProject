@@ -124,12 +124,12 @@
       var formObj = $("form[role='form']");
       console.log(formObj);
       
+      var modifyFile = $("input[name='yeong_registerImg']");
+      console.log(modifyFile);
+      
       var openDate = $('#datepicker').val();
-        console.log("openDate =  " + openDate);
         
-        var fmtDate = '<fmt:formatDate value="${movie.openDate }" pattern="MM/dd/yyyy"/>';
-        
-        console.log(fmtDate);
+      var fmtDate = '<fmt:formatDate value="${movie.openDate }" pattern="MM/dd/yyyy"/>';
         
 //        $("button[type='submit']").on("click",function(e){
        $('#regButton').on("click",function(e){   
@@ -164,10 +164,9 @@
           } else if( runningTime == "" || runningTime.length < 0){
               $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
               $('#runningTime').focus();
+          } else if(files.length == 0){
+             alert('파일을 선택해주세요');
           } 
-//           else if(files.length == 0){
-//              alert('파일을 선택해주세요');
-//           } 
           else {
              var str = "";
              
@@ -244,12 +243,10 @@
          
          var filepoint = fileName.substring(fileName.lastIndexOf(".")+1);
          var filetype = filepoint.toLowerCase();
-         console.log(filetype);
          
-//          if(files.length == 0){
-//             alert('파일을 선택해주세요');
-//          }else 
-        	 if(filetype == 'jpg' || filetype == 'png'){
+         if(files.length == 0){
+            alert('파일을 선택해주세요');
+         }else if(filetype == 'jpg' || filetype == 'png'){
             for(var i=0; i<files.length; i++){
                if(!checkExtension(files[i].name, files[i].size)){
                   return false;
@@ -321,6 +318,7 @@
             
             if(confirm("Remove this file? ")){
                var targetLi = $(this).closest("li");
+               $("#uploadFile").val("");
                targetLi.remove();
             }
          });
