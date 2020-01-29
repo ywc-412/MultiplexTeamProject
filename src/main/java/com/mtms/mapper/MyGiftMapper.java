@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.mtms.domain.Criteria;
-import com.mtms.domain.GiftAttachVO;
-import com.mtms.domain.GiftVO;
 import com.mtms.domain.MyGiftVO;
 
 public interface MyGiftMapper {
