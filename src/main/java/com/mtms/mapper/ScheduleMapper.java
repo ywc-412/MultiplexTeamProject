@@ -51,8 +51,5 @@ public interface ScheduleMapper {
 	
 	// 예매 후 결과) 스케줄 번호로 스케줄 정보 알아오기 - fin
 	public ScheduleVO getSchedule(@Param("scheduleNo") int scheduleNo);
-	
-	// 영화 삭제 시 - 해당 영화가 스케줄 등록되어있는 지 확인
-	public int movieChk(int movieNo);
 
 }

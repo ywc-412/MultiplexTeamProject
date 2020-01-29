@@ -116,14 +116,6 @@ public class ScheduleServiceImpl implements ScheduleService{
 		return scheduleMapper.getSchedule(scheduleNo);
 	}
 
-	@Override
-	public boolean movieChk(int movieNo) {
-		// 영화 삭제 시 해당 영화가 스케줄에 등록되어있는 지 확인
-		if(scheduleMapper.movieChk(movieNo) > 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+
 
 }
