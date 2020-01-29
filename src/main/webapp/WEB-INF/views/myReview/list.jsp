@@ -3,26 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ include file="../include/header.jsp"%>
-	
-	<!-- Start Align Area -->
-	<div class="whole-wrap">
-		<div class="container box_1170">
-			<div class="section-top-border">
-				<div class="row">
-					<jsp:include page="../include/myPageMenu.jsp"/>
-					<div class="mytable_position">
-						<table class="table table-striped table-bordered table-hover">
-			<thead>
-				<tr>
-					<th>영화제목<!-- Rendering engine --></th>
-					<th>리뷰제목<!-- Browser --></th>
-					<th>등록일<!-- Platform(s) --></th>
-				</tr>
-			</thead>
+<div class="container">
+       <div class="mycomment-left">
+<!--           <h3 class="mb-20">마이페이지</h3> -->
+<!--          <div class=""> -->
+<!--             <ul class="unordered-list"> -->
+<!--                <li class="yeong-myfont">내 정보 조회</li> -->
+<!--                <li class="yeong-myfont">예매 내역</li> -->
+<!--                <li class="yeong-myfont">내 리뷰</li> -->
+<!--                <li class="custom-active yeong-myfont">내 한줄평</li> -->
+<!--                <li class="yeong-myfont">내 기프티콘</li> -->
+<!--                <li class="yeong-myfont">내 건의사항</li> -->
+<!--             </ul> -->
+<!--          </div> -->
+
+     <%@ include file="../include/myPageMenu.jsp"%>
+      </div>
+      <div class="mycomment-left-right">
+         <table class="table table-hover">
+            <thead>
 			<tbody>
 			<c:forEach items="${list }" var="rvo">
 				<tr class="odd gradeX">
-					<td><c:out value="${rvo.movieNo }"/></td>
+					<td><c:out value="${rvo.movieTitle }"/></td>
 					<td><a class="move" href="${rvo.reviewNo}">
                             		${rvo.reviewTitle }</a></td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd"
@@ -38,22 +41,22 @@
 					</div> 
 					
 <!-- 		페이징 시작하는 부분 -->
-					<div class="pull-right">
-	              <ul class="pagination">
-	                 <c:if test="${pageMaker.prev }">
-	                    <li class="paginate_button previous">
-	                       <a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
-	                 </c:if>
-	                 <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-	                    <li class='paginate_button ${pageMaker.cri.pageNum == num ? "active":"" }'>
-	                       <a class="page-link" href="${num}">${num }</a></li>
-	                 </c:forEach>
-	                 <c:if test="${pageMaker.next }">
-	                    <li class="paginate_button next">
-	                       <a class="page-link" href="${pageMaker.endPage + 1 }">Next</a></li>
-	                 </c:if>
-	              </ul>
-	           </div>
+				 <div class="pagination justify-content-center clear">
+       <ul class="pagination">
+             <c:if test="${pageMaker.prev }">
+                <li class="paginate_button previous">
+                   <a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
+          </c:if>
+          <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+                <li class='paginate_button ${pageMaker.cri.pageNum == num ? "active":"" }'>
+                  <a class="page-link" href="${num}">${num }</a></li>
+          </c:forEach>
+          <c:if test="${pageMaker.next }">
+                <li class="paginate_button next">
+                   <a class="page-link" href="${pageMaker.endPage + 1 }">Next</a></li>
+          </c:if>
+       </ul>
+    </div>
                 <!-- END 페이지 번호 출력 -->
 	 <!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 --
                 <form id="actionForm" action="/review/list" method="get">
@@ -73,7 +76,7 @@
                 	<!-- 검색 조건과 키워드 파라미터 추가 -->
     			</form>	
 	<!-- End Align Area -->
-	   
+	  
 <%@ include file="../include/footer.jsp"%>
 	<script>
 	$(function(){
