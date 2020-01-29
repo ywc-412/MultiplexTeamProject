@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="section_title text-center yeong-movieTitle">
-                    <h3>영화 랭킹</h3>
+                    <h3><a href="/movie/list">영화 랭킹</a></h3>
                 </div>
             </div>
         </div>
