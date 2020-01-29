@@ -107,20 +107,15 @@ public class MovieController {
    //영화  삭제 처리
    @GetMapping("remove")
    public String remove(@RequestParam("movieNo") int movieNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
-	   
-	   // 예매 내역이 있는 경우 영화 삭제 불가능
-	   if(scheduleService.movieChk(movieNo)) {
-		   rttr.addAttribute("msg", "delete_not_ok");
-	   } else {
-	      //첨부파일이 있는경우 파일 삭제 메서드 호출
-	      List<MovieAttachVO> attachList = movieService.getAttachList(movieNo);
-	       if(movieService.remove(movieNo)) {
-	            if(attachList != null || attachList.size() > 0 ) {
-	               deleteFiles(attachList);
-	            }
-	            rttr.addFlashAttribute("result", "success");
-	       }	      
-	   }
+
+      //첨부파일이 있는경우 파일 삭제 메서드 호출
+      List<MovieAttachVO> attachList = movieService.getAttachList(movieNo);
+       if(movieService.remove(movieNo)) {
+            if(attachList != null || attachList.size() > 0 ) {
+               deleteFiles(attachList);
+            }
+            rttr.addFlashAttribute("result", "success");
+       }	      
 	   rttr.addAttribute("pageNum", cri.getPageNum());
       rttr.addAttribute("amount", cri.getAmount());
       rttr.addAttribute("type", cri.getType());
