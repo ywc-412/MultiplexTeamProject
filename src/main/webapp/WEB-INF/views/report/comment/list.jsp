@@ -36,23 +36,23 @@ tr, td {
             <thead>
                <tr>
                   <th scope="col" class="yeongth10">신고자ID</th>
-                  <th scope="col" class="yeongth35">신고내용</th>
+                  <th scope="col" class="yeongth30">신고내용</th>
                   <th scope="col" class="yeongth35">한줄평내용</th>
-                  <th scope="col" class="yeongth10">처리결과</th>
+                  <th scope="col" class="yeongth15">처리결과</th>
                   <th scope="col" class="yeongth10">삭제</th>
                </tr>
             </thead>
             <c:forEach items="${commentReport }" var="commentReport">
                         <tr class="odd gradeX">
                            <td scope="col" class="yeongth10">${commentReport.memberId }</td>
-                           <td scope="col" class="yeongth35" id="commentReport" style="cursor : pointer;" data-commentReportNo=${commentReport.commentReportNo } data-commentNo=${commentReport.commentNo }>${commentReport.commentReportContent }</td>
+                           <td scope="col" class="yeongth30" id="commentReport" style="cursor : pointer;" data-commentReportNo=${commentReport.commentReportNo } data-commentNo=${commentReport.commentNo }>${commentReport.commentReportContent }</td>
                            <c:forEach items="${comment }" var="comment">
                            
                               <c:if test="${comment.commentNo eq commentReport.commentNo }">
                                 <td scope="col" class="yeongth35">${comment.commentContent }</td>
                             </c:if>
                            </c:forEach>
-                           <td scope="col" class="yeongth10">
+                           <td scope="col" class="yeongth15">
                               <c:if test="${commentReport.commentReportResult == 0}">
                                  			  미처리
                             </c:if>
