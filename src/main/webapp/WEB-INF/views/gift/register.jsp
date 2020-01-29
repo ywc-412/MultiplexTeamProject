@@ -12,17 +12,7 @@
 				<div class="custom-board-title">
 					<h3 class="custom-font-bold">기프티콘 등록</h3>
 				</div>
-				<div class="form-group">
-					<label>사진</label><br>
-					<div class="custom-photo">
-						<input type="file" name="uploadFile">
-					</div>
-				</div>				
-				<div class="uploadResult">
-					<ul>
-						<!-- 사진 -->
-					</ul>
-				</div>				
+							
 				<form id="registerForm" action="/gift/register" method="post" role="form">
 					<div class="form-group">
 						<label>이름</label><input class="form-control" name="giftName" id="giftName">
@@ -34,7 +24,16 @@
 					<div class="form-group">
 						<label>구성</label><input class="form-control" name="giftSet" id="giftSet">
 					</div>
-					<hr>
+					<div class="form-group">
+						<label>사진</label><br>
+						<div class="custom-photo">
+							<input class="gift-input" type="file" name="uploadFile" name="uploadFile" id="uploadFile">							
+							<div class="uploadResult">
+								<ul>
+								</ul>
+							</div>
+						</div>
+					</div>					
 					<div class="form-group text-center">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<button type="button" class="btn btn-primary btn-sm" id="regBtn">등록</button>
@@ -67,7 +66,9 @@
 			
 			if ($("#giftName").val() == "" || $("#giftPrice").val() == "") {
 				alert("내용을 입력해주세요");	
-			} else {								 
+			}  else if(files.length == 0){
+	             alert('파일을 선택해주세요');
+	          } else {								 
 				$('.uploadResult ul li').each(function(i,obj){
 					var o = $(obj);
 					tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("filename") + "'>";
@@ -105,7 +106,14 @@
 		 var formData = new FormData();	//jQuery를 이용하는 경우 파일 업로드는 FormData라는 객체를 이용. 쉽게 말하면 가상의 <form>태그
 		 var inputFile = $("input[name='uploadFile']");
 		 var files = inputFile[0].files;	 
-
+		 
+		 var fileValue = $("#uploadFile").val().split("\\");
+         var fileName = fileValue[fileValue.length-1];
+         
+         var filepoint = fileName.substring(fileName.lastIndexOf(".")+1);
+         var filetype = filepoint.toLowerCase();
+        
+        if(filetype == 'jpg' || filetype == 'png'){
 		for (var i = 0; i < files.length; i++) {
 		 	if(!checkExtension(files[i].name, files[i].size)) {					
 				return false;
@@ -130,6 +138,11 @@
 				alert("upload not ok");								
 			}		
 		});//END ajax
+        }else{
+            alert("jpg, png 이미지 파일만 등록해주세요");
+            $("#uploadFile").val("");
+            return false;
+         }
 		});//END change	
 	
 	$("button[type='submit']").click(function(e){

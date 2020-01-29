@@ -16,25 +16,24 @@
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<div class="form-group">
 						<label>No.</label> <input class="form-control" name="giftNo" value='<c:out value="${gift.giftNo}"/>' readonly>
-					</div>	
-					<div class="form-group">
-					<label>사진</label><br>
-					<div class="custom-photo">
-						<input type="file" name="uploadFile">
 					</div>
-					</div>
-					<hr>				
-					<div class="uploadResult">
-						<ul>
-							<!-- 사진 -->
-						</ul>
-					</div>				
+					
 					<div class="form-group">
 						<label>이름</label> <input class="form-control" name="giftName" id="giftName" value='<c:out value="${gift.giftName}"/>'>							
 					</div>
 					<div class="form-group">
 						<label>가격</label> <input class="form-control" name="giftPrice" id="giftPrice" maxlength="6" value='<c:out value="${gift.giftPrice}"/>'>						
 						<small class="pull-right">숫자만 입력가능</small>
+					</div>
+					<div class="form-group">
+						<label>사진</label><br>
+						<div class="custom-photo">
+							<input type="file" name="uploadFile" id="uploadFile">							
+							<div class="uploadResult">
+								<ul>
+								</ul>
+							</div>
+						</div>
 					</div>
 					<div class="form-group text-center">
 						<button type="button" class="btn btn-primary btn-sm" id="modifyBtn">수정</button>
@@ -57,23 +56,25 @@
 	}	
 		
 	$(function(){	
+	   var formObj = $("form[role='form']");
 	   $('#modifyBtn').click(function(){	  	      
 				var tags = "";
 				var inputFile = $("input[name='uploadFile']");
 				var files = inputFile[0].files;	
-				
 				if ($("#giftName").val() == "" || $("#giftPrice").val() == "") {
 					alert("내용을 입력해주세요");	
-				} else {  						
+				} else if($(".uploadResult ul").html() == "") {
+					alert("파일을 선택해 주세요");
+				} else {  
+					var tags = "";
 					$('.uploadResult ul li').each(function(i,obj){
 						var o = $(obj);
 						tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("filename") + "'>";
 						tags += "<input type='hidden' name='attachList["+i+"].giftUuid' value='" + o.data("uuid") + "'>";
 						tags += "<input type='hidden' name='attachList["+i+"].giftUploadPath' value='" + o.data("path") + "'>";
-					});
-				
+					});			
 					if(confirm("정말로 수정하시겠습니까?") == true) { 
-						$('#modifyForm').append(tags).submit();
+						formObj.append(tags).submit();
 					} 	        
 				}
 	   });
@@ -118,18 +119,22 @@
 	 $("input[type='file']").change(function(e){
 		 var formData = new FormData();	//jQuery를 이용하는 경우 파일 업로드는 FormData라는 객체를 이용. 쉽게 말하면 가상의 <form>태그
 		 var inputFile = $("input[name='uploadFile']");
-		 var files = inputFile[0].files;		
-		
-		 if(files.length == 0){
-	            alert('파일을 선택해주세요');
-	         } else {
+		 var files = inputFile[0].files;			
+		 
+		 var fileValue = $("#uploadFile").val().split("\\");
+         var fileName = fileValue[fileValue.length-1];
+         
+         var filepoint = fileName.substring(fileName.lastIndexOf(".")+1);
+         var filetype = filepoint.toLowerCase();
+		 
+         if(filetype == 'jpg' || filetype == 'png'){
+         
 		 for (var i = 0; i < files.length; i++) {
 		 	if(!checkExtension(files[i].name, files[i].size)) {					
 				return false;
 			} 
-				formData.append('uploadFile',files[i]);			
-		 }
-			
+				formData.append('uploadFile',files[i]);	
+		 }		
 		$.ajax({			
 			url : '/giftUpload/uploadAjaxAction',			
 			processData : false,
@@ -147,7 +152,12 @@
 				alert("upload not ok");
 			}		
 		});//END ajax
-	         }
+		 
+		 }else{
+             alert("jpg, png 이미지 파일만 등록해주세요");
+             $("#uploadFile").val("");
+             return false;
+          }
 		});//END click
 	
 		
@@ -164,7 +174,7 @@
 		} 
 		
 		$(".uploadResult").on("click", "button", function(e){
-			if(confirm("삭제 후 재등록하시기 바랍니다.")) {
+			if(confirm("삭제하시겠습니까?")) {
 				var targetLi = $(this).closest("li");
 				targetLi.remove();
 			} else {

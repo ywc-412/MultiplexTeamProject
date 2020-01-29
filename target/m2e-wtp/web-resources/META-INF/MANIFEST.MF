@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: sist
-=======
 Built-By: JJ
->>>>>>> jinju
 Build-Jdk: 1.8.0_221
 Created-By: Maven Integration for Eclipse
 
