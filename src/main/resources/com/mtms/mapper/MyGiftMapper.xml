@@ -53,9 +53,9 @@
 	<!-- 내 기프티콘 기간연장 -->
 	<update id="extend">
 		UPDATE myGift
-		SET expireDate = SYSDATE + (INTERVAL '1' MONTH),
+		SET expireDate = ADD_MONTHS(#{expireDate}, 1),
 			extendChk = 1
-		WHERE myGiftNo = #{myGift.myGiftNo} AND memberId = #{memberId}
+		WHERE myGiftNo = #{myGiftNo} AND memberId = #{memberId}
 	</update>
 	
 	<!-- 내 기프티콘 환불 -->
