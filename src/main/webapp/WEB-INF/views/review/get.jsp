@@ -26,6 +26,7 @@ $(function(){
     $("#noBgtn").on("click", function (e){
     	removeModal.hide();
     });
+   
 });
 //END 전체 function
 </script>
@@ -230,6 +231,28 @@ $(function(){
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- 전체마진 END -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<div class="modal" id="replyRemoveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	삭제하시겠습니가?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="okBtn1">확인</button> 
+        <button type="button" class="btn btn-secondary" id="noBtn" data-dismiss="modal">취소</button>
+	 </div>
+    </div>
+  </div>
+</div>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <sec:authorize access="isAuthenticated()">
 	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
 </sec:authorize>
@@ -243,8 +266,9 @@ $(function(){
 		<sec:authorize access="isAuthenticated()">
 			memberId = '<sec:authentication property="principal.username" />';
 		</sec:authorize>
-		
-		
+
+	
+
 console.log(replyService);
 var reviewNo = '<c:out value="${rvo.reviewNo}"/>';
 console.log('r' + reviewNo);
@@ -382,9 +406,13 @@ $("#addReplyBtn").on("click", function(e){
 	
 	modal.modal("show");							//모달 바로 실행
 });
+
 //모달 등록 버튼 눌렀을경우
 modalRegisterBtn.on("click", function(e){
-
+	e.preventDefault();
+	if(!(modalInputReply.val())){
+		alert('댓글 내용을 입력해주세요.');
+	}else{
 	//제이손 형식으로 reply에 값을 넣어준다
     var reply = {
     		replyContent : modalInputReply.val(),
@@ -402,7 +430,9 @@ modalRegisterBtn.on("click", function(e){
        pageNum = 1;			// 등록할때 페이지번호가 1로 가게할려고
        showList(pageNum);
 //        showList(-1);
+   
     });
+	}
 }); 
 //END 댓글 등록 버튼 이벤트 처리
 
@@ -436,7 +466,10 @@ modalRegisterBtn.on("click", function(e){
 
 //댓글 수정 버튼 이벤트 처리 - 동적이게 처리할필요없음 .on("click"
     modalModBtn.on("click", function(e){
-    		
+    	e.preventDefault();
+    	if(!(modalInputReply.val())){
+    		alert('댓글 수정 내용을 입력해주세요.');
+    	}else{
 	    	replyService.update({
 			replyNo : modal.data('rno'),
 			replyContent : modalInputReply.val()
@@ -457,32 +490,34 @@ modalRegisterBtn.on("click", function(e){
 		}, function(err){
 			console.log(err);
 		});
-	    	 
+    	} 
     });
     //END 수정 버튼 이벤트 처리
     
  // 댓글 삭제 버튼 이벤트 처리
     modalRemoveBtn.on("click", function(e){
-//        if(!memberId){
-//           // 로그인하지 않은 경우
-//           alert('로그인 후 삭제가 가능합니다.');
-//           modal.modal("hide");
-//           return ;
-//        }
-       var originalReplyer = modalInputReplyer.val();
-       if(memberId != originalReplyer){
-          // 자신의 댓글이 아닌 경우
-          alert('자신의 댓글만 삭제 가능합니다.');
-          modal.modal("hide");
-          return ;
-       }
-       var replyNo = modal.data("rno");
-//        replyService.remove(replyNo, originalReplyer, function(result){  나중에 원래 쓸것
-    	replyService.remove(replyNo, memberId, function(result){
-          modal.modal("hide");
-          showList(pageNum);
-       });
+    	var con_test = confirm("댓글을 삭제하시겠습니까?");
+    	if(con_test == true){
+    		  var originalReplyer = modalInputReplyer.val();
+    	       if(memberId != originalReplyer){
+    	          // 자신의 댓글이 아닌 경우
+    	          alert('자신의 댓글만 삭제 가능합니다.');
+    	          modal.modal("hide");
+    	          return ;
+    	       }
+    	       var replyNo = modal.data("rno");
+//    	        replyService.remove(replyNo, originalReplyer, function(result){  나중에 원래 쓸것
+    	    	replyService.remove(replyNo, memberId, function(result){
+    	          modal.modal("hide");
+    	          showList(pageNum);
+    	       });
+    	}
+    	else if(con_test == false){
+    	 	modal.modal('hide');
+    	}
+     
     });
   
+
 });
 </script>

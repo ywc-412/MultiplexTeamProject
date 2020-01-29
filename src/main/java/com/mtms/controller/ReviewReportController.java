@@ -33,9 +33,9 @@ public class ReviewReportController {
 	private ReviewReportService reviweReportService;
 	
 	@PostMapping("remove")
-	public String remove(@RequestParam("reviewNo") String reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+	public String remove(@RequestParam(value="reviewNo") String reviewNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		String[] words = reviewNo.split(",");
-		
+		System.out.println(reviewNo);
 		for (String wo : words ){
 			int reviewNo1 = Integer.parseInt(wo);
 			if (reviweReportService.remove(reviewNo1)){ 

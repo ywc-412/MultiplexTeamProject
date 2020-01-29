@@ -11,8 +11,8 @@
 					<li><a href="/member/client">회원 관리</a></li>
 					<li><a href="/report/review/list">리뷰 신고 관리</a>
 						<ul>
-							<li><a href="/report/review/list" class="custom-active">리뷰 신고 관리</a></li>
-							<li><a href="/report/reply/list">리뷰 댓글 신고 관리</a></li>
+							<li><a href="/report/review/list">리뷰 신고 관리</a></li>
+							<li><a href="/report/reply/list" class="custom-active">리뷰 댓글 신고 관리</a></li>
 							<li><a href="/report/comment/list">한줄평 신고 관리</a></li>
 						</ul>
 					</li>
@@ -42,7 +42,8 @@
 						<td>
 						<form action="/report/reply/remove" method="post" id="removeForm">
 							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-							<input type="checkbox" name="replyNo" value="${rpvo.replyNo }">
+							<input type="checkbox" name="replyNoChk" value="${rpvo.replyNo }"> <!-- value="${rrvo.reviewNo }" -->
+								<input type="hidden" name="replyNo" value="">
 						</form>
 						</td>
 					</tr>
@@ -134,7 +135,7 @@ $("#okBtn").on("click", function (e){
 });
 function checkbox_for()
 {
-	var chkbox = $("input[name=replyNo]");
+	var chkbox = $("input[name=replyNoChk]");
 	var send_array = Array();
 	var send_cnt = 0;
 	var replyNo_val;

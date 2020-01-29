@@ -3,12 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ include file="../include/header.jsp"%>
-<div class="side_margin">
-	<div class="row">
-		<div class="review_title">리뷰 수정 화면</div>
-	</div>
-	<div class="title_under"></div>
-<!-- 	계시판명 END -->
+
+<!--board-start-->
+<section id="tabs" class="project-tab">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="custom-board-title">
+                    <h3 class="custom-font-bold">리뷰 수정</h3>
+                </div>     
 
 	<form role="form" action="/review/modify" method="post" class="formModify">
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
@@ -27,7 +30,7 @@
 <!-- 	버튼위치 style -->
 	<div class="buttln_style">
 	 <button type="button" id="reviewList" class="btn btn-primary" data-oper='modify'>수정</button>
-	 <button data-oper='list'>취소</button>
+	 <button id="censle" class="btn btn-primary" data-oper='list'>취소</button>
 	 </div>
 	
 <!-- 	END 버튼위치 style -->
@@ -54,7 +57,8 @@
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-
+</div>
+</div>
 </div>
 <!-- 전체마진 END -->
 <script>

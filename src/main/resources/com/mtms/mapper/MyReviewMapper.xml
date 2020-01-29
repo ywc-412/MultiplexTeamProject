@@ -23,7 +23,7 @@
            c.reviewDate
     from 
         (
-       select /*+INDEX_ASC(review PK_review )*/
+       select /*+INDEX_DESC(review PK_review )*/
                 rownum rn,
                     b.movieTitle,
                        a.reviewNo,
@@ -42,7 +42,8 @@
       		a.movieNo = b.movieNo     
            and rownum <= #{cri.pageNum} * #{cri.amount}
             )c
-             WHERE c.rn > (#{cri.pageNum} - 1) * #{cri.amount}
+             WHERE c.rn > (#{cri.pageNum} - 1) * #{cri.amount} 
+             order by c.reviewDate desc
       ]]> 
    </select>
 </mapper>

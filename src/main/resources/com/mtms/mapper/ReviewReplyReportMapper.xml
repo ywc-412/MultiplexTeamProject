@@ -20,7 +20,8 @@
               c.replyReportDate
     from 
         (
-        select rownum rn,
+        select /*+INDEX_DESC(replyReport PK_replyReport )*/
+        rownum rn,
                        a.replyReportNo,
                        a.memberId,
                        a.replyNo,
@@ -32,7 +33,8 @@
         where a.replyNo = b.replyNo 
         and rownum <= #{pageNum} * #{amount}
     ) c 
-    WHERE c.rn > (#{pageNum} - 1) * #{amount}
+    WHERE c.rn > (#{pageNum} - 1) * #{amount} 
+    order by c.replyReportDate desc
       ]]> 
 
 	</select>
