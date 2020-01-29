@@ -6,14 +6,14 @@
 
 <div class="whole-wrap">
     <div class="container box_1170">
-        <div class="custom-section-top-border">
+        <div class="section-top-border">
             <div class="row">
      
                 <!-- 마이페이지 인클루드....start -- row 밑에서 include-->
 				<%@ include file="../include/myPageMenu.jsp"%>
 				<!-- 마이페이지 인클루드....end -->
 				
-                <!--board s -->
+                <!-- board s -->
                 <div class="tab-content" id="nav-tabContent">
 					<table class="table custom-th-size">				
 						<tr>
@@ -27,7 +27,7 @@
 							<tbody>
 								<tr>
 									<td><a class="move" href="${mygift.myGiftNo}">${mygift.giftList[0].giftName}</a></td>									
-									<td>${mygift.giftList[0].giftPrice}</td>
+									<td><fmt:formatNumber value="${mygift.giftList[0].giftPrice}" pattern="###,###" />원</td>
 									<td class=""><c:set var="status" value="${mygift.status}" />
 										<c:choose>
 											<c:when test="${status eq 0}">사용가능</c:when>		
