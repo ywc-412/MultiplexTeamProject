@@ -329,14 +329,20 @@
              console.log(result);
              var str = "";
              
-             $(result).each(function(i, attach){
-                var fileCallPath = encodeURIComponent( attach.movieUploadPath + "/s_" + attach.movieUuid + "_" + attach.movieFileName);
-               var originPath = attach.movieUploadPath + "\\" + attach.movieUuid + "_" + attach.movieFileName;
-               originPath = originPath.replace(new RegExp(/\\/g), "/");
+             var fileCallPath = encodeURIComponent( result[0].movieUploadPath + "/s_" + result[0].movieUuid + "_" + result[0].movieFileName);
+             var originPath = result[0].movieUploadPath + "\\" + result[0].movieUuid + "_" + result[0].movieFileName;
+             originPath = originPath.replace(new RegExp(/\\/g), "/");
+             
+             str += "<img class='yeong_moveImg' src='/movieUpload/display?movieFileName=" + originPath + "'>"
+             
+//              $(result).each(function(i, attach){
+//                 var fileCallPath = encodeURIComponent( attach.movieUploadPath + "/s_" + attach.movieUuid + "_" + attach.movieFileName);
+//                var originPath = attach.movieUploadPath + "\\" + attach.movieUuid + "_" + attach.movieFileName;
+//                originPath = originPath.replace(new RegExp(/\\/g), "/");
                
-               str += "<img class='yeong_moveImg' src='/movieUpload/display?movieFileName=" + originPath + "'>"
+//                str += "<img class='yeong_moveImg' src='/movieUpload/display?movieFileName=" + originPath + "'>"
                 
-             });
+//              });
              $(".uploadResult ul").html(str);
           }).fail(function(xhr, status, err){
              console.log(err);
@@ -674,8 +680,7 @@
              }, function(result){
                 alert("수정완료");
                 
-                modal.modal("hide");     
-                location.reload();
+                modal.modal("hide");         
                   showList(pageNum);
                 
              }, function(err){
