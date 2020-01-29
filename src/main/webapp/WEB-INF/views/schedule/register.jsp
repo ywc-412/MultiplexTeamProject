@@ -292,13 +292,18 @@
 			}
 			var str = "";
 			for(x in d){
-				str += "<option value ='"+d[x]+"' <c:if test='${selDate}'>selected</c:if>>"+d[x]+"</option>";
+				if(x == '01'){
+					str += "<option value ='"+d[x]+"' selected>"+d[x]+"</option>";
+				} else {
+					str += "<option value ='"+d[x]+"' >"+d[x]+"</option>";
+				}
 			}
 			$("#selectDay").append(str);
 			
 			var today = new Date();
 			var yyyy = today.getFullYear();
-			var scheduleDate = yyyy+$('#selectMon').val()+$('#selectDay').val();
+// 			var scheduleDate = yyyy+$('#selectMon').val()+$('#selectDay').val();
+			var scheduleDate = yyyy+$('#selectMon').val()+'01';
 			$("input[name='scheduleDate']").val(scheduleDate);
 			$("#dateForm").submit();
 		}
@@ -371,7 +376,7 @@
 				
 				var timeFormat = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
 				var timeChk = false;
-				var timeChk2 = false;
+				var cnt = 0;
 				addModal.find("input[name='time']").each(function(index, item){
 					if($(item).val() == ""){
 						timeChk = true;
@@ -386,18 +391,22 @@
 					}
 					addModal.find("input[name='time']").each(function(index, it){
 						if($(item).val() == $(it).val()){
-							timeChk = true;
-							timeChk2 = true;
-							return false;
+							cnt = cnt + 1;
+							if(cnt > 6){
+								timeChk = true;
+								return false;
+							}
 						}
 					});
 				});
-				if(timeChk2 == true){
-					alert('시간대를 다르게 설정해주세요.');
+				if(cnt > 6){
+					alert('시간대를 다르게 설정해주세요');
+				} else {
+					if(timeChk == false){
+						alert('here');
+						$("#addForm").submit();
+					} 
 				}
-				if(timeChk == false  ){
-					$("#addForm").submit();
-				} 
 			}); // 스케줄 추가 버튼 클릭 END
 
 			// 수정모달창에 값 넘기기
@@ -477,7 +486,7 @@
 			$(document).on("click", "#modifyBtn", function(e){
 				var timeFormat = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
 				var timeChk = false;
-				var timeChk2 = false;
+				var cnt = 0;
 				modifyModal.find("input[name='time']").each(function(index, item){
 					if($(item).val() == ""){
 						timeChk = true;
@@ -492,19 +501,22 @@
 					}
 					modifyModal.find("input[name='time']").each(function(index, it){
 						if($(item).val() == $(it).val()){
-							timeChk = true;
-							timeChk2 = true;
-							return false;
+							cnt = cnt + 1;
+							if(cnt > 6){
+								timeChk = true;
+								return false;
+							}
 						}
 					});
 				});
-				if(timeChk2 == true){
-					alert('시간대를 다르게 설정해주세요.');
-				}
-				if(timeChk == false && timeChk2 == false){
-					if(confirm("수정하시겠습니까?")){
-						$("#modifyForm").attr("action", "/schedule/modify");
-						$("#modifyForm").submit();
+				if(cnt > 6){
+					alert('시간대를 다르게 설정해주세요');
+				} else {
+					if(timeChk == false){
+						if(confirm("수정하시겠습니까?")){
+							$("#modifyForm").attr("action", "/schedule/modify");
+							$("#modifyForm").submit();
+						}
 					}
 				}
 			});

@@ -123,10 +123,18 @@ public class ReserveController {
 		// 예매 화면에서 영화, 날짜 선택 시 해당 시간대 받아오기
 		
 		// 현재 시간 전 영화 시간대만 받아오기
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		DateFormat date = new SimpleDateFormat("yyyyMMdd");
+		String todayDate = date.format(cal.getTime());
+		
 		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
 		Date now = new Date();
 		String time = format.format(now);
 		
+		if(!scheduleDate.equals(todayDate)) {
+			time = "00:00";
+		}
 		return new ResponseEntity<>(scheduleService.getTime(movieNo, scheduleDate, time), HttpStatus.OK);
 	}
 
