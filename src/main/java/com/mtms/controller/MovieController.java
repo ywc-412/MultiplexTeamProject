@@ -27,6 +27,7 @@ import com.mtms.domain.MovieAttachVO;
 import com.mtms.domain.MovieVO;
 import com.mtms.domain.PageDTO;
 import com.mtms.service.MovieService;
+import com.mtms.service.ScheduleService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -38,6 +39,7 @@ import lombok.extern.log4j.Log4j;
 public class MovieController {
    
    private MovieService movieService;
+   private ScheduleService scheduleService;
 
    //첨부 파일 삭제 메서드 - 영화사진 
    private void deleteFiles(List<MovieAttachVO> attachList) {
@@ -105,7 +107,7 @@ public class MovieController {
    //영화  삭제 처리
    @GetMapping("remove")
    public String remove(@RequestParam("movieNo") int movieNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
-      
+
       //첨부파일이 있는경우 파일 삭제 메서드 호출
       List<MovieAttachVO> attachList = movieService.getAttachList(movieNo);
        if(movieService.remove(movieNo)) {
@@ -113,14 +115,13 @@ public class MovieController {
                deleteFiles(attachList);
             }
             rttr.addFlashAttribute("result", "success");
-       }
-       
-       rttr.addAttribute("pageNum", cri.getPageNum());
+       }	      
+	   rttr.addAttribute("pageNum", cri.getPageNum());
       rttr.addAttribute("amount", cri.getAmount());
       rttr.addAttribute("type", cri.getType());
       rttr.addAttribute("keyword", cri.getKeyword());
-      
-      return "redirect:/movie/list";
+	   
+	   return "redirect:/movie/list";
    }
    
    //영화 등록 창 보여주기

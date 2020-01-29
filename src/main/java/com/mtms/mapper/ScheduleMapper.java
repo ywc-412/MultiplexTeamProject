@@ -17,7 +17,6 @@ public interface ScheduleMapper {
 	public int checkSchedule(@Param("scheduleDate") String scheduleDate, @Param("screen") String screen);
 
 	// 상영스케줄 수정
-//	public int update(@Param("scheduleDate") String scheduleDate, @Param("screen") String screen, @Param("scheduleTime") String scheduleTime, @Param("num") int num);
 	public int update(@Param("scheduleTime") String scheduleTime, @Param("scheduleNo") int scheduleNo);
 	
 	// 상영스케줄 삭제 - 등록하다가 취소 시

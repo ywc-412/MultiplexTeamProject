@@ -24,12 +24,14 @@
 	               	 </div>
                	 </div>
                 <div class="col-md-9 mt-sm-20">            
-                    <p>금액 : ${mygift[0].giftList[0].giftPrice}</p>
+                    <p>가격 : ${mygift[0].giftList[0].giftPrice}</p>
                     <p>구성 : ${mygift[0].giftList[0].giftSet}</p>
                        <form action="/myGift/extend" method="POST" id="extendForm">
 		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		                    <p>구입일자 : <span><fmt:formatDate value="${mygift[0].buyingDate}" pattern="yyyy.MM.dd"/></span></p>
-		                    <p><span class="expireNotice">만료일자 :</span><fmt:formatDate value="${mygift[0].expireDate}" pattern="yyyy.MM.dd"/></p>                    
+		                    <p>구입일자 : <fmt:formatDate value="${mygift[0].buyingDate}" pattern="yyyy.MM.dd"/></p>
+		                    <c:if test="${!empty mygift[0].expireDate}">
+		                    <p>만료일자 : <fmt:formatDate value="${mygift[0].expireDate}" pattern="yyyy.MM.dd"/></p> 
+		                    </c:if>                   
 		                    <input type="hidden" name="myGiftNo" value="${mygift[0].myGiftNo}"/>
 		                    <input type="hidden" value="${mygift[0].extendChk}"/>	                    
 		                    <input type='hidden' name="memberId" value="${mygift[0].memberId}"/>	            		
@@ -58,10 +60,10 @@
 			<button type="button" class="btn btn-primary float-left custom-button-gift" id="listBtn">LIST</button>
 			<c:if test="${!empty mygift[0].expireDate}">
 				<div class="pull-right">
-					<c:if test="${mygift[0].extendChk == 0}">
-						<button type="button" class="btn btn-primary custom-button-gift" id="extendBtn">기간연장</button>
+					<c:if test="${mygift[0].extendChk == 0 && mygift[0].status == 0}">
+						<button type="button" class="btn btn-primary custom-button-gift" id="extendBtn">기간연장</button>										
 					</c:if>
-						<button type="button" class="btn btn-primary custom-button-gift" id="refundBtn">환불</button>
+					<button type="button" class="btn btn-primary custom-button-gift" id="refundBtn">환불</button>
 				</div>
 			</c:if>
 		</div>
@@ -93,12 +95,20 @@
 
 		$('#extendBtn').on("click", function(e) {
 			e.preventDefault();
-			extendForm.submit();
+			if(confirm("기간을 연장하시겠습니까?") == true) { 
+				extendForm.submit();
+			 } else {
+	    		   return false;
+	    	   }					
 		});
 		
 		$('#refundBtn').on("click", function(e) {
 			e.preventDefault();
-			refundForm.submit();
+			if(confirm("환불하시겠습니까?") == true) { 
+				refundForm.submit();
+			 } else {
+	    		   return false;
+	    	   }			
 		});
 		
 		$('#listBtn').on("click", function(e) {

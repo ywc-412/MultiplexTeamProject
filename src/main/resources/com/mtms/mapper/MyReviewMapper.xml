@@ -11,19 +11,38 @@
    </select>
 
 <select id="getListWithPaging" resultType="com.mtms.domain.ReviewVO">
-		<![CDATA[
-		SELECT
-			movieNo,reviewTitle,memberId,reviewView,reviewDate, reviewNo
-			from 
-				(
-				select /*+INDEX_DESC(review PK_review )*/
-				rownum rn,movieNo,reviewTitle,memberId,reviewView,reviewDate,reviewNo
-				from 
-				review
-				where
-	
-            rownum <= #{cri.pageNum} * #{cri.amount}
-            ) WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount} AND memberId = #{memberId}
+	      <![CDATA[
+			 SELECT 
+            c.movieTitle,
+           c.reviewNo,
+           c.memberId,
+           c.movieNo,
+           c.reviewTitle,
+           c.reviewContent,
+           c.reviewView,
+           c.reviewDate
+    from 
+        (
+       select /*+INDEX_ASC(review PK_review )*/
+                rownum rn,
+                    b.movieTitle,
+                       a.reviewNo,
+                       a.movieNo,
+                        a.memberId,
+                       a.reviewTitle,
+                       a.reviewContent,
+                       a.reviewView,
+                       a.reviewDate
+                       
+        from review a,
+             movie b
+        where
+				
+   
+      		a.movieNo = b.movieNo     
+           and rownum <= #{cri.pageNum} * #{cri.amount}
+            )c
+             WHERE c.rn > (#{cri.pageNum} - 1) * #{cri.amount}
       ]]> 
    </select>
 </mapper>

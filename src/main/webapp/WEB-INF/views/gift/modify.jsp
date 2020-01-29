@@ -15,8 +15,20 @@
 				<form method="post" action="/gift/modify" role="form">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<div class="form-group">
-						<label>No.</label> <input class="form-control" name="giftNo" value='<c:out value="${gift.giftNo}" readonly/>'>
-					</div>					
+						<label>No.</label> <input class="form-control" name="giftNo" value='<c:out value="${gift.giftNo}"/>' readonly>
+					</div>	
+					<div class="form-group">
+					<label>사진</label><br>
+					<div class="custom-photo">
+						<input type="file" name="uploadFile" multiple>
+					</div>
+					</div>
+					<hr>				
+					<div class="uploadResult">
+						<ul>
+							<!-- 사진 -->
+						</ul>
+					</div>				
 					<div class="form-group">
 						<label>이름</label> <input class="form-control" name="giftName" value='<c:out value="${gift.giftName}"/>'>							
 					</div>
@@ -27,19 +39,7 @@
 						<button type="submit" class="btn btn-primary btn-sm" data-oper="modify">수정</button>
 						<input type="button" onclick="modifyCancel()" class="btn btn-secondary btn-sm" value="취소">
 					</div>
-				</form>
-				<div class="form-group">
-					<label>사진</label><br>
-					<div class="custom-photo">
-						<input type="file" name="uploadFile" multiple>
-					</div>
-				</div>
-				<hr>				
-				<div class="uploadResult">
-					<ul>
-						<!-- 사진 -->
-					</ul>
-				</div>
+				</form>				
 			</div>
 		</div>
 	</div>
