@@ -19,14 +19,10 @@
 				</ul>
 			</div>
 		</div>
-		<div class="mycomment-left-right">
+	<div class="table_position1">
 		<span class="button_position">
 			<button id="reportRemove" class="btn btn-danger">삭제</button>
 		</span>
-	<div class="table_position1">
-	
-			
-
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
@@ -108,8 +104,6 @@
 </div>
 <!-- END modal -->
 </div>
-</div>
-
 <!-- 전체마진 END -->
 <%@ include file="../../include/footer.jsp"%>
 <script>
@@ -154,9 +148,13 @@ function checkbox_for()
 	    replyNo_val = send_array + ",";
 	}
 	
+	alert("chkbox : " + chkbox);
+	alert("send_cnt : " + send_cnt);
+	alert("send_array : " + send_array);
 	
 	alert("replyNo_val : " + replyNo_val);
 	
 	$('input[name=replyNo]').val(replyNo_val);
+	alert($('input[name=replyNo]').val());
 }
 </script>
