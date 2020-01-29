@@ -70,7 +70,7 @@
 		</form>
 		</sec:authorize>
 		
-		<sec:authorize access="hasRole('ROLE_MEMBER')">
+		<sec:authorize access="isanonymous() or hasRole('ROLE_MEMBER')">
 		<form action="/mygift/register" id="payForm" method="post" style="float: left">
 			<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
 			<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 

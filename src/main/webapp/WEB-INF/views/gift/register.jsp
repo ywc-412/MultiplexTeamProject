@@ -66,7 +66,7 @@
 			
 			if ($("#giftName").val() == "" || $("#giftPrice").val() == "" || $("#giftSet").val() == "") {
 				alert("내용을 입력해주세요");	
-			} else if(files.length == 0) {
+			} else if($("uploadResult").val() == "") {
 				alert('파일을 선택해주세요');
 			} else {								 
 				$('.uploadResult ul li').each(function(i,obj){
