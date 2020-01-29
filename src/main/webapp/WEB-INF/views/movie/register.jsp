@@ -114,6 +114,9 @@
       var openDate = $('#datepicker').val();
         console.log("openDate =  " + openDate);
         
+        var modifyFile = $("input[name='yeong_registerImg']");
+        console.log(modifyFile);
+        
 //        $("button[type='submit']").on("click",function(e){
        $('#regButton').on("click",function(e){   
           
@@ -134,8 +137,10 @@
            var runningTime = $('#runningTime').val();
            var poster = $('#poster').val();
            
+           
+           
            var inputFile = $("input[name='uploadFile']");
-         var files = inputFile[0].files;
+           var files = inputFile[0].files;
           
           if( movieTitle == "" || movieTitle.length < 0){
               $('#title').text('영화 제목을 입력해주세요');
@@ -152,9 +157,11 @@
           } else if( runningTime == "" || runningTime.length < 0){
               $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
               $('#runningTime').focus();
-          } else if(files.length == 0){
-             alert('파일을 선택해주세요');
-          } else {
+          } 
+//           else if(files.length == 0){
+//              alert('파일을 선택해주세요');
+//           } 
+          else {
              $(".uploadResult ul li").each(function(i, obj){
                var jobj = $(obj);
                
@@ -206,6 +213,8 @@
          var filetype = filepoint.toLowerCase();
          console.log(filetype);
          
+         var modifyFile = $("input[name='yeong_registerImg']");
+         console.log(modifyFile);
          
          if(files.length == 0){
             alert('파일을 선택해주세요');
