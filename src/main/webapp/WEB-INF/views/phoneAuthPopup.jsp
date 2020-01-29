@@ -134,7 +134,7 @@
 							alert('제한 시간이 초과되었습니다');
 						}else if(result.authNumber == $('input#authNumber').val()){
 							if((currentTime.getTime() - result.authDate) >= 1000*60*5){
-								console.log('제한 시간이 초과되었습니다');
+								alert('제한 시간이 초과되었습니다');
 							}else{
 								// 해당 핸드폰 번호 레코드 delete
 								phoneAuthService.remove(param.authPhone, function(deleteResult){

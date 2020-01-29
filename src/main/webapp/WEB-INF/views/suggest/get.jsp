@@ -26,8 +26,13 @@
 				<hr>
 				<div class="pull-right">
 					<button type="button" class="btn btn-primary btn-sm" id="suggestListBtn">LIST</button>
-					<button type="button" class="btn btn-primary btn-sm" id="suggestModifyBtn">수정</button>
-					<button type="button" class="btn btn-danger btn-sm" id="suggestRemoveBtn">삭제</button>
+					<sec:authorize access="isAuthenticated()">
+						<sec:authentication var="user" property="principal" />
+					</sec:authorize>
+					<c:if test="${suggest.memberId eq user.username}">
+						<button type="button" class="btn btn-primary btn-sm" id="suggestModifyBtn">수정</button>
+						<button type="button" class="btn btn-danger btn-sm" id="suggestRemoveBtn">삭제</button>	
+					</c:if>
 				</div>
 				<form action="/suggest/list" method="get" id="goListForm">
 					<input type="hidden" name="pageNum" value="${cri.pageNum }"/>

@@ -101,6 +101,18 @@
 			}
 		});
 		
+		$('#registerCancleBtn').on("click", function(e){
+			e.preventDefault();
+			
+			var cancleConfirm = confirm('취소하시겠습니까?');
+			
+			if(cancleConfirm == true){
+				location.href = '/suggest/list';
+			}else{
+				return;
+			}
+		});
+		
 	});
 </script>
 
