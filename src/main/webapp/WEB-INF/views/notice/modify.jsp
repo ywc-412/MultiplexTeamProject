@@ -14,6 +14,7 @@
                 </div>
                 <form method="post" action="/notice/modify" role="form" id="modifyForm">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                <input type="hidden" name="noticeNo" value="${notice.noticeNo }"/>
                 <div class="form-group">
 						<label>번호</label> <input readonly class="form-control" name="noticeNo" value='<c:out value="${notice.noticeNo}"/>'>
 				</div>             
@@ -26,10 +27,6 @@
                     <textarea class="form-control" rows="6" name="noticeContent" id="custom-notice-content"><c:out value="${notice.noticeContent}"/></textarea>
                 </div>
                 <hr>
-                	<input type="hidden"  name="pageNum" value="${cri.pageNum }">
-					<input type="hidden" name="amount" value="${cri.amount}">
-					<input type="hidden" name="type" value="${ cri.type }" /> 
-					<input type="hidden" name="keyword" value="${ cri.keyword }" />
                 <div class="form-group text-center">
                 
                     <button data-oper="modify" type="submit" class="btn btn-primary btn-sm">수정</button>
@@ -51,15 +48,7 @@
       if(operation === 'cancel'){	//목록 버튼	    	
     		if(confirm("정말로 취소하시겠습니까?") == true) {     	
 		         formObj.attr("action", "/notice/list").attr("method", "get");
-		         var pageNumTag = $("input[name='pageNum']").clone();
-		         var amountTag = $("input[name='amount']").clone();
-		         var typeTag = $("input[name='type']").clone();
-		         var keywordTag = $("input[name='keyword']").clone();
-		         formObj.empty();
-		         formObj.append(pageNumTag);
-		         formObj.append(amountTag);
-		         formObj.append(typeTag);
-		         formObj.append(keywordTag);	         
+	         
 		         formObj.submit();
     		} else {
  	 		   		false;
