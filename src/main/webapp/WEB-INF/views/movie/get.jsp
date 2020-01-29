@@ -674,7 +674,8 @@
              }, function(result){
                 alert("수정완료");
                 
-                modal.modal("hide");         
+                modal.modal("hide");     
+                location.reload();
                   showList(pageNum);
                 
              }, function(err){
