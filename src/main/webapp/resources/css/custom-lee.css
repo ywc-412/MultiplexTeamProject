@@ -516,7 +516,12 @@
    padding-top: 20px;
 }
 
-
+.paginate_button.active .page-link{
+	background-color: lightgray;
+}
+.page-link{
+	font-size: 15px;
+}
 
 
 
