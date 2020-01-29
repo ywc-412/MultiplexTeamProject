@@ -40,15 +40,15 @@
 					<div class="justify-content-lg-center custom-table-size">
 						<div class="col-lg-12">
 							<form id='searchForm' action="/member/client" method="get">
-								<div class="default-select custom-text-left custom-margin-choi" id="default-select">
-									<select name='type' id="keywordSelect">
+								<div class="custom-text-left">
+									<select name='type' id="keywordSelect" class="typeChk">
 										<option value="" <c:out value="${pageMaker.cri.type==null?'selected':'' }"/>>--</option>
 										<option value="I" <c:out value="${pageMaker.cri.type=='I'?'selected':'' }"/>>회원 아이디</option>
 										<option value="N" <c:out value="${pageMaker.cri.type=='N'?'selected':'' }"/>>회원 이름</option>
 										<option value="IN" <c:out value="${pageMaker.cri.type=='IN'?'selected':'' }"/>>회원 ID, 회원 이름</option>
 									</select>
 								</div>
-								<input type="text" id="keywordInput" class="single-input custom-text-left custom-input-size custom-margin-choi" name="keyword" value="${pageMaker.cri.keyword }">
+								<input type="text" id="keywordInput" class="custom-text-left custom-input-size" name="keyword" value="${pageMaker.cri.keyword }">
 								<input type="hidden" name='pageNum' value="${pageMaker.cri.pageNum }">
 								<input type="hidden" name='amount' value="${pageMaker.cri.amount }">
 								<div class="custom-text-left">
@@ -73,23 +73,23 @@
 								</c:forEach>
 							</table>
 						</div>
-						
-						<ul class="pagination justify-content-center">
-							<c:if test="${pageMaker.prev}">
-								<li class="page-item"><a class="page-link" href="${pageMaker.startPage -1}" aria-label="Previous"> 
-									<span aria-hidden="true">&laquo;</span></a>
-								</li>
-							</c:if>
-							<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-								<li class='page-item ${pageMaker.cri.pageNum == num? "custom-active-choi" : "" } '><a href="${num}">${num}</a></li>
-							</c:forEach>
-							<c:if test="${pageMaker.next }">
-								<li class="page-item"><a class="page-link" href="${pageMaker.endPage +1}"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-								</a></li>
-							</c:if>
-						</ul>
-						
+						<div class="pagination justify-content-center clear">
+							<ul class="pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item"><a class="page-link" href="${pageMaker.startPage -1}" aria-label="Previous"> 
+										<span aria-hidden="true">&laquo;</span></a>
+									</li>
+								</c:if>
+								<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+									<li class='page-item ${pageMaker.cri.pageNum == num? "" : "" } '><a href="${num}">${num}</a></li>
+								</c:forEach>
+								<c:if test="${pageMaker.next }">
+									<li class="page-item"><a class="page-link" href="${pageMaker.endPage +1}"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:if>
+							</ul>
+						</div>
 						<form id='actionForm' action="/member/client" method="get">
 							<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"/>
 							<input type="hidden" name="amount" value="${pageMaker.cri.amount}"/>
