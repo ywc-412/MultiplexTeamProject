@@ -12,7 +12,7 @@
 				<div class="custom-board-title">
 					<h3 class="custom-font-bold">기프티콘 수정</h3>
 				</div>
-				<form method="post" action="/gift/modify" role="form">
+				<form method="post" action="/gift/modify" role="form" id="modifyForm">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<div class="form-group">
 						<label>No.</label> <input class="form-control" name="giftNo" value='<c:out value="${gift.giftNo}"/>' readonly>
@@ -30,13 +30,14 @@
 						</ul>
 					</div>				
 					<div class="form-group">
-						<label>이름</label> <input class="form-control" name="giftName" value='<c:out value="${gift.giftName}"/>'>							
+						<label>이름</label> <input class="form-control" name="giftName" id="giftName" value='<c:out value="${gift.giftName}"/>'>							
 					</div>
 					<div class="form-group">
-						<label>가격</label> <input class="form-control" name="giftPrice" value='<c:out value="${gift.giftPrice}"/>'>						
+						<label>가격</label> <input class="form-control" name="giftPrice" id="giftPrice" value='<c:out value="${gift.giftPrice}"/>'>						
+						<small class="pull-right">숫자만 입력가능</small>
 					</div>
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-primary btn-sm" data-oper="modify">수정</button>
+						<button type="button" class="btn btn-primary btn-sm" id="modifyBtn">수정</button>
 						<input type="button" onclick="modifyCancel()" class="btn btn-secondary btn-sm" value="취소">
 					</div>
 				</form>				
@@ -49,11 +50,51 @@
 <script>
 	function modifyCancel() {
 		if(confirm("수정을 취소하시겠습니까?") == true) {
-			location.href = "/gift/list"
+			self.location('/gift/list');
 		} else {
 			self.close();
 		}
-	}
+	}	
+		
+	$(function(){	
+	   $('#modifyBtn').click(function(){	  	      
+				var tags = "";
+				var inputFile = $("input[name='uploadFile']");
+				var files = inputFile[0].files;	
+				
+				if ($("#giftName").val() == "" || $("#giftPrice").val() == "") {
+					alert("내용을 입력해주세요");	
+				} else {  						
+					$('.uploadResult ul li').each(function(i,obj){
+						var o = $(obj);
+						tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("filename") + "'>";
+						tags += "<input type='hidden' name='attachList["+i+"].giftUuid' value='" + o.data("uuid") + "'>";
+						tags += "<input type='hidden' name='attachList["+i+"].giftUploadPath' value='" + o.data("path") + "'>";
+					});
+				
+					if(confirm("정말로 수정하시겠습니까?") == true) { 
+						$('#modifyForm').append(tags).submit();
+					} 	        
+				}
+	   });
+	});
+	
+	(function() {
+		var giftNo = ${gift.giftNo};
+		$.getJSON("/gift/getAttachList", { giftNo : giftNo}, function(data) {							
+			var li = "";
+			$(data).each(function(index, obj){								
+				//이미지이면 그대로 표시				
+					var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);				
+					li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"'><div>" +
+					  "<button data-file=\'" + filePath + "\' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"
+					  + "<img src='/giftUpload/display?giftFileName="+filePath+"'></div></li>";							
+			});
+					$('.uploadResult ul').append(li);		
+				}).fail(function(xhr, status, err) {
+										
+		});//END JSON	
+	})();
 	
 	//파일의 확장자와 크기를 설정하고 이를 검사하는 함수
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
@@ -79,9 +120,10 @@
 		 var inputFile = $("input[name='uploadFile']");
 		 var files = inputFile[0].files;		
 		
-		 /* add filedata to formdata */
+		 if(files.length == 0){
+	            alert('파일을 선택해주세요');
+	         } else {
 		 for (var i = 0; i < files.length; i++) {
-		 	alert('giftFileName : ' + files[i].name + '\nsize : ' + files[i].size);
 		 	if(!checkExtension(files[i].name, files[i].size)) {					
 				return false;
 			} 
@@ -105,27 +147,10 @@
 				alert("upload not ok");
 			}		
 		});//END ajax
+	         }
 		});//END click
+	
 		
-	   var formObj = $("form");
-	   $('button').on("click", function(e){
-	      e.preventDefault();
-	      var operation = $(this).data("oper");
-	       if(operation === 'remove'){	//삭제 버튼
-	         formObj.attr("action", "/gift/remove");      
-	      } else if(operation === 'modify') {
-				var tags = "";							
-				$('.uploadResult ul li').each(function(i,obj){
-					var o = $(obj);
-					tags += "<input type='hidden' name='attachList["+i+"].giftFileName' value='" + o.data("filename") + "'>";
-					tags += "<input type='hidden' name='attachList["+i+"].giftUuid' value='" + o.data("uuid") + "'>";
-					tags += "<input type='hidden' name='attachList["+i+"].giftUploadPath' value='" + o.data("path") + "'>";
-				});		
-				formObj.append(tags).submit(); 	  
-	      }
-	   		formObj.submit();
-	   });
-	   
 	   function showUpLoadedFile(result) {
 			var li = "";
 			$(result).each(function(index, obj){	
@@ -139,28 +164,19 @@
 		} 
 		
 		$(".uploadResult").on("click", "button", function(e){
-			if(confirm("파일을 삭제하시겠습니까?")) {
+			if(confirm("삭제 후 재등록하시기 바랍니다.")) {
 				var targetLi = $(this).closest("li");
 				targetLi.remove();
+			} else {
+				return false;
 			}
 		});
-			
-		(function() {
-			var giftNo = ${gift.giftNo};
-			$.getJSON("/gift/getAttachList", { giftNo : giftNo}, function(data) {							
-				var li = "";
-				$(data).each(function(index, obj){								
-					//이미지이면 그대로 표시				
-						var filePath = encodeURIComponent(obj.giftUploadPath + obj.giftUuid + "_" + obj.giftFileName);				
-						li += "<li data-path='"+obj.giftUploadPath+"' data-uuid='"+obj.giftUuid+"' data-fileName='"+obj.giftFileName+"'><div>" +
-						  "<button data-file=\'" + filePath + "\' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"
-						  + "<img src='/giftUpload/display?giftFileName="+filePath+"'></div></li>";							
-				});
-						$('.uploadResult ul').append(li);		
-					}).fail(function(xhr, status, err) {
-											
-			});//END JSON	
-		})();
+		
+		//금액 숫자 입력
+	    $('#giftPrice').on("keyup", function() {
+	        $(this).val($(this).val().replace(/[^0-9]/g,""));
+	    });
+
 </script>
 
 <%@ include file="../include/footer.jsp" %>

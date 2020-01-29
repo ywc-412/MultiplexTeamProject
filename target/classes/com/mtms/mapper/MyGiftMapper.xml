@@ -76,7 +76,7 @@
 	<![CDATA[UPDATE myGift 
 			 SET status = 1,
     			extendChk = 1
-			 WHERE to_char(expireDate, 'yy/MM/dd') <= #{expireDate} AND memberId = #{memberId}]]>
+			 WHERE to_char(expireDate, 'yy/MM/dd') <= #{expireDate}]]>
 	</update>
 	
 </mapper>

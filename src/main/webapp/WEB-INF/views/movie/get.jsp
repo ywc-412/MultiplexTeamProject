@@ -359,10 +359,10 @@
           });
           
           $("button[data-oper='remove']").on("click", function (e){
-        	  if(confirm('영화를 삭제하시겠습니까?')){
-	             operForm.find("#memberId").remove();
-	             operForm.attr("action", "/movie/remove").submit();
-        	  }
+             if(confirm('영화를 삭제하시겠습니까?')){
+                operForm.find("#memberId").remove();
+                operForm.attr("action", "/movie/remove").submit();
+             }
           });
           
           $(document).on("click", "#commentReport", function(e){
@@ -709,12 +709,12 @@
                    }
                    
                    if(confirm('삭제하시겠습니까?')){
-	                   commentService.remove(commentNo, originalReplyer, function(result){
-	                	   if(result == 'success'){
-	                		   alert('한줄평이 삭제되었습니다.');
-	                		   location.reload();
-	                	   }
-	                   });
+                      commentService.remove(commentNo, originalReplyer, function(result){
+                         if(result == 'success'){
+                            alert('한줄평이 삭제되었습니다.');
+                            location.reload();
+                         }
+                      });
                    }
             });
            
