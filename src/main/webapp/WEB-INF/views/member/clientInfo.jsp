@@ -41,9 +41,9 @@
 								<input type="hidden" name="memberId" value="<c:out value="${member.memberId}"/>"> 
 								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 							</form>
-							<div class="row">
-								<button id="clientRemoveBtn" class="pull-right boxed-btn3">강퇴</button>
-								<button id="clientSemdMsgBtn" class="pull-right boxed-btn3">메시지보내기</button>
+							<div class="row pull-right">
+								<button id="clientRemoveBtn" class="pull-right btn btn-primary">강퇴</button>
+								<button id="clientSemdMsgBtn" class="pull-right btn btn-primary">메시지보내기</button>
 							</div>
 							<div class="mt-10 custom-input">
 								<div>아이디</div>
