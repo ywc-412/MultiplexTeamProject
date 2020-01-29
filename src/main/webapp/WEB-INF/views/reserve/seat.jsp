@@ -9,9 +9,10 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 	<div class="hanna_head">
-		<h3>RESERVE_SEAT</h3>
-		<p> ${reserveTime.movieNo } / ${reserveTime.scheduleDate } / ${reserveTime.scheduleTime } / ${movieName } </p>
+		<p style="font-size: 25px;"> <c:set var="sdate" value="${reserveTime.scheduleDate }"/>${fn:substring(sdate,4,6) }/${fn:substring(sdate,6,8) } ${reserveTime.scheduleTime } </p>
+		<p style="font-size: 25px;"> ${movieName }</p>
 	</div>
+	
 	
 	<!-- 예매 화면 -->
 	<div class="hanna_container">

@@ -403,7 +403,6 @@
 					alert('시간대를 다르게 설정해주세요');
 				} else {
 					if(timeChk == false){
-						alert('here');
 						$("#addForm").submit();
 					} 
 				}
