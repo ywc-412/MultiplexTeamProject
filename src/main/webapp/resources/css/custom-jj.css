@@ -451,7 +451,7 @@ input:disabled {
 
 .giftImg {
 	width: 130px;
-/* 	padding-left: 20%; */
+	height : 120px;
 	background-color: white;
 	
 }
@@ -461,13 +461,14 @@ input:disabled {
 	width: 130px;
 	text-align: center;
 	float: left;
-	margin: 15px
+	margin: 20px
 
 }
 
 .custom-col-md-3 {
 	float: left;
 	padding: 30px;
+	padding-left: 60px
 }
 
 #custom-notice-content {
