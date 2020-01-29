@@ -45,11 +45,8 @@ width: 250px;}
 }
 
 .title_under_ex2{
-<<<<<<< HEAD
 	font-size: 10px;
-=======
    font-size: 10px;
->>>>>>> d4c6292c88216a75c49644ade908adc1f96ac1b8
 }
 .movie_title_style{
    1px solid white;
@@ -104,6 +101,7 @@ width: 250px;}
    margin-bottom: 2%;
    font-size: 30px;
    color: black;
+   background: gray;
 }
 #movie_register{
    width: 100%;
@@ -225,4 +223,7 @@ float: right;
 }
 .mytable_position{
 	width: 70%;
+}
+.movieGray{
+	background-color: black;
 }
