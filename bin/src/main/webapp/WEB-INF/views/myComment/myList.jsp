@@ -217,15 +217,8 @@
 	
     $(function(){
 	    $(document).on("click", "#myCommentUpdate", function(e){
-	    	console.log($(this).data("commentno"));
 	    	
 			commentService.get($(this).data("commentno"), function(data){
-				console.log("gg");
-    	   		console.log(data.commentStar);
-    	   		console.log(data.commentContent);
-    	   		console.log(data.memberId);
-    	   		console.log(data.commentDate);
-    	   		console.log(data.movieNo);
     	   		
     	   		if(data.commentStar == 1){
     	   			$('.starModify1').addClass("on").prevAll("a").addClass("on");
@@ -240,7 +233,6 @@
 				} 
     	    	
     	   		modal.data("commentNo", data.commentNo);
-    	   		console.log(modal.data('commentNo'));
     	   		
     	   		modalInputStar.val(data.commentStar);		
     	    	modalInputContent.val(data.commentContent);
@@ -259,15 +251,13 @@
 	  //댓글 수정 버튼 이벤트 처리 - 동적이게 처리할필요없음 .on("click"
         $(document).on("click", "#modalModify", function(e){
 
-        	console.log(modal.data('commentNo'));
-        	
         	commentService.update({
         		commentNo : modal.data('commentNo'),
         		commentStar : modalInputStar.val(),
                 commentContent : modalInputContent.val()
     			
     		}, function(result){
-    			alert("수정완료");
+    			alert("한줄평 수정이 완료되었습니다.");
     			
     			modal.modal("hide");
     			
