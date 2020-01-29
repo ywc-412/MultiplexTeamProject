@@ -93,7 +93,7 @@
 								<sec:authorize access="isAuthenticated()">
 									<input type="hidden" name="memberId" value="<sec:authentication property="principal.username"/>">
 								</sec:authorize>
-								<div class="custom-margin">
+								<div class="custom-margin custom-login-location">
 									<sec:authorize access="!isAuthenticated()">
 										<button class="btn btn-primary pull-right" id="joinBtn">회원가입</button>
 										<button class="btn btn-primary pull-right" id="loginBtn">로그인</button>
