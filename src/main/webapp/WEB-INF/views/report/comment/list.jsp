@@ -54,7 +54,7 @@ tr, td {
                            </c:forEach>
                            <td scope="col" class="yeongth10">
                               <c:if test="${commentReport.commentReportResult == 0}">
-                                   미처리
+                                 			  미처리
                             </c:if>
                         <c:forEach items="${comment }" var="comment">
                            <c:if test="${comment.commentNo eq commentReport.commentNo }">
@@ -94,7 +94,7 @@ tr, td {
                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body">
-                       처리가 완료되었습니다.
+                      		 처리가 완료되었습니다.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
