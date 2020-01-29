@@ -314,7 +314,6 @@
                           alert('한줄평 삭제가 완료되었습니다.');
                             location.reload();
                        }
-                       showList(pageNum);
                    });
                 }
          });

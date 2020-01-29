@@ -29,7 +29,6 @@
 						 		<div class="single_gift uploadDiv" id="${gift.giftNo}" >
 									<div class="uploadResult"> 
 										<ul>
-											<!-- 사진 -->
 										</ul>
 									</div>									
 								<a class="move" href="${gift.giftNo}">
