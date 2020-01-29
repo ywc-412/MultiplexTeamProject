@@ -82,13 +82,13 @@
                
                <div class="form-group">
                    <label for="summary">줄거리</label>
-                   <textarea class="form-control" id="summary" name="summary" rows="3" placeholder="${movie.summary }"></textarea>
+                   <textarea class="form-control" id="summary" name="summary" rows="3">${movie.summary }</textarea>
                </div>
                
                <div class="form-group uploadDiv">
                   <label for="uploadFile">포스터</label><br>
                   <div class="custom-file">
-                      <input class="yeong-input" type="file" id="uploadFile" name="uploadFile" multiple="multiple">
+                      <input class="yeong-input" type="file" id="uploadFile" name="uploadFile">
                       <small id="picture" class="yeong-small"></small>
                       <div class="uploadResult">
                              <ul>
@@ -124,12 +124,12 @@
       var formObj = $("form[role='form']");
       console.log(formObj);
       
+      var modifyFile = $("input[name='yeong_registerImg']");
+      console.log(modifyFile);
+      
       var openDate = $('#datepicker').val();
-        console.log("openDate =  " + openDate);
         
-        var fmtDate = '<fmt:formatDate value="${movie.openDate }" pattern="MM/dd/yyyy"/>';
-        
-        console.log(fmtDate);
+      var fmtDate = '<fmt:formatDate value="${movie.openDate }" pattern="MM/dd/yyyy"/>';
         
 //        $("button[type='submit']").on("click",function(e){
        $('#regButton').on("click",function(e){   
@@ -147,7 +147,8 @@
            console.log("openDate =  " + openDate);
            
            var inputFile = $("input[name='uploadFile']");
-         var files = inputFile[0].files;
+           var files = inputFile[0].files;
+         
           
           if( movieTitle == "" || movieTitle.length < 0){
               $('#title').text('영화 제목을 입력해주세요');
@@ -164,7 +165,14 @@
           } else if( runningTime == "" || runningTime.length < 0){
               $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
               $('#runningTime').focus();
-          } else {
+          } 
+//           else if(files.length == 0){
+//              alert('파일을 선택해주세요');
+//           } 
+          else if($(".uploadResult ul").html() == ""){
+        	  alert('파일을 선택해주세요');
+          }
+          else {
              var str = "";
              
              $(".uploadResult ul li").each(function(i, obj){
@@ -235,15 +243,21 @@
          var inputFile = $("input[name='uploadFile']");
          var files = inputFile[0].files;
          
+         var fileValue = $("#uploadFile").val().split("\\");
+         var fileName = fileValue[fileValue.length-1];
+         
+         var filepoint = fileName.substring(fileName.lastIndexOf(".")+1);
+         var filetype = filepoint.toLowerCase();
+         
          if(files.length == 0){
             alert('파일을 선택해주세요');
-         }else{
+         }else if(filetype == 'jpg' || filetype == 'png'){
             for(var i=0; i<files.length; i++){
                if(!checkExtension(files[i].name, files[i].size)){
                   return false;
                }
                formData.append("uploadFile", files[i]); //formData에 추가
-            }
+            
             //formData를 이용해서 필요한 파라미터를 담아서 전송하는 방식
             $.ajax({
                type : 'POST',
@@ -264,7 +278,11 @@
                   alert('업로드 실패');
                }
             }); //END ajax
-         }
+         }else{
+             alert("jpg, png 이미지 파일만 등록해주세요");
+             $("#uploadFile").val("");
+             return false;
+          }
       });
       
       function showUploadedFile(uploadResultArr){
@@ -305,6 +323,7 @@
             
             if(confirm("Remove this file? ")){
                var targetLi = $(this).closest("li");
+               $("#uploadFile").val("");
                targetLi.remove();
             }
          });
@@ -334,6 +353,7 @@
          
          if(confirm("Remove this file? ")){
             var targetLi = $(this).closest("li");
+            $("#uploadFile").val("");
             targetLi.remove();
          }
       });

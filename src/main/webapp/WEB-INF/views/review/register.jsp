@@ -27,7 +27,9 @@
 	 </div>
 <!-- 	END 버튼위치 style -->
 </form>
-
+<form action="/reserve/list" method="get" id="reserveForm">
+	<input type="hidden" name="memberId" value='<sec:authentication property="principal.username" />'>
+</form>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -43,7 +45,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="okBtn">확인</button> 
-        <button type="button" id="noBtn" class="btn btn-secondary">취소</button>
+        <button type="button" id="noBtn" class="btn btn-secondary">`</button>
 	 </div>
     </div>
   </div>
@@ -79,6 +81,10 @@ $(function(){
 	$("#noBtn").on("click",function(e){
 		e.preventDefault();
 		$("#registerModal").modal('hide');
+	});
+	$("#censle").on("click",function(e){
+		e.preventDefault();
+		$("#reserveForm").submit();
 	});
 	
 	

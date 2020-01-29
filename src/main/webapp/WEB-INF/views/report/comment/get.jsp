@@ -26,7 +26,7 @@
             <label for="memberId"></label>
             <sec:authentication property="principal" var="pinfo"/>
                    <sec:authorize access="isAuthenticated()">
-                      <input type="text" class="form-control" id="memberId" name="memberId" readonly="readonly" value="${pinfo.username }">
+                      <input type="text" class="form-control" id="memberId" name="memberId" readonly="readonly" value="${commentReport.memberId }">
                    </sec:authorize>
          </div>
          <div class="form-group">
@@ -79,17 +79,11 @@
    
        $(document).on("click", "#cancel", function(e){
 
-           var result = confirm(" 취소하시겠습니까? ");
-           
-           if(result) {
               formObj.find("#commentNo").remove();
               formObj.find("#reportContent").remove();
               formObj.find("#commentContent").remove();
               formObj.attr("method", "get")
               formObj.attr("action", "/report/comment/list").submit();
-           }else{
-              return;
-           }
        });
       
    });

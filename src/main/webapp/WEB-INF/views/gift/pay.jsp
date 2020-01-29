@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-9 mt-sm-20">               		
                     <p>이름 : <c:out value="${gift.giftName}" /></p>
-                    <p>금액 : <c:out value="${gift.giftPrice}" /></p>
+                    <p>금액 : <c:out value="${gift.giftPrice}" />원</p>
                     <p>구성 : <c:out value="${gift.giftSet}" /></p>                
                 </div>                
             </div>

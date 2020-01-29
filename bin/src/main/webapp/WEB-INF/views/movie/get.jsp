@@ -656,7 +656,7 @@
 	                commentContent : modalInputContent.val()
 	    			
 	    		}, function(result){
-	    			alert("수정완료");
+	    			alert("한줄평 수정이 완료되었습니다.");
 	    			
 	    			modal.modal("hide");			
 	    	        showList(pageNum);

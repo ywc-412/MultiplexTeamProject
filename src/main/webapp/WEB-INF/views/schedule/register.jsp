@@ -170,12 +170,12 @@
 						</select>
 					</div> <br>
 					<div>상영시간</div>
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
-						<input type="text" class="hanna_add_time" name="time">
+						<input type="text" class="hanna_add_time" name="time" >
+						<input type="text" class="hanna_add_time" name="time" >
+						<input type="text" class="hanna_add_time" name="time" >
+						<input type="text" class="hanna_add_time" name="time" >
+						<input type="text" class="hanna_add_time" name="time" >
+						<input type="text" class="hanna_add_time" name="time" >
 						<c:if test="${empty listSeq}">
 							<input type="hidden" name="regSeq" value="">
 						</c:if>
@@ -253,12 +253,12 @@
 			"16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"];
 		// 2월
 		var twenty = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
-			"16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"];
+			"16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"];
 		
 		$(window).load(function(){
 			var month = ${selMonth};
 			var date = ${selDate};
-			switch(month){
+			switch($('#selectMon').val()){
 				case "04": case "06": case "09": case "11":
 					var d = thirty;
 					break;
@@ -295,7 +295,7 @@
 				str += "<option value ='"+d[x]+"' <c:if test='${selDate}'>selected</c:if>>"+d[x]+"</option>";
 			}
 			$("#selectDay").append(str);
-
+			
 			var today = new Date();
 			var yyyy = today.getFullYear();
 			var scheduleDate = yyyy+$('#selectMon').val()+$('#selectDay').val();
@@ -368,7 +368,36 @@
 			var canScheduleBtn = $("#modalCanBtn");
 			
 			addScheduleBtn.on("click", function(){
-				$("#addForm").submit();
+				
+				var timeFormat = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+				var timeChk = false;
+				var timeChk2 = false;
+				addModal.find("input[name='time']").each(function(index, item){
+					if($(item).val() == ""){
+						timeChk = true;
+						alert('시간을 입력해주세요');
+						return false;
+					} else {
+						if(timeFormat.test($(item).val()) == false){
+							timeChk = true;
+							alert('HH:mm 형식으로 입력해주세요.');
+							return false;
+						}
+					}
+					addModal.find("input[name='time']").each(function(index, it){
+						if($(item).val() == $(it).val()){
+							timeChk = true;
+							timeChk2 = true;
+							return false;
+						}
+					});
+				});
+				if(timeChk2 == true){
+					alert('시간대를 다르게 설정해주세요.');
+				}
+				if(timeChk == false  ){
+					$("#addForm").submit();
+				} 
 			}); // 스케줄 추가 버튼 클릭 END
 
 			// 수정모달창에 값 넘기기
@@ -446,9 +475,37 @@
 			});
 
 			$(document).on("click", "#modifyBtn", function(e){
-				if(confirm("수정하시겠습니까?")){
-					$("#modifyForm").attr("action", "/schedule/modify");
-					$("#modifyForm").submit();
+				var timeFormat = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+				var timeChk = false;
+				var timeChk2 = false;
+				modifyModal.find("input[name='time']").each(function(index, item){
+					if($(item).val() == ""){
+						timeChk = true;
+						alert('시간을 입력해주세요');
+						return false;
+					} else {
+						if(timeFormat.test($(item).val()) == false){
+							timeChk = true;
+							alert('HH:mm 형식으로 입력해주세요.');
+							return false;
+						}
+					}
+					modifyModal.find("input[name='time']").each(function(index, it){
+						if($(item).val() == $(it).val()){
+							timeChk = true;
+							timeChk2 = true;
+							return false;
+						}
+					});
+				});
+				if(timeChk2 == true){
+					alert('시간대를 다르게 설정해주세요.');
+				}
+				if(timeChk == false && timeChk2 == false){
+					if(confirm("수정하시겠습니까?")){
+						$("#modifyForm").attr("action", "/schedule/modify");
+						$("#modifyForm").submit();
+					}
 				}
 			});
 			

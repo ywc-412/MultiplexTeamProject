@@ -187,6 +187,10 @@ li:hover {
 		position: relative;
 		right: 45%;
 	}
+	
+	.custom-login-location{
+		float: left;
+	}
 }
 
 .custom-margin-sg-reg{

@@ -70,31 +70,24 @@
 		</form>
 		</sec:authorize>
 		
-		<sec:authorize access="isAnonymous() or hasRole('ROLE_MEMBER')">
-		<form action="/mygift/register" id="payForm" method="post" style="float: left">
-			<input type="hidden" id="giftNo" name="giftNo" value="${gift.giftNo}"> 
-			<input type="hidden" name="giftName" id="giftName" value="${gift.giftName}"> 
-			<input type="hidden" name="giftSet" id="giftSet" value="${gift.giftSet}"> 
-			<input type="hidden" name="giftPrice" value="${gift.giftPrice}"> 
-			<input type="hidden" name="totalPrice">
-			<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
-		</form>
-		</sec:authorize>
-	</div>	
-	<!-- 버튼 e -->	
-
-		<form action="/gift/paying" method="post" id="payRealForm">
+		<form action="/gift/paying" method="post" id="payRealForm" style="float: left">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
 			<sec:authorize access="isAuthenticated()">
-			<input type="hidden" name="memberId" id="memberInput" value="<sec:authentication property='principal.username'/>">
+				<input type="hidden" name="memberId" id="memberInput" value="<sec:authentication property='principal.username'/>">			
 			</sec:authorize>
 			<div id="payHere">
 				<!-- 결제 -->
 			</div>
-		</form>			
+			<sec:authorize access="isAnonymous() or hasRole('ROLE_MEMBER')">
+				<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
+			</sec:authorize>
+		</form>		
+	</div>	
+	<!-- 버튼 e -->				
 	</div>	
 </section>
 <!-- board e -->
+	<!-- 비회원이 결제버튼 눌렀을 때 확인하기  -->
 	<sec:authorize access="isAuthenticated()">
 		<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
 	</sec:authorize>

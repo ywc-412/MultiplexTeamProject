@@ -17,14 +17,14 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Service
-@AllArgsConstructor
 public class MyGiftServiceImpl implements MyGiftService{
 
+	@Setter(onMethod_ = @Autowired)
 	private MyGiftMapper myGiftMapper;	
 	
 	//내 기프티콘 목록 생성
 	@Override
-	public void myInsertSelectKey(MyGiftVO myGift) {	
+	public void myInsertSelectKey(MyGiftVO myGift) {
 		myGiftMapper.myInsertSelectKey(myGift);		
 	}
 	
