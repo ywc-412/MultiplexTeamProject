@@ -147,7 +147,8 @@
            console.log("openDate =  " + openDate);
            
            var inputFile = $("input[name='uploadFile']");
-         var files = inputFile[0].files;
+           var files = inputFile[0].files;
+         
           
           if( movieTitle == "" || movieTitle.length < 0){
               $('#title').text('영화 제목을 입력해주세요');
@@ -164,9 +165,13 @@
           } else if( runningTime == "" || runningTime.length < 0){
               $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
               $('#runningTime').focus();
-          } else if(files.length == 0){
-             alert('파일을 선택해주세요');
           } 
+//           else if(files.length == 0){
+//              alert('파일을 선택해주세요');
+//           } 
+          else if($(".uploadResult ul").html() == ""){
+        	  alert('파일을 선택해주세요');
+          }
           else {
              var str = "";
              
@@ -348,6 +353,7 @@
          
          if(confirm("Remove this file? ")){
             var targetLi = $(this).closest("li");
+            $("#uploadFile").val("");
             targetLi.remove();
          }
       });
