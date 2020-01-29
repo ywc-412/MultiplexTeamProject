@@ -516,11 +516,19 @@
    padding-top: 20px;
 }
 
+.paginate_button.active{
+/* 	border: 1px solid red; */
+	box-shadow: 1px 1px 1px 1px gray;
+}
+
 .paginate_button.active .page-link{
-	background-color: lightgray;
+/* 	background-color: lightgray; */
+	color: red;
+/* 	top: -5px; */
 }
 .page-link{
 	font-size: 15px;
+	
 }
 
 
