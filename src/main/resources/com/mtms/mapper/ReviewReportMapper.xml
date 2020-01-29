@@ -22,7 +22,8 @@
               c.reviewReportDate
     from 
         (
-        select rownum rn,
+        select /*+INDEX_desc(review PK_review )*/
+        rownum rn,
                        a.reviewReportNo,
                        a.memberId,
                        a.reviewNo,
@@ -35,6 +36,7 @@
         and rownum <= #{pageNum} * #{amount}
     ) c 
     WHERE c.rn > (#{pageNum} - 1) * #{amount}
+     order by c.reviewReportDate desc
       ]]> 
    </select>
       

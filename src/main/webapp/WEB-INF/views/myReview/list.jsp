@@ -41,7 +41,7 @@
 					</div> 
 					
 <!-- 		페이징 시작하는 부분 -->
-				 <div class="pagination justify-content-center clear">
+	 <div class="pagination justify-content-center clear">
        <ul class="pagination">
              <c:if test="${pageMaker.prev }">
                 <li class="paginate_button previous">
@@ -72,9 +72,10 @@
                 <form id="actionForm" action="/myReview/list" method="get">
 	           		<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}">
                 	<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-                	<input type="hidden" name="memberId" value="홍이">
+                	<input type="hidden" name="memberId" value='<sec:authentication property="principal.username" />'>
                 	<!-- 검색 조건과 키워드 파라미터 추가 -->
     			</form>	
+    		
 	<!-- End Align Area -->
 	  
 <%@ include file="../include/footer.jsp"%>

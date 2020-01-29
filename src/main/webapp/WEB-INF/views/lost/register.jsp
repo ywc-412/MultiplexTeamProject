@@ -3,12 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ include file="../include/header.jsp"%>   
-<div class="side_margin">
-	<div class="row">
-		<div class="review_title">습득물 등록화면</div>
-	</div>
-	<div class="title_under"></div>
-<!-- 	계시판명 END -->
+<!--board-start-->
+<section id="tabs" class="project-tab">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="custom-board-title">
+                    <h3 class="custom-font-bold">습득물 등록</h3>
+                </div>              
 	<form action="/lost/register" method="post" class="registerForm">
 	<input type="text" id="lost_register" name="lostTitle"><br>
 	
@@ -47,6 +49,10 @@
 
 
 </div>
+</div>
+</div>
+</section>
+
 <!-- 전체마진 END -->
 <%@ include file="../include/footer.jsp"%>  
 
