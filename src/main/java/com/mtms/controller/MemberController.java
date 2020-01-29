@@ -87,7 +87,7 @@ public class MemberController {
 		MemberVO memberIdVo = memberService.findPwByEmail(memberVO);
 		
 		if(memberIdVo == null) {
-			rttr.addFlashAttribute("findNull", "해당 정보가 없습니다");
+			rttr.addFlashAttribute("findNull", "해당 정보가 없습니다. 아이디, 이메일, 핸드폰 번호를 정확히 입력해주세요");
 			return "redirect:/member/findPw";
 		}
 		
