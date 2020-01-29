@@ -164,6 +164,8 @@
           } else if( runningTime == "" || runningTime.length < 0){
               $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
               $('#runningTime').focus();
+          } else if(files.length == 0){
+             alert('파일을 선택해주세요');
           } else {
              var str = "";
              
@@ -235,9 +237,16 @@
          var inputFile = $("input[name='uploadFile']");
          var files = inputFile[0].files;
          
+         var fileValue = $("#uploadFile").val().split("\\");
+         var fileName = fileValue[fileValue.length-1];
+         
+         var filepoint = fileName.substring(fileName.lastIndexOf(".")+1);
+         var filetype = filepoint.toLowerCase();
+         console.log(filetype);
+         
          if(files.length == 0){
             alert('파일을 선택해주세요');
-         }else{
+         }else if(filetype == 'jpg' || filetype == 'png'){
             for(var i=0; i<files.length; i++){
                if(!checkExtension(files[i].name, files[i].size)){
                   return false;
@@ -264,7 +273,11 @@
                   alert('업로드 실패');
                }
             }); //END ajax
-         }
+         }else{
+             alert("jpg, png 이미지 파일만 등록해주세요");
+             $("#uploadFile").val("");
+             return false;
+          }
       });
       
       function showUploadedFile(uploadResultArr){

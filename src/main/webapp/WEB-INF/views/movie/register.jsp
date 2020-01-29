@@ -81,7 +81,7 @@
                <div class="form-group uploadDiv">
                   <label for="uploadFile">포스터</label><br>
                   <div class="custom-file">
-                   <input class="yeong-input" type="file" id="uploadFile" name="uploadFile" accept="image/gif, image/jpg, image/png, image/jpeg"> <!-- multiple="multiple" -->
+                   <input class="yeong-input" type="file" id="uploadFile" name="uploadFile"> <!-- multiple="multiple" -->
                    <small id="picture" class="yeong-small"></small>
                       <div class="uploadResult">
                              <ul>
@@ -197,10 +197,20 @@
          var formData = new FormData(); //formData는 쉽게말해 가상의 form태그
          var inputFile = $("input[name='uploadFile']");
          var files = inputFile[0].files;
+         console.log(files);
+         
+         var fileValue = $("#uploadFile").val().split("\\");
+         var fileName = fileValue[fileValue.length-1];
+         
+         var filepoint = fileName.substring(fileName.lastIndexOf(".")+1);
+         var filetype = filepoint.toLowerCase();
+         console.log(filetype);
+         
          
          if(files.length == 0){
             alert('파일을 선택해주세요');
-         }else{
+            return false;
+         }else if(filetype == 'jpg' || filetype == 'png'){
             for(var i=0; i<files.length; i++){
                if(!checkExtension(files[i].name, files[i].size)){
                   return false;
@@ -227,6 +237,10 @@
                   alert('업로드 실패');
                }
             }); //END ajax
+         }else{
+            alert("jpg, png 이미지 파일만 등록해주세요");
+            $("#uploadFile").val("");
+            return false;
          }
       });
       
