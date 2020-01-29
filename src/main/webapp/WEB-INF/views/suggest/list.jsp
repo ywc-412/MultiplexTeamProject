@@ -53,7 +53,6 @@
 									<th style="width: 200px;">작성자</th>
 								</tr>
 								<c:forEach items="${list}" var="list">
-								
 									<tr>
 										<td><c:out value="${list.suggestNo}" /></td>
 										<c:choose>
