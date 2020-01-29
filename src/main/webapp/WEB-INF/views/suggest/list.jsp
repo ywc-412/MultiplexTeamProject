@@ -200,26 +200,26 @@
 					actionForm.append(inputSuggestNo);
 					actionForm.attr("action", "/suggest/get");
 					actionForm.submit();
+				}else{
+					$('#modal').show();
+					
+					var realPassword = $(this).attr('value');
+					
+					
+					$('#suggestPwBtn').on("click", function(e){
+						
+						var userInputPassword = $('input[name=suggestPw2]').val();
+						
+						if(realPassword === userInputPassword){
+							actionForm.append(inputSuggestNo);
+							actionForm.attr("action", "/suggest/get");
+							actionForm.submit();
+						}else{
+							alert('비밀번호가 일치하지 않습니다');
+							return false;
+						}
+					});
 				}
-				
-				$('#modal').show();
-				
-				var realPassword = $(this).attr('value');
-				
-				
-				$('#suggestPwBtn').on("click", function(e){
-					
-					var userInputPassword = $('input[name=suggestPw2]').val();
-					
-					if(realPassword === userInputPassword){
-						actionForm.append(inputSuggestNo);
-						actionForm.attr("action", "/suggest/get");
-						actionForm.submit();
-					}else{
-						alert('비밀번호가 일치하지 않습니다');
-						return false;
-					}
-				});
 			});
 			
 			
