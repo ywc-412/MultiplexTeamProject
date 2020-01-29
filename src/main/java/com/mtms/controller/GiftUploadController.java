@@ -52,6 +52,7 @@ public class GiftUploadController {
 			giftUploadPath.mkdirs();
 		}
 		
+		
 		for(MultipartFile multiF : uploadFile) {
 			GiftAttachVO gav = new GiftAttachVO();
 			gav.setGiftFileName(multiF.getOriginalFilename());

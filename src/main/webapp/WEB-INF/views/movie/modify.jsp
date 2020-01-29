@@ -257,7 +257,7 @@
                   return false;
                }
                formData.append("uploadFile", files[i]); //formData에 추가
-            }
+            
             //formData를 이용해서 필요한 파라미터를 담아서 전송하는 방식
             $.ajax({
                type : 'POST',

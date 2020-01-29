@@ -14,7 +14,7 @@
 	
 	<!-- 기프티콘 조회 -->
 	<select id="getList" resultType="com.mtms.domain.GiftVO">
-		<![CDATA[SELECT * FROM gift WHERE giftNo > 0 AND giftDeleteChk = 0]]>
+		<![CDATA[SELECT * FROM gift WHERE giftNo > 0 AND giftDeleteChk = 0 ORDER BY giftNo DESC]]>
 	</select>
 	
 	<!-- 기프티콘 상세보기 -->
