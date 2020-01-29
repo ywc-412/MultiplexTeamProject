@@ -8,8 +8,14 @@
 		    <h3 class="mb-20">관리자 페이지</h3>
 			<div class="">
 				<ul class="unordered-list">
-					<li class="yeong-myfont">내 정보 조회</li>
-					<li class="yeong-myfont">예매 내역</li>
+					<li><a href="/member/client">회원 관리</a></li>
+					<li><a href="/report/review/list">리뷰 신고 관리</a>
+						<ul>
+							<li><a href="/report/review/list" class="custom-active">리뷰 신고 관리</a></li>
+							<li><a href="/report/reply/list">리뷰 댓글 신고 관리</a></li>
+							<li><a href="/report/comment/list">한줄평 신고 관리</a></li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -44,10 +50,11 @@
 			</tbody>
 		</table>
 		<!-- END 게시물 출력 테이블 -->
+	</div>
 	<form method="get" id="getReview"></form>
 	<!--           table_position -->
 	<!-- 페이지 번호 출력 -->
-	<div class="pull-right">
+	<div class="pagination justify-content-center clear">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev }">
 				<li class="paginate_button previous"><a class="page-link"
@@ -66,7 +73,8 @@
 			</c:if>
 		</ul>
 	</div>
-	</div>
+
+
 	<!-- END 페이지 번호 출력 -->
 	<!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 -->
 	<form id="actionForm" action="/report/reply/list" method="get">
