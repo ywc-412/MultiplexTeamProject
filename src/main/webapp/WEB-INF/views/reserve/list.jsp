@@ -116,7 +116,6 @@
 	               $('#pageNum').val($(this).attr('href'));   //내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
 	               $('#actionForm').submit();
 	            });
-					
 			</script>
 
 <%@ include file="../include/footer.jsp"%>
