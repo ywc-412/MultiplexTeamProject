@@ -45,6 +45,7 @@ public class CommentReportController {
    }
    
    //한줄평 신고 삭제 처리
+   @Secured("ROLE_ADMIN")
    @GetMapping("remove")
    public String remove(@RequestParam("commentNo") int commentNo, RedirectAttributes rttr,  @ModelAttribute("cri") Criteria cri) {
       
@@ -99,6 +100,7 @@ public class CommentReportController {
    }
    
    // 신고에서 전체 삭제
+   @Secured("ROLE_ADMIN")
    @GetMapping("deleteAll")
    public String deleteAll(@RequestParam("checkComment") String checkComment, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 //         commentService

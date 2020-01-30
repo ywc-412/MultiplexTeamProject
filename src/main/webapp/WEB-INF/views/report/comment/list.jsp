@@ -47,9 +47,21 @@ tr, td {
                            <td scope="col" class="yeongth10">${commentReport.memberId }</td>
                            <td scope="col" class="yeongth30" id="commentReport" style="cursor : pointer;" data-commentReportNo=${commentReport.commentReportNo } data-commentNo=${commentReport.commentNo }>${commentReport.commentReportContent }</td>
                            <c:forEach items="${comment }" var="comment">
-                           
                               <c:if test="${comment.commentNo eq commentReport.commentNo }">
-                                <td scope="col" class="yeongth35">${comment.commentContent }</td>
+                              	
+                              	<c:choose>
+						        <c:when test="${fn:length(comment.commentContent) gt 11}">
+						        	<td scope="col" class="yeongth35"><c:out value="${fn:substring(comment.commentContent, 0, 10)}"/>......... 
+						        	</td>
+						        </c:when>
+						        <c:otherwise>
+						       		<td scope="col" class="yeongth35"><c:out value="${comment.commentContent}"/></td>
+						        </c:otherwise>
+							</c:choose>
+                              
+                              	
+						        
+<%--                                 <td scope="col" class="yeongth35">${comment.commentContent }</td> --%>
                             </c:if>
                            </c:forEach>
                            <td scope="col" class="yeongth15">
