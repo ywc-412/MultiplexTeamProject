@@ -245,7 +245,7 @@ $(function(){
         </button>
       </div>
       <div class="modal-body">
-        	삭제하시겠습니가?
+        	삭제하시겠습니까?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="okBtn">확인</button> 
