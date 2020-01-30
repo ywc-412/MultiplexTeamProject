@@ -512,7 +512,7 @@
              var str = "<ul class='pagination'>";
              
              if(prev) {
-                str += "<li class='paginate_button previous'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
+                str += "<li class='page-item previous'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
              }
              
              for(var i = startNum ; i<= endNum; i++) {
@@ -521,7 +521,7 @@
              }
              
              if(next) {
-                str += "<li class='paginate_button'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+                str += "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
              }
              str += "</ul></div>";
              

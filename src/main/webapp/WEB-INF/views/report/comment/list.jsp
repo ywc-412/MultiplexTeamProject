@@ -91,7 +91,7 @@ tr, td {
    <div class="pagination justify-content-center clear">
        <ul class="pagination">
              <c:if test="${pageMaker.prev }">
-                <li class="paginate_button previous">
+                <li class="page-item previous">
                    <a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
           </c:if>
           <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
@@ -100,7 +100,7 @@ tr, td {
 				</li>
           </c:forEach>
           <c:if test="${pageMaker.next }">
-                <li class="paginate_button next">
+                <li class="page-item next">
                    <a class="page-link" href="${pageMaker.endPage + 1 }">Next</a></li>
           </c:if>
        </ul>
@@ -157,7 +157,7 @@ tr, td {
            $('#myModal').modal('show');
         }
         
-        $(".paginate_button a").on("click", function(e) {
+        $(".page-item a").on("click", function(e) {
          e.preventDefault(); //a태그라서 동작안되게 막아줌
          $('#pageNum').val($(this).attr('href'));   //내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
          $('#actionForm').submit();
