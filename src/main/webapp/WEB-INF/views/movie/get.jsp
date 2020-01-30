@@ -141,8 +141,9 @@
                        <sec:authorize access="isAuthenticated()">
                           <input class="yeong-commentInput yeong_input" type="hidden" id="memberId" name='memberId' value="${pinfo.username }">
                        </sec:authorize>
-               
-               <input class="yeong-commentInput yeong_input" type="hidden" id="commentStar" name='commentStar'>
+                 
+                 <input class="yeong-commentInput yeong_input" type="hidden" id="movieNo" name='movieNo' value="${movie.movieNo }">
+                 <input class="yeong-commentInput yeong_input" type="hidden" id="commentStar" name='commentStar'>
                  <input class="yeong-commentInput yeong_input" type='text' id="commentContent" name='commentContent' placeholder="한줄평을 등록해주세요">
                  <button id="commentRegisterBtn" type="button" class='btn btn-primary yeong-list'>등록</button>
              </form>
