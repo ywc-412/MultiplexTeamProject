@@ -105,7 +105,7 @@
 				return;
 			}
 			var giftNo = ${gift.giftNo};
-			var giftName = $('#giftName').val();
+			var giftName = $('.giftName').val();
 			var giftPrice = $('.totalPrice').val();
 			var giftSet = $('#giftSet').val();
 			var qty = $('#qty').val();
@@ -124,8 +124,8 @@
 			pg: 'inicis', // version 1.1.0부터 지원.
 			pay_method: 'card',
 			merchant_uid: 'merchant_' + new Date().getTime()+30,
-			name: giftName,
-			amount: 10,
+			name: $('.giftName').val(),
+			amount: 10 * $('#qty').val(),
 			buyer_email: 'iamport@siot.do',
 			buyer_name: '박진주',
 			buyer_tel: '010-6626-2818',

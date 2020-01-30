@@ -23,23 +23,23 @@
 		<span class="button_position">
 			<button id="reportRemove" class="btn btn-danger">삭제</button>
 		</span>
-		<table class="table table-striped table-bordered table-hover">
+		<table class="table table-striped table-bordered table-hover_aa">
 			<thead>
 				<tr>
-					<th>신고자ID<!-- Rendering engine --></th>
-					<th>신고내용<!-- Browser --></th>
-					<th>댓글내용 <!-- Platform(s) --></th>
-					<th>삭제<!-- CSS grade --></th>
+					<th class="memberId_size" style="width: 150px;">신고자ID<!-- Rendering engine --></th>
+					<th class="content_style">신고내용<!-- Browser --></th>
+					<th class="content_style">댓글내용 <!-- Platform(s) --></th>
+					<th class="	content_style" style="width: 90px;">삭제<!-- CSS grade --></th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${list }" var="rpvo">
-					<tr class="odd gradeX">
-						<td><c:out value="${rpvo.memberId }" /></td>
-						<td><a class="getGo" href="${rpvo.replyReportNo}">
+					<tr class="odd gradeXF">
+						<td class="td_center"><c:out value="${rpvo.memberId }" /></td>
+						<td class="td_center"><a class="getGo" href="${rpvo.replyReportNo}">
                             		${rpvo.replyReportContent }</a></td>
-						<td><c:out value="${rpvo.replyContent }" /></td>
-						<td>
+						<td class="td_center"><c:out value="${rpvo.replyContent }" /></td>
+						<td class="td_center">
 						<form action="/report/reply/remove" method="post" id="removeForm">
 							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 							<input type="checkbox" name="replyNoChk" value="${rpvo.replyNo }"> <!-- value="${rrvo.reviewNo }" -->

@@ -26,10 +26,10 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>신고자ID<!-- Rendering engine --></th>
+					<th style="width: 150px;">신고자ID<!-- Rendering engine --></th>
 					<th>신고내용<!-- Browser --></th>
 					<th>리뷰제목<!-- Platform(s) --></th>
-					<th>삭제<!-- CSS grade --></th>
+					<th style="width: 90px;">삭제<!-- CSS grade --></th>
 				</tr>
 			</thead>
 			<tbody>

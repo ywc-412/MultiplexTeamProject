@@ -77,7 +77,7 @@ public class SuggestController {
 		model.addAttribute("suggest", suggestService.getSuggest(suggestNo));
 	}
 	
-	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	@PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN')")
 	@PostMapping("remove")
 	public String remove(int suggestNo, RedirectAttributes rttr) {
 		// 건의사항 게시글 삭제

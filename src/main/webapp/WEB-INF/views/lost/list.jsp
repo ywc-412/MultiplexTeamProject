@@ -48,7 +48,7 @@
                        <c:forEach items="${list }" var="lvo">
 						<tr class="odd gradeX">
 
-							<td><a class="move" href="${lvo.lostNo}">
+							<td class="tdLost_lostTitle"><a class="move" href="${lvo.lostNo}">
                             		${lvo.lostTitle }</a></td>
 							<td><c:out value="${lvo.lostView }"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"

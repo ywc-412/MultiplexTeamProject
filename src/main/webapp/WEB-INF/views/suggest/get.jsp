@@ -33,6 +33,9 @@
 						<button type="button" class="btn btn-primary btn-sm" id="suggestModifyBtn">수정</button>
 						<button type="button" class="btn btn-danger btn-sm" id="suggestRemoveBtn">삭제</button>	
 					</c:if>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<button type="button" class="btn btn-danger btn-sm" id="suggestRemoveBtn">삭제</button>	
+					</sec:authorize>
 				</div>
 				<form action="/suggest/list" method="get" id="goListForm">
 					<input type="hidden" name="pageNum" value="${cri.pageNum }"/>
@@ -46,6 +49,7 @@
 </section>
 <sec:authorize access="isAuthenticated()">
 	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
+	<sec:authentication property='principal' var='roleAdminChk'/>
 </sec:authorize>
 
 <script>
@@ -62,14 +66,14 @@
 			if(!userConnect){
 				alert('로그인이 필요한 서비스입니다');
 				return;
-			}else if(username != '${suggest.memberId}'){
-				alert('글 작성자만 삭제할 수 있습니다.');
-			}else{
+			}else if(username == '${suggest.memberId}' || '${roleAdminChk.authorities}' == '[ROLE_ADMIN]'){
 				var result = confirm('삭제하시겠습니까?');
 				
 				if(result == true){
 					$('#removeForm').submit();
 				}
+			}else if(username != '${suggest.memberId}'){
+				alert('글 작성자만 삭제할 수 있습니다.');
 			}
 		});
 		
