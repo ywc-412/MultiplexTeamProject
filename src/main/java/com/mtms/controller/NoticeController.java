@@ -71,6 +71,7 @@ public class NoticeController {
 	}
 
 	//공지사항 수정(G)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("modify")	
 	public void modiGet(int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) {		
 		model.addAttribute("notice", noticeService.get(noticeNo));
