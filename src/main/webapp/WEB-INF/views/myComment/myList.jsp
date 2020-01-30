@@ -57,7 +57,16 @@
                              <td scope="col" class="yeongth_myComment10 yeong-starRed" id="commentStar">★★★★★</td>
                           </c:otherwise>
                       </c:choose>
-                           <td scope="col" class="yeongth_myComment35">${comment.commentContent }</td>
+                      		<c:choose>
+						        <c:when test="${fn:length(comment.commentContent) gt 11}">
+						        	<td scope="col" class="yeongth_myComment35"><c:out value="${fn:substring(comment.commentContent, 0, 10)}"/>......... 
+						        	</td>
+						        </c:when>
+						        <c:otherwise>
+						       		<td scope="col" class="yeongth_myComment35">${comment.commentContent }</td>
+						        </c:otherwise>
+							</c:choose>
+                           
                            <td scope="col" class="yeongth_myComment10">
                               <fmt:formatDate value="${comment.commentDate}" pattern="yyyy.MM.dd"/>
                            </td>

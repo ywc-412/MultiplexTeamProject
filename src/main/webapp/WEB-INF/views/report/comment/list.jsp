@@ -37,7 +37,7 @@ tr, td {
                <tr>
                   <th scope="col" class="yeongth10">신고자ID</th>
                   <th scope="col" class="yeongth30">신고내용</th>
-                  <th scope="col" class="yeongth35">한줄평내용</th>
+                  <th scope="col" class="yeongth30">한줄평내용</th>
                   <th scope="col" class="yeongth15">처리결과</th>
                   <th scope="col" class="yeongth10">삭제</th>
                </tr>
@@ -59,11 +59,11 @@ tr, td {
                               <c:if test="${comment.commentNo eq commentReport.commentNo }">
                               	<c:choose>
 							        <c:when test="${fn:length(comment.commentContent) gt 11}">
-							        	<td scope="col" class="yeongth35"><c:out value="${fn:substring(comment.commentContent, 0, 10)}"/>......... 
+							        	<td scope="col" class="yeongth30"><c:out value="${fn:substring(comment.commentContent, 0, 10)}"/>......... 
 							        	</td>
 							        </c:when>
 							        <c:otherwise>
-							       		<td scope="col" class="yeongth35"><c:out value="${comment.commentContent}"/></td>
+							       		<td scope="col" class="yeongth30"><c:out value="${comment.commentContent}"/></td>
 							        </c:otherwise>
 								</c:choose>
                               
