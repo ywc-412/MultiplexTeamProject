@@ -128,7 +128,7 @@
     <div class="container">
         <div class="row">
          <div class='comment_register'>
-             <form id="searchForm" action="#" method="get">
+<!--              <form id="searchForm" method="get"> -->
              
                 <span class="yeong-star yeong-starRed" id="star_grade">
                     <a href="#" class="star1">★</a>
@@ -146,7 +146,7 @@
                  <input class="yeong-commentInput yeong_input" type="hidden" id="commentStar" name='commentStar'>
                  <input class="yeong-commentInput yeong_input" type='text' id="commentContent" name='commentContent' placeholder="한줄평을 등록해주세요">
                  <button id="commentRegisterBtn" type="button" class='btn btn-primary yeong-list'>등록</button>
-             </form>
+<!--              </form> -->
           </div>
        </div>
    </div>
@@ -580,6 +580,7 @@
           commentRegisterBtn.on("click", function(e){
              var commentStar = $('#commentStar').val();
               var commentContent = $('#commentContent').val();
+              e.preventDefault();
               
               if(memberId == null){
                  alert("로그인이 필요한 시스템입니다.");
@@ -598,6 +599,7 @@
                  $('#commentContent').focus();
                 return;
              } else{
+//             	 $("#searchForm").attr("action", "/reserve/refund");
                   var comment = {
                         commentStar : inputStar.val(),
                         commentContent : inputContent.val(),
