@@ -6,8 +6,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ include file="../include/header.jsp" %>
 
-<div class="hanna_head">
-		<h3>RESERVE_TIME</h3>
+	<div class="hanna_head">
+		<p style="font-size: 25px;" id="selectMovie"></p>
+		<p style="font-size: 25px;" id="selectDate"></p>
+		<p style="font-size: 25px;" id="selectTime"></p>
 	</div>
 	
 	<!-- 예매 화면 -->
@@ -59,15 +61,7 @@
 					<input type="hidden" name="movieTitle" >
 					<input type="hidden" name="scheduleDate" >
 					<input type="hidden" name="scheduleTime" >
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">	
-						<div>
-							<ul style = "list-style-type : none;">
-								<li id="selectMovie"></li>
-								<li id="selectDate"></li>
-								<li id="selectTime"></li>
-							</ul>
-						</div>
-						<br>
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<button id="goSeatBtn" class="hanna_button2">>좌석선택</button>
 				</form>
 			</div>
@@ -127,7 +121,7 @@
 							$("#time").html(""); // 영화를 새로 선택하면 상영 시간 지워줌
 							$("input[name=scheduleDate]").val(""); // 영화 새로 선택하면 상영날짜 값 지워줌
 							$("input[name=scheduleTime]").val(""); // 시간 지워줌
-							$("#selectMovie").html("영화 : " + movieTitle);
+							$("#selectMovie").html(movieTitle);
 							$("#selectDate").html("");
 							$("#selectTime").html("");
 						}).fail(function(xhr, status, error){
@@ -153,7 +147,7 @@
 							}
 							$("#time").html(str); // 상영 시간 list 출력
 							$("input[name=scheduleTime]").val(""); // .. 시간 지워줌
-							$("#selectDate").html("날짜 : " + scheduleDate.substring(4, 6) + "/" + scheduleDate.substring(6, 8));
+							$("#selectDate").html(scheduleDate.substring(4, 6) + "/" + scheduleDate.substring(6, 8));
 							$("#selectTime").html("");
 				}).fail(function(xhr, status, error){
 					if(error){
@@ -166,7 +160,7 @@
 		$(document).on("click", "#timeClick", function(e){
 			var scheduleTime = $(this).html();
 			$("input[name=scheduleTime]").val(scheduleTime);
-			$("#selectTime").html("시간 : " + scheduleTime);
+			$("#selectTime").html(scheduleTime);
 		}); // END timeClick
 		
 	})

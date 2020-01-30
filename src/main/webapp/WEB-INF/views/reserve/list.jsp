@@ -36,8 +36,7 @@
 	                            <td>
 	                            	<c:choose>
 	                            		<c:when test="${r.status == 0 }">
-	                            			<form id="reserveCanForm" action="/reserve/refund" method="post">
-												<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+	                            			<form id="reserveCanForm" ae="${_csrf.parameterName }" value="${_csrf.token }">
 	                            				<input type="hidden" name="reserveNo" value="${r.reserveNo }">
 	                            				<sec:authorize access="isAuthenticated()">
 													<input type="hidden" name="memberId"
@@ -101,6 +100,7 @@
 	            $(function() {
 					$("#reserveCanBtn").on("click", function(){
 						if(confirm("정말 환불하시겠습니까?")){
+							$("#reserveCanForm").action("/reserve/refund");
 							$("#reserveCanForm").submit();
 						}
 					});
