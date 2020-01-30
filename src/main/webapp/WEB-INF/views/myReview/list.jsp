@@ -20,12 +20,15 @@
      <%@ include file="../include/myPageMenu.jsp"%>
       </div>
       <div class="mycomment-left-right">
-         <table class="table table-hover">
+         <table class="table table-hover" id="table_center">
             <thead>
+            	<th>영화명</th>
+            	<th>제목</th>
+            	<th>작성일</th>
 			<tbody>
 			<c:forEach items="${list }" var="rvo">
 				<tr class="odd gradeX">
-					<td><c:out value="${rvo.movieTitle }"/></td>
+					<td class="td_movieTitle"><c:out value="${rvo.movieTitle }"/></td>
 					<td><a class="move" href="${rvo.reviewNo}">
                             		${rvo.reviewTitle }</a></td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd"
