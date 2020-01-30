@@ -131,7 +131,7 @@
 	
 	<div class="hanna_container">
 		<Button class="hanna_button" id="addFinBtn">완료</Button>
-		<form id="seqForm" method="post" action="/schedule/cancel">
+		<form id="seqForm" method="post" >
 			<!-- 취소 클릭 시 등록한 시간표 다시 삭제하기 -->
 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			<c:if test="${empty listSeq}">
@@ -332,15 +332,22 @@
 
 		$(function() {
 			
-			$("#addCanBtn").on("click", function(){
+			$("#addCanBtn").on("click", function(e){
+				e.preventDefault();
 				if(confirm("정말 취소하시겠습니까?")){
+					$("#seqForm").action("/schedule/cancel");
 					$("#seqForm").submit();
+				} else {
+					return ;
 				}
 			}); // 취소 버튼 클릭 시
 			
-			$("#addFinBtn").on("click", function(){
+			$("#addFinBtn").on("click", function(e){
+				e.preventDefault();
 				if(confirm("완료하시겠습니까?")){
 					location.href="/schedule/get";
+				} else {
+					return ;
 				}
 			}); // 완료 버튼 클릭 시
 			
