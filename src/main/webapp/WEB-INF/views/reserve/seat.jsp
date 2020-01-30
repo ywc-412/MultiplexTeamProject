@@ -84,7 +84,6 @@
 					<input type="hidden" name="adultNum">
 					<input type="hidden" name="teenNum">
 					<input type="hidden" name="seat">
-					<input type="hidden" name="status" value="0">
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">		
 					<button id="goPayment" class="hanna_button2">>결제하기</button>
 				</form>

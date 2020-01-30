@@ -57,37 +57,37 @@
 	<!-- 상영시간이 지난 영화 상태 변경 (관람완료) -->
 	<update id="changeStatus">
 		<![CDATA[
-			UPDATE reserve SET status = 1
+			UPDATE reserve SET status = 2
 			WHERE reserveNo IN (
 				SELECT r.reserveNo FROM reserve r, schedule s
 				WHERE r.scheduleNo = s.scheduleNo AND
 							to_char(scheduleDate, 'yyyyMMdd') <= #{scheduleDate}
-				AND		scheduleTime <= #{time} and status IN (0, 3) )
+				AND		scheduleTime <= #{time} and status = 0 and status = 1 )
 			]]>
 	</update>
 	
-	<!-- 상영시간 30분 전 : 상태 변경 (status = 3 : 취소불가) -->
+	<!-- 상영시간 30분 전 : 상태 변경 (status = 0 : 취소불가) -->
 	<update id="beforeStatus">
 		<![CDATA[
-			UPDATE reserve SET status = 3
+			UPDATE reserve SET status = 0
 			WHERE reserveNo IN (
 				SELECT reserveNo FROM reserve r, schedule s
 				WHERE r.scheduleNo = s.scheduleNo AND
 					to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} AND
 					(to_date(scheduleTime, 'HH24:MI') - to_date(#{time}, 'HH24:MI'))*24*60 < 30
-					AND status = 0 )
+					AND status = 1 )
 		]]>
 	</update>
 	
 
 	<!-- 예매 완료 시 예매 테이블에 등록 -->
 	<insert id="insert">
-		INSERT INTO reserve VALUES (#{reserveNo}, #{memberId}, #{seat}, #{scheduleNo}, #{adultNum}, #{teenNum}, #{status})
+		INSERT INTO reserve VALUES (#{reserveNo}, #{memberId}, #{seat}, #{scheduleNo}, #{adultNum}, #{teenNum}, 1)
 	</insert>
 	
 	<!-- 예매 취소 시 상태 변경 -->
 	<update id="update">
-		UPDATE reserve SET status = 2
+		UPDATE reserve SET status = 3
 		WHERE reserveNo = #{reserveNo}
 	</update>
 

@@ -22,6 +22,7 @@ public class Task {
    
    // 매 10분마다 실행
    @Scheduled(cron="30 0,10,20,30,40,50 * * * *")
+//   @Scheduled(cron="30 * * * * *")
    public void reserveChange() throws Exception {
       // 현재 날짜, 시간 구하기
       SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
@@ -32,9 +33,9 @@ public class Task {
       System.out.println("@Scheduled - date : " + scheduleDate);
       System.out.println("@Scheduled - time : " + time);
       
-      // 상영시간이 지난 영화 : 상태 1로 변경 -> 리뷰작성 가능
+      // 상영시간이 지난 영화 : 상태 2로 변경 -> 리뷰작성 가능
       reserveMapper.changeStatus(scheduleDate, time);
-      // 상영시간 30분 전인 영화 : 상태 3으로 변경 -> 예매취소 불가
+      // 상영시간 30분 전인 영화 : 상태 0으로 변경 -> 예매취소 불가
       reserveMapper.beforeStatus(scheduleDate, time);
    }
    
