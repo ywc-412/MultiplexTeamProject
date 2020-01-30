@@ -3,13 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../include/header.jsp"%>
-<div class="container">
-			<!--<div class="row">-->
-			<div class="row no-mean">
-				<div class="col-md-12">
-					<div class="custom-board-title">
-						<h3 class="custom-font-bold">습득물</h3>
-					</div>
+<<section id="tabs" class="project-tab">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="custom-board-title">
+					<h3 class="custom-font-bold">습득물</h3>
+				</div>
 	<div class="get_title_style">
 		<div class="get_title" name="lostTitle">${lvo.lostTitle }</div>
 		<div class="title_under_div">
@@ -18,9 +18,11 @@
 			조회수 : <span class="title_under_ex2" name="lostView">${lvo.lostView }</span>
 		</div>
 	</div>
-	<textarea rows="10" cols="100" class="review_textarea" name="lostContent" readonly="readonly">
-		<c:out value="${lvo.lostContent }"/>
-	</textarea>
+	<div class="view_area">
+	<p>
+		<span class="custom-font-only-bold" name="noticeContent"><c:out value="${lvo.lostContent }"/></span>
+	</p>
+	</div>	
 	<div class="title_under2"></div>
 	<!-- 	버튼위치 style -->
 	<div class="buttln_style">
@@ -62,6 +64,7 @@
 </div>
 </div>
 </div>
+</section>
 <!-- 전체마진 END -->
 <%@ include file="../include/footer.jsp"%>
 <script>
