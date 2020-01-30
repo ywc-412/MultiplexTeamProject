@@ -42,8 +42,8 @@ public class MyGiftServiceImpl implements MyGiftService{
 	
 	//내 기프티콘 연장
 	@Override
-	public boolean extend(MyGiftVO myGift, String memberId) {					
-		return myGiftMapper.extend(myGift, memberId) == 1;
+	public boolean extend(int myGiftNo, String expireDate, String memberId) {					
+		return myGiftMapper.extend(myGiftNo, expireDate, memberId) == 1;
 	}
 	
 	//내 기프티콘 환불

@@ -19,7 +19,7 @@ public interface MyGiftService {
 	public List<MyGiftVO> get(int myGiftNo, String memberId); 				 
 	
 	//내 기프티콘 기간연장
-	public boolean extend(MyGiftVO myGift, String memberId); 				 
+	public boolean extend (int myGiftNo, String expireDate, String memberId); 				 
 	
 	//내 기프티콘 환불
 	public boolean refund(MyGiftVO myGift, String memberId); 				 

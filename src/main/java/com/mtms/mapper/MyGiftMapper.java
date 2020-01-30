@@ -1,5 +1,6 @@
 package com.mtms.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -19,7 +20,7 @@ public interface MyGiftMapper {
 	public List<MyGiftVO> read(@Param("myGiftNo") int myGiftNo, @Param("memberId") String memberId); 			
 	
 	//내 기프티콘 기간연장
-	public int extend(@Param("myGift") MyGiftVO myGift, @Param("memberId") String memberId); 					
+	public int extend(@Param("myGiftNo") int myGiftNo, @Param("expireDate") String expireDate, @Param("memberId") String memberId); 					
 	
 	//내 기프티콘 환불
 	public int refund(@Param("myGift") MyGiftVO myGift, @Param("memberId") String memberId); 					
