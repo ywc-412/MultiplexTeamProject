@@ -63,6 +63,8 @@
 						<br>
 						<div class="custom-red-font custom-text-right"
 							id="memberEmailErrorMsg"></div>
+						<input type="hidden" id="memberEmailDuplicatedOk" />
+						
 					</div>
 					<br>
 					<div class="mt-10 custom-input">
@@ -212,8 +214,10 @@
 			memberDuplicatedService.getEmail(totalEmail, function(result){
 				if(memberEmail == result.memberEmail && memberEmailSecond == result.memberEmailSecond){
 					$('#memberEmailErrorMsg').html('중복된 이메일 입니다');
+					$('input#memberEmailDuplicatedOk').val('d');
 				}else{
 					$('#memberEmailErrorMsg').html('사용 가능한 이메일 입니다');
+					$('input#memberEmailDuplicatedOk').val('a');
 				}
 			});
 		});
@@ -346,6 +350,8 @@
 				$('#memberIdErrorMsg').html('아이디는 영문자 또는 숫자로 입력해주세요(4자~12자)');
 			}else if(!$('#phoneAuthChk').val()){
 				$('#memberPhoneErrorMsg').html('휴대폰 인증이 필요합니다');
+			}else if($('input#memberEmailDuplicatedOk').val() != 'a'){
+				$('#memberEmailErrorMsg').html('이메일 중복 체크를 해주세요')
 			}else{
 				registerResult = true;
 			}

@@ -42,7 +42,7 @@ public class TestMemberInsert {
             PreparedStatement pstmt = con.prepareStatement(query)) {
          for(int i=0; i<100; i++) {
             if(i<100) {
-               pstmt.setString(1, "admin");
+               pstmt.setString(1, "ywc412");
                pstmt.setString(2, "test data title"+i);
                pstmt.setString(3, "test data content"+i);
                pstmt.setInt(4, 0);

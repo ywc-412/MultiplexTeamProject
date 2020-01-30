@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <c:if test="${!empty findNull}">
@@ -192,14 +192,15 @@
 			}else if($('input#memberPwChk').val() == $('input#memberPw').val()){
 				$('#memberPwChkErrorMsg').html('비밀번호 확인 되었습니다.');
 				registerResult = true;
-			}else{
-				$('#memberPwChkErrorMsg').html('비밀번호 항목과 일치하지 않습니다.');
-				registerResult = false;
 			}
 			
-			if(registerResult){
+			if($('input#memberPwChk').val() != $('input#memberPw').val()){
+				$('#memberPwChkErrorMsg').html('비밀번호 항목과 일치하지 않습니다.');
+				registerResult = false;
+			}else if(registerResult == true){
 				$('#completeForm').submit();
 			}
+			
 		});
 		
 		

@@ -103,7 +103,7 @@ public class MemberController {
 				// 비밀번호 찾고 customLogin 페이지로 이동
 	}
 	
-	@PreAuthorize("hasAnyRole({'ROLE_ADMIN', 'ROLE_MEMBER'})")
+	@PreAuthorize("isAnonymous()")
 	@PostMapping("/findPwComplete")
 	public String findPwComplete(MemberVO memberVO, RedirectAttributes rttr) {
 		int result = memberService.findPw(memberVO);
