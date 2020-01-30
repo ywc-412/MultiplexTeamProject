@@ -65,7 +65,7 @@
 								<c:if test="${pageMaker.next}">
 									<li class="page-item next">
 										<a class="page-link"href="${pageMaker.endPage+1}" aria-label="Next"> 
-											<span aria-hidden="true">&laquo;</span>
+											<span aria-hidden="true">&raquo;</span>
 										</a>
 									</li>
 								</c:if>

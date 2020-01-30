@@ -43,25 +43,29 @@
 						</c:forEach>
 					</table>
 					<!--paging-start-->
-					<ul class="pagination justify-content-center">
-						<c:if test="${pageMaker.prev}">
-							<li class="page-item"><a class="page-link"
-								href="${pageMaker.startPage -1}" aria-label="Previous"> <span
-									aria-hidden="true">&laquo;</span></a></li>
-						</c:if>
-						<c:forEach var="num" begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}">
-							<li
-								class='page-item ${pageMaker.cri.pageNum == num? "custom-active-choi" : "" } '><a
-								href="${num}">${num}</a></li>
-						</c:forEach>
-						<c:if test="${pageMaker.next }">
-							<li class="page-item"><a class="page-link"
-								href="${pageMaker.endPage +1}" aria-label="Next"> <span
-									aria-hidden="true">&raquo;</span>
-							</a></li>
-						</c:if>
-					</ul>
+					<div class="pagination justify-content-center">
+						<ul class="pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item previous">
+										<a class="page-link"href="${pageMaker.startPage-1}" aria-label="Previous"> 
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+								</c:if>										
+								<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+									<li class="page-item + ${pageMaker.cri.pageNum == num ? 'active' : ''}">
+										<a class="page-link" href="${num}">${num}</a>
+									</li>
+								</c:forEach>
+								<c:if test="${pageMaker.next}">
+									<li class="page-item next">
+										<a class="page-link"href="${pageMaker.endPage+1}" aria-label="Next"> 
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+								</c:if>
+							</ul>
+						</div>
 					<!--paging-end-->
 					<form id='actionForm' action="/member/mySuggest" method="get">
 						<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}" />

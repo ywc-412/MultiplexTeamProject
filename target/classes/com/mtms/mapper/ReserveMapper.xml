@@ -62,7 +62,7 @@
 				SELECT r.reserveNo FROM reserve r, schedule s
 				WHERE r.scheduleNo = s.scheduleNo AND
 							to_char(scheduleDate, 'yyyyMMdd') <= #{scheduleDate}
-				AND		scheduleTime <= #{time} and status = 0 and status = 1 )
+				AND		scheduleTime <= #{time} and status IN (0, 1) )
 			]]>
 	</update>
 	

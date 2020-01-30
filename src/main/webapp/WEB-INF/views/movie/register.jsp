@@ -71,11 +71,13 @@
                <div class="form-group">
                   <label for="openDate">개봉일</label>
                   <input id="datepicker" placeholder="개봉일" name="openDate">
+                  <small id="date" class="yeong-small">숫자만 입력해주세요.</small>
                </div>
                
                <div class="form-group">
                    <label for="summary">줄거리</label>
                    <textarea class="form-control" id="summary" name="summary" rows="3" placeholder="줄거리를 입력해주세요"></textarea>
+              	   <small id="sum" class="yeong-small">숫자만 입력해주세요.</small>
                </div>
                
                <div class="form-group uploadDiv">
@@ -113,6 +115,7 @@
 
       var openDate = $('#datepicker').val();
         console.log("openDate =  " + openDate);
+        console.log(openDate.length);
         
         var modifyFile = $("input[name='yeong_registerImg']");
         console.log(modifyFile);
@@ -122,10 +125,7 @@
           
           var aa = $("form[role='form']");
           var cc = $('#frm');
-          console.log("제발");
-         console.log(aa);
-         console.log(cc);
-//            e.preventDefault(); //submit 처리 취소
+          
            console.log("submit clicked");
            
            var str ="";
@@ -135,9 +135,9 @@
            var movieMainActor = $('#movieMainActor').val();
            var movieGenre = $('#movieGenre').val();
            var runningTime = $('#runningTime').val();
+           var openDate = $('#datepicker').val();
+           var summary = $('#summary').val();
            var poster = $('#poster').val();
-           
-           
            
            var inputFile = $("input[name='uploadFile']");
            var files = inputFile[0].files;
@@ -157,6 +157,12 @@
           } else if( runningTime == "" || runningTime.length < 0){
               $('#time').text('러닝타임을 숫자로만 입력해주세요  ex) 180');
               $('#runningTime').focus();
+          } else if( openDate == "" || openDate.length == 0){
+              $('#date').text('개봉일 입력해주세요');
+              $('#datepicker').focus();
+          } else if(summary == ""){
+              $('#sum').text('줄거리 입력해주세요');
+              $('#summary').focus();
           } else if(files.length == 0){
              alert('파일을 선택해주세요');
           } else {
@@ -168,12 +174,8 @@
                + "<input type='hidden' name='attachList[" + i + "].movieUploadPath' value='" + jobj.data("movieuploadpath") + "'>"
                
             });
-             console.log("뭐지");
-             console.log(cc);
-//              $("#frm").append(str).submit();
              formObj.append(str).submit();
           }
-          
        });
    
        var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");

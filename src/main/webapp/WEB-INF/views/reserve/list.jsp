@@ -99,9 +99,10 @@
             
             <script>
 	            $(function() {
-					$("#reserveCanBtn").on("click", function(){
+	            	$(document).on("click", "#reserveCanBtn", function(e){
+// 					$("#reserveCanBtn").on("click", function(){
+						e.preventDefault();
 						if(confirm("정말 환불하시겠습니까?")){
-							alert('here');
 							$("#reserveCanForm").attr("action", "/reserve/refund");
 							$("#reserveCanForm").submit();
 						}
