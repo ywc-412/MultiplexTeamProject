@@ -45,14 +45,35 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="okBtn">확인</button> 
-        <button type="button" id="noBtn" class="btn btn-secondary">`</button>
+        <button type="button" id="noBtn" class="btn btn-secondary">취소</button>
 	 </div>
     </div>
   </div>
 </div>
  
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ --> 
-
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<div class="modal" id="noModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        	취소하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="okBtn2">확인</button> 
+        <button type="button" id="noBtn2" class="btn btn-secondary">취소</button>
+	 </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ --> 
 </div>
 </div>
 </div>
@@ -84,10 +105,14 @@ $(function(){
 	});
 	$("#censle").on("click",function(e){
 		e.preventDefault();
-		$("#reserveForm").submit();
+		$("#noModal").show();
 	});
-	
-	
-	
+	$("#okBtn2").on("click",function(e){
+	$("#reserveForm").submit();
+	});
+	$("#noBtn2").on("click",function(e){
+		e.preventDefault();
+		$("#noModal").hide();
+	});
 });
 </script>
