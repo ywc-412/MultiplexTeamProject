@@ -1,6 +1,7 @@
 package com.mtms.controller;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class MyCommentController {
    private MovieService movieService;
    
    //회원 별 한줄평 조회
+   @PreAuthorize("principal.username == #memberId")
    @GetMapping("myList")
    public void mylist(Model model, Criteria cri, String memberId) {      
       //한줄평이랑 같이 불러와서 영화명 불러오기

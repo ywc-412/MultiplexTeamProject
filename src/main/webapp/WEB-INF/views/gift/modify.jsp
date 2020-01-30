@@ -49,7 +49,7 @@
 <script>
 	function modifyCancel() {
 		if(confirm("수정을 취소하시겠습니까?") == true) {
-			self.location('/gift/list');
+			self.location='/gift/list';
 		} else {
 			self.close();
 		}
@@ -63,7 +63,10 @@
 				var files = inputFile[0].files;	
 				if ($("#giftName").val() == "" || $("#giftPrice").val() == "") {
 					alert("내용을 입력해주세요");	
-				} else if($(".uploadResult ul").html() == "") {
+				} else if(files.length == 0){
+		             alert('파일을 선택해주세요');
+		          }
+				else if($(".uploadResult ul").html() == "") {
 					alert("파일을 선택해 주세요");
 				} else {  
 					var tags = "";
@@ -176,6 +179,7 @@
 		$(".uploadResult").on("click", "button", function(e){
 			if(confirm("삭제하시겠습니까?")) {
 				var targetLi = $(this).closest("li");
+				$("#uploadFile").val("");
 				targetLi.remove();
 			} else {
 				return false;

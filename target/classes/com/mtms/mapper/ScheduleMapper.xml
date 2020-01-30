@@ -72,26 +72,39 @@
 	
 	<!-- 해당 영화에 대한 상영스케줄 날짜 가져오기  -->
 	<select id="getDay" resultType="java.lang.String">
-		SELECT DISTINCT to_char(s.scheduleDate, 'yyyymmdd') FROM schedule s, movie m
-		WHERE #{movieNo} = s.movieNo
-		AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate}	AND #{endDate}
-<!-- 		AND scheduleTime > #{time} -->
-		ORDER BY to_char(s.scheduleDate, 'yyyymmdd')
+		<![CDATA[
+			SELECT DISTINCT to_char(s.scheduleDate, 'yyyymmdd') FROM schedule s, movie m
+			WHERE ( #{movieNo} = s.movieNo
+				AND to_char(s.scheduleDate, 'yyyymmdd') > #{startDate}	AND to_char(s.scheduleDate, 'yyyymmdd') <= #{endDate} )
+			OR ( #{movieNo} = s.movieNo and to_char(s.scheduleDate, 'yyyymmdd') = #{startDate} and scheduleTime > #{time} )
+			ORDER BY to_char(s.scheduleDate, 'yyyymmdd')
+		]]>
 	</select>
 	
 	<!-- 해당 영화, 날짜에 대한 상영 시간 가져오기  -->
 	<select id="getTime" resultType="java.lang.String">
+<!-- 		SELECT DISTINCT scheduleTime FROM schedule -->
+<!-- 		WHERE ( movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate} ) OR -->
+<!-- 		( movieNo = #{movieNo} AND to_char(scheduleDate, 'yyyymmdd') = #{todayDate} AND scheduleTime > #{time} ) -->
+		<!-- 오늘 날짜의 스케줄을 조회한다면 시간대 설정하기ㅠㅠㅠ #{todayDate} -->
+<!-- 			OR ( movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{) -->
+<!-- 		and scheduleTime > #{time} -->
+<!-- 		ORDER BY scheduleTime -->
+		
 		SELECT DISTINCT scheduleTime FROM schedule
-		WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
-<!-- 		 and scheduleTime > #{time} -->
-		ORDER BY scheduleTime
+	    WHERE movieNo = #{movieNo} and to_char(scheduleDate, 'yyyymmdd') = #{scheduleDate}
+	    and scheduleTime >= #{time}
+	    ORDER BY scheduleTime
 	</select>
 	
 	<!-- 현재 상영중인 영화 목록 가져오기 -->
 	<select id="getMovie" resultType="com.mtms.domain.ScheduleVO">
+		<![CDATA[
 		SELECT DISTINCT m.movieTitle, m.movieNo FROM movie m, schedule s 
-		WHERE s.movieNo = m.movieNo AND to_char(s.scheduleDate, 'yyyymmdd') BETWEEN #{startDate} AND #{endDate}
-<!-- 		AND scheduleTime > #{time} -->
+		WHERE ( s.movieNo = m.movieNo
+					AND to_char(s.scheduleDate, 'yyyymmdd') > #{startDate} AND to_char(s.scheduleDate, 'yyyymmdd') <= #{endDate} )
+		OR ( s.movieNo = m.movieNo AND to_char(s.scheduleDate, 'yyyymmdd') = #{startDate} AND scheduleTime > #{time} )
+		]]>
 	</select>
 	
 	<!-- 날짜별 상영스케줄 조회 -->

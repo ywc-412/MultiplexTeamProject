@@ -278,6 +278,7 @@
                   alert('업로드 실패');
                }
             }); //END ajax
+         	}
          }else{
              alert("jpg, png 이미지 파일만 등록해주세요");
              $("#uploadFile").val("");

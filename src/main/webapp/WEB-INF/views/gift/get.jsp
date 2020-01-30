@@ -108,13 +108,14 @@
 			var giftName = $('#giftName').val();
 			var giftPrice = $('.totalPrice').val();
 			var giftSet = $('#giftSet').val();
-			payment(giftNo, giftName, giftPrice, giftSet);
+			var qty = $('#qty').val();
+			payment(giftNo, giftName, giftPrice, giftSet, qty);
 		});
 	})
 
 
 
-	function payment(giftNo, giftName, giftPrice, giftSet) {	
+	function payment(giftNo, giftName, giftPrice, giftSet, qty) {	
 	
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp92933704'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -134,16 +135,12 @@
 			if (rsp.success) {
 				//컨트롤러로 값
 				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상품명 : ' + rsp.name;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
 				// payHere에 input hidden append 를 시켜주고 그걸 form
 				var str = "<input type='hidden' value='"+ giftNo +"' name='giftNo'/>";
 				str += "<input type='hidden' value='"+ giftName +"' name='giftName'/>";
 				str += "<input type='hidden' value='"+ giftPrice +"' name='giftPrice'/>";
 				str += "<input type='hidden' value='"+ giftSet +"' name='giftSet'/>";
+				str += "<input type='hidden' value='"+ qty +"' name='qty'/>";
 				
 				$('#payHere').append(str);
 				$('#payRealForm').submit(); 
