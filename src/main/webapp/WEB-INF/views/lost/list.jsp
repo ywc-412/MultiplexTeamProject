@@ -26,7 +26,12 @@
 	<form action="/lost/register" method="get" class="formRegister"></form>
 	<div class="buttln_style">
 	 <span class="button_position">
-	 <button id="reviewModify" class="btn btn-primary">등록</button>
+	 <sec:authentication property="principal" var="pinfo" />
+			<sec:authorize access="hasRole('ROLE_ADMIN')">		
+				<!-- 로그인을 한건가 -->
+					<!-- 내가 작성한건가 -->
+				 <button id="reviewModify" class="btn btn-primary">등록</button>
+			</sec:authorize>
 	</span>
 	 </div>
 <!-- 	END 버튼위치 style -->

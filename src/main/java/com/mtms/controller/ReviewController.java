@@ -54,7 +54,7 @@ public class ReviewController {
 		return "redirect:/review/list";
 		//한글처리를 안해도 되는 간편한 코드?
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping({"get","modify"})
 	public void get(@RequestParam("reviewNo") int reviewNo,@ModelAttribute("cri")
 		Criteria cri,Model model)  {

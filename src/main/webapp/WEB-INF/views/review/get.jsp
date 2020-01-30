@@ -30,14 +30,13 @@ $(function(){
 });
 //END 전체 function
 </script>
-
-<div class="container">
-			<!--<div class="row">-->
-			<div class="row no-mean">
-				<div class="col-md-12">
-					<div class="custom-board-title">
-						<h3 class="custom-font-bold">리뷰</h3>
-					</div>
+<section id="tabs" class="project-tab">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="custom-board-title">
+					<h3 class="custom-font-bold">리뷰</h3>
+				</div>
 	<div class="get_title_style">
 		<div class="get_title">	<c:out value="${rvo.reviewTitle }"/></div>
 	
@@ -51,23 +50,24 @@ $(function(){
 	<div class="movie_title_style">
 		<div class="movie_get_title">${rvo1.movieTitle }</div>
 	</div>
-	<textarea rows="10" cols="100" class="review_textarea" readonly="readonly">
-	<c:out value="${rvo.reviewContent }"/>
-	</textarea>
+	<div class="view_area">
+	<p>
+		<span class="custom-font-only-bold" name="noticeContent"><c:out value="${rvo.reviewContent }"/></span>
+	</p>	
+	</div>
 	
 	<div class="title_under2"></div>
 <!-- 	버튼위치 style -->
 	<div class="buttln_style">
-	 
+	 	<div class="">		
 	 <button data-oper="list" class="btn btn-info" id="list_style">List</button>
 <!-- 	버튼위치 style -->
-	<div class="buttln_style">
 	
 					<form method="post" action="/review/remove" class="formRemove">
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 				</form>
-		<span class="button_position">
+		<div class="float-right">
 			<sec:authentication property="principal" var="pinfo" />
 			<sec:authorize access="isAuthenticated()">
 				<!-- 로그인을 한건가 -->
@@ -96,7 +96,7 @@ $(function(){
 						</c:if>
 					</sec:authorize>
 			</form>
-			</span>
+			</div>
 	</div>
 	<!-- 	END 버튼위치 style -->
 				
@@ -111,11 +111,7 @@ $(function(){
 					<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'>
 		</form>
 		
-<!-- 	 리뷰댓글란 -->
-<!-- 	 <input type="text" name="reply" id="replyInput"> -->
-<!-- 	  <button id="reviewReply" class="btn btn-primary">등록</button> -->
-	 
-<!-- 	 END리뷰댓글란 -->
+
 
 <!-- 리뷰 댓글 목록 -->
 	            <div class='row'>
@@ -147,11 +143,36 @@ $(function(){
 	                        </ul> <!-- ./END ul -->                     
 	                     </div> <!-- /.panel .chat-panel -->
 	                     <!-- 댓글 목록 페이징 -->
-	                     <div class="panel-footer">
-	                     </div>
-	                     <!-- 댓글 목록 페이징 END -->
-	                     
+	                     <!-- 		페이징 시작하는 부분 -->
+	
+	                     <!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 -->
 <!-- 리뷰 댓글 목록END -->
+	<!-- paging s -->
+<!-- 					<div class="pagination justify-content-center"> -->
+<!-- 						<ul class="pagination"> -->
+<%-- 								<c:if test="${pageMaker.prev}"> --%>
+<!-- 									<li class="page-item previous"> -->
+<%-- 										<a class="page-link"href="${pageMaker.startPage-1}" aria-label="Previous">  --%>
+<!-- 											<span aria-hidden="true">&laquo;</span> -->
+<!-- 										</a> -->
+<!-- 									</li> -->
+<%-- 								</c:if>										 --%>
+<%-- 								<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}"> --%>
+<%-- 									<li class="page-item + ${pageMaker.cri.pageNum == num ? 'active' : ''}"> --%>
+<%-- 										<a class="page-link" href="${num}">${num}</a> --%>
+<!-- 									</li> -->
+<%-- 								</c:forEach> --%>
+<%-- 								<c:if test="${pageMaker.next}"> --%>
+<!-- 									<li class="page-item next"> -->
+<%-- 										<a class="page-link"href="${pageMaker.endPage+1}" aria-label="Next">  --%>
+<!-- 											<span aria-hidden="true">&laquo;</span> -->
+<!-- 										</a> -->
+<!-- 									</li> -->
+<%-- 								</c:if> --%>
+<!-- 							</ul> -->
+<!-- 						</div> -->
+						<!--paging e -->
+	                     <!-- 댓글 목록 페이징 END -->
 <!-- Modal --> 
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
 				   <div class="modal-dialog">
@@ -256,7 +277,7 @@ $(function(){
     </div>
   </div>
 </div>
-
+</section>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END전체 모달창@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <sec:authorize access="isAuthenticated()">
 	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
