@@ -2,6 +2,7 @@ package com.mtms.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,7 +59,7 @@ String[] words = replyNo.split(",");
    public void get(@RequestParam("replyReportNo")int replyReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
       model.addAttribute("rpvo",replyReportService.get(replyReportNo));
    }
-
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
    @GetMapping("list")
    public void list(Criteria cri, Model model) {
       model.addAttribute("list", replyReportService.getList(cri));

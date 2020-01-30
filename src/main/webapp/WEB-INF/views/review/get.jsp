@@ -143,6 +143,7 @@ $(function(){
 	                        </ul> <!-- ./END ul -->                     
 	                     </div> <!-- /.panel .chat-panel -->
 	                     <!-- 댓글 목록 페이징 -->
+	               
 	                     <!-- 		페이징 시작하는 부분 -->
 	
 	                     <!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 -->
@@ -245,7 +246,7 @@ $(function(){
         </button>
       </div>
       <div class="modal-body">
-        	삭제하시겠습니가?
+        	삭제하시겠습니까?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="okBtn">확인</button> 

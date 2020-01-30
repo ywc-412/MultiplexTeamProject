@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,7 +61,7 @@ public class ReviewReportController {
 	public void get(@RequestParam("reviewReportNo")int reviewReportNo, Model model, @ModelAttribute("cri") Criteria cri) {
 		model.addAttribute("rrvo",reviweReportService.get(reviewReportNo));
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("list")
 	public void list(Criteria cri, Model model) {
 		model.addAttribute("list",reviweReportService.getList(cri) );

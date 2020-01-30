@@ -3,12 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ include file="../../include/header.jsp"%>
-<div class="side_margin">
-	<div class="row">
-		<div class="review_title">신고 하기</div>
-	</div>
-	<div class="title_under"></div>
-<!-- 	계시판명 END -->
+<section id="tabs" class="project-tab">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="custom-board-title">
+                    <h3 class="custom-font-bold">신고 하기</h3>
+                </div>         
 	<form action="/report/review/register" method="post" class="reportForm">
 	<div class="high_margin"></div>
 	<div class="movie_title_style">
@@ -55,6 +56,9 @@
 	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
 </sec:authorize>
 </div>
+</div>
+</div>
+</section>
 <!-- 전체마진 END -->
 <%@ include file="../../include/footer.jsp"%>
 <script>
