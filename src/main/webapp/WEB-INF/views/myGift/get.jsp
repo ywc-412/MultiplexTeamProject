@@ -26,14 +26,14 @@
                 <div class="col-md-9 mt-sm-20">            
                     <p>가격 : ${mygift[0].giftList[0].giftPrice}</p>
                     <p>구성 : ${mygift[0].giftList[0].giftSet}</p>
+                    <p>구입일자 : <fmt:formatDate value="${mygift[0].buyingDate}" pattern="yyyy.MM.dd"/></p>
+		            <c:if test="${!empty mygift[0].expireDate}">
+		           	 <p>만료일자 : <fmt:formatDate value="${mygift[0].expireDate}" pattern="yyyy.MM.dd"/></p> 
+		            </c:if>    
                        <form action="/myGift/extend" method="POST" id="extendForm">
-		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		                    <p>구입일자 : <fmt:formatDate value="${mygift[0].buyingDate}" pattern="yyyy.MM.dd"/></p>
-		                    <c:if test="${!empty mygift[0].expireDate}">
-		                    <p>만료일자 : <fmt:formatDate value="${mygift[0].expireDate}" pattern="yyyy.MM.dd"/></p> 
-		                    </c:if>                   
-		                    <input type="hidden" name="myGiftNo" value="${mygift[0].myGiftNo}"/>
-		                    <input type="hidden" value="${mygift[0].extendChk}"/>	                    
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">		                             
+		                    <input type="hidden" name="myGiftNo" value="${mygift[0].myGiftNo}"/>                    
+		                    <input type='hidden' name="expireDate" value="${mygift[0].expireDate}"/>	            		
 		                    <input type='hidden' name="memberId" value="${mygift[0].memberId}"/>	            		
 		                    <input type="hidden" name="pageNum"  value="${cri.pageNum }"> 
 							<input type="hidden" name="amount" value="${cri.amount}">
