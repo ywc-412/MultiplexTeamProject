@@ -78,6 +78,8 @@
 				
 				if(confirm("정말로 등록하시겠습니까?") == true) { 
 					formObj.append(tags).submit();
+				} else {
+					self.location='/gift/list'
 				}
 			}
 		});//END form
