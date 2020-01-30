@@ -8,6 +8,12 @@
 
 <%@ include file="include/header.jsp" %>
 
+<c:if test="${!empty regMsg }">
+	<script>
+		alert('${regMsg}');
+	</script>
+</c:if>
+
    <div class="yeong_offers_area">
       <div class="container">
          <div class="row" id="movieContArea">

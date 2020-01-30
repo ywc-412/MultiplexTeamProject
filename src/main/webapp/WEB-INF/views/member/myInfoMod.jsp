@@ -275,7 +275,7 @@
 				
 				var modifyInfoConfirm = confirm('수정 하시겠습니까?');
 				
-				if(modifyInfoconfirm == true){
+				if(modifyInfoConfirm == true){
 					if(registerResult){
 						$('#myInfoModifyForm').submit();
 					}
