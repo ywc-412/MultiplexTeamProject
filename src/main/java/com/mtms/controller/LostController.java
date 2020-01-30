@@ -58,7 +58,7 @@ public class LostController {
 		int total = lostService.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("register")
 	public void register() {
 		
