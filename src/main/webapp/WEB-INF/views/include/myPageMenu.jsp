@@ -12,7 +12,7 @@
 						<li><a class= '${memberInfo == null? "" : "custom-active"}' href="/member/myInfo" id="myInfoMove">내 정보 조회</a></li>
 						<li><a class= '${myReserveList == null? "" : "custom-active"}' href="/reserve/list" id="myReserveMove">예매 내역</a></li>
 		                  <li><a class= '${myReviewList == null? "" : "custom-active"}' href="/myReview/list" id="myReviewMove">내 리뷰</a></li>
-		                  <li><a class= '${myCommentList == null? "" : "custom-active"}' href="/myComment/myList" id="myCommentMove">한줄평</a></li>
+		                  <li><a class= '${myCommentList == null? "" : "custom-active"}' href="/myComment/myList" id="myCommentMove">내 한줄평</a></li>
 						<li><a class='${mygift == null? "" : "custom-active" }' href="/myGift/list" id="myGiftMove">내 기프티콘</a></li>
 						<li><a class='${mySuggest == null? "" : "custom-active" }' href="/member/mySuggst" id="mySuggestMove">내 건의사항</a></li>
 					</ul>
