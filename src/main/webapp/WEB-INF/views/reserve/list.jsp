@@ -66,15 +66,16 @@
 	                    <div class="pagination justify-content-center">
 					       <ul class="pagination">
 					             <c:if test="${pageMaker.prev }">
-					                <li class="paginate_button previous">
+					                <li class="page-item previous">
 					                   <a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
 					          </c:if>
 					          <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-					                <li class='paginate_button ${pageMaker.cri.pageNum == num ? "active":"" }'>
-					                  <a class="page-link" href="${num}">${num }</a></li>
+					                <li class="page-item + ${pageMaker.cri.pageNum == num ? 'active' : ''}">
+										<a class="page-link" href="${num}">${num}</a>
+									</li>
 					          </c:forEach>
 					          <c:if test="${pageMaker.next }">
-					                <li class="paginate_button next">
+					                <li class="page-item next">
 					                   <a class="page-link" href="${pageMaker.endPage + 1 }">Next</a></li>
 					          </c:if>
 					       </ul>
@@ -110,7 +111,7 @@
 	            });
 	            
 	          //페이지 번호 링크 처리
-	          $(document).on("click", ".paginate_button a", function(e){
+	          $(document).on("click", ".page-item a", function(e){
 	               e.preventDefault();
 	               $('#pageNum').val($(this).attr('href'));   //내가 누른 a태그의 href값을 $('#pageNum')에 넣어줌
 	               $('#actionForm').submit();
