@@ -35,8 +35,9 @@
 	                            <td>${r.seat }</td>
 	                            <td>
 	                            	<c:choose>
-	                            		<c:when test="${r.status == 0 }">
-	                            			<form id="reserveCanForm" ae="${_csrf.parameterName }" value="${_csrf.token }">
+	                            		<c:when test="${r.status == 1 }">
+	                            			<form id="reserveCanForm" method="post">
+	                            				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	                            				<input type="hidden" name="reserveNo" value="${r.reserveNo }">
 	                            				<sec:authorize access="isAuthenticated()">
 													<input type="hidden" name="memberId"
@@ -45,14 +46,14 @@
 	                            				<button class="btn btn-primary" id="reserveCanBtn">예매취소</button>
 	                            			</form>
 	                            		</c:when>
-	                            		<c:when test="${r.status == 1 }">
+	                            		<c:when test="${r.status == 2 }">
 	                            			<form id="reviewForm" action="/review/register">
 	                            				<input type="hidden" name="movieNo" value="${r.movieNo }">
 			                            		<button class="btn btn-primary">리뷰작성</button>
 	                            			</form>
 										</c:when>
-	                            		<c:when test="${r.status == 2 }">취소완료</c:when>
-	                            		<c:when test="${r.status == 3 }">취소불가</c:when>
+	                            		<c:when test="${r.status == 3 }">취소완료</c:when>
+	                            		<c:when test="${r.status == 0 }">취소불가</c:when>
 	                            	</c:choose>
 	                            </td>
 	                        </tr>
@@ -100,7 +101,8 @@
 	            $(function() {
 					$("#reserveCanBtn").on("click", function(){
 						if(confirm("정말 환불하시겠습니까?")){
-							$("#reserveCanForm").action("/reserve/refund");
+							alert('here');
+							$("#reserveCanForm").attr("action", "/reserve/refund");
 							$("#reserveCanForm").submit();
 						}
 					});
