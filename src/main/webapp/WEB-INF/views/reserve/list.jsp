@@ -100,6 +100,14 @@
             
             <script>
 	            $(function() {
+	            	
+	            	var memberIdValidate = '${param.memberId}';
+	        		var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
+	        		
+	        		if(memberIdValidate != principalUsernmae){
+	        			location.href='/accessError';
+	        		}
+	            	
 	            	$(document).on("click", "#reserveCanBtn", function(e){
 // 					$("#reserveCanBtn").on("click", function(){
 						e.preventDefault();

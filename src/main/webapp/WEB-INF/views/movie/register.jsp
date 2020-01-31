@@ -115,10 +115,6 @@
 
       var openDate = $('#datepicker').val();
         console.log("openDate =  " + openDate);
-        console.log(openDate.length);
-        
-        var modifyFile = $("input[name='yeong_registerImg']");
-        console.log(modifyFile);
         
 //        $("button[type='submit']").on("click",function(e){
        $('#regButton').on("click",function(e){   
