@@ -335,7 +335,7 @@
 			$("#addCanBtn").on("click", function(e){
 				e.preventDefault();
 				if(confirm("정말 취소하시겠습니까?")){
-					$("#seqForm").action("/schedule/cancel");
+					$("#seqForm").attr("action", "/schedule/cancel");
 					$("#seqForm").submit();
 				} else {
 					return ;

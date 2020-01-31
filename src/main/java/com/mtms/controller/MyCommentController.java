@@ -26,7 +26,7 @@ public class MyCommentController {
    private MovieService movieService;
    
    //회원 별 한줄평 조회
-   @PreAuthorize("principal.username == #memberId")
+   @PreAuthorize("hasRole('ROLE_MEMBER')")
    @GetMapping("myList")
    public void mylist(Model model, Criteria cri, String memberId) {      
       //한줄평이랑 같이 불러와서 영화명 불러오기
