@@ -86,6 +86,14 @@
 <script>
 
 $(function() {  
+	var enterMember = '${mygift.memberId}';
+	console.log(enterMember);
+	var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
+	
+	if(enterMember != principalUsernmae){
+		location.href='/accessError';
+	}
+	
 	$('.move').click(
 		function(e) {
 			e.preventDefault();
