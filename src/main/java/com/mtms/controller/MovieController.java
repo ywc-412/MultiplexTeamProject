@@ -137,7 +137,7 @@ public class MovieController {
    @PostMapping("register")
    @Secured("ROLE_ADMIN")
    public String register(MovieVO movie, RedirectAttributes rttr) {
-      
+      System.out.println("ff");
       //첨부파일 있을때 처리
       if(movie.getAttachList() != null) {
          movie.getAttachList().forEach(attach -> log.info(attach));

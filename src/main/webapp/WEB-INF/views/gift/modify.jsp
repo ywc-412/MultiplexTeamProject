@@ -30,8 +30,7 @@
 						<div class="custom-photo">
 							<input type="file" name="uploadFile" id="uploadFile">							
 							<div class="uploadResult">
-								<ul>
-								</ul>
+								<ul></ul>
 							</div>
 						</div>
 					</div>
@@ -63,9 +62,9 @@
 				var files = inputFile[0].files;	
 				if ($("#giftName").val() == "" || $("#giftPrice").val() == "") {
 					alert("내용을 입력해주세요");	
-				} else if(files.length == 0){
+				} /* else if(files.length == 0){
 		             alert('파일을 선택해주세요');
-		          }
+		          } */
 				else if($(".uploadResult ul").html() == "") {
 					alert("파일을 선택해 주세요");
 				} else {  
@@ -81,7 +80,7 @@
 					} 	        
 				}
 	   });
-	});
+	
 	
 	(function() {
 		var giftNo = ${gift.giftNo};
@@ -130,14 +129,16 @@
          var filepoint = fileName.substring(fileName.lastIndexOf(".")+1);
          var filetype = filepoint.toLowerCase();
 		 
-         if(filetype == 'jpg' || filetype == 'png'){
+         if(files.length == 0){
+             alert('파일을 선택해주세요');
+          }else if(filetype == 'jpg' || filetype == 'png'){
          
 		 for (var i = 0; i < files.length; i++) {
 		 	if(!checkExtension(files[i].name, files[i].size)) {					
 				return false;
 			} 
 				formData.append('uploadFile',files[i]);	
-		 }		
+		 		
 		$.ajax({			
 			url : '/giftUpload/uploadAjaxAction',			
 			processData : false,
@@ -155,7 +156,7 @@
 				alert("upload not ok");
 			}		
 		});//END ajax
-		 
+		 }
 		 }else{
              alert("jpg, png 이미지 파일만 등록해주세요");
              $("#uploadFile").val("");
@@ -191,6 +192,7 @@
 	        $(this).val($(this).val().replace(/[^0-9]/g,""));
 	    });
 
+	});
 </script>
 
 <%@ include file="../include/footer.jsp" %>
