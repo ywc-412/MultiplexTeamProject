@@ -25,7 +25,6 @@ import lombok.extern.log4j.Log4j;
 public class LostController {
 	
 	private LostService lostService;
-	
 	@PostMapping("remove") 
 	 public String remove(int lostNo, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		rttr.addFlashAttribute("result", lostService.remove(lostNo));

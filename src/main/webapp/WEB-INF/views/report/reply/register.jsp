@@ -57,7 +57,7 @@
 <sec:authorize access="isAuthenticated()">
 	<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
 </sec:authorize>
-/div>
+
 </div>
 </section>
 <!-- 전체마진 END -->

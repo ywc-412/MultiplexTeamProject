@@ -52,6 +52,7 @@
       <![CDATA[ 
             rownum <= #{pageNum} * #{amount}
             ) WHERE rn > (#{pageNum} - 1) * #{amount}
+            order by lostDate desc
       ]]> 
 	</select>
 	

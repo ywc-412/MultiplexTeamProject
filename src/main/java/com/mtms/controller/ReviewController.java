@@ -54,9 +54,18 @@ public class ReviewController {
 		return "redirect:/review/list";
 		//한글처리를 안해도 되는 간편한 코드?
 	}
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping({"get","modify"})
+	
+	@GetMapping("get")
 	public void get(@RequestParam("reviewNo") int reviewNo,@ModelAttribute("cri")
+		Criteria cri,Model model)  {
+		model.addAttribute("rvo", service.get(reviewNo));
+		model.addAttribute("rvo1", service.movieSelect(reviewNo));
+	
+		
+	}
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("modify")
+	public void modify(@RequestParam("reviewNo") int reviewNo,@ModelAttribute("cri")
 		Criteria cri,Model model)  {
 		model.addAttribute("rvo", service.get(reviewNo));
 		model.addAttribute("rvo1", service.movieSelect(reviewNo));
@@ -71,15 +80,14 @@ public class ReviewController {
 		int total = service.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
-//	@PreAuthorize("isAuthenticated()") 로그인 여부 
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@GetMapping("register")
 	   public void register(int movieNo, Model model) {
 	      model.addAttribute("movieTitle", movieService.getMovie(movieNo));
 	      model.addAttribute("movieNo", movieNo);
 	   }
-	
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
 	@PostMapping("register")
-	@PreAuthorize("isAuthenticated()") //로그인을 햇냐
 	public String register(ReviewVO rvo, RedirectAttributes rttr,int movieNo) {
 		service.register(rvo);
 		rttr.addFlashAttribute("result",rvo.getReviewNo());

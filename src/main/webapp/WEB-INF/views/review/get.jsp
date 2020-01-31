@@ -68,7 +68,9 @@ $(function(){
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 				</form>
 		<div class="float-right">
-			<sec:authentication property="principal" var="pinfo" />
+			<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal" var="pinfo"/>
+			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<!-- 로그인을 한건가 -->
 				<c:if test="${pinfo.username eq rvo.memberId }">
@@ -76,7 +78,9 @@ $(function(){
 					<button type="submit" class="btn btn-primary" data-oper="modify">수정</button>
 				</c:if>
 			</sec:authorize>
-			<sec:authentication property="principal" var="pinfo"/>
+			<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal" var="pinfo"/>
+			</sec:authorize>
                 <sec:authorize access="isAuthenticated()">	<!-- 로그인을 한건가 -->
                 	<c:if test="${pinfo.username eq rvo.memberId }">	<!-- 내가 작성한건가 -->
 						<button id="reviewRemove" class="btn btn-danger" type="submit">
@@ -87,17 +91,25 @@ $(function(){
 				<form method="get" action="/report/review/register">
 				<input type="hidden" name="reviewNo" value='<c:out value="${rvo.reviewNo }"/>'>
 				<input type="hidden" name="reviewTitle" value='<c:out value="${rvo.reviewTitle }"/>'>
-				<input type="hidden" name="memberId"  value="<sec:authentication property="principal.username" />">
-				<sec:authentication property="principal" var="pinfo" />
-					<sec:authorize access="isAuthenticated()">
-						<!-- 로그인을 한건가 -->
-						<c:if test="${pinfo.username ne rvo.memberId }">
-							<button id="reviewReport" class="btn btn-danger" type="submit">신고</button>
-						</c:if>
-					</sec:authorize>
-			</form>
+				
+				
+			
+				<sec:authorize access="isAuthenticated()">
+					<sec:authentication property="principal" var="pinfo"/>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+                       <input type="hidden" name="memberId" id="memberId"
+                          value="${pinfo.username }">
+					<c:if test="${pinfo.username ne rvo.memberId }">
+						<button id="reviewReport" class="btn btn-danger" type="submit">신고</button>
+						
+					</c:if>
+					
+				</sec:authorize>
+				
+				</form>
 			</div>
-	</div>
+		</div>
 	<!-- 	END 버튼위치 style -->
 				
 			
@@ -115,7 +127,9 @@ $(function(){
 
 <!-- 리뷰 댓글 목록 -->
 	            <div class='row'>
-	            <sec:authentication property="principal" var="pinfo" />
+	            <sec:authorize access="isAuthenticated()">
+					<sec:authentication property="principal" var="pinfo"/>
+				</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 	             <button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">댓글 등록</button>
 	             </sec:authorize>
@@ -177,14 +191,18 @@ $(function(){
 					         	<div id="replyHere">
 					         	
 					         	</div>
-					         	<sec:authentication property="principal" var="pinfo" />
+					         	<sec:authorize access="isAuthenticated()">
+									<sec:authentication property="principal" var="pinfo"/>
+								</sec:authorize>
 								<sec:authorize access="isAuthenticated()"> <!-- 로그인을 한건가 -->	 
 									<input type="hidden" name="replyContent" id="replyContent" value='<c:out value="${revo.replyContent }"/>'>
 									<input type="hidden" name="memberId"  value="<sec:authentication property="principal.username" />">
 									<button id="replyReport" class="btn btn-danger" type="button">신고</button>
 								</sec:authorize>
 							</form>
-							<sec:authentication property="principal" var="pinfo" />
+							<sec:authorize access="isAuthenticated()">
+								<sec:authentication property="principal" var="pinfo"/>
+							</sec:authorize>
 							<sec:authorize access="isAuthenticated()"> <!-- 로그인을 한건가 -->
 	  						 <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
 					          <button id='modalRemoveBtn' type="button" class="btn btn-danger">삭제</button> 
@@ -369,7 +387,6 @@ var modalModBtn = $("#modalModBtn");	//버튼 각각 id로 찾아옴
 var modalRemoveBtn = $("#modalRemoveBtn");
 var modalRegisterBtn = $("#modalRegisterBtn");
 var replyReport = $("#replyReport");
-// var memberId = "<sec:authentication property='principal.username' />"; //로그인한 아이디
 
 $('#replyReport').on("click", function(e){
 			e.preventDefault();
