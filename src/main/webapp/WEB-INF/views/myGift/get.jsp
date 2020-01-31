@@ -89,6 +89,13 @@
 	})(); 
 
 	$(function() {
+		var memberIdValidate = '${param.memberId}';
+		var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
+		
+		if(memberIdValidate != principalUsernmae){
+			location.href='/accessError';
+		}
+		
 		var extendForm = $("#extendForm");
 		var refundForm = $("#refundForm");
 		var listForm = $("#listForm");
