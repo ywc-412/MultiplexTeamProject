@@ -270,16 +270,16 @@
 				}else if(!$('input#memberPwChk').val()){
 					$('#memberPwChkErrorMsg').html('필수 항목입니다.');
 				}else {
-					$('#memberPwChkErrorMsg').html('비밀번호 확인 되었습니다.');
-				}
-				
-				var modifyInfoConfirm = confirm('수정 하시겠습니까?');
-				
-				if(modifyInfoConfirm == true){
-					if(registerResult){
-						$('#myInfoModifyForm').submit();
+					var modifyInfoConfirm = confirm('수정 하시겠습니까?');
+					
+					if(modifyInfoConfirm == true){
+						if(registerResult){
+							$('#myInfoModifyForm').submit();
+						}
 					}
 				}
+				
+				
 				
 				
 			});

@@ -103,21 +103,19 @@ public class GiftController {
 	@PostMapping("paying")
 	public String paying(GiftVO gift, MyGiftVO myGift, int qty, RedirectAttributes rttr) {
 		// myGift에 내가 주문한 기프티콘을 insert한다. 
-		System.out.println(qty);
 		for(int i=1; i <= qty; i++) {
 			myGiftService.myInsertSelectKey(myGift);
-		}
+		}		
+		rttr.addAttribute("qty", qty);
 		rttr.addAttribute("giftNo", gift.getGiftNo());	
-		rttr.addAttribute("GiftName", gift.getGiftName());	
-		rttr.addAttribute("giftPrice", gift.getGiftPrice());	
-		rttr.addAttribute("GiftSet", gift.getGiftSet());	
-		rttr.addAttribute("memberId", myGift.getMemberId());	
+	
 		return "redirect:/gift/pay";	
 	}
 	
 	@GetMapping("pay")
-	public void pay(@RequestParam("giftNo") int giftNo, @RequestParam("GiftName") String GiftName, @RequestParam("giftPrice") int giftPrice, @RequestParam("GiftSet") String GiftSet, Model model) {
+	public void pay(@RequestParam("giftNo") int giftNo, int qty, Model model) {
 		model.addAttribute("gift", giftService.get(giftNo));
+		model.addAttribute("qty", qty);
 		model.addAttribute("pic", giftService.giftPicList());
 	}
 	
