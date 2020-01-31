@@ -112,6 +112,14 @@
 	
 	<script>
 		$(function(){
+			var memberIdValidate = new URLSearchParams(location.search).get('keyword');
+			var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
+			
+			if(memberIdValidate != principalUsernmae){
+				location.href='/accessError';
+			}
+			
+			
 			var actionForm = $('#actionForm');
 			
 			$(".page-item a").on("click", function(e){
