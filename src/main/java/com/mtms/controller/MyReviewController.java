@@ -1,5 +1,6 @@
 package com.mtms.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class MyReviewController {
 	private MyReviewService service;
-	
+	  @PreAuthorize("principal.username == #memberId")
 	@GetMapping("list")
 	public void getList(Criteria cri,Model model,@RequestParam("memberId") String memberId) {
 		model.addAttribute("list", service.getList(cri,memberId));
