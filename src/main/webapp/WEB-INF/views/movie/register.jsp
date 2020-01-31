@@ -71,13 +71,13 @@
                <div class="form-group">
                   <label for="openDate">개봉일</label>
                   <input id="datepicker" placeholder="개봉일" name="openDate">
-                  <small id="date" class="yeong-small">숫자만 입력해주세요.</small>
+                  <small id="date" class="yeong-small"></small>
                </div>
                
                <div class="form-group">
                    <label for="summary">줄거리</label>
                    <textarea class="form-control" id="summary" name="summary" rows="3" placeholder="줄거리를 입력해주세요"></textarea>
-              	   <small id="sum" class="yeong-small">숫자만 입력해주세요.</small>
+              	   <small id="sum" class="yeong-small"></small>
                </div>
                
                <div class="form-group uploadDiv">

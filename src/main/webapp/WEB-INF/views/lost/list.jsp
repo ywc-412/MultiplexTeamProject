@@ -40,15 +40,15 @@
                     <thead>
                         <tr>
                             <th>제목<!-- Rendering engine --></th>
-                            <th>조회수<!-- Platform(s) --></th>
-                            <th>작성일<!-- Platform(s) --></th>
+                            <th style="width: 90px;">조회수<!-- Platform(s) --></th>
+                            <th style="width: 150px;">작성일<!-- Platform(s) --></th>
                         </tr>
                     </thead>
                     <tbody>
                        <c:forEach items="${list }" var="lvo">
 						<tr class="odd gradeX">
 
-							<td><a class="move" href="${lvo.lostNo}">
+							<td class="tdLost_lostTitle"><a class="move" href="${lvo.lostNo}">
                             		${lvo.lostTitle }</a></td>
 							<td><c:out value="${lvo.lostView }"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"
