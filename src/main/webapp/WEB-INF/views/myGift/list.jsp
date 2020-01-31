@@ -86,7 +86,7 @@
 <script>
 
 $(function() {  
-	var enterMember = '${mygift.memberId}';
+	var enterMember = '${param.memberId}';
 	console.log(enterMember);
 	var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
 	
