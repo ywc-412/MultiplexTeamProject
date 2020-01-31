@@ -27,7 +27,8 @@
 						to_char(c.scheduleDate, 'yyyymmdd') as scheduleDate,
 						c.scheduleTime as scheduleTime,
 						c.movieNo as movieNo,
-						c.movieTitle as movieTitle
+						c.movieTitle as movieTitle,
+						c.memberId
 			FROM (
 				SELECT rownum rn,
 							r.*,
