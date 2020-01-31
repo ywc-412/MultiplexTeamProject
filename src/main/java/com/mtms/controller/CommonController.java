@@ -47,6 +47,9 @@ public class CommonController {
 	@PreAuthorize("!isAuthenticated()")
 	@GetMapping("/customLogin")
 	public void loginInput(String error, String logout, Model model) {
+		String springVersion = org.springframework.core.SpringVersion.getVersion();
+
+		System.out.println("스프링 프레임워크 버전 : " + springVersion);
 		log.info(error);
 	}
 
