@@ -40,8 +40,8 @@
                     <thead>
                         <tr>
                             <th>제목<!-- Rendering engine --></th>
-                            <th>조회수<!-- Platform(s) --></th>
-                            <th>작성일<!-- Platform(s) --></th>
+                            <th style="width: 90px;">조회수<!-- Platform(s) --></th>
+                            <th style="width: 150px;">작성일<!-- Platform(s) --></th>
                         </tr>
                     </thead>
                     <tbody>

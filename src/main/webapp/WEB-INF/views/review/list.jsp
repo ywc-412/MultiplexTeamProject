@@ -36,8 +36,8 @@
                         <tr>
                             <th>영화명<!-- Rendering engine --></th>
                             <th>제목<!-- Browser --></th>
-                            <th>작성자<!-- Platform(s) --></th>
-                            <th>조회수<!-- Engine version --></th>
+                            <th style="width: 90xp;">작성자<!-- Platform(s) --></th>
+                            <th style="width: 80px;">조회수<!-- Engine version --></th>
                             <th>등록일<!-- CSS grade --></th>
                         </tr>
                     </thead>

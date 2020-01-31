@@ -46,7 +46,7 @@ public class LostController {
 	public void get(int lostNo, Model model, @ModelAttribute("cri") Criteria cri) {
 			model.addAttribute("lvo", lostService.get(lostNo));
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")	
 	@GetMapping("modify") 
 	public void modify(int lostNo, Model model, @ModelAttribute("cri") Criteria cri) {
 			model.addAttribute("lvo",lostService.get(lostNo));

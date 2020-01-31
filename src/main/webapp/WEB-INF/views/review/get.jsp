@@ -142,38 +142,12 @@ $(function(){
 	                           </li> <!-- END Reply -->
 	                        </ul> <!-- ./END ul -->                     
 	                     </div> <!-- /.panel .chat-panel -->
-	                     <!-- 댓글 목록 페이징 -->
-	               
-	                     <!-- 		페이징 시작하는 부분 -->
-	
+	                 <!-- 		페이징 시작하는 부분 -->
+							 <div class="panel-footer">
+	                     </div>
+	                     <!-- END 댓글 목록 페이징 -->
 	                     <!-- 페이지 번호 클릭 시 페이지 번호와 출력 데이터 갯수를 전달 -->
-<!-- 리뷰 댓글 목록END -->
-	<!-- paging s -->
-<!-- 					<div class="pagination justify-content-center"> -->
-<!-- 						<ul class="pagination"> -->
-<%-- 								<c:if test="${pageMaker.prev}"> --%>
-<!-- 									<li class="page-item previous"> -->
-<%-- 										<a class="page-link"href="${pageMaker.startPage-1}" aria-label="Previous">  --%>
-<!-- 											<span aria-hidden="true">&laquo;</span> -->
-<!-- 										</a> -->
-<!-- 									</li> -->
-<%-- 								</c:if>										 --%>
-<%-- 								<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}"> --%>
-<%-- 									<li class="page-item + ${pageMaker.cri.pageNum == num ? 'active' : ''}"> --%>
-<%-- 										<a class="page-link" href="${num}">${num}</a> --%>
-<!-- 									</li> -->
-<%-- 								</c:forEach> --%>
-<%-- 								<c:if test="${pageMaker.next}"> --%>
-<!-- 									<li class="page-item next"> -->
-<%-- 										<a class="page-link"href="${pageMaker.endPage+1}" aria-label="Next">  --%>
-<!-- 											<span aria-hidden="true">&laquo;</span> -->
-<!-- 										</a> -->
-<!-- 									</li> -->
-<%-- 								</c:if> --%>
-<!-- 							</ul> -->
-<!-- 						</div> -->
-						<!--paging e -->
-	                     <!-- 댓글 목록 페이징 END -->
+					<!-- 댓글 목록 페이징 END -->
 <!-- Modal --> 
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
 				   <div class="modal-dialog">
