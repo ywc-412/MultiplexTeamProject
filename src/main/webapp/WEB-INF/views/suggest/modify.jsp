@@ -35,6 +35,15 @@
 
 <script>
 	$(function(){
+		
+		var memberIdValidate = '${suggest.memberId }';
+		var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
+		
+		if(memberIdValidate != principalUsernmae){
+			location.href='/accessError';
+		}
+		
+		
 		var nullChk = false;
 		$('#suggestModifyComplete').on("click", function(e){
 			e.preventDefault();
