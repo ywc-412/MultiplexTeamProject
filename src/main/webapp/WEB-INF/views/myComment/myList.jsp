@@ -152,6 +152,15 @@
     
     <script src="/resources/js/commentReply.js"></script>
     <script>
+    
+    var memberIdValidate = '${param.memberId}';
+    var principalUsernmae = '<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.username"/></sec:authorize>';
+    
+    if(memberIdValidate != principalUsernmae){
+       location.href='/accessError';
+    }
+    
+    
    $('#star_grade_modify a').click(function(){
       $(this).parent().children("a").removeClass("on");
       $(this).addClass("on").prevAll("a").addClass("on");
