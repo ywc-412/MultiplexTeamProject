@@ -7,4 +7,4 @@
 
 ### 시스템 아키텍처
 
-![ex_screenshot](/resources/img/시스템아키텍처.png)
+![ex_screenshot](./src/main/webapp/resources/img/시스템아키텍처.png)
