@@ -108,7 +108,6 @@ public class CommentReportController {
       String[] arrComment = checkComment.toString().split(",");
       for( int i=0; i<arrComment.length; i++) {
          commentService.remove(Integer.parseInt(arrComment[i]));
-         
       }
       
       rttr.addAttribute("pageNum", cri.getPageNum());

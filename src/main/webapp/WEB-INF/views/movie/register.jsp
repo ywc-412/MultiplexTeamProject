@@ -143,7 +143,7 @@
               $('#movieTitle').focus();
           } else if( movieManager == "" || movieManager.length < 0){
               $('#manager').text('영화 감독을 입력해주세요');
-              $('#mainActor').focus();
+              $('#movieManager').focus();
           } else if( movieMainActor == "" || movieMainActor.length < 0){
               $('#mainActor').text('영화 주연배우를 입력해주세요');
               $('#movieMainActor').focus();

@@ -38,7 +38,7 @@ tr, td {
                   <th scope="col" class="yeongth10">신고자ID</th>
                   <th scope="col" class="yeongth30">신고내용</th>
                   <th scope="col" class="yeongth30">한줄평내용</th>
-                  <th scope="col" class="yeongth15">처리결과</th>
+<!--                   <th scope="col" class="yeongth15">처리결과</th> -->
                   <th scope="col" class="yeongth10">삭제</th>
                </tr>
             </thead>
@@ -72,10 +72,10 @@ tr, td {
 <%--                                 <td scope="col" class="yeongth35">${comment.commentContent }</td> --%>
                             </c:if>
                            </c:forEach>
-                           <td scope="col" class="yeongth15">
-                              <c:if test="${commentReport.commentReportResult == 0}">
-                                 			  미처리
-                            </c:if>
+<!--                            <td scope="col" class="yeongth15"> -->
+<%--                               <c:if test="${commentReport.commentReportResult == 0}"> --%>
+<!--                                  			  미처리 -->
+<%--                             </c:if> --%>
                         <c:forEach items="${comment }" var="comment">
                            <c:if test="${comment.commentNo eq commentReport.commentNo }">
                                  <td scope="col" class="yeongth10"><input type="checkbox" name="delete" id="chBox" class="chBox" data-commentNo=${comment.commentNo } data-commentReportNo=${commentReport.commentReportNo }></td>
@@ -206,11 +206,9 @@ tr, td {
             checkComment += $(this).data("commentno");
 
          });
-//          checkComment = checkComment.substring(0,checkComment.lastIndexOf(","));
-         console.log(checkComment.toString().split(","));
          
          var check = checkComment.toString().split(",");
-         console.log(checkComment);
+         
          
          $("#actionForm").find("#commentNo").remove();
          $("#actionForm").append("<input type='hidden' name='checkComment' value='"+ checkComment +"'>");
