@@ -283,10 +283,8 @@
    <script>
       $(function(){
              
-         var totalStar = '<fmt:formatNumber value="${totalComment}" type="pattern" pattern="0.00" />';
-          console.log(" 평균 : " + totalStar);
+          var totalStar = '<fmt:formatNumber value="${totalComment}" type="pattern" pattern="0.00" />';
           var totalStarZero = isNaN(totalStar);
-          console.log(totalStarZero);
           
           var total = $(".total");
           var starZero = $(".yeong-allStar");
@@ -464,9 +462,6 @@
                    
                    var adminAuth = '<c:out value="[ROLE_ADMIN, ROLE_MEMBER]"/>';
                    var memberAuth = '<c:out value="[ROLE_MEMBER]"/>';
-                   
-                   console.log(auth);
-                   console.log(list[i].memberId);
                    
                   str += "<tr data-commentNo='"+list[i].commentNo+"'>";
                   str += "  <td scope='row' class='yeongth10 yeong-starRed'>" + list[i].commentStar + "</td>";

@@ -23,8 +23,8 @@
           <div class="section_title movie_register">
           
                <sec:authorize access="hasRole('ROLE_ADMIN')">
-               <a href="/movie/register" class="btn btn-primary">영화등록</a>
-            </sec:authorize>
+	               <a href="/movie/register" class="btn btn-primary">영화등록</a>
+	           </sec:authorize>
          </div>
          
          <div class='movie_search'>
@@ -87,7 +87,7 @@
        <ul class="pagination">
              <c:if test="${pageMaker.prev }">
                 <li class="page-item previous">
-                   <a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
+                   <a class="page-link yeong_previous" href="${pageMaker.startPage -1 }">Previous</a></li>
           </c:if>
           <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
                 <li class="page-item + ${pageMaker.cri.pageNum == num ? 'active' : ''}">
