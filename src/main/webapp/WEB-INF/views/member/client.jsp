@@ -73,19 +73,25 @@
 								</c:forEach>
 							</table>
 						</div>
-						<div class="pagination justify-content-center clear">
+						<div class="pagination justify-content-center">
 							<ul class="pagination">
 								<c:if test="${pageMaker.prev}">
-									<li class="page-item"><a class="page-link" href="${pageMaker.startPage -1}" aria-label="Previous"> 
-										<span aria-hidden="true">&laquo;</span></a>
-									</li>
+									<li class="page-item previous"><a class="page-link"
+										href="${pageMaker.startPage-1}" aria-label="Previous"> <span
+											aria-hidden="true">&laquo;</span>
+									</a></li>
 								</c:if>
-								<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-									<li class='page-item ${pageMaker.cri.pageNum == num? "" : "" } '><a href="${num}">${num}</a></li>
+								<c:forEach var="num" begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage}">
+									<li
+										class="page-item + ${pageMaker.cri.pageNum == num ? 'active' : ''}">
+										<a class="page-link" href="${num}">${num}</a>
+									</li>
 								</c:forEach>
-								<c:if test="${pageMaker.next }">
-									<li class="page-item"><a class="page-link" href="${pageMaker.endPage +1}"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								<c:if test="${pageMaker.next}">
+									<li class="page-item next"><a class="page-link"
+										href="${pageMaker.endPage+1}" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
 									</a></li>
 								</c:if>
 							</ul>
