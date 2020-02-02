@@ -24,4 +24,5 @@
 [![Video Label](http://img.youtube.com/vi/sxI2kVkmx7E/0.jpg)](https://youtu.be/sxI2kVkmx7E)
 
 #### 관리자 페이지(회원 조회, 회원 메시지, 회원 강퇴) 기능 (유튜브 링크가 걸려있습니다)
+##  
 [![Video Label](http://img.youtube.com/vi/1zri-4qJKGo/0.jpg)](https://youtu.be/1zri-4qJKGo)
