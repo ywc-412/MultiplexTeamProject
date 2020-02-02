@@ -13,3 +13,5 @@
 ### 개발환경
 ![ex_screenshot](./src/main/webapp/resources/img/개발환경.PNG)
 
+#### 회원가입, 로그인 기능
+[![Video Label](http://img.youtube.com/vi/uLR1RNqJ1Mw/0.jpg)](https://youtu.be/VoiHSPIzyyo) Video Label
