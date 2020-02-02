@@ -14,4 +14,5 @@
 ![ex_screenshot](./src/main/webapp/resources/img/개발환경.PNG)
 
 #### 회원가입, 로그인 기능
-[![Video Label](http://img.youtu.be/VoiHSPIzyyo/0.jpg)](https://youtu.be/VoiHSPIzyyo)
+
+[![Video Label](http://img.youtube.com/vi/VoiHSPIzyyo/0.jpg)](https://youtu.be/VoiHSPIzyyo)
