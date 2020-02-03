@@ -417,14 +417,16 @@ input:disabled {
     padding-left: 10%;
 }
 
+.totalPrice {
+		width: 50px;
+}
 
-
-
-.giftName, .giftPrice, .totalPrice {
+.giftNo, .giftName, .giftPrice, .totalPrice, .giftSet {
 	background: transparent;
 	border: white;
 	font-weight: bold;
-	outline:none;
+	outline : none;
+
 }
 
 .imgmg {
@@ -445,15 +447,12 @@ input:disabled {
 }
 .single_gift {
 	float: right;
-
 }
-
 
 .giftImg {
 	width: 130px;
 	height : 120px;
-	background-color: white;
-	
+	background-color: white;	
 }
 
 .single_gift {
@@ -462,7 +461,6 @@ input:disabled {
 	text-align: center;
 	float: left;
 	margin: 20px
-
 }
 
 .custom-col-md-3 {

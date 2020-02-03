@@ -24,7 +24,7 @@
 	               	 </div>
                	 </div>
                 <div class="col-md-9 mt-sm-20">            
-                    <p>가격 : ${mygift[0].giftList[0].giftPrice}</p>
+                    <p>가격 : <fmt:formatNumber value="${mygift[0].giftList[0].giftPrice}" pattern="###,###"/>원</p>
                     <p>구성 : ${mygift[0].giftList[0].giftSet}</p>
                     <p>구입일자 : <fmt:formatDate value="${mygift[0].buyingDate}" pattern="yyyy.MM.dd"/></p>
 		            <c:if test="${!empty mygift[0].expireDate}">

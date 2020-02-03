@@ -102,6 +102,7 @@ public class GiftController {
 	
 	@PostMapping("paying")
 	public String paying(GiftVO gift, MyGiftVO myGift, int qty, RedirectAttributes rttr) {
+		System.out.println(gift.getGiftPrice());
 		// myGift에 내가 주문한 기프티콘을 insert한다. 
 		for(int i=1; i <= qty; i++) {
 			myGiftService.myInsertSelectKey(myGift);
