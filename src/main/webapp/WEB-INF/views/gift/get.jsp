@@ -28,19 +28,23 @@
 				<!-- data s -->
 				<div class="col-md-9 mt-sm-20">
 					<div class="form-group">
-						<label>No&emsp; : &ensp;</label><span name="giftNo"><c:out value="${gift.giftNo}" /></span>
+						<label>No&emsp; : &ensp;</label>
+						<input value="${gift.giftNo}" class="giftNo" readonly>
 					</div>
 					<div class="form-group">
-						<label>가격&ensp; : &ensp;</label><input type="hidden" name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly><fmt:formatNumber  pattern="###,###" value="${gift.giftPrice}" />&nbsp;원
+						<label>가격&ensp; : &ensp;</label>
+						<input type="hidden" name="giftPrice" class="giftPrice" value="${gift.giftPrice}" readonly>
+						<fmt:formatNumber   pattern="###,###" value="${gift.giftPrice}" />&nbsp;원
 					</div>
 					<div class="form-group">
-						<label>구성&ensp; : &ensp;</label><span name="giftSet"><c:out value="${gift.giftSet}" /></span>
+						<label>구성&ensp; : &ensp;</label>
+						<input value="${gift.giftSet}" class="giftSet" readonly>
 					</div>
 					<div class="qty mt-5">
 						<span class="minus bg-dark">-</span> 
 							<input type="number" class="num-count" id="qty" name="qty" value="1">
 						<span class="plus bg-dark">+</span>
-						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly></span>
+						<span class="custom-price"><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly>원</span>
 					</div>
 				</div>
 				<!-- data e -->
@@ -48,7 +52,8 @@
 		</div>
 		<div class="custom-divide-border-top">
 			<span class="custom-pull-right">
-				<label>총 구매금액&emsp; : &emsp;</label><input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly>
+				<label>총 구매금액&emsp; : &emsp;</label>
+					<input name="totalPrice" class="totalPrice" value="${gift.giftPrice}" readonly>원
 			</span>
 			<br><br>			
 		</div><br>
@@ -58,43 +63,90 @@
 	</div>		
 	<div class="float-right">	
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<form action="/gift/modify" id="operForm" method="get" style="float: left">
-			<input value="${gift.giftNo}" name="giftNo" type="hidden">		
-			<button type="submit" class="btn btn-primary custom-button-gift" data-oper='modify'>수정</button>
-		</form>
-		
-		<form method="post" action="/gift/remove" role="form"  style="float: left">				
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
-			<input value="${gift.giftNo}" name="giftNo" type="hidden">				
-			<button type="submit" class="btn btn-danger custom-button-gift" data-oper="remove">삭제</button>
-		</form>
+			<form action="/gift/modify"  method="get" id="operForm" style="float: left">
+				<input value="${gift.giftNo}" name="giftNo" type="hidden">		
+				<button type="submit" class="btn btn-primary custom-button-gift" data-oper='modify'>수정</button>
+			</form>
+			
+			<form action="/gift/remove" method="post" role="form"  style="float: left">				
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+				<input value="${gift.giftNo}" name="giftNo" type="hidden">				
+				<button type="submit" class="btn btn-danger custom-button-gift" data-oper="remove">삭제</button>
+			</form>
 		</sec:authorize>
 		
-		<form action="/gift/paying" method="post" id="payRealForm" style="float: left">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
-			<sec:authorize access="isAuthenticated()">
-				<input type="hidden" name="memberId" id="memberInput" value="<sec:authentication property='principal.username'/>">			
-			</sec:authorize>
-			<div id="payHere">
-				<!-- 결제 -->
-			</div>
-			<sec:authorize access="isAnonymous() or hasRole('ROLE_MEMBER')">
-				<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
-			</sec:authorize>
-		</form>		
+			<form action="/gift/paying" method="post" id="payRealForm" style="float: left">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">	
+					<sec:authorize access="isAuthenticated()">
+						<input type="hidden" name="memberId" id="memberInput" value="<sec:authentication property='principal.username'/>">			
+					</sec:authorize>
+					
+					<div id="payHere">
+						<!-- 결제 -->
+					</div>
+					<sec:authorize access="isAnonymous() or hasRole('ROLE_MEMBER')">
+						<button type="button" id="payment" class="btn btn-primary custom-button-gift" >구입</button>
+					</sec:authorize>
+			</form>		
 	</div>	
 	<!-- 버튼 e -->				
 	</div>	
 </section>
 <!-- board e -->
+
 	<!-- 비회원이 결제버튼 눌렀을 때 확인하기  -->
 	<sec:authorize access="isAuthenticated()">
 		<c:set value="<sec:authentication property='principal.username'/>" var="userId"></c:set>
 	</sec:authorize>
-
+	<!-- 비회원이 결제버튼 눌렀을 때 확인하기  -->
+	
 <script>
 
-//결제
+//기프티콘 수량 변경
+$(document).ready(function () {
+	/* 처음에 총 합계금액에 정규표현식 적용해서 표시 */
+	var total = $('.totalPrice').val();
+    	total = total.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    	parseInt($('.totalPrice').val(total));
+    
+    //+를 클릭했을 때
+    $('.num-count').prop('disabled', true);
+    $(document).on('click', '.plus', function () {
+        $('.num-count').val(parseInt($('.num-count').val()) + 1);
+        $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));  
+        var total = $('.totalPrice').val();
+        if(!total == 0) {
+        	total = total.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        	parseInt($('.totalPrice').val(total));
+        }           
+    });
+    
+  //-를 클릭했을 때
+    $(document).on('click', '.minus', function () {
+        $('.num-count').val(parseInt($('.num-count').val()) - 1);
+        var gift = $('.giftPrice').val();
+        gift = parseInt(gift);
+        var total = $('.totalPrice').val();
+        total = total.replace(/\,/g,'');	//연산을 위해서 정규표현식 원래대로 되돌리기
+     
+        $('.totalPrice').val(parseInt(total-gift));        
+       
+        if(!total == 0) {
+        	var total = $('.totalPrice').val();
+        	total = total.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        	
+        	parseInt($('.totalPrice').val(total));
+        }
+        
+        if ($('.num-count').val() == 0) {
+            $('.num-count').val(1);
+            alert("1개 이상 구입 가능");
+            $('.totalPrice').val(parseInt($('.giftPrice').val() * 1));
+        }
+    });
+}); 
+
+  //결제 함수 호출
 	$(function(){
 		$('#payment').on("click", function(e){
 			e.preventDefault();
@@ -107,14 +159,16 @@
 			var giftNo = ${gift.giftNo};
 			var giftName = $('.giftName').val();
 			var giftPrice = $('.totalPrice').val();
-			var giftSet = $('#giftSet').val();
+			giftPrice = giftPrice.replace(/\,/g,'');
+			giftPrice = parseInt(giftPrice);
+			console.log(giftPrice);
+			var giftSet = $('.giftSet').val();
 			var qty = $('#qty').val();
 			payment(giftNo, giftName, giftPrice, giftSet, qty);
 		});
 	})
-
-
-
+  
+  //결제 함수
 	function payment(giftNo, giftName, giftPrice, giftSet, qty) {	
 	
 		var IMP = window.IMP; // 생략가능
@@ -127,8 +181,8 @@
 			name: $('.giftName').val(),
 			amount: 10 * $('#qty').val(),
 			buyer_email: 'iamport@siot.do',
-			buyer_name: '박진주',
-			buyer_tel: '010-6626-2818',
+			buyer_name: '홍길동',
+			buyer_tel: '010-1234-5678',
 			buyer_addr: '서울특별시 강남구 삼성동',
 			buyer_postcode: '123-456'
 		}, function(rsp) {
@@ -165,20 +219,17 @@
 		         formObj.submit();
 	    	   } else {
 	    		   false;
-	    	   }
-	      
+	    	   }      
 	      }else if(operation === 'modify'){
 	         formObj.attr("action", "/gift/modify");
 	         formObj.submit();
-	      } 
-	      
+	      } 	      
 	   });	  	
 	}); 
 
 	//첨부파일 목록 가져오기
 	(function() {	
-		$.getJSON("/gift/getAttachList", { giftNo : ${gift.giftNo}}, function(data) {
-					
+		$.getJSON("/gift/getAttachList", { giftNo : ${gift.giftNo}}, function(data) {					
 			var li = "";
 			$(data).each(function(index, obj){								
 				//이미지이면 그대로 표시				
@@ -192,25 +243,7 @@
 						error(err);
 					} */
 		});//END JSON	
-	})();
-
-    //기프티콘 수량 변경
-    $(document).ready(function () {
-        $('.num-count').prop('disabled', true);
-        $(document).on('click', '.plus', function () {
-            $('.num-count').val(parseInt($('.num-count').val()) + 1);
-            $('.totalPrice').val(parseInt($('.giftPrice').val() * $('.num-count').val()));                 
-        });
-        $(document).on('click', '.minus', function () {
-            $('.num-count').val(parseInt($('.num-count').val()) - 1);
-            $('.totalPrice').val(parseInt($('.totalPrice').val() - $('.giftPrice').val()));
-            if ($('.num-count').val() == 0) {
-                $('.num-count').val(1);
-                alert("1개 이상 구입 가능");
-                $('.totalPrice').val(parseInt($('.giftPrice').val() * 1));
-            }
-        });
-    });   
+	})();  
     
     $("#list").click(function(){ 
     	self.location='/gift/list';
